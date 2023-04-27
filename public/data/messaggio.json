@@ -1,0 +1,25 @@
+[
+    {
+        "utente" : "fv",
+        "corpo" : "ciao",
+        "destinatari" : ["&free"],
+        "destinatari-mod" : [],
+        "timestamp" : "1682004995",
+        "visualizzazioni" : 10,
+        "reazioni" : {
+            "positive": {
+                "concordo": 1,
+                "mi piace": 2,
+                "adoro": 3
+            },
+            "negative": {
+                "sono contrario": 1,
+                "mi disgusta": 0,
+                "odio": 0
+            }
+        },
+        "pubblico": true,
+        "categoria" : "popolare",
+        "automatico" : false
+    }
+]
