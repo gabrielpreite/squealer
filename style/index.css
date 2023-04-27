@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+    padding: 0;
+    /*background: linear-gradient(45deg,  #4cc39d, #092f55, #2b1354); da mettere font chiari*/
+    background: linear-gradient(45deg, #39dba8, #c28c4f, #61bdd0);
+    background-size: 500% 500%;
+    background-repeat: no-repeat;
+    animation: color 22s ease-in-out infinite;
+}
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*/
+}
+
+#risultati {
+    margin-left: 20px;
+    max-width: 500px;
+}
+
+.logo {
+    text-indent: -999999px;
+    background: url(images/logow.png);
+    background-position: center;
+    height: 190px;
+    background-repeat: no-repeat;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.box div {
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgb(35, 35, 39);
+    position: absolute;
+}
+
+.box div:nth-child(1) {
+    top: 12%;
+    left: 42%;
+    animation: square 10s linear infinite;
+}
+
+.box div:nth-child(2) {
+    top: 70%;
+    left: 50%;
+    animation: square 7s linear infinite;
+}
+
+.box div:nth-child(3) {
+    top: 17%;
+    left: 6%;
+    animation: square 9s linear infinite;
+}
+
+.box div:nth-child(4) {
+    top: 20%;
+    left: 60%;
+    animation: square 10s linear infinite;
+}
+
+.box div:nth-child(5) {
+    top: 67%;
+    left: 10%;
+    animation: square 6s linear infinite;
+}
+
+.box div:nth-child(6) {
+    top: 80%;
+    left: 70%;
+    animation: square 10s linear infinite;
+}
+
+.box div:nth-child(7) {
+    top: 60%;
+    left: 80%;
+    animation: square 15s linear infinite;
+}
+
+.box div:nth-child(8) {
+    top: 32%;
+    left: 25%;
+    animation: square 9s linear infinite;
+}
+
+.box div:nth-child(9) {
+    top: 90%;
+    left: 25%;
+    animation: square 16s linear infinite;
+}
+
+.box div:nth-child(10) {
+    top: 20%;
+    left: 80%;
+    animation: square 5s linear infinite;
+}
+
+@keyframes color {
+    0% {
+        background-position: 0 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes square {
+    0% {
+        transform: scale(0) translateY(0) rotate(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2) translateY(-90px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.nav-item {
+    color: #1d9bf0;
+}
+
+#logo {
+    display: block;
+    margin-left: 43%;
+    margin-right: 57%;
+    width: 15%;
+}
+
+#title {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-family: cursive;
+    font-size: 6rem;
+    font-weight: bold;
+    -webkit-text-stroke: 1px white;
+}
+
+#title-container {
+    position: relative;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr {
+    text-align: center;
+}
+
+.home_td {
+    text-align: end;
+    width: 20%;
+}
+
+
+.guest_td {
+    text-align: start;
+    width: 20%;
+}
+
+.progress {
+    margin: 5%;
+}
+
+#score {
+    font-size: 70pt;
+}
+
+.row {
+    vertical-align: middle;
+}
+
+#stats .col {
+    padding: 0%;
+}
+
+#home-logo,
+#guest-logo {
+    width: 150pt;
+}
+
+#home-team,
+#guest-team {
+    text-align: center;
+}
+
+#home-name,
+#guest-name {
+    padding-top: 3rem;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.date-cell,
+.button-td {
+    width: 100px;
+}
+
+#events {
+    font-size: small;
+}
+
+#events td {
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+#events-guest {
+    padding-left: 4rem;
+}
+
+#events-home {
+    padding-right: 4rem;
+}
+
+#tweets {
+    overflow-y: auto;
+    overflow: hidden;
+}
+
+.username {
+    font-size: smaller;
+}
+
+.created_at {
+    font-size: smaller;
+}
+
+.propic {
+    width: 9%;
+    border-radius: 50%;
+    margin-right: 0.7rem;
+}
+
+#tweet-pics {
+    overflow-y: auto;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    overflow: hidden;
+}
+
+#contenitore {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
