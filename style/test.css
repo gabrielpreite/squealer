@@ -1,0 +1,70 @@
+/* Set the height of the column headings */
+h3.fixed-top {
+    height: 50px;
+}
+
+/* Center the text inside the column headings */
+h3 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Style the search bar */
+.form-control {
+    width: 70%;
+}
+
+/* Add padding to the tweet cards */
+.card {
+    padding: 10px;
+}
+ 
+/* Add padding to the top of the content area equal to the height of the navbar */
+body {
+    padding-top: 70px;
+}
+
+/* Add margin to the bottom of the fixed column headings */
+.fixed-top {
+    margin-bottom: 10px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    margin-right: 5px;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.btn-outline-success {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.navbar-toggler {
+    border-color: #fff;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%28106%2c 113%2c 124%2c 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

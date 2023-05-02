@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style/test.css" />
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <!-- Part 1: Interactive small icon with a title -->
+          <a class="navbar-brand" href="#">
+            <img src="Profilo.svg.png" alt="Immagine Profilo" width="30" height="30" class="d-inline-block align-text-top me-2">
+            Nome Cognomeeee
+          </a>
+          
+          <!-- Part 2: Text with an interactive menu -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Quota</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Notifiche</a>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Part 3: Small interactive icon -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <img src="imp.png" alt="Icona impostazioni" width="30" height="30" class="d-inline-block align-text-top">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+
+  <div class="container-fluid">
+    <div class="row">
+      
+      <!-- First Column -->
+      <div class="col-md-3 border-right">
+        <h3 class="bg-dark text-center py-2"><a href="#">First Column</a></h3>
+      </div>
+      
+      <!-- Second Column -->
+      <div class="col-md-6 border-right">
+        <h3 class="bg-dark text-center py-2"><a href="#">Second Column</a></h3>
+        <form class="form-inline mt-2 mx-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <div class="card my-4">
+            <div class="card-body">
+              <h4 class="card-title">Tweet Title</h4>
+              <p class="card-text">This is a sample tweet. It's a short post that is limited to 280 characters. Twitter is a social media platform where people share their thoughts and ideas using tweets.</p>
+            </div>
+          </div>
+          <div class="card my-4">
+            <div class="card-body">
+              <h4 class="card-title">Another Tweet Title</h4>
+              <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+            </div>
+          </div>
+      </div>
+      
+      <!-- Third Column -->
+      <div class="col-md-3">
+        <h3 class="bg-dark text-center py-2"><a href="#">Third Column</a></h3>
+      </div>
+      
+    </div>
+  </div>
+
+</body>
+</html>
