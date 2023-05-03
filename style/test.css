@@ -68,3 +68,59 @@ body {
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%28106%2c 113%2c 124%2c 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
+
+.search-bar {
+    position: fixed;
+    top: 50px;
+    left: 25%;
+    right: 25%;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    z-index: 100;
+    padding: 10px;
+}
+
+.content-left {
+    position: fixed;
+    top: 50px;
+    left: 0%;
+    right: 75%;
+    background-color: #fff;
+    z-index: 100;
+    padding: 10px;
+}
+
+.content-mid {
+    position: fixed;
+    top: 50px;
+    left: 25%;
+    right: 25%;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    z-index: 100;
+    padding: 10px;
+}
+
+.content-right {
+    position: fixed;
+    top: 50px;
+    left: 75%;
+    right: 0%;
+    background-color: #fff;
+    z-index: 100;
+    padding: 10px;
+}
+
+.content-mid-fluid {
+    top: 50px;
+    left: 25%;
+    right: 25%;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    z-index: 100;
+    padding: 10px;
+}
