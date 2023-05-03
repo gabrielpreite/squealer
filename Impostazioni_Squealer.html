@@ -1,216 +1,237 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Impostazioni - Squealer</title>
-	<style>
-		body {
-			margin-top: 80px; /* spazio per la barra superiore */
-			font-family: Arial, sans-serif;
-			color: #333;
-			background-color: #f2f2f2;
-		}
+  <head>
+    <title>Impostazioni Squealer</title>
+    <style>
+       body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
 
-		.navbar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 80px;
-			background-color: #007aff;
-			color: white;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 0 20px;
-			box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-		}
+      .navbar {
+        background-color: #1da1f2;
+        color: white;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
 
-		.navbar img {
-			height: 60px;
-			width: 60px;
-			border-radius: 50%;
-			object-fit: cover;
-			margin-right: 20px;
-		}
+    	.navbar img {
+        height: 40px;
+        width: auto;
+    		border-radius: 50%;
+    		object-fit: cover;
+    		margin-right: 5px;
+    	}
 
-		.navbar h3 {
-			margin: 0;
-		}
+      #profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+      }
 
-		.navbar .quota {
-			background-color: white;
-			color: #007aff;
-			padding: 5px 10px;
-			border-radius: 5px;
-			font-weight: bold;
-		}
+      #quota {
+        background-color: white;
+        color: #007aff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 20px;
+        margin-left: auto;
+      }
 
-		h1 {
-			margin-top: 40px;
-			font-size: 36px;
-			text-align: center;
-		}
 
-		h2 {
-			margin-top: 60px;
-			font-size: 24px;
-			margin-bottom: 20px;
-		}
+      #main {
+        margin-top: 50px;
+        display: flex;
+      }
 
-		 ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			background-color: white;
-			border-radius: 5px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-		}
+      #sidebar {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        height: 100%;
+        background-color: #f2f2f2;
+        width: 20%;
+        padding: 20px;
+        overflow: auto;
+      }
 
-		li {
-			border-bottom: 1px solid #f2f2f2;
-			padding: 20px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			font-size: 18px;
-			cursor: pointer;
-			transition: background-color 0.2s;
-		}
 
-		li:hover {
-			background-color: #f2f2f2;
-		}
+      #menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
 
-		li:last-of-type {
-			border-bottom: none;
-		}
+      #menu li {
+        margin-bottom: 10px;
+      }
 
-		li a {
-			color: #007aff;
-			text-decoration: none;
-			font-weight: bold;
-		}
+      #menu li a {
+        color: #1da1f2;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+      }
 
-		li span {
-			color: #777;
-			font-weight: normal;
-			font-size: 16px;
-		}
+      #menu li a:hover {
+        text-decoration: underline;
+      }
 
-		input[type="checkbox"] {
-			display: none;
-		}
+      #content {
+        top: 50px;
+        margin-left: 23%;
+        width: 75%;
+        padding: 20px;
+      }
 
-		input[type="checkbox"] + label {
-			display: flex;
-			align-items: center;
-			cursor: pointer;
-			font-size: 18px;
-		}
+      #notifiche:target, #post-popolari:target, #post-impopolari:target, #quota:target,
+      #storico-acquisti:target, #cambia-account:target, #altro:target{
+        scroll-margin-top: 70px;
+      }
 
-		input[type="checkbox"] + label::before {
-			content: "";
-			display: inline-block;
-			height: 20px;
-			width: 20px;
-			border-radius: 50%;
-			border: 1px solid #bbb;
-			margin-right: 10px;
-			background-color: white;
-			transition: background-color 0.2s;
-		}
+      h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
 
-		input[type="checkbox"]:checked + label::before {
-			background-color: #007aff;
-			border-color
-		}
+      h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
 
-		input[type="checkbox"] + label span {
-			color: #333;
-			font-weight: bold;
-		}
-	</style>
-</head>
-<body>
-	<div class="navbar">
-		<div>
-			<img src="https://via.placeholder.com/60x60" alt="Profile picture">
-			<h3>Username</h3>
-		</div>
-		<div>
-			<div class="quota">Quota: 50</div>
-		</div>
-	</div>
-	<h1>Impostazioni account</h1>
-	<h2>Notifiche</h2>
-	<ul>
-		<li>
-			<label for="notifiche">
-				<input type="checkbox" id="notifiche">
-				<span>Ricevi notifiche via email</span>
-			</label>
-			<span>Attivato</span>
-		</li>
-		<li>
-			<label for="sms">
-				<input type="checkbox" id="sms">
-				<span>Ricevi notifiche via SMS</span>
-			</label>
-			<span>Disattivato</span>
-		</li>
-	</ul>
-	<h2>Post popolari</h2>
-	<ul>
-		<li>
-			<label for="tendenza">
-				<input type="checkbox" id="tendenza">
-				<span>Mostra post in tendenza</span>
-			</label>
-			<span>Attivato</span>
-		</li>
-		<li>
-			<label for="migliori">
-				<input type="checkbox" id="migliori">
-				<span>Mostra post migliori della settimana</span>
-			</label>
-			<span>Disattivato</span>
-		</li>
-	</ul>
-	<h2>Post impopolari</h2>
-	<ul>
-		<li>
-			<label for="nascosti">
-				<input type="checkbox" id="nascosti">
-				<span>Nascondi post con pochi like</span>
-			</label>
-			<span>Attivato</span>
-		</li>
-		<li>
-			<label for="mostra_tutti">
-				<input type="checkbox" id="mostra_tutti">
-				<span>Mostra tutti i post</span>
-			</label>
-			<span>Disattivato</span>
-		</li>
-	</ul>
-	<h2>Quota</h2>
-	<ul>
-		<li>
-			<a href="#">Aggiungi quota</a>
-			<span>50</span>
-		</li>
-	</ul>
-	<h2>Storico acquisti</h2>
-	<ul>
-		<li>
-			<a href="#">Visualizza storico</a>
-		</li>
-	</ul>
-	<h2>Cambia account</h2>
-	<ul>
-		<li>
-			<a href="#">Cambia account</a>
-		</li>
-	</ul>
-</body>
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #1da1f2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0c84c6;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <div id="profile">
+        	<img src="https://via.placeholder.com/60x60" alt="Profile picture">
+          <div><strong>Username</strong></div>
+      </div>
+          <div id="quota"><span>Quota: 300</span></div>
+    </div>
+
+    <div id="main">
+
+
+      <!-- MENU -->
+      <div id="sidebar">
+        <ul id="menu">
+          <li><a href="#notifiche">Notifiche</a></li>
+          <li><a href="#post-popolari">Post Popolari</a></li>
+          <li><a href="#post-impopolari">Post Impopolari</a></li>
+          <li><a href="#quota">Quota</a></li>
+          <li><a href="#storico-acquisti">Storico Acquisti</a></li>
+          <li><a href="#cambia-account">Cambia Account</a></li>
+          <li><a href="#altro">Altro</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTENUTO -->
+      <div id="content">
+        <h1>Impostazioni</h1>
+        <section id="notifiche">
+          <h2>Notifiche</h2>
+          <form>
+            <label for="notif-email">Indirizzo email</label>
+            <input type="email" id="notif-email" name="notif-email" placeholder="Inserisci il tuo indirizzo email" required>
+            <input type="submit" value="Salva">
+          </form>
+        </section>
+        <section id="post-popolari">
+          <h2>Post Popolari</h2>
+          <form>
+            <label for="num-post">Numero di post da visualizzare</label>
+            <select id="num-post" name="num-post">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+            <input type="submit" value="Salva">
+          </form>
+        </section>
+        <section id="post-impopolari">
+          <h2>Post Impopolari</h2>
+          <form>
+            <label for="hide-post">Nascondi post con meno di</label>
+            <select id="hide-post" name="hide-post">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <span>mi piace</span>
+            <input type="submit" value="Salva">
+          </form>
+        </section>
+        <section id="quota">
+          <h2>Quota</h2>
+          <form>
+            <label for="quota-size">Dimensione massima della quota</label>
+            <input type="text" id="quota-size" name="quota-size" placeholder="Inserisci la dimensione massima della quota" required>
+            <input type="submit" value="Salva">
+            </div>
+    </div>
+    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+         </body>
 </html>
