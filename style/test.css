@@ -81,3 +81,11 @@ h3 a {
     z-index: 100;
     padding: 10px;
 }
+
+.btn-bottom {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
