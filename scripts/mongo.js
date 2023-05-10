@@ -117,12 +117,13 @@ exports.search_utente = async function(q,credentials) {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
+
 		debug.push(`Trying to query MongoDB with query '${q[fieldname]}'... `)
 		let result = []
 		query[fieldname] = { $regex: q[fieldname], $options: 'i' }
 		await mongo.db(dbname)
 					.collection("utente")
-					.find(query)
+					.find("fv")
 					.forEach( (r) => { 
 						result.push(r) 
 					} );
