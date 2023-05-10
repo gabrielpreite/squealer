@@ -119,12 +119,12 @@ exports.search_utente = async function(q,credentials) {
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
-		debug.push(`Trying to query MongoDB with query '${q.username}'... `)
+		//debug.push(`Trying to query MongoDB with query '${q.username}'... `)
 		let result = []
-		query[username] = { $regex: q.username, $options: 'i' }
+		//query[username] = { $regex: q.username, $options: 'i' }
 		await mongo.db(dbname)
 					.collection("utente")
-					.find("fv")
+					.find({username: q.username})
 					.forEach( (r) => { 
 						result.push(r) 
 					} );
@@ -135,12 +135,12 @@ exports.search_utente = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		if (q.ajax) {
+		/*if (q.ajax) {
 			return data
-		} else {
-			var out = await template.generate('mongo.html', data);
-			return out
-		}
+		} else {*/
+		var out = await template.generate('mongo.html', data);
+		return out
+		//}
 	} catch (e) {
 		data.debug = debug
 		data.error = e
