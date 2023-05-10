@@ -20,53 +20,237 @@
 
     <!--JavaScript Scripts-->
     <script src="{{url_for('static', filename='index.js')}}"></script>
+
+    <style>
+
+      /*NAVBAR*/
+    .navbar {
+      background-color: #1da1f2;
+      color: white;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .navbar img {
+      height: 40px;
+      width: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 5px;
+    }
+
+    #profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    #username button {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 20px;
+      padding: 5px 20px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    #username button:hover {
+      background-color: white;
+      color: #1da1f2;
+    }
+
+    #username .dropdown-menu {
+      background-color: #fff;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      padding: 0.5rem 0;
+    }
+
+    #username .dropdown-item {
+      color: #212529;
+      font-weight: 400;
+      border-radius: 0;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
+
+    #username .dropdown-item:hover {
+      color: #007bff;
+      background-color: #f5f5f5;
+      border-radius: 0;
+    }
+
+    #quota {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .char-count-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding-left: 60px;
+    }
+
+    .char-count-item .count {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .char-count-item .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #000;
+    }
+
+    #shopButton{
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 20px;
+      padding: 5px 13px;
+      margin-left: 25px;
+      margin-right: 60px;
+    }
+
+    #shopButton:hover {
+      background-color: white;
+      color: #1da1f2;
+    }
+
+    .lateral-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    }
+
+    .lateral-buttons button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 5px 13px;
+    }
+
+    .lateral-buttons button:hover {
+    background-color: white;
+    color: #1da1f2;
+    border-color: white;
+    }
+
+    #notifiche button:focus {
+      background-color: white;
+      color: #1da1f2;
+      border-color: white;
+    }
+
+    #notifiche .dropdown-menu {
+      background-color: #fff;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      padding: 0.5rem 0;
+      max-height: 400px; /* Imposta l'altezza massima desiderata */
+      overflow-y: auto; /* Aggiunge una barra di scorrimento verticale se necessario */
+      max-width: 400px; /* Imposta la larghezza massima desiderata */
+    }
+
+    #notifiche .dropdown-item {
+      color: #000;
+      font-weight: 400;
+      border-radius: 0;
+      white-space: normal;
+    }
+
+    #notifiche .dropdown-item:hover,
+    #notifiche .dropdown-item:focus {
+      background-color: #f2f2f2;
+    }
+
+    #notificationsDropdown .dropdown-header {
+      font-size: 18px;
+      color: #555555;
+      padding: 10px 16px;
+    }
+    </style>
+
 </head>
 
 <body>
     <header>
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col text-start">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                        </svg>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button class="dropdown-item" type="button">Felon Muskrat</button>
-                        <h6 class="dropdown-header">Gestisci altri account</h6>
-                        <button class="dropdown-item" type="button">Tizio Caio</button>
-                        <button class="dropdown-item" type="button">Sempronio Boh</button>
-                    </div>
-                  </div>
-                <span class="visible-lg">Stai usando l'account di <span id="username">Felon Muskrat</span></span>
-              </div>
-              <div class="col text-center">
-                <span id="quota_rimanente">
-                    Quota Residua - Giorno: 50 - Settimana: 300 - Mese:1000
-                </span>
-                <button type="button" class="btn btn-outline-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg>
-                </button>
-              </div>
-              <div class="col text-end">
-                <button type="button" class="btn btn-outline-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-outline-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                    </svg>
-                </button>
-              </div>
+      <div class="navbar fixed-top">
+        <div id="profile">
+          <img src="https://via.placeholder.com/60x60" alt="Profile picture">
+          <div class="dropdown" id="username">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <strong>Username</strong>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <h6 class="dropdown-header">Gestisci altri account</h6>
+              <button class="dropdown-item" type="button">Felon Muskrat</button>
+              <button class="dropdown-item" type="button">Tizio Caio</button>
+              <button class="dropdown-item" type="button">Sempronio Boh</button>
             </div>
           </div>
+        </div>
+        <div id="quota">
+      <div class="char-count-item">
+        <span class="count">1000</span>
+        <span class="label">Giorno</span>
+      </div>
+      <div class="char-count-item">
+        <span class="count">5000</span>
+        <span class="label">Settimana</span>
+      </div>
+      <div class="char-count-item">
+        <span class="count">20000</span>
+        <span class="label">Mese</span>
+      </div>
+      <button class="btn btn-unstyled" id="shopButton">
+    <i class="fas fa-shopping-cart"></i>
+  </button>
+    </div>
+    <div class="lateral-buttons">
+      <div id="notifiche">
+      <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bell"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
+        <h3 class="dropdown-header">Notifiche</h3>
+        <a class="dropdown-item" href="#">Notifica 1</a>
+        <a class="dropdown-item" href="#">Notifica 2</a>
+        <a class="dropdown-item" href="#">Notifica 3</a>
+        <!-- Aggiungi altre notifiche qui -->
+      </div>
+    </div>
+    <!-- VERSIONE HOME
+    <div id="home">
+      <button class="btn btn-unstyled" id="homeButton">
+        <i class="fas fa-home"></i>
+      </button>
+    </div>
+      -->
+    <div id="impostazioni">
+      <button class="btn btn-unstiled" id="settingsButton">
+        <i class="fas fa-cog"></i>
+      </button>
+    </div>
+    </div>
+      </div>
     </header>
 
     <body>
