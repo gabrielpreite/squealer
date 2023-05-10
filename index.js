@@ -140,25 +140,11 @@ app.get('/db/search', async function(req, res) {
 /* ========================== */
 
 app.get('/api_utente', async function(req, res) {
-	let data = {
-		startDate: global.startDate.toLocaleString(), 
-		requestDate: (new Date()).toLocaleString(), 
-		request: {
-			host: req.hostname,
-			method: req.method,
-			path: req.path,
-			protocol: req.protocol
-		}, 
-		query: req.query,
-		body: req.body
-	}
-	res.send( await template.generate('info.html', data));
-	
 	/*res.send(await template.generate('generic.html', {
 		text: req.query,
 	}));*/
 
-	//res.send(await mymongo.search_utente(req.query, mongoCredentials))
+	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
 /* ========================== */

@@ -107,7 +107,21 @@ exports.create = async function(credentials) {
 }
 
 exports.search_utente = async function(q,credentials) {
-	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let data = {
+		startDate: global.startDate.toLocaleString(), 
+		requestDate: (new Date()).toLocaleString(), 
+		request: {
+			host: q.hostname,
+			method: q.method,
+			path: q.path,
+			protocol: q.protocol
+		}, 
+		query: q.query,
+		body: q.query.username
+	}
+	var r = await template.generate('info.html', data);
+	return r;
+	/*const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let query =  {}
 	let debug = []
@@ -144,7 +158,7 @@ exports.search_utente = async function(q,credentials) {
 		data.debug = debug
 		data.error = e
 		return data
-	}
+	}*/
 }
 
 /*exports.search = async function(q,credentials) {
