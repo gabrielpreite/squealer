@@ -143,8 +143,10 @@ app.get('/api_utente', async function(req, res) {
 	/*res.send(await template.generate('generic.html', {
 		text: req.query,
 	}));*/
-
-	res.send(await mymongo.search_utente(req, mongoCredentials))
+	res.send(await template.generate('generic.html', {
+		text: JSON.stringify(req),
+	}));
+	//res.send(await mymongo.search_utente(req, mongoCredentials))
 });
 
 /* ========================== */
