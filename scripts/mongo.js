@@ -107,21 +107,21 @@ exports.create = async function(credentials) {
 }
 
 exports.search_utente = async function(q,credentials) {
-	return "hai cercato "+q.username;
-	/*const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	//return "hai cercato "+q.username;
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let query =  {}
 	let debug = []
-	let data = {query: q[fieldname], result: null}
+	let data = {query: q.username, result: null}
 	try {
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
-		debug.push(`Trying to query MongoDB with query '${q[fieldname]}'... `)
+		debug.push(`Trying to query MongoDB with query '${q.username}'... `)
 		let result = []
-		query[fieldname] = { $regex: q[fieldname], $options: 'i' }
+		query[username] = { $regex: q.username, $options: 'i' }
 		await mongo.db(dbname)
 					.collection("utente")
 					.find("fv")
@@ -145,7 +145,7 @@ exports.search_utente = async function(q,credentials) {
 		data.debug = debug
 		data.error = e
 		return data
-	}*/
+	}
 }
 
 /*exports.search = async function(q,credentials) {
