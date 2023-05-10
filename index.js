@@ -139,8 +139,10 @@ app.get('/db/search', async function(req, res) {
 /*                            */
 /* ========================== */
 
-app.get('/api/utente', async function(req, res) {
-	res.send( await template.generate('info.html', data))
+app.get('/api_utente', async function(req, res) {
+	res.send(await template.generate('generic.html', {
+		text: "Hello world as a Handlebar service",
+	}));
 	//res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
