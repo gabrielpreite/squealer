@@ -140,10 +140,9 @@ app.get('/db/search', async function(req, res) {
 /* ========================== */
 
 app.get('/api/utente', async function(req, res) {
-	res.send(await mymongo.search_utente(req.query, mongoCredentials))
+	res.send( await template.generate('info.html', data))
+	//res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
-
-
 
 /* ========================== */
 /*                            */
