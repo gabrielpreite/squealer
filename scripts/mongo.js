@@ -107,7 +107,7 @@ exports.create = async function(credentials) {
 }
 
 exports.search_utente = async function(q,credentials) {
-	return "ciao"
+	return JSON.stringify(q)
 	/*const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let query =  {}
