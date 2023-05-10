@@ -1,5 +1,6 @@
 [
     {
+        "img" : "",
         "username": "fv",
         "email": "fv@gmail.com",
         "password": "12345678",
@@ -23,6 +24,7 @@
         "managed_by": null
     },
     {
+        "img" : "",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
         "password": "12345678",
@@ -46,6 +48,7 @@
         "managed_by": "fvSMM"
     },
     {
+        "img" : "",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
         "password": "12345678",
@@ -69,6 +72,7 @@
         "managed_by": null
     },
     {
+        "img" : "",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "12345678",
@@ -92,6 +96,7 @@
         "managed_by": "fvSMM"
     },
     {
+        "img" : "",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
         "password": "12345678",
@@ -115,6 +120,7 @@
         "managed_by": "fvSMM"
     },
     {
+        "img" : "",
         "username": "fvMod",
         "email": "fvMod@gmail.com",
         "password": "12345678",
@@ -138,6 +144,7 @@
         "managed_by": null
     },
     {
+        "img" : "",
         "username": "redazione",
         "email": "redazione@gmail.com",
         "password": "12345678",
