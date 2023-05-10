@@ -89,3 +89,183 @@ h3 a {
     transform: translateX(-50%);
     z-index: 1;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*/
+}
+
+.searchbar-style {
+    color: #1d9bf0;
+    border-color: #1d9bf0;
+}
+
+.tweet-card {
+    margin-left: 20px;
+    max-width: 500px;
+}
+
+.logo {
+    text-indent: -999999px;
+    background: url(images/logow.png);
+    background-position: center;
+    height: 190px;
+    background-repeat: no-repeat;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.box div {
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgb(35, 35, 39);
+    position: absolute;
+}
+
+.box div:nth-child(1) {
+    top: 12%;
+    left: 42%;
+    animation: square 10s linear infinite;
+}
+
+.box div:nth-child(2) {
+    top: 70%;
+    left: 50%;
+    animation: square 7s linear infinite;
+}
+
+.box div:nth-child(3) {
+    top: 17%;
+    left: 6%;
+    animation: square 9s linear infinite;
+}
+
+.box div:nth-child(4) {
+    top: 20%;
+    left: 60%;
+    animation: square 10s linear infinite;
+}
+
+.box div:nth-child(5) {
+    top: 67%;
+    left: 10%;
+    animation: square 6s linear infinite;
+}
+
+.box div:nth-child(6) {
+    top: 80%;
+    left: 70%;
+    animation: square 10s linear infinite;
+}
+
+.box div:nth-child(7) {
+    top: 60%;
+    left: 80%;
+    animation: square 15s linear infinite;
+}
+
+.box div:nth-child(8) {
+    top: 32%;
+    left: 25%;
+    animation: square 9s linear infinite;
+}
+
+.box div:nth-child(9) {
+    top: 90%;
+    left: 25%;
+    animation: square 16s linear infinite;
+}
+
+.box div:nth-child(10) {
+    top: 20%;
+    left: 80%;
+    animation: square 5s linear infinite;
+}
+
+@keyframes color {
+    0% {
+        background-position: 0 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes square {
+    0% {
+        transform: scale(0) translateY(0) rotate(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2) translateY(-90px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.nav-item {
+    color: #1d9bf0;
+}
+
+.geolabel {
+    position: absolute;
+    right: 1%;
+    top: 5%;
+}
+
+.username {
+    font-size: smaller;
+}
+
+.created_at {
+    font-size: smaller;
+}
+
+.propic {
+    width: 9%;
+    border-radius: 50%;
+    margin-right: 0.7rem;
+}
+
+.card-body .bollino {
+    float: right;
+}
+
+#title-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+g text:hover {
+    font-weight: bold;
+}
+
+g text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#cloud-times {
+    text-align: center;
+    font-size: large;
+}
+
+#risultati {
+    margin: 0 auto;
+}

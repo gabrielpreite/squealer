@@ -83,11 +83,33 @@
       <div class="col-md-6">
         <div class="row">
           <h3 class="bg-dark text-center py-2"><a href="#">Second Column</a></h3>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
         </div>
+
+        <div class="container pt-2">
+          <div class="row">
+              <div class="col-10 mx-auto">
+                  <form method="post" action="" onsubmit="()">
+                      <div class="input-group mb-3">
+                          <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
+  
+                          <select class="form-select" id="filtro" name="filtro" aria-label="Select">
+                              <option selected value="default" id="default" onclick="()">
+                                Ordina per:</option>
+                              <option value="data" id="data" onclick="()">
+                                Data</option>
+                              <option value="visual" id="visual" onclick="();">
+                                Numero di visualizzazioni</option>
+                              <option value="Impression" id="Impression" onclick="()">
+                                Impression</option>
+                          </select>
+
+                          <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
+                          border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
 
         <div class="row overflow-auto" style="height: 50em">
           <div class="card my-4">
