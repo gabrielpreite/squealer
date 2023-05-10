@@ -106,8 +106,47 @@ exports.create = async function(credentials) {
 	}
 }
 
+exports.search_utente = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-exports.search = async function(q,credentials) {
+	let query =  {}
+	let debug = []
+	let data = {query: q[fieldname], result: null}
+	try {
+		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		debug.push("... managed to connect to MongoDB.")
+		debug.push(`Trying to query MongoDB with query '${q[fieldname]}'... `)
+		let result = []
+		query[fieldname] = { $regex: q[fieldname], $options: 'i' }
+		await mongo.db(dbname)
+					.collection("utente")
+					.find(query)
+					.forEach( (r) => { 
+						result.push(r) 
+					} );
+		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
+
+		data.result = result
+		await mongo.close();
+		debug.push("Managed to close connection to MongoDB.")
+
+		data.debug = debug
+		if (q.ajax) {
+			return data
+		} else {
+			var out = await template.generate('mongo.html', data);
+			return out
+		}
+	} catch (e) {
+		data.debug = debug
+		data.error = e
+		return data
+	}
+}
+
+/*exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let query =  {}
@@ -146,7 +185,7 @@ exports.search = async function(q,credentials) {
 		data.error = e
 		return data
 	}
-}
+}*/
 
 /* Untested */
 // https://stackoverflow.com/questions/39599063/check-if-mongodb-is-connected/39602781

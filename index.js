@@ -133,8 +133,15 @@ app.get('/db/search', async function(req, res) {
 	res.send(await mymongo.search(req.query, mongoCredentials))
 });
 
+/* ========================== */
+/*                            */
+/*          DB CALLS	      */
+/*                            */
+/* ========================== */
 
-
+app.get('/api/utente', async function(req, res) {
+	res.send(await mymongo.search_utente(req.query, mongoCredentials))
+});
 
 
 
