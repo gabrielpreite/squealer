@@ -144,7 +144,7 @@ app.get('/api_utente', async function(req, res) {
 		text: req.query,
 	}));*/
 
-	res.send(await mymongo.search_utente(req.query, mongoCredentials))
+	res.send(await mymongo.search_utente(req, mongoCredentials))
 });
 
 /* ========================== */
