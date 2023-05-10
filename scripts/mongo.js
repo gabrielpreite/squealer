@@ -111,13 +111,13 @@ exports.search_utente = async function(q,credentials) {
 		startDate: global.startDate.toLocaleString(), 
 		requestDate: (new Date()).toLocaleString(), 
 		request: {
-			host: req.hostname,
-			method: req.method,
-			path: req.path,
-			protocol: req.protocol
+			host: q.hostname,
+			method: q.method,
+			path: q.path,
+			protocol: q.protocol
 		}, 
-		query: req.query,
-		body: req.query.username
+		query: q.query,
+		body: q.query.username
 	}
 	var r = await template.generate('info.html', data);
 	return r;
