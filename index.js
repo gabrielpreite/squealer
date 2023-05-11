@@ -62,15 +62,19 @@ app.use(cors())
 app.enable('trust proxy');
 
 
-app.get('/', async function (req, res) { 
+/*app.get('/', async function (req, res) { 
 	let sitename = req.hostname.split('.')[0]
 	res.send(await template.generate('index.html', {
 			host: req.hostname,
 			site: sitename
 	}));
+})*/
+
+app.get('/', async function (req, res) { 
+	res.sendFile(path.join(__dirname, "public/html/feed.html"))
 })
 
-app.get('/hw', async function(req, res) { 
+/*app.get('/hw', async function(req, res) { 
 	var text = "Hello world as a Node service";
 	res.send(
 `<!doctype html>
@@ -107,7 +111,7 @@ const info = async function(req, res) {
 
 app.get('/info', info )
 app.post('/info', info )
-
+*/
 
 
 
