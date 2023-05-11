@@ -124,7 +124,7 @@ exports.search_utente = async function(q,credentials) {
 		//query[username] = { $regex: q.username, $options: 'i' }
 		await mongo.db(dbname)
 					.collection("utente")
-					.find({username: q.username})
+					.find({username: (q.username === undefined ? "*" : q.username)})
 					.forEach( (r) => { 
 						result.push(r) 
 					} );
