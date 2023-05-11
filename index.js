@@ -71,7 +71,7 @@ app.enable('trust proxy');
 })*/
 
 app.get('/', async function (req, res) { 
-	res.sendfile("/docs/feed.html")
+	res.sendfile(path.join(__dirname, "/public/html/feed.html"))
 })
 
 /*app.get('/hw', async function(req, res) { 
