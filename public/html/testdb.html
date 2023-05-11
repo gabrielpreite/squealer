@@ -26,7 +26,7 @@
         function ajaxSearch() {
             $.ajax({
                 url: '/api_utente',
-                data: { userame: fv, ajax: true },
+                data: { username: "fv", ajax: true },
                 success: function (d) {
                     $('#query').html(": " + d.query)
                     let table = []
