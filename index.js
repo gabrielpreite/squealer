@@ -70,8 +70,20 @@ app.enable('trust proxy');
 	}));
 })*/
 
-app.get('/', async function (req, res) { 
-	res.sendfile(path.join(__dirname, "/public/html/feed.html"))
+app.get('/', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/feed.html")
+})
+
+app.get('/editor', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/editor.html")
+})
+
+app.get('/impostazioni', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/impostazioni.html")
+})
+
+app.get('/testdb', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/testdb.html")
 })
 
 /*app.get('/hw', async function(req, res) { 
@@ -144,12 +156,6 @@ app.get('/db/search', async function(req, res) {
 /* ========================== */
 
 app.get('/api_utente', async function(req, res) {
-	/*res.send(await template.generate('generic.html', {
-		text: req.query,
-	}));*/
-	/*res.send(await template.generate('generic.html', {
-		text: "ciao",
-	}));*/
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 

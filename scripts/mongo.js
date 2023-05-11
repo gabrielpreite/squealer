@@ -107,13 +107,13 @@ exports.create = async function(credentials) {
 }
 
 exports.search_utente = async function(q,credentials) {
-	//return "hai cercato "+q.username;
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let query =  {}
 	let debug = []
 	let data = {query: q.username, result: null}
 	try {
+		debug.push("query: "+q.username+"...")
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
@@ -122,12 +122,24 @@ exports.search_utente = async function(q,credentials) {
 		//debug.push(`Trying to query MongoDB with query '${q.username}'... `)
 		let result = []
 		//query[username] = { $regex: q.username, $options: 'i' }
-		await mongo.db(dbname)
-					.collection("utente")
-					.find({username: q.username})
-					.forEach( (r) => { 
-						result.push(r) 
-					} );
+		if(q.username === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
+			debug.push("no args found")
+			await mongo.db(dbname)
+						.collection("utente")
+						.find()
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		else{ //passo userid nel get, ritorno lo user corretto
+			debug.push("found args")
+			await mongo.db(dbname)
+						.collection("utente")
+						.find({username: q.username})
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
 		data.result = result
@@ -138,8 +150,7 @@ exports.search_utente = async function(q,credentials) {
 		/*if (q.ajax) {
 			return data
 		} else {*/
-		var out = await template.generate('mongo.html', data);
-		return out
+		return data
 		//}
 	} catch (e) {
 		data.debug = debug
