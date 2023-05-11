@@ -284,20 +284,112 @@
 
     <body>
 
-        <div id="contenitore" class="container-fluid">
-            <div class="row align-items-center flex-nowrap" id="squeals"></div>
+      <a href="editor.html" class="btn btn-primary btn-bottom">Crea un post</a>
 
-            <div class="row align-items-center">
-                <div class="col" id="grafici">
-                    Ciao
-                </div>
-                <div class="col" id="feed">
-                    Ciao
-                </div>
-                <div class="col" id="statistiche">
-                    Ciao
-                </div>
+      <div class="container-fluid">
+        <div class="row">
+    
+          <!-- First Column -->
+          <div class="col-md-3">
+            <h3 class="bg-dark text-center py-2"><a href="#">First Column</a></h3>
+          </div>
+    
+          <!-- Second Column -->
+          <div class="col-md-6">
+            <div class="row">
+              <h3 class="bg-dark text-center py-2"><a href="#">Second Column</a></h3>
             </div>
+    
+            <div class="container pt-2">
+              <div class="row">
+                  <div class="col-10 mx-auto">
+                      <form method="post" action="" onsubmit="()">
+                          <div class="input-group mb-3">
+                              <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
+      
+                              <select class="form-select" id="filtro" name="filtro" aria-label="Select">
+                                  <option selected value="default" id="default" onclick="()">
+                                    Ordina per:</option>
+                                  <option value="data" id="data" onclick="()">
+                                    Data</option>
+                                  <option value="visual" id="visual" onclick="();">
+                                    Numero di visualizzazioni</option>
+                                  <option value="Impression" id="Impression" onclick="()">
+                                    Impression</option>
+                              </select>
+    
+                              <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
+                              border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+    
+            <div class="row overflow-auto" style="height: 50em">
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Tweet Title</h4>
+                  <p class="card-text">This is a sample tweet. It's a short post that is limited to 280 characters. Twitter is a social media platform where people share their thoughts and ideas using tweets.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+              <div class="card my-4">
+                <div class="card-body">
+                  <h4 class="card-title">Another Tweet Title</h4>
+                  <p class="card-text">This is another sample tweet. It's another short post that is limited to 280 characters. Twitter is a popular platform for news, entertainment, and communication.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+            <!-- Third Column -->
+            <div class="col-md-3">
+              <h3 class="bg-dark text-center py-2"><a href="#">Third Column</a></h3>
+            </div>
+    
+          </div>
         </div>
 
     <!--JQuery-->
