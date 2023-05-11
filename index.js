@@ -82,6 +82,10 @@ app.get('/impostazioni', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/impostazioni.html")
 })
 
+app.get('/testdb', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/testdb.html")
+})
+
 /*app.get('/hw', async function(req, res) { 
 	var text = "Hello world as a Node service";
 	res.send(
