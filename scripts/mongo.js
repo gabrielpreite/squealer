@@ -107,13 +107,13 @@ exports.create = async function(credentials) {
 }
 
 exports.search_utente = async function(q,credentials) {
-	//return "hai cercato "+q.username;
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let query =  {}
 	let debug = []
 	let data = {query: q.username, result: null}
 	try {
+		debug.push("query: "+q.username+"...")
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
@@ -124,7 +124,7 @@ exports.search_utente = async function(q,credentials) {
 		//query[username] = { $regex: q.username, $options: 'i' }
 		await mongo.db(dbname)
 					.collection("utente")
-					.find({username: q.username})
+					.find({username: (q.username === undefined ? "*" : q.username)})
 					.forEach( (r) => { 
 						result.push(r) 
 					} );
