@@ -1,7 +1,7 @@
 [
     {
-        "messaggio-id" : "00000001",
-        "risponde-a": null,
+        "messaggio_id" : "00000001",
+        "risponde_a": null,
         "utente" : "fv",
         "corpo" : "ciao",
         "destinatari" : ["&free"],
@@ -25,8 +25,8 @@
         "automatico" : false
     },
     {
-        "messaggio-id" : "00000002",
-        "risponde-a": "00000001",
+        "messaggio_id" : "00000002",
+        "risponde_a": "00000001",
         "utente" : "fv",
         "corpo" : "ciao",
         "destinatari" : ["&free"],

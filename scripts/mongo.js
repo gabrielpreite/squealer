@@ -109,19 +109,15 @@ exports.create = async function(credentials) {
 exports.search_utente = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-	let query =  {}
 	let debug = []
 	let data = {query: q.username, result: null}
 	try {
-		debug.push("query: "+q.username+"...")
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
-		//debug.push(`Trying to query MongoDB with query '${q.username}'... `)
 		let result = []
-		//query[username] = { $regex: q.username, $options: 'i' }
 		if(q.username === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
 			debug.push("no args found")
 			await mongo.db(dbname)
@@ -131,7 +127,7 @@ exports.search_utente = async function(q,credentials) {
 							result.push(r) 
 						} );
 		}
-		else{ //passo userid nel get, ritorno lo user corretto
+		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args")
 			await mongo.db(dbname)
 						.collection("utente")
@@ -147,11 +143,97 @@ exports.search_utente = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		/*if (q.ajax) {
-			return data
-		} else {*/
 		return data
-		//}
+	} catch (e) {
+		data.debug = debug
+		data.error = e
+		return data
+	}
+}
+
+exports.search_messaggio = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+
+	let debug = []
+	let data = {query: q.messaggio_id, result: null}
+	try {
+		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		debug.push("... managed to connect to MongoDB.")
+
+		let result = []
+		if(q.messaggio_id === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
+			debug.push("no args found")
+			await mongo.db(dbname)
+						.collection("messaggio")
+						.find()
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		else{ //passo userid nel get, ritorno il record corretto
+			debug.push("found args")
+			await mongo.db(dbname)
+						.collection("utente")
+						.find({messaggio_id: q.messaggio_id})
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
+
+		data.result = result
+		await mongo.close();
+		debug.push("Managed to close connection to MongoDB.")
+
+		data.debug = debug
+		return data
+	} catch (e) {
+		data.debug = debug
+		data.error = e
+		return data
+	}
+}
+
+exports.search_canale = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+
+	let debug = []
+	let data = {query: q.nome, result: null}
+	try {
+		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		debug.push("... managed to connect to MongoDB.")
+
+		let result = []
+		if(q.nome === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
+			debug.push("no args found")
+			await mongo.db(dbname)
+						.collection("canale")
+						.find()
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		else{ //passo userid nel get, ritorno il record corretto
+			debug.push("found args")
+			await mongo.db(dbname)
+						.collection("canale")
+						.find({nome: q.nome})
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
+
+		data.result = result
+		await mongo.close();
+		debug.push("Managed to close connection to MongoDB.")
+
+		data.debug = debug
+		return data
 	} catch (e) {
 		data.debug = debug
 		data.error = e

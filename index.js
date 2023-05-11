@@ -159,6 +159,14 @@ app.get('/api_utente', async function(req, res) {
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
+app.get('/api_messaggio', async function(req, res) {
+	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
+});
+
+app.get('/api_canale', async function(req, res) {
+	res.send(await mymongo.search_canale(req.query, mongoCredentials))
+});
+
 /* ========================== */
 /*                            */
 /*    ACTIVATE NODE SERVER    */
