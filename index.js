@@ -152,12 +152,6 @@ app.get('/db/search', async function(req, res) {
 /* ========================== */
 
 app.get('/api_utente', async function(req, res) {
-	/*res.send(await template.generate('generic.html', {
-		text: req.query,
-	}));*/
-	/*res.send(await template.generate('generic.html', {
-		text: "ciao",
-	}));*/
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
