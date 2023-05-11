@@ -74,6 +74,14 @@ app.get('/', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/feed.html")
 })
 
+app.get('/editor', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/editor.html")
+})
+
+app.get('/impostazioni', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/impostazioni.html")
+})
+
 /*app.get('/hw', async function(req, res) { 
 	var text = "Hello world as a Node service";
 	res.send(
