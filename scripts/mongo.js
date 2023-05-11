@@ -122,12 +122,24 @@ exports.search_utente = async function(q,credentials) {
 		//debug.push(`Trying to query MongoDB with query '${q.username}'... `)
 		let result = []
 		//query[username] = { $regex: q.username, $options: 'i' }
-		await mongo.db(dbname)
-					.collection("utente")
-					.find({username: (q.username === undefined ? "*" : q.username)})
-					.forEach( (r) => { 
-						result.push(r) 
-					} );
+		if(q.username === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
+			debug.push("no args found")
+			await mongo.db(dbname)
+						.collection("utente")
+						.find()
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		else{ //passo userid nel get, ritorno lo user corretto
+			debug.push("found args")
+			await mongo.db(dbname)
+						.collection("utente")
+						.find({username: q.username})
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
 		data.result = result
