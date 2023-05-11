@@ -212,8 +212,25 @@
     }
 
     /*FEED*/
+    #nuovo-squeal {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #nuovo-squeal .round-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #1da1f2;
+      color: #ffffff;
+      border: none;
+      font-size: 24px;
+    }
+
     #feed {
-      margin-top: 30px;
+      margin-top: 40px;
       width: 50%;
       margin-left: 25%;
     }
@@ -253,6 +270,36 @@
       color: #999;
     }
 
+    #destinatari .btn {
+      margin-left: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      color: #333333;
+      font-size: 14px;
+      text-decoration: none; /* Rimuove il sottolineato */
+}
+
+    #destinatari .dropdown-toggle {
+      padding: 5px;
+    }
+
+    #destinatari .dropdown-menu {
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      padding: 0.5rem 0;
+      max-height: 200px;
+      min-width: 150px;
+      overflow-y: auto;
+    }
+
+    #destinatari .dropdown-item {
+      font-weight: 400;
+      white-space: normal;
+      cursor: default; /* Impedisce il puntatore di tipo "mano" e l'effetto in hover */
+      pointer-events: none; /* Impedisce il clic e l'effetto in hover */
+    }
+
     #squeal-body {
       margin-top: 10px;
     }
@@ -266,7 +313,6 @@
       height: auto;
       border-radius: 8px;
     }
-
 
     #squeal-footer {
       display: flex;
@@ -287,7 +333,6 @@
       margin-right: 10px;
       color: #999;
     }
-
 
     </style>
 
@@ -348,7 +393,7 @@
     </div>
       -->
     <div id="impostazioni">
-      <button class="btn btn-unstiled" id="settingsButton">
+      <button class="btn btn-unstiled" id="settingsButton" onclick="redirectToSettings()">
         <i class="fas fa-cog"></i>
       </button>
     </div>
@@ -358,7 +403,12 @@
 
     <body>
 
-      <a href="editor.html" class="btn btn-primary btn-bottom">Crea un post</a>
+      /*PULSANTE NUOVO SQUEAL*/
+      <div class="fixed-button" id="nuovo-squeal">
+        <button class="round-button" onclick="redirectToEditor()">
+          +
+        </button>
+      </div>
 
       <div class="container-fluid">
         <div class="row">
@@ -404,6 +454,17 @@
                   <div id="nome-utente">
                     <span class="username">Nome Utente</span>
                     <span class="tag-username">@nomeutente</span>
+                  </div>
+                    <div class="recipients-dropdown" id="destinatari">
+                      <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Destinatari
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="destinatari">
+                        <a class="dropdown-item" href="#">Alice</a>
+                        <a class="dropdown-item" href="#">Bob</a>
+                        <a class="dropdown-item" href="#">Charlie</a>
+                        <!-- Aggiungi altri destinatari qui -->
+                      </div>
                   </div>
                 </div>
                 <div id="squeal-body">
@@ -569,6 +630,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
+    <script>
+      function redirectToEditor() {
+        window.location.href = "editor.html";
+      }
+
+      function redirectToSettings() {
+        window.location.href = "impostazioni.html";
+      }
+
+      function redirectToHome() {
+        window.location.href = "feed.html";
+      }
+    </script>
     </body>
 
 </html>
