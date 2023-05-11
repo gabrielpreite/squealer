@@ -175,7 +175,7 @@ exports.search_messaggio = async function(q,credentials) {
 		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args")
 			await mongo.db(dbname)
-						.collection("utente")
+						.collection("messaggio")
 						.find({messaggio_id: q.messaggio_id})
 						.forEach( (r) => { 
 							result.push(r) 
