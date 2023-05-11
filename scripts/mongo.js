@@ -150,8 +150,7 @@ exports.search_utente = async function(q,credentials) {
 		/*if (q.ajax) {
 			return data
 		} else {*/
-		var out = await template.generate('mongo.html', data);
-		return out
+		return data
 		//}
 	} catch (e) {
 		data.debug = debug
