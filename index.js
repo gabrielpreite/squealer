@@ -70,8 +70,8 @@ app.enable('trust proxy');
 	}));
 })*/
 
-app.get('/', async function (req, res) { 
-	res.sendFile("feed.html")
+app.get('/', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/feed.html")
 })
 
 /*app.get('/hw', async function(req, res) { 
