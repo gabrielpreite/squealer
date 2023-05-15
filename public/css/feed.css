@@ -1,7 +1,146 @@
-.btn-bottom {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+/*STATISTICHE*/
+#statistiche {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  height: 100%;
+  background-color: #f2f2f2;
+  width: 25%;
+  padding: 20px;
+  overflow: auto;
+}
+
+/*GRAFICI*/
+#grafici {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  height: 100%;
+  background-color: #f2f2f2;
+  width: 25%;
+  padding: 20px;
+  overflow: auto;
+}
+
+/*FEED*/
+#nuovo-squeal {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#nuovo-squeal .round-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1da1f2;
+  color: #ffffff;
+  border: none;
+  font-size: 24px;
+}
+
+#feed {
+  margin-top: 40px;
+  width: 50%;
+  margin-left: 25%;
+}
+
+#squeal {
+  background-color: #fff;
+  width: 600px;
+  height: auto;
+  margin: 20px 45px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#squeal-header {
+  display: flex;
+  align-items: center;
+}
+
+#squeal-header .profile-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+#nome-utente {
+  display: flex;
+  flex-direction: column;
+}
+
+#nome-utente .username {
+  font-weight: bold;
+}
+
+#nome-utente .tag-username {
+  color: #999;
+}
+
+#destinatari .btn {
+  margin-left: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #333333;
+  font-size: 14px;
+  text-decoration: none; /* Rimuove il sottolineato */
+}
+
+#destinatari .dropdown-toggle {
+  padding: 5px;
+}
+
+#destinatari .dropdown-menu {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  max-height: 200px;
+  min-width: 150px;
+  overflow-y: auto;
+}
+
+#destinatari .dropdown-item {
+  font-weight: 400;
+  white-space: normal;
+  cursor: default; /* Impedisce il puntatore di tipo "mano" e l'effetto in hover */
+  pointer-events: none; /* Impedisce il clic e l'effetto in hover */
+}
+
+#squeal-body {
+  margin-top: 10px;
+}
+
+#squeal-body .squeal-text {
+  margin-bottom: 10px;
+}
+
+#squeal-body .squeal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+#squeal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+  #squeal-footer .timestamp {
+  color: #999;
+}
+
+  #squeal-footer .actions {
+  display: flex;
+}
+
+  #squeal-footer .actions i {
+  margin-right: 10px;
+  color: #999;
 }
