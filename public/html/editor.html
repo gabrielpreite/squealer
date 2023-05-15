@@ -235,9 +235,9 @@ border-color: white;
 
     </header>
 
+    <form method="POST" action="api_messaggio">
     <div class="container-fluid">
         <div class="row d-flex justify-content-around" style="height: 70em">
-
             <!-- First Column -->
             <div class="col">
                 <div class="row border-bottom" id="row-destinatari" style="margin-bottom: 20em;">
@@ -261,7 +261,7 @@ border-color: white;
                         </textarea>
                     </div>
                     <div class="text-center">
-                        <a href="editor.html" class="btn btn-primary btn-bottom">Crea un post</a>
+                        <input type="submit" value="Crea un post">
                     </div>
             </div>
 
@@ -281,9 +281,10 @@ border-color: white;
                     Stai sforando, sgancia 23,45 euri
                 </div>
             </div>
-
+            
         </div>
     </div>
+</form>
 
     <!--JQuery-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
@@ -294,7 +295,7 @@ border-color: white;
 
         <script>
           function redirectToHome() {
-            window.location.href = "feed.html";
+            window.location.href = "/";
           }
         </script>
 </body>
