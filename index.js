@@ -78,8 +78,8 @@ app.get('/editor', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/editor.html")
 })
 
-app.get('/impostazioni', function (req, res) { 
-	res.sendFile(global.rootDir+"/public/html/impostazioni.html")
+app.get('/settings', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/settings.html")
 })
 
 app.get('/testdb', function (req, res) { 
@@ -155,16 +155,24 @@ app.get('/db/search', async function(req, res) {
 /*                            */
 /* ========================== */
 
+//tabella utente o singolo utente da username
 app.get('/api_utente', async function(req, res) {
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
+//tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
+//tabella canale o singolo canale da nome
 app.get('/api_canale', async function(req, res) {
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
+});
+
+//crea uno squeal
+app.post('/crea_post', async function(req, res) {
+	res.send({"msg": "todo - crea post"})
 });
 
 /* ========================== */
