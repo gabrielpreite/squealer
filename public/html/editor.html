@@ -2,141 +2,156 @@
 <html>
 
 <head>
-    <title>Post Editor</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!----BOOSTRAP-->
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+  <title>Post Editor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!----BOOSTRAP-->
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/editor.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/editor.css">
+  <link rel="stylesheet" href="../css/navbar.css">
 
 </head>
 
 <body>
-    <header>
-      <div class="navbar fixed-top">
-        <div id="profile">
-          <img src="https://via.placeholder.com/60x60" alt="Profile picture">
-          <div class="dropdown" id="username">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <header>
+    <div class="navbar fixed-top">
+      <div id="profile">
+        <img src="https://via.placeholder.com/60x60" alt="Profile picture">
+        <div class="dropdown" id="username">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <strong>Username</strong>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <h6 class="dropdown-header">Gestisci altri account</h6>
-              <button class="dropdown-item" type="button">Felon Muskrat</button>
-              <button class="dropdown-item" type="button">Tizio Caio</button>
-              <button class="dropdown-item" type="button">Sempronio Boh</button>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <h6 class="dropdown-header">Gestisci altri account</h6>
+            <button class="dropdown-item" type="button">Felon Muskrat</button>
+            <button class="dropdown-item" type="button">Tizio Caio</button>
+            <button class="dropdown-item" type="button">Sempronio Boh</button>
+          </div>
+        </div>
+      </div>
+      <div id="quota">
+        <div class="char-count-item">
+          <span class="count">1000</span>
+          <span class="label">Giorno</span>
+        </div>
+        <div class="char-count-item">
+          <span class="count">5000</span>
+          <span class="label">Settimana</span>
+        </div>
+        <div class="char-count-item">
+          <span class="count">20000</span>
+          <span class="label">Mese</span>
+        </div>
+        <button class="btn btn-unstyled" id="shopButton">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+      </div>
+      <div class="lateral-buttons">
+        <div id="notifiche">
+          <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-bell"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
+            <h3 class="dropdown-header">Notifiche</h3>
+            <a class="dropdown-item" href="#">Notifica 1</a>
+            <a class="dropdown-item" href="#">Notifica 2</a>
+            <a class="dropdown-item" href="#">Notifica 3</a>
+            <!-- Aggiungi altre notifiche qui -->
+          </div>
+        </div>
+
+        <div id="home">
+          <button class="btn btn-unstyled" id="homeButton" onclick="redirectToHome()">
+            <i class="fas fa-home"></i>
+          </button>
+        </div>
+
+  </header>
+
+  <form method="POST" action="/crea_post">
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-around" style="height: 70em">
+        <!-- First Column -->
+        <div class="col">
+          <div class="row border-bottom" id="row-destinatari" style="margin-bottom: 20em;">
+            <label for="destinatari">Cerca destinatari</label>
+            <select name="destinatari" id="destinatari">
+              <option value="tizio">Tizio</option>
+              <option value="caio">Caio</option>
+            </select>
+          </div>
+          <div class="row" id="row-mappa">
+            <div id="map" style="width: 200px; height: 150px;">
+
             </div>
           </div>
         </div>
-        <div id="quota">
-      <div class="char-count-item">
-        <span class="count">1000</span>
-        <span class="label">Giorno</span>
-      </div>
-      <div class="char-count-item">
-        <span class="count">5000</span>
-        <span class="label">Settimana</span>
-      </div>
-      <div class="char-count-item">
-        <span class="count">20000</span>
-        <span class="label">Mese</span>
-      </div>
-      <button class="btn btn-unstyled" id="shopButton">
-    <i class="fas fa-shopping-cart"></i>
-  </button>
-    </div>
-    <div class="lateral-buttons">
-      <div id="notifiche">
-      <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-bell"></i>
-      </button>
-      <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
-        <h3 class="dropdown-header">Notifiche</h3>
-        <a class="dropdown-item" href="#">Notifica 1</a>
-        <a class="dropdown-item" href="#">Notifica 2</a>
-        <a class="dropdown-item" href="#">Notifica 3</a>
-        <!-- Aggiungi altre notifiche qui -->
-      </div>
-    </div>
 
-    <div id="home">
-      <button class="btn btn-unstyled" id="homeButton" onclick="redirectToHome()">
-        <i class="fas fa-home"></i>
-      </button>
-    </div>
+        <!-- Second Column -->
+        <div class="col border-left border-right d-flex justify-content-around" style="flex-direction: column;">
 
-    </header>
-
-    <form method="POST" action="/crea_post">
-    <div class="container-fluid">
-        <div class="row d-flex justify-content-around" style="height: 70em">
-            <!-- First Column -->
-            <div class="col">
-                <div class="row border-bottom" id="row-destinatari" style="margin-bottom: 20em;">
-                    <label for="destinatari">Cerca destinatari</label>
-                    <select name="destinatari" id="destinatari">
-                      <option value="tizio">Tizio</option>
-                      <option value="caio">Caio</option>
-                    </select>
-                </div>
-                <div class="row" id="row-mappa">
-                    <img src="https://developers.google.com/static/codelabs/maps-platform/maps-platform-101-js/img/e52623cb8578d625.png">
-                </div>
-            </div>
-
-            <!-- Second Column -->
-            <div class="col border-left border-right d-flex justify-content-around" style="flex-direction: column;">
-
-                    <div>
-                        Scrivi qui il tuo Squeal:<br>
-                        <textarea id="squeal-text" rows="10" cols="100">
+          <div>
+            Scrivi qui il tuo Squeal:<br>
+            <textarea id="squeal-text" rows="10" cols="100">
                         </textarea>
-                    </div>
-                    <div class="text-center">
-                        <input type="submit" value="Crea un post">
-                    </div>
-            </div>
-
-            <!-- Third Column -->
-            <div class="col">
-                <div class="row border-bottom" id="row-automatici" style="height: 35em;">
-                    Servizi automatici:<br>
-                    Boh<br>
-                    Boh2<br>
-                    Taxi
-                </div>
-                <div class="row" id="row-quota" style="height: 35em;">
-                    Quota residua:<br>
-                    giorno: 34<br>
-                    settimana: 124<br>
-                    mese: 543<br>
-                    Stai sforando, sgancia 23,45 euri
-                </div>
-            </div>
-            
+          </div>
+          <div class="text-center">
+            <input type="submit" value="Crea un post">
+          </div>
         </div>
+
+        <!-- Third Column -->
+        <div class="col">
+          <div class="row border-bottom" id="row-automatici" style="height: 35em;">
+            Servizi automatici:<br>
+            Boh<br>
+            Boh2<br>
+            Taxi
+          </div>
+          <div class="row" id="row-quota" style="height: 35em;">
+            Quota residua:<br>
+            giorno: 34<br>
+            settimana: 124<br>
+            mese: 543<br>
+            Stai sforando, sgancia 23,45 euri
+          </div>
+        </div>
+
+      </div>
     </div>
-</form>
+  </form>
 
-    <!--JQuery-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+  <!--JQuery-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
 
-        <script>
-          function redirectToHome() {
-            window.location.href = "/";
-          }
-        </script>
+  <script>
+    function redirectToHome() {
+      window.location.href = "/";
+    }
+    //leaflet - inizializza mappa
+    const map = L.map('map').setView([44.49, 11.34], 13);
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+    //map.on('click', onClickCoord)
+  </script>
 </body>
 
 </html>
