@@ -175,6 +175,11 @@ app.post('/crea_post', async function(req, res) {
 	res.send({"msg": "todo - crea post"})
 });
 
+//risultati della ricerca tramite searchbar
+app.get('/search', async function(req, res) {
+	res.send({"msg": "todo - searchbar"})
+});
+
 /* ========================== */
 /*                            */
 /*    ACTIVATE NODE SERVER    */

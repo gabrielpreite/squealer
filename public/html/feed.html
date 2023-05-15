@@ -113,18 +113,18 @@
             <div class="container pt-2">
               <div class="row">
                   <div class="col-10 mx-auto">
-                      <form method="post" action="" onsubmit="()">
+                      <form method="GET" action="/search">
                           <div class="input-group mb-3">
                               <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
 
                               <select class="form-select" id="filtro" name="filtro" aria-label="Select">
-                                  <option selected value="default" id="default" onclick="()">
+                                  <option selected value="default" id="default" onclick="">
                                     Ordina per:</option>
-                                  <option value="data" id="data" onclick="()">
+                                  <option value="data" id="data" onclick="">
                                     Data</option>
-                                  <option value="visual" id="visual" onclick="();">
+                                  <option value="visual" id="visual" onclick="">
                                     Numero di visualizzazioni</option>
-                                  <option value="Impression" id="Impression" onclick="()">
+                                  <option value="Impression" id="Impression" onclick="">
                                     Impression</option>
                               </select>
 
@@ -320,6 +320,10 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <script>
+      function riempiFeed(){
+
+      }
+
       function redirectToEditor() {
         window.location.href = "/editor";
       }
