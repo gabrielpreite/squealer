@@ -10,6 +10,51 @@
   overflow: auto;
 }
 
+.statistiche-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #14171a;
+}
+
+.tendenze-list {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  list-style: none;
+  counter-reset: tendenze-counter;
+}
+
+.tendenze-item {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #14171a;
+  position: relative;
+}
+
+.tendenze-item::before {
+  counter-increment: tendenze-counter;
+  content: counter(tendenze-counter) " - ";
+  color: #14171a;
+}
+
+.tendenze-tag a {
+  margin-left: 5px;
+  color: #14171a;
+  text-decoration: none;
+}
+
+.tendenze-count {
+  color: #657786;
+  float: right;
+  padding-right: 40px;
+}
+
+.grafico {
+  height: 190px;
+  margin-bottom: 20px;
+  background-color: #e6ecf0;
+}
+
+
 /*GRAFICI*/
 #grafici {
   position: fixed;
