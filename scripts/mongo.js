@@ -241,8 +241,9 @@ exports.search_canale = async function(q,credentials) {
 	}
 }
 
-/*exports.login = async function(q,credentials) {
-	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+exports.login = async function(q,credentials) {
+	return {"boh": "boh"}
+	/*const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	let debug = []
 	let data = {query: q.username, result: null}
@@ -278,8 +279,8 @@ exports.search_canale = async function(q,credentials) {
 		data.debug = debug
 		data.error = e
 		return data
-	}
-}*/
+	}*/
+}
 
 /*exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
