@@ -160,7 +160,7 @@ app.get('/db/search', async function(req, res) {
 /* ========================== */
 
 //login
-app.post('/api_login', async function(req, res) {
+app.get('/api_login', async function(req, res) {
 	//res.send({"msg": "todo - crea post"})
 	res.send(await mymongo.user_login(req.query, mongoCredentials))
 });

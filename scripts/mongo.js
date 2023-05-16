@@ -247,7 +247,7 @@ exports.user_login = async function(q,credentials) {
 	let debug = []
 	let data = {query: q.username, result: null}
 	try {
-		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		/*debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
@@ -269,9 +269,9 @@ exports.user_login = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		return data
+		return data*/
 		
-		/*debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
@@ -297,7 +297,7 @@ exports.user_login = async function(q,credentials) {
 		data.debug = debug;
 		if(result.length>0)
 			data.result = result;
-		return data*/
+		return data
 	} catch (e) {
 		data.debug = debug
 		data.error = e
