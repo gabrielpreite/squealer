@@ -86,6 +86,10 @@ app.get('/testdb', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/testdb.html")
 })
 
+app.get('/login', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/login.html")
+})
+
 /*app.get('/hw', async function(req, res) { 
 	var text = "Hello world as a Node service";
 	res.send(
@@ -154,6 +158,11 @@ app.get('/db/search', async function(req, res) {
 /*          DB CALLS	      */
 /*                            */
 /* ========================== */
+
+//login
+app.post('/api_login', async function(req, res) {
+	res.send(await mymongo.login(req.query, mongoCredentials))
+});
 
 //tabella utente o singolo utente da username
 app.get('/api_utente', async function(req, res) {
