@@ -160,9 +160,9 @@ app.get('/db/search', async function(req, res) {
 /* ========================== */
 
 //login
-app.get('/api_login', async function(req, res) {
-	//res.send({"msg": "todo - crea post"})
-	res.send(await mymongo.user_login(req.query, mongoCredentials))
+app.post('/api_login', async function(req, res) {
+	//res.send({"msg": "todo - login"})
+	res.send(await mymongo.user_login(req.body, mongoCredentials))
 });
 
 //tabella utente o singolo utente da username
