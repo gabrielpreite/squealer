@@ -36,7 +36,8 @@ const template = require(global.rootDir + '/scripts/tpl.js') ;
 const mymongo = require(global.rootDir + '/scripts/mongo.js') ; 
 const express = require('express') ;
 const cors = require('cors')
-
+const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
 
 
 
@@ -55,8 +56,18 @@ app.use('/css' , express.static(global.rootDir +'/public/css'));
 app.use('/data', express.static(global.rootDir +'/public/data'));
 app.use('/docs', express.static(global.rootDir +'/public/html'));
 app.use('/img' , express.static(global.rootDir +'/public/media'));
+app.use(express.json()); //?
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })) 
 app.use(cors())
+var session;
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
 
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
@@ -161,8 +172,16 @@ app.get('/db/search', async function(req, res) {
 
 //login
 app.post('/api_login', async function(req, res) {
-	//res.send({"msg": "todo - login"})
-	res.send(await mymongo.user_login(req.body, mongoCredentials))
+	var db_res = await mymongo.user_login(req.body, mongoCredentials);
+	if(db_res === null){ //login fallito
+		res.sendFile(global.rootDir+"/public/html/login.html")
+	}
+	session=req.session; //login riuscito
+	session.userid=req.body.username;
+	console.log(req.session)
+	res.cookie('username', session.userid)
+	res.cookie('result', JSON.stringify(db_res))
+	res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
 });
 
 //tabella utente o singolo utente da username

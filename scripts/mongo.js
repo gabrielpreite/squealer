@@ -261,7 +261,10 @@ exports.user_login = async function(q,credentials) {
 							{username: q.username},
 							{password: q.password}
 						]
-					})
+					},{
+						password: 0
+					}
+					)
 					.forEach( (r) => { 
 						result.push(r) 
 					} );
@@ -271,9 +274,11 @@ exports.user_login = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 		
 		data.debug = debug;
-		if(result.length>0)
-			data.result = result;
-		return data
+		if(result.length>0){
+			result_json = JSON.parse(result[0])
+			return result_json
+		}
+		return null
 	} catch (e) {
 		data.debug = debug
 		data.error = e
