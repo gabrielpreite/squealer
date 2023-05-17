@@ -180,7 +180,7 @@ app.post('/api_login', async function(req, res) {
 	session.userid=req.body.username;
 	console.log(req.session)
 	res.cookie('username', session.userid)
-	res.cookie('quota', db_res.quota)
+	res.cookie('quota', JSON.stringify(db_res.quota))
 	res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
 });
 
