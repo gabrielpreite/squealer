@@ -12,6 +12,9 @@
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 
+    <!--Google Charts-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
     <!--Fonts-->
     <link href="http://fonts.cdnfonts.com/css/chirp-2" rel="stylesheet">
 
@@ -108,7 +111,7 @@
 
           <!-- First Column -->
           <div class="col-md-3" id="statistiche">
-            <h4 class="statistiche-title">Tendenze</h4>
+            <h4 class="statistiche-title" style="text-align: left">Tendenze</h4>
             <ol class="tendenze-list">
               <li class="tendenze-item">
                 <span class="tendenze-tag"><a href="#">#hashtag</a></span>
@@ -367,6 +370,69 @@
       function redirectToHome() {
         window.location.href = "/";
       }
+
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Orario', 'Utenti'],
+          [00, 120],
+          [02, 80],
+          [05, 150],
+          [08, 250],
+          [12, 320],
+          [16, 280],
+          [19, 200],
+          [22, 180],
+        ]);
+
+        var options = {
+          height: 200,
+          width: 305.4,
+  legend: { position: 'none' },
+  vAxis: { minValue: 0 },
+  hAxis: {
+    gridlines: { color: 'transparent' },
+    ticks: [
+      {v: 00, f: '0:00'},
+      {v: 01, f: ''},
+      {v: 02, f: ''},
+      {v: 03, f: ''},
+      {v: 04, f: ''},
+      {v: 05, f: ''},
+      {v: 06, f: '6:00'},
+      {v: 07, f: ''},
+      {v: 08, f: ''},
+      {v: 09, f: ''},
+      {v: 10, f: ''},
+      {v: 11, f: ''},
+      {v: 12, f: '12:00'},
+      {v: 13, f: ''},
+      {v: 14, f: ''},
+      {v: 15, f: ''},
+      {v: 16, f: ''},
+      {v: 17, f: ''},
+      {v: 18, f: '18:00'},
+      {v: 19, f: ''},
+      {v: 20, f: ''},
+      {v: 21, f: ''},
+      {v: 22, f: ''},
+      {v: 23, f: ''},
+    ],
+    slantedText: false,
+  },
+  series: {
+    0: { type: 'line', color: '#4285F4' },
+  },
+  backgroundColor: 'transparent',
+};
+
+
+        var chart = new google.visualization.LineChart(document.getElementById('grafico-attivita'));
+        chart.draw(data, options);
+      }
+
     </script>
     </body>
 

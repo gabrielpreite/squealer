@@ -14,10 +14,11 @@
   font-size: 16px;
   margin-bottom: 10px;
   color: #14171a;
+  text-align: center;
 }
 
 .tendenze-list {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   padding-left: 20px;
   list-style: none;
   counter-reset: tendenze-counter;
@@ -49,9 +50,10 @@
 }
 
 .grafico {
-  height: 190px;
+  height: 200px;
   margin-bottom: 20px;
-  background-color: #e6ecf0;
+  border: 1px solid #ccc;
+  padding-right: 90px;
 }
 
 
