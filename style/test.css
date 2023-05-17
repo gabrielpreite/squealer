@@ -34,21 +34,49 @@ body {
     border: 1px solid #ccc;
 }
 
+.reazioni {
+    
+}
+
+.reazioni-left {
+    flex-direction: column;
+    padding: 3px;
+}
+
+.reazioni-mid {
+    flex-direction: column;
+    padding: 3px;
+}
+
+.reazioni-right {
+    flex-direction: column;
+    padding: 3px;
+}
+
+.info-post {
+    padding: 3px;
+}
+
 .label {
     color: black;
     padding: 4px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    text-align: end;
 }
 
-.auto {
-    margin-left: 10px;
-    background-color: orange;
+.visual {
+    float: left;
 }
 
 .popolarita {
+    float: right;
     background-color: green;
+}
+
+.auto {
+    margin-left: 3px;
+    float: right;
+    background-color: orange;
 }
 
 .profile-image {
