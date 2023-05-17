@@ -182,7 +182,7 @@ app.post('/api_login', async function(req, res) {
 	res.cookie('username', session.userid)
 	res.cookie('quota', JSON.stringify(db_res.quota))
 	//res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
-	res.send(deb_res)
+	res.send(JSON.stringify(deb_res))
 });
 
 //tabella utente o singolo utente da username
