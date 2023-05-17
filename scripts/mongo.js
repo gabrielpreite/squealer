@@ -275,8 +275,8 @@ exports.user_login = async function(q,credentials) {
 		
 		data.debug = debug;
 		if(result.length>0){
-			data.result = result;
-			return JSON.parse(data)
+			result_json = JSON.parse(result[0])
+			return result_json
 		}
 		return null
 	} catch (e) {
