@@ -179,6 +179,7 @@ app.post('/api_login', async function(req, res) {
 	session=req.session; //login riuscito
 	session.userid=req.body.username;
 	console.log(req.session)
+	res.cookie('username', session.userid)
 	res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
 });
 
