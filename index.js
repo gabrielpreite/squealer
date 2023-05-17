@@ -173,10 +173,13 @@ app.get('/db/search', async function(req, res) {
 //login
 app.post('/api_login', async function(req, res) {
 	var db_res = await mymongo.user_login(req.body, mongoCredentials);
-	session=req.session;
+	if(db_res === null){ //login fallito
+		res.sendFile(global.rootDir+"/public/html/login.html")
+	}
+	session=req.session; //login riuscito
 	session.userid=req.body.username;
 	console.log(req.session)
-	res.send(session.userid)
+	res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
 });
 
 //tabella utente o singolo utente da username
