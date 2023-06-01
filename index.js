@@ -355,12 +355,12 @@ app.get('/get_managed', async function(req,res) {
 	let campi = {}
 	try{
 		campi["username"] = session.userid
-		result = await mymongo.get_managed(req.post_id, campi, mongoCredentials)
+		result = await mymongo.get_managed(req, campi, mongoCredentials)
 		res.status(200)
 		res.send(result)
 	} catch (e) {
 		res.status(500)
-		res.send("errore nella richiesta dei commenti")
+		res.send("errore nella richiesta degli account gestiti1")
 	}
 });
 
