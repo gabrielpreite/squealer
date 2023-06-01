@@ -227,7 +227,7 @@ app.post('/api_register', async function(req, res) {
 	} catch (e) {
 		res.status(500)
 		res.send(e)
-		//res.redirect("/register")
+		res.redirect("/register")
 	}
 });
 
