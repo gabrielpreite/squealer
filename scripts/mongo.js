@@ -711,15 +711,51 @@ exports.search = async function(q,credentials) {
 	}
 }
 
-exports.search = async function(q, credentials) {
+exports.get_replies = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let result = []
 	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.find(
+				{
+					risponde_a: q.post_id
+				}
+			)
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
 		await mongo.close()
 		return result
+	} catch (e) {
+		return e
+	}
+}
+
+exports.get_managed = async function(q, campi, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.find(
+				{
+					username: campi.username
+				}
+			)
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		await mongo.close()
+		return result[0]["manager_of"]
 	} catch (e) {
 		return e
 	}
