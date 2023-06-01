@@ -226,8 +226,8 @@ app.post('/api_register', async function(req, res) {
 		res.redirect("/login")
 	} catch (e) {
 		res.status(500)
-		res.send("errore nella creazione dell'utente")
-		res.redirect("/register")
+		res.send(e)
+		//res.redirect("/register")
 	}
 });
 

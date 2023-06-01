@@ -338,6 +338,7 @@ exports.add_user = async function(q, credentials) {
 						}
 					)
 
+		console.log("mongo ok")
 		await mongo.close();
 		return
 	} catch (e) {
