@@ -218,15 +218,11 @@ app.post('/api_login', async function(req, res) {
 //registrazione
 app.post('/api_register', async function(req, res) {
 	try{
-		console.log(req.body)
 		let result = await mymongo.add_user(req.body, mongoCredentials);
 
-		console.log("registra ok")
 		res.status(200)
 		res.redirect("/login")
 	} catch (e) {
-		console.log("registra err")
-		console.log(e)
 		res.status(500)
 		res.redirect("/register")
 	}
