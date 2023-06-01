@@ -486,21 +486,21 @@ exports.user_feed = async function(q, campi, credentials) {
 			.collection("messaggio")
 			.aggregate([
 				{
-				$match: {
-					$or: [
-						{ utente: { $in: utenti_seguiti } },  
-					],
-					tipo_destinatari: null,
-					risponde_a: null
-				}
+					$match: {
+						$or: [
+							{ utente: { $in: utenti_seguiti } },  
+						],
+						tipo_destinatari: null,
+						risponde_a: null
+					}
 				},
 				{
-				$lookup: {
-					from: "utente", // nome seconda tabella
-					localField: "utente", // nome chiave in prima tabella (corrente)
-					foreignField: "username", // nome chiave in seconda tabella
-					as: "utenteData" // rename del record ottenuto (da seconda tabella)
-				}
+					$lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					}
 				},
 				{
 					$unwind: "$utenteData" // Unwind the joined data (if necessary)
@@ -707,6 +707,19 @@ exports.search = async function(q,credentials) {
 		return result
 	} catch (e) {
 		return e
+	}
+}
+
+exports.search = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try{
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		return result
+	} catch (e) {
+
 	}
 }
 

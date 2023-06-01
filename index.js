@@ -307,6 +307,18 @@ app.get('/user_feed', async function(req, res) {
 	}
 });
 
+app.get('/get_replies', async function(req, res) {
+	let result
+	try{
+		result = await mymongo.get_replies(req.post_id, mongoCredentials)
+		res.status(200)
+		res.send(result)
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella richiesta dei commenti")
+	}
+});
+
 //risultati della ricerca
 app.post('/search', async function(req, res) {
 	//req.body.tipo = utente|canale|keyword
