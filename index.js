@@ -218,6 +218,7 @@ app.post('/api_login', async function(req, res) {
 //registrazione
 app.post('/api_register', async function(req, res) {
 	try{
+		console.log(req.body)
 		let result = await mymongo.add_user(req.body, mongoCredentials);
 
 		res.status(200)

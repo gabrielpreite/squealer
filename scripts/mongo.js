@@ -312,7 +312,7 @@ exports.add_user = async function(q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		//console.log(q.tipo)
+		console.log(q)
 		await mongo.db(dbname)
 					.collection("utente")
 					.insertOne(
