@@ -396,7 +396,7 @@ exports.add_post = async function(q, campi, credentials) {
 		}
 
 		await mongo.close();
-		return undefined
+		return
 	} catch (e) {
 		return e
 	}
@@ -649,10 +649,10 @@ exports.update_reazioni = async function(q, credentials) {
 						}
 					)
 
+		await mongo.close()
 		return 
 	} catch (e) {
-		
-		return 
+		return e
 	}
 }
 
@@ -704,6 +704,7 @@ exports.search = async function(q,credentials) {
 
 		result["meta"] = meta
 		result["post"] = post
+		await mongo.close()
 		return result
 	} catch (e) {
 		return e
@@ -713,13 +714,14 @@ exports.search = async function(q,credentials) {
 exports.search = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let result = []
-	try{
+	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 
+		await mongo.close()
 		return result
 	} catch (e) {
-
+		return e
 	}
 }
 
