@@ -390,7 +390,7 @@
     function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
       let arr = window.location.href.split('?');
-      if (!(arr.length > 1 && arr[1] !== '' || document.getElementById("campo-bacheca").hidden)) { //caso risposta o bacheca, no destinatari
+      if (!((arr.length > 1 && arr[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
         if ($("#destinatari-inseriti").children().length == 0) {
           alert("Nessun destinatario selezionato");
           return false;
