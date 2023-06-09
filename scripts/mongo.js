@@ -273,7 +273,7 @@ exports.user_login = async function(q,credentials) {
 		await mongo.close();
 		debug.push("Managed to close connection to MongoDB.")
 		
-		data.debug = debug;
+		//data.debug = debug;
 		if(result.length>0){
 			result_json = JSON.parse(result[0])
 			return result_json

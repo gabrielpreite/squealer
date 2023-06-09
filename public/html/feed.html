@@ -22,7 +22,7 @@
     <script src="https://cdn.plot.ly/plotly-2.16.3.min.js"></script>
 
     <!--JavaScript Scripts-->
-    <script src="{{url_for('static', filename='index.js')}}"></script>
+    <script type="text/javascript" src="/js/global.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/feed.css">
@@ -39,7 +39,7 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <strong>
               <script>
-                
+                document.write(get_cookie_by_name("username"))
               </script>
             </strong>
             </button>

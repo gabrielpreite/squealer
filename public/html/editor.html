@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
 
+  <!--JavaScript Scripts-->
+  <script type="text/javascript" src="/js/global.js"></script>
+
 </head>
 
 <body>
@@ -30,7 +33,11 @@
         <div class="dropdown" id="username">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <strong>Username</strong>
+            <strong>
+              <script>
+                document.write(get_cookie_by_name("username"))
+              </script>
+            </strong>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <h6 class="dropdown-header">Gestisci altri account</h6>

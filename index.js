@@ -174,13 +174,17 @@ app.get('/db/search', async function(req, res) {
 app.post('/api_login', async function(req, res) {
 	var db_res = await mymongo.user_login(req.body, mongoCredentials);
 	if(db_res === null){ //login fallito
+		res.cookie('username', "null")
+		res.cookie('login_result', "failed")
 		res.sendFile(global.rootDir+"/public/html/login.html")
+		return
 	}
 	session=req.session; //login riuscito
 	session.userid=req.body.username;
 	console.log(req.session)
 	res.cookie('username', session.userid)
-	res.cookie('result', JSON.stringify(db_res))
+	//res.cookie('login_result', JSON.stringify(db_res))
+	res.cookie('login_result', "success")
 	res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
 });
 
