@@ -35,22 +35,19 @@ body {
 }
 
 .reazioni {
-    
+    padding: 3px;
 }
 
 .reazioni-left {
     flex-direction: column;
-    padding: 3px;
 }
 
 .reazioni-mid {
     flex-direction: column;
-    padding: 3px;
 }
 
 .reazioni-right {
     flex-direction: column;
-    padding: 3px;
 }
 
 .info-post {
