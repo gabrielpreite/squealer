@@ -135,12 +135,16 @@
               </li>
             </ol>
 
-            <h4 class="statistiche-title">Attività dell'Account</h4>
+            <h4 class="statistiche-title">Picchi di utenza</h4>
             <div class="grafico" id="grafico-attivita"></div>
 
-            <h4 class="statistiche-title">Distribuzione Contenuti</h4>
-            <div class="grafico" id="grafico-distribuzione"></div>
-          </div>
+            <h4 class="statistiche-title">Trend</h4>
+            <div class="grafico">
+              <div class="mosaic-container">
+                <!-- Le tessere del mosaico saranno generate dinamicamente con JavaScript -->
+              </div>
+            </div>
+        </div>
 
           <!-- Second Column -->
           <div class="col-md-6" id="feed">
@@ -390,47 +394,73 @@
         var options = {
           height: 200,
           width: 305.4,
-  legend: { position: 'none' },
-  vAxis: { minValue: 0 },
-  hAxis: {
-    gridlines: { color: 'transparent' },
-    ticks: [
-      {v: 00, f: '0:00'},
-      {v: 01, f: ''},
-      {v: 02, f: ''},
-      {v: 03, f: ''},
-      {v: 04, f: ''},
-      {v: 05, f: ''},
-      {v: 06, f: '6:00'},
-      {v: 07, f: ''},
-      {v: 08, f: ''},
-      {v: 09, f: ''},
-      {v: 10, f: ''},
-      {v: 11, f: ''},
-      {v: 12, f: '12:00'},
-      {v: 13, f: ''},
-      {v: 14, f: ''},
-      {v: 15, f: ''},
-      {v: 16, f: ''},
-      {v: 17, f: ''},
-      {v: 18, f: '18:00'},
-      {v: 19, f: ''},
-      {v: 20, f: ''},
-      {v: 21, f: ''},
-      {v: 22, f: ''},
-      {v: 23, f: ''},
-    ],
-    slantedText: false,
-  },
-  series: {
-    0: { type: 'line', color: '#4285F4' },
-  },
-  backgroundColor: 'transparent',
-};
-
+          legend: { position: 'none' },
+          vAxis: { minValue: 0 },
+          hAxis: {
+            gridlines: { color: 'transparent' },
+            ticks: [
+              {v: 00, f: '0:00'},
+              {v: 01, f: ''},
+              {v: 02, f: ''},
+              {v: 03, f: ''},
+              {v: 04, f: ''},
+              {v: 05, f: ''},
+              {v: 06, f: '6:00'},
+              {v: 07, f: ''},
+              {v: 08, f: ''},
+              {v: 09, f: ''},
+              {v: 10, f: ''},
+              {v: 11, f: ''},
+              {v: 12, f: '12:00'},
+              {v: 13, f: ''},
+              {v: 14, f: ''},
+              {v: 15, f: ''},
+              {v: 16, f: ''},
+              {v: 17, f: ''},
+              {v: 18, f: '18:00'},
+              {v: 19, f: ''},
+              {v: 20, f: ''},
+              {v: 21, f: ''},
+              {v: 22, f: ''},
+              {v: 23, f: ''},
+            ],
+            slantedText: false,
+          },
+          series: {
+            0: { type: 'line', color: '#4285F4' },
+          },
+          backgroundColor: 'transparent',
+        };
 
         var chart = new google.visualization.LineChart(document.getElementById('grafico-attivita'));
         chart.draw(data, options);
+
+
+        // Array di colori pastello predefiniti
+        const pastelColors = ['#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#D7B5FF', '#FFC6E9', '#FFB6C1', '#87CEFA', '#F08080', '#FFD700', '#98FB98'];
+
+        // Genera un colore pastello casuale
+        function getRandomPastelColor() {
+          const randomIndex = Math.floor(Math.random() * pastelColors.length);
+          return pastelColors[randomIndex];
+        }
+
+        // Crea le tessere del mosaico con colori casuali
+        function createMosaicTiles() {
+          const container = document.querySelector('.mosaic-container');
+
+          // Array dei trend
+          var trends = ['#Trend1', '#prova', '#ciaociaociao', '#Trend4', '#squealer'];
+
+          for (let i = 0; i < trends.length; i++) {
+            const tile = document.createElement('div');
+            tile.classList.add('mosaic-tile');
+            tile.style.backgroundColor = getRandomPastelColor();
+            tile.textContent = trends[i];
+            container.appendChild(tile);
+          }
+        }
+          createMosaicTiles();
       }
 
     </script>
