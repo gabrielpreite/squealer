@@ -101,6 +101,10 @@ app.get('/login', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/login.html")
 })
 
+app.get('/test', function (req, res) { 
+	res.sendFile(global.rootDir+"/public/html/test.html")
+})
+
 /*app.get('/hw', async function(req, res) { 
 	var text = "Hello world as a Node service";
 	res.send(
