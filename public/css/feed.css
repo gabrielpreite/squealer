@@ -25,7 +25,7 @@
   text-align: center;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
-  
+
 }
 
 .channel-button {
@@ -57,7 +57,7 @@
 }
 
 .tendenze-list {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   padding-left: 20px;
   list-style: none;
   counter-reset: tendenze-counter;
@@ -90,7 +90,7 @@
 
 .grafico {
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   border: 1px solid #ccc;
   overflow: hidden;
 }
