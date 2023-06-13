@@ -176,7 +176,8 @@ app.post('/api_login', async function(req, res) {
 	if(db_res === null){ //login fallito
 		res.cookie('username', "null")
 		res.cookie('login_result', "failed")
-		res.sendFile(global.rootDir+"/public/html/login.html")
+		//res.sendFile(global.rootDir+"/public/html/login.html")
+		res.redirect("/")
 		return
 	}
 	session=req.session; //login riuscito
@@ -185,7 +186,8 @@ app.post('/api_login', async function(req, res) {
 	res.cookie('username', session.userid)
 	//res.cookie('login_result', JSON.stringify(db_res))
 	res.cookie('login_result', "success")
-	res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
+	//res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
+	res.redirect("/")
 });
 
 //tabella utente o singolo utente da username

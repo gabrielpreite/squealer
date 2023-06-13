@@ -88,31 +88,43 @@
   </header>
 
   <form method="POST" action="/crea_post">
-    <div class="container-fluid">
-      <div class="row d-flex justify-content-around" style="height: 70em">
+    <div class="container-fluid" style="margin-top: 10vh; height: 85vh">
+      <div class="row d-flex justify-content-around">
         <!-- First Column -->
-        <div class="col">
-          <div class="row border-bottom" id="row-destinatari" style="margin-bottom: 20em;">
+        <div class="col-2">
+          <div class="row" id="row-destinatari" style="margin-bottom: 30vh">
             <label for="destinatari">Cerca destinatari</label>
             <select name="destinatari" id="destinatari">
               <option value="tizio">Tizio</option>
               <option value="caio">Caio</option>
             </select>
           </div>
-          <div class="row" id="row-mappa">
-            <div id="map" style="width: 200px; height: 150px;">
-
-            </div>
-          </div>
         </div>
 
         <!-- Second Column -->
-        <div class="col border-left border-right d-flex justify-content-around" style="flex-direction: column;">
-
-          <div>
+        <div class="col-6 border-left border-right d-flex" style="flex-direction: column;">
+          <div id="campo_scelta">
+            <select onchange="cambia_campo()" name="scelta" id="scelta">
+              <option value="Testo">Testo</option>
+              <option value="Immagine">Immagine</option>
+              <option value="Posizione">Posizione</option>
+            </select>
+          </div>
+          <div id="contenuto_testo">
             Scrivi qui il tuo Squeal:<br>
-            <textarea id="squeal-text" rows="10" cols="100">
+            <textarea id="squeal-text" rows="10" cols="75">
                         </textarea>
+          </div>
+          <div id="contenuto_immagine" hidden="true">
+            <label for="img">Carica immagine:</label>
+            <input type="file" id="img" name="img" accept="image/*">
+          </div>
+          <div id="contenuto_posizione" hidden="true">
+            <div class="row border-top" id="row-mappa">
+              <div id="map" style="height: 50vh;">
+  
+              </div>
+            </div>
           </div>
           <div class="text-center">
             <input type="submit" value="Crea un post">
@@ -120,14 +132,14 @@
         </div>
 
         <!-- Third Column -->
-        <div class="col">
-          <div class="row border-bottom" id="row-automatici" style="height: 35em;">
+        <div class="col-2">
+          <div class="row" id="row-automatici" style="margin-bottom: 30vh">
             Servizi automatici:<br>
             Boh<br>
             Boh2<br>
             Taxi
           </div>
-          <div class="row" id="row-quota" style="height: 35em;">
+          <div class="row border-top" id="row-quota">
             Quota residua:<br>
             giorno: 34<br>
             settimana: 124<br>
@@ -148,14 +160,29 @@
     crossorigin="anonymous"></script>
 
   <script>
+    function cambia_campo() {
+        d = document.getElementById("scelta").value;
+        $("#contenuto_testo").attr("hidden", "true")
+        $("#contenuto_immagine").attr("hidden", "true")
+        $("#contenuto_posizione").attr("hidden", "true")
+        
+        if(d == "Testo"){
+          $("#contenuto_testo").attr("hidden", false)
+        }else if(d == "Immagine"){
+          $("#contenuto_immagine").attr("hidden", false)
+        }else if(d == "Posizione"){
+          $("#contenuto_posizione").attr("hidden", false)
+        }
+    }
+
     function redirectToHome() {
       window.location.href = "/";
     }
     //leaflet - inizializza mappa
     const map = L.map('map').setView([44.49, 11.34], 13);
-        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+          const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+          }).addTo(map);
 
     //map.on('click', onClickCoord)
   </script>
