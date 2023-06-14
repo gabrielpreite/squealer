@@ -42,13 +42,15 @@
   height: 20px;
   line-height: 16px;
   font-size: 18px;
+  border-radius: 20px;
   vertical-align: bottom;
   background-color: transparent;
   padding: 0px 12px;
+  transition: box-shadow 0.3s ease;
 }
 
 .small:hover {
-  background-color: #e5e5e5;
+  background-color: transparent;
 }
 
 .channel-button:hover {
