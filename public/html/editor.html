@@ -89,9 +89,8 @@
 
   <form method="POST" action="/crea_post">
     <div class="container-fluid" style="margin-top: 10vh; height: 85vh">
-      <div class="row d-flex justify-content-around">
         <!-- First Column -->
-        <div class="col-2">
+        <div class="col-md-3" id="col-sx">
           <div class="row" id="row-destinatari" style="margin-bottom: 30vh">
             <label for="cerca_destinatari">Cerca destinatari</label>
             <input type="text" id="cerca_destinatari" name="cerca_destinatari">
@@ -104,7 +103,7 @@
         </div>
 
         <!-- Second Column -->
-        <div class="col-6 border-left border-right d-flex" style="flex-direction: column;">
+        <div class="col-md-6" id="col-cx">
           <div id="campo_scelta">
             <select onchange="cambia_campo()" name="scelta" id="scelta">
               <option value="Testo">Testo</option>
@@ -134,7 +133,7 @@
         </div>
 
         <!-- Third Column -->
-        <div class="col-2">
+        <div class="col-md-3" id="col-dx">
           <div class="row" id="row-automatici" style="margin-bottom: 30vh">
             Servizi automatici:<br>
             Boh<br>
@@ -149,8 +148,6 @@
             Stai sforando, sgancia 23,45 euri
           </div>
         </div>
-
-      </div>
     </div>
   </form>
 
