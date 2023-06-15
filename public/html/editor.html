@@ -93,11 +93,13 @@
         <!-- First Column -->
         <div class="col-2">
           <div class="row" id="row-destinatari" style="margin-bottom: 30vh">
-            <label for="destinatari">Cerca destinatari</label>
-            <select name="destinatari" id="destinatari">
-              <option value="tizio">Tizio</option>
-              <option value="caio">Caio</option>
-            </select>
+            <label for="cerca_destinatari">Cerca destinatari</label>
+            <input type="text" id="cerca_destinatari" name="cerca_destinatari">
+            <input type="button" value="Cerca" onclick="check_destinatari()">
+            <ul class="list-group" name="lista_destinatari" id="lista_destinatari">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+            </ul>
           </div>
         </div>
 
@@ -122,7 +124,7 @@
           <div id="contenuto_posizione" hidden="true">
             <div class="row border-top" id="row-mappa">
               <div id="map" style="height: 50vh;">
-  
+
               </div>
             </div>
           </div>
@@ -160,19 +162,34 @@
     crossorigin="anonymous"></script>
 
   <script>
-    function cambia_campo() {
-        d = document.getElementById("scelta").value;
-        $("#contenuto_testo").attr("hidden", "true")
-        $("#contenuto_immagine").attr("hidden", "true")
-        $("#contenuto_posizione").attr("hidden", "true")
-        
-        if(d == "Testo"){
-          $("#contenuto_testo").attr("hidden", false)
-        }else if(d == "Immagine"){
-          $("#contenuto_immagine").attr("hidden", false)
-        }else if(d == "Posizione"){
-          $("#contenuto_posizione").attr("hidden", false)
+    function check_destinatari() {
+      var a = $("#cerca_destinatari").value;
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: `${window.location.origin}/permessi_canale`,
+        headers: {
+        },
+        data: a,
+        success: function (data, status, xhr) {
+          console.log('data: ', data);
         }
+      });
+    }
+
+    function cambia_campo() {
+      d = document.getElementById("scelta").value;
+      $("#contenuto_testo").attr("hidden", "true")
+      $("#contenuto_immagine").attr("hidden", "true")
+      $("#contenuto_posizione").attr("hidden", "true")
+
+      if (d == "Testo") {
+        $("#contenuto_testo").attr("hidden", false)
+      } else if (d == "Immagine") {
+        $("#contenuto_immagine").attr("hidden", false)
+      } else if (d == "Posizione") {
+        $("#contenuto_posizione").attr("hidden", false)
+      }
     }
 
     function redirectToHome() {
@@ -180,9 +197,9 @@
     }
     //leaflet - inizializza mappa
     const map = L.map('map').setView([44.49, 11.34], 13);
-          const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-          }).addTo(map);
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
 
     //map.on('click', onClickCoord)
   </script>

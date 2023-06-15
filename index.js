@@ -218,6 +218,16 @@ app.get('/api_canale', async function(req, res) {
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
 });
 
+app.get('/permessi_canale', async function(req, res) {
+	let result = await mymongo.permessi_canale(req.query, session.userid, mongoCredentials)
+	if(result[0]["abilitato"] == true){
+		if(result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"][0] == "*"){
+			res.send(true)
+		}
+	}
+	res.send(false)
+});
+
 //crea uno squeal
 app.post('/crea_post', async function(req, res) {
 	res.send({"msg": "todo - crea post"})
