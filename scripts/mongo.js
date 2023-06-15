@@ -273,7 +273,7 @@ exports.permessi_canale = async function(q, credentials) {
 	} catch (e) {
 		data.debug = debug
 		data.error = e
-		return data
+		return null
 	}
 }
 

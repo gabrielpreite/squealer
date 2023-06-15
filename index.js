@@ -219,13 +219,18 @@ app.get('/api_canale', async function(req, res) {
 });
 
 app.get('/permessi_canale', async function(req, res) {
-	let result = await mymongo.permessi_canale(req.query, session.userid, mongoCredentials)
-	if(result[0]["abilitato"] == true){
-		if(result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"][0] == "*"){
-			res.send(true)
+	try{
+
+		let result = await mymongo.permessi_canale(req.query, session.userid, mongoCredentials)
+		if(result[0]["abilitato"] == true){
+			if(result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"][0] == "*"){
+				res.send("true")
+			}
 		}
+		res.send("false")
+	}catch(e){
+		res.send("errore :"+req.query)
 	}
-	res.send(false)
 });
 
 //crea uno squeal
