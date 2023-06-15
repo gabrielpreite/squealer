@@ -167,10 +167,9 @@
       $.ajax({
         type: 'GET',
         dataType: "json",
-        url: `${window.location.origin}/permessi_canale`,
+        url: `${window.location.origin}/permessi_canale?nome=${a}`,
         headers: {
         },
-        data: a,
         success: function (data, status, xhr) {
           console.log('data: ', data);
         }
