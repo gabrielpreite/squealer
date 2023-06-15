@@ -60,7 +60,7 @@ app.use(express.json()); //?
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })) 
 app.use(cors())
-var session = null;
+var session;
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
@@ -82,27 +82,32 @@ app.enable('trust proxy');
 })*/
 
 app.get('/', function (req, res) { 
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/feed.html")
 })
 
 app.get('/editor', function (req, res) { 
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/editor.html")
 })
 
 app.get('/settings', function (req, res) { 
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/settings.html")
 })
 
 app.get('/testdb', function (req, res) { 
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/testdb.html")
 })
 
 app.get('/login', function (req, res) { 
 	res.sendFile(global.rootDir+"/public/html/login.html")
+})
+
+app.get('/logout', function (req, res) { 
+	req.session.destroy()
+	res.redirect("/login")
 })
 
 app.get('/test', function (req, res) { 
@@ -200,31 +205,31 @@ app.post('/api_login', async function(req, res) {
 
 //tabella utente o singolo utente da username
 app.get('/api_utente', async function(req, res) {
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
 //tabella canale o singolo canale da nome
 app.get('/api_canale', async function(req, res) {
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
 });
 
 //crea uno squeal
 app.post('/crea_post', async function(req, res) {
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send({"msg": "todo - crea post"})
 });
 
 //risultati della ricerca tramite searchbar
 app.get('/search', async function(req, res) {
-	if(session == null) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send({"msg": "todo - searchbar"})
 });
 
