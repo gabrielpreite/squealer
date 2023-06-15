@@ -205,31 +205,26 @@ app.post('/api_login', async function(req, res) {
 
 //tabella utente o singolo utente da username
 app.get('/api_utente', async function(req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
 //tabella canale o singolo canale da nome
 app.get('/api_canale', async function(req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
 });
 
 //crea uno squeal
 app.post('/crea_post', async function(req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send({"msg": "todo - crea post"})
 });
 
 //risultati della ricerca tramite searchbar
 app.get('/search', async function(req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.send({"msg": "todo - searchbar"})
 });
 
