@@ -229,7 +229,7 @@ app.get('/permessi_canale', async function(req, res) {
 		}
 		res.send("false")
 	}catch(e){
-		res.send("errore :"+req.query)
+		res.send("errore :"+req.query.nome)
 	}
 });
 
