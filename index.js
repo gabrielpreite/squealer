@@ -223,11 +223,12 @@ app.get('/api_canale', async function(req, res) {
 app.get('/permessi_canale', async function(req, res) {
 	try{
 		let result = await mymongo.search_canale(req.query, mongoCredentials)
-		if(result[0]["abilitato"] == true && (result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"].includes("*"))){
+		//if(result[0]["abilitato"] == true && (result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"].includes("*"))){
+		//if(result[0]["abilitato"] == true){
 			res.send("true")
-		}else{
+		/*}else{
 			res.send("false")
-		}
+		}*/
 	}catch(e){
 		res.send("errore")
 	}
