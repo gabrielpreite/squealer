@@ -241,42 +241,6 @@ exports.search_canale = async function(q,credentials) {
 	}
 }
 
-exports.permessi_canale = async function(q, credentials) {
-	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
-
-	let debug = []
-	let data = {query: q.nome, result: null}
-	try {
-		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
-		const mongo = new MongoClient(mongouri);		
-		await mongo.connect();
-		debug.push("... managed to connect to MongoDB.")
-
-		let result = []
-		debug.push("found args")
-		await mongo.db(dbname)
-					.collection("canale")
-					.find({nome: q.nome})
-					.forEach( (r) => { 
-						result.push(r) 
-					} );
-		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
-
-		await mongo.close();
-		debug.push("Managed to close connection to MongoDB.")
-
-		if(result.length>0){
-			result_json = JSON.parse(result[0])
-			return result_json
-		}
-		return null
-	} catch (e) {
-		data.debug = debug
-		data.error = e
-		return null
-	}
-}
-
 exports.user_login = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 

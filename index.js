@@ -228,10 +228,9 @@ app.get('/permessi_canale', async function(req, res) {
 			}
 		}
 		res.send("{result: 'false'}")
-		res.send(JSON.stringify(result))
 	}catch(e){
 		//res.send(`{result: '${JSON.stringify(req)}'}`)
-		res.send(e)
+		res.send("{result: 'errore'}")
 	}
 });
 
