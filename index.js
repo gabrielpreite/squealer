@@ -220,7 +220,7 @@ app.get('/api_canale', async function(req, res) {
 });
 
 app.get('/permessi_canale', async function(req, res) {
-	var out
+	var out = {}
 	try{
 		let result = JSON.parse(await mymongo.search_canale(req.query, mongoCredentials))
 		if(result[0]["abilitato"] == true){
