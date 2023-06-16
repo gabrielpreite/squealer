@@ -225,7 +225,6 @@ app.get('/permessi_canale', async function(req, res) {
 		let result = await mymongo.search_canale(req.query, mongoCredentials)
 		result = result["result"][0]
 		if(result["abilitato"] == true && (result["scrittura"].includes(session.userid) || result["scrittura"].includes("*"))){
-		//if(result[0]["abilitato"] == true){
 			res.send("true")
 		}else{
 			res.send("false")
