@@ -38,6 +38,7 @@ const express = require('express') ;
 const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const { escapeExpression } = require('handlebars');
 
 
 
@@ -219,19 +220,23 @@ app.get('/api_canale', async function(req, res) {
 });
 
 app.get('/permessi_canale', async function(req, res) {
-	var result
+	var out
 	try{
-		result = JSON.parse(await mymongo.search_canale(req.query, mongoCredentials))
+		let result = JSON.parse(await mymongo.search_canale(req.query, mongoCredentials))
 		if(result[0]["abilitato"] == true){
 			if(result[0]["scrittura"].includes(session.userid) || (result[0]["scrittura"].length > 0 && result[0]["scrittura"][0] == "*")){
-				res.send("{result: 'true'}")
+				out["result"] = "true"
+				res.send(JSON.stringify(out))
 			}
 		}
-		res.send("{result: 'false'}")
+		out["result"] = "false"
+		res.send(JSON.stringify(out))
+		
 	}catch(e){
 		//res.send(`{result: '${JSON.stringify(req)}'}`)
 		//res.send("{result: 'errore'}")
-		res.send(JSON.stringify(result))
+		out["result"] = "errore"
+		res.send(JSON.stringify(out))
 	}
 });
 
