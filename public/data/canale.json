@@ -1,7 +1,7 @@
 [
     {
         "img" : "",
-        "nome" : "&TEST",
+        "nome" : "$TEST",
         "descrizione" : "Boh un bel canale",
         "ufficiale" : true,
         "proprieta" : "redazione",
@@ -12,7 +12,7 @@
     },
     {
         "img" : "",
-        "nome" : "&free",
+        "nome" : "$free",
         "descrizione" : "boh un brutto canale",
         "ufficiale" : false,
         "proprieta" : "fvPro",

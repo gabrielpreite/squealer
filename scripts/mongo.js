@@ -217,7 +217,7 @@ exports.search_canale = async function(q,credentials) {
 							result.push(r) 
 						} );
 		}
-		else{ //passo userid nel get, ritorno il record corretto
+		else{ //passo nome nel get, ritorno il record corretto
 			debug.push("found args")
 			await mongo.db(dbname)
 						.collection("canale")
