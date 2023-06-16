@@ -211,7 +211,8 @@ app.get('/api_utente', async function(req, res) {
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
-	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
+	r = await mymongo.search_messaggio(req.query, mongoCredentials)
+	res.send(JSON.stringify(r))
 });
 
 //tabella canale o singolo canale da nome
@@ -223,9 +224,8 @@ app.get('/permessi_canale', async function(req, res) {
 	var result
 	var out = {}
 	try{
-		result = JSON.parse(await mymongo.search_canale(req.query, mongoCredentials))
-		res.send(JSON.stringify(result))
-		/*if(result[0]["abilitato"] == true && (result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"].includes("*"))){
+		result = await mymongo.search_canale(req.query, mongoCredentials)
+		if(result[0]["abilitato"] == true && (result[0]["scrittura"].includes(session.userid) || result[0]["scrittura"].includes("*"))){
 			out["result"] = "true"
 			//res.send(JSON.stringify(out))
 			res.send(JSON.stringify(result))
@@ -233,8 +233,7 @@ app.get('/permessi_canale', async function(req, res) {
 			out["result"] = "false"
 			//res.send(JSON.stringify(out))
 			res.send(JSON.stringify(result))
-		}*/
-		
+		}
 	}catch(e){
 		//res.send(`{result: '${JSON.stringify(req)}'}`)
 		//res.send("{result: 'errore'}")
