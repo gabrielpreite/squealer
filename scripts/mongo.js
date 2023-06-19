@@ -274,11 +274,8 @@ exports.user_login = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 		
 		//data.debug = debug;
-		return JSON.parse(result)
-		if(result.length>0){
-			result_json = JSON.parse(result[0])
-			return result_json
-		}
+		if(result.length>0)
+			return result[0]
 		return undefined
 	} catch (e) {
 		data.debug = debug

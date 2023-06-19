@@ -202,7 +202,7 @@ app.post('/api_login', async function(req, res) {
 		//res.cookie('quota_settimana', db_res["quota"]["s"])
 		//res.cookie('quota_mese', db_res["quota"]["m"])
 		//res.redirect("/")
-		res.send(JSON.stringify(db_res))
+		res.send(db_res)
 	}
 });
 
