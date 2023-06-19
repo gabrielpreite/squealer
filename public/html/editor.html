@@ -164,19 +164,19 @@
     crossorigin="anonymous"></script>
 
   <script>
-    array_dest=[]
+    array_dest=[]//array destinatari per uso interno
 
     function check_destinatari() {
-      var a = $("#cerca_destinatari").val();
+      var a = $("#cerca_destinatari").val();//nome destinatario da cercare (per ora gestisco solo canali)
       $.ajax({
         type: 'GET',
         dataType: "json",
         url: `${window.location.origin}/permessi_canale?nome=${a}`,
         headers: {
         },
-        success: function (data, status, xhr) {
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
-          if(!array_dest.includes(a)){
+          if(!array_dest.includes(a)){//canale non e' gia' nella lista
             $("#lista_destinatari").append(`<li class="list-group-item" id="${a}">
                                               <p id="elem_${a}">
                                                 ${a}
@@ -184,9 +184,9 @@
                                                   <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                                                 </svg>
                                               </p>
-                                            </li>`)
-            array_dest.push(a)
-            $("#cerca_destinatari").val("")
+                                            </li>`)//per l'amor d'iddio qualcuno trovi un modo migliore
+            array_dest.push(a)//aggiungo all'array
+            $("#cerca_destinatari").val("")//resetto il campo
           }
         },
         error: function (xhr, status, e){
