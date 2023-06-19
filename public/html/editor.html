@@ -105,30 +105,37 @@
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
           <div id="campo_scelta">
-            <select onchange="cambia_campo()" name="scelta" id="scelta">
-              <option value="Testo">Testo</option>
-              <option value="Immagine">Immagine</option>
-              <option value="Posizione">Posizione</option>
-            </select>
-          </div>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-font icona-scelta attiva" onclick="cambia_campo('Testo')"></i>
+              </label>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-image icona-scelta" onclick="cambia_campo('Immagine')"></i>
+              </label>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-map-marker-alt icona-scelta" onclick="cambia_campo('Posizione')"></i>
+              </label>
+            </div>
+
           <div id="contenuto_testo">
-            Scrivi qui il tuo Squeal:<br>
-            <textarea id="squeal-text" rows="10" cols="75">
-                        </textarea>
+            <textarea class="form-input" placeholder="Scrivi il tuo Squeal..."></textarea>
           </div>
           <div id="contenuto_immagine" hidden="true">
-            <label for="img">Carica immagine:</label>
+            <label for="img">Seleziona un'immagine</label>
             <input type="file" id="img" name="img" accept="image/*">
+            <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
-            <div class="row border-top" id="row-mappa">
-              <div id="map" style="height: 50vh;">
-
+              <div id="map" style="height: 60vh;">
               </div>
             </div>
-          </div>
-          <div class="text-center">
-            <input type="submit" value="Crea un post">
+          <div class="text-end">
+          <button class="btn btn-unstyled btn-confirm">
+            <i class="fas fa-check"></i>
+            Conferma
+          </button>
           </div>
         </div>
 
@@ -178,20 +185,41 @@
       });
     }
 
-    function cambia_campo() {
-      d = document.getElementById("scelta").value;
+function cambia_campo(opzione) {
       $("#contenuto_testo").attr("hidden", "true")
       $("#contenuto_immagine").attr("hidden", "true")
       $("#contenuto_posizione").attr("hidden", "true")
+      $(".icona-scelta").removeClass("attiva");
 
-      if (d == "Testo") {
+      if (opzione == "Testo") {
         $("#contenuto_testo").attr("hidden", false)
-      } else if (d == "Immagine") {
+        $(".icona-scelta.fas.fa-font").addClass("attiva");
+      } else if (opzione == "Immagine") {
         $("#contenuto_immagine").attr("hidden", false)
-      } else if (d == "Posizione") {
+        $(".icona-scelta.fas.fa-image").addClass("attiva");
+      } else if (opzione == "Posizione") {
         $("#contenuto_posizione").attr("hidden", false)
+        $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
       }
     }
+
+    document.getElementById('img').addEventListener('change', function(event) {
+    var file = event.target.files[0]; // Ottieni il file selezionato
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var preview = document.getElementById('preview');
+      preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+
+      var img = document.createElement('img');
+      img.src = e.target.result; // Imposta l'URL dell'immagine
+      img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+
+      preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+    };
+
+    reader.readAsDataURL(file); // Leggi il file come URL dati
+  });
 
     function redirectToHome() {
       window.location.href = "/";

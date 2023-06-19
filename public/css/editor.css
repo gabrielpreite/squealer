@@ -18,6 +18,120 @@
   margin-left: 25%;
 }
 
+    #campo_scelta {
+      display: flex;
+      margin-bottom: 10px;
+      justify-content: flex-end;
+      padding-right: 30px;
+    }
+
+    #campo_scelta .icona-scelta {
+      font-size: 24px;
+      color: #999;
+      cursor: pointer;
+      padding-right: 20px;
+    }
+
+    #campo_scelta .icona-scelta.attiva {
+      color: #1da1f2;
+    }
+
+    #contenuto_testo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    textarea.form-input {
+      width: 90%;
+      height: 150px;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      }
+
+    textarea.form-input:focus {
+      outline-color: #ccc;
+      border-color: #ccc;
+    }
+
+    #contenuto_immagine {
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 0px 20px;
+      background-color: #f9f9f9;
+    }
+
+    #contenuto_immagine label {
+      font-weight: bold;
+      font-size: 14px;
+      color: #555555;
+      margin-bottom: 5px;
+      text-transform: uppercase;    }
+
+    #contenuto_immagine input[type="file"] {
+      display: block;
+      padding: 5px;
+      border: none;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      color: #333;
+      font-size: 14px;
+    }
+
+    #contenuto_immagine input[type="file"]:focus {
+      outline: none;
+      border-color: #1DA1F2;
+      box-shadow: 0 0 3px rgba(29, 161, 242, 0.5);
+    }
+
+    #preview {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+
+    #preview .preview-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-top: 1px solid #ccc;
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-top: 20px;
+    }
+
+    #contenuto_posizione {
+      margin: 0px 30px;
+      border: 3px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn-confirm {
+      background-color: #1da1f2;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 10px 35px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-confirm:hover {
+      background-color: #0c87c1 !important;
+      color: white !important;
+    }
+
 #col-dx {
   position: fixed;
   top: 50px;
