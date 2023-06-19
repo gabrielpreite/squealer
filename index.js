@@ -192,16 +192,17 @@ app.post('/api_login', async function(req, res) {
 		res.cookie('login_result', "failed")
 		//res.sendFile(global.rootDir+"/public/html/login.html")
 		res.redirect("/")
-		return
+	}else{
+		session=req.session; //login riuscito
+		session.userid=req.body.username;
+		console.log(req.session)
+		res.cookie('username', session.userid)
+		res.cookie('login_result', "success")
+		res.cookie('quota_giorno', db_res["quota"]["g"])
+		res.cookie('quota_settimana', db_res["quota"]["s"])
+		res.cookie('quota_mese', db_res["quota"]["m"])
+		res.redirect("/")
 	}
-	session=req.session; //login riuscito
-	session.userid=req.body.username;
-	console.log(req.session)
-	res.cookie('username', session.userid)
-	//res.cookie('login_result', JSON.stringify(db_res))
-	res.cookie('login_result', "success")
-	//res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
-	res.redirect("/")
 });
 
 //tabella utente o singolo utente da username
