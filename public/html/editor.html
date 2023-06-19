@@ -96,8 +96,6 @@
             <input type="text" id="cerca_destinatari" name="cerca_destinatari">
             <input type="button" value="Cerca" onclick="check_destinatari()">
             <ul class="list-group" name="lista_destinatari" id="lista_destinatari">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
             </ul>
           </div>
         </div>
@@ -166,6 +164,8 @@
     crossorigin="anonymous"></script>
 
   <script>
+    array_dest=[]
+
     function check_destinatari() {
       var a = $("#cerca_destinatari").val();
       $.ajax({
@@ -176,11 +176,14 @@
         },
         success: function (data, status, xhr) {
           //console.log('data: ', data);
-          $("#lista_destinatari").append(`<li class="list-group-item">${a}</li>`)
-          $("#cerca_destinatari").val() = ""
+          if(!array_dest.includes(a)){
+            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}">${a}</li>`)
+            array_dest.push(a)
+            $("#cerca_destinatari").val("")
+          }
         },
         error: function (xhr, status, e){
-          alert(e)
+          alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
         }
       });
     }
