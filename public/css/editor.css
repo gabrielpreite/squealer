@@ -132,6 +132,11 @@
       color: white !important;
     }
 
+    .button-disabled {
+      pointer-events: none;
+      background-color: #c62828
+    }
+
 #col-dx {
   position: fixed;
   top: 50px;

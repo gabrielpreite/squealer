@@ -49,16 +49,16 @@
       </div>
       <div id="quota">
         <div class="char-count-item">
-          <span class="count">1000</span>
-          <span class="label">Giorno</span>
+          <span class="count" id="charCount_mese">20000</span>
+          <span class="label">Mese</span>
         </div>
         <div class="char-count-item">
-          <span class="count">5000</span>
+          <span class="count" id="charCount_sett">5000</span>
           <span class="label">Settimana</span>
         </div>
         <div class="char-count-item">
-          <span class="count">20000</span>
-          <span class="label">Mese</span>
+          <span class="count" id="charCount_giorno">10</span>
+          <span class="label">Giorno</span>
         </div>
         <button class="btn btn-unstyled" id="shopButton">
           <i class="fas fa-shopping-cart"></i>
@@ -118,7 +118,7 @@
             </div>
 
           <div id="contenuto_testo">
-            <textarea class="form-input" placeholder="Scrivi il tuo Squeal..."></textarea>
+            <textarea class="form-input" id="Textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
@@ -130,7 +130,7 @@
               </div>
             </div>
           <div class="text-end">
-          <button class="btn btn-unstyled btn-confirm">
+          <button class="btn btn-unstyled btn-confirm" id="btn-conferma">
             <i class="fas fa-check"></i>
             Conferma
           </button>
@@ -164,7 +164,50 @@
     crossorigin="anonymous"></script>
 
   <script>
-    array_dest=[]//array destinatari per uso interno
+  array_dest=[]//array destinatari per uso interno
+
+  const textarea = document.getElementById('Textarea');
+  const charCount_g = document.getElementById('charCount_giorno');
+  const charCount_s = document.getElementById('charCount_sett');
+  const charCount_m = document.getElementById('charCount_mese');
+  const button = document.getElementById('btn-conferma');
+
+  let initialQuota_g = parseInt(charCount_g.textContent);
+  let initialQuota_s = parseInt(charCount_s.textContent);
+  let initialQuota_m = parseInt(charCount_m.textContent);
+
+  textarea.addEventListener('input', function() {
+    const charLength = textarea.value.length;
+    remainingChars_g = initialQuota_g - charLength;
+    remainingChars_s = initialQuota_s - charLength;
+    remainingChars_m = initialQuota_m - charLength;
+    charCount_g.textContent = remainingChars_g;
+    charCount_s.textContent = remainingChars_s;
+    charCount_m.textContent = remainingChars_m;
+
+    if (remainingChars_g < 0) {
+      charCount_g.classList.add('negative');
+    } else {
+      charCount_g.classList.remove('negative');
+    }
+    if (remainingChars_s < 0) {
+      charCount_s.classList.add('negative');
+    } else {
+      charCount_s.classList.remove('negative');
+    }
+    if (remainingChars_m < 0) {
+      charCount_m.classList.add('negative');
+    } else {
+      charCount_m.classList.remove('negative');
+    }
+
+    const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
+    if (remainingChars.some((count) => count < 0)) {
+      button.classList.add('button-disabled');
+    } else {
+      button.classList.remove('button-disabled');
+    }
+    });
 
     function check_destinatari() {
       var a = $("#cerca_destinatari").val();//nome destinatario da cercare (per ora gestisco solo canali)
