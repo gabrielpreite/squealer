@@ -177,7 +177,7 @@
         success: function (data, status, xhr) {
           //console.log('data: ', data);
           if(!array_dest.includes(a)){
-            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}"><p id="elem_${a}">${a}<i class="bi bi-x-lg" onclick="rimuovi_destinatario("${a}")"></i></p></li>`)
+            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}"><p id="elem_${a}">${a}<i class="bi bi-x-lg" onclick="rimuovi_destinatario('${a}')"></i></p></li>`)
             array_dest.push(a)
             $("#cerca_destinatari").val("")
           }
