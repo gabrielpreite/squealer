@@ -179,8 +179,8 @@
           $("#lista_destinatari").append(`<li class="list-group-item">${a}</li>`)
           $("#cerca_destinatari").val() = ""
         },
-        error: function (){
-          
+        error: function (xhr, status, e){
+          alert(e)
         }
       });
     }

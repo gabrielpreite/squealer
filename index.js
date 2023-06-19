@@ -228,9 +228,11 @@ app.get('/permessi_canale', async function(req, res) {
 		if(result["abilitato"] == true && (result["scrittura"].includes(session.userid) || result["scrittura"].includes("*"))){
 			res.send("true")
 		}else{
+			res.status(403)
 			res.send("false")
 		}
 	}catch(e){
+		res.status(500)
 		res.send("errore")
 	}
 });
