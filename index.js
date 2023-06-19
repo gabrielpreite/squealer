@@ -198,10 +198,11 @@ app.post('/api_login', async function(req, res) {
 		console.log(req.session)
 		res.cookie('username', session.userid)
 		res.cookie('login_result', "success")
-		res.cookie('quota_giorno', db_res["quota"]["g"])
-		res.cookie('quota_settimana', db_res["quota"]["s"])
-		res.cookie('quota_mese', db_res["quota"]["m"])
-		res.redirect("/")
+		//res.cookie('quota_giorno', db_res["quota"]["g"])
+		//res.cookie('quota_settimana', db_res["quota"]["s"])
+		//res.cookie('quota_mese', db_res["quota"]["m"])
+		//res.redirect("/")
+		res.send(JSON.stringify(db_res))
 	}
 });
 
