@@ -198,9 +198,10 @@ app.post('/api_login', async function(req, res) {
 	session.userid=req.body.username;
 	console.log(req.session)
 	res.cookie('username', session.userid)
-	//res.cookie('login_result', JSON.stringify(db_res))
 	res.cookie('login_result', "success")
-	//res.sendFile(global.rootDir+"/public/html/feed.html") //rimando al feed
+	res.cookie('quota_giorno', db_res["quota"]["g"])
+	res.cookie('quota_settimana', db_res["quota"]["s"])
+	res.cookie('quota_mese', db_res["quota"]["m"])
 	res.redirect("/")
 });
 
@@ -211,7 +212,8 @@ app.get('/api_utente', async function(req, res) {
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
-	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
+	r = await mymongo.search_messaggio(req.query, mongoCredentials)
+	res.send(JSON.stringify(r))
 });
 
 //tabella canale o singolo canale da nome
@@ -220,23 +222,18 @@ app.get('/api_canale', async function(req, res) {
 });
 
 app.get('/permessi_canale', async function(req, res) {
-	var out = {}
 	try{
-		let result = JSON.parse(await mymongo.search_canale(req.query, mongoCredentials))
-		if(result[0]["abilitato"] == true){
-			if(result[0]["scrittura"].includes(session.userid) || (result[0]["scrittura"].length > 0 && result[0]["scrittura"][0] == "*")){
-				out["result"] = "true"
-				res.send(JSON.stringify(out))
-			}
+		let result = await mymongo.search_canale(req.query, mongoCredentials)
+		result = result["result"][0]
+		if(result["abilitato"] == true && (result["scrittura"].includes(session.userid) || result["scrittura"].includes("*"))){
+			res.send("true")
+		}else{
+			res.status(403)
+			res.send("false")
 		}
-		out["result"] = "false"
-		res.send(JSON.stringify(out))
-		
 	}catch(e){
-		//res.send(`{result: '${JSON.stringify(req)}'}`)
-		//res.send("{result: 'errore'}")
-		out["result"] = "errore"
-		res.send(JSON.stringify(out))
+		res.status(500)
+		res.send("errore")
 	}
 });
 
@@ -255,6 +252,20 @@ app.get('/search', async function(req, res) {
 /*    ACTIVATE NODE SERVER    */
 /*                            */
 /* ========================== */
+
+//route che matcha su endpoint non esistenti
+//DEVE STARE IN FONDO
+app.use(function(req, res){
+	res.json({
+		error:{
+			"name": "error",
+			"status": 404,
+			"message": "Richiesta non valida",
+			"statusCode": 404,
+		},
+		message: "Richiesta non valida"
+	});
+});
 
 app.listen(8000, function() { 
 	global.startDate = new Date() ; 

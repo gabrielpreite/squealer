@@ -49,16 +49,16 @@
       </div>
       <div id="quota">
         <div class="char-count-item">
-          <span class="count">1000</span>
-          <span class="label">Giorno</span>
+          <span class="count" id="charCount_mese">20000</span>
+          <span class="label">Mese</span>
         </div>
         <div class="char-count-item">
-          <span class="count">5000</span>
+          <span class="count" id="charCount_sett">5000</span>
           <span class="label">Settimana</span>
         </div>
         <div class="char-count-item">
-          <span class="count">20000</span>
-          <span class="label">Mese</span>
+          <span class="count" id="charCount_giorno">10</span>
+          <span class="label">Giorno</span>
         </div>
         <button class="btn btn-unstyled" id="shopButton">
           <i class="fas fa-shopping-cart"></i>
@@ -96,8 +96,6 @@
             <input type="text" id="cerca_destinatari" name="cerca_destinatari">
             <input type="button" value="Cerca" onclick="check_destinatari()">
             <ul class="list-group" name="lista_destinatari" id="lista_destinatari">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
             </ul>
           </div>
         </div>
@@ -105,30 +103,37 @@
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
           <div id="campo_scelta">
-            <select onchange="cambia_campo()" name="scelta" id="scelta">
-              <option value="Testo">Testo</option>
-              <option value="Immagine">Immagine</option>
-              <option value="Posizione">Posizione</option>
-            </select>
-          </div>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-font icona-scelta attiva" onclick="cambia_campo('Testo')"></i>
+              </label>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-image icona-scelta" onclick="cambia_campo('Immagine')"></i>
+              </label>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-map-marker-alt icona-scelta" onclick="cambia_campo('Posizione')"></i>
+              </label>
+            </div>
+
           <div id="contenuto_testo">
-            Scrivi qui il tuo Squeal:<br>
-            <textarea id="squeal-text" rows="10" cols="75">
-                        </textarea>
+            <textarea class="form-input" id="Textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
           </div>
           <div id="contenuto_immagine" hidden="true">
-            <label for="img">Carica immagine:</label>
+            <label for="img">Seleziona un'immagine</label>
             <input type="file" id="img" name="img" accept="image/*">
+            <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
-            <div class="row border-top" id="row-mappa">
-              <div id="map" style="height: 50vh;">
-
+              <div id="map" style="height: 60vh;">
               </div>
             </div>
-          </div>
-          <div class="text-center">
-            <input type="submit" value="Crea un post">
+          <div class="text-end">
+          <button class="btn btn-unstyled btn-confirm" id="btn-conferma">
+            <i class="fas fa-check"></i>
+            Conferma
+          </button>
           </div>
         </div>
 
@@ -159,34 +164,119 @@
     crossorigin="anonymous"></script>
 
   <script>
+  array_dest=[]//array destinatari per uso interno
+
+  const textarea = document.getElementById('Textarea');
+  const charCount_g = document.getElementById('charCount_giorno');
+  const charCount_s = document.getElementById('charCount_sett');
+  const charCount_m = document.getElementById('charCount_mese');
+  const button = document.getElementById('btn-conferma');
+
+  let initialQuota_g = parseInt(charCount_g.textContent);
+  let initialQuota_s = parseInt(charCount_s.textContent);
+  let initialQuota_m = parseInt(charCount_m.textContent);
+
+  textarea.addEventListener('input', function() {
+    const charLength = textarea.value.length;
+    remainingChars_g = initialQuota_g - charLength;
+    remainingChars_s = initialQuota_s - charLength;
+    remainingChars_m = initialQuota_m - charLength;
+    charCount_g.textContent = remainingChars_g;
+    charCount_s.textContent = remainingChars_s;
+    charCount_m.textContent = remainingChars_m;
+
+    if (remainingChars_g < 0) {
+      charCount_g.classList.add('negative');
+    } else {
+      charCount_g.classList.remove('negative');
+    }
+    if (remainingChars_s < 0) {
+      charCount_s.classList.add('negative');
+    } else {
+      charCount_s.classList.remove('negative');
+    }
+    if (remainingChars_m < 0) {
+      charCount_m.classList.add('negative');
+    } else {
+      charCount_m.classList.remove('negative');
+    }
+
+    const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
+    if (remainingChars.some((count) => count < 0)) {
+      button.classList.add('button-disabled');
+    } else {
+      button.classList.remove('button-disabled');
+    }
+    });
+
     function check_destinatari() {
-      var a = $("#cerca_destinatari").val();
+      var a = $("#cerca_destinatari").val();//nome destinatario da cercare (per ora gestisco solo canali)
       $.ajax({
         type: 'GET',
         dataType: "json",
         url: `${window.location.origin}/permessi_canale?nome=${a}`,
         headers: {
         },
-        success: function (data, status, xhr) {
-          console.log('data: ', JSON.parse(data));
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          //console.log('data: ', data);
+          if(!array_dest.includes(a)){//canale non e' gia' nella lista
+            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}">
+                                              <p id="elem_${a}">
+                                                ${a}
+                                                <svg onclick="rimuovi_destinatario('${a}')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                              </p>
+                                            </li>`)//per l'amor d'iddio qualcuno trovi un modo migliore
+            array_dest.push(a)//aggiungo all'array
+            $("#cerca_destinatari").val("")//resetto il campo
+          }
+        },
+        error: function (xhr, status, e){
+          alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
         }
       });
     }
 
-    function cambia_campo() {
-      d = document.getElementById("scelta").value;
+    function rimuovi_destinatario(nome){
+      //todo
+    }
+
+function cambia_campo(opzione) {
       $("#contenuto_testo").attr("hidden", "true")
       $("#contenuto_immagine").attr("hidden", "true")
       $("#contenuto_posizione").attr("hidden", "true")
+      $(".icona-scelta").removeClass("attiva");
 
-      if (d == "Testo") {
+      if (opzione == "Testo") {
         $("#contenuto_testo").attr("hidden", false)
-      } else if (d == "Immagine") {
+        $(".icona-scelta.fas.fa-font").addClass("attiva");
+      } else if (opzione == "Immagine") {
         $("#contenuto_immagine").attr("hidden", false)
-      } else if (d == "Posizione") {
+        $(".icona-scelta.fas.fa-image").addClass("attiva");
+      } else if (opzione == "Posizione") {
         $("#contenuto_posizione").attr("hidden", false)
+        $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
       }
     }
+
+    document.getElementById('img').addEventListener('change', function(event) {
+    var file = event.target.files[0]; // Ottieni il file selezionato
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var preview = document.getElementById('preview');
+      preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+
+      var img = document.createElement('img');
+      img.src = e.target.result; // Imposta l'URL dell'immagine
+      img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+
+      preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+    };
+
+    reader.readAsDataURL(file); // Leggi il file come URL dati
+  });
 
     function redirectToHome() {
       window.location.href = "/";

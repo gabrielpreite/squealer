@@ -253,7 +253,7 @@ exports.user_login = async function(q,credentials) {
 		debug.push("... managed to connect to MongoDB.")
 
 		let result = []
-		debug.push(`found args ${q.username} e ${q.password}`)
+		//debug.push(`found args ${q.username} e ${q.password}`)
 		await mongo.db(dbname)
 					.collection("utente")
 					.find({$and: 
@@ -274,11 +274,9 @@ exports.user_login = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 		
 		//data.debug = debug;
-		if(result.length>0){
-			result_json = JSON.parse(result[0])
-			return result_json
-		}
-		return null
+		if(result.length>0)
+			return result[0]
+		return undefined
 	} catch (e) {
 		data.debug = debug
 		data.error = e
