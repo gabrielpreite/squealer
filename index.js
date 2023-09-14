@@ -253,6 +253,20 @@ app.get('/search', async function(req, res) {
 /*                            */
 /* ========================== */
 
+//route che matcha su endpoint non esistenti
+//DEVE STARE IN FONDO
+app.use(function(req, res){
+	res.json({
+		error:{
+			"name": "error",
+			"status": 404,
+			"message": "Richiesta non valida",
+			"statusCode": 404,
+		},
+		message: "Richiesta non valida"
+	});
+});
+
 app.listen(8000, function() { 
 	global.startDate = new Date() ; 
 	console.log(`App listening on port 8000 started ${global.startDate.toLocaleString()}` )
