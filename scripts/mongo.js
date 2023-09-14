@@ -284,6 +284,20 @@ exports.user_login = async function(q,credentials) {
 	}
 }
 
+exports.add_post = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+
+		await mongo.close();
+		return undefined
+	} catch (e) {
+		return undefined
+	}
+}
+
 /*exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
