@@ -166,48 +166,7 @@
   <script>
   array_dest=[]//array destinatari per uso interno
 
-  const textarea = document.getElementById('Textarea');
-  const charCount_g = document.getElementById('charCount_giorno');
-  const charCount_s = document.getElementById('charCount_sett');
-  const charCount_m = document.getElementById('charCount_mese');
-  const button = document.getElementById('btn-conferma');
 
-  let initialQuota_g = parseInt(charCount_g.textContent);
-  let initialQuota_s = parseInt(charCount_s.textContent);
-  let initialQuota_m = parseInt(charCount_m.textContent);
-
-  textarea.addEventListener('input', function() {
-    const charLength = textarea.value.length;
-    remainingChars_g = initialQuota_g - charLength;
-    remainingChars_s = initialQuota_s - charLength;
-    remainingChars_m = initialQuota_m - charLength;
-    charCount_g.textContent = remainingChars_g;
-    charCount_s.textContent = remainingChars_s;
-    charCount_m.textContent = remainingChars_m;
-
-    if (remainingChars_g < 0) {
-      charCount_g.classList.add('negative');
-    } else {
-      charCount_g.classList.remove('negative');
-    }
-    if (remainingChars_s < 0) {
-      charCount_s.classList.add('negative');
-    } else {
-      charCount_s.classList.remove('negative');
-    }
-    if (remainingChars_m < 0) {
-      charCount_m.classList.add('negative');
-    } else {
-      charCount_m.classList.remove('negative');
-    }
-
-    const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
-    if (remainingChars.some((count) => count < 0)) {
-      button.classList.add('button-disabled');
-    } else {
-      button.classList.remove('button-disabled');
-    }
-    });
 
     function check_destinatari() {
       var a = $("#cerca_destinatari").val();//nome destinatario da cercare (per ora gestisco solo canali)
@@ -253,7 +212,7 @@
         lista_dest.push($(this).val())
       });
 
-      post_body["destinatari"] = 
+      post_body["destinatari"] = lista_dest;
 
       xhr.send(JSON.stringify(post_body));
     }
@@ -264,19 +223,101 @@ function cambia_campo(opzione) {
       $("#contenuto_posizione").attr("hidden", "true")
       $(".icona-scelta").removeClass("attiva");
 
+      function resetQuota() {
+        charCount_g.textContent = initialQuota_g;
+        charCount_s.textContent = initialQuota_s;
+        charCount_m.textContent = initialQuota_m;
+
+        charCount_g.classList.remove('negative');
+        charCount_s.classList.remove('negative');
+        charCount_m.classList.remove('negative');
+
+        button.classList.remove('button-disabled');
+      }
+
       if (opzione == "Testo") {
+        resetQuota()
         $("#contenuto_testo").attr("hidden", false)
         $(".icona-scelta.fas.fa-font").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
+           aggiornaQuota("Testo");
+         }
       } else if (opzione == "Immagine") {
+        resetQuota()
         $("#contenuto_immagine").attr("hidden", false)
         $(".icona-scelta.fas.fa-image").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-image").hasClass("attiva")&& inputImage.files && inputImage.files[0]) {
+           aggiornaQuota("Immagine");
+         }
       } else if (opzione == "Posizione") {
+        resetQuota()
         $("#contenuto_posizione").attr("hidden", false)
         $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
+           aggiornaQuota("Posizione");
+         }
       }
     }
 
+    function aggiornaQuota(opzione) {
+      if(opzione == "Testo") {
+      const charLength = textarea.value.length;
+      remainingChars_g = initialQuota_g - charLength;
+      remainingChars_s = initialQuota_s - charLength;
+      remainingChars_m = initialQuota_m - charLength;
+      } else if (opzione == "Immagine") {
+        remainingChars_g = initialQuota_g - 20;
+        remainingChars_s = initialQuota_s - 20;
+        remainingChars_m = initialQuota_m - 20;
+      } else if (opzione == "Posizione") {
+
+      }
+
+      charCount_g.textContent = remainingChars_g;
+      charCount_s.textContent = remainingChars_s;
+      charCount_m.textContent = remainingChars_m;
+
+      if (remainingChars_g < 0) {
+        charCount_g.classList.add('negative');
+      } else {
+        charCount_g.classList.remove('negative');
+      }
+      if (remainingChars_s < 0) {
+        charCount_s.classList.add('negative');
+      } else {
+        charCount_s.classList.remove('negative');
+      }
+      if (remainingChars_m < 0) {
+        charCount_m.classList.add('negative');
+      } else {
+        charCount_m.classList.remove('negative');
+      }
+
+      const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
+      if (remainingChars.some((count) => count < 0)) {
+        button.classList.add('button-disabled');
+      } else {
+        button.classList.remove('button-disabled');
+      }
+    }
+
+    const textarea = document.getElementById('Textarea');
+    const charCount_g = document.getElementById('charCount_giorno');
+    const charCount_s = document.getElementById('charCount_sett');
+    const charCount_m = document.getElementById('charCount_mese');
+    const button = document.getElementById('btn-conferma');
+    const inputImage = document.getElementById('img');
+
+    let initialQuota_g = parseInt(charCount_g.textContent);
+    let initialQuota_s = parseInt(charCount_s.textContent);
+    let initialQuota_m = parseInt(charCount_m.textContent);
+
+    textarea.addEventListener('input', function() {
+      aggiornaQuota("Testo");
+    });
+
     document.getElementById('img').addEventListener('change', function(event) {
+      aggiornaQuota("Immagine");
     var file = event.target.files[0]; // Ottieni il file selezionato
 
     var reader = new FileReader();
