@@ -130,7 +130,7 @@
               </div>
             </div>
           <div class="text-end">
-          <button type="submit" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+          <button onclick="add_post()" class="btn btn-unstyled btn-confirm" id="btn-conferma">
             <i class="fas fa-check"></i>
             Conferma
           </button>
@@ -220,11 +220,8 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}">
-                                              <div id="destinatario_${a}">
-                                                ${a}
-                                              </div>
-                                            </li>`)//per l'amor d'iddio qualcuno trovi un modo migliore
+            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}"><div id="destinatario_${a}">${a}</div></li>`)
+                                            //per l'amor d'iddio qualcuno trovi un modo migliore
             array_dest.push(a)//aggiungo all'array
             $("#cerca_destinatari").val("")//resetto il campo
           }
@@ -251,7 +248,12 @@
         post_body["contenuto"] = $("Textarea").val()
       }
 
-      post_body["destinatari"] = $("[id^=destinatario_]")
+      lista_dest = []
+      $("[id^=destinatario_]").each(function(){
+        lista_dest.push($(this).val())
+      });
+
+      post_body["destinatari"] = 
 
       xhr.send(JSON.stringify(post_body));
     }
