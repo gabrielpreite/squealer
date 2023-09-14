@@ -145,6 +145,10 @@
   transform: translateX(-50%);
 }
 
+.fixed-button {
+  z-index: 1;
+}
+
 #nuovo-squeal .round-button {
   width: 50px;
   height: 50px;
@@ -161,56 +165,111 @@
   margin-left: 25%;
 }
 
-#squeal {
-  background-color: #fff;
-  width: 600px;
+body {
+  background:#eee;
+}
+
+.contenitore-squeal {
+  padding: 10px;
+  padding-bottom: 30px;
+}
+
+.squeal {
+  background-color: white;
+  width: auto;
   height: auto;
-  margin: 20px 45px;
-  padding: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.card-footer {
+  display: auto;
+  flex-direction: row;
+  border: 1px solid #ccc;
+}
+
+.reazioni {
+  padding: 3px;
+}
+
+.reazioni-left {
+  flex-direction: column;
+}
+
+.reazioni-mid {
+  flex-direction: column;
+}
+
+.reazioni-right {
+  flex-direction: column;
+}
+
+.info-post {
+  padding: 3px;
+}
+
+.label {
+  color: black;
+  padding: 4px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
-#squeal-header {
-  display: flex;
-  align-items: center;
+.visual {
+  float: left;
 }
 
-#squeal-header .profile-image {
+.popolarita {
+  margin-left: 3px;
+  float: right;
+  background-color: green;
+}
+
+.auto {
+  margin-left: 3px;
+  float: right;
+  background-color: orange;
+}
+
+.pubblico {
+  margin-left: 3px;
+  float: right;
+  background-color: red;
+}
+
+.profile-image {
   width: 48px;
   height: 48px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-#nome-utente {
+.info_utente {
   display: flex;
   flex-direction: column;
 }
 
-#nome-utente .username {
+.nome_utente {
   font-weight: bold;
 }
 
-#nome-utente .tag-username {
-  color: #999;
-}
-
-#destinatari .btn {
+.destinatari, .btn {
   margin-left: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  color: #333333;
-  font-size: 14px;
-  text-decoration: none; /* Rimuove il sottolineato */
+  color: #000000;
+  font-size: auto;
+  text-decoration: none;
 }
 
-#destinatari .dropdown-toggle {
-  padding: 5px;
-}
-
-#destinatari .dropdown-menu {
-  border: none;
+.destinatari, .dropdown-menu {
+  border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   padding: 0.5rem 0;
@@ -219,43 +278,13 @@
   overflow-y: auto;
 }
 
-#destinatari .dropdown-item {
+.destinatari, .dropdown-item {
   font-weight: 400;
   white-space: normal;
   cursor: default; /* Impedisce il puntatore di tipo "mano" e l'effetto in hover */
   pointer-events: none; /* Impedisce il clic e l'effetto in hover */
 }
 
-#squeal-body {
-  margin-top: 10px;
-}
-
-#squeal-body .squeal-text {
-  margin-bottom: 10px;
-}
-
-#squeal-body .squeal-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-#squeal-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-  #squeal-footer .timestamp {
-  color: #999;
-}
-
-  #squeal-footer .actions {
-  display: flex;
-}
-
-  #squeal-footer .actions i {
-  margin-right: 10px;
-  color: #999;
+.fab, .fas {
+  color: white;
 }
