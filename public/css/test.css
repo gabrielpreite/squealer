@@ -67,6 +67,7 @@ body {
 }
 
 .popolarita {
+    margin-left: 3px;
     float: right;
     background-color: green;
 }
@@ -77,6 +78,12 @@ body {
     background-color: orange;
 }
 
+.pubblico {
+    margin-left: 3px;
+    float: right;
+    background-color: red;
+}
+
 .profile-image {
     width: 48px;
     height: 48px;
@@ -84,12 +91,12 @@ body {
     margin-right: 10px;
 }
 
-.nome-utente {
+.info_utente {
     display: flex;
     flex-direction: column;
 }
 
-.nome-utente, .username {
+.nome_utente {
     font-weight: bold;
 }
 

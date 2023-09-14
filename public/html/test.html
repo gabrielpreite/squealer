@@ -47,7 +47,7 @@
                           <select class="form-select" id="filtro" name="filtro" aria-label="Select">
                               <option selected value="default" id="default" onclick="()">
                                 Ordina per:</option>
-                              <option value="data" id="data" onclick="()">
+                              <option value="data_ordinamento" id="data_ordinamento" onclick="()">
                                 Data</option>
                               <option value="visual" id="visual" onclick="();">
                                 Numero di visualizzazioni</option>
@@ -65,7 +65,7 @@
 
           <div class="row overflow-auto" style="height: 50em">
             <div class="container posts-content"> 
-              <div class="row contenitore-squeal" id="contenitore-squeal">
+              <div class="row contenitore-squeal" id="squeal_contenitore">
 
                 
               
@@ -92,26 +92,74 @@
     
     <script>
       //richiesta squeal
-      //var  = ;
+      var squeals;
       $.ajax({
         type: 'GET',
         dataType: "json",
-        url: `${window.location.origin}/api_messaggio`,
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/api_messaggio`, //${window.location.origin}
         headers: { },
         success: function (data, status, xhr) {
-          console.log('data: ', JSON.parse(data));
+          console.log('data: ', data);
+          squeals = data["result"];
         }
       });
-      var squeals = data;
-      
-      //inserisco squeal
-      var htmlCode = '<div class="card squeal"> <div class="card-header"> <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image"> <div class="nome-utente"> <span class="username">Nome Utente</span> <span class="text-muted tag-username">@nomeutente</span> <span class="text-muted timestamp">10 minuti fa</span> </div> <div class="recipients-dropdown" class="destinatari"> <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Destinatari </button> <div class="dropdown-menu" aria-labelledby="destinatari"> <a class="dropdown-item" href="#">Alice</a> <a class="dropdown-item" href="#">Bob</a> <a class="dropdown-item" href="#">Charlie</a> <!-- Aggiungi altri destinatari qui --> </div> </div> </div> <div class="card-body">                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus commodo bibendum. Vivamus laoreet blandit odio, vel finibus quam dictum ut. </p> </div> <div class="card-footer"> <div class="row reazioni"> <div class="col reazioni-left"> <a class="btn btn-primary" href="#!" role="button" > <i class="fab fa-sketch"></i> </a> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-poo"></i> </a> </div> <div class="col reazioni-mid"> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-heart"></i> </a> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-heart-crack"></i> </a> </div> <div class="col reazioni-right"> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-thumbs-up"></i> </a> <a class="btn btn-primary" href="#!" role="button"> <i class="fas fa-thumbs-down"></i> </a> </div> </div> <div class="info-post"> <span class="label visual">Visual 500</span> <span class="label auto">Auto</span> <span class="label popolarita">Popolare</span> </div> </div> </div>';
+      var n_squeal = squeals.length;
           
-      var container = document.getElementById('contenitore-squeal');
-  
-      for (var i = 0; i < 5; i++) {
-        container.insertAdjacentHTML('beforeend', htmlCode);
+      var contenitore = document.getElementById('squeal_contenitore');
+
+      for (var i = 0; i < n_squeal; i++) {
+        //squeal
+        var htmlCode = '<div class="card squeal"> <div class="card-header"> <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '"> <div class="info_utente"> <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span> <span class="text-muted tag-username" id="squeal_tag' + i + '">   </span> <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span> </div> <div class="recipients-dropdown" class="destinatari"> <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Destinatari </button> <div class="dropdown-menu" aria-labelledby="destinatari"> <a class="dropdown-item" href="#">Alice</a> <a class="dropdown-item" href="#">Bob</a> <a class="dropdown-item" href="#">Charlie</a> <!-- Aggiungi altri destinatari qui --> </div> </div> </div> <div class="card-body">                 <p id="squeal_testo' + i + '"> </p> </div> <div class="card-footer"> <div class="row reazioni"> <div class="col reazioni-left"> <a class="btn btn-primary" href="#!" role="button" > <i class="fab fa-sketch"></i> </a> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-poo"></i> </a> </div> <div class="col reazioni-mid"> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-heart"></i> </a> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-heart-crack"></i> </a> </div> <div class="col reazioni-right"> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-thumbs-up"></i> </a> <a class="btn btn-primary" href="#!" role="button" > <i class="fas fa-thumbs-down"></i> </a> </div> </div> <div class="info-post" id="squeal_info' + i + '"> <span class="label visual" id="squeal_visual' + i + '">Visual 500</span> </div> </div> </div>';
+        contenitore.insertAdjacentHTML('beforeend', htmlCode);
+
+        //info utente
+        var id_nome = 'squeal_nome' + i;
+        var id_tag = 'squeal_tag' + i;
+        var id_timestamp = 'squeal_timestamp' + i;
+        //document.getElementById(id_nome).innerHTML = squeals[i].;
+        document.getElementById(id_tag).innerHTML = squeals[i].utente;
+        document.getElementById(id_timestamp).innerHTML = squeals[i].timestamp;
+
+        //corpo squeal
+        var id_testo = 'squeal_testo' + i;
+        document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+
+        //destinatari da finire
+        var lista_destinatari = document.getElementById('squeal_destinatari' + i);
+        var n_destinatari = squeals[i].destinatari.length;
+        if (squeals[i].destinatari[0] != '&free'){
+          for (var j = 0; j < n_destinatari; j++) {
+            lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#">' + squeals[i].destinatari[j] + '</a>');
+          }
+        }
+
+        //reazioni
+
+
+        //etichette
+        var id_visual = 'squeal_visual' + i;
+        document.getElementById(id_visual).innerHTML = 'Visual: ' + squeals[i].visualizzazioni;
+        if (squeals[i].categoria == "popolare"){
+          var Et_popolarita = document.getElementById('squeal_info' + i);
+          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label popolarita"> Popolare </span>');
+        } else if (squeals[i].categoria == "impopolare"){
+          var Et_popolarita = document.getElementById('squeal_info' + i);
+          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label popolarita"> Impopolare </span>');
+        } else if (squeals[i].automatico == "controverso"){
+          var Et_popolarita = document.getElementById('squeal_info' + i);
+          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label popolarita"> Controverso </span>');
+        }
+        if (squeals[i].automatico == false){
+          var Et_auto = document.getElementById('squeal_info' + i);
+          Et_auto.insertAdjacentHTML('beforeend', '<span class="label auto"> Auto </span>');
+        }
+        if (squeals[i].pubblico){
+          var Et_pubblico = document.getElementById('squeal_info' + i);
+          Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label pubblico"> Privato </span>');
+        }
       }
+
     </script>
 </body>
 
