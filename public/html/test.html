@@ -140,21 +140,21 @@
         document.getElementById(id_visual).innerHTML = 'Visual: ' + squeals[i].visualizzazioni;
         if (squeals[i].categoria == "popolare"){
           var Et_popolarita = document.getElementById('squeal_info' + i);
-          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label popolarita"> Popolare </span>');
+          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Popolare </span>');
         } else if (squeals[i].categoria == "impopolare"){
           var Et_popolarita = document.getElementById('squeal_info' + i);
-          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label popolarita"> Impopolare </span>');
+          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Impopolare </span>');
         } else if (squeals[i].automatico == "controverso"){
           var Et_popolarita = document.getElementById('squeal_info' + i);
-          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label popolarita"> Controverso </span>');
+          Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Controverso </span>');
         }
         if (squeals[i].automatico == false){
           var Et_auto = document.getElementById('squeal_info' + i);
-          Et_auto.insertAdjacentHTML('beforeend', '<span class="label auto"> Auto </span>');
+          Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
         }
         if (squeals[i].pubblico){
           var Et_pubblico = document.getElementById('squeal_info' + i);
-          Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label pubblico"> Privato </span>');
+          Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
         }
       }
 
