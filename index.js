@@ -240,10 +240,12 @@ app.get('/permessi_canale', async function(req, res) {
 
 //crea uno squeal
 app.post('/crea_post', async function(req, res) {
-	//res.send({"msg": "todo - crea post"})
-	try{
+	res.send({"msg": "todo - crea post"})
+	/*try{
 		let result = await mymongo.add_post(req.body, mongoCredentials);
-	}
+	} catch (e) {
+		
+	}*/
 });
 
 //risultati della ricerca tramite searchbar
