@@ -201,7 +201,7 @@
       xhr.setRequestHeader('Content-Type', 'application/json');
 
       var post_body = {};
-      
+
       if(!$("#contenuto_testo").attr("hidden")){//caso testo
         post_body["tipo"] = "testo";
         post_body["contenuto"] = $("Textarea").val()
@@ -254,7 +254,7 @@ function cambia_campo(opzione) {
         $("#contenuto_posizione").attr("hidden", false)
         $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
         if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
-           aggiornaQuota("Posizione");
+           //aggiornaQuota("Posizione");
          }
       }
     }
