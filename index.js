@@ -187,12 +187,13 @@ app.get('/db/search', async function(req, res) {
 //login
 app.post('/api_login', async function(req, res) {
 	var db_res = await mymongo.user_login(req.body, mongoCredentials);
+	console.log(db_res);
 	if(db_res === null){ //login fallito
 		res.cookie('username', "null")
 		res.cookie('login_result', "failed")
 		//res.sendFile(global.rootDir+"/public/html/login.html")
 		res.redirect("/")
-		return
+		return;
 	}
 	session=req.session; //login riuscito
 	session.userid=req.body.username;
@@ -240,6 +241,11 @@ app.get('/permessi_canale', async function(req, res) {
 //crea uno squeal
 app.post('/crea_post', async function(req, res) {
 	res.send({"msg": "todo - crea post"})
+	/*try{
+		let result = await mymongo.add_post(req.body, mongoCredentials);
+	} catch (e) {
+		
+	}*/
 });
 
 //risultati della ricerca tramite searchbar
