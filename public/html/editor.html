@@ -253,7 +253,7 @@
         lista_dest.push($(this).val())
       });
 
-      post_body["destinatari"] = 
+      post_body["destinatari"] = lista_dest;
 
       xhr.send(JSON.stringify(post_body));
     }
