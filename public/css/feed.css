@@ -171,7 +171,6 @@ body {
 
 .contenitore-squeal {
   padding: 10px;
-  padding-bottom: 30px;
 }
 
 .squeal {
@@ -180,6 +179,9 @@ body {
   height: auto;
   padding: 10px;
   border: 1px solid #ccc;
+  margin: auto;
+  width: 90%;
+  margin-bottom: 30px;
 }
 
 .card-header {
