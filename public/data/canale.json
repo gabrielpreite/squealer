@@ -20,5 +20,16 @@
         "lettura" : ["*"],
         "scrittura" : ["*"],
         "abilitato" : true
+    },
+    {
+        "img" : "",
+        "nome" : "$cosebrutte",
+        "descrizione" : "boh un brutto canale",
+        "ufficiale" : false,
+        "proprieta" : "fvPro",
+        "mod" : [],
+        "lettura" : ["*"],
+        "scrittura" : ["*"],
+        "abilitato" : true
     }
 ]

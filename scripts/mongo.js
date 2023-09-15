@@ -284,19 +284,30 @@ exports.user_login = async function(q,credentials) {
 	}
 }
 
-/*exports.add_post = async function(q,credentials) {
+exports.add_post = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
+		console.log(q.tipo)
+		if(q.tipo == "testo"){//caso testo
+			await mongo.db(dbname)
+						.collection("messaggio")
+						.insertOne(
+							{
+								corpo: q.contenuto,
+								destinatari: q.destinatari
+							}
+						)
 
+		}
 
 		await mongo.close();
 		return undefined
 	} catch (e) {
-		return undefined
+		return e
 	}
-}*/
+}
 
 /*exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;

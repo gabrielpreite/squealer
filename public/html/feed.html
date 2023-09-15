@@ -53,15 +53,27 @@
         </div>
         <div id="quota">
           <div class="char-count-item">
-            <span class="count" id="charCount_mese">20000</span>
+            <span class="count" id="charCount_mese">
+              <script>
+              document.write(get_cookie_by_name("quota_mese"))
+              </script>
+            </span>
             <span class="label">Mese</span>
           </div>
           <div class="char-count-item">
-            <span class="count" id="charCount_sett">5000</span>
+            <span class="count" id="charCount_sett">
+              <script>
+            document.write(get_cookie_by_name("quota_settimana"))
+              </script>
+            </span>
             <span class="label">Settimana</span>
           </div>
           <div class="char-count-item">
-            <span class="count" id="charCount_giorno">1000</span>
+            <span class="count" id="charCount_giorno">
+              <script>
+              document.write(get_cookie_by_name("quota_giorno"))
+              </script>
+            </span>
             <span class="label">Giorno</span>
           </div>
       <button class="btn btn-unstyled" id="shopButton">
@@ -182,16 +194,16 @@
             </div>
 
             <div class="row overflow-auto" style="height: 50em">
-              <div class="container posts-content"> 
+              <div class="container posts-content">
                 <div class="row contenitore-squeal" id="squeal_contenitore">
-  
-                  
-                
+
+
+
                 </div>
-                  
+
               </div>
             </div>
-            
+
           </div>
 
             <!-- Third Column -->
@@ -224,7 +236,7 @@
             }
           });
           var n_squeal = squeals.length;
-              
+
           var contenitore = document.getElementById('squeal_contenitore');
 
           for (var i = 0; i < n_squeal; i++) {
