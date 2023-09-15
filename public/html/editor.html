@@ -209,7 +209,7 @@
 
       lista_dest = []
       $("[id^=destinatario_]").each(function(){
-        lista_dest.push($(this).val())
+        lista_dest.push($(this).text())
       });
 
       post_body["destinatari"] = lista_dest;
