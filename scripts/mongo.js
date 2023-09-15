@@ -295,8 +295,27 @@ exports.add_post = async function(q,credentials) {
 						.collection("messaggio")
 						.insertOne(
 							{
+								risponde_a: null,//todo
 								corpo: q.contenuto,
-								destinatari: q.destinatari
+								destinatari: q.destinatari,
+								utente: null, //todo
+								timestamp: null, //todo
+								visualizzazioni: 0,
+								reazioni: {
+									positive: {
+										concordo: [],
+										mi_piace: [],
+										adoro: []
+									},
+									negative: {
+										sono_contrario: [],
+										mi_disgusta: [],
+										odio: []
+									}
+								},
+								pubblico: null, //todo
+								categoria: null,
+								automatico: false
 							}
 						)
 
