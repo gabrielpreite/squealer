@@ -266,18 +266,11 @@
         .then((response) => {
           if (response.ok) {
             // The initial request was successful
-            return response.json();
+            window.location.replace("http://site212251.tw.cs.unibo.it");
           } else {
             throw new Error("Network response was not ok.");
           }
         })
-        .then((data) => {
-          // The response data from the final redirected URL
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
       }
     }
 

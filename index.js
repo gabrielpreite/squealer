@@ -269,7 +269,7 @@ app.post('/crea_post', async function(req, res) {
 	}
 	res.status(200)
 	//res.send("ok")
-	res.redirect("/")
+	//res.redirect("/")
 });
 
 //risultati della ricerca tramite searchbar
