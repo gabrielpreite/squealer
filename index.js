@@ -242,11 +242,33 @@ app.get('/permessi_canale', async function(req, res) {
 app.post('/crea_post', async function(req, res) {
 	//res.send({"msg": "todo - crea post"})
 	try{
-		let result = await mymongo.add_post(req.body, mongoCredentials);
+		//aggiungo i vari campi mancanti
+		var campi = {}
+		
+		//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
+		let tmp = false;
+		let lista = req.body.destinatari
+		lista.forEach(element => {
+			if(element.charAt(0) != "@"){
+				tmp = true
+			}
+		});
+		campi["pubblico"] = tmp;
+
+		//timestamp
+		let date = new Date()
+		campi["timestamp"] = date.getTime();
+
+		//username
+		campi["username"] = session.userid;
+
+		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
 	} catch (e) {
 		res.status(500)
 		res.send("errore nella creazione del post")
 	}
+	res.status(200)
+	res.redirect("/")
 });
 
 //risultati della ricerca tramite searchbar
