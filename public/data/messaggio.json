@@ -1,52 +1,187 @@
 [
     {
-        "messaggio_id" : "00000001",
+        "_id": "650856b36b14130a17969e2b",
         "risponde_a": null,
-        "utente" : "fv",
-        "corpo" : "ciao originale",
-        "destinatari" : ["&free"],
-        "destinatari-mod" : [],
-        "timestamp" : "1682004995",
-        "visualizzazioni" : 10,
-        "reazioni" : {
+        "corpo": "heyla",
+        "destinatari": [
+            "$free",
+            "$cosebrutte"
+        ],
+        "utente": "fv",
+        "timestamp": 1695045299373,
+        "visualizzazioni": 254,
+        "reazioni": {
             "positive": {
-                "concordo": 1,
-                "mi piace": 2,
-                "adoro": 3
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": []
             },
             "negative": {
-                "sono contrario": 1,
-                "mi disgusta": 0,
-                "odio": 0
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
             }
         },
         "pubblico": true,
-        "categoria" : "popolare",
-        "automatico" : false
+        "categoria": "popolare",
+        "automatico": false
     },
     {
-        "messaggio_id" : "00000002",
-        "risponde_a": "00000001",
-        "utente" : "fv",
-        "corpo" : "ciao risposta",
-        "destinatari" : ["&free"],
-        "destinatari-mod" : [],
-        "timestamp" : "1682004995",
-        "visualizzazioni" : 10,
-        "reazioni" : {
+        "_id": "650856c16b14130a17969e2c",
+        "risponde_a": null,
+        "corpo": "heyla x2",
+        "destinatari": [
+            "$free",
+            "$cosebrutte"
+        ],
+        "utente": "fv",
+        "timestamp": 1695045313860,
+        "visualizzazioni": 23,
+        "reazioni": {
             "positive": {
-                "concordo": 1,
-                "mi piace": 2,
-                "adoro": 3
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": []
             },
             "negative": {
-                "sono contrario": 1,
-                "mi disgusta": 0,
-                "odio": 0
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
             }
         },
         "pubblico": true,
-        "categoria" : "popolare",
-        "automatico" : false
+        "categoria": null,
+        "automatico": true
+    },
+    {
+        "_id": "650857676b14130a17969e2d",
+        "risponde_a": null,
+        "corpo": "wela",
+        "destinatari": [
+            "@fvPro"
+        ],
+        "utente": "fv",
+        "timestamp": 1695045479723,
+        "visualizzazioni": 0,
+        "reazioni": {
+            "positive": {
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": []
+            },
+            "negative": {
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
+            }
+        },
+        "pubblico": false,
+        "categoria": null,
+        "automatico": false
+    },
+    {
+        "_id": "65086066ac5a4847feee07c9",
+        "risponde_a": null,
+        "corpo": "ennesimo test",
+        "destinatari": [
+            "$free"
+        ],
+        "utente": "fv",
+        "timestamp": 1695047782886,
+        "visualizzazioni": 23,
+        "reazioni": {
+            "positive": {
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": [
+                    "fvPro",
+                    "NomeBuffo1"
+                ]
+            },
+            "negative": {
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
+            }
+        },
+        "pubblico": true,
+        "categoria": "popolare",
+        "automatico": false
+    },
+    {
+        "_id": "650862423abffcab4aa56616",
+        "risponde_a": null,
+        "corpo": "redirect pls",
+        "destinatari": [],
+        "utente": "fv",
+        "timestamp": 1695048258348,
+        "visualizzazioni": 0,
+        "reazioni": {
+            "positive": {
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": []
+            },
+            "negative": {
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
+            }
+        },
+        "pubblico": false,
+        "categoria": "impopolare",
+        "automatico": false
+    },
+    {
+        "_id": "650863de05c4f57dcb13a175",
+        "risponde_a": null,
+        "corpo": "per l'amor di dio funziona",
+        "destinatari": [
+            "$free"
+        ],
+        "utente": "fv",
+        "timestamp": 1695048670784,
+        "visualizzazioni": 0,
+        "reazioni": {
+            "positive": {
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": []
+            },
+            "negative": {
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
+            }
+        },
+        "pubblico": true,
+        "categoria": "controverso",
+        "automatico": false
+    },
+    {
+        "_id": "6508648189067d70fbced244",
+        "risponde_a": null,
+        "corpo": "PER FAVORE",
+        "destinatari": [
+            "$free"
+        ],
+        "utente": "fvPro",
+        "timestamp": 1695048833329,
+        "visualizzazioni": 46356,
+        "reazioni": {
+            "positive": {
+                "concordo": [],
+                "mi_piace": [],
+                "adoro": []
+            },
+            "negative": {
+                "sono_contrario": [],
+                "mi_disgusta": [],
+                "odio": []
+            }
+        },
+        "pubblico": true,
+        "categoria": null,
+        "automatico": false
     }
 ]

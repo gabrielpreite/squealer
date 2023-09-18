@@ -84,7 +84,7 @@
   </div>
 
   <div id="home">
-    <button class="btn btn-unstyled" id="homeButton">
+    <button class="btn btn-unstyled" id="homeButton" onclick="redirectToSettings()">
       <i class="fas fa-home"></i>
     </button>
   </div>
@@ -398,6 +398,7 @@ function cambia_campo(opzione) {
     function redirectToHome() {
       window.location.href = "/";
     }
+
     //leaflet - inizializza mappa
     const map = L.map('map').setView([44.49, 11.34], 13);
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
