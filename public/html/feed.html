@@ -32,6 +32,11 @@
 </head>
 <body>
     <header>
+      <script type="text/javascript">
+        let quota_giorno = document.write(get_cookie_by_name("quota_giorno"))
+        let quota_settimana = document.write(get_cookie_by_name("quota_settimana"))
+        let quota_mese = document.write(get_cookie_by_name("quota_mese"))
+      </script>
       <div class="navbar fixed-top">
         <div id="profile">
           <img src="https://via.placeholder.com/60x60" alt="Profile picture">
@@ -55,7 +60,7 @@
           <div class="char-count-item">
             <span class="count" id="charCount_mese">
               <script>
-              document.write(get_cookie_by_name("quota_mese"))
+                document.write(quota_mese)
               </script>
             </span>
             <span class="label">Mese</span>
@@ -63,7 +68,7 @@
           <div class="char-count-item">
             <span class="count" id="charCount_sett">
               <script>
-            document.write(get_cookie_by_name("quota_settimana"))
+                document.write(quota_settimana)
               </script>
             </span>
             <span class="label">Settimana</span>
@@ -71,7 +76,7 @@
           <div class="char-count-item">
             <span class="count" id="charCount_giorno">
               <script>
-              document.write(get_cookie_by_name("quota_giorno"))
+                document.write(quota_giorno)
               </script>
             </span>
             <span class="label">Giorno</span>
