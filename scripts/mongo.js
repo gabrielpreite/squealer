@@ -284,7 +284,7 @@ exports.user_login = async function(q,credentials) {
 	}
 }
 
-exports.add_post = async function(q,credentials) {
+exports.add_post = async function(q, campi, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{
 		const mongo = new MongoClient(mongouri);		
@@ -298,8 +298,8 @@ exports.add_post = async function(q,credentials) {
 								risponde_a: null,//todo
 								corpo: q.contenuto,
 								destinatari: q.destinatari,
-								utente: null, //todo
-								timestamp: null, //todo
+								utente: campi.username,
+								timestamp: campi.timestamp,
 								visualizzazioni: 0,
 								reazioni: {
 									positive: {
@@ -313,7 +313,7 @@ exports.add_post = async function(q,credentials) {
 										odio: []
 									}
 								},
-								pubblico: null, //todo
+								pubblico: campi.pubblico,
 								categoria: null,
 								automatico: false
 							}
