@@ -268,8 +268,8 @@ app.post('/crea_post', async function(req, res) {
 		res.send("errore nella creazione del post")
 	}
 	res.status(200)
-	//res.send("ok")
-	res.redirect("/")
+	res.send("ok")
+	//res.redirect("/")
 });
 
 //risultati della ricerca tramite searchbar
