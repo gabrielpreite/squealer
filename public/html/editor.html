@@ -216,7 +216,7 @@
     }
 
     function add_post(){
-      if(check_post() == true){
+      /*if(check_post() == true){
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/crea_post", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -236,7 +236,48 @@
         post_body["destinatari"] = lista_dest;
 
         xhr.send(JSON.stringify(post_body));
-        window.location.replace("http://site212251.tw.cs.unibo.it");
+        //window.location.replace("http://site212251.tw.cs.unibo.it");
+      }*/
+
+
+
+      if(check_post() == true){
+        var post_body = {};
+
+        if(!$("#contenuto_testo").attr("hidden")){//caso testo
+          post_body["tipo"] = "testo";
+          post_body["contenuto"] = $("Textarea").val()
+        }
+  
+        lista_dest = []
+        $("[id^=destinatario_]").each(function(){
+          lista_dest.push($(this).text())
+        });
+  
+        post_body["destinatari"] = lista_dest;
+
+        fetch("/crea_post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(post_body), // Replace with your POST data
+        })
+        .then((response) => {
+          if (response.ok) {
+            // The initial request was successful
+            return response.json();
+          } else {
+            throw new Error("Network response was not ok.");
+          }
+        })
+        .then((data) => {
+          // The response data from the final redirected URL
+          window.location.replace("http://site212251.tw.cs.unibo.it");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
       }
     }
 
