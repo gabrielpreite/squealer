@@ -89,11 +89,14 @@
     </button>
   </div>
   </div>
-  
+
   <script type="text/javascript">
-    let quota_giorno = document.write(get_cookie_by_name("quota_giorno"))
-    let quota_settimana = document.write(get_cookie_by_name("quota_settimana"))
-    let quota_mese = document.write(get_cookie_by_name("quota_mese"))
+    // Assegna i valori alle variabili
+    let quota_giorno = get_cookie_by_name("quota_giorno");
+    let quota_settimana = get_cookie_by_name("quota_settimana");
+    let quota_mese = get_cookie_by_name("quota_mese");
+
+    // Aggiorna il contenuto delle span con i nuovi valori
     document.getElementById("charCount_mese").textContent = quota_mese;
     document.getElementById("charCount_sett").textContent = quota_settimana;
     document.getElementById("charCount_giorno").textContent = quota_giorno;
@@ -248,12 +251,12 @@
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
         }
-  
+
         lista_dest = []
         $("[id^=destinatario_]").each(function(){
           lista_dest.push($(this).text())
         });
-  
+
         post_body["destinatari"] = lista_dest;
 
         fetch("/crea_post", {
