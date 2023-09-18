@@ -287,6 +287,6 @@ body {
   pointer-events: none; /* Impedisce il clic e l'effetto in hover */
 }
 
-.fab, .fas {
+.reazioni-icone {
   color: white;
 }
