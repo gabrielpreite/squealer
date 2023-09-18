@@ -55,7 +55,7 @@
         <div class="char-count-item">
           <span class="count" id="charCount_mese">
             <script>
-              document.write(quota_mese)
+              document.getElementById("charCount_mese").textContent = quota_mese;
             </script>
           </span>
           <span class="label">Mese</span>
@@ -63,7 +63,7 @@
         <div class="char-count-item">
           <span class="count" id="charCount_sett">
             <script>
-              document.write(quota_settimana)
+              document.getElementById("charCount_sett").textContent = quota_settimana;
             </script>
           </span>
           <span class="label">Settimana</span>
@@ -71,7 +71,7 @@
         <div class="char-count-item">
           <span class="count" id="charCount_giorno">
             <script>
-              document.write(quota_giorno)
+              document.getElementById("charCount_giorno").textContent = quota_giorno;
             </script>
           </span>
           <span class="label">Giorno</span>
@@ -227,21 +227,21 @@
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/crea_post", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
-  
+
         var post_body = {};
-  
+
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
         }
-  
+
         lista_dest = []
         $("[id^=destinatario_]").each(function(){
           lista_dest.push($(this).text())
         });
-  
+
         post_body["destinatari"] = lista_dest;
-  
+
         xhr.send(JSON.stringify(post_body));
         window.location.replace("http://site212251.tw.cs.unibo.it");
       }
