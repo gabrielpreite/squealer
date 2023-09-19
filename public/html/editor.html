@@ -184,7 +184,7 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario("${a}")"> X </p><p id="${a}">${a}</p></li>`)
+            $("#lista_destinatari").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
                                             //per l'amor d'iddio qualcuno trovi un modo migliore
             array_dest.push(a)//aggiungo all'array
             $("#cerca_destinatari").val("")//resetto il campo
