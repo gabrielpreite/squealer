@@ -96,11 +96,18 @@
     <div class="container-fluid" style="margin-top: 10vh; height: 85vh">
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
-          <div class="row" id="row-destinatari" style="margin-bottom: 30vh">
-            <label for="cerca_destinatari">Cerca destinatari</label>
-            <input type="text" id="cerca_destinatari" name="cerca_destinatari">
-            <input type="button" value="Cerca" onclick="check_destinatari()">
-            <ul class="list-group" name="lista_destinatari" id="lista_destinatari">
+          <div class="row" id="row-destinatari-canali" style="margin-bottom: 30vh">
+            <label for="cerca_destinatari_canali">Cerca destinatari</label>
+            <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali">
+            <input type="button" value="Cerca" onclick="check_destinatari_canali()">
+            <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
+            </ul>
+          </div>
+          <div class="row" id="row-destinatari-utenti" style="margin-bottom: 30vh">
+            <label for="cerca_destinatari_utenti">Cerca destinatari</label>
+            <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti">
+            <input type="button" value="Cerca" onclick="check_destinatari_utenti()">
+            <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti">
             </ul>
           </div>
         </div>
@@ -173,7 +180,7 @@
 
 
 
-    function check_destinatari() {
+    function check_destinatari_canali() {
       var a = $("#cerca_destinatari").val();//nome destinatario da cercare (per ora gestisco solo canali)
       $.ajax({
         type: 'GET',
@@ -184,10 +191,10 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
+            $("#lista_destinatari_canali").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
                                             //per l'amor d'iddio qualcuno trovi un modo migliore
             array_dest.push(a)//aggiungo all'array
-            $("#cerca_destinatari").val("")//resetto il campo
+            $("#cerca_destinatari_canali").val("")//resetto il campo
           }
         },
         error: function (xhr, status, e){
@@ -196,8 +203,35 @@
       });
     }
 
+    function check_destinatari_utenti() {
+      var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
+      var b = a.substring(1)
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: `${window.location.origin}/user_info?nome=${b}`,
+        headers: {
+        },
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          //console.log('data: ', data);
+          if(!array_dest.includes(a)){//canale non e' gia' nella lista
+            $("#lista_destinatari_utenti").append(`<li class="list-group-item" id="dest_utente_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
+                                            //per l'amor d'iddio qualcuno trovi un modo migliore
+            array_dest.push(a)//aggiungo all'array
+            $("#cerca_destinatari_utenti").val("")//resetto il campo
+          }
+        },
+        error: function (xhr, status, e){
+          alert("L'utente selezionato non esiste")
+        }
+      });
+    }
+
     function rimuovi_destinatario(nome){
-      $("#dest_canale_\\"+nome).remove()
+      if(nome.charAt(0) == "$")
+        $("#dest_canale_\\"+nome).remove()
+      else if(nome.charAt(0) == "@")
+        $("#dest_utente_\\"+nome).remove()
       array_dest = array_dest.filter(item => item !== nome)
     }
 
