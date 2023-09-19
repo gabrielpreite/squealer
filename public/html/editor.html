@@ -8,14 +8,13 @@
   <!----BOOSTRAP-->
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-
+  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
   <!-- CSS -->
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
@@ -70,18 +69,6 @@
 </button>
   </div>
   <div class="lateral-buttons">
-    <div id="notifiche">
-    <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="fas fa-bell"></i>
-    </button>
-    <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
-      <h3 class="dropdown-header">Notifiche</h3>
-      <a class="dropdown-item" href="#">Notifica 1</a>
-      <a class="dropdown-item" href="#">Notifica 2</a>
-      <a class="dropdown-item" href="#">Notifica 3</a>
-      <!-- Aggiungi altre notifiche qui -->
-    </div>
-  </div>
 
   <div id="home">
     <button class="btn btn-unstyled" id="homeButton" onclick="redirectToHome()">
@@ -197,7 +184,7 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}"><div id="destinatario_${a}">${a}</div></li>`)
+            $("#lista_destinatari").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
                                             //per l'amor d'iddio qualcuno trovi un modo migliore
             array_dest.push(a)//aggiungo all'array
             $("#cerca_destinatari").val("")//resetto il campo
@@ -210,54 +197,33 @@
     }
 
     function rimuovi_destinatario(nome){
-      //todo
+      $("#dest_canale_\\"+nome).remove()
+      array_dest = array_dest.filter(item => item !== nome)
     }
 
     function check_post(){
-      return true;//todo
       //controlli se esiste almeno un destinatario, se ho inserito testo/imm/pos
+      if($("[id^=dest_canale_]").length == 0)
+        return false
+      return true
     }
 
     function add_post(){
-      /*if(check_post() == true){
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/crea_post", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-
-        var post_body = {};
-
-        if(!$("#contenuto_testo").attr("hidden")){//caso testo
-          post_body["tipo"] = "testo";
-          post_body["contenuto"] = $("Textarea").val()
-        }
-
-        lista_dest = []
-        $("[id^=destinatario_]").each(function(){
-          lista_dest.push($(this).text())
-        });
-
-        post_body["destinatari"] = lista_dest;
-
-        xhr.send(JSON.stringify(post_body));
-        //window.location.replace("http://site212251.tw.cs.unibo.it");
-      }*/
-
-
 
       if(check_post() == true){
-        var post_body = {};
+        var post_body = {}
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
         }
 
-        lista_dest = []
+        /*lista_dest = []
         $("[id^=destinatario_]").each(function(){
           lista_dest.push($(this).text())
-        });
+        });*/
 
-        post_body["destinatari"] = lista_dest;
+        post_body["destinatari"] = array_dest;
 
         fetch("/crea_post", {
           method: "POST",
@@ -398,6 +364,7 @@ function cambia_campo(opzione) {
     function redirectToHome() {
       window.location.href = "/";
     }
+
 
     //leaflet - inizializza mappa
     const map = L.map('map').setView([44.49, 11.34], 13);
