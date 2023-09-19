@@ -235,9 +235,9 @@
       array_dest = array_dest.filter(item => item !== nome)
     }
 
-    function check_post(){
+    function check_post(){//effettua ultimi controlli prima di inviare il post
       //controlli se esiste almeno un destinatario, se ho inserito testo/imm/pos
-      if($("[id^=dest_canale_]").length == 0)
+      if($("[id^=dest_canale_]").length == 0 && $("[id^=dest_utente_]").length == 0)
         return false
       return true
     }
