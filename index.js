@@ -241,7 +241,7 @@ app.get('/permessi_canale', async function(req, res) {
 app.get("/user_info", async function(req, res) {
 	try{
 		let result = await mymongo.user_info(req.query, mongoCredentials)
-		result = result["result"][0]
+		result = result[0]
 		res.status(200)
 		res.send(result)
 	}catch(e){
