@@ -287,6 +287,7 @@ exports.user_login = async function(q,credentials) {
 exports.user_info = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{
+		let result = []
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		
