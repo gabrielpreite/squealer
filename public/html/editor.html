@@ -184,7 +184,7 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari").append(`<li class="list-group-item" id="${a}"><div id="destinatario_${a}">${a}</div></li>`)
+            $("#lista_destinatari").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario("${a}")"> X </p><p id="${a}">${a}</p></li>`)
                                             //per l'amor d'iddio qualcuno trovi un modo migliore
             array_dest.push(a)//aggiungo all'array
             $("#cerca_destinatari").val("")//resetto il campo
@@ -197,12 +197,13 @@
     }
 
     function rimuovi_destinatario(nome){
-      //todo
+      $("#dest_canale_\\"+nome).remove()
+      array_dest = array_dest.filter(item => item !== nome)
     }
 
     function check_post(){
       //controlli se esiste almeno un destinatario, se ho inserito testo/imm/pos
-      if($("[id^=destinatario_]").length == 0)
+      if($("[id^=dest_canale_]").length == 0)
         return false
       return true
     }
@@ -217,12 +218,12 @@
           post_body["contenuto"] = $("Textarea").val()
         }
 
-        lista_dest = []
+        /*lista_dest = []
         $("[id^=destinatario_]").each(function(){
           lista_dest.push($(this).text())
-        });
+        });*/
 
-        post_body["destinatari"] = lista_dest;
+        post_body["destinatari"] = array_dest;
 
         fetch("/crea_post", {
           method: "POST",
