@@ -284,6 +284,27 @@ exports.user_login = async function(q,credentials) {
 	}
 }
 
+exports.user_info = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+				.collection("utente")
+				.find({username: q.username})
+				.project({ img: 1, username: 1})
+				.forEach( (r) => { 
+					result.push(r) 
+				} );
+
+		await mongo.close();
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
 exports.add_post = async function(q, campi, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{
