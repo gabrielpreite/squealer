@@ -261,7 +261,7 @@ body {
   font-weight: bold;
 }
 
-.destinatari, .btn-destinatari {
+.destinatari, .btn-destinatari, .btn-reazioni {
   margin-left: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
