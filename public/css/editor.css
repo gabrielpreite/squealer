@@ -115,6 +115,24 @@
       border-radius: 5px;
     }
 
+    /* Stile personalizzato per il pulsante */
+    .custom-map-control-button {
+      background-color: #fff;
+      color: #333; /* Colore del testo */
+      border: 2px solid #ccc; /* Colore del bordo */
+      border-radius: 5px;
+      padding: 8px 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .custom-map-control-button:hover {
+      background-color: #f0f0f0; /* Colore dello sfondo al passaggio del mouse */
+    }
+
+
     .btn-confirm {
       background-color: #1da1f2;
       color: white;
