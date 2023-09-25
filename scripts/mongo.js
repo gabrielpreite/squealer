@@ -368,12 +368,13 @@ exports.user_feed = async function(q, campi, credentials) {
 			} );
 		canali_seguiti = canali_seguiti[0] //da fixare
 		console.log("ottenuti canali seguiti da "+campi.username)
+		
+		canali_seguiti.push("@"+campi.username)
+		console.log("aggiunto utente")
 
 		//debug
 		canali_seguiti.forEach((element) => console.log(element))
 
-		canali_seguiti.push("@"+campi.username)
-		console.log("aggiunto utente")
 		let result = []
 
 		await mongo.db(dbname)
@@ -386,6 +387,9 @@ exports.user_feed = async function(q, campi, credentials) {
 			.forEach( (r) => { 
 				result.push(r) 
 			});
+
+		//debug
+		canali_seguiti.forEach((element) => console.log(element))
 
 		console.log("ottenuto feed")
 		await mongo.close();
