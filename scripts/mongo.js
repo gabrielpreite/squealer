@@ -359,14 +359,14 @@ exports.user_feed = async function(q, campi, credentials) {
 		//il feed e' composto da canali seguiti + messaggi privati
 		let canali_seguiti = await mongo.db(dbname)
 								.collection("utente")
-								.find({username: campi.userid})
+								.find({username: campi.username})
 								.project({ canali_seguiti: 1})
 								.forEach( (r) => { 
 									result.push(r) 
 								} );
-		console.log("ottenuti canali seguiti da "+campi.userid)
+		console.log("ottenuti canali seguiti da "+campi.username)
 		canali_seguiti = canali_seguiti[0] //da fixare
-		canali_seguiti.push("@"+campi.userid)
+		canali_seguiti.push("@"+campi.username)
 		console.log("aggiunto utente")
 		let result = []
 
