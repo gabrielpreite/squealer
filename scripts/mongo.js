@@ -389,7 +389,7 @@ exports.user_feed = async function(q, campi, credentials) {
 			});
 
 		//debug
-		canali_seguiti.forEach((element) => console.log(element))
+		result.forEach((element) => console.log(element))
 
 		console.log("ottenuto feed")
 		await mongo.close();
