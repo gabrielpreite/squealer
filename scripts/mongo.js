@@ -364,10 +364,14 @@ exports.user_feed = async function(q, campi, credentials) {
 			.find({username: campi.username})
 			.project({ canali_seguiti: 1})
 			.forEach( (r) => { 
-				canali_seguiti.push(r) 
+				canali_seguiti.push(r["canali_seguiti"]) 
 			} );
 		canali_seguiti = canali_seguiti[0] //da fixare
 		console.log("ottenuti canali seguiti da "+campi.username)
+
+		//debug
+		canali_seguiti.forEach((element) => console.log(element))
+
 		canali_seguiti.push("@"+campi.username)
 		console.log("aggiunto utente")
 		let result = []
