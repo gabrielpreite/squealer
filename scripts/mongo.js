@@ -355,17 +355,18 @@ exports.user_feed = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		
+		console.log("dentro mongo con user "+campi.username)
 		//il feed e' composto da canali seguiti + messaggi privati
-		let canali_seguiti = await mongo.db(dbname)
-								.collection("utente")
-								.find({username: campi.username})
-								.project({ canali_seguiti: 1})
-								.forEach( (r) => { 
-									result.push(r) 
-								} );
+
+		let canali_seguiti
+		await mongo.db(dbname)
+			.collection("utente")
+			.find({username: campi.username})
+			.project({ canali_seguiti: 1})
+			.forEach( (r) => { 
+				canali_seguiti.push(r) 
+			} );
 		console.log("ottenuti canali seguiti da "+campi.username)
-		canali_seguiti = canali_seguiti[0] //da fixare
 		canali_seguiti.push("@"+campi.username)
 		console.log("aggiunto utente")
 		let result = []
