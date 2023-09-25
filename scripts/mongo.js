@@ -350,6 +350,45 @@ exports.add_post = async function(q, campi, credentials) {
 	}
 }
 
+exports.user_feed = async function(q, campi, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		//il feed e' composto da canali seguiti + messaggi privati
+		let canali_seguiti = await mongo.db(dbname)
+								.collection("utente")
+								.find({username: campi.userid})
+								.project({ canali_seguiti: 1})
+								.forEach( (r) => { 
+									result.push(r) 
+								} );
+		console.log("ottenuti canali seguiti da "+campi.userid)
+		canali_seguiti = canali_seguiti[0] //da fixare
+		canali_seguiti.push("@"+campi.userid)
+		console.log("aggiunto utente")
+		let result = []
+
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.find({
+				$or: [
+				  { destinatari: { $in: canali_seguiti } },
+				]
+			})
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		console.log("ottenuto feed")
+		await mongo.close();
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
 /*exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
