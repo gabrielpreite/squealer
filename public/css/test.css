@@ -127,11 +127,7 @@ body {
     color: white;   
 }
 
-.btn-reazioni:focus {
+.btn-reazioni.toggle {
     color: red;
 }
 
-.n-reazioni {
-    font-size: auto;
-
-}

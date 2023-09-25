@@ -1,56 +1,67 @@
 <div class="card squeal"> 
-    <div class="card-header">
-        <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">
-        <div class="info_utente"> 
-            <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
-            <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>
-            <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span> 
-        </div> 
-        <div class="recipients-dropdown" class="destinatari">
-            <button class="btn btn-link btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                Destinatari 
-            </button> 
-            <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"> 
-                <a class="dropdown-item" href="#">Alice</a> 
-                <a class="dropdown-item" href="#">Bob</a> 
-                <a class="dropdown-item" href="#">Charlie</a> 
-                <!-- Aggiungi altri destinatari qui --> </div> 
-            </div> 
-        </div> 
-        <div class="card-body">                 
-            <p id="squeal_testo' + i + '"> </p> 
-        </div> 
-        <div class="card-footer"> 
-            <div class="row reazioni"> 
-                <div class="col reazioni-left"> 
-                    <button class="btn btn-primary btn-reazioni" role="button"> 
-                        <i class="fab fa-sketch reazioni-icone"></i>
-                        <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span> 
-                    </button> 
-                    <a class="btn btn-primary btn-reazioni" href="#!" role="button" > 
-                        <i class="fas fa-poo reazioni-icone"> <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span> </i>
-                    </a> 
-                </div> 
-                <div class="col reazioni-mid"> 
-                    <a class="btn btn-primary btn-reazioni" href="#!" role="button" > 
-                        <i class="fas fa-heart reazioni-icone"> <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span> </i> 
-                    </a> 
-                    <a class="btn btn-primary btn-reazioni" href="#!" role="button" > 
-                        <i class="fas fa-heart-crack reazioni-icone"> <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span> </i> 
-                    </a> 
-                </div> 
-                <div class="col reazioni-right"> 
-                    <a class="btn btn-primary btn-reazioni" href="#!" role="button" > 
-                        <i class="fas fa-thumbs-up reazioni-icone"> <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span> </i> 
-                    </a> 
-                    <a class="btn btn-primary btn-reazioni" href="#!" role="button" > 
-                        <i class="fas fa-thumbs-down reazioni-icone"> <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span> </i> 
-                    </a> 
-                </div> 
-            </div> 
-            <div class="info-post" id="squeal_info' + i + '"> 
-                <span class="label-squeal visual" id="squeal_visual' + i + '">Visual 500</span> 
-            </div> 
-        </div> 
-    </div>
+<div class="card-header">
+<img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">
+<div class="info_utente"> 
+<span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
+<span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>
+<span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span> 
+</div> 
+<div class="recipients-dropdown" class="destinatari">
+<button class="btn btn-link btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+Destinatari 
+</button> 
+<div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"> 
+<a class="dropdown-item" href="#">Alice</a> 
+<a class="dropdown-item" href="#">Bob</a> 
+<a class="dropdown-item" href="#">Charlie</a> 
+<!-- Aggiungi altri destinatari qui --> </div> 
+</div> 
+</div> 
+<div class="card-body">                 
+<p id="squeal_testo' + i + '"> </p> 
+</div> 
+<div class="card-footer"> 
+<div class="row reazioni btn-group"> 
+<div class="col reazioni-left"> 
+<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"/>
+<label class="btn btn-primary btn-reazioni" for="option1"> 
+<i class="fab fa-sketch reazioni-icone"> </i>
+<span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span> 
+</label>
+<input type="radio" class="btn-check" name="options" id="option2" autocomplete="off"/>
+<label class="btn btn-primary btn-reazioni" for="option2">
+<i class="fas fa-poo reazioni-icone"> </i>
+<span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span> 
+</label> 
+</div> 
+<div class="col reazioni-mid"> 
+<input type="radio" class="btn-check" name="options" id="option3" autocomplete="off"/>
+<label class="btn btn-primary btn-reazioni" for="option3"> 
+<i class="fas fa-heart reazioni-icone">  </i>
+<span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>
+</label> 
+<input type="radio" class="btn-check" name="options" id="option4" autocomplete="off"/>
+<label class="btn btn-primary btn-reazioni" for="option4"> 
+<i class="fas fa-heart-crack reazioni-icone"> </i>
+<span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>
+</label> 
+</div> 
+<div class="col reazioni-right"> 
+<input type="radio" class="btn-check" name="options" id="option5" autocomplete="off"/>
+<label class="btn btn-primary btn-reazioni" for="option5"> 
+<i class="fas fa-thumbs-up reazioni-icone"> </i> 
+<span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>
+</label> 
+<input type="radio" class="btn-check" name="options" id="option6" autocomplete="off"/>
+<label class="btn btn-primary btn-reazioni" for="option6"> 
+<i class="fas fa-thumbs-down reazioni-icone"> </i> 
+<span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span> 
+</label> 
+</div> 
+</div> 
+<div class="info-post" id="squeal_info' + i + '"> 
+<span class="label-squeal visual" id="squeal_visual' + i + '">Visual 500</span> 
+</div> 
+</div> 
+</div>
 </div>
