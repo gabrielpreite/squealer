@@ -283,6 +283,21 @@ app.post('/crea_post', async function(req, res) {
 	res.send("ok")
 });
 
+//user feed
+app.get('/user_feed', async function(req, res) {
+	let result;
+	try{
+		let campi = {}
+		campi["username"] = session.userid;
+		result = await mymongo.user_feed(req.query, campi, mongoCredentials);
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella richiesta del feed")
+	}
+	res.status(200)
+	res.send(result)
+});
+
 //risultati della ricerca tramite searchbar
 app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
