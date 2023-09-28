@@ -254,7 +254,7 @@
           post_body["contenuto"] = $("Textarea").val()
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           post_body["tipo"] = "img";
-          post_body["contenuto"] = file;
+          post_body["contenuto"] = imageFileURL;
         }
 
         /*lista_dest = []
@@ -395,6 +395,7 @@ function cambia_campo(opzione) {
       img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
 
       preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+      imageFileURL = e.target.result;
     };
 
     reader.readAsDataURL(file); // Leggi il file come URL dati
