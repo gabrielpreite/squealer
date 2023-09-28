@@ -135,6 +135,9 @@
             <label for="img">Seleziona un'immagine</label>
             <input type="file" id="img" name="img" accept="image/*">
             <div id="preview"></div>
+            <form id="uploadForm" method="post" action="upload">
+              <input type="submit" value="Carica Immagine">
+            </form>
           </div>
           <div id="contenuto_posizione" hidden="true">
               <div id="map" style="height: 60vh;">
@@ -176,7 +179,7 @@
 
   <script>
   array_dest=[]//array destinatari per uso interno
-
+  let imageFileURL = null;
 
 
     function check_destinatari_canali() {
@@ -249,6 +252,9 @@
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
+        } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
+          post_body["tipo"] = "img";
+          post_body["contenuto"] = file;
         }
 
         /*lista_dest = []
@@ -420,7 +426,26 @@ function cambia_campo(opzione) {
       });
 
       locationButton.addEventListener("click", () => {
-        // Prova la geolocalizzazione HTML5.
+        function smoothZoomMap(map, targetZoom, currentZoom, increment, duration) {
+          if (currentZoom === targetZoom) return;
+
+          const start = performance.now();
+          function zoomStep(timestamp) {
+            const elapsed = timestamp - start;
+            const progress = elapsed / duration;
+
+            if (progress < 1) {
+              const newZoom = currentZoom + (targetZoom - currentZoom) * progress;
+              map.setZoom(newZoom);
+              requestAnimationFrame(zoomStep);
+            } else {
+              map.setZoom(targetZoom);
+            }
+          }
+
+          requestAnimationFrame(zoomStep);
+        }
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -430,6 +455,7 @@ function cambia_campo(opzione) {
               };
 
               map.panTo(pos);
+              smoothZoomMap(map, 10, map.getZoom(), 0.1, 1000);
               marker.setPosition(pos); // Imposta la posizione del marker
 
               infoWindow.close(); // Chiudi la finestra informativa se era aperta
