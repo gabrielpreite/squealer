@@ -127,7 +127,7 @@ body {
     color: white;   
 }
 
-.btn-reazioni.toggle {
+.btn-check:active {
     color: red;
 }
 
