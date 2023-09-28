@@ -306,12 +306,12 @@ app.get('/search', async function(req, res) {
 
 app.post('/upload', upload.single('image'), (req, res) => {
 	// You can access the uploaded file through req.file
-	if (!req.img) {
+	if (!req.file) {
 	  return res.status(400).json({ message: 'No file uploaded' });
 	}
   
 	// You can perform further processing here, such as saving the file path to a database
-	const imagePath = req.img.path;
+	const imagePath = req.file.path;
   
 	return res.status(200).json({ message: 'File uploaded successfully', imagePath });
   });
