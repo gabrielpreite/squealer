@@ -120,6 +120,14 @@ body {
     pointer-events: none; /* Impedisce il clic e l'effetto in hover */
 }
 
-.reazioni-icone {
-    color: white;
+.btn-reazioni {
+    margin-left: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    color: white;   
 }
+
+.btn-check:active {
+    color: red;
+}
+

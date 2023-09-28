@@ -15,7 +15,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": false,
@@ -39,7 +39,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
         "redazione_flag": false,
         "verificato_flag": true,
         "professional_flag": true,
@@ -63,7 +63,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -87,7 +87,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST", "$free"],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -111,7 +111,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -135,7 +135,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
         "redazione_flag": true,
         "verificato_flag": false,
         "professional_flag": false,
@@ -159,7 +159,7 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
         "redazione_flag": true,
         "verificato_flag": true,
         "professional_flag": true,

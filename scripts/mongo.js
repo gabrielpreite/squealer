@@ -350,6 +350,55 @@ exports.add_post = async function(q, campi, credentials) {
 	}
 }
 
+exports.user_feed = async function(q, campi, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		console.log("dentro mongo con user "+campi.username)
+		//il feed e' composto da canali seguiti + messaggi privati
+
+		let canali_seguiti = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find({username: campi.username})
+			.project({ canali_seguiti: 1})
+			.forEach( (r) => { 
+				canali_seguiti.push(r["canali_seguiti"]) 
+			} );
+		canali_seguiti = canali_seguiti[0] //da fixare
+		console.log("ottenuti canali seguiti da "+campi.username)
+		
+		canali_seguiti.push("@"+campi.username)
+		console.log("aggiunto utente")
+
+		//debug
+		canali_seguiti.forEach((element) => console.log(element))
+
+		let result = []
+
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.find({
+				$or: [
+				  { destinatari: { $in: canali_seguiti } },
+				]
+			})
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		//debug
+		result.forEach((element) => console.log(element))
+
+		console.log("ottenuto feed")
+		await mongo.close();
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
 /*exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
