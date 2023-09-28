@@ -133,7 +133,10 @@
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
-            <input type="file" id="img" name="img" accept="image/*">
+            <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
+              <input type="file" id="image" name="image" accept="image/*">
+              <input type="submit" value="Carica Immagine">
+            </form>
             <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
@@ -176,7 +179,7 @@
 
   <script>
   array_dest=[]//array destinatari per uso interno
-
+  let imageFileURL = null;
 
 
     function check_destinatari_canali() {
@@ -249,6 +252,9 @@
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
+        } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
+          post_body["tipo"] = "img";
+          post_body["contenuto"] = imageFileURL;
         }
 
         /*lista_dest = []
@@ -389,6 +395,7 @@ function cambia_campo(opzione) {
       img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
 
       preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+      imageFileURL = e.target.result;
     };
 
     reader.readAsDataURL(file); // Leggi il file come URL dati
@@ -420,7 +427,7 @@ function cambia_campo(opzione) {
       });
 
       locationButton.addEventListener("click", () => {
-        // Prova la geolocalizzazione HTML5.
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -430,6 +437,7 @@ function cambia_campo(opzione) {
               };
 
               map.panTo(pos);
+              map.setZoom(15);
               marker.setPosition(pos); // Imposta la posizione del marker
 
               infoWindow.close(); // Chiudi la finestra informativa se era aperta
