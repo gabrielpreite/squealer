@@ -304,7 +304,7 @@ app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
 });
 
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post('/upload', upload.single('img'), (req, res) => {
 	// You can access the uploaded file through req.file
 	if (!req.file) {
 	  return res.status(400).json({ message: 'No file uploaded' });
