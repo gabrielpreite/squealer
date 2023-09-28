@@ -425,11 +425,15 @@ function cambia_campo(opzione) {
 
       marker = new google.maps.Marker({
         map,
-        animation: google.maps.Animation.DROP, // Animazione di caduta del marker
+        animation: google.maps.Animation.BOUNCE,
+      });
+
+      // Aggiungi il listener di eventi per il clic sulla mappa
+      map.addListener("click", (event) => {
+        placeMarker(event.latLng);
       });
 
       locationButton.addEventListener("click", () => {
-
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -455,6 +459,7 @@ function cambia_campo(opzione) {
         }
       });
     }
+
     let infoWindow = new google.maps.InfoWindow();
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -467,9 +472,31 @@ function cambia_campo(opzione) {
       infoWindow.open(map);
     }
 
+    function placeMarker(location) {
+      // Rimuovi il marker esistente, se presente
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      // Crea un nuovo marker
+      marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // Puoi fare altro con il marker qui se necessario
+      // Ad esempio, salvare le coordinate in una variabile o inviarle al server
+
+      // Infine, apri la finestra informativa se necessario
+      infoWindow.setContent("Posizione selezionata");
+      infoWindow.open(map, marker);
+    }
+
     window.initMap = initMap;
     // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
     google.maps.event.addDomListener(window, "load", initMap);
+
 
     //map.on('click', onClickCoord)
   </script>
