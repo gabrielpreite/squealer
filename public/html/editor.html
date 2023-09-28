@@ -133,11 +133,11 @@
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
-            <input type="file" id="img" name="img" accept="image/*">
-            <div id="preview"></div>
-            <form id="uploadForm" method="post" action="upload">
+            <form id="uploadForm" method="post" action="/upload">
+              <input type="file" id="img" name="img" accept="image/*">
               <input type="submit" value="Carica Immagine">
             </form>
+            <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
               <div id="map" style="height: 60vh;">
@@ -427,25 +427,6 @@ function cambia_campo(opzione) {
       });
 
       locationButton.addEventListener("click", () => {
-        function smoothZoomMap(map, targetZoom, currentZoom, increment, duration) {
-          if (currentZoom === targetZoom) return;
-
-          const start = performance.now();
-          function zoomStep(timestamp) {
-            const elapsed = timestamp - start;
-            const progress = elapsed / duration;
-
-            if (progress < 1) {
-              const newZoom = currentZoom + (targetZoom - currentZoom) * progress;
-              map.setZoom(newZoom);
-              requestAnimationFrame(zoomStep);
-            } else {
-              map.setZoom(targetZoom);
-            }
-          }
-
-          requestAnimationFrame(zoomStep);
-        }
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
@@ -456,7 +437,7 @@ function cambia_campo(opzione) {
               };
 
               map.panTo(pos);
-              smoothZoomMap(map, 10, map.getZoom(), 0.1, 1000);
+              map.setZoom(15);
               marker.setPosition(pos); // Imposta la posizione del marker
 
               infoWindow.close(); // Chiudi la finestra informativa se era aperta
