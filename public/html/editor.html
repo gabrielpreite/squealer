@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
   integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
@@ -410,6 +411,7 @@ function cambia_campo(opzione) {
     let map, infoWindow, marker;
 
     function initMap() {
+      infoWindow = new google.maps.InfoWindow();
       map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 41.9028, lng: 12.4964 }, // Coordinate di Roma
         zoom: 5, // Livello di zoom 5
@@ -437,7 +439,7 @@ function cambia_campo(opzione) {
               };
 
               map.panTo(pos);
-              map.setZoom(15);
+              map.setZoom(13);
               marker.setPosition(pos); // Imposta la posizione del marker
 
               infoWindow.close(); // Chiudi la finestra informativa se era aperta
@@ -453,6 +455,7 @@ function cambia_campo(opzione) {
         }
       });
     }
+    let infoWindow = new google.maps.InfoWindow();
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
