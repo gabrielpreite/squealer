@@ -39,6 +39,7 @@ const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
+const upload = require('./multer'); // Import the multer configuration
 
 
 
@@ -303,11 +304,17 @@ app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
 });
 
-/* ========================== */
-/*                            */
-/*    ACTIVATE NODE SERVER    */
-/*                            */
-/* ========================== */
+app.post('/upload', upload.single('image'), (req, res) => {
+	// You can access the uploaded file through req.file
+	if (!req.file) {
+	  return res.status(400).json({ message: 'No file uploaded' });
+	}
+  
+	// You can perform further processing here, such as saving the file path to a database
+	const imagePath = req.file.path;
+  
+	return res.status(200).json({ message: 'File uploaded successfully', imagePath });
+  });
 
 //route che matcha su endpoint non esistenti
 //DEVE STARE IN FONDO
@@ -322,6 +329,12 @@ app.use(function(req, res){
 		message: "Richiesta non valida"
 	});
 });
+
+/* ========================== */
+/*                            */
+/*    ACTIVATE NODE SERVER    */
+/*                            */
+/* ========================== */
 
 app.listen(8000, function() { 
 	global.startDate = new Date() ; 
