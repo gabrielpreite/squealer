@@ -248,14 +248,16 @@
     function add_post(){
 
       if(check_post() == true){
-        var post_body = {}
+        const formData = new FormData()
+        let post_body = {}
+        let post_file = null
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           post_body["tipo"] = "img";
-          post_body["immagine"] = $("#img").prop("files")[0];
+          post_file["immagine"] = $("#img").prop("files")[0];
         }
 
         /*lista_dest = []
@@ -265,12 +267,16 @@
 
         post_body["destinatari"] = array_dest;
 
+        formData.append("body", post_body)
+        formData.append("file", post_file)
+
         fetch("/crea_post", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(post_body), // Replace with your POST data
+          body: formData,
+
         })
         .then((response) => {
           if (response.ok) {

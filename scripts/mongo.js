@@ -348,7 +348,7 @@ exports.add_post = async function(q, campi, credentials) {
 						.insertOne(
 							{
 								risponde_a: null,//todo
-								corpo: q.path,
+								corpo: campi.path,
 								tipo: "img",
 								destinatari: q.destinatari,
 								utente: campi.username,

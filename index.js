@@ -259,7 +259,7 @@ app.post('/crea_post', upload.single("immagine"), async function(req, res) {
 
 		if(req.body.tipo == "img"){//caso immagine
 			console.log(req.file.path)
-			req.body["path"] = req.file.path
+			campi["path"] = req.file.path
 		}
 		
 		//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
