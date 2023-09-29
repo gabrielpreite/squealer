@@ -289,14 +289,14 @@
 
         post_body["destinatari"] = array_dest;
 
-        formData.append("body", post_body)
+        formData.append("body", JSON.stringify(post_body))
         formData.append("immagine", post_file)
 
         fetch("/crea_post", {
           method: "POST",
-          /*headers: {
+          headers: {
             "Content-Type": "application/json",
-          },*/
+          },
           body: formData,
 
         })
