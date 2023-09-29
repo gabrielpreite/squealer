@@ -134,10 +134,10 @@
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
-            <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
+            <!--<form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">-->
               <input type="file" id="img" name="img" accept="image/*">
-              <input type="submit" value="Carica Immagine">
-            </form>
+              <!--<input type="submit" value="Carica Immagine">
+            </form>-->
             <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
@@ -255,7 +255,7 @@
           post_body["contenuto"] = $("Textarea").val()
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           post_body["tipo"] = "img";
-          post_body["contenuto"] = imageFileURL;
+          post_body["immagine"] = $("#img").files[0];
         }
 
         /*lista_dest = []

@@ -252,11 +252,15 @@ app.get("/user_info", async function(req, res) {
 });
 
 //crea uno squeal
-app.post('/crea_post', async function(req, res) {
-	//res.send({"msg": "todo - crea post"})
+app.post('/crea_post', upload.single("immagine"), async function(req, res) {
 	try{
 		//aggiungo i vari campi mancanti
 		var campi = {}
+
+		if(req.body.tipo == "img"){//caso immagine
+			console.log(req.file.path)
+			req.body["path"] = req.file.path
+		}
 		
 		//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
 		let tmp = false;
