@@ -93,24 +93,34 @@
   </header>
 
   <!--<form method="POST" action="/crea_post">-->
-    <div class="container-fluid" style="margin-top: 10vh; height: 85vh">
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
-          <div class="row" id="row-destinatari-canali" style="margin-bottom: 30vh">
-            <label for="cerca_destinatari_canali">Cerca destinatari</label>
-            <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali">
-            <input type="button" value="Cerca" onclick="check_destinatari_canali()">
-            <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
-            </ul>
-          </div>
-          <div class="row" id="row-destinatari-utenti" style="margin-bottom: 30vh">
-            <label for="cerca_destinatari_utenti">Cerca destinatari</label>
-            <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti">
-            <input type="button" value="Cerca" onclick="check_destinatari_utenti()">
-            <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti">
-            </ul>
-          </div>
-        </div>
+                <div class="row" id="row-destinatari-canali">
+                    <div class="search-container">
+                        <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca destinatari">
+                        <button class="search-button" onclick="check_destinatari_canali()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
+                    </ul>
+                </div>
+                <div class="row" id="row-destinatari-utenti">
+                    <div class="search-container">
+                        <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca destinatari">
+                        <button class="search-button" onclick="check_destinatari_utenti()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti">
+                    </ul>
+                </div>
+
+                <div id="destinatari-selezionati">
+                  <!-- Qui verranno visualizzati i destinatari selezionati -->
+                </div>
+
+            </div>
 
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
@@ -168,7 +178,6 @@
             Stai sforando, sgancia 23,45 euri
           </div>
         </div>
-    </div>
   <!--</form>-->
 
   <!--JQuery-->
@@ -193,12 +202,17 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
-          if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari_canali").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
-                                            //per l'amor d'iddio qualcuno trovi un modo migliore
-            array_dest.push(a)//aggiungo all'array
-            $("#cerca_destinatari_canali").val("")//resetto il campo
-          }
+          if (!array_dest.includes(a)) {
+              // Aggiungi il destinatario alla lista dei selezionati
+              $("#destinatari-selezionati").append(`
+                <div class="selected-item" id="selected-canale-${a}">
+                  <p onclick="rimuovi_destinatario('${a}')"> X </p>
+                  <p>${a}</p>
+                </div>
+              `);
+              array_dest.push(a); // Aggiungi all'array
+              $("#cerca_destinatari_canali").val(""); // Resetta il campo
+            }
         },
         error: function (xhr, status, e){
           alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
@@ -217,12 +231,17 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
-          if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari_utenti").append(`<li class="list-group-item" id="dest_utente_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
-                                            //per l'amor d'iddio qualcuno trovi un modo migliore
-            array_dest.push(a)//aggiungo all'array
-            $("#cerca_destinatari_utenti").val("")//resetto il campo
-          }
+          if (!array_dest.includes(a)) {
+             // Aggiungi il destinatario alla lista dei selezionati
+             $("#destinatari-selezionati").append(`
+               <div class="selected-item" id="selected-utente-${a}">
+                 <p onclick="rimuovi_destinatario('${a}')"> X </p>
+                 <p>${a}</p>
+               </div>
+             `);
+             array_dest.push(a); // Aggiungi all'array
+             $("#cerca_destinatari_utenti").val(""); // Resetta il campo
+           }
         },
         error: function (xhr, status, e){
           alert("L'utente selezionato non esiste")
@@ -230,12 +249,12 @@
       });
     }
 
-    function rimuovi_destinatario(nome){
-      if(nome.charAt(0) == "$")
-        $("#dest_canale_\\"+nome).remove()
-      else if(nome.charAt(0) == "@")
-        $("#dest_utente_\\"+nome).remove()
-      array_dest = array_dest.filter(item => item !== nome)
+    function rimuovi_destinatario(nome) {
+      if (nome.charAt(0) == "$")
+        $("#selected-canale-" + nome).remove();
+      else if (nome.charAt(0) == "@")
+        $("#selected-utente-" + nome).remove();
+      array_dest = array_dest.filter(item => item !== nome);
     }
 
     function check_post(){//effettua ultimi controlli prima di inviare il post
