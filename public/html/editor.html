@@ -255,7 +255,7 @@
           post_body["contenuto"] = $("Textarea").val()
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           post_body["tipo"] = "img";
-          post_body["immagine"] = $("#img").files[0];
+          post_body["immagine"] = $("#img").prop("files")[0];
         }
 
         /*lista_dest = []
