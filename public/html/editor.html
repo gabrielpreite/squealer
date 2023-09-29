@@ -116,9 +116,9 @@
                     </ul>
                 </div>
 
-                <div id="destinatari-selezionati-container">
-                  <div id="destinatari-selezionati">
-                    <!-- Qui verranno visualizzati i destinatari selezionati -->
+                <div id="destinatari-inseriti-container">
+                  <div id="destinatari-inseriti">
+                    <!-- Qui verranno visualizzati i destinatari inseriti -->
                   </div>
                 </div>
 
@@ -205,11 +205,11 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if (!array_dest.includes(a)) {
-             // Aggiungi il destinatario al riquadro dei destinatari selezionati
-             $("#destinatari-selezionati").append(`
-               <div class="selected-item" id="selected-canale-${a}">
+             // Aggiungi il destinatario al riquadro dei destinatari inseriti
+             $("#destinatari-inseriti").append(`
+               <div class="inserito-item">
                  <p>${a}</p>
-                 <p onclick="rimuovi_destinatario('${a}')">X</p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}')">X</p>
                </div>
              `);
              array_dest.push(a); // Aggiungi all'array
@@ -234,11 +234,11 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if (!array_dest.includes(a)) {
-            // Aggiungi il destinatario al riquadro dei destinatari selezionati
-            $("#destinatari-selezionati").append(`
-              <div class="selected-item" id="selected-utente-${a}">
+            // Aggiungi il destinatario al riquadro dei destinatari inseriti
+            $("#destinatari-inseriti").append(`
+              <div class="inserito-item">
                 <p>${a}</p>
-                <p onclick="rimuovi_destinatario('${a}')">X</p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}')">X</p>
               </div>
             `);
             array_dest.push(a); // Aggiungi all'array
