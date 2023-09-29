@@ -116,8 +116,10 @@
                     </ul>
                 </div>
 
-                <div id="destinatari-selezionati">
-                  <!-- Qui verranno visualizzati i destinatari selezionati -->
+                <div id="destinatari-selezionati-container">
+                  <div id="destinatari-selezionati">
+                    <!-- Qui verranno visualizzati i destinatari selezionati -->
+                  </div>
                 </div>
 
             </div>
@@ -203,16 +205,16 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if (!array_dest.includes(a)) {
-              // Aggiungi il destinatario alla lista dei selezionati
-              $("#destinatari-selezionati").append(`
-                <div class="selected-item" id="selected-canale-${a}">
-                  <p onclick="rimuovi_destinatario('${a}')"> X </p>
-                  <p>${a}</p>
-                </div>
-              `);
-              array_dest.push(a); // Aggiungi all'array
-              $("#cerca_destinatari_canali").val(""); // Resetta il campo
-            }
+             // Aggiungi il destinatario al riquadro dei destinatari selezionati
+             $("#destinatari-selezionati").append(`
+               <div class="selected-item" id="selected-canale-${a}">
+                 <p>${a}</p>
+                 <p onclick="rimuovi_destinatario('${a}')">X</p>
+               </div>
+             `);
+             array_dest.push(a); // Aggiungi all'array
+             $("#cerca_destinatari_canali").val(""); // Resetta il campo
+           }
         },
         error: function (xhr, status, e){
           alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
@@ -232,16 +234,16 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if (!array_dest.includes(a)) {
-             // Aggiungi il destinatario alla lista dei selezionati
-             $("#destinatari-selezionati").append(`
-               <div class="selected-item" id="selected-utente-${a}">
-                 <p onclick="rimuovi_destinatario('${a}')"> X </p>
-                 <p>${a}</p>
-               </div>
-             `);
-             array_dest.push(a); // Aggiungi all'array
-             $("#cerca_destinatari_utenti").val(""); // Resetta il campo
-           }
+            // Aggiungi il destinatario al riquadro dei destinatari selezionati
+            $("#destinatari-selezionati").append(`
+              <div class="selected-item" id="selected-utente-${a}">
+                <p>${a}</p>
+                <p onclick="rimuovi_destinatario('${a}')">X</p>
+              </div>
+            `);
+            array_dest.push(a); // Aggiungi all'array
+            $("#cerca_destinatari_utenti").val(""); // Resetta il campo
+          }
         },
         error: function (xhr, status, e){
           alert("L'utente selezionato non esiste")
