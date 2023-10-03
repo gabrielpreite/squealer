@@ -308,6 +308,37 @@
           }
           //FINE SQUEAL
 
+          //bottoni
+          document.addEventListener("DOMContentLoaded", function() {
+            const buttons = document.querySelectorAll(".btn-reazioni");
+
+            buttons.forEach((button) => {
+              button.addEventListener("click", function() {
+                console.log(button);
+                const radioGroup = document.querySelectorAll($(this).attr("name"));
+                console.log(radioGroup);
+                
+                if (button.checked) {
+                  button.checked = false;
+                } else {
+                  button.checked = true;
+                }
+                console.log(this.checked);
+                
+                /*if (!radioInput.checked) {
+                    radioInput.checked = false;
+                    console.log( event.target.id + "false" );
+                } else {
+                    radioGroup.forEach((radio) => {
+                        radio.checked = false;
+                    });
+                    radioInput.checked = true;
+                    console.log( event.target.id + "true" );
+                }*/
+              });
+            });
+          });
+
           function riempiFeed(){
 
           }
