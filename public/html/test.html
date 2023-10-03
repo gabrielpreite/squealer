@@ -91,36 +91,36 @@
                           <div class="row reazioni btn-group"> 
                               <div class="col reazioni-left"> 
                                 <input type="radio" class="btn-check" name="options' + i + '" id="option1' + i + '"/>
-                                  <label class="btn btn-primary btn-reazioni" for="option1' + i + '"> 
+                                  <label class="btn btn-primary btn-reazioni" for="option1' + i + '" name="options' + i + '"> 
                                     <i class="fab fa-sketch reazioni-icone"> </i>
                                     <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span> 
                                   </label>
                                 <input type="radio" class="btn-check" name="options' + i + '" id="option2' + i + '"/>
-                                  <label class="btn btn-primary btn-reazioni" for="option2' + i + '">
+                                  <label class="btn btn-primary btn-reazioni" for="option2' + i + '" name="options' + i + '">
                                     <i class="fas fa-poo reazioni-icone"> </i>
                                     <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span> 
                                   </label> 
                               </div> 
                               <div class="col reazioni-mid"> 
                                 <input type="radio" class="btn-check" name="options' + i + '" id="option3' + i + '"/>
-                                  <label class="btn btn-primary btn-reazioni" for="option3' + i + '"> 
+                                  <label class="btn btn-primary btn-reazioni" for="option3' + i + '" name="options' + i + '"> 
                                       <i class="fas fa-heart reazioni-icone">  </i>
                                       <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>
                                   </label> 
                                 <input type="radio" class="btn-check" name="options' + i + '" id="option4' + i + '"/>
-                                  <label class="btn btn-primary btn-reazioni" for="option4' + i + '"> 
+                                  <label class="btn btn-primary btn-reazioni" for="option4' + i + '" name="options' + i + '"> 
                                       <i class="fas fa-heart-crack reazioni-icone"> </i>
                                       <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>
                                   </label> 
                               </div> 
                               <div class="col reazioni-right"> 
                                 <input type="radio" class="btn-check" name="options' + i + '" id="option5' + i + '"/>
-                                  <label class="btn btn-primary btn-reazioni" for="option5' + i + '"> 
+                                  <label class="btn btn-primary btn-reazioni" for="option5' + i + '" name="options' + i + '"> 
                                       <i class="fas fa-thumbs-up reazioni-icone"> </i> 
                                       <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>
                                   </label> 
                                 <input type="radio" class="btn-check" name="options' + i + '" id="option6' + i + '"/>
-                                  <label class="btn btn-primary btn-reazioni" for="option6' + i + '"> 
+                                  <label class="btn btn-primary btn-reazioni" for="option6' + i + '" name="options' + i + '"> 
                                       <i class="fas fa-thumbs-down reazioni-icone"> </i> 
                                       <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span> 
                                   </label> 
@@ -235,9 +235,34 @@
       }
 
       //bottoni
-      $('btn-reazioni').on('click', function(){
-        $('btn-reazioni').removeClass('selected');
-        $(this).addClass('selected');
+      document.addEventListener("DOMContentLoaded", function() {
+        const buttons = document.querySelectorAll(".btn-reazioni");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", function() {
+            console.log(button);
+            const radioGroup = document.querySelectorAll($(this).attr("name"));
+            console.log(radioGroup);
+            
+            if (button.checked) {
+              button.checked = false;
+            } else {
+              button.checked = true;
+            }
+            console.log(this.checked);
+            
+            /*if (!radioInput.checked) {
+                radioInput.checked = false;
+                console.log( event.target.id + "false" );
+            } else {
+                radioGroup.forEach((radio) => {
+                    radio.checked = false;
+                });
+                radioInput.checked = true;
+                console.log( event.target.id + "true" );
+            }*/
+          });
+        });
       });
 
     </script>
