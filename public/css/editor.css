@@ -12,10 +12,86 @@
   overflow: auto;
 }
 
+/* Stile generale del campo di ricerca */
+.search-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 30vh;
+}
+
+/* Stile del campo di ricerca */
+.search-container input[type="text"] {
+    padding: 10px;
+    border-radius: 20px 0 0 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+
+}
+
+/* Stile del pulsante di ricerca */
+.search-button {
+    background-color: #1da1f2;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0c87c1;
+    color: white;
+}
+
+/* Stile dell'icona di ricerca */
+.search-button i {
+    font-size: 18px;
+}
+
+/* Ridimensionamento del pulsante per adattarsi all'altezza del campo di ricerca */
+.search-button {
+    height: 100%;
+}
+
+#destinatari-inseriti-container {
+  min-height: 40px; /* Altezza minima di una riga */
+  border: 1px solid #ddd; /* Linea di separazione grigia */
+  border-radius: 5px;
+  background-color: #fff; /* Sfondo bianco */
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow-y: auto; /* Barra di scorrimento verticale se necessario */
+}
+
+#destinatari-inseriti {
+  /* Questo elemento conterrà i destinatari inseriti */
+}
+
+.inserito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee; /* Linea di separazione grigia molto chiara tra i destinatari */
+}
+
+.inserito-item p {
+  margin: 0;
+}
+
+.inserito-item .rimuovi {
+  cursor: pointer;
+  color: red;
+}
+
+
 #col-cx {
-  margin-top: 60px;
-  width: 50%;
-  margin-left: 25%;
+  margin:85px 372px 0 372px;
 }
 
     #campo_scelta {

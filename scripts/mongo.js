@@ -319,6 +319,37 @@ exports.add_post = async function(q, campi, credentials) {
 							{
 								risponde_a: null,//todo
 								corpo: q.contenuto,
+								tipo: "testo",
+								destinatari: q.destinatari,
+								utente: campi.username,
+								timestamp: campi.timestamp,
+								visualizzazioni: 0,
+								reazioni: {
+									positive: {
+										concordo: [],
+										mi_piace: [],
+										adoro: []
+									},
+									negative: {
+										sono_contrario: [],
+										mi_disgusta: [],
+										odio: []
+									}
+								},
+								pubblico: campi.pubblico,
+								categoria: null,
+								automatico: false
+							}
+						)
+
+		}else if(q.tipo == "img"){//caso testo
+			await mongo.db(dbname)
+						.collection("messaggio")
+						.insertOne(
+							{
+								risponde_a: null,//todo
+								corpo: campi.path,
+								tipo: "img",
 								destinatari: q.destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,

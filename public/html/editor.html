@@ -93,24 +93,36 @@
   </header>
 
   <!--<form method="POST" action="/crea_post">-->
-    <div class="container-fluid" style="margin-top: 10vh; height: 85vh">
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
-          <div class="row" id="row-destinatari-canali" style="margin-bottom: 30vh">
-            <label for="cerca_destinatari_canali">Cerca destinatari</label>
-            <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali">
-            <input type="button" value="Cerca" onclick="check_destinatari_canali()">
-            <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
-            </ul>
-          </div>
-          <div class="row" id="row-destinatari-utenti" style="margin-bottom: 30vh">
-            <label for="cerca_destinatari_utenti">Cerca destinatari</label>
-            <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti">
-            <input type="button" value="Cerca" onclick="check_destinatari_utenti()">
-            <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti">
-            </ul>
-          </div>
-        </div>
+                <div class="row" id="row-destinatari-canali">
+                    <div class="search-container">
+                        <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca destinatari">
+                        <button class="search-button" onclick="check_destinatari_canali()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
+                    </ul>
+                </div>
+                <div class="row" id="row-destinatari-utenti">
+                    <div class="search-container">
+                        <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca destinatari">
+                        <button class="search-button" onclick="check_destinatari_utenti()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti">
+                    </ul>
+                </div>
+
+                <div id="destinatari-inseriti-container">
+                  <div id="destinatari-inseriti">
+                    <!-- Qui verranno visualizzati i destinatari inseriti -->
+                  </div>
+                </div>
+
+            </div>
 
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
@@ -134,10 +146,10 @@
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
-            <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
+            <!--<form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">-->
               <input type="file" id="img" name="img" accept="image/*">
-              <input type="submit" value="Carica Immagine">
-            </form>
+              <!--<input type="submit" value="Carica Immagine">
+            </form>-->
             <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
@@ -168,7 +180,6 @@
             Stai sforando, sgancia 23,45 euri
           </div>
         </div>
-    </div>
   <!--</form>-->
 
   <!--JQuery-->
@@ -193,12 +204,17 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
-          if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari_canali").append(`<li class="list-group-item" id="dest_canale_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
-                                            //per l'amor d'iddio qualcuno trovi un modo migliore
-            array_dest.push(a)//aggiungo all'array
-            $("#cerca_destinatari_canali").val("")//resetto il campo
-          }
+          if (!array_dest.includes(a)) {
+             // Aggiungi il destinatario al riquadro dei destinatari inseriti
+             $("#destinatari-inseriti").append(`
+               <div class="inserito-item">
+                 <p>${a}</p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}')">X</p>
+               </div>
+             `);
+             array_dest.push(a); // Aggiungi all'array
+             $("#cerca_destinatari_canali").val(""); // Resetta il campo
+           }
         },
         error: function (xhr, status, e){
           alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
@@ -217,11 +233,16 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
-          if(!array_dest.includes(a)){//canale non e' gia' nella lista
-            $("#lista_destinatari_utenti").append(`<li class="list-group-item" id="dest_utente_${a}"><p onclick="rimuovi_destinatario('${a}')"> X </p><p id="${a}">${a}</p></li>`)
-                                            //per l'amor d'iddio qualcuno trovi un modo migliore
-            array_dest.push(a)//aggiungo all'array
-            $("#cerca_destinatari_utenti").val("")//resetto il campo
+          if (!array_dest.includes(a)) {
+            // Aggiungi il destinatario al riquadro dei destinatari inseriti
+            $("#destinatari-inseriti").append(`
+              <div class="inserito-item">
+                <p>${a}</p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}')">X</p>
+              </div>
+            `);
+            array_dest.push(a); // Aggiungi all'array
+            $("#cerca_destinatari_utenti").val(""); // Resetta il campo
           }
         },
         error: function (xhr, status, e){
@@ -230,32 +251,35 @@
       });
     }
 
-    function rimuovi_destinatario(nome){
-      if(nome.charAt(0) == "$")
-        $("#dest_canale_\\"+nome).remove()
-      else if(nome.charAt(0) == "@")
-        $("#dest_utente_\\"+nome).remove()
-      array_dest = array_dest.filter(item => item !== nome)
+    function rimuovi_destinatario(nome) {
+      if (nome.charAt(0) == "$")
+        $("#selected-canale-" + nome).remove();
+      else if (nome.charAt(0) == "@")
+        $("#selected-utente-" + nome).remove();
+      array_dest = array_dest.filter(item => item !== nome);
     }
 
-    function check_post(){//effettua ultimi controlli prima di inviare il post
-      //controlli se esiste almeno un destinatario, se ho inserito testo/imm/pos
-      if($("[id^=dest_canale_]").length == 0 && $("[id^=dest_utente_]").length == 0)
-        return false
-      return true
+    function check_post() {
+      // Verifica se ci sono destinatari selezionati
+      if ($("#destinatari-selezionati").children().length === 0)
+        return false;
+      // Altri controlli se necessari, come il testo, immagini o posizione
+      return true;
     }
 
     function add_post(){
 
       if(check_post() == true){
-        var post_body = {}
+        const formData = new FormData()
+        let post_body = {}
+        let post_file = {}
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           post_body["tipo"] = "testo";
           post_body["contenuto"] = $("Textarea").val()
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           post_body["tipo"] = "img";
-          post_body["contenuto"] = imageFileURL;
+          post_file["immagine"] = $("#img").prop("files")[0];
         }
 
         /*lista_dest = []
@@ -265,12 +289,16 @@
 
         post_body["destinatari"] = array_dest;
 
+        formData.append("body", JSON.stringify(post_body))
+        formData.append("immagine", post_file)
+
         fetch("/crea_post", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(post_body), // Replace with your POST data
+          body: formData,
+
         })
         .then((response) => {
           if (response.ok) {
