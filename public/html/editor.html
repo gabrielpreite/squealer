@@ -95,7 +95,7 @@
   <!--<form method="POST" action="/crea_post">-->
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
-                <div class="row" id="row-destinatari-canali">
+                <div id="row-destinatari-canali" hidden="true">
                     <div class="search-container">
                         <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca destinatari">
                         <button class="search-button" onclick="check_destinatari_canali()">
@@ -105,7 +105,7 @@
                     <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
                     </ul>
                 </div>
-                <div class="row" id="row-destinatari-utenti">
+                <div id="row-destinatari-utenti">
                     <div class="search-container">
                         <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca destinatari">
                         <button class="search-button" onclick="check_destinatari_utenti()">
@@ -190,12 +190,16 @@
     crossorigin="anonymous"></script>
 
   <script>
-  array_dest=[]//array destinatari per uso interno
+  array_dest_canali=[]//array destinatari per uso interno
+  array_dest_utenti=[]//array destinatari per uso interno
   let imageFileURL = null;
 
 
     function check_destinatari_canali() {
       var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
+      if (!a.startsWith($)) {
+        a = "$".concat(a)
+      }
       $.ajax({
         type: 'GET',
         dataType: "json",
@@ -203,16 +207,18 @@
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          //rimuovo $ iniziale per visualizzazione in lista
+          a = a.substring(1)
           //console.log('data: ', data);
-          if (!array_dest.includes(a)) {
+          if (!array_dest_canali.includes(a)) {
              // Aggiungi il destinatario al riquadro dei destinatari inseriti
              $("#destinatari-inseriti").append(`
                <div class="inserito-item">
                  <p>${a}</p>
-                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}')">X</p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
                </div>
              `);
-             array_dest.push(a); // Aggiungi all'array
+             array_dest_canali.push(a); // Aggiungi all'array
              $("#cerca_destinatari_canali").val(""); // Resetta il campo
            }
         },
@@ -224,7 +230,9 @@
 
     function check_destinatari_utenti() {
       var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
-      var b = a.substring(1)
+      if (a.startsWith(@)) {
+        a = a.substring(1)
+      }
       $.ajax({
         type: 'GET',
         dataType: "json",
@@ -233,15 +241,15 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
-          if (!array_dest.includes(a)) {
+          if (!array_dest_utenti.includes(a)) {
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
               <div class="inserito-item">
                 <p>${a}</p>
-                <p class="rimuovi" onclick="rimuovi_destinatario('${a}')">X</p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
               </div>
             `);
-            array_dest.push(a); // Aggiungi all'array
+            array_dest_utenti.push(a); // Aggiungi all'array
             $("#cerca_destinatari_utenti").val(""); // Resetta il campo
           }
         },
@@ -251,7 +259,7 @@
       });
     }
 
-    function rimuovi_destinatario(nome) {
+    function rimuovi_destinatario(nome, array_dest) {
       if (nome.charAt(0) == "$")
         $("#selected-canale-" + nome).remove();
       else if (nome.charAt(0) == "@")
