@@ -262,9 +262,9 @@
 
     function rimuovi_destinatario(nome, array_dest) {
       if (nome.charAt(0) == "$")
-        $("#selected-canale-" + nome).remove();
+        $(nome).remove();
       else if (nome.charAt(0) == "@")
-        $("#selected-utente-" + nome).remove();
+        $(nome).remove();
       array_dest = array_dest.filter(item => item !== nome);
     }
 
