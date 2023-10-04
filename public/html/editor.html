@@ -91,7 +91,7 @@
     </div>
 
   </header>
-  <form>
+  <!--<form>-->
   <!--<form method="POST" action="/crea_post">-->
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
@@ -181,7 +181,7 @@
           </div>
         </div>
   <!--</form>-->
-  </form>
+  <!--</form>-->
 
   <!--JQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -322,7 +322,7 @@
 
     function add_post2(){
 
-      if(check_post() == true){
+      //if(check_post() == true){
         const formData = new FormData()
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
@@ -350,7 +350,7 @@
             throw new Error("Network response was not ok.");
           }
         })
-      }
+      //}
       }
 
 function cambia_campo(opzione) {
