@@ -132,7 +132,3 @@ body {
     border: 1px solid #ccc;
     color: white;   
 }
-
-.btn-check:checked + .btn-reazioni {
-    color: red;
-}
