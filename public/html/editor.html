@@ -233,6 +233,9 @@
       var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
       if (a.startsWith('@')) {
         a = a.substring(1)
+      } if (a == get_cookie_by_name("username")) {
+        alert("Non è possibile inserire il proprio username tra i destinatari");
+        return;
       }
       $.ajax({
         type: 'GET',
