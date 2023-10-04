@@ -12,6 +12,39 @@
   overflow: auto;
 }
 
+[hidden="true"] {
+  display: none;
+}
+
+#tipo-messaggio {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tipo-icona {
+  display: inline-block;
+  margin: 0 10px; /* Riduci il margine tra i pulsanti */
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease; /* Aggiungi una transizione per effetti hover */
+}
+
+.tipo-icona i {
+  font-size: 36px;
+  color: #007bff; /* Cambia il colore dell'icona a tuo piacimento */
+}
+
+.tipo-icona p {
+  font-size: 16px;
+  margin: 0; /* Rimuovi il margine inferiore */
+}
+
+/* Effetto hover per i pulsanti */
+.tipo-icona:hover {
+  transform: scale(1.1); /* Ingrandisci leggermente il pulsante al passaggio del mouse */
+}
+
+
 /* Stile generale del campo di ricerca */
 .search-container {
     display: flex;
@@ -67,17 +100,6 @@
   padding: 10px;
   margin-bottom: 20px;
   overflow-y: auto; /* Barra di scorrimento verticale se necessario */
-}
-
-#placeholder {
-  display: none; /* Nascondi il placeholder per impostazione predefinita */
-  color: #999; /* Colore grigio per il testo del placeholder */
-  position: absolute; /* Posizione assoluta per sovrapporlo al contenuto */
-  pointer-events: none; /* Evita che il placeholder interagisca con gli eventi del mouse */
-}
-
-#destinatari-inseriti:not(:empty) + #placeholder {
-  display: block; /* Mostra il placeholder se il campo non è vuoto */
 }
 
 .inserito-item {
