@@ -197,7 +197,7 @@
 
     function check_destinatari_canali() {
       var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
-      if (!a.startsWith($)) {
+      if (!a.startsWith('$')) {
         a = "$".concat(a)
       }
       $.ajax({
@@ -230,13 +230,13 @@
 
     function check_destinatari_utenti() {
       var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
-      if (a.startsWith(@)) {
+      if (a.startsWith('@')) {
         a = a.substring(1)
       }
       $.ajax({
         type: 'GET',
         dataType: "json",
-        url: `${window.location.origin}/user_info?username=${b}`,
+        url: `${window.location.origin}/user_info?username=${a}`,
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
