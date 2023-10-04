@@ -123,7 +123,7 @@
                 </div>
 
             </div>
-        
+
         <form>
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
@@ -265,6 +265,14 @@
     }
 
     function rimuovi_destinatario(nome, array_dest) {
+      // Rimuovi il destinatario dalla lista dei destinatari inseriti
+      $(`#destinatari-inseriti .inserito-item:contains(${nome})`).remove();
+
+      // Rimuovi il destinatario dall'array
+      const index = array_dest.indexOf(nome);
+      if (index !== -1) {
+        array_dest.splice(index, 1);
+      }
     }
 
     function check_post() {
