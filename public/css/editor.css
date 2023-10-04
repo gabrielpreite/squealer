@@ -19,29 +19,68 @@
 #tipo-messaggio {
   text-align: center;
   margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #007bff;
+  margin: 0 10px;
+}
+
+.title-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.tipo-icona-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Per andare a capo se lo spazio è insufficiente */
 }
 
 .tipo-icona {
-  display: inline-block;
-  margin: 0 10px; /* Riduci il margine tra i pulsanti */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
-  text-align: center;
-  transition: transform 0.2s ease; /* Aggiungi una transizione per effetti hover */
+  transition: transform 0.2s ease;
+  color: #007bff;
+  font-size: 16px;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
 .tipo-icona i {
   font-size: 36px;
-  color: #007bff; /* Cambia il colore dell'icona a tuo piacimento */
+  margin-bottom: 5px;
+}
+
+.tipo-icona:hover {
+  transform: scale(1.1);
 }
 
 .tipo-icona p {
-  font-size: 16px;
-  margin: 0; /* Rimuovi il margine inferiore */
+  margin: 0;
+  text-transform: uppercase;
 }
 
-/* Effetto hover per i pulsanti */
-.tipo-icona:hover {
-  transform: scale(1.1); /* Ingrandisci leggermente il pulsante al passaggio del mouse */
+.tipo-icona.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
 }
 
 
