@@ -97,7 +97,7 @@
         <div class="col-md-3" id="col-sx">
                 <div id="row-destinatari-canali" hidden="true">
                     <div class="search-container">
-                        <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca destinatari">
+                        <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca canali">
                         <button class="search-button" onclick="check_destinatari_canali()">
                             <i class="fas fa-search"></i>
                         </button>
@@ -107,7 +107,7 @@
                 </div>
                 <div id="row-destinatari-utenti">
                     <div class="search-container">
-                        <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca destinatari">
+                        <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca utenti">
                         <button class="search-button" onclick="check_destinatari_utenti()">
                             <i class="fas fa-search"></i>
                         </button>
@@ -119,6 +119,7 @@
                 <div id="destinatari-inseriti-container">
                   <div id="destinatari-inseriti">
                     <!-- Qui verranno visualizzati i destinatari inseriti -->
+                   <div id="placeholder">Inserisci i destinatari</div>
                   </div>
                 </div>
 
@@ -217,7 +218,7 @@
              $("#destinatari-inseriti").append(`
                <div class="inserito-item">
                  <p>${a}</p>
-                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali, document.getElementById("placeholder"))"><i class="fas fa-times"></i></p>
                </div>
              `);
              array_dest_canali.push(a); // Aggiungi all'array
@@ -251,7 +252,7 @@
             $("#destinatari-inseriti").append(`
               <div class="inserito-item">
                 <p>${a}</p>
-                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti, document.getElementById("placeholder"))"><i class="fas fa-times"></i></p>
               </div>
             `);
             array_dest_utenti.push(a); // Aggiungi all'array
@@ -264,7 +265,7 @@
       });
     }
 
-    function rimuovi_destinatario(nome, array_dest) {
+    function rimuovi_destinatario(nome, array_dest, placeholder) {
       // Rimuovi il destinatario dalla lista dei destinatari inseriti
       $(`#destinatari-inseriti .inserito-item:contains(${nome})`).remove();
 
@@ -273,6 +274,12 @@
       if (index !== -1) {
         array_dest.splice(index, 1);
       }
+      // Verifica se ci sono destinatari rimasti per visualizzare o nascondere il placeholder
+     if ($("#destinatari-inseriti").is(":empty")) {
+       placeholder.style.display = "block";
+     } else {
+       placeholder.style.display = "none";
+     }
     }
 
     function check_post() {

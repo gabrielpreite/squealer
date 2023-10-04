@@ -60,16 +60,24 @@
 
 #destinatari-inseriti-container {
   min-height: 40px; /* Altezza minima di una riga */
+  max-height: 200px;
   border: 1px solid #ddd; /* Linea di separazione grigia */
   border-radius: 5px;
-  background-color: #fff; /* Sfondo bianco */
+  background-color: #fff;
   padding: 10px;
   margin-bottom: 20px;
   overflow-y: auto; /* Barra di scorrimento verticale se necessario */
 }
 
-#destinatari-inseriti {
-  /* Questo elemento conterrà i destinatari inseriti */
+#placeholder {
+  display: none; /* Nascondi il placeholder per impostazione predefinita */
+  color: #999; /* Colore grigio per il testo del placeholder */
+  position: absolute; /* Posizione assoluta per sovrapporlo al contenuto */
+  pointer-events: none; /* Evita che il placeholder interagisca con gli eventi del mouse */
+}
+
+#destinatari-inseriti:not(:empty) + #placeholder {
+  display: block; /* Mostra il placeholder se il campo non è vuoto */
 }
 
 .inserito-item {
@@ -77,7 +85,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 0;
-  border-bottom: 1px solid #eee; /* Linea di separazione grigia molto chiara tra i destinatari */
+  border: 1px solid #eee;
 }
 
 .inserito-item p {
