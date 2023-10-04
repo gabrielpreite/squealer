@@ -261,11 +261,6 @@
     }
 
     function rimuovi_destinatario(nome, array_dest) {
-      if (nome.charAt(0) == "$")
-        $(nome).remove();
-      else if (nome.charAt(0) == "@")
-        $(nome).remove();
-      array_dest = array_dest.filter(item => item !== nome);
     }
 
     function check_post() {
@@ -330,9 +325,9 @@
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           formData.append("immagine", $("#img").prop("files")[0]);
         }
-        
+
         formData.append("str", "asd")
-        
+
 
         fetch("/crea_post", {
           method: "POST",
