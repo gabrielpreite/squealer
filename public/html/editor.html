@@ -187,7 +187,7 @@
               </div>
             </div>
           <div class="text-end">
-          <button onclick="add_post2()" class="btn btn-unstyled btn-confirm" id="btn-conferma"> <!-- ADD POST 2 ------------------------- -->
+          <input type="submit" class="btn btn-unstyled btn-confirm" id="btn-conferma">
             <i class="fas fa-check"></i>
             Conferma
           </button>
@@ -224,6 +224,10 @@
   array_dest_canali=[]//array destinatari per uso interno
   array_dest_utenti=[]//array destinatari per uso interno
   let imageFileURL = null;
+  document.getElementById("crea_post").addEventListener('submit', async event => {
+    event.preventDefault();
+    add_post2();
+  });
 
   function mostraCampo(tipo) {
     var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
