@@ -275,9 +275,13 @@
              // Aggiungi il destinatario al riquadro dei destinatari inseriti
              $("#destinatari-inseriti").append(`
                <div class="inserito-item name-${a}">
-                <i class="fas fa-users"></i>
+               <div class="left-content">
+                 <i class="fas fa-users"></i>
                  <p>${a}</p>
+               </div>
+               <div class="right-content">
                  <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                </div>
                </div>
              `);
              array_dest_canali.push(a); // Aggiungi all'array
@@ -310,9 +314,13 @@
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
               <div class="inserito-item name-${a}">
-                <i class="fas fa-user"></i>
+              <div class="left-content">
+                <i class="fas fa-users"></i>
                 <p>${a}</p>
+              </div>
+              <div class="right-content">
                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
+               </div>
               </div>
             `);
             array_dest_utenti.push(a); // Aggiungi all'array
