@@ -252,7 +252,7 @@ app.get("/user_info", async function(req, res) {
 });
 
 //crea uno squeal
-app.post('/crea_post', upload.single("immagine"), async function(req, res) {
+app.post('/crea_post', upload.single("img"), async function(req, res) {
 	try{
 		/*//aggiungo i vari campi mancanti
 		var campi = {}

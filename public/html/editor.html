@@ -381,11 +381,11 @@
       //if(check_post() == true){
         const formData = new FormData(document.getElementById("crea_post"))
 
-        if(!$("#contenuto_testo").attr("hidden")){//caso testo
+        /*if(!$("#contenuto_testo").attr("hidden")){//caso testo
           formData.append("testo", $("Textarea").val())
         } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           formData.append("immagine", $("#img").prop("files")[0]);
-        }
+        }*/
 
         formData.append("str", "asd")
 
