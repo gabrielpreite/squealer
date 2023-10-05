@@ -254,7 +254,7 @@ app.get("/user_info", async function(req, res) {
 //crea uno squeal
 app.post('/crea_post', upload.single("immagine"), async function(req, res) {
 	try{
-		//aggiungo i vari campi mancanti
+		/*//aggiungo i vari campi mancanti
 		var campi = {}
 
 		if(req.body.tipo == "img"){//caso immagine
@@ -279,13 +279,20 @@ app.post('/crea_post', upload.single("immagine"), async function(req, res) {
 		//username
 		campi["username"] = session.userid;
 
-		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
+		let result = await mymongo.add_post(req.body, campi, mongoCredentials);*/
+
+		if(req.body.tipo == "img"){//caso immagine
+			console.log(req.file.path)
+			campi["path"] = req.file.path
+		}
+
+		res.status(200)
+		//res.send("ok")
+		res.send(req)
 	} catch (e) {
 		res.status(500)
 		res.send("errore nella creazione del post")
 	}
-	res.status(200)
-	res.send("ok")
 });
 
 //user feed
