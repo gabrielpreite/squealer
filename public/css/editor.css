@@ -156,15 +156,12 @@
 }
 
 .inserito-item i {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .inserito-item p {
   margin-left: 10px;
-}
-
-.inserito-item .icona-dest {
-  margin-left: 10px;
+  position: absolute;
 }
 
 .inserito-item .rimuovi {
