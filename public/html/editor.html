@@ -153,7 +153,7 @@
 
             </div>
 
-        <form>
+        <form id="crea_post" enctype="multipart/form-data">
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
           <div id="campo_scelta">
@@ -379,7 +379,7 @@
     function add_post2(){
 
       //if(check_post() == true){
-        const formData = new FormData()
+        const formData = new FormData(document.getElementById("crea_post"))
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           formData.append("testo", $("Textarea").val())
