@@ -281,10 +281,8 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 
 		let result = await mymongo.add_post(req.body, campi, mongoCredentials);*/
 
-		if(req.body.tipo == "img"){//caso immagine
-			console.log(req.file.path)
-			campi["path"] = req.file.path
-		}
+		console.log(req.file.path)
+		campi["path"] = req.file.path
 
 		res.status(200)
 		//res.send("ok")
