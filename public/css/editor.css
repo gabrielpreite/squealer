@@ -176,6 +176,7 @@
 .inserito-item .rimuovi {
   color: red;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .inserito-item .rimuovi:hover {
