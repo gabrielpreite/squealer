@@ -226,6 +226,7 @@
   let imageFileURL = null;
 
   function mostraCampo(tipo) {
+    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
     // Nascondi tutti i campi inizialmente
     document.getElementById("campo-canali").hidden = true;
     document.getElementById("campo-utenti").hidden = true;
@@ -235,11 +236,18 @@
     // Mostra il campo corrispondente al tipo selezionato
     if (tipo === "canali") {
       document.getElementById("campo-canali").hidden = false;
+      destinatariInseritiDiv.innerHTML = "";
+      array_dest_utenti = []
     } else if (tipo === "utenti") {
       document.getElementById("campo-utenti").hidden = false;
+      destinatariInseritiDiv.innerHTML = "";
+      array_dest_canali = []
     } else if (tipo === "bacheca") {
       document.getElementById("lista_destinatari").hidden = true;
       document.getElementById("campo-bacheca").hidden = false;
+      destinatariInseritiDiv.innerHTML = "";
+      array_dest_utenti = []
+      array_dest_canali = []
     }
   }
 
