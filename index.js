@@ -256,7 +256,9 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 	try{
 		//aggiungo i vari campi mancanti
 		var campi = {}
-
+		console.log(req.contenuto)
+		console.log(req.img.name)
+		console.log(req.file.name)
 		if(req.contenuto == "img"){//caso immagine
 			console.log(req.file.path)
 			campi["path"] = req.file.path
@@ -279,7 +281,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		//username
 		campi["username"] = session.userid;
 
-		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
+		let result = await mymongo.add_post(req, campi, mongoCredentials);
 
 		res.status(200)
 		res.send("ok")
