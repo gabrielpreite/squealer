@@ -254,15 +254,15 @@ app.get("/user_info", async function(req, res) {
 //crea uno squeal
 app.post('/crea_post', upload.single("img"), async function(req, res) {
 	try{
-		/*//aggiungo i vari campi mancanti
+		//aggiungo i vari campi mancanti
 		var campi = {}
 
-		if(req.body.tipo == "img"){//caso immagine
+		if(req.contenuto == "img"){//caso immagine
 			console.log(req.file.path)
 			campi["path"] = req.file.path
 		}
 		
-		//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
+		/*//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
 		let tmp = false;
 		let lista = req.body.destinatari
 		lista.forEach(element => {
@@ -270,7 +270,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 				tmp = true
 			}
 		});
-		campi["pubblico"] = tmp;
+		campi["pubblico"] = tmp;*/
 
 		//timestamp
 		let date = new Date()
@@ -279,14 +279,10 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		//username
 		campi["username"] = session.userid;
 
-		let result = await mymongo.add_post(req.body, campi, mongoCredentials);*/
-
-		console.log(req.file.path)
-		campi["path"] = req.file.path
+		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
 
 		res.status(200)
-		//res.send("ok")
-		res.send(req)
+		res.send("ok")
 	} catch (e) {
 		res.status(500)
 		res.send("errore nella creazione del post")
