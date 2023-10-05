@@ -260,16 +260,6 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			console.log(req.file.path)
 			campi["path"] = req.file.path
 		}
-		
-		/*//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
-		let tmp = false;
-		let lista = req.body.destinatari
-		lista.forEach(element => {
-			if(element.charAt(0) != "@"){
-				tmp = true
-			}
-		});
-		campi["pubblico"] = tmp;*/
 
 		//timestamp
 		let date = new Date()
@@ -308,7 +298,7 @@ app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
 });
 
-app.post('/upload', upload.single('img'), (req, res) => {
+app.post('/upload', upload.single('img'), (req, res) => {  // DEBUG
 	// You can access the uploaded file through req.file
 	if (!req.file) {
 	  return res.status(400).json({ message: 'No file uploaded' });

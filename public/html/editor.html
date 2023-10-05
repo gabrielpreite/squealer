@@ -187,10 +187,7 @@
               </div>
             </div>
           <div class="text-end">
-          <input type="submit" class="btn btn-unstyled btn-confirm" id="btn-conferma">
-            <i class="fas fa-check"></i>
-            Conferma
-          </button>
+          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
           </div>
         </div>
 
@@ -344,7 +341,7 @@
       }
     }
 
-    function check_post() {
+    function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
       if ($("#destinatari-selezionati").children().length === 0)
         return false;
@@ -407,12 +404,17 @@
           formData.append("contenuto", "img")
         }
 
-        formData.append("destinatari", ["$free", "$cosebrutte"])
+        if(!$("#campo-canali").attr("hidden")){//caso canali
+          formData.append("destinatari", array_dest_canali)
+        }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
+          formData.append("destinatari", array_dest_utenti)
+        }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
+          formData.append("destinatari", [])
+        }
 
         fetch("/crea_post", {
           method: "POST",
           body: formData,
-
         })
         .then((response) => {
           if (response.ok) {
