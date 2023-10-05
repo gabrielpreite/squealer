@@ -148,7 +148,11 @@
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 5px 0;
-  margin: 5px 0;
+}
+
+.inserito-item i,
+.inserito-item p {
+  margin: 0;
 }
 
 .inserito-item i {
@@ -156,7 +160,11 @@
 }
 
 .inserito-item p {
-  margin: 0;
+  margin-left: 10px;
+}
+
+.inserito-item .icona-dest {
+  margin-left: 10px;
 }
 
 .inserito-item .rimuovi {
