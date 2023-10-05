@@ -256,10 +256,9 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 	try{
 		//aggiungo i vari campi mancanti
 		var campi = {}
-		console.log(req.contenuto)
-		console.log(req.img.name)
-		console.log(req.file.name)
-		if(req.contenuto == "img"){//caso immagine
+		if(req.body.contenuto == "img"){//caso immagine
+			console.log("dentro if")
+			console.log(req.file.name)
 			console.log(req.file.path)
 			campi["path"] = req.file.path
 		}
