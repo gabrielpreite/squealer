@@ -237,10 +237,12 @@
     // Mostra il campo corrispondente al tipo selezionato
     if (tipo === "canali") {
       document.getElementById("campo-canali").hidden = false;
+      document.getElementById("lista_destinatari").hidden = true;
       destinatariInseritiDiv.innerHTML = "";
       array_dest_utenti = []
     } else if (tipo === "utenti") {
       document.getElementById("campo-utenti").hidden = false;
+      document.getElementById("lista_destinatari").hidden = true;
       destinatariInseritiDiv.innerHTML = "";
       array_dest_canali = []
     } else if (tipo === "bacheca") {
@@ -277,10 +279,12 @@
                  <p>${a}</p>
                </div>
                <div class="right-content">
-                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('$${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
                 </div>
                </div>
              `);
+             document.getElementById("lista_destinatari").hidden = false;
+             a = "$".concat(a);
              array_dest_canali.push(a); // Aggiungi all'array
              $("#cerca_destinatari_canali").val(""); // Resetta il campo
            }
@@ -316,10 +320,12 @@
                 <p>${a}</p>
               </div>
               <div class="right-content">
-                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('@${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
                </div>
               </div>
             `);
+            document.getElementById("lista_destinatari").hidden = false;
+            a = "@".concat(a);
             array_dest_utenti.push(a); // Aggiungi all'array
             $("#cerca_destinatari_utenti").val(""); // Resetta il campo
           }
@@ -338,6 +344,17 @@
       const index = array_dest.indexOf(nome);
       if (index !== -1) {
         array_dest.splice(index, 1);
+      }
+      var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
+      var listaDestinatariDiv = document.getElementById("lista_destinatari");
+
+      // Verifica se il div "destinatari-inseriti" è vuoto
+      if (destinatariInseritiDiv.innerHTML.trim() == "") {
+        // Imposta "hidden" su true per "lista_destinatari"
+        listaDestinatariDiv.hidden = true;
+      } else {
+        // Altrimenti, imposta "hidden" su false per "lista_destinatari"
+        listaDestinatariDiv.hidden = false;
       }
     }
 
