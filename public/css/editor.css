@@ -143,11 +143,21 @@
 
 .inserito-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 5px 0;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
 }
 
 .inserito-item i,
@@ -161,7 +171,6 @@
 
 .inserito-item p {
   margin-left: 10px;
-  position: absolute;
 }
 
 .inserito-item .rimuovi {
