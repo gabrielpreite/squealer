@@ -143,9 +143,16 @@
 
 .inserito-item {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   padding: 5px 0;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #eee;
+  margin: 5px 0;
+}
+
+.inserito-item i {
+  margin-right: 10px;
 }
 
 .inserito-item p {
@@ -153,10 +160,13 @@
 }
 
 .inserito-item .rimuovi {
-  cursor: pointer;
   color: red;
+  cursor: pointer;
 }
 
+.inserito-item .rimuovi:hover {
+  transform: scale(1.1);
+}
 
 #col-cx {
   margin:85px 25% 0 25%;

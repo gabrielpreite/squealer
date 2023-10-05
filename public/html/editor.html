@@ -270,7 +270,7 @@
           if (!array_dest_canali.includes(a)) {
              // Aggiungi il destinatario al riquadro dei destinatari inseriti
              $("#destinatari-inseriti").append(`
-               <div class="inserito-item">
+               <div class="inserito-item name-${a}">
                 <i class="fas fa-users"></i>
                  <p>${a}</p>
                  <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
@@ -305,7 +305,7 @@
           if (!array_dest_utenti.includes(a)) {
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
-              <div class="inserito-item">
+              <div class="inserito-item name-${a}">
                 <i class="fas fa-user"></i>
                 <p>${a}</p>
                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
@@ -323,7 +323,7 @@
 
     function rimuovi_destinatario(nome, array_dest) {
       // Rimuovi il destinatario dalla lista dei destinatari inseriti
-      $(`#destinatari-inseriti .inserito-item:contains(${nome})`).remove();
+      $(`#destinatari-inseriti .name-${nome}`).remove();
 
       // Rimuovi il destinatario dall'array
       const index = array_dest.indexOf(nome);
