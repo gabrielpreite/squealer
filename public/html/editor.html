@@ -260,10 +260,10 @@
           a = a.substring(1)
           //console.log('data: ', data);
           if (!array_dest_canali.includes(a)) {
-            placeholder.style.display = "none";
              // Aggiungi il destinatario al riquadro dei destinatari inseriti
              $("#destinatari-inseriti").append(`
                <div class="inserito-item">
+                <i class="fas fa-users"></i>
                  <p>${a}</p>
                  <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
                </div>
@@ -295,10 +295,10 @@
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //console.log('data: ', data);
           if (!array_dest_utenti.includes(a)) {
-            placeholder.style.display = "none";
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
               <div class="inserito-item">
+                <i class="fas fa-user"></i>
                 <p>${a}</p>
                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
               </div>
