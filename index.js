@@ -98,7 +98,7 @@ app.get('/settings', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/settings.html")
 })
 
-app.get('/testdb', function (req, res) { 
+app.get('/testdb', function (req, res) { // ---- DEBUG USE
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/testdb.html")
 })
@@ -260,7 +260,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			console.log(req.file.path)
 			campi["path"] = req.file.path
 		}
-
+		console.log(req)
 		//timestamp
 		let date = new Date()
 		campi["timestamp"] = date.getTime();
@@ -268,7 +268,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		//username
 		campi["username"] = session.userid;
 
-		//let result = await mymongo.add_post(req, campi, mongoCredentials);
+		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
 
 		res.status(200)
 		res.send("ok")
@@ -298,7 +298,7 @@ app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
 });
 
-app.post('/upload', upload.single('img'), (req, res) => {  // DEBUG
+app.post('/upload', upload.single('img'), (req, res) => {  // ---- DEBUG USE
 	// You can access the uploaded file through req.file
 	if (!req.file) {
 	  return res.status(400).json({ message: 'No file uploaded' });

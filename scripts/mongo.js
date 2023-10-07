@@ -311,15 +311,15 @@ exports.add_post = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		console.log(q.tipo)
-		if(q.tipo == "testo"){//caso testo
+		//console.log(q.tipo)
+		if(q.contenuto == "testo"){//caso testo
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
 							{
 								risponde_a: null,//todo
-								corpo: q.contenuto,
-								tipo: "testo",
+								corpo: q.Textarea,
+								contenuto: "testo",
 								destinatari: q.destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,
@@ -336,20 +336,19 @@ exports.add_post = async function(q, campi, credentials) {
 										odio: []
 									}
 								},
-								pubblico: campi.pubblico,
 								categoria: null,
 								automatico: false
 							}
 						)
 
-		}else if(q.tipo == "img"){//caso testo
+		}else if(q.contenuto == "img"){//caso testo
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
 							{
 								risponde_a: null,//todo
 								corpo: campi.path,
-								tipo: "img",
+								contenuto: "img",
 								destinatari: q.destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,
@@ -366,7 +365,6 @@ exports.add_post = async function(q, campi, credentials) {
 										odio: []
 									}
 								},
-								pubblico: campi.pubblico,
 								categoria: null,
 								automatico: false
 							}
