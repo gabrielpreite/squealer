@@ -260,7 +260,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			console.log(req.file.path)
 			campi["path"] = req.file.path
 		}
-		console.log(req)
+		console.log(req.body)
 		//timestamp
 		let date = new Date()
 		campi["timestamp"] = date.getTime();

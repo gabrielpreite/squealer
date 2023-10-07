@@ -318,7 +318,7 @@ exports.add_post = async function(q, campi, credentials) {
 						.insertOne(
 							{
 								risponde_a: null,//todo
-								corpo: q.Textarea,
+								corpo: q.textarea,
 								contenuto: "testo",
 								destinatari: q.destinatari,
 								utente: campi.username,
