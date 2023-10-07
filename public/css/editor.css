@@ -12,6 +12,78 @@
   overflow: auto;
 }
 
+[hidden="true"] {
+  display: none;
+}
+
+#tipo-messaggio {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #444;
+  margin: 0 10px;
+}
+
+.title-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.tipo-icona-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Per andare a capo se lo spazio è insufficiente */
+}
+
+.tipo-icona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: #1da1f2;
+  font-size: 16px;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.tipo-icona i {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.tipo-icona:hover {
+  transform: scale(1.2);
+}
+
+.tipo-icona p {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.tipo-icona.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+}
+
+
 /* Stile generale del campo di ricerca */
 .search-container {
     display: flex;
@@ -60,38 +132,58 @@
 
 #destinatari-inseriti-container {
   min-height: 40px; /* Altezza minima di una riga */
+  max-height: 280px;
   border: 1px solid #ddd; /* Linea di separazione grigia */
   border-radius: 5px;
-  background-color: #fff; /* Sfondo bianco */
+  background-color: #fff;
   padding: 10px;
   margin-bottom: 20px;
   overflow-y: auto; /* Barra di scorrimento verticale se necessario */
 }
 
-#destinatari-inseriti {
-  /* Questo elemento conterrà i destinatari inseriti */
-}
-
 .inserito-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
   padding: 5px 0;
-  border-bottom: 1px solid #eee; /* Linea di separazione grigia molto chiara tra i destinatari */
 }
 
+.left-content {
+  display: flex;
+  align-items: center;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+}
+
+.inserito-item i,
 .inserito-item p {
   margin: 0;
 }
 
-.inserito-item .rimuovi {
-  cursor: pointer;
-  color: red;
+.inserito-item i {
+  margin-left: 10px;
 }
 
+.inserito-item p {
+  margin-left: 10px;
+}
+
+.inserito-item .rimuovi {
+  color: red;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.inserito-item .rimuovi:hover {
+  transform: scale(1.1);
+}
 
 #col-cx {
-  margin:85px 372px 0 372px;
+  margin:85px 25% 0 25%;
 }
 
     #campo_scelta {

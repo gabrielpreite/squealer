@@ -98,7 +98,7 @@ app.get('/settings', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/settings.html")
 })
 
-app.get('/testdb', function (req, res) { 
+app.get('/testdb', function (req, res) { // ---- DEBUG USE
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/testdb.html")
 })
@@ -188,7 +188,7 @@ app.get('/db/search', async function(req, res) {
 //login
 app.post('/api_login', async function(req, res) {
 	var db_res = await mymongo.user_login(req.body, mongoCredentials);
-	console.log(db_res);
+	//console.log(db_res);
 	if(db_res === null){ //login fallito
 		res.cookie('username', "null")
 		res.cookie('login_result', "failed")
@@ -252,26 +252,15 @@ app.get("/user_info", async function(req, res) {
 });
 
 //crea uno squeal
-app.post('/crea_post', upload.single("immagine"), async function(req, res) {
+app.post('/crea_post', upload.single("img"), async function(req, res) {
 	try{
 		//aggiungo i vari campi mancanti
 		var campi = {}
-
-		if(req.body.tipo == "img"){//caso immagine
+		if(req.body.contenuto == "img"){//caso immagine
 			console.log(req.file.path)
 			campi["path"] = req.file.path
 		}
-		
-		//controlla se tutti i destinatari sono utenti (quindi messaggio privato)
-		let tmp = false;
-		let lista = req.body.destinatari
-		lista.forEach(element => {
-			if(element.charAt(0) != "@"){
-				tmp = true
-			}
-		});
-		campi["pubblico"] = tmp;
-
+		console.log(req.body)
 		//timestamp
 		let date = new Date()
 		campi["timestamp"] = date.getTime();
@@ -280,12 +269,13 @@ app.post('/crea_post', upload.single("immagine"), async function(req, res) {
 		campi["username"] = session.userid;
 
 		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
+
+		res.status(200)
+		res.send("ok")
 	} catch (e) {
 		res.status(500)
 		res.send("errore nella creazione del post")
 	}
-	res.status(200)
-	res.send("ok")
 });
 
 //user feed
@@ -319,7 +309,7 @@ app.get('/update_reaction', async function(req, res) {
 	res.send(JSON.stringify(r))
 });
 
-app.post('/upload', upload.single('img'), (req, res) => {
+app.post('/upload', upload.single('img'), (req, res) => {  // ---- DEBUG USE
 	// You can access the uploaded file through req.file
 	if (!req.file) {
 	  return res.status(400).json({ message: 'No file uploaded' });
