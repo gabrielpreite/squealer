@@ -308,6 +308,17 @@ app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
 });
 
+app.get('/update_reaction', async function(req, res) {
+	console.log(req);
+	console.log(res);
+	let campi = {}
+	campi["username"] = session.userid;
+	campi["reazione"] = req;
+	
+	r = await mymongo.update_reaction(req.query, mongoCredentials)
+	res.send(JSON.stringify(r))
+});
+
 app.post('/upload', upload.single('img'), (req, res) => {
 	// You can access the uploaded file through req.file
 	if (!req.file) {
