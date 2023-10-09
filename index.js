@@ -259,7 +259,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		var campi = {}
 		if(req.body.contenuto == "img"){//caso immagine
 			let path = req.file.path
-			campi["path"] = path.split("/").slice(-1)
+			campi["path"] = path.split("/").slice(-1)[0]
 		}
 		//console.log(req.body)
 		//timestamp
