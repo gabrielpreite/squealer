@@ -375,6 +375,10 @@
         }
 
         if(!$("#campo-canali").attr("hidden")){//caso canali
+          //aggiungo $ prima di ogni canale
+          array_dest_canali.forEach(function(nome, index, array) {
+            array[index] = "$" + nome;
+          });
           formData.append("destinatari", array_dest_canali)
         }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
           formData.append("destinatari", array_dest_utenti)
