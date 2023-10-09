@@ -279,12 +279,11 @@
                  <p>${a}</p>
                </div>
                <div class="right-content">
-                 <p class="rimuovi" onclick="rimuovi_destinatario('$${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
                 </div>
                </div>
              `);
              document.getElementById("lista_destinatari").hidden = false;
-             a = "$".concat(a);
              array_dest_canali.push(a); // Aggiungi all'array
              $("#cerca_destinatari_canali").val(""); // Resetta il campo
            }
@@ -320,12 +319,11 @@
                 <p>${a}</p>
               </div>
               <div class="right-content">
-                <p class="rimuovi" onclick="rimuovi_destinatario('@${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
                </div>
               </div>
             `);
             document.getElementById("lista_destinatari").hidden = false;
-            a = "@".concat(a);
             array_dest_utenti.push(a); // Aggiungi all'array
             $("#cerca_destinatari_utenti").val(""); // Resetta il campo
           }
@@ -337,7 +335,6 @@
     }
 
     function rimuovi_destinatario(nome, array_dest) {
-      // Rimuovi il destinatario dalla lista dei destinatari inseriti
       $(`#destinatari-inseriti .name-${nome}`).remove();
 
       // Rimuovi il destinatario dall'array
@@ -368,7 +365,7 @@
 
     function add_post(){
 
-      //if(check_post() == true){ //check post da rivedere in base ai 3 tipi di messaggio
+      //if(check_post() == true){ //  check post da rivedere in base ai 3 tipi di messaggio
         const formData = new FormData(document.getElementById("crea_post"))
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
@@ -378,6 +375,10 @@
         }
 
         if(!$("#campo-canali").attr("hidden")){//caso canali
+          //aggiungo $ prima di ogni canale
+          array_dest_canali.forEach(function(nome, index, array) {
+            array[index] = "$" + nome;
+          });
           formData.append("destinatari", array_dest_canali)
         }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
           formData.append("destinatari", array_dest_utenti)

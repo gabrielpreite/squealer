@@ -58,6 +58,7 @@ app.use('/css' , express.static(global.rootDir +'/public/css'));
 app.use('/data', express.static(global.rootDir +'/public/data'));
 app.use('/docs', express.static(global.rootDir +'/public/html'));
 app.use('/img' , express.static(global.rootDir +'/public/media'));
+app.use('/uploads', express.static(global.rootDir +'/public/media/uploads'));
 app.use(express.json()); //?
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })) 
@@ -257,10 +258,10 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		//aggiungo i vari campi mancanti
 		var campi = {}
 		if(req.body.contenuto == "img"){//caso immagine
-			console.log(req.file.path)
-			campi["path"] = req.file.path
+			let path = req.file.path
+			campi["path"] = path.split("/").slice(-1)
 		}
-		console.log(req.body)
+		//console.log(req.body)
 		//timestamp
 		let date = new Date()
 		campi["timestamp"] = date.getTime();

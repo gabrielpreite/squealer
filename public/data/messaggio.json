@@ -61,7 +61,7 @@
     "contenuto": "testo",
     "corpo": "wela",
     "destinatari": [
-      "@fvPro"
+      "fvPro"
     ],
     "utente": "fv",
     "timestamp": 1695045479723,
@@ -170,7 +170,7 @@
     "contenuto": "testo",
     "corpo": "PER FAVORE",
     "destinatari": [
-      "@fv"
+      "fv"
     ],
     "utente": "fvPro",
     "timestamp": 1695048833329,
@@ -252,7 +252,7 @@
     "contenuto": "testo",
     "corpo": "ciao nomebuffo1",
     "destinatari": [
-      "@NomeBuffo1"
+      "NomeBuffo1"
     ],
     "utente": "fv",
     "timestamp": 1695648282666,
