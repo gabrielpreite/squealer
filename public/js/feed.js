@@ -1,4 +1,4 @@
-<script>
+
   function riempiFeed(){
 
   }
@@ -108,4 +108,3 @@
     }
   }
   createMosaicTiles();
-</script>
