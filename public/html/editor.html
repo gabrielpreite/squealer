@@ -172,7 +172,7 @@
             </div>
 
           <div id="contenuto_testo">
-            <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
+            <textarea class="form-input" id="Textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
@@ -187,7 +187,10 @@
               </div>
             </div>
           <div class="text-end">
-          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+          <input type="submit" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+            <i class="fas fa-check"></i>
+            Conferma
+          </button>
           </div>
         </div>
 
@@ -223,7 +226,7 @@
   let imageFileURL = null;
   document.getElementById("crea_post").addEventListener('submit', async event => {
     event.preventDefault();
-    add_post();
+    add_post2();
   });
 
   function mostraCampo(tipo) {
@@ -268,7 +271,7 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //rimuovo $ iniziale per visualizzazione in lista
-          a_name = a.substring(1)
+          a = a.substring(1)
           //console.log('data: ', data);
           if (!array_dest_canali.includes(a)) {
              // Aggiungi il destinatario al riquadro dei destinatari inseriti
@@ -276,10 +279,10 @@
                <div class="inserito-item name-${a}">
                <div class="left-content">
                  <i class="fas fa-users"></i>
-                 <p>${a_name}</p>
+                 <p>${a}</p>
                </div>
                <div class="right-content">
-                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali, 1)"><i class="fas fa-times"></i></p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
                 </div>
                </div>
              `);
@@ -309,19 +312,17 @@
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-          a_name = a
-          a = "@".concat(a)
           //console.log('data: ', data);
           if (!array_dest_utenti.includes(a)) {
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
               <div class="inserito-item name-${a}">
               <div class="left-content">
-                <i class="fas fa-users"></i>
-                <p>${a_name}</p>
+                <i class="fas fa-user"></i>
+                <p>${a}</p>
               </div>
               <div class="right-content">
-                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti, 0)"><i class="fas fa-times"></i></p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
                </div>
               </div>
             `);
@@ -336,14 +337,9 @@
       });
     }
 
-    function rimuovi_destinatario(nome, array_dest, caso) {
-      // caso = 0 per utenti, 1 per canali
-      a = nome
-      if (caso = 0) {
-        $(`#destinatari-inseriti .name-${a.replace(/\@/g, '\\@')}`).remove();
-      } else if (caso = 1) {
-        $(`#destinatari-inseriti .name-${a.replace(/\$/g, '\\$')}`).remove();
-      }
+    function rimuovi_destinatario(nome, array_dest) {
+      // Rimuovi il destinatario dalla lista dei destinatari inseriti
+      $(`#destinatari-inseriti .name-${nome}`).remove();
 
       // Rimuovi il destinatario dall'array
       const index = array_dest.indexOf(nome);
@@ -363,7 +359,7 @@
       }
     }
 
-    function check_post() { //DA RIVEDERE
+    function check_post() {
       // Verifica se ci sono destinatari selezionati
       if ($("#destinatari-selezionati").children().length === 0)
         return false;
@@ -373,7 +369,51 @@
 
     function add_post(){
 
-      //if(check_post() == true){ //check post da rivedere in base ai 3 tipi di messaggio
+      if(check_post() == true){
+        const formData = new FormData()
+        let post_body = {}
+        let post_file = {}
+
+        if(!$("#contenuto_testo").attr("hidden")){//caso testo
+          post_body["tipo"] = "testo";
+          post_body["contenuto"] = $("Textarea").val()
+        } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
+          post_body["tipo"] = "img";
+          post_file["immagine"] = $("#img").prop("files")[0];
+        }
+
+        /*lista_dest = []
+        $("[id^=destinatario_]").each(function(){
+          lista_dest.push($(this).text())
+        });*/
+
+        post_body["destinatari"] = array_dest;
+
+        formData.append("body", JSON.stringify(post_body))
+        formData.append("immagine", post_file)
+
+        fetch("/crea_post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: formData,
+
+        })
+        .then((response) => {
+          if (response.ok) {
+            // The initial request was successful
+            window.location.replace("http://site212251.tw.cs.unibo.it");
+          } else {
+            throw new Error("Network response was not ok.");
+          }
+        })
+      }
+    }
+
+    function add_post2(){
+
+      //if(check_post() == true){
         const formData = new FormData(document.getElementById("crea_post"))
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
@@ -382,22 +422,17 @@
           formData.append("contenuto", "img")
         }
 
-        if(!$("#campo-canali").attr("hidden")){//caso canali
-          formData.append("destinatari", array_dest_canali)
-        }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
-          formData.append("destinatari", array_dest_utenti)
-        }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
-          formData.append("destinatari", [])
-        }
+        formData.append("destinatari", ["$free", "$cosebrutte"])
 
         fetch("/crea_post", {
           method: "POST",
           body: formData,
+
         })
         .then((response) => {
           if (response.ok) {
             // The initial request was successful
-            window.location.replace("http://site212251.tw.cs.unibo.it");
+            //window.location.replace("http://site212251.tw.cs.unibo.it");
           } else {
             throw new Error("Network response was not ok.");
           }
