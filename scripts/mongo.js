@@ -428,48 +428,28 @@ exports.user_feed = async function(q, campi, credentials) {
 	}
 }
 
-exports.update_reaction = async function(q,credentials) {
+exports.update_reazioni = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-	let debug = []
-	let data = {query: q.messaggio_id, result: null}
+	//q.reac
 	try {
-		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		debug.push("... managed to connect to MongoDB.")
 
 		let result = []
-		if(q.messaggio_id === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
-			debug.push("no args found")
-			await mongo.db(dbname)
-						.collection("messaggio")
-						.find()
-						.forEach( (r) => { 
-							result.push(r) 
-						} );
-		}
-		else{ //passo userid nel get, ritorno il record corretto
-			debug.push("found args")
-			await mongo.db(dbname)
-						.collection("messaggio")
-						.find({messaggio_id: q.messaggio_id})
-						.forEach( (r) => { 
-							result.push(r) 
-						} );
-		}
-		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
+		await mongo.db(dbname)
+					.collection("messaggio")
+					.find({id: q.id})
+					.forEach( (r) => { 
+						result.push(r) 
+					} );
+		
+		console.log(result);
 
-		data.result = result
-		await mongo.close();
-		debug.push("Managed to close connection to MongoDB.")
-
-		data.debug = debug
-		return data
+		return 
 	} catch (e) {
-		data.debug = debug
-		data.error = e
-		return data
+		
+		return 
 	}
 }
 

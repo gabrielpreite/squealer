@@ -298,15 +298,15 @@ app.get('/search', async function(req, res) {
 	res.send({"msg": "todo - searchbar"})
 });
 
-app.get('/update_reaction', async function(req, res) {
-	console.log(req);
-	console.log(res);
-	let campi = {}
-	campi["username"] = session.userid;
-	campi["reazione"] = req;
-	
-	r = await mymongo.update_reaction(req.query, mongoCredentials)
-	res.send(JSON.stringify(r))
+app.get('/update_reazioni', async function(req, res) {
+	try{
+		let r = await mymongo.update_reazioni(req.query, mongoCredentials)
+		res.status(200)
+		res.send(JSON.stringify(r))
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella modifica del post")
+	}
 });
 
 app.post('/upload', upload.single('img'), (req, res) => {  // ---- DEBUG USE
