@@ -282,12 +282,11 @@
                  <p>${a}</p>
                </div>
                <div class="right-content">
-                 <p class="rimuovi" onclick="rimuovi_destinatario('$${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
                 </div>
                </div>
              `);
              document.getElementById("lista_destinatari").hidden = false;
-             a = "$".concat(a);
              array_dest_canali.push(a); // Aggiungi all'array
              $("#cerca_destinatari_canali").val(""); // Resetta il campo
            }
@@ -323,12 +322,11 @@
                 <p>${a}</p>
               </div>
               <div class="right-content">
-                <p class="rimuovi" onclick="rimuovi_destinatario('@${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
                </div>
               </div>
             `);
             document.getElementById("lista_destinatari").hidden = false;
-            a = "@".concat(a);
             array_dest_utenti.push(a); // Aggiungi all'array
             $("#cerca_destinatari_utenti").val(""); // Resetta il campo
           }
