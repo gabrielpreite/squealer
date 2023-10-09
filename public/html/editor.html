@@ -338,7 +338,7 @@
 
     function rimuovi_destinatario(nome, array_dest) {
       // Rimuovi il destinatario dalla lista dei destinatari inseriti
-      $(`#destinatari-inseriti .name-${nome}`).remove();
+      $(`#destinatari-inseriti .name-${a.replace(/[@$]/g, '\\$&')}`).remove();
 
       // Rimuovi il destinatario dall'array
       const index = array_dest.indexOf(nome);
