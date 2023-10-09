@@ -311,15 +311,15 @@ exports.add_post = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		console.log(q.tipo)
-		if(q.tipo == "testo"){//caso testo
+		//console.log(q.tipo)
+		if(q.contenuto == "testo"){//caso testo
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
 							{
 								risponde_a: null,//todo
-								corpo: q.contenuto,
-								tipo: "testo",
+								corpo: q.textarea,
+								contenuto: "testo",
 								destinatari: q.destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,
@@ -336,20 +336,19 @@ exports.add_post = async function(q, campi, credentials) {
 										odio: []
 									}
 								},
-								pubblico: campi.pubblico,
 								categoria: null,
 								automatico: false
 							}
 						)
 
-		}else if(q.tipo == "img"){//caso testo
+		}else if(q.contenuto == "img"){//caso testo
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
 							{
 								risponde_a: null,//todo
 								corpo: campi.path,
-								tipo: "img",
+								contenuto: "img",
 								destinatari: q.destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,
@@ -366,7 +365,6 @@ exports.add_post = async function(q, campi, credentials) {
 										odio: []
 									}
 								},
-								pubblico: campi.pubblico,
 								categoria: null,
 								automatico: false
 							}
@@ -427,6 +425,51 @@ exports.user_feed = async function(q, campi, credentials) {
 		return result
 	} catch (e) {
 		return e
+	}
+}
+
+exports.update_reaction = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+
+	let debug = []
+	let data = {query: q.messaggio_id, result: null}
+	try {
+		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		debug.push("... managed to connect to MongoDB.")
+
+		let result = []
+		if(q.messaggio_id === undefined){ //non passo argomenti nel get, ritorno tutta la tabella
+			debug.push("no args found")
+			await mongo.db(dbname)
+						.collection("messaggio")
+						.find()
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		else{ //passo userid nel get, ritorno il record corretto
+			debug.push("found args")
+			await mongo.db(dbname)
+						.collection("messaggio")
+						.find({messaggio_id: q.messaggio_id})
+						.forEach( (r) => { 
+							result.push(r) 
+						} );
+		}
+		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
+
+		data.result = result
+		await mongo.close();
+		debug.push("Managed to close connection to MongoDB.")
+
+		data.debug = debug
+		return data
+	} catch (e) {
+		data.debug = debug
+		data.error = e
+		return data
 	}
 }
 

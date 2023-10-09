@@ -91,31 +91,31 @@
                   <div class="card-footer"> 
                       <div class="row reazioni btn-group"> 
                           <div class="col reazioni-left"> 
-                              <label class="btn btn-primary btn-reazioni btn-group0"> 
+                              <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, 0)"> 
                                 <i class="fab fa-sketch reazioni-icone"> </i>
                                 <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span> 
                               </label>
-                              <label class="btn btn-primary btn-reazioni btn-group0">
+                              <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, 1)">
                                 <i class="fas fa-poo reazioni-icone"> </i>
                                 <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span> 
                               </label> 
                           </div> 
                           <div class="col reazioni-mid"> 
-                              <label class="btn btn-primary btn-reazioni btn-group0"> 
+                              <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, 2)"> 
                                   <i class="fas fa-heart reazioni-icone">  </i>
                                   <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>
                               </label> 
-                              <label class="btn btn-primary btn-reazioni btn-group0"> 
+                              <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, 3)"> 
                                   <i class="fas fa-heart-crack reazioni-icone"> </i>
                                   <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>
                               </label> 
                           </div> 
                           <div class="col reazioni-right"> 
-                              <label class="btn btn-primary btn-reazioni btn-group0"> 
+                              <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, 4)"> 
                                   <i class="fas fa-thumbs-up reazioni-icone"> </i> 
                                   <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>
                               </label> 
-                              <label class="btn btn-primary btn-reazioni btn-group0"> 
+                              <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, 5)"> 
                                   <i class="fas fa-thumbs-down reazioni-icone"> </i> 
                                   <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span> 
                               </label> 
@@ -157,7 +157,7 @@
       type: 'GET',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/api_messaggio`, //${window.location.origin}
+      url: `https://site212251.tw.cs.unibo.it/api_messaggio`,
       headers: { },
       success: function (data, status, xhr) {
         console.log('data: ', data);
@@ -194,17 +194,23 @@
       
       //reazioni
       var id_sketch = 'squeal_sketch' + i;
-      document.getElementById(id_sketch).innerHTML = '   ' + squeals[i].reazioni.positive.adoro.length;
+      //var nreazioni = document.getElementById(id_sketch);
+      document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
+      /*if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+        premuto = nreazioni.closest('btn-group' + i);
+        premuto.style.color= "red";
+        premuto.checked = true;
+      } */
       var id_poo = 'squeal_poo' + i;
-      document.getElementById(id_poo).innerHTML = '   ' + squeals[i].reazioni.negative.mi_disgusta.length;
+      document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
       var id_heart = 'squeal_heart' + i;
-      document.getElementById(id_heart).innerHTML = '   ' + squeals[i].reazioni.positive.mi_piace.length;
+      document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
       var id_disheart = 'squeal_disheart' + i;
-      document.getElementById(id_disheart).innerHTML = '   ' + squeals[i].reazioni.negative.odio.length;
+      document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
       var id_like = 'squeal_like' + i;
-      document.getElementById(id_like).innerHTML = '   ' + squeals[i].reazioni.positive.concordo.length;
+      document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
       var id_dislike = 'squeal_dislike' + i;
-      document.getElementById(id_dislike).innerHTML = '   ' + squeals[i].reazioni.negative.sono_contrario.length;
+      document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
       
       //etichette
       var id_visual = 'squeal_visual' + i;
@@ -230,36 +236,46 @@
     }
 
     //bottoni
-    document.addEventListener("DOMContentLoaded", function() {
-      const buttons = document.querySelectorAll(".btn-reazioni");
-      buttons.forEach((button) => {
-        button.addEventListener("click", function() {
-          //console.log(button.querySelector(".n-reazioni"));
-          const buttonGroup = document.querySelectorAll(".btn-group0");
-          if (button.checked) {
-            button.style.color= "white";
-            button.checked = false;
-            var Nreaz = button.querySelector(".n-reazioni");
-            Nreaz.innerHTML = Nreaz.innerHTML - 1;
-          } else {
-            buttonGroup.forEach((btnradio) => {
-              if (button==btnradio){
-                button.style.color= "red";
-                button.checked = true;
-                var Nreaz = button.querySelector(".n-reazioni");
-                console.log(Nreaz.innerHTML);
-                Nreaz.innerHTML = Nreaz.innerHTML + 1;
-              } else if (btnradio.checked) {
-                btnradio.style.color= "white";
-                btnradio.checked = false;
-                var Nreaz = btnradio.querySelector(".n-reazioni");
-                Nreaz.innerHTML = Nreaz.innerHTML - 1;
-              }
-            });
+    function premibottone(button, reac) {
+      //console.log(button.querySelector(".n-reazioni"));
+      //console.log(button);
+      if (button.checked) {
+        button.style.color= "white";
+        button.checked = false;
+        var Nreaz = button.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+      } else {
+        const buttonGroup = document.getElementsByClassName(button.className);
+        const buttonArray = Array.from(buttonGroup);
+        //console.log(buttonGroup);
+        buttonArray.forEach((btnradio) => {
+          if (button==btnradio){
+            button.style.color= "red";
+            button.checked = true;
+            var Nreaz = btnradio.querySelector(".n-reazioni");
+            Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
+          } else if (btnradio.checked) {
+            btnradio.style.color= "white";
+            btnradio.checked = false;
+            var Nreaz = btnradio.querySelector(".n-reazioni");
+            Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
           }
         });
+      }
+      
+      //chiamata modifica db
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/update_reaction`,
+        data: { reac: reac },
+        headers: { },
+        success: function (data, status, xhr) {
+          console.log('data: ', data);
+        }
       });
-    });
+    }
 
   </script>
 </body>

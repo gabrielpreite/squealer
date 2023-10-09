@@ -172,7 +172,7 @@
             </div>
 
           <div id="contenuto_testo">
-            <textarea class="form-input" id="Textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
+            <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
@@ -187,10 +187,7 @@
               </div>
             </div>
           <div class="text-end">
-          <input type="submit" class="btn btn-unstyled btn-confirm" id="btn-conferma">
-            <i class="fas fa-check"></i>
-            Conferma
-          </button>
+          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
           </div>
         </div>
 
@@ -226,7 +223,7 @@
   let imageFileURL = null;
   document.getElementById("crea_post").addEventListener('submit', async event => {
     event.preventDefault();
-    add_post2();
+    add_post();
   });
 
   function mostraCampo(tipo) {
@@ -359,7 +356,7 @@
       }
     }
 
-    function check_post() {
+    function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
       if ($("#destinatari-selezionati").children().length === 0)
         return false;
@@ -369,51 +366,7 @@
 
     function add_post(){
 
-      if(check_post() == true){
-        const formData = new FormData()
-        let post_body = {}
-        let post_file = {}
-
-        if(!$("#contenuto_testo").attr("hidden")){//caso testo
-          post_body["tipo"] = "testo";
-          post_body["contenuto"] = $("Textarea").val()
-        } else if(!$("#contenuto_immagine").attr("hidden")){//caso img
-          post_body["tipo"] = "img";
-          post_file["immagine"] = $("#img").prop("files")[0];
-        }
-
-        /*lista_dest = []
-        $("[id^=destinatario_]").each(function(){
-          lista_dest.push($(this).text())
-        });*/
-
-        post_body["destinatari"] = array_dest;
-
-        formData.append("body", JSON.stringify(post_body))
-        formData.append("immagine", post_file)
-
-        fetch("/crea_post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: formData,
-
-        })
-        .then((response) => {
-          if (response.ok) {
-            // The initial request was successful
-            window.location.replace("http://site212251.tw.cs.unibo.it");
-          } else {
-            throw new Error("Network response was not ok.");
-          }
-        })
-      }
-    }
-
-    function add_post2(){
-
-      //if(check_post() == true){
+      //if(check_post() == true){ //check post da rivedere in base ai 3 tipi di messaggio
         const formData = new FormData(document.getElementById("crea_post"))
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
@@ -422,17 +375,22 @@
           formData.append("contenuto", "img")
         }
 
-        formData.append("destinatari", ["$free", "$cosebrutte"])
+        if(!$("#campo-canali").attr("hidden")){//caso canali
+          formData.append("destinatari", array_dest_canali)
+        }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
+          formData.append("destinatari", array_dest_utenti)
+        }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
+          formData.append("destinatari", [])
+        }
 
         fetch("/crea_post", {
           method: "POST",
           body: formData,
-
         })
         .then((response) => {
           if (response.ok) {
             // The initial request was successful
-            //window.location.replace("http://site212251.tw.cs.unibo.it");
+            window.location.replace("http://site212251.tw.cs.unibo.it");
           } else {
             throw new Error("Network response was not ok.");
           }

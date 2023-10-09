@@ -2,7 +2,7 @@
   {
     "_id": "650856b36b14130a17969e2b",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "heyla",
     "destinatari": [
       "$free",
@@ -23,14 +23,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": "popolare",
     "automatico": false
   },
   {
     "_id": "650856c16b14130a17969e2c",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "heyla x2",
     "destinatari": [
       "$free",
@@ -51,14 +51,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": null,
     "automatico": true
   },
   {
     "_id": "650857676b14130a17969e2d",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "wela",
     "destinatari": [
       "@fvPro"
@@ -78,14 +78,14 @@
         "odio": []
       }
     },
-    "pubblico": false,
+    
     "categoria": null,
     "automatico": false
   },
   {
     "_id": "65086066ac5a4847feee07c9",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "ennesimo test",
     "destinatari": [
       "$free"
@@ -108,14 +108,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": "popolare",
     "automatico": false
   },
   {
     "_id": "650862423abffcab4aa56616",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "redirect pls",
     "destinatari": [],
     "utente": "fv",
@@ -133,14 +133,14 @@
         "odio": []
       }
     },
-    "pubblico": false,
+    
     "categoria": "impopolare",
     "automatico": false
   },
   {
     "_id": "650863de05c4f57dcb13a175",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "per l'amor di dio funziona",
     "destinatari": [
       "$free"
@@ -160,14 +160,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": "controverso",
     "automatico": false
   },
   {
     "_id": "6508648189067d70fbced244",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "PER FAVORE",
     "destinatari": [
       "@fv"
@@ -187,14 +187,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": null,
     "automatico": false
   },
   {
     "_id": "650867e55e7f0cdbbd1b868f",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "BUONGIORNISSIMO CAFFEEEE",
     "destinatari": [
       "$TEST"
@@ -214,14 +214,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": null,
     "automatico": false
   },
   {
     "_id": "6509b93e6c142e72457971d7",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "test \n%&£\"!=()!\"=$^?!/*-//DROP TABLE USER",
     "destinatari": [
       "$free",
@@ -242,14 +242,14 @@
         "odio": []
       }
     },
-    "pubblico": true,
+    
     "categoria": null,
     "automatico": false
   },
   {
     "_id": "65118a1a2ee91b3a8f30173b",
     "risponde_a": null,
-    "tipo": "testo",
+    "contenuto": "testo",
     "corpo": "ciao nomebuffo1",
     "destinatari": [
       "@NomeBuffo1"
@@ -269,7 +269,7 @@
         "odio": []
       }
     },
-    "pubblico": false,
+    
     "categoria": null,
     "automatico": false
   }
