@@ -373,7 +373,7 @@
 
     function add_post(){
 
-      //if(check_post() == true){ //check post da rivedere in base ai 3 tipi di messaggio
+      //if(check_post() == true){ // check post da rivedere in base ai 3 tipi di messaggio
         const formData = new FormData(document.getElementById("crea_post"))
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
@@ -381,7 +381,7 @@
         }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           formData.append("contenuto", "img")
         }
-
+        
         if(!$("#campo-canali").attr("hidden")){//caso canali
           formData.append("destinatari", array_dest_canali)
         }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
