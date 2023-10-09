@@ -268,7 +268,7 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           //rimuovo $ iniziale per visualizzazione in lista
-          a = a.substring(1)
+          a_name = a.substring(1)
           //console.log('data: ', data);
           if (!array_dest_canali.includes(a)) {
              // Aggiungi il destinatario al riquadro dei destinatari inseriti
@@ -276,7 +276,7 @@
                <div class="inserito-item name-${a}">
                <div class="left-content">
                  <i class="fas fa-users"></i>
-                 <p>${a}</p>
+                 <p>${a_name}</p>
                </div>
                <div class="right-content">
                  <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
@@ -309,6 +309,8 @@
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          a_namea = a
+          a = "@".concat(a)
           //console.log('data: ', data);
           if (!array_dest_utenti.includes(a)) {
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
@@ -316,7 +318,7 @@
               <div class="inserito-item name-${a}">
               <div class="left-content">
                 <i class="fas fa-users"></i>
-                <p>${a}</p>
+                <p>${a_name}</p>
               </div>
               <div class="right-content">
                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
