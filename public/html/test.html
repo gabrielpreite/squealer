@@ -157,11 +157,11 @@
       type: 'GET',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/api_messaggio`,
+      url: `https://site212251.tw.cs.unibo.it/user_feed`,
       headers: { },
       success: function (data, status, xhr) {
         console.log('data: ', data);
-        squeals = data["result"];
+        squeals = data;
       }
     });
     var n_squeal = squeals.length;
