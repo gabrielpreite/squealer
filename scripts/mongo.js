@@ -431,7 +431,6 @@ exports.user_feed = async function(q, campi, credentials) {
 exports.update_reazioni = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-	//q.reac
 	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
