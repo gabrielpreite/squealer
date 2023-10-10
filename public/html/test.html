@@ -277,7 +277,7 @@
         dataType: "json",
         async: false,
         url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-        data: { id: id, reac: reac },
+        data: { _id: id, reac: reac },
         headers: { },
         success: function (data, status, xhr) {
           console.log('data: ', data);
