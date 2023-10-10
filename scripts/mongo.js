@@ -431,6 +431,9 @@ exports.user_feed = async function(q, campi, credentials) {
 exports.update_reazioni = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
+	console.log(q.id);
+	console.log(q.reac);
+
 	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
@@ -438,9 +441,10 @@ exports.update_reazioni = async function(q, credentials) {
 		let result = []
 		await mongo.db(dbname)
 					.collection("messaggio")
-					.find({id: q.id})
+					.find({_id: q._id})
 					.forEach( (r) => { 
-						result.push(r) 
+						result.push(r)
+						console.log(result);
 					} );
 		
 		console.log(result);
