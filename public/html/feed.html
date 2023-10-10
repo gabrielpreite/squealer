@@ -234,7 +234,7 @@
             type: 'GET',
             dataType: "json",
             async: false,
-            url: `https://site212251.tw.cs.unibo.it/user_feed`, //${window.location.origin}
+            url: `https://site212251.tw.cs.unibo.it/user_feed`,
             headers: { },
             success: function (data, status, xhr) {
               console.log('data: ', data);
@@ -242,7 +242,7 @@
             }
           });
           var n_squeal = squeals.length;
-
+              
           var contenitore = document.getElementById('squeal_contenitore');
 
           for (var i = 0; i < n_squeal; i++) {
@@ -273,7 +273,6 @@
             } else if(squeals[i].contenuto == "img"){
               document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
             }
-
             //destinatari da finire
             var lista_destinatari = document.getElementById('squeal_destinatari' + i);
             var n_destinatari = squeals[i].destinatari.length;
@@ -281,21 +280,59 @@
               lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#">' + squeals[i].destinatari[j] + '</a>');
             }
             
-
             //reazioni
+            var premuto;
             var id_sketch = 'squeal_sketch' + i;
-            document.getElementById(id_sketch).innerHTML = '   ' + squeals[i].reazioni.positive.adoro.length;
+            var nreazioni0 = document.getElementById(id_sketch);
+            document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
+            console.log(get_cookie_by_name("username"));
+            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+              premuto = nreazioni0.parentnode;
+              console.log(premuto);
+              premuto.style.color= "red";
+              premuto.checked = true;
+            }
             var id_poo = 'squeal_poo' + i;
-            document.getElementById(id_poo).innerHTML = '   ' + squeals[i].reazioni.negative.mi_disgusta.length;
+            var nreazioni1 = document.getElementById(id_poo);
+            document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
+            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+              premuto = nreazioni1.parentnode;
+              premuto.style.color= "red";
+              premuto.checked = true;
+            }
             var id_heart = 'squeal_heart' + i;
-            document.getElementById(id_heart).innerHTML = '   ' + squeals[i].reazioni.positive.mi_piace.length;
+            var nreazioni2 = document.getElementById(id_heart);
+            document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
+            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+              premuto = nreazioni2.parentnode;
+              premuto.style.color= "red";
+              premuto.checked = true;
+            }
             var id_disheart = 'squeal_disheart' + i;
-            document.getElementById(id_disheart).innerHTML = '   ' + squeals[i].reazioni.negative.odio.length;
+            var nreazioni3 = document.getElementById(id_disheart);
+            document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
+            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+              premuto = nreazioni3.parentnode;
+              premuto.style.color= "red";
+              premuto.checked = true;
+            }
             var id_like = 'squeal_like' + i;
-            document.getElementById(id_like).innerHTML = '   ' + squeals[i].reazioni.positive.concordo.length;
+            var nreazioni4 = document.getElementById(id_like);
+            document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
+            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+              premuto = nreazioni4.parentnode;
+              premuto.style.color= "red";
+              premuto.checked = true;
+            }
             var id_dislike = 'squeal_dislike' + i;
-            document.getElementById(id_dislike).innerHTML = '   ' + squeals[i].reazioni.negative.sono_contrario.length;
-
+            var nreazioni5 = document.getElementById(id_dislike);
+            document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
+            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+              premuto = nreazioni5.parentnode;
+              premuto.style.color= "red";
+              premuto.checked = true;
+            }
+            
             //etichette
             var id_visual = 'squeal_visual' + i;
             document.getElementById(id_visual).innerHTML = 'Visual: ' + squeals[i].visualizzazioni;
@@ -354,7 +391,7 @@
               dataType: "json",
               async: false,
               url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-              data: { id: id, reac: reac },
+              data: { _id: id, reac: reac },
               headers: { },
               success: function (data, status, xhr) {
                 console.log('data: ', data);
