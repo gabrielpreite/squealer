@@ -454,6 +454,7 @@ exports.update_reazioni = async function(q, credentials) {
 			if (result.reazioni.positive.adoro.includes(q.userid)) {
 				const indice = result.reazioni.positive.adoro.indexOf(q.userid);
 				result.reazioni.positive.adoro.splice(indice, 1);
+			}
 		}
 
 		if (q.reac == "mi_disgusta") {
