@@ -261,7 +261,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			let path = req.file.path
 			campi["path"] = path.split("/").slice(-1)[0]
 		}
-		console.log(req.body.destinatari)
+		//console.log(req.body.destinatari)
 		//timestamp
 		let date = new Date()
 		campi["timestamp"] = date.getTime();
@@ -301,7 +301,7 @@ app.get('/search', async function(req, res) {
 
 app.get('/update_reazioni', async function(req, res) {
 	try{
-		req.userid = session.userid
+		req.query.userid = session.userid
 		let r = await mymongo.update_reazioni(req.query, mongoCredentials)
 		res.status(200)
 		res.send(JSON.stringify(r))
