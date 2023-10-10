@@ -443,54 +443,87 @@ exports.update_reazioni = async function(q, credentials) {
 						result = r
 					} );
 
-		
-		console.log(result)
-		console.log(result.reazioni)
-
 		if (q.reac == "adoro") {
 			if (result.reazioni.positive.adoro.includes(q.userid)) {
 				const indice = result.reazioni.positive.adoro.indexOf(q.userid);
 				result.reazioni.positive.adoro.splice(indice, 1);
-				console.log("RIMUOVO ADORO")
 			} else {
 				result.reazioni.positive.adoro.push(q.userid)
-				console.log("AGGIUNGO ADORO")
 			}
-		} else if (q.reac == "mi_disgusta") {
-			if (result.reazioni.positive.mi_disgusta.includes(q.userid)) {
-				const indice = result.reazioni.positive.mi_disgusta.indexOf(q.userid);
-				result.reazioni.positive.mi_disgusta.splice(indice, 1);
+		} else {
+			if (result.reazioni.positive.adoro.includes(q.userid)) {
+				const indice = result.reazioni.positive.adoro.indexOf(q.userid);
+				result.reazioni.positive.adoro.splice(indice, 1);
+		}
+
+		if (q.reac == "mi_disgusta") {
+			if (result.reazioni.negative.mi_disgusta.includes(q.userid)) {
+				const indice = result.reazioni.negative.mi_disgusta.indexOf(q.userid);
+				result.reazioni.negative.mi_disgusta.splice(indice, 1);
 			} else {
-				result.reazioni.positive.mi_disgusta.push(q.userid)
+				result.reazioni.negative.mi_disgusta.push(q.userid)
 			}
-		} else if (q.reac == "mi_piace") {
+		} else {
+			if (result.reazioni.negative.mi_disgusta.includes(q.userid)) {
+				const indice = result.reazioni.negative.mi_disgusta.indexOf(q.userid);
+				result.reazioni.negative.mi_disgusta.splice(indice, 1);
+			}
+		}
+
+		if (q.reac == "mi_piace") {
 			if (result.reazioni.positive.mi_piace.includes(q.userid)) {
 				const indice = result.reazioni.positive.mi_piace.indexOf(q.userid);
 				result.reazioni.positive.mi_piace.splice(indice, 1);
 			} else {
 				result.reazioni.positive.mi_piace.push(q.userid)
 			}
-		} else if (q.reac == "odio") {
-			if (result.reazioni.positive.odio.includes(q.userid)) {
-				const indice = result.reazioni.positive.odio.indexOf(q.userid);
-				result.reazioni.positive.odio.splice(indice, 1);
-			} else {
-				result.reazioni.positive.odio.push(q.userid)
+		} else {
+			if (result.reazioni.positive.mi_piace.includes(q.userid)) {
+				const indice = result.reazioni.positive.mi_piace.indexOf(q.userid);
+				result.reazioni.positive.mi_piace.splice(indice, 1);
 			}
-		} else if (q.reac == "concordo") {
+		}
+
+		if (q.reac == "odio") {
+			if (result.reazioni.negative.odio.includes(q.userid)) {
+				const indice = result.reazioni.negative.odio.indexOf(q.userid);
+				result.reazioni.negative.odio.splice(indice, 1);
+			} else {
+				result.reazioni.negative.odio.push(q.userid)
+			}
+		} else {
+			if (result.reazioni.negative.odio.includes(q.userid)) {
+				const indice = result.reazioni.negative.odio.indexOf(q.userid);
+				result.reazioni.negative.odio.splice(indice, 1);
+			}
+		}
+
+		if (q.reac == "concordo") {
 			if (result.reazioni.positive.concordo.includes(q.userid)) {
 				const indice = result.reazioni.positive.concordo.indexOf(q.userid);
 				result.reazioni.positive.concordo.splice(indice, 1);
 			} else {
 				result.reazioni.positive.concordo.push(q.userid)
 			}
-		} else if (q.reac == "sono_contrario") {
-			if (result.reazioni.positive.sono_contrario.includes(q.userid)) {
-				const indice = result.reazioni.positive.sono_contrario.indexOf(q.userid);
-				result.reazioni.positive.sono_contrario.splice(indice, 1);
-			} else {
-				result.reazioni.positive.sono_contrario.push(q.userid)
+		} else {
+			if (result.reazioni.positive.concordo.includes(q.userid)) {
+				const indice = result.reazioni.positive.concordo.indexOf(q.userid);
+				result.reazioni.positive.concordo.splice(indice, 1);
 			}
+		}
+
+		if (q.reac == "sono_contrario") {
+			if (result.reazioni.negative.sono_contrario.includes(q.userid)) {
+				const indice = result.reazioni.negative.sono_contrario.indexOf(q.userid);
+				result.reazioni.negative.sono_contrario.splice(indice, 1);
+			} else {
+				result.reazioni.negative.sono_contrario.push(q.userid)
+			}
+		} else {
+			if (result.reazioni.negative.sono_contrario.includes(q.userid)) {
+				const indice = result.reazioni.negative.sono_contrario.indexOf(q.userid);
+				result.reazioni.negative.sono_contrario.splice(indice, 1);
+			} 
 		}
 
 		await mongo.db(dbname)
@@ -503,7 +536,6 @@ exports.update_reazioni = async function(q, credentials) {
 						   }
 						}
 					)
-
 
 		return 
 	} catch (e) {
