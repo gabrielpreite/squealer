@@ -1,6 +1,6 @@
 #col-sx {
   position: fixed;
-  top: 50px;
+  top: 56px;
   left: 0;
   height: 100%;
   width: 25%;
@@ -12,19 +12,19 @@
 
 .col-sx-utenti {
   background-image: url('Immagine1.png');
-  background-size: 110px;
+  background-size: 120px;
 
 }
 
 .col-sx-canali {
   background-image: url('Immagine2.png');
-  background-size: 120px;
+  background-size: 130px;
 
 }
 
 .col-sx-bacheca {
   background-image: url('Immagine3.png');
-  background-size: 120px;
+  background-size: 130px;
 
 }
 
