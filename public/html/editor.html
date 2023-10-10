@@ -395,6 +395,12 @@
           formData.append("destinatari", [])
         }
 
+        //controllo se lo squeal e' in risposta (ha un parametro get nell'url)
+        var arr = url.split('?');
+        if (arr.length > 1 && arr[1] !== '') {
+          console.log('params found');
+        }
+
         fetch("/crea_post", {
           method: "POST",
           body: formData,
