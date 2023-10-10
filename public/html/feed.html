@@ -305,7 +305,7 @@
             } else if (squeals[i].categoria == "impopolare"){
               var Et_popolarita = document.getElementById('squeal_info' + i);
               Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Impopolare </span>');
-            } else if (squeals[i].automatico == "controverso"){
+            } else if (squeals[i].categoria == "controverso"){
               var Et_popolarita = document.getElementById('squeal_info' + i);
               Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Controverso </span>');
             }
@@ -313,10 +313,10 @@
               var Et_auto = document.getElementById('squeal_info' + i);
               Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
             }
-            if (!squeals[i].pubblico){
+            /*if (!squeals[i].pubblico){ // deprecato
               var Et_pubblico = document.getElementById('squeal_info' + i);
               Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
-            }
+            }*/
           }
           //FINE SQUEAL
 
