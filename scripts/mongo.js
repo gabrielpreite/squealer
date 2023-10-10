@@ -431,7 +431,7 @@ exports.user_feed = async function(q, campi, credentials) {
 exports.update_reazioni = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-	console.log(q.id);
+	console.log(q._id);
 	console.log(q.reac);
 
 	try {
