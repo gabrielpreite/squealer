@@ -8,7 +8,7 @@
   overflow: auto;
   background-color: #f2f2f2;
   background-image: url('Immagine1.png');
-  background-size: 80px;
+  background-size: 100px;
   background-position: center center;
 }
 
@@ -19,8 +19,11 @@
 
 #tipo-messaggio {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  background-color: rgba(242, 242, 242, 0.5);
+  box-shadow: 0 0 5px 5px rgba(242, 242, 242, 0.2);
 }
 
 .title-bar {
@@ -32,57 +35,55 @@
 .title-line {
   flex-grow: 1;
   height: 1px;
-  background-color: #444;
+  background-color: #1da1f2;
   margin: 0 10px;
 }
 
 .title-text {
   font-size: 18px;
-  font-weight: bold;
-  color: #444;
+  font-weight: 500;
+  color: #1da1f2;
   text-transform: uppercase;
   margin: 0;
 }
 
-.tipo-icona-container {
+#tipo-icona-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 35px;
   flex-wrap: wrap; /* Per andare a capo se lo spazio è insufficiente */
 }
 
-.tipo-icona {
+#tipo-icona-container .tipo-icona {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s ease;
-  color: #1da1f2;
-  font-size: 16px;
+  font-size: 10px;
   margin: 0 10px;
   text-decoration: none;
+  color: #777; /* Colore di default */
 }
+
+#tipo-icona-container .tipo-icona.attiva {
+  color: #1da1f2;
+}
+
 
 .tipo-icona i {
   font-size: 36px;
   margin-bottom: 5px;
 }
 
-.tipo-icona:hover {
-  transform: scale(1.2);
-}
-
 .tipo-icona p {
   margin: 0;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
-.tipo-icona.active {
-  background-color: #007bff;
-  color: white;
-  border-radius: 20px;
-}
+
 
 
 /* Stile generale del campo di ricerca */
