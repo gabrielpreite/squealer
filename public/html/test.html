@@ -10,6 +10,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
+  <script type="text/javascript" src="../js/global.js"></script>
+
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" type="text/css" href="../css/test.css" />
@@ -201,18 +203,21 @@
       }
       
       //reazioni
+      var premuto;
       var id_sketch = 'squeal_sketch' + i;
       var nreazioni0 = document.getElementById(id_sketch);
       document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
-      if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+      console.log(get_cookie_by_name("username"));
+      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
         premuto = nreazioni0.parentnode;
+        console.log(premuto);
         premuto.style.color= "red";
         premuto.checked = true;
       }
       var id_poo = 'squeal_poo' + i;
       var nreazioni1 = document.getElementById(id_poo);
       document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
-      if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
         premuto = nreazioni1.parentnode;
         premuto.style.color= "red";
         premuto.checked = true;
@@ -220,7 +225,7 @@
       var id_heart = 'squeal_heart' + i;
       var nreazioni2 = document.getElementById(id_heart);
       document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
-      if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
         premuto = nreazioni2.parentnode;
         premuto.style.color= "red";
         premuto.checked = true;
@@ -228,7 +233,7 @@
       var id_disheart = 'squeal_disheart' + i;
       var nreazioni3 = document.getElementById(id_disheart);
       document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
-      if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
         premuto = nreazioni3.parentnode;
         premuto.style.color= "red";
         premuto.checked = true;
@@ -236,7 +241,7 @@
       var id_like = 'squeal_like' + i;
       var nreazioni4 = document.getElementById(id_like);
       document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
-      if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
         premuto = nreazioni4.parentnode;
         premuto.style.color= "red";
         premuto.checked = true;
@@ -244,7 +249,7 @@
       var id_dislike = 'squeal_dislike' + i;
       var nreazioni5 = document.getElementById(id_dislike);
       document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
-      if (squeals[i].reazioni.positive.adoro.includes(squeals[i].utente)) {
+      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
         premuto = nreazioni5.parentnode;
         premuto.style.color= "red";
         premuto.checked = true;
