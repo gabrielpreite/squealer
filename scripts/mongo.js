@@ -431,23 +431,79 @@ exports.user_feed = async function(q, campi, credentials) {
 exports.update_reazioni = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-	console.log(q._id);
-	console.log(q.reac);
-
 	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 
-		let result = []
+		let result = {}
 		await mongo.db(dbname)
 					.collection("messaggio")
 					.find({_id: q._id})
 					.forEach( (r) => { 
-						result.push(r)
-						console.log(result);
+						result = r
 					} );
+
 		
-		console.log(result);
+		console.log(result)
+		console.log(result.reazioni)
+
+		if (q.reac == "adoro") {
+			if (result.reazioni.positive.adoro.includes(q.userid)) {
+				const indice = result.reazioni.positive.adoro.indexOf(q.userid);
+				result.reazioni.positive.adoro.splice(indice, 1);
+				console.log("RIMUOVO ADORO")
+			} else {
+				result.reazioni.positive.adoro.push(q.userid)
+				console.log("AGGIUNGO ADORO")
+			}
+		} else if (q.reac == "mi_disgusta") {
+			if (result.reazioni.positive.mi_disgusta.includes(q.userid)) {
+				const indice = result.reazioni.positive.mi_disgusta.indexOf(q.userid);
+				result.reazioni.positive.mi_disgusta.splice(indice, 1);
+			} else {
+				result.reazioni.positive.mi_disgusta.push(q.userid)
+			}
+		} else if (q.reac == "mi_piace") {
+			if (result.reazioni.positive.mi_piace.includes(q.userid)) {
+				const indice = result.reazioni.positive.mi_piace.indexOf(q.userid);
+				result.reazioni.positive.mi_piace.splice(indice, 1);
+			} else {
+				result.reazioni.positive.mi_piace.push(q.userid)
+			}
+		} else if (q.reac == "odio") {
+			if (result.reazioni.positive.odio.includes(q.userid)) {
+				const indice = result.reazioni.positive.odio.indexOf(q.userid);
+				result.reazioni.positive.odio.splice(indice, 1);
+			} else {
+				result.reazioni.positive.odio.push(q.userid)
+			}
+		} else if (q.reac == "concordo") {
+			if (result.reazioni.positive.concordo.includes(q.userid)) {
+				const indice = result.reazioni.positive.concordo.indexOf(q.userid);
+				result.reazioni.positive.concordo.splice(indice, 1);
+			} else {
+				result.reazioni.positive.concordo.push(q.userid)
+			}
+		} else if (q.reac == "sono_contrario") {
+			if (result.reazioni.positive.sono_contrario.includes(q.userid)) {
+				const indice = result.reazioni.positive.sono_contrario.indexOf(q.userid);
+				result.reazioni.positive.sono_contrario.splice(indice, 1);
+			} else {
+				result.reazioni.positive.sono_contrario.push(q.userid)
+			}
+		}
+
+		await mongo.db(dbname)
+					.collection("messaggio")
+					.updateOne(
+						{ _id:  q._id},
+						{ $set:
+						   {
+							 reazioni: result.reazioni
+						   }
+						}
+					)
+
 
 		return 
 	} catch (e) {
