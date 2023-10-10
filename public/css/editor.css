@@ -1,15 +1,31 @@
 #col-sx {
   position: fixed;
-  top: 50px;
+  top: 56px;
   left: 0;
   height: 100%;
   width: 25%;
   padding: 16px 20px 20px 20px;
   overflow: auto;
   background-color: #f2f2f2;
-  background-image: url('Immagine1.png');
-  background-size: 100px;
   background-position: center center;
+}
+
+.col-sx-utenti {
+  background-image: url('Immagine1.png');
+  background-size: 120px;
+
+}
+
+.col-sx-canali {
+  background-image: url('Immagine2.png');
+  background-size: 130px;
+
+}
+
+.col-sx-bacheca {
+  background-image: url('Immagine3.png');
+  background-size: 130px;
+
 }
 
 
@@ -22,8 +38,8 @@
   margin-top: 30px;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  background-color: rgba(242, 242, 242, 0.5);
-  box-shadow: 0 0 5px 5px rgba(242, 242, 242, 0.2);
+  background-color: rgba(242, 242, 242, 0.7);
+  box-shadow: 0 0 20px 20px rgba(242, 242, 242, 0.7);
 }
 
 .title-bar {

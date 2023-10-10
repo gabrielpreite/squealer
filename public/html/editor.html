@@ -148,7 +148,7 @@
               </div>
 
             <div id="campo-bacheca" hidden="true">
-              Stai inserendo uno squeal nella tua bacheca
+              <!-- Da riempire se si vuole fare visualizzare qualcosa -->
             </div>
 
             </div>
@@ -228,6 +228,11 @@
 
   function mostraCampo(tipo) {
     var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
+
+    // Rimuovi tutte le classi esistenti da col-sx
+    var colSx = document.getElementById("col-sx");
+    colSx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
+
     // Nascondi tutti i campi inizialmente
     document.getElementById("campo-canali").hidden = true;
     document.getElementById("campo-utenti").hidden = true;
@@ -245,21 +250,24 @@
       document.getElementById("campo-canali").hidden = false;
       document.getElementById("lista_destinatari").hidden = true;
       destinatariInseritiDiv.innerHTML = "";
-      array_dest_utenti = []
+      array_dest_utenti = [];
       document.getElementById("icona-canali").classList.add("attiva");
+      colSx.classList.add("col-sx-canali");
     } else if (tipo === "utenti") {
       document.getElementById("campo-utenti").hidden = false;
       document.getElementById("lista_destinatari").hidden = true;
       destinatariInseritiDiv.innerHTML = "";
-      array_dest_canali = []
+      array_dest_canali = [];
       document.getElementById("icona-utenti").classList.add("attiva");
+      colSx.classList.add("col-sx-utenti");
     } else if (tipo === "bacheca") {
       document.getElementById("lista_destinatari").hidden = true;
       document.getElementById("campo-bacheca").hidden = false;
       destinatariInseritiDiv.innerHTML = "";
-      array_dest_utenti = []
-      array_dest_canali = []
+      array_dest_utenti = [];
+      array_dest_canali = [];
       document.getElementById("icona-bacheca").classList.add("attiva");
+      colSx.classList.add("col-sx-bacheca");
     }
   }
 
