@@ -316,11 +316,20 @@ exports.add_post = async function(q, campi, credentials) {
 		console.log(q.destinatari)
 		console.log("---------")
 
+
+		//controlli su campi situazionali
 		let risposta
 		try{
 			risposta = q.risponde_a
-		} catch(e){
+		}catch(e){
 			risposta = null
+		}
+
+		let tipo_destinatari
+		try{
+			tipo_destinatari = q.tipo_destinatari
+		}catch(e){
+			tipo_destinatari = null
 		}
 
 		//console.log(q.tipo)
@@ -333,6 +342,7 @@ exports.add_post = async function(q, campi, credentials) {
 								corpo: q.textarea,
 								contenuto: "testo",
 								destinatari: q.destinatari,
+								tipo_destinatari: tipo_destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,
 								visualizzazioni: 0,
@@ -353,7 +363,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 
-		}else if(q.contenuto == "img"){//caso testo
+		}else if(q.contenuto == "img"){//caso immagine
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
@@ -362,6 +372,7 @@ exports.add_post = async function(q, campi, credentials) {
 								corpo: campi.path,
 								contenuto: "img",
 								destinatari: q.destinatari,
+								tipo_destinatari: tipo_destinatari,
 								utente: campi.username,
 								timestamp: campi.timestamp,
 								visualizzazioni: 0,
@@ -396,8 +407,8 @@ exports.user_feed = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		console.log("dentro mongo con user "+campi.username)
-		//il feed e' composto da canali seguiti + messaggi privati
+		//console.log("dentro mongo con user "+campi.username)
+		//il feed e' composto da canali e account seguiti
 
 		let canali_seguiti = []
 		await mongo.db(dbname)
@@ -410,8 +421,8 @@ exports.user_feed = async function(q, campi, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		console.log("ottenuti canali seguiti da "+campi.username)
 		
-		canali_seguiti.push("@"+campi.username)
-		console.log("aggiunto utente")
+		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
+		//console.log("aggiunto utente")
 
 		//debug
 		canali_seguiti.forEach((element) => console.log(element))

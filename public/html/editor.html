@@ -417,8 +417,10 @@
               array[index] = "$" + nome;
             });
             formData.append("destinatari", JSON.stringify(array_dest_canali))
+            formData.append("tipo_destinatari", "canali")
           }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
             formData.append("destinatari", JSON.stringify(array_dest_utenti))
+            formData.append("tipo_destinatari", "utenti")
           }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
             formData.append("destinatari", JSON.stringify([]))
           }
