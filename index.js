@@ -296,12 +296,12 @@ app.get('/user_feed', async function(req, res) {
 		let campi = {}
 		campi["username"] = session.userid;
 		result = await mymongo.user_feed(req.query, campi, mongoCredentials);
+		res.status(200)
+		res.send(result)
 	} catch (e) {
 		res.status(500)
 		res.send("errore nella richiesta del feed")
 	}
-	res.status(200)
-	res.send(result)
 });
 
 //risultati della ricerca tramite searchbar
