@@ -264,6 +264,13 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		console.log("destinatari post (index) :")
 		console.log(req.body.destinatari)
 		console.log("---------")
+
+		req.body.destinatari = JSON.parse(req.body.destinatari)
+
+		console.log("destinatari post (index - parse) :")
+		console.log(req.body.destinatari)
+		console.log("---------")
+
 		//timestamp
 		let date = new Date()
 		campi["timestamp"] = date.getTime();
