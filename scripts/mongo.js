@@ -423,12 +423,14 @@ exports.user_feed = async function(q, campi, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
 		console.log("ottenuti canali seguiti da "+campi.username)
+		canali_seguiti.forEach((element) => console.log(element))
+		console.log("ottenuti utenti seguiti da "+campi.username)
+		utenti_seguiti.forEach((element) => console.log(element))
 
 		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
 		//console.log("aggiunto utente")
 
 		//debug
-		canali_seguiti.forEach((element) => console.log(element))
 
 		let result = []
 
@@ -443,6 +445,8 @@ exports.user_feed = async function(q, campi, credentials) {
 				result.push(r) 
 			});
 
+		console.log("post in canali seguiti:")
+		result.forEach((element) => console.log(element))
 		console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname)
@@ -459,6 +463,7 @@ exports.user_feed = async function(q, campi, credentials) {
 			});
 
 		//debug
+		console.log("post in bacheca di utenti seguiti")
 		result.forEach((element) => console.log(element))
 
 		console.log("ottenuto feed")
