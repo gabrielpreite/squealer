@@ -7,26 +7,43 @@
   padding: 16px 20px 20px 20px;
   overflow: auto;
   background-color: #f2f2f2;
-  background-size: 130px;
+  background-size: 40%;
   background-position: center center;
 }
 
 .col-sx-utenti {
-  background-image: url('Utenti.png');
+  background-image: url('/img/Utenti.png');
 }
 
 .col-sx-canali {
-  background-image: url('Canali.png');
+  background-image: url('/img/Canali.png');
 }
 
 .col-sx-bacheca {
-  background-image: url('Bacheca.png');
+  background-image: url('/img/Bacheca.png');
 }
 
 
 [hidden="true"] {
   display: none;
 }
+
+#selezione-destinatari {
+  display: block; /* Imposta il div come visibile di default */
+}
+
+#vuoto {
+  display: block; /* Imposta il div come visibile di default */
+}
+
+#mostra-squeal {
+  display: none; /* Imposta il div come nascosto di default */
+}
+
+#mostra-commenti {
+  display: none; /* Imposta il div come nascosto di default */
+}
+
 
 #tipo-messaggio {
   text-align: center;
@@ -346,6 +363,6 @@
   padding: 20px;
   overflow: auto;
   background-color: #f2f2f2;
-  background-size: 130px;
+  background-size: 40%;
   background-position: center center;
 }

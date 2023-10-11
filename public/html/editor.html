@@ -95,6 +95,7 @@
   <!--<form method="POST" action="/crea_post">-->
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
+          <div id="selezione-destinatari">
           <div id="tipo-messaggio">
             <div class="title-bar">
               <div class="title-line"></div>
@@ -150,9 +151,12 @@
             <div id="campo-bacheca" hidden="true">
               <!-- Da riempire se si vuole fare visualizzare qualcosa -->
             </div>
+          </div>
+
+            <div id="mostra-squeal">
 
             </div>
-
+            </div>
         <form id="crea_post" enctype="multipart/form-data">
         <!-- Second Column -->
         <div class="col-md-6" id="col-cx">
@@ -193,8 +197,13 @@
 
         <!-- Third Column -->
         <div class="col-md-3" id="col-dx">
+          <div id="vuoto">
 
-        </div>
+           </div>
+           <div id="mostra-commenti">
+
+           </div>
+         </div>
   <!--</form>-->
   </form>
 
@@ -209,6 +218,16 @@
   array_dest_canali=[]//array destinatari per uso interno
   array_dest_utenti=[]//array destinatari per uso interno
   let imageFileURL = null;
+
+  let arr = window.location.href.split('?');
+  if (arr.length > 1 && arr[1] !== '') {
+    // Nascondi il div "selezione-destinatari"
+    document.getElementById("selezione-destinatari").style.display = "none";
+    document.getElementById("vuoto").style.display = "none";
+    // Mostra il div "mostra-squeal"
+    document.getElementById("mostra-commenti").style.display = "block";
+  }
+
   document.getElementById("crea_post").addEventListener('submit', async event => {
     event.preventDefault();
     add_post();
@@ -396,22 +415,24 @@
         }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           formData.append("contenuto", "img")
         }
-        
-        var arr = window.location.href.split('?');
+
+        let arr = window.location.href.split('?');
         if (arr.length > 1 && arr[1] !== '') { //caso risposta, nessun destinatario
-          formData.append("risponde_a", arr[1]);
-          formData.append("destinatari", [])
+          formData.append("risponde_a", arr[1].split("?")[1]);
+          formData.append("destinatari", JSON.stringify([]))
         } else { //caso post originali, destinatari dipendono dalla scelta utente
           if(!$("#campo-canali").attr("hidden")){//caso canali
             //aggiungo $ prima di ogni canale
             array_dest_canali.forEach(function(nome, index, array) {
               array[index] = "$" + nome;
             });
-            formData.append("destinatari", array_dest_canali)
+            formData.append("destinatari", JSON.stringify(array_dest_canali))
+            formData.append("tipo_destinatari", "canali")
           }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
-            formData.append("destinatari", array_dest_utenti)
+            formData.append("destinatari", JSON.stringify(array_dest_utenti))
+            formData.append("tipo_destinatari", "utenti")
           }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
-            formData.append("destinatari", [])
+            formData.append("destinatari", JSON.stringify([]))
           }
         }
 
