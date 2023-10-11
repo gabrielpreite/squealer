@@ -12,15 +12,15 @@
 }
 
 .col-sx-utenti {
-  background-image: url('Utenti.png');
+  background-image: url('/img/Utenti.png');
 }
 
 .col-sx-canali {
-  background-image: url('Canali.png');
+  background-image: url('/img/Canali.png');
 }
 
 .col-sx-bacheca {
-  background-image: url('Bacheca.png');
+  background-image: url('/img/Bacheca.png');
 }
 
 
