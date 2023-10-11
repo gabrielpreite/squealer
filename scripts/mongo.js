@@ -309,7 +309,7 @@ exports.user_info = async function(q, credentials) {
 exports.add_post = async function(q, campi, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
 		console.log("destinatari post (mongo) :")
