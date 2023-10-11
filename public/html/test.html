@@ -216,13 +216,11 @@
       var id_dislike = 'squeal_dislike' + i;
       document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
       
-      console.log("fv");
-      console.log(get_cookie_by_name("username"));
+      //console.log("fv");
+      //console.log(get_cookie_by_name("username"));
       if (squeals[i].reazioni.positive.adoro.includes("fv")) {
         var nreazioni0 = document.getElementById(id_sketch);
-        console.log(nreazioni0.parentNode);
         var premuto0 = nreazioni0.parentNode;
-        console.log(premuto0);
         premuto0.style.color= "red";
         premuto0.checked = true;
       } else if (squeals[i].reazioni.positive.adoro.includes("fv")) {
