@@ -400,7 +400,7 @@
         }
 
         //controllo se lo squeal e' in risposta (ha un parametro get nell'url)
-        var arr = url.split('?');
+        var arr = window.location.href.split('?');
         if (arr.length > 1 && arr[1] !== '') {
           formData.append("risponde_a", arr[1]);
         }
