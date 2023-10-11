@@ -311,13 +311,21 @@ exports.add_post = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
+
+		let risposta
+		try{
+			risposta = q.risponde_a
+		} catch(e){
+			risposta = null
+		}
+
 		//console.log(q.tipo)
 		if(q.contenuto == "testo"){//caso testo
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
 							{
-								risponde_a: null,//todo
+								risponde_a: risposta,
 								corpo: q.textarea,
 								contenuto: "testo",
 								destinatari: q.destinatari,
@@ -346,7 +354,7 @@ exports.add_post = async function(q, campi, credentials) {
 						.collection("messaggio")
 						.insertOne(
 							{
-								risponde_a: null,//todo
+								risponde_a: risposta,
 								corpo: campi.path,
 								contenuto: "img",
 								destinatari: q.destinatari,
@@ -454,6 +462,7 @@ exports.update_reazioni = async function(q, credentials) {
 			if (result.reazioni.positive.adoro.includes(q.userid)) {
 				const indice = result.reazioni.positive.adoro.indexOf(q.userid);
 				result.reazioni.positive.adoro.splice(indice, 1);
+			}
 		}
 
 		if (q.reac == "mi_disgusta") {
