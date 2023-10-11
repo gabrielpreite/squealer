@@ -312,6 +312,10 @@ exports.add_post = async function(q, campi, credentials) {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 
+		console.log("destinatari post (mongo) :")
+		console.log(q.destinatari)
+		console.log("---------")
+
 		let risposta
 		try{
 			risposta = q.risponde_a
