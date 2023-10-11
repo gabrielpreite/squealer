@@ -415,7 +415,7 @@ exports.user_feed = async function(q, campi, credentials) {
 		await mongo.db(dbname)
 			.collection("utente")
 			.find({username: campi.username})
-			.project({ canali_seguiti: 1})
+			.project({ canali_seguiti: 1, utenti_seguiti: 1})
 			.forEach( (r) => { 
 				canali_seguiti.push(r["canali_seguiti"])
 				utenti_seguiti.push(r["utenti_seguiti"])
