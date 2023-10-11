@@ -165,9 +165,7 @@
   margin-left: 25%;
 }
 
-body {
-  background:#eee;
-}
+
 
 .contenitore-squeal {
   padding: 10px;
@@ -297,5 +295,5 @@ body {
   margin-left: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  color: white;   
+  color: white;
 }
