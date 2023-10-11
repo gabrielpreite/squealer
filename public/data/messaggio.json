@@ -8,6 +8,7 @@
       "$free",
       "$cosebrutte"
     ],
+    "tipo_destinatari": "canali",
     "utente": "fv",
     "timestamp": 1695045299373,
     "visualizzazioni": 254,
@@ -36,6 +37,7 @@
       "$free",
       "$cosebrutte"
     ],
+    "tipo_destinatari": "canali",
     "utente": "fv",
     "timestamp": 1695045313860,
     "visualizzazioni": 23,
@@ -63,6 +65,7 @@
     "destinatari": [
       "fvPro"
     ],
+    "tipo_destinatari": "utenti",
     "utente": "fv",
     "timestamp": 1695045479723,
     "visualizzazioni": 0,
@@ -90,6 +93,7 @@
     "destinatari": [
       "$free"
     ],
+    "tipo_destinatari": "canali",
     "utente": "fv",
     "timestamp": 1695047782886,
     "visualizzazioni": 23,
@@ -119,6 +123,7 @@
     "corpo": "redirect pls",
     "destinatari": [],
     "utente": "fv",
+    "tipo_destinatari": null,
     "timestamp": 1695048258348,
     "visualizzazioni": 0,
     "reazioni": {
@@ -145,6 +150,7 @@
     "destinatari": [
       "$free"
     ],
+    "tipo_destinatari": "canali",
     "utente": "fv",
     "timestamp": 1695048670784,
     "visualizzazioni": 0,
@@ -172,6 +178,7 @@
     "destinatari": [
       "fv"
     ],
+    "tipo_destinatari": "utenti",
     "utente": "fvPro",
     "timestamp": 1695048833329,
     "visualizzazioni": 46356,
@@ -199,6 +206,7 @@
     "destinatari": [
       "$TEST"
     ],
+    "tipo_destinatari": "canali",
     "utente": "fvPro",
     "timestamp": 1695049701675,
     "visualizzazioni": 0,
@@ -227,6 +235,7 @@
       "$free",
       "$TEST"
     ],
+    "tipo_destinatari": "canali",
     "utente": "fv",
     "timestamp": 1695136062318,
     "visualizzazioni": 0,
@@ -254,6 +263,7 @@
     "destinatari": [
       "NomeBuffo1"
     ],
+    "tipo_destinatari": "utenti",
     "utente": "fv",
     "timestamp": 1695648282666,
     "visualizzazioni": 0,
