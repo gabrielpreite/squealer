@@ -448,11 +448,11 @@ exports.user_feed = async function(q, campi, credentials) {
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.find({
-				$and: [
-				  { utente: { $in: utenti_seguiti } },
-				  { tipo_destinatari: null},
-				  { risponde_a: null}
-				]
+				$or: [
+				  { utente: { $in: utenti_seguiti } },  
+				],
+				tipo_destinatari: null,
+				risponde_a: null
 			})
 			.forEach( (r) => { 
 				result.push(r) 
