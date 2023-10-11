@@ -203,56 +203,53 @@
       }
       
       //reazioni
-      var premuto;
       var id_sketch = 'squeal_sketch' + i;
-      var nreazioni0 = document.getElementById(id_sketch);
       document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
-      console.log(get_cookie_by_name("username"));
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-        premuto = nreazioni0.parentnode;
-        console.log(premuto);
-        premuto.style.color= "red";
-        premuto.checked = true;
-      }
       var id_poo = 'squeal_poo' + i;
-      var nreazioni1 = document.getElementById(id_poo);
       document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-        premuto = nreazioni1.parentnode;
-        premuto.style.color= "red";
-        premuto.checked = true;
-      }
       var id_heart = 'squeal_heart' + i;
-      var nreazioni2 = document.getElementById(id_heart);
       document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-        premuto = nreazioni2.parentnode;
-        premuto.style.color= "red";
-        premuto.checked = true;
-      }
       var id_disheart = 'squeal_disheart' + i;
-      var nreazioni3 = document.getElementById(id_disheart);
       document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-        premuto = nreazioni3.parentnode;
-        premuto.style.color= "red";
-        premuto.checked = true;
-      }
       var id_like = 'squeal_like' + i;
-      var nreazioni4 = document.getElementById(id_like);
-      document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-        premuto = nreazioni4.parentnode;
-        premuto.style.color= "red";
-        premuto.checked = true;
-      }
+      document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;  
       var id_dislike = 'squeal_dislike' + i;
-      var nreazioni5 = document.getElementById(id_dislike);
       document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-        premuto = nreazioni5.parentnode;
-        premuto.style.color= "red";
-        premuto.checked = true;
+      
+      console.log("fv");
+      console.log(get_cookie_by_name("username"));
+      if (squeals[i].reazioni.positive.adoro.includes("fv")) {
+        var nreazioni0 = document.getElementById(id_sketch);
+        console.log(nreazioni0.parentNode);
+        var premuto0 = nreazioni0.parentNode;
+        console.log(premuto0);
+        premuto0.style.color= "red";
+        premuto0.checked = true;
+      } else if (squeals[i].reazioni.positive.adoro.includes("fv")) {
+        var nreazioni1 = document.getElementById(id_poo);
+        var premuto1 = nreazioni1.parentnode;
+        premuto1.style.color= "red";
+        premuto1.checked = true;
+      } else if (squeals[i].reazioni.positive.adoro.includes("fv")) {
+        var nreazioni2 = document.getElementById(id_heart);
+        var premuto2 = nreazioni2.parentnode;
+        premuto2.style.color= "red";
+        premuto2.checked = true;
+      } else if (squeals[i].reazioni.positive.adoro.includes("fv")) {
+        var nreazioni3 = document.getElementById(id_disheart);
+        var premuto3 = nreazioni3.parentnode;
+        premuto3.style.color= "red";
+        premuto3.checked = true;
+      } else if (squeals[i].reazioni.positive.adoro.includes("fv")) {
+        var nreazioni4 = document.getElementById(id_like);
+        var premuto4 = nreazioni4.parentnode;
+        premuto4.style.color= "red";
+        premuto4.checked = true;
+      } else if (squeals[i].reazioni.positive.adoro.includes("fv")) {
+        var nreazioni5 = document.getElementById(id_dislike);
+        var premuto5 = nreazioni5.parentnode;
+        premuto5.style.color= "red";
+        premuto5.checked = true;
       }
       
       //etichette
