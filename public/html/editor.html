@@ -368,11 +368,21 @@
       }
     }
 
+    //1 mando un messaggio img testo controllo, superamento quota
+    //destinatari canali e utenti almeno un elemento
     function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
-      if ($("#destinatari-selezionati").children().length === 0)
+      if ($("#destinatari-selezionati").children().length === 0) {
+        console.log("no dest");
         return false;
+      }
+      if(!$("#contenuto_testo").attr("hidden")){//caso testo
+        formData.append("contenuto", "testo")
+      }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
+        formData.append("contenuto", "img")
+      }
       // Altri controlli se necessari, come il testo, immagini o posizione
+      console.log(true);
       return true;
     }
 
