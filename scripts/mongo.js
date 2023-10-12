@@ -478,6 +478,7 @@ exports.user_feed = async function(q, campi, credentials) {
 				.forEach( (name) => { 
 					n.push(name) 
 				} );
+			console.log(n)
 			squeal.nome = n.nome
 			console.log(squeal.nome)
 		})
