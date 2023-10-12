@@ -232,6 +232,7 @@ app.get('/permessi_canale', async function(req, res) {
 		let result = await mymongo.search_canale(req.query, mongoCredentials)
 		result = result["result"][0]
 		if(result["abilitato"] == true && (result["scrittura"].includes(session.userid) || result["scrittura"].includes("*"))){
+			res.status(200)
 			res.send("true")
 		}else{
 			res.status(403)
@@ -306,9 +307,22 @@ app.get('/user_feed', async function(req, res) {
 	}
 });
 
-//risultati della ricerca tramite searchbar
-app.get('/search', async function(req, res) {
-	res.send({"msg": "todo - searchbar"})
+//risultati della ricerca
+app.post('/search', async function(req, res) {
+	//req.body.tipo = utente|canale|keyword
+	//req.body.query
+	//req.body.ordina = data|visual|popolari
+	let result
+	let campi = {}
+	try{
+		campi = session.userid
+		result = await mymongo.search(req.body, campi, mongoCredentials)
+		res.status(200)
+		res.send(result)
+	} catch(e){ // todo due errori: server error, ricerca senza risultati
+		res.status(404)
+		res.send("errore nella ricerca")
+	}
 });
 
 app.get('/update_reazioni', async function(req, res) {
