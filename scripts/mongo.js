@@ -487,20 +487,16 @@ exports.user_feed = async function(q, campi, credentials) {
 		console.log("post in bacheca di utenti seguiti")
 		result.forEach((element) => console.log(element))
 
-		/*result.forEach((squeal) => {
+		let name = {}
+		result.forEach((squeal) => {
+			name.username = squeal.utente
 			console.log("AAAAAAAAAA")
+			console.log(name.username)
 			console.log(squeal.utente)
-			mongo.db(dbname)
-				.collection("utente")
-				.find({username: squeal.utente})
-				.project({ nome: 1})
-				.forEach( (name) => { 
-					console.log(name)
-					console.log(name.nome)
-					squeal.nome = name.nome
-				} );
-			console.log(squeal.nome)
-		})*/
+			console.log(user_info(name, credentials).nome)
+			let nome = user_info(name, credentials).nome
+			squeal.nome = nome
+		})
 
 		console.log("ottenuto feed")
 		await mongo.close();
