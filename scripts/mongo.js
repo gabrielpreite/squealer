@@ -475,6 +475,8 @@ exports.user_feed = async function(q, campi, credentials) {
 				.find({username: squeal.utente})
 				.project({ nome: 1})
 				.forEach( (name) => { 
+					console.log(name)
+					console.log(name.nome)
 					squeal.nome = name.nome
 				} );
 			console.log(squeal.nome)
