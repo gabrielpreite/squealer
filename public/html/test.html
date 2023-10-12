@@ -199,7 +199,7 @@
       var lista_destinatari = document.getElementById('squeal_destinatari' + i);
       var n_destinatari = squeals[i].destinatari.length;
       for (var j = 0; j < n_destinatari; j++) {
-        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#">' + squeals[i].destinatari[j] + '</a>');
+        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#" onclick="nomeprovvisorio()">' + squeals[i].destinatari[j] + '</a>');
       }
       
       //reazioni
