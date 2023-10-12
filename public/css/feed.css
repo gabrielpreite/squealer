@@ -138,6 +138,22 @@
 
 
 /*FEED*/
+
+.searchbar {
+  background-color: white;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barra {
+  padding-top: 20px;
+  width: 80%;
+}
+
+
 #nuovo-squeal {
   position: fixed;
   bottom: 20px;
@@ -160,39 +176,44 @@
 }
 
 #feed {
-  margin-top: 60px;
+  margin-top: 56px;
   width: 50%;
   margin-left: 25%;
+  background-color: #f9f9f9;
 }
 
 .contenitore-squeal {
   padding: 10px 0 10px 0;
+  width: 100%;
 }
 
 .squeal {
-  width: auto;
+  width: 100%;
   height: auto;
   padding: 10px;
   margin: auto;
-  margin-bottom: 30px;
-
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
-  background-color: rgb(255, 255, 255);
+  margin-bottom: 20px;
+  background-color: white;
   padding: 0.8rem;
-  width: 100%;
+  border: none;
+  border-radius: 0;
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border: none;
+  background-color: white;
+
 }
+
 
 .card-footer {
   display: auto;
   flex-direction: row;
-  border: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  background-color: white;
+  padding: 8px 4px 4px 4px;
 }
 
 .reazioni {
@@ -211,15 +232,10 @@
   flex-direction: column;
 }
 
-.info-post {
-  padding: 3px;
-}
-
 .label-squeal {
   color: black;
-  padding: 4px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  margin-top: 5px;
 }
 
 .visual {
