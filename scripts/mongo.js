@@ -300,7 +300,7 @@ exports.user_info = async function(q, credentials) {
 				} );
 
 		await mongo.close();
-		return result
+		return result[0]
 	} catch (e) {
 		return e
 	}
@@ -445,7 +445,7 @@ exports.user_feed = async function(q, campi, credentials) {
 			.forEach( (r) => { 
 				let app = {}
 				app.username = r.utente
-				let nome = user_info(v, credentials)
+				let nome = user_info(app, credentials).nome
 				r.nome = nome
 				result.push(r) 
 			});
