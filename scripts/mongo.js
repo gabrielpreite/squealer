@@ -466,7 +466,7 @@ exports.user_feed = async function(q, campi, credentials) {
 				}
 			  ])
 			.forEach( (r) => { 
-				//result.push(r) 
+				result.push(r) 
 			});
 
 		console.log("post in canali seguiti:")

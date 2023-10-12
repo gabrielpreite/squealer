@@ -299,7 +299,7 @@ app.get('/user_feed', async function(req, res) {
 		let campi = {}
 		campi["username"] = session.userid;
 		result = await mymongo.user_feed(req.query, campi, mongoCredentials);
-		let name = {}
+		/*let name = {}
 		result.forEach((squeal) => {
 			name.username = squeal.utente
 			console.log("AAAAAAAAAA")
@@ -308,7 +308,7 @@ app.get('/user_feed', async function(req, res) {
 			let nome = mymongo.user_info(name, credentials).nome
 			console.log(nome)
 			squeal.nome = nome
-		})
+		})*/
 		res.status(200)
 		res.send(result)
 	} catch (e) {
