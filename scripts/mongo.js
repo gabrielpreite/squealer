@@ -447,11 +447,14 @@ exports.user_feed = async function(q, campi, credentials) {
 				},
 				{
 				  $lookup: {
-					from: "utente", // Name of the "utente" collection
-					localField: "utente", // Field in the "messaggio" collection
-					foreignField: "username", // Field in the "utente" collection to match with
-					as: "utenteData" // Alias for the joined data
+					from: "utente", // nome seconda tabella
+					localField: "utente", // nome chiave in prima tabella (corrente)
+					foreignField: "username", // nome chiave in seconda tabella
+					as: "utenteData" // rename del record ottenuto (da seconda tabella)
 				  }
+				},
+				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
 				},
 				{
 					"$replaceRoot": {
@@ -463,6 +466,11 @@ exports.user_feed = async function(q, campi, credentials) {
 						  }
 						]
 					  }
+					}
+				},
+				{
+					$project: {
+						utenteData: 0
 					}
 				}
 			  ])
