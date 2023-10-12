@@ -415,7 +415,7 @@ exports.user_feed = async function(q, campi, credentials) {
 		await mongo.db(dbname)
 			.collection("utente")
 			.find({username: campi.username})
-			.project({ canali_seguiti: 1})
+			.project({ canali_seguiti: 1, utenti_seguiti: 1})
 			.forEach( (r) => { 
 				canali_seguiti.push(r["canali_seguiti"])
 				utenti_seguiti.push(r["utenti_seguiti"])
@@ -423,12 +423,14 @@ exports.user_feed = async function(q, campi, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
 		console.log("ottenuti canali seguiti da "+campi.username)
+		canali_seguiti.forEach((element) => console.log(element))
+		console.log("ottenuti utenti seguiti da "+campi.username)
+		utenti_seguiti.forEach((element) => console.log(element))
 
 		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
 		//console.log("aggiunto utente")
 
 		//debug
-		canali_seguiti.forEach((element) => console.log(element))
 
 		let result = []
 
@@ -443,22 +445,25 @@ exports.user_feed = async function(q, campi, credentials) {
 				result.push(r) 
 			});
 
+		console.log("post in canali seguiti:")
+		result.forEach((element) => console.log(element))
 		console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.find({
-				$and: [
-				  { utente: { $in: utenti_seguiti } },
-				  { tipo_destinatari: null},
-				  { risponde_a: null}
-				]
+				$or: [
+				  { utente: { $in: utenti_seguiti } },  
+				],
+				tipo_destinatari: null,
+				risponde_a: null
 			})
 			.forEach( (r) => { 
 				result.push(r) 
 			});
 
 		//debug
+		console.log("post in bacheca di utenti seguiti")
 		result.forEach((element) => console.log(element))
 
 		console.log("ottenuto feed")
