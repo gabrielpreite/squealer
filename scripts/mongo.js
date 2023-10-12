@@ -458,10 +458,8 @@ exports.user_feed = async function(q, campi, credentials) {
 				},
 				{
 				  $project: {
-					$mergeObjects: [
-						"$$ROOT", // All fields from "messaggio" collection
-						{ nome: "$utenteData.nome" } // Include only the "nome" field from the joined "utente" data
-					]
+					tipo_destinatari : 1,
+					{nome: "$utenteData.nome"}
 				  }
 				}
 			  ])
