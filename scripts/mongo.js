@@ -454,6 +454,9 @@ exports.user_feed = async function(q, campi, credentials) {
 				  }
 				},
 				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
 				  $project: {
 					$mergeObjects: [
 						"$$ROOT", // All fields from "messaggio" collection
