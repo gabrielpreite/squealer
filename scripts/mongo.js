@@ -467,7 +467,6 @@ exports.user_feed = async function(q, campi, credentials) {
 		console.log("post in bacheca di utenti seguiti")
 		result.forEach((element) => console.log(element))
 
-		let n = []
 		result.forEach((squeal) => {
 			console.log("AAAAAAAAAA")
 			console.log(squeal.utente)
@@ -476,10 +475,8 @@ exports.user_feed = async function(q, campi, credentials) {
 				.find({username: squeal.utente})
 				.project({ nome: 1})
 				.forEach( (name) => { 
-					n.push(name) 
+					squeal.nome = name.nome
 				} );
-			console.log(n)
-			squeal.nome = n.nome
 			console.log(squeal.nome)
 		})
 
