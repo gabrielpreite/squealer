@@ -457,10 +457,16 @@ exports.user_feed = async function(q, campi, credentials) {
 					$unwind: "$utenteData" // Unwind the joined data (if necessary)
 				},
 				{
-				  $project: {
-					tipo_destinatari : 1,
-					nome: "$utenteData.nome"
-				  }
+					"$replaceRoot": {
+					  "newRoot": {
+						"$mergeObjects": [
+						  "$$ROOT",
+						  {
+							nome:"$utenteData.nome"
+						  }
+						]
+					  }
+					}
 				}
 			  ])
 			.forEach( (r) => { 
