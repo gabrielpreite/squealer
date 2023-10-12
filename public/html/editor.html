@@ -388,23 +388,24 @@
     }
 
     //1 mando un messaggio img testo controllo, superamento quota
-    //destinatari canali e utenti almeno un elemento
     function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
       if ($("#destinatari-selezionati").children().length === 0) {
-        return false, "no dest";
+        alert("Nessun destinatario selezionato");
+        return false;
       }
       if(!$("#contenuto_testo").attr("hidden")) {//caso testo
-        if (true) {
-          return false, "no testo";
+        if (document.getElementById("Textarea").value == '') {
+          alert("Nessun testo inserito");
+          return false;
         }
       } else if (!$("#contenuto_immagine").attr("hidden")) {//caso img
-        if (true) {
-          return false, "no img";
+        if (document.getElementById("img").files.length == 0) {
+          alert("Nessuna immagine inserita");
+          return false;
         }
       }
       // Altri controlli se necessari, come il testo, immagini o posizione
-      console.log(true);
       return true;
     }
 
