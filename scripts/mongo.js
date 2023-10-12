@@ -459,7 +459,7 @@ exports.user_feed = async function(q, campi, credentials) {
 				{
 				  $project: {
 					tipo_destinatari : 1,
-					{nome: "$utenteData.nome"}
+					nome: "$utenteData.nome"
 				  }
 				}
 			  ])
