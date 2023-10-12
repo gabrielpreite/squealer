@@ -473,7 +473,7 @@ exports.user_feed = async function(q, campi, credentials) {
 			console.log(squeal.utente)
 			mongo.db(dbname)
 				.collection("utente")
-				.find({username: squeal.username})
+				.find({username: squeal.utente})
 				.project({ nome: 1})
 				.forEach( (name) => { 
 					n.push(name) 
