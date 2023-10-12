@@ -483,48 +483,49 @@ exports.user_feed = async function(q, campi, credentials) {
 		console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname)
-		.aggregate([
-			{
-			  $match: {
-				$or: [
-					{ utente: { $in: utenti_seguiti } },  
-				  ],
-				  tipo_destinatari: null,
-				  risponde_a: null
-			  }
-			},
-			{
-			  $lookup: {
-				from: "utente", // nome seconda tabella
-				localField: "utente", // nome chiave in prima tabella (corrente)
-				foreignField: "username", // nome chiave in seconda tabella
-				as: "utenteData" // rename del record ottenuto (da seconda tabella)
-			  }
-			},
-			{
-				$unwind: "$utenteData" // Unwind the joined data (if necessary)
-			},
-			{
-				"$replaceRoot": { //ricrea la "root" della struttura ottenuta
-				  "newRoot": {
-					"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-					  "$$ROOT", //campi originali in messaggio
-					  {
-						nome:"$utenteData.nome"
-					  }
-					]
-				  }
+			.collection("messaggio")
+			.aggregate([
+				{
+				$match: {
+					$or: [
+						{ utente: { $in: utenti_seguiti } },  
+					],
+					tipo_destinatari: null,
+					risponde_a: null
 				}
-			},
-			{
-				$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
-					utenteData: 0
+				},
+				{
+				$lookup: {
+					from: "utente", // nome seconda tabella
+					localField: "utente", // nome chiave in prima tabella (corrente)
+					foreignField: "username", // nome chiave in seconda tabella
+					as: "utenteData" // rename del record ottenuto (da seconda tabella)
 				}
-			}
-		  ])
-		.forEach( (r) => { 
-			result.push(r) 
-		});
+				},
+				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
+					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+					"newRoot": {
+						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+						"$$ROOT", //campi originali in messaggio
+						{
+							nome:"$utenteData.nome"
+						}
+						]
+					}
+					}
+				},
+				{
+					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						utenteData: 0
+					}
+				}
+			])
+			.forEach( (r) => { 
+				result.push(r) 
+			});
 
 		// debug
 		console.log("post in bacheca di utenti seguiti")
