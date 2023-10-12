@@ -487,7 +487,7 @@ exports.user_feed = async function(q, campi, credentials) {
 		console.log("post in bacheca di utenti seguiti")
 		result.forEach((element) => console.log(element))
 
-		let name = {}
+		/*let name = {}
 		result.forEach((squeal) => {
 			name.username = squeal.utente
 			console.log("AAAAAAAAAA")
@@ -496,7 +496,7 @@ exports.user_feed = async function(q, campi, credentials) {
 			console.log(user_info(name, credentials).nome)
 			let nome = user_info(name, credentials).nome
 			squeal.nome = nome
-		})
+		})*/
 
 		console.log("ottenuto feed")
 		await mongo.close();
