@@ -1,25 +1,286 @@
 [
-    {
-        "utente" : "fv",
-        "corpo" : "ciao",
-        "destinatari" : ["&free"],
-        "destinatari-mod" : [],
-        "timestamp" : "1682004995",
-        "visualizzazioni" : 10,
-        "reazioni" : {
-            "positive": {
-                "concordo": 1,
-                "mi piace": 2,
-                "adoro": 3
-            },
-            "negative": {
-                "sono contrario": 1,
-                "mi disgusta": 0,
-                "odio": 0
-            }
-        },
-        "pubblico": true,
-        "categoria" : "popolare",
-        "automatico" : false
-    }
+  {
+    "_id": "650856b36b14130a17969e2b",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "heyla",
+    "destinatari": [
+      "$free",
+      "$cosebrutte"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1695045299373,
+    "visualizzazioni": 254,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": "popolare",
+    "automatico": false
+  },
+  {
+    "_id": "650856c16b14130a17969e2c",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "heyla x2",
+    "destinatari": [
+      "$free",
+      "$cosebrutte"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1695045313860,
+    "visualizzazioni": 23,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": null,
+    "automatico": true
+  },
+  {
+    "_id": "650857676b14130a17969e2d",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "wela",
+    "destinatari": [
+      "fvPro"
+    ],
+    "tipo_destinatari": "utenti",
+    "utente": "fv",
+    "timestamp": 1695045479723,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": null,
+    "automatico": false
+  },
+  {
+    "_id": "65086066ac5a4847feee07c9",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "ennesimo test",
+    "destinatari": [
+      "$free"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1695047782886,
+    "visualizzazioni": 23,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": [
+          "fvPro",
+          "NomeBuffo1"
+        ]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": "popolare",
+    "automatico": false
+  },
+  {
+    "_id": "650862423abffcab4aa56616",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "redirect pls",
+    "destinatari": [],
+    "utente": "fv",
+    "tipo_destinatari": null,
+    "timestamp": 1695048258348,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": "impopolare",
+    "automatico": false
+  },
+  {
+    "_id": "650863de05c4f57dcb13a175",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "per l'amor di dio funziona",
+    "destinatari": [
+      "$free"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1695048670784,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": "controverso",
+    "automatico": false
+  },
+  {
+    "_id": "6508648189067d70fbced244",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "PER FAVORE",
+    "destinatari": [
+      "fv"
+    ],
+    "tipo_destinatari": "utenti",
+    "utente": "fvPro",
+    "timestamp": 1695048833329,
+    "visualizzazioni": 46356,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": null,
+    "automatico": false
+  },
+  {
+    "_id": "650867e55e7f0cdbbd1b868f",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "BUONGIORNISSIMO CAFFEEEE",
+    "destinatari": [
+      "$TEST"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fvPro",
+    "timestamp": 1695049701675,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": null,
+    "automatico": false
+  },
+  {
+    "_id": "6509b93e6c142e72457971d7",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "test \n%&£\"!=()!\"=$^?!/*-//DROP TABLE USER",
+    "destinatari": [
+      "$free",
+      "$TEST"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1695136062318,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": null,
+    "automatico": false
+  },
+  {
+    "_id": "65118a1a2ee91b3a8f30173b",
+    "risponde_a": null,
+    "contenuto": "testo",
+    "corpo": "ciao nomebuffo1",
+    "destinatari": [
+      "NomeBuffo1"
+    ],
+    "tipo_destinatari": "utenti",
+    "utente": "fv",
+    "timestamp": 1695648282666,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    
+    "categoria": null,
+    "automatico": false
+  }
 ]

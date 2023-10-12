@@ -1,0 +1,368 @@
+#col-sx {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: 100%;
+  width: 25%;
+  padding: 16px 20px 20px 20px;
+  overflow: auto;
+  background-color: #f2f2f2;
+  background-size: 40%;
+  background-position: center center;
+}
+
+.col-sx-utenti {
+  background-image: url('/img/Utenti.png');
+}
+
+.col-sx-canali {
+  background-image: url('/img/Canali.png');
+}
+
+.col-sx-bacheca {
+  background-image: url('/img/Bacheca.png');
+}
+
+
+[hidden="true"] {
+  display: none;
+}
+
+#selezione-destinatari {
+  display: block; /* Imposta il div come visibile di default */
+}
+
+#vuoto {
+  display: block; /* Imposta il div come visibile di default */
+}
+
+#mostra-squeal {
+  display: none; /* Imposta il div come nascosto di default */
+}
+
+#mostra-commenti {
+  display: none; /* Imposta il div come nascosto di default */
+}
+
+
+#tipo-messaggio {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  background-color: rgba(242, 242, 242, 0.7);
+  box-shadow: 0 0 20px 20px rgba(242, 242, 242, 0.7);
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #1da1f2;
+  margin: 0 10px;
+}
+
+.title-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1da1f2;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+#tipo-icona-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  flex-wrap: wrap; /* Per andare a capo se lo spazio è insufficiente */
+}
+
+#tipo-icona-container .tipo-icona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 10px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #777; /* Colore di default */
+}
+
+#tipo-icona-container .tipo-icona.attiva {
+  color: #1da1f2;
+}
+
+
+.tipo-icona i {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.tipo-icona p {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+
+
+
+/* Stile generale del campo di ricerca */
+.search-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* Stile del campo di ricerca */
+.search-container input[type="text"] {
+    padding: 10px;
+    border-radius: 20px 0 0 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+
+}
+
+/* Stile del pulsante di ricerca */
+.search-button {
+    background-color: #1da1f2;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0c87c1;
+    color: white;
+}
+
+/* Stile dell'icona di ricerca */
+.search-button i {
+    font-size: 18px;
+}
+
+/* Ridimensionamento del pulsante per adattarsi all'altezza del campo di ricerca */
+.search-button {
+    height: 100%;
+}
+
+#destinatari-inseriti-container {
+  min-height: 40px; /* Altezza minima di una riga */
+  max-height: 280px;
+  border: 1px solid #ddd; /* Linea di separazione grigia */
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow-y: auto; /* Barra di scorrimento verticale se necessario */
+}
+
+.inserito-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+}
+
+.inserito-item i,
+.inserito-item p {
+  margin: 0;
+}
+
+.inserito-item i {
+  margin-left: 10px;
+}
+
+.inserito-item p {
+  margin-left: 10px;
+}
+
+.inserito-item .rimuovi {
+  color: red;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.inserito-item .rimuovi:hover {
+  transform: scale(1.1);
+}
+
+#col-cx {
+  margin:85px 25% 0 25%;
+}
+
+    #campo_scelta {
+      display: flex;
+      margin-bottom: 10px;
+      justify-content: flex-end;
+      padding-right: 30px;
+    }
+
+    #campo_scelta .icona-scelta {
+      font-size: 24px;
+      color: #999;
+      cursor: pointer;
+      padding-right: 20px;
+    }
+
+    #campo_scelta .icona-scelta.attiva {
+      color: #1da1f2;
+    }
+
+    #contenuto_testo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    textarea.form-input {
+      width: 90%;
+      height: 150px;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      }
+
+    textarea.form-input:focus {
+      outline-color: #ccc;
+      border-color: #ccc;
+    }
+
+    #contenuto_immagine {
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 0px 20px;
+      background-color: #f9f9f9;
+    }
+
+    #contenuto_immagine label {
+      font-weight: bold;
+      font-size: 14px;
+      color: #555555;
+      margin-bottom: 5px;
+      text-transform: uppercase;    }
+
+    #contenuto_immagine input[type="file"] {
+      display: block;
+      padding: 5px;
+      border: none;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      color: #333;
+      font-size: 14px;
+    }
+
+    #contenuto_immagine input[type="file"]:focus {
+      outline: none;
+      border-color: #1DA1F2;
+      box-shadow: 0 0 3px rgba(29, 161, 242, 0.5);
+    }
+
+    #preview {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+
+    #preview .preview-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-top: 1px solid #ccc;
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-top: 20px;
+    }
+
+    #contenuto_posizione {
+      margin: 0px 30px;
+      border: 3px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Stile personalizzato per il pulsante */
+    .custom-map-control-button {
+      background-color: #fff;
+      color: #333; /* Colore del testo */
+      border: 2px solid #ccc; /* Colore del bordo */
+      border-radius: 5px;
+      padding: 8px 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .custom-map-control-button:hover {
+      background-color: #f0f0f0; /* Colore dello sfondo al passaggio del mouse */
+    }
+
+
+    .btn-confirm {
+      background-color: #1da1f2;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 10px 35px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-confirm:hover {
+      background-color: #0c87c1 !important;
+      color: white !important;
+    }
+
+    .button-disabled {
+      pointer-events: none;
+      background-color: #c62828
+    }
+
+#col-dx {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  height: 100%;
+  background-color: #f2f2f2;
+  width: 25%;
+  padding: 20px;
+  overflow: auto;
+  background-color: #f2f2f2;
+  background-size: 40%;
+  background-position: center center;
+}

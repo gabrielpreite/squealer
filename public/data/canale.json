@@ -1,6 +1,7 @@
 [
     {
-        "nome" : "&TEST",
+        "img" : "",
+        "nome" : "$TEST",
         "descrizione" : "Boh un bel canale",
         "ufficiale" : true,
         "proprieta" : "redazione",
@@ -10,7 +11,19 @@
         "abilitato" : true
     },
     {
-        "nome" : "&free",
+        "img" : "",
+        "nome" : "$free",
+        "descrizione" : "boh un brutto canale",
+        "ufficiale" : false,
+        "proprieta" : "fvPro",
+        "mod" : [],
+        "lettura" : ["*"],
+        "scrittura" : ["*"],
+        "abilitato" : true
+    },
+    {
+        "img" : "",
+        "nome" : "$cosebrutte",
         "descrizione" : "boh un brutto canale",
         "ufficiale" : false,
         "proprieta" : "fvPro",

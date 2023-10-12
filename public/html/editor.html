@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Post Editor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!----BOOSTRAP-->
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
+  <link rel="stylesheet" href="../css/editor.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+
+  <!--JavaScript Scripts-->
+  <script type="text/javascript" src="/js/global.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <div class="navbar fixed-top">
+      <div id="profile">
+        <img src="https://via.placeholder.com/60x60" alt="Profile picture">
+        <div class="dropdown" id="username">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <strong>
+            <script>
+              document.write(get_cookie_by_name("username"))
+            </script>
+          </strong>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <h6 class="dropdown-header">Gestisci altri account</h6>
+            <button class="dropdown-item" type="button">Felon Muskrat</button>
+            <button class="dropdown-item" type="button">Tizio Caio</button>
+            <button class="dropdown-item" type="button">Sempronio Boh</button>
+          </div>
+        </div>
+      </div>
+      <div id="quota">
+        <div class="char-count-item">
+          <span class="count" id="charCount_mese">
+
+          </span>
+          <span class="label">Mese</span>
+        </div>
+        <div class="char-count-item">
+          <span class="count" id="charCount_sett">
+
+          </span>
+          <span class="label">Settimana</span>
+        </div>
+        <div class="char-count-item">
+          <span class="count" id="charCount_giorno">
+
+          </span>
+          <span class="label">Giorno</span>
+        </div>
+    <button class="btn btn-unstyled" id="shopButton">
+  <i class="fas fa-shopping-cart"></i>
+</button>
+  </div>
+  <div class="lateral-buttons">
+
+  <div id="home">
+    <button class="btn btn-unstyled" id="homeButton" onclick="redirectToHome()">
+      <i class="fas fa-home"></i>
+    </button>
+  </div>
+  </div>
+
+  <script type="text/javascript">
+    // Assegna i valori alle variabili
+    let quota_giorno = get_cookie_by_name("quota_giorno");
+    let quota_settimana = get_cookie_by_name("quota_settimana");
+    let quota_mese = get_cookie_by_name("quota_mese");
+
+    // Aggiorna il contenuto delle span con i nuovi valori
+    document.getElementById("charCount_mese").textContent = quota_mese;
+    document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_giorno").textContent = quota_giorno;
+  </script>
+    </div>
+
+  </header>
+
+  <!--<form method="POST" action="/crea_post">-->
+        <!-- First Column -->
+        <div class="col-md-3" id="col-sx">
+          <div id="selezione-destinatari">
+          <div id="tipo-messaggio">
+            <div class="title-bar">
+              <div class="title-line"></div>
+              <label class="title-text">Scegli il destinatario</label>
+              <div class="title-line"></div>
+            </div>
+            <div id="tipo-icona-container">
+              <div class="tipo-icona" id="icona-canali" onclick="mostraCampo('canali')">
+                <i class="fas fa-users"></i>
+                <p>Canali</p>
+              </div>
+              <div class="tipo-icona" id="icona-utenti" onclick="mostraCampo('utenti')">
+                <i class="fas fa-user"></i>
+                <p>Utenti</p>
+              </div>
+              <div class="tipo-icona" id="icona-bacheca" onclick="mostraCampo('bacheca')">
+                <i class="fas fa-clipboard-list"></i>
+                <p>Bacheca</p>
+              </div>
+            </div>
+          </div>
+
+                <div id="campo-canali" hidden="true">
+                    <div class="search-container">
+                        <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca canali">
+                        <button class="search-button" onclick="check_destinatari_canali()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali">
+                    </ul>
+                </div>
+
+                <div id="campo-utenti" hidden="true">
+                    <div class="search-container">
+                        <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca utenti">
+                        <button class="search-button" onclick="check_destinatari_utenti()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti">
+                    </ul>
+                </div>
+
+              <div id="lista_destinatari" hidden="false">
+                <div id="destinatari-inseriti-container">
+                  <div id="destinatari-inseriti">
+                    <!-- Qui verranno visualizzati i destinatari inseriti -->
+                  </div>
+                </div>
+              </div>
+
+            <div id="campo-bacheca" hidden="true">
+              <!-- Da riempire se si vuole fare visualizzare qualcosa -->
+            </div>
+          </div>
+
+            <div id="mostra-squeal">
+
+            </div>
+            </div>
+        <form id="crea_post" enctype="multipart/form-data">
+        <!-- Second Column -->
+        <div class="col-md-6" id="col-cx">
+          <div id="campo_scelta">
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-font icona-scelta attiva" onclick="cambia_campo('Testo')"></i>
+              </label>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-image icona-scelta" onclick="cambia_campo('Immagine')"></i>
+              </label>
+              <label>
+                <input type="radio" hidden>
+                <i class="fas fa-map-marker-alt icona-scelta" onclick="cambia_campo('Posizione')"></i>
+              </label>
+            </div>
+
+          <div id="contenuto_testo">
+            <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
+          </div>
+          <div id="contenuto_immagine" hidden="true">
+            <label for="img">Seleziona un'immagine</label>
+            <!--<form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">-->
+              <input type="file" id="img" name="img" accept="image/*">
+              <!--<input type="submit" value="Carica Immagine">
+            </form>-->
+            <div id="preview"></div>
+          </div>
+          <div id="contenuto_posizione" hidden="true">
+              <div id="map" style="height: 60vh;">
+              </div>
+            </div>
+          <div class="text-end">
+          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+          </div>
+        </div>
+
+        <!-- Third Column -->
+        <div class="col-md-3" id="col-dx">
+          <div id="vuoto">
+
+           </div>
+           <div id="mostra-commenti">
+
+           </div>
+         </div>
+  <!--</form>-->
+  </form>
+
+  <!--JQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+  <script>
+  array_dest_canali=[]//array destinatari per uso interno
+  array_dest_utenti=[]//array destinatari per uso interno
+  let imageFileURL = null;
+
+  let arr = window.location.href.split('?');
+  if (arr.length > 1 && arr[1] !== '') {
+    // Nascondi il div "selezione-destinatari"
+    document.getElementById("selezione-destinatari").style.display = "none";
+    document.getElementById("vuoto").style.display = "none";
+    // Mostra il div "mostra-squeal"
+    document.getElementById("mostra-commenti").style.display = "block";
+  }
+
+  document.getElementById("crea_post").addEventListener('submit', async event => {
+    event.preventDefault();
+    add_post();
+  });
+
+  function mostraCampo(tipo) {
+    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
+
+    // Rimuovi tutte le classi esistenti da col-sx
+    var colSx = document.getElementById("col-sx");
+    var colDx = document.getElementById("col-dx");
+    colSx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
+    colDx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
+
+    // Nascondi tutti i campi inizialmente
+    document.getElementById("campo-canali").hidden = true;
+    document.getElementById("campo-utenti").hidden = true;
+    document.getElementById("lista_destinatari").hidden = false;
+    document.getElementById("campo-bacheca").hidden = true;
+
+    // Rimuovi la classe 'attiva' da tutte le icone
+    var icone = document.querySelectorAll(".tipo-icona");
+    icone.forEach(function (icona) {
+      icona.classList.remove("attiva");
+    });
+
+    // Mostra il campo corrispondente al tipo selezionato
+    if (tipo === "canali") {
+      document.getElementById("campo-canali").hidden = false;
+      document.getElementById("lista_destinatari").hidden = true;
+      destinatariInseritiDiv.innerHTML = "";
+      array_dest_utenti = [];
+      document.getElementById("icona-canali").classList.add("attiva");
+      colSx.classList.add("col-sx-canali");
+      colDx.classList.add("col-sx-canali");
+
+    } else if (tipo === "utenti") {
+      document.getElementById("campo-utenti").hidden = false;
+      document.getElementById("lista_destinatari").hidden = true;
+      destinatariInseritiDiv.innerHTML = "";
+      array_dest_canali = [];
+      document.getElementById("icona-utenti").classList.add("attiva");
+      colSx.classList.add("col-sx-utenti");
+      colDx.classList.add("col-sx-utenti");
+
+    } else if (tipo === "bacheca") {
+      document.getElementById("lista_destinatari").hidden = true;
+      document.getElementById("campo-bacheca").hidden = false;
+      destinatariInseritiDiv.innerHTML = "";
+      array_dest_utenti = [];
+      array_dest_canali = [];
+      document.getElementById("icona-bacheca").classList.add("attiva");
+      colSx.classList.add("col-sx-bacheca");
+      colDx.classList.add("col-sx-bacheca");
+
+    }
+  }
+
+
+    function check_destinatari_canali() {
+      var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
+      if (!a.startsWith('$')) {
+        a = "$".concat(a)
+      }
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: `${window.location.origin}/permessi_canale?nome=${a}`,
+        headers: {
+        },
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          //rimuovo $ iniziale per visualizzazione in lista
+          a = a.substring(1)
+          //console.log('data: ', data);
+          if (!array_dest_canali.includes(a)) {
+             // Aggiungi il destinatario al riquadro dei destinatari inseriti
+             $("#destinatari-inseriti").append(`
+               <div class="inserito-item name-${a}">
+               <div class="left-content">
+                 <i class="fas fa-users"></i>
+                 <p>${a}</p>
+               </div>
+               <div class="right-content">
+                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                </div>
+               </div>
+             `);
+             document.getElementById("lista_destinatari").hidden = false;
+             array_dest_canali.push(a); // Aggiungi all'array
+             $("#cerca_destinatari_canali").val(""); // Resetta il campo
+           }
+        },
+        error: function (xhr, status, e){
+          alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
+        }
+      });
+    }
+
+    function check_destinatari_utenti() {
+      var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
+      if (a.startsWith('@')) {
+        a = a.substring(1)
+      } if (a == get_cookie_by_name("username")) {
+        alert("Non è possibile inserire il proprio username tra i destinatari");
+        return;
+      }
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: `${window.location.origin}/user_info?username=${a}`,
+        headers: {
+        },
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          //console.log('data: ', data);
+          if (!array_dest_utenti.includes(a)) {
+            // Aggiungi il destinatario al riquadro dei destinatari inseriti
+            $("#destinatari-inseriti").append(`
+              <div class="inserito-item name-${a}">
+              <div class="left-content">
+                <i class="fas fa-users"></i>
+                <p>${a}</p>
+              </div>
+              <div class="right-content">
+                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
+               </div>
+              </div>
+            `);
+            document.getElementById("lista_destinatari").hidden = false;
+            array_dest_utenti.push(a); // Aggiungi all'array
+            $("#cerca_destinatari_utenti").val(""); // Resetta il campo
+          }
+        },
+        error: function (xhr, status, e){
+          alert("L'utente selezionato non esiste")
+        }
+      });
+    }
+
+    function rimuovi_destinatario(nome, array_dest) {
+      $(`#destinatari-inseriti .name-${nome}`).remove();
+
+      // Rimuovi il destinatario dall'array
+      const index = array_dest.indexOf(nome);
+      if (index !== -1) {
+        array_dest.splice(index, 1);
+      }
+      var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
+      var listaDestinatariDiv = document.getElementById("lista_destinatari");
+
+      // Verifica se il div "destinatari-inseriti" è vuoto
+      if (destinatariInseritiDiv.innerHTML.trim() == "") {
+        // Imposta "hidden" su true per "lista_destinatari"
+        listaDestinatariDiv.hidden = true;
+      } else {
+        // Altrimenti, imposta "hidden" su false per "lista_destinatari"
+        listaDestinatariDiv.hidden = false;
+      }
+    }
+
+    function check_post() { //DA RIVEDERE
+      // Verifica se ci sono destinatari selezionati
+      let arr = window.location.href.split('?');
+      if (!(arr.length > 1 && arr[1] !== '') || (document.getElementById("campo-bacheca").hidden)) { //caso risposta o bacheca, no destinatari
+        if ($("#destinatari-inseriti").children().length == 0) {
+          alert("Nessun destinatario selezionato");
+          return false;
+        }
+      }
+      if(!$("#contenuto_testo").attr("hidden")) {//caso testo
+        if (document.getElementById("Textarea").value == '') {
+          alert("Nessun testo inserito");
+          return false;
+        }
+      } else if (!$("#contenuto_immagine").attr("hidden")) {//caso img
+        if (document.getElementById("img").files.length == 0) {
+          alert("Nessuna immagine inserita");
+          return false;
+        }
+      }
+      // Altri controlli se necessari, come il testo, immagini o posizione
+      return true;
+    }
+
+    function add_post(){
+
+      if(check_post() == true){ //  check post da rivedere in base ai 3 tipi di messaggio
+        const formData = new FormData(document.getElementById("crea_post"))
+
+        if(!$("#contenuto_testo").attr("hidden")){//caso testo
+          formData.append("contenuto", "testo")
+        }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
+          formData.append("contenuto", "img")
+        }
+
+        let arr = window.location.href.split('?');
+        if (arr.length > 1 && arr[1] !== '') { //caso risposta, nessun destinatario
+          formData.append("risponde_a", arr[1].split("?")[1]);
+          formData.append("destinatari", JSON.stringify([]))
+        } else { //caso post originali, destinatari dipendono dalla scelta utente
+          if(!$("#campo-canali").attr("hidden")){//caso canali
+            //aggiungo $ prima di ogni canale
+            array_dest_canali.forEach(function(nome, index, array) {
+              array[index] = "$" + nome;
+            });
+            formData.append("destinatari", JSON.stringify(array_dest_canali))
+            formData.append("tipo_destinatari", "canali")
+          }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
+            formData.append("destinatari", JSON.stringify(array_dest_utenti))
+            formData.append("tipo_destinatari", "utenti")
+          }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
+            formData.append("destinatari", JSON.stringify([]))
+          }
+        }
+
+
+        //controllo se lo squeal e' in risposta (ha un parametro get nell'url)
+
+        fetch("/crea_post", {
+          method: "POST",
+          body: formData,
+        })
+        .then((response) => {
+          if (response.ok) {
+            // The initial request was successful
+            window.location.replace("http://site212251.tw.cs.unibo.it");
+          } else {
+            throw new Error("Network response was not ok.");
+          }
+        })
+      }
+    }
+
+function cambia_campo(opzione) {
+      $("#contenuto_testo").attr("hidden", "true")
+      $("#contenuto_immagine").attr("hidden", "true")
+      $("#contenuto_posizione").attr("hidden", "true")
+      $(".icona-scelta").removeClass("attiva");
+
+      function resetQuota() {
+        charCount_g.textContent = initialQuota_g;
+        charCount_s.textContent = initialQuota_s;
+        charCount_m.textContent = initialQuota_m;
+
+        charCount_g.classList.remove('negative');
+        charCount_s.classList.remove('negative');
+        charCount_m.classList.remove('negative');
+
+        button.classList.remove('button-disabled');
+      }
+
+      if (opzione == "Testo") {
+        resetQuota()
+        $("#contenuto_testo").attr("hidden", false)
+        $(".icona-scelta.fas.fa-font").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
+           aggiornaQuota("Testo");
+         }
+      } else if (opzione == "Immagine") {
+        resetQuota()
+        $("#contenuto_immagine").attr("hidden", false)
+        $(".icona-scelta.fas.fa-image").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-image").hasClass("attiva")&& inputImage.files && inputImage.files[0]) {
+           aggiornaQuota("Immagine");
+         }
+      } else if (opzione == "Posizione") {
+        resetQuota()
+        $("#contenuto_posizione").attr("hidden", false)
+        $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
+           //aggiornaQuota("Posizione");
+         }
+      }
+    }
+
+    function aggiornaQuota(opzione) {
+      if(opzione == "Testo") {
+      const charLength = textarea.value.length;
+      remainingChars_g = initialQuota_g - charLength;
+      remainingChars_s = initialQuota_s - charLength;
+      remainingChars_m = initialQuota_m - charLength;
+      } else if (opzione == "Immagine") {
+        remainingChars_g = initialQuota_g - 20;
+        remainingChars_s = initialQuota_s - 20;
+        remainingChars_m = initialQuota_m - 20;
+      } else if (opzione == "Posizione") {
+
+      }
+
+      charCount_g.textContent = remainingChars_g;
+      charCount_s.textContent = remainingChars_s;
+      charCount_m.textContent = remainingChars_m;
+
+      if (remainingChars_g < 0) {
+        charCount_g.classList.add('negative');
+      } else {
+        charCount_g.classList.remove('negative');
+      }
+      if (remainingChars_s < 0) {
+        charCount_s.classList.add('negative');
+      } else {
+        charCount_s.classList.remove('negative');
+      }
+      if (remainingChars_m < 0) {
+        charCount_m.classList.add('negative');
+      } else {
+        charCount_m.classList.remove('negative');
+      }
+
+      const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
+      if (remainingChars.some((count) => count < 0)) {
+        button.classList.add('button-disabled');
+      } else {
+        button.classList.remove('button-disabled');
+      }
+    }
+
+    const textarea = document.getElementById('Textarea');
+    const charCount_g = document.getElementById('charCount_giorno');
+    const charCount_s = document.getElementById('charCount_sett');
+    const charCount_m = document.getElementById('charCount_mese');
+    const button = document.getElementById('btn-conferma');
+    const inputImage = document.getElementById('img');
+
+    let initialQuota_g = parseInt(charCount_g.textContent);
+    let initialQuota_s = parseInt(charCount_s.textContent);
+    let initialQuota_m = parseInt(charCount_m.textContent);
+
+    textarea.addEventListener('input', function() {
+      aggiornaQuota("Testo");
+    });
+
+    document.getElementById('img').addEventListener('change', function(event) {
+      aggiornaQuota("Immagine");
+    var file = event.target.files[0]; // Ottieni il file selezionato
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var preview = document.getElementById('preview');
+      preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+
+      var img = document.createElement('img');
+      img.src = e.target.result; // Imposta l'URL dell'immagine
+      img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+
+      preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+      imageFileURL = e.target.result;
+    };
+
+    reader.readAsDataURL(file); // Leggi il file come URL dati
+  });
+
+    function redirectToHome() {
+      window.location.href = "/";
+    }
+
+
+    // Initialize and add the map
+    let map, infoWindow, marker;
+
+    function initMap() {
+      infoWindow = new google.maps.InfoWindow();
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 41.9028, lng: 12.4964 }, // Coordinate di Roma
+        zoom: 5, // Livello di zoom 5
+      });
+
+      const locationButton = document.createElement("button");
+
+      locationButton.textContent = "Trova la mia posizione";
+      locationButton.classList.add("custom-map-control-button");
+      map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
+
+      marker = new google.maps.Marker({
+        map,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // Aggiungi il listener di eventi per il clic sulla mappa
+      map.addListener("click", (event) => {
+        placeMarker(event.latLng);
+      });
+
+      locationButton.addEventListener("click", () => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              map.panTo(pos);
+              map.setZoom(13);
+              marker.setPosition(pos); // Imposta la posizione del marker
+
+              infoWindow.close(); // Chiudi la finestra informativa se era aperta
+              infoWindow.open(map, marker);
+            },
+            () => {
+              handleLocationError(true, infoWindow, map.getCenter());
+            }
+          );
+        } else {
+          // Il browser non supporta la geolocalizzazione
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      });
+    }
+
+    infoWindow = new google.maps.InfoWindow();
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+          ? "Errore: il servizio di geolocalizzazione ha fallito."
+          : "Errore: il tuo browser non supporta la geolocalizzazione."
+      );
+      infoWindow.open(map);
+    }
+
+    function placeMarker(location) {
+      // Rimuovi il marker esistente, se presente
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      // Crea un nuovo marker
+      marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // Puoi fare altro con il marker qui se necessario
+      // Ad esempio, salvare le coordinate in una variabile o inviarle al server
+
+      infoWindow.open(map, marker);
+    }
+
+    window.initMap = initMap;
+    // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
+    google.maps.event.addDomListener(window, "load", initMap);
+
+
+    //map.on('click', onClickCoord)
+  </script>
+</body>
+
+</html>

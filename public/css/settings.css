@@ -1,0 +1,96 @@
+body {
+ margin: 0;
+ padding: 0;
+ font-family: Arial, sans-serif;
+}
+
+#main {
+ margin-top: 50px;
+ display: flex;
+}
+
+#sidebar {
+ position: fixed;
+ top: 50px;
+ left: 0;
+ height: 100%;
+ background-color: #f2f2f2;
+ width: 20%;
+ padding: 20px;
+ overflow: auto;
+}
+
+#menu {
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
+}
+
+#menu li {
+ margin-bottom: 10px;
+}
+
+#menu li a {
+ color: #1da1f2;
+ text-decoration: none;
+ font-weight: bold;
+ font-size: 18px;
+}
+
+#menu li a:hover {
+ text-decoration: underline;
+}
+
+#content {
+ top: 50px;
+ margin-left: 23%;
+ width: 75%;
+ padding: 20px;
+}
+
+#notifiche:target, #post-popolari:target, #post-impopolari:target, #quota:target,
+#storico-acquisti:target, #cambia-account:target, #altro:target{
+ scroll-margin-top: 70px;
+}
+
+h1 {
+ font-size: 28px;
+ margin-bottom: 20px;
+}
+
+h2 {
+ font-size: 24px;
+ margin-bottom: 15px;
+}
+
+label {
+ font-weight: bold;
+ display: block;
+ margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 20px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+ box-sizing: border-box;
+ font-size: 16px;
+}
+
+input[type="submit"] {
+ background-color: #1da1f2;
+ color: white;
+ border: none;
+ padding: 10px 20px;
+ border-radius: 5px;
+ cursor: pointer;
+ font-size: 18px;
+}
+
+input[type="submit"]:hover {
+ background-color: #0c84c6;
+}

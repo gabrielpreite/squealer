@@ -1,5 +1,7 @@
 [
     {
+        "img" : "",
+        "nome" : "Fv rossi",
         "username": "fv",
         "email": "fv@gmail.com",
         "password": "12345678",
@@ -14,7 +16,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST", "$free"],
+        "utenti_seguiti": ["fvPro", "NomeBuffo1"],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": false,
@@ -23,6 +26,8 @@
         "managed_by": null
     },
     {
+        "img" : "",
+        "nome" : "Fv Pro",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
         "password": "12345678",
@@ -37,7 +42,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST", "$free"],
+        "utenti_seguiti": ["fv", "NomeBuffo1"],
         "redazione_flag": false,
         "verificato_flag": true,
         "professional_flag": true,
@@ -46,6 +52,8 @@
         "managed_by": "fvSMM"
     },
     {
+        "img" : "",
+        "nome" : "Fv SMM",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
         "password": "12345678",
@@ -60,7 +68,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST", "$free"],
+        "utenti_seguiti": [],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -69,6 +78,8 @@
         "managed_by": null
     },
     {
+        "img" : "",
+        "nome" : "Nome Buffo1",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "12345678",
@@ -83,7 +94,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST", "$free"],
+        "utenti_seguiti": [],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -92,6 +104,8 @@
         "managed_by": "fvSMM"
     },
     {
+        "img" : "",
+        "nome" : "Nome Buffo2",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
         "password": "12345678",
@@ -106,7 +120,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
+        "utenti_seguiti": [],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -115,6 +130,8 @@
         "managed_by": "fvSMM"
     },
     {
+        "img" : "",
+        "nome" : "Fv Mod",
         "username": "fvMod",
         "email": "fvMod@gmail.com",
         "password": "12345678",
@@ -129,7 +146,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
+        "utenti_seguiti": [],
         "redazione_flag": true,
         "verificato_flag": false,
         "professional_flag": false,
@@ -138,6 +156,8 @@
         "managed_by": null
     },
     {
+        "img" : "",
+        "nome" : "Redazione Squeal",
         "username": "redazione",
         "email": "redazione@gmail.com",
         "password": "12345678",
@@ -152,7 +172,8 @@
             }
         ],
         "popolarita": 0,
-        "canali_seguiti": ["&TEST"],
+        "canali_seguiti": ["$TEST"],
+        "utenti_seguiti": [],
         "redazione_flag": true,
         "verificato_flag": true,
         "professional_flag": true,
