@@ -454,14 +454,11 @@ exports.user_feed = async function(q, campi, credentials) {
 				  }
 				},
 				{
-				  $unwind: "$utenteData" // Unwind the joined data (if necessary)
-				},
-				{
 				  $project: {
-					// Include all fields from the "messaggio" collection
-					messaggioFields: "$$ROOT",
-					// Include only the "nome" field from the joined "utente" data
-					nomeUtente: "$utenteData.nome"
+					$mergeObjects: [
+						"$$ROOT", // All fields from "messaggio" collection
+						{ nome: "$utenteData.nome" } // Include only the "nome" field from the joined "utente" data
+					]
 				  }
 				}
 			  ])
