@@ -454,9 +454,6 @@ exports.user_feed = async function(q, campi, credentials) {
 				  }
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
-				},
-				{
 					"$replaceRoot": {
 					  "newRoot": {
 						"$mergeObjects": [
