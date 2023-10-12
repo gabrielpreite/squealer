@@ -392,13 +392,16 @@
     function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
       if ($("#destinatari-selezionati").children().length === 0) {
-        console.log("no dest");
-        return false;
+        return false, "no dest";
       }
-      if(!$("#contenuto_testo").attr("hidden")){//caso testo
-        formData.append("contenuto", "testo")
-      }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
-        formData.append("contenuto", "img")
+      if(!$("#contenuto_testo").attr("hidden")) {//caso testo
+        if (true) {
+          return false, "no testo";
+        }
+      } else if (!$("#contenuto_immagine").attr("hidden")) {//caso img
+        if (true) {
+          return false, "no img";
+        }
       }
       // Altri controlli se necessari, come il testo, immagini o posizione
       console.log(true);
@@ -407,7 +410,7 @@
 
     function add_post(){
 
-      //if(check_post() == true){ //  check post da rivedere in base ai 3 tipi di messaggio
+      if(check_post() == true){ //  check post da rivedere in base ai 3 tipi di messaggio
         const formData = new FormData(document.getElementById("crea_post"))
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
@@ -451,8 +454,8 @@
             throw new Error("Network response was not ok.");
           }
         })
-      //}
       }
+    }
 
 function cambia_campo(opzione) {
       $("#contenuto_testo").attr("hidden", "true")
