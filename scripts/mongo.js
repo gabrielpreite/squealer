@@ -470,6 +470,10 @@ exports.user_feed = async function(q, campi, credentials) {
 		let name = {}
 		result.forEach((squeal) => {
 			name.username = squeal.utente
+			console.log("AAAAAAAAAA")
+			console.log(name.username)
+			console.log(squeal.utente)
+			console.log(user_info(name, credentials).nome)
 			let nome = user_info(name, credentials).nome
 			squeal.nome = nome
 		})
