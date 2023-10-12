@@ -422,10 +422,11 @@ exports.user_feed = async function(q, campi, credentials) {
 			} );
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
-		console.log("ottenuti canali seguiti da "+campi.username)
+
+		/*console.log("ottenuti canali seguiti da "+campi.username)
 		canali_seguiti.forEach((element) => console.log(element))
 		console.log("ottenuti utenti seguiti da "+campi.username)
-		utenti_seguiti.forEach((element) => console.log(element))
+		utenti_seguiti.forEach((element) => console.log(element))*/
 
 		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
 		//console.log("aggiunto utente")
@@ -449,9 +450,9 @@ exports.user_feed = async function(q, campi, credentials) {
 				result.push(r) 
 			});
 
-		console.log("post in canali seguiti:")
-		result.forEach((element) => console.log(element))
-		console.log("cerco post bacheca utenti seguiti")
+		//console.log("post in canali seguiti:")
+		//result.forEach((element) => console.log(element))
+		//console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname)
 			.collection("messaggio")
@@ -466,11 +467,11 @@ exports.user_feed = async function(q, campi, credentials) {
 				result.push(r) 
 			});
 
-		//debug
-		console.log("post in bacheca di utenti seguiti")
-		result.forEach((element) => console.log(element))
+		// debug
+		//console.log("post in bacheca di utenti seguiti")
+		//result.forEach((element) => console.log(element))
 
-		console.log("ottenuto feed")
+		//console.log("ottenuto feed")
 		await mongo.close();
 		return result
 	} catch (e) {
@@ -595,46 +596,59 @@ exports.update_reazioni = async function(q, credentials) {
 	}
 }
 
-/*exports.search = async function(q,credentials) {
+exports.search = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
-
-	let query =  {}
-	let debug = []
-	let data = {query: q[fieldname], result: null}
+	let meta = {} //metadati risposta: tipo ricerca, info user/canale
+	let post = [] //lista post
+	let result = {}
 	try {
-		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		debug.push("... managed to connect to MongoDB.")
+		// utente : nome
+		// canale: $nome
+		// keyword: #keyword
+		meta["tipo"] = q.tipo
+		let ordine
+		
+		if(q.tipo == "utente"){ // caso ricerca utenti
+			await mongo.db(dbname) // TODO nome ai post, user info, regole di visibilita', ordine
+				.collection("messaggio")
+				.find({
+					utente: q.query
+				})
+				.forEach( (r) => { 
+					post.push(r) 
+				});
 
-		debug.push(`Trying to query MongoDB with query '${q[fieldname]}'... `)
-		let result = []
-		query[fieldname] = { $regex: q[fieldname], $options: 'i' }
-		await mongo.db(dbname)
-					.collection("utente")
-					.find(query)
-					.forEach( (r) => { 
-						result.push(r) 
-					} );
-		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
-
-		data.result = result
-		await mongo.close();
-		debug.push("Managed to close connection to MongoDB.")
-
-		data.debug = debug
-		if (q.ajax) {
-			return data
-		} else {
-			var out = await template.generate('mongo.html', data);
-			return out
+		} else if(q.tipo == "canale"){
+			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
+				.collection("messaggio")
+				.find({
+					$or: [
+						{ [q.query]: { $in: destinatari } },  
+					  ],
+				})
+				.forEach( (r) => { 
+					post.push(r) 
+				});
+		} else if(q.tipo == "keyword"){
+			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
+				.collection("messaggio")
+				.find({
+					corpo: {$regex: q.query} //?
+				})
+				.forEach( (r) => { 
+					post.push(r) 
+				});
 		}
+
+		result["meta"] = meta
+		result["post"] = post
+		return result
 	} catch (e) {
-		data.debug = debug
-		data.error = e
-		return data
+		return e
 	}
-}*/
+}
 
 /* Untested */
 // https://stackoverflow.com/questions/39599063/check-if-mongodb-is-connected/39602781
