@@ -390,9 +390,12 @@
     //1 mando un messaggio img testo controllo, superamento quota
     function check_post() { //DA RIVEDERE
       // Verifica se ci sono destinatari selezionati
-      if ($("#destinatari-inseriti").children().length == 0) {
-        alert("Nessun destinatario selezionato");
-        return false;
+      let arr = window.location.href.split('?');
+      if (!(arr.length > 1 && arr[1] !== '') || (document.getElementById("campo-bacheca").hidden)) { //caso risposta o bacheca, no destinatari
+        if ($("#destinatari-inseriti").children().length == 0) {
+          alert("Nessun destinatario selezionato");
+          return false;
+        }
       }
       if(!$("#contenuto_testo").attr("hidden")) {//caso testo
         if (document.getElementById("Textarea").value == '') {
