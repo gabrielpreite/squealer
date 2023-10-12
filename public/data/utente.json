@@ -1,6 +1,7 @@
 [
     {
         "img" : "",
+        "nome" : "Fv rossi",
         "username": "fv",
         "email": "fv@gmail.com",
         "password": "12345678",
@@ -26,6 +27,7 @@
     },
     {
         "img" : "",
+        "nome" : "Fv Pro",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
         "password": "12345678",
@@ -51,6 +53,7 @@
     },
     {
         "img" : "",
+        "nome" : "Fv SMM",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
         "password": "12345678",
@@ -76,6 +79,7 @@
     },
     {
         "img" : "",
+        "nome" : "Nome Buffo1",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "12345678",
@@ -101,6 +105,7 @@
     },
     {
         "img" : "",
+        "nome" : "Nome Buffo2",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
         "password": "12345678",
@@ -126,6 +131,7 @@
     },
     {
         "img" : "",
+        "nome" : "Fv Mod",
         "username": "fvMod",
         "email": "fvMod@gmail.com",
         "password": "12345678",
@@ -151,6 +157,7 @@
     },
     {
         "img" : "",
+        "nome" : "Redazione Squeal",
         "username": "redazione",
         "email": "redazione@gmail.com",
         "password": "12345678",
