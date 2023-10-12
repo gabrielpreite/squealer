@@ -294,7 +294,7 @@ exports.user_info = async function(q, credentials) {
 		await mongo.db(dbname)
 				.collection("utente")
 				.find({username: q.username})
-				.project({ img: 1, username: 1})
+				.project({ img: 1, username: 1, nome: 1})
 				.forEach( (r) => { 
 					result.push(r) 
 				} );
@@ -442,6 +442,10 @@ exports.user_feed = async function(q, campi, credentials) {
 				]
 			})
 			.forEach( (r) => { 
+				let app = {}
+				app.username = r.utente
+				let nome = user_info(v, credentials)
+				r.nome = nome
 				result.push(r) 
 			});
 
