@@ -443,10 +443,6 @@ exports.user_feed = async function(q, campi, credentials) {
 				]
 			})
 			.forEach( (r) => { 
-				let app = {}
-				app.username = r.utente
-				let nome = user_info(app, credentials).nome
-				r.nome = nome
 				result.push(r) 
 			});
 
