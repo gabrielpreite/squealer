@@ -457,10 +457,10 @@ exports.user_feed = async function(q, campi, credentials) {
 					$unwind: "$utenteData" // Unwind the joined data (if necessary)
 				},
 				{
-					"$replaceRoot": {
+					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
 					  "newRoot": {
-						"$mergeObjects": [
-						  "$$ROOT",
+						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+						  "$$ROOT", //campi originali in messaggio
 						  {
 							nome:"$utenteData.nome"
 						  }
@@ -469,7 +469,7 @@ exports.user_feed = async function(q, campi, credentials) {
 					}
 				},
 				{
-					$project: {
+					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
 						utenteData: 0
 					}
 				}
@@ -483,32 +483,52 @@ exports.user_feed = async function(q, campi, credentials) {
 		console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname)
-			.collection("messaggio")
-			.find({
+		.aggregate([
+			{
+			  $match: {
 				$or: [
-				  { utente: { $in: utenti_seguiti } },  
-				],
-				tipo_destinatari: null,
-				risponde_a: null
-			})
-			.forEach( (r) => { 
-				result.push(r) 
-			});
+					{ utente: { $in: utenti_seguiti } },  
+				  ],
+				  tipo_destinatari: null,
+				  risponde_a: null
+			  }
+			},
+			{
+			  $lookup: {
+				from: "utente", // nome seconda tabella
+				localField: "utente", // nome chiave in prima tabella (corrente)
+				foreignField: "username", // nome chiave in seconda tabella
+				as: "utenteData" // rename del record ottenuto (da seconda tabella)
+			  }
+			},
+			{
+				$unwind: "$utenteData" // Unwind the joined data (if necessary)
+			},
+			{
+				"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+				  "newRoot": {
+					"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+					  "$$ROOT", //campi originali in messaggio
+					  {
+						nome:"$utenteData.nome"
+					  }
+					]
+				  }
+				}
+			},
+			{
+				$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+					utenteData: 0
+				}
+			}
+		  ])
+		.forEach( (r) => { 
+			result.push(r) 
+		});
 
 		// debug
 		console.log("post in bacheca di utenti seguiti")
 		result.forEach((element) => console.log(element))
-
-		/*let name = {}
-		result.forEach((squeal) => {
-			name.username = squeal.utente
-			console.log("AAAAAAAAAA")
-			console.log(name.username)
-			console.log(squeal.utente)
-			console.log(user_info(name, credentials).nome)
-			let nome = user_info(name, credentials).nome
-			squeal.nome = nome
-		})*/
 
 		console.log("ottenuto feed")
 		await mongo.close();
