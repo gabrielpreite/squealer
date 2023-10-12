@@ -300,7 +300,7 @@ exports.user_info = async function(q, credentials) {
 				} );
 
 		await mongo.close();
-		return result
+		return result[0]
 	} catch (e) {
 		return e
 	}
@@ -407,7 +407,7 @@ exports.user_feed = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		//console.log("dentro mongo con user "+campi.username)
+		console.log("dentro mongo con user "+campi.username)
 		//il feed e' composto da canali e account seguiti
 
 		let canali_seguiti = []
@@ -423,10 +423,10 @@ exports.user_feed = async function(q, campi, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
 
-		/*console.log("ottenuti canali seguiti da "+campi.username)
+		console.log("ottenuti canali seguiti da "+campi.username)
 		canali_seguiti.forEach((element) => console.log(element))
 		console.log("ottenuti utenti seguiti da "+campi.username)
-		utenti_seguiti.forEach((element) => console.log(element))*/
+		utenti_seguiti.forEach((element) => console.log(element))
 
 		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
 		//console.log("aggiunto utente")
@@ -445,14 +445,14 @@ exports.user_feed = async function(q, campi, credentials) {
 			.forEach( (r) => { 
 				let app = {}
 				app.username = r.utente
-				let nome = user_info(v, credentials)
+				let nome = user_info(app, credentials).nome
 				r.nome = nome
 				result.push(r) 
 			});
 
-		//console.log("post in canali seguiti:")
-		//result.forEach((element) => console.log(element))
-		//console.log("cerco post bacheca utenti seguiti")
+		console.log("post in canali seguiti:")
+		result.forEach((element) => console.log(element))
+		console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname)
 			.collection("messaggio")
@@ -468,10 +468,10 @@ exports.user_feed = async function(q, campi, credentials) {
 			});
 
 		// debug
-		//console.log("post in bacheca di utenti seguiti")
-		//result.forEach((element) => console.log(element))
+		console.log("post in bacheca di utenti seguiti")
+		result.forEach((element) => console.log(element))
 
-		//console.log("ottenuto feed")
+		console.log("ottenuto feed")
 		await mongo.close();
 		return result
 	} catch (e) {
