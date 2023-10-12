@@ -437,11 +437,34 @@ exports.user_feed = async function(q, campi, credentials) {
 
 		await mongo.db(dbname)
 			.collection("messaggio")
-			.find({
-				$or: [
-				  { destinatari: { $in: canali_seguiti } },
-				]
-			})
+			.aggregate([
+				{
+				  $match: {
+					$or: [
+					  { destinatari: { $in: canali_seguiti } },
+					]
+				  }
+				},
+				{
+				  $lookup: {
+					from: "utente", // Name of the "utente" collection
+					localField: "utente", // Field in the "messaggio" collection
+					foreignField: "username", // Field in the "utente" collection to match with
+					as: "utenteData" // Alias for the joined data
+				  }
+				},
+				{
+				  $unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
+				  $project: {
+					// Include all fields from the "messaggio" collection
+					messaggioFields: "$$ROOT",
+					// Include only the "nome" field from the joined "utente" data
+					nomeUtente: "$utenteData.nome"
+				  }
+				}
+			  ])
 			.forEach( (r) => { 
 				result.push(r) 
 			});
