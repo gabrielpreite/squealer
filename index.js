@@ -105,6 +105,11 @@ app.get('/testdb', function (req, res) { // ---- DEBUG USE
 	res.sendFile(global.rootDir+"/public/html/testdb.html")
 })
 
+app.get('/register', function (req, res) {
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	res.sendFile(global.rootDir+"/public/html/register.html")
+})
+
 app.get('/login', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/login.html")
 })
@@ -203,6 +208,30 @@ app.post('/api_login', async function(req, res) {
 		res.cookie('quota_settimana', db_res["quota"]["s"])
 		res.cookie('quota_mese', db_res["quota"]["m"])
 		res.redirect("/")
+	}catch(e){
+		res.cookie('username', "null")
+		res.cookie('login_result', "failed")
+		//res.sendFile(global.rootDir+"/public/html/login.html")
+		res.redirect("/login")
+	}
+});
+
+//registrazione
+app.post('/api_register', async function(req, res) {
+	try{
+		var db_res = await mymongo.user_login(req.body, mongoCredentials);
+		//console.log(db_res);
+		if(db_res === null)
+			throw new Error("errore db")
+		session=req.session; //login riuscito
+		session.userid=req.body.username;
+		console.log(req.session)
+		res.cookie('username', session.userid)
+		res.cookie('login_result', "success")
+		res.cookie('quota_giorno', db_res["quota"]["g"])
+		res.cookie('quota_settimana', db_res["quota"]["s"])
+		res.cookie('quota_mese', db_res["quota"]["m"])
+		res.redirect("/login")
 	}catch(e){
 		res.cookie('username', "null")
 		res.cookie('login_result', "failed")
