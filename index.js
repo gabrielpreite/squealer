@@ -106,7 +106,6 @@ app.get('/testdb', function (req, res) { // ---- DEBUG USE
 })
 
 app.get('/register', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/register.html")
 })
 
