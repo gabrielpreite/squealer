@@ -204,7 +204,7 @@
   align-items: center;
   border: none;
   background-color: white;
-
+ justify-content: space-between;
 }
 
 
@@ -214,10 +214,12 @@
   border-top: 1px solid #ccc;
   background-color: white;
   padding: 8px 4px 4px 4px;
+  text-align: center;
 }
 
 .reazioni {
-  padding: 3px;
+  padding: 8px 3px 8px 3px;
+  display: inline-block;
 }
 
 .reazioni-left {
@@ -232,32 +234,43 @@
   flex-direction: column;
 }
 
+.commenti {
+  display: inline-block;
+  margin: auto;
+  width: 50%;
+}
+
 .label-squeal {
   color: black;
   border-radius: 8px;
-  margin-top: 5px;
+  padding: 5px;
+  float: right;
 }
 
 .visual {
   float: left;
+  color: #777;
 }
 
-.popolarita {
-  margin-left: 3px;
-  float: right;
-  background-color: green;
+.popolare {
+  background-color: #b2d8b2;
+}
+
+.impopolare {
+  background-color: #ff9999;
+}
+
+.controverso {
+  background-color: #d9a6e0;
 }
 
 .auto {
-  margin-left: 3px;
-  float: right;
-  background-color: orange;
+  background-color:  #ffb07c;
 }
 
-.pubblico {
-  margin-left: 3px;
-  float: right;
-  background-color: red;
+.utente {
+  display: flex;
+  align-items: center;
 }
 
 .profile-image {
@@ -276,13 +289,15 @@
   font-weight: bold;
 }
 
+.destinatari-icona {
+  font-size: 1.2rem;
+}
+
 .destinatari, .btn-destinatari {
-  margin-left: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  color: #000000;
+  color: #555;
   font-size: auto;
   text-decoration: none;
+  padding-right: 20px;
 }
 
 .destinatari, .dropdown-menu {
@@ -303,8 +318,14 @@
 }
 
 .btn-reazioni {
-  margin-left: 20px;
+  margin-left: 5px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  color: white;
+  border: none;
+  color: #777;
+  background-color: inherit;
+}
+
+
+.n-reazioni {
+  color: #262d33;
 }

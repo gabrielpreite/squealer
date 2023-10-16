@@ -198,15 +198,17 @@
 
                   <div class="card squeal" id="' + squeals[i]._id + '">
                       <div class="card-header">
+                        <div class="utente">
                         <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">
                         <div class="info_utente">
                           <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
                           <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>
                           <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>
                         </div>
+                      </div>
                         <div class="recipients-dropdown" class="destinatari">
                           <button class="btn btn-link btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Destinatari
+                              <i class="fa-solid fa-users destinatari-icona"></i>
                           </button>
                           <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">
                             <a class="dropdown-item" href="#">Alice</a>
@@ -222,35 +224,41 @@
                       <div class="card-footer">
                         <div class="row reazioni btn-group">
                           <div class="col reazioni-left">
-                            <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">
                               <i class="fab fa-sketch reazioni-icone"> </i>
                               <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>
                             </label>
-                            <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">
                               <i class="fas fa-poo reazioni-icone"> </i>
                               <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>
                             </label>
                           </div>
                           <div class="col reazioni-mid">
-                            <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">
                               <i class="fas fa-heart reazioni-icone">  </i>
                               <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>
                             </label>
-                            <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">
                               <i class="fas fa-heart-crack reazioni-icone"> </i>
                               <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>
                             </label>
                           </div>
                           <div class="col reazioni-right">
-                            <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">
                               <i class="fas fa-thumbs-up reazioni-icone"> </i>
                               <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>
                             </label>
-                            <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">
                               <i class="fas fa-thumbs-down reazioni-icone"> </i>
                               <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>
                             </label>
                           </div>
+                        </div>
+                        <div class="commenti">
+                          <label class="btn btn-reazioni btn-group' + i + '">
+                            <i class="fa-solid fa-comments"></i>
+                            <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>
+                          </label>
                         </div>
                         <div class="info-post" id="squeal_info' + i + '">
                           <span class="label-squeal visual" id="squeal_visual' + i + '"><i class="fa-solid fa-eye"></i> 500</span>
@@ -267,7 +275,7 @@
                         </div>
                         <div class="recipients-dropdown" class="destinatari">
                           <button class="btn btn-link btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Destinatari
+                              <i class="fa-solid fa-users destinatari-icona"></i>
                           </button>
                           <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">
                             <a class="dropdown-item" href="#">Alice</a>
@@ -441,13 +449,13 @@
             document.getElementById(id_visual).innerHTML = 'Visual: ' + squeals[i].visualizzazioni;
             if (squeals[i].categoria == "popolare"){
               var Et_popolarita = document.getElementById('squeal_info' + i);
-              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Popolare </span>');
+              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolare"> Popolare </span>');
             } else if (squeals[i].categoria == "impopolare"){
               var Et_popolarita = document.getElementById('squeal_info' + i);
-              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Impopolare </span>');
+              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal impopolare"> Impopolare </span>');
             } else if (squeals[i].categoria == "controverso"){
               var Et_popolarita = document.getElementById('squeal_info' + i);
-              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Controverso </span>');
+              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal controverso"> Controverso </span>');
             }
             if (squeals[i].automatico){
               var Et_auto = document.getElementById('squeal_info' + i);
@@ -465,7 +473,7 @@
             //console.log(button.querySelector(".n-reazioni"));
             //console.log(button);
             if (button.checked) {
-              button.style.color= "white";
+              button.style.color= "#777";
               button.checked = false;
               var Nreaz = button.querySelector(".n-reazioni");
               Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
@@ -480,7 +488,7 @@
                   var Nreaz = btnradio.querySelector(".n-reazioni");
                   Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
                 } else if (btnradio.checked) {
-                  btnradio.style.color= "white";
+                  btnradio.style.color= "#777";
                   btnradio.checked = false;
                   var Nreaz = btnradio.querySelector(".n-reazioni");
                   Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
