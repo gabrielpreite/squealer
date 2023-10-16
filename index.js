@@ -336,10 +336,26 @@ app.get('/user_feed', async function(req, res) {
 	}
 });
 
+// ottiene gli squeal in risposta al post selezionato
 app.get('/get_replies', async function(req, res) {
 	let result
 	try{
 		result = await mymongo.get_replies(req.post_id, mongoCredentials)
+		res.status(200)
+		res.send(result)
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella richiesta dei commenti")
+	}
+});
+
+// ottiene gli account gestiti dall'utente
+app.get('/get_managed', async function(req,res) {
+	let result
+	let campi = {}
+	try{
+		campi["username"] = session.userid
+		result = await mymongo.get_managed(req.post_id, campi, mongoCredentials)
 		res.status(200)
 		res.send(result)
 	} catch (e) {
