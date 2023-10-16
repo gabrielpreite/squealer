@@ -220,6 +220,7 @@
 .reazioni {
   padding: 8px 3px 8px 3px;
   display: inline-block;
+  width: 80%;
 }
 
 .reazioni-left {
