@@ -209,36 +209,32 @@
 
 
 .card-footer {
-  display: auto;
-  flex-direction: row;
   border-top: 1px solid #ccc;
   background-color: white;
   padding: 8px 4px 4px 4px;
   text-align: center;
+  width: 100%;
+}
+
+.btn-reazioni {
+  border: none;
+  color: #777;
+  background-color: inherit;
+}
+
+.n-reazioni {
+  color: #262d33;
 }
 
 .reazioni {
   padding: 8px 3px 8px 3px;
-  display: inline-block;
-  width: 80%;
-}
-
-.reazioni-left {
-  flex-direction: column;
-}
-
-.reazioni-mid {
-  flex-direction: column;
-}
-
-.reazioni-right {
-  flex-direction: column;
 }
 
 .commenti {
-  display: inline-block;
-  margin: auto;
-  width: 50%;
+}
+
+.n-commenti {
+  color: #262d33;
 }
 
 .label-squeal {
@@ -298,8 +294,9 @@
   color: #555;
   font-size: auto;
   text-decoration: none;
-  padding-right: 20px;
+  padding:0;
 }
+
 
 .destinatari, .dropdown-menu {
   border: 1px solid #ccc;
@@ -316,17 +313,4 @@
   white-space: normal;
   cursor: default; /* Impedisce il puntatore di tipo "mano" e l'effetto in hover */
   pointer-events: none; /* Impedisce il clic e l'effetto in hover */
-}
-
-.btn-reazioni {
-  margin-left: 5px;
-  border-radius: 8px;
-  border: none;
-  color: #777;
-  background-color: inherit;
-}
-
-
-.n-reazioni {
-  color: #262d33;
 }
