@@ -306,6 +306,45 @@ exports.user_info = async function(q, credentials) {
 	}
 }
 
+exports.add_user = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		//console.log(q.tipo)
+		await mongo.db(dbname)
+					.collection("utente")
+					.insertOne(
+						{
+							img: "",
+							nome: q.nome + " " + q.cognome,
+							username: q.username,
+							email: q.email,
+							password: q.password,
+							quota: {
+								"g": 50, "s": 300, "m": 1000
+							},
+							acquisti: [],
+							popolarita: 0,
+							canali_seguiti: [],
+							utenti_seguiti: [],
+							redazione_flag: false,
+							verificato_flag: false,
+							professional_flag: false,
+							abilitato_flag: true,
+							manager_of: [],
+							managed_by: null
+						}
+					)
+
+		await mongo.close();
+		return
+	} catch (e) {
+		return e
+	}
+}
+
 exports.add_post = async function(q, campi, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{

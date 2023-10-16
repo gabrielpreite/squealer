@@ -219,24 +219,16 @@ app.post('/api_login', async function(req, res) {
 //registrazione
 app.post('/api_register', async function(req, res) {
 	try{
-		var db_res = await mymongo.user_login(req.body, mongoCredentials);
-		//console.log(db_res);
-		if(db_res === null)
-			throw new Error("errore db")
-		session=req.session; //login riuscito
-		session.userid=req.body.username;
-		console.log(req.session)
-		res.cookie('username', session.userid)
-		res.cookie('login_result', "success")
-		res.cookie('quota_giorno', db_res["quota"]["g"])
-		res.cookie('quota_settimana', db_res["quota"]["s"])
-		res.cookie('quota_mese', db_res["quota"]["m"])
+		let result = await mymongo.add_user(req.body, mongoCredentials);
+
+		res.status(200)
+		res.send("ok")
 		res.redirect("/login")
-	}catch(e){
-		res.cookie('username', "null")
-		res.cookie('login_result', "failed")
-		//res.sendFile(global.rootDir+"/public/html/login.html")
-		res.redirect("/login")
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella creazione dell'utente")
+		res.redirect("/register")
+		throw "Registrazione avvenuta con successo, ora puoi accedere"
 	}
 });
 
