@@ -143,6 +143,7 @@
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
+                    async: false,
                     url: `${window.location.origin}/user_exist?username=${user}`,
                     headers: {},
                     success: function (data, status, xhr) {
