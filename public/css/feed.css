@@ -322,6 +322,7 @@
 /* Stile per i commenti */
 
 .contenitore-commenti {
+  margin-top: 20px;
   height: 77vh;
   overflow-y: auto;
   border-bottom: 1px solid #ccc;
@@ -359,9 +360,6 @@
   color: #333;
 }
 
-#mostra-commenti {
-  align-items: center;
-}
 
 /* Stile per il pulsante "Aggiungi Commento" */
 #aggiungi-commento {
