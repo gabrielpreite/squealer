@@ -321,7 +321,7 @@ exports.user_exist = async function(q, credentials) {
 				} );
 
 		await mongo.close();
-		return result[0]
+		return result
 	} catch (e) {
 		return e
 	}
@@ -342,7 +342,7 @@ exports.email_exist = async function(q, credentials) {
 				} );
 
 		await mongo.close();
-		return result[0]
+		return result
 	} catch (e) {
 		return e
 	}
