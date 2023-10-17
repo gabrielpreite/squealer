@@ -841,6 +841,36 @@ exports.get_managed = async function(q, campi, credentials) {
 	}
 }
 
+exports.get_mychannels = async function(q, campi, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		await mongo.db(dbname)
+			.collection("canale")
+			.find(
+				{
+					$or: [
+					  	{ proprieta: campi.username }, // canali di proprieta dell'utente
+						{ // canali in cui l'utente e' mod
+							mod: { $elemMatch: { $eq: campi.username } }
+						}
+					]
+				}
+			)
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		await mongo.close()
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
 /* Untested */
 // https://stackoverflow.com/questions/39599063/check-if-mongodb-is-connected/39602781
 exports.isConnected = async function() {
