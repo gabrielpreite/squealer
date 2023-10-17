@@ -188,7 +188,7 @@ exports.search_messaggio = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		return data
+		return result
 	} catch (e) {
 		data.debug = debug
 		data.error = e

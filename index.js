@@ -328,7 +328,7 @@ app.get('/user_feed', async function(req, res) {
 app.get('/get_replies', async function(req, res) {
 	let result
 	try{
-		result = await mymongo.get_replies(req.post_id, mongoCredentials)
+		result = await mymongo.get_replies(req.query, mongoCredentials)
 		res.status(200)
 		res.send(result)
 	} catch (e) {
