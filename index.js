@@ -275,7 +275,7 @@ app.get("/user_info", async function(req, res) {
 
 app.get("/user_exist", async function(req, res) {
 	try{
-		let result = await mymongo.user_info(req.query, mongoCredentials)
+		let result = await mymongo.user_exist(req.query, mongoCredentials)
 		res.status(200)
 		if (result.length() == 0) {
 			res.send(false) //utente non esiste
@@ -290,7 +290,7 @@ app.get("/user_exist", async function(req, res) {
 
 app.get("/email_exist", async function(req, res) {
 	try{
-		let result = await mymongo.user_info(req.query, mongoCredentials)
+		let result = await mymongo.email_exist(req.query, mongoCredentials)
 		res.status(200)
 		if (result.length() == 0) {
 			res.send(false) //email non esiste
