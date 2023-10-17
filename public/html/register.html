@@ -146,9 +146,7 @@
                     url: `${window.location.origin}/user_exist?username=${user}`,
                     headers: {},
                     success: function (data, status, xhr) {
-                        if (data) {
-                            var check_user = data;
-                        }
+                        check_user = data;
                     }
                 });
                 if (check_user == "true") {
@@ -165,9 +163,7 @@
                     url: `${window.location.origin}/email_exist?email=${mail}`,
                     headers: {},
                     success: function (data, status, xhr) {
-                        if (data) {
-                            check_mail = data;
-                        }
+                        check_mail = data;
                     }
                 });
                 if (check_mail == "true") {
