@@ -161,6 +161,7 @@
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
+                    async: false,
                     url: `${window.location.origin}/email_exist?email=${mail}`,
                     headers: {},
                     success: function (data, status, xhr) {
