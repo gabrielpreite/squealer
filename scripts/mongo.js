@@ -358,7 +358,7 @@ exports.add_post = async function(q, campi, credentials) {
 		//controlli su campi situazionali
 		let risposta
 		try{
-			risposta = q.risponde_a
+			risposta = q.post_id
 		}catch(e){
 			risposta = null
 		}
