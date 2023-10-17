@@ -277,7 +277,7 @@ app.get("/user_exist", async function(req, res) {
 	try{
 		let result = await mymongo.user_exist(req.query, mongoCredentials)
 		res.status(200)
-		if (result.length() == 0) {
+		if (result.length == 0) {
 			res.send(false) //utente non esiste
 		} else {
 			res.send(true) //utente esiste
