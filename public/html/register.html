@@ -139,7 +139,7 @@
 
                 //check username univoco
                 var user = document.getElementById("username").value;
-                var check_user;
+                var check_user = true;
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
@@ -149,14 +149,14 @@
                         check_user = data;
                     }
                 });
-                if (check_user == true) {
+                if (check_user) {
                     alert("Username già esistente")
                     return false;
                 }
 
                 //check email univoca
                 var mail = document.getElementById("email").value;
-                var check_mail;
+                var check_mail = true;
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
@@ -166,7 +166,7 @@
                         check_mail = data;
                     }
                 });
-                if (check_mail == true) {
+                if (check_mail) {
                     alert("Email già utilizzata")
                     return false;
                 }
