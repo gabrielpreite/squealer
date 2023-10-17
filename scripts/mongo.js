@@ -306,6 +306,48 @@ exports.user_info = async function(q, credentials) {
 	}
 }
 
+exports.user_exist = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		let result = []
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+				.collection("utente")
+				.find({username: q.username})
+				.forEach( (r) => { 
+					result.push(r) 
+				} );
+
+		await mongo.close();
+		return result[0]
+	} catch (e) {
+		return e
+	}
+}
+
+exports.email_exist = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		let result = []
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+				.collection("utente")
+				.find({email: q.email})
+				.forEach( (r) => { 
+					result.push(r) 
+				} );
+
+		await mongo.close();
+		return result[0]
+	} catch (e) {
+		return e
+	}
+}
+
 exports.add_user = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	try{

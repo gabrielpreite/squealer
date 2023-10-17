@@ -273,6 +273,36 @@ app.get("/user_info", async function(req, res) {
 	}
 });
 
+app.get("/user_exist", async function(req, res) {
+	try{
+		let result = await mymongo.user_info(req.query, mongoCredentials)
+		res.status(200)
+		if (result.length() == 0) {
+			res.send(false) //utente non esiste
+		} else {
+			res.send(true) //utente esiste
+		}
+	}catch(e){
+		res.status(500)
+		res.send("errore")
+	}
+});
+
+app.get("/email_exist", async function(req, res) {
+	try{
+		let result = await mymongo.user_info(req.query, mongoCredentials)
+		res.status(200)
+		if (result.length() == 0) {
+			res.send(false) //email non esiste
+		} else {
+			res.send(true) //email esiste
+		}
+	}catch(e){
+		res.status(500)
+		res.send("errore")
+	}
+});
+
 //crea uno squeal
 app.post('/crea_post', upload.single("img"), async function(req, res) {
 	try{
