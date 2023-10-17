@@ -317,3 +317,64 @@
   font-weight: 400;
   white-space: normal;
 }
+
+
+/* Stile per i commenti */
+
+.contenitore-commenti {
+  height: 77vh;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 0px 5px 10px 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.comment-profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+  align-self: flex-start;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-username {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.comment-text {
+  margin-top: 5px;
+  color: #333;
+}
+
+#mostra-commenti {
+  align-items: center;
+}
+
+/* Stile per il pulsante "Aggiungi Commento" */
+#aggiungi-commento {
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px !important;
+}
+
+#aggiungi-commento:hover {
+  background-color: #0d88c2;
+}
