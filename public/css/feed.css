@@ -222,15 +222,16 @@
   background-color: inherit;
 }
 
+.reazioni-icone{
+  font-size: 20px;
+}
+
 .n-reazioni {
   color: #262d33;
 }
 
 .reazioni {
   padding: 8px 3px 8px 3px;
-}
-
-.commenti {
 }
 
 .n-commenti {
@@ -247,6 +248,8 @@
 .visual {
   float: left;
   color: #777;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 .popolare {
@@ -290,27 +293,27 @@
   font-size: 1.2rem;
 }
 
-.destinatari, .btn-destinatari {
-  color: #555;
+.btn-destinatari {
+  color: #555 !important;
   font-size: auto;
-  text-decoration: none;
-  padding:0;
+  text-decoration: none !important;
+  border: none !important;
+  padding-bottom: 5px;
 }
 
 
-.destinatari, .dropdown-menu {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+.dropdown-menu {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
   max-height: 200px;
-  min-width: 150px;
+  min-width: 120px;
   overflow-y: auto;
+  margin-top: 10px;
 }
 
 .destinatari, .dropdown-item {
   font-weight: 400;
   white-space: normal;
-  cursor: default; /* Impedisce il puntatore di tipo "mano" e l'effetto in hover */
-  pointer-events: none; /* Impedisce il clic e l'effetto in hover */
 }
