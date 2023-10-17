@@ -278,9 +278,9 @@ app.get("/user_exist", async function(req, res) {
 		let result = await mymongo.user_exist(req.query, mongoCredentials)
 		res.status(200)
 		if (result.length == 0) {
-			res.send("false") //utente non esiste
+			res.send(false) //utente non esiste
 		} else {
-			res.send("true") //utente esiste
+			res.send(true) //utente esiste
 		}
 	}catch(e){
 		res.status(500)
@@ -293,9 +293,9 @@ app.get("/email_exist", async function(req, res) {
 		let result = await mymongo.email_exist(req.query, mongoCredentials)
 		res.status(200)
 		if (result.length == 0) {
-			res.send("false") //email non esiste
+			res.send(false) //email non esiste
 		} else {
-			res.send("true") //email esiste
+			res.send(true) //email esiste
 		}
 	}catch(e){
 		res.status(500)
