@@ -282,15 +282,15 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			let path = req.file.path
 			campi["path"] = path.split("/").slice(-1)[0]
 		}
-		console.log("destinatari post (index) :")
+		/*console.log("destinatari post (index) :")
 		console.log(req.body.destinatari)
-		console.log("---------")
+		console.log("---------")*/
 
 		req.body.destinatari = JSON.parse(req.body.destinatari)
 
-		console.log("destinatari post (index - parse) :")
+		/*console.log("destinatari post (index - parse) :")
 		console.log(req.body.destinatari)
-		console.log("---------")
+		console.log("---------")*/
 
 		//timestamp
 		let date = new Date()

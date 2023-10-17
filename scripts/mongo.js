@@ -350,9 +350,9 @@ exports.add_post = async function(q, campi, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		console.log("destinatari post (mongo) :")
+		/*console.log("destinatari post (mongo) :")
 		console.log(q.destinatari)
-		console.log("---------")
+		console.log("---------")*/
 
 
 		//controlli su campi situazionali
