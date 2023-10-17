@@ -452,7 +452,7 @@
 
         let arr = window.location.href.split('?');
         if (arr.length > 1 && arr[1] !== '') { //caso risposta, nessun destinatario
-          formData.append("risponde_a", arr[1].split("?")[1]);
+          formData.append("post_id", arr[1].split("?")[1]);
           formData.append("destinatari", JSON.stringify([]))
         } else { //caso post originali, destinatari dipendono dalla scelta utente
           if(!$("#campo-canali").attr("hidden")){//caso canali
