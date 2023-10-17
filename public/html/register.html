@@ -146,11 +146,14 @@
                     headers: {},
                     success: function (data, status, xhr) {
                         if (data) {
-                            alert("Username già esistente")
-                            return false;
+                            username = data;
                         }
                     }
                 });
+                if (username) {
+                    alert("Username già esistente")
+                    return false;
+                }
 
                 //check email univoca
                 var email = document.getElementById("email").value;
@@ -161,11 +164,14 @@
                     headers: {},
                     success: function (data, status, xhr) {
                         if (data) {
-                            alert("Email già utilizzata")
-                            return false;
+                            email = data;
                         }
                     }
                 });
+                if (email) {
+                    alert("Email già utilizzata")
+                    return false;
+                }
 
                 return true;
             }
