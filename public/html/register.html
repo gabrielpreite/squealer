@@ -138,37 +138,37 @@
                 }
 
                 //check username univoco
-                var username = document.getElementById("username").value;
+                var user = document.getElementById("username").value;
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
-                    url: `${window.location.origin}/user_exist?username=${username}`,
+                    url: `${window.location.origin}/user_exist?username=${user}`,
                     headers: {},
                     success: function (data, status, xhr) {
                         if (data) {
-                            username = data;
+                            user = data;
                         }
                     }
                 });
-                if (username) {
+                if (user == "true") {
                     alert("Username già esistente")
                     return false;
                 }
 
                 //check email univoca
-                var email = document.getElementById("email").value;
+                var mail = document.getElementById("email").value;
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
-                    url: `${window.location.origin}/email_exist?email=${email}`,
+                    url: `${window.location.origin}/email_exist?email=${mail}`,
                     headers: {},
                     success: function (data, status, xhr) {
                         if (data) {
-                            email = data;
+                            mail = data;
                         }
                     }
                 });
-                if (email) {
+                if (mail == "true") {
                     alert("Email già utilizzata")
                     return false;
                 }
