@@ -31,5 +31,16 @@
         "lettura" : ["*"],
         "scrittura" : ["*"],
         "abilitato" : true
+    },
+    {
+        "img" : "",
+        "nome" : "$cats",
+        "descrizione" : "gatti che fan cose",
+        "ufficiale" : false,
+        "proprieta" : "redazione",
+        "mod" : ["fvPro", "NomeBuffo1"],
+        "lettura" : ["*"],
+        "scrittura" : ["*"],
+        "abilitato" : true
     }
 ]
