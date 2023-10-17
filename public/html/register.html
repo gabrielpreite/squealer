@@ -139,6 +139,7 @@
 
                 //check username univoco
                 var user = document.getElementById("username").value;
+                var check_user;
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
@@ -146,7 +147,7 @@
                     headers: {},
                     success: function (data, status, xhr) {
                         if (data) {
-                            user = data;
+                            var check_user = data;
                         }
                     }
                 });
@@ -157,6 +158,7 @@
 
                 //check email univoca
                 var mail = document.getElementById("email").value;
+                var check_mail;
                 $.ajax({
                     type: 'GET',
                     dataType: "json",
@@ -164,7 +166,7 @@
                     headers: {},
                     success: function (data, status, xhr) {
                         if (data) {
-                            mail = data;
+                            check_mail = data;
                         }
                     }
                 });
