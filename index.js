@@ -218,15 +218,11 @@ app.post('/api_login', async function(req, res) {
 //registrazione
 app.post('/api_register', async function(req, res) {
 	try{
-		console.log(req.body)
 		let result = await mymongo.add_user(req.body, mongoCredentials);
 
-		console.log("registra ok")
 		res.status(200)
 		res.redirect("/login")
 	} catch (e) {
-		console.log("registra err")
-		console.log(e)
 		res.status(500)
 		res.redirect("/register")
 	}
@@ -316,15 +312,15 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			let path = req.file.path
 			campi["path"] = path.split("/").slice(-1)[0]
 		}
-		console.log("destinatari post (index) :")
+		/*console.log("destinatari post (index) :")
 		console.log(req.body.destinatari)
-		console.log("---------")
+		console.log("---------")*/
 
 		req.body.destinatari = JSON.parse(req.body.destinatari)
 
-		console.log("destinatari post (index - parse) :")
+		/*console.log("destinatari post (index - parse) :")
 		console.log(req.body.destinatari)
-		console.log("---------")
+		console.log("---------")*/
 
 		//timestamp
 		let date = new Date()
@@ -362,7 +358,7 @@ app.get('/user_feed', async function(req, res) {
 app.get('/get_replies', async function(req, res) {
 	let result
 	try{
-		result = await mymongo.get_replies(req.post_id, mongoCredentials)
+		result = await mymongo.get_replies(req.query, mongoCredentials)
 		res.status(200)
 		res.send(result)
 	} catch (e) {

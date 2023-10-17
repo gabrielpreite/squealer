@@ -188,7 +188,7 @@ exports.search_messaggio = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		return data
+		return result
 	} catch (e) {
 		data.debug = debug
 		data.error = e
@@ -354,7 +354,6 @@ exports.add_user = async function(q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		console.log(q)
 		await mongo.db(dbname)
 					.collection("utente")
 					.insertOne(
@@ -380,7 +379,6 @@ exports.add_user = async function(q, credentials) {
 						}
 					)
 
-		console.log("mongo ok")
 		await mongo.close();
 		return
 	} catch (e) {
@@ -394,15 +392,15 @@ exports.add_post = async function(q, campi, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		console.log("destinatari post (mongo) :")
+		/*console.log("destinatari post (mongo) :")
 		console.log(q.destinatari)
-		console.log("---------")
+		console.log("---------")*/
 
 
 		//controlli su campi situazionali
 		let risposta
 		try{
-			risposta = q.risponde_a
+			risposta = q.post_id
 		}catch(e){
 			risposta = null
 		}
@@ -505,10 +503,10 @@ exports.user_feed = async function(q, campi, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
 
-		console.log("ottenuti canali seguiti da "+campi.username)
+		/*console.log("ottenuti canali seguiti da "+campi.username)
 		canali_seguiti.forEach((element) => console.log(element))
 		console.log("ottenuti utenti seguiti da "+campi.username)
-		utenti_seguiti.forEach((element) => console.log(element))
+		utenti_seguiti.forEach((element) => console.log(element))*/
 
 		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
 		//console.log("aggiunto utente")
@@ -560,9 +558,9 @@ exports.user_feed = async function(q, campi, credentials) {
 				result.push(r) 
 			});
 
-		console.log("post in canali seguiti:")
+		/*console.log("post in canali seguiti:")
 		result.forEach((element) => console.log(element))
-		console.log("cerco post bacheca utenti seguiti")
+		console.log("cerco post bacheca utenti seguiti")*/
 
 		await mongo.db(dbname)
 			.collection("messaggio")
@@ -610,10 +608,10 @@ exports.user_feed = async function(q, campi, credentials) {
 			});
 
 		// debug
-		console.log("post in bacheca di utenti seguiti")
-		result.forEach((element) => console.log(element))
+		//console.log("post in bacheca di utenti seguiti")
+		//result.forEach((element) => console.log(element))
 
-		console.log("ottenuto feed")
+		//console.log("ottenuto feed")
 		await mongo.close();
 		return result
 	} catch (e) {
