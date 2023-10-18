@@ -329,13 +329,13 @@
             document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
           }
           //destinatari da finire
-          if (squeal[i].tipo_destinatari != null) {
+          if (squeals[i].tipo_destinatari != null) {
             var id_destinatari = 'destinatari' + i;
             var bottone_destinatari_canali = '<button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-users destinatari-icona"></i></button><div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"></div>'
             var bottone_destinatari_utenti = '<button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user destinatari-icona"></i></button><div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"></div>'
-            if (squeal[i].tipo_destinatari == "canali"){
+            if (squeals[i].tipo_destinatari == "canali"){
               document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
-            } else if (squeal[i].tipo_destinatari == "utenti") {
+            } else if (squeals[i].tipo_destinatari == "utenti") {
               document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
             }
             var lista_destinatari = document.getElementById('squeal_destinatari' + i);
