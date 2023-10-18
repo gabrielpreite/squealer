@@ -125,7 +125,7 @@
       </div>
 
           <!-- First Column -->
-          <div class="col-md-3" id="col-sx">
+          <div class="col-md-3 barra-scorrimento" id="col-sx">
             <div class="social-channels">
               <a href="" class="channel-button" style="margin-left: 15px"><i class="fas fa-wrench"></i> Staff</a>
               <a href="" class="channel-button"><i class="far fa-newspaper fa-fw"></i> News</a>
@@ -261,7 +261,7 @@
                             </label>
                           </div>
                           <div class="col">
-                            <label class="btn btn-reazioni btn-group' + i + '" onclick="aggiungicommento()">
+                            <label class="btn btn-reazioni btn-group' + i + '" onclick="aggiungicommento('apri')">
                               <i class="fa-solid fa-comments reazioni-icone"></i>
                               <span class="n-commenti" id="squeal_comment' + i + '"> 500 </span>
                             </label>
@@ -280,8 +280,8 @@
 
                </div>
                <div id="mostra-commenti" hidden="true">
-                 <h4 class="statistiche-title">Commenti</h4>
-                 <div class="contenitore-commenti">
+                 <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento('chiudi')"></i></h4>
+                 <div class="contenitore-commenti barra-scorrimento">
                      <div class="comment">
                        <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
                        <div class="comment-content">
@@ -356,9 +356,11 @@
 
                    <!-- Altri commenti possono essere inseriti qui -->
                  </div>
-                 <button id="aggiungi-commento" class="btn btn-primary mt-3" onclick="aggiungiCommento()">
-                   Aggiungi Commento
+                 <div class="">
+                 <button id="aggiungi-commento" class="btn btn-primary" onclick="aggiungicommento('commenta')">
+                   Commenta   <i class="fa-solid fa-comment-dots icona-commento"></i>
                  </button>
+               </div>
                </div>
             </div>
 
@@ -560,14 +562,23 @@
             });
           }
 
-          function aggiungicommento() {
-            // Cambia il colore dell'icona del commento a nero
-            var icon = document.querySelector('.fa-solid.fa-comments');
-            icon.style.color = 'black';
-            // Nascondi il div "vuoto"
-            document.getElementById("vuoto").hidden = true;
-            // Mostra il div "mostra-squeal"
-            document.getElementById("mostra-commenti").hidden = false;
+          function aggiungicommento(azione) {
+            if (azione == 'apri') {
+              // Cambia il colore dell'icona del commento a nero
+              var icon = document.querySelector('.fa-solid.fa-comments');
+              icon.style.color = 'black';
+              // Nascondi il div "vuoto"
+              document.getElementById("vuoto").hidden = true;
+              // Mostra il div "mostra-squeal"
+              document.getElementById("mostra-commenti").hidden = false;
+            } else if (azione == 'chiudi') {
+              var icon = document.querySelector('.fa-solid.fa-comments');
+              icon.style.color = '#777';
+              document.getElementById("vuoto").hidden = false;
+              document.getElementById("mostra-commenti").hidden = true;
+            } else {
+              //apri editor commento
+            }
           }
 
           function riempiFeed(){

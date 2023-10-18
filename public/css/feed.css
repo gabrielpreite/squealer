@@ -133,7 +133,6 @@
   background-color: #f2f2f2;
   width: 25%;
   padding: 20px;
-  overflow: auto;
 }
 
 
@@ -155,7 +154,6 @@
 
 
 #nuovo-squeal {
-  position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -163,9 +161,11 @@
 
 .fixed-button {
   z-index: 1;
+  position: fixed;
 }
 
 #nuovo-squeal .round-button {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -313,22 +313,49 @@
   margin-top: 10px;
 }
 
-.destinatari, .dropdown-item {
+.dropdown-item {
   font-weight: 400;
   white-space: normal;
 }
 
+.dropdown-menu .dropdown-item:focus, .dropdown-menu .dropdown-item:hover {
+    background-color: #e5e5e5;
+    color: inherit;
+}
+
 
 /* Stile per i commenti */
+.icona-chiudi {
+  color: #FF5733;
+  float: right;
+  margin-right: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
 
 .contenitore-commenti {
-  margin-top: 20px;
-  height: 77vh;
+  margin-top: 10px;
+  height: 78vh;
   overflow-y: auto;
   border-bottom: 1px solid #ccc;
 }
 
+/* Personalizza la barra di scorrimento */
+.barra-scorrimento::-webkit-scrollbar {
+  width: 10px; /* Larghezza della barra di scorrimento */
+}
+
+.barra-scorrimento::-webkit-scrollbar-thumb {
+  background: #ccc; /* Colore della barra di scorrimento stessa */
+  border-radius: 5px; /* Bordo arrotondato per la barra di scorrimento */
+}
+
+.barra-scorrimento::-webkit-scrollbar-track {
+  background: transparent; /* Colore dell'area di sfondo della barra di scorrimento */
+}
+
 .comment {
+  text-align: left;
   display: flex;
   align-items: center;
   padding: 15px;
@@ -360,17 +387,30 @@
   color: #333;
 }
 
+.icona-commento{
+  margin-left: 5px;
+}
 
-/* Stile per il pulsante "Aggiungi Commento" */
+
+#mostra-commenti {
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+
 #aggiungi-commento {
+  font-weight: bold;
   background-color: #1da1f2;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 15px !important;
+  margin: 10px 0px 15px 0px;
 }
 
 #aggiungi-commento:hover {
