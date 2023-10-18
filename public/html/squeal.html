@@ -6,10 +6,10 @@
       <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>
       <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>
     </div>
-    <div class="recipients-dropdown" id="destinatari" class="destinatari">
-      <button class="btn btn-link btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-        Destinatari 
-      </button> 
+    <div class="recipients-dropdown destinatari">
+      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">
+        <i class="fa-solid fa-users destinatari-icona"></i>
+      </button>      
       <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"> 
         <a class="dropdown-item" href="#">Alice</a> 
         <a class="dropdown-item" href="#">Bob</a> 
@@ -61,9 +61,8 @@
       </div>
     </div>
     <div class="info-post" id="squeal_info' + i + '">
-      <span class="label-squeal visual" id="squeal_visual' + i + '">
-        <i class="fa-solid fa-eye"></i> 500
-      </span>
+      <i class="fa-solid fa-eye"></i>
+      <span class="label-squeal visual" id="squeal_visual' + i + '"> 500 </span>
     </div>
   </div>
 </div>
