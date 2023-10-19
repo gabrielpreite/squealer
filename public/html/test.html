@@ -37,38 +37,12 @@
           <h3 class="bg-dark text-center py-2"><a href="#">Second Column</a></h3>
         </div>
 
-        <div class="container pt-2">
-          <div class="row">
-              <div class="col-10 mx-auto">
-                  <form method="post" action="" onsubmit="()">
-                      <div class="input-group mb-3">
-                          <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
-  
-                          <select class="form-select" id="filtro" name="filtro" aria-label="Select">
-                              <option selected value="default" id="default" onclick="()">
-                                Ordina per:</option>
-                              <option value="data_ordinamento" id="data_ordinamento" onclick="()">
-                                Data</option>
-                              <option value="visual" id="visual" onclick="();">
-                                Numero di visualizzazioni</option>
-                              <option value="Impression" id="Impression" onclick="()">
-                                Impression</option>
-                          </select>
-
-                          <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
-                          border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-        </div>
-
           <div class="row overflow-auto" style="height: 50em">
             <div class="container posts-content"> 
-              <div class="row contenitore-squeal" id="squeal_contenitore">
+              <div class="contenitore-squeal" id="squeal_contenitore">
 
 
-                <div class="card squeal" id="' + squeals[i]._id + '"> 
+                <!--<div class="card squeal" id="' + squeals[i]._id + '"> 
                   <div class="card-header">
                     <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">
                     <div class="info_utente"> 
@@ -84,7 +58,7 @@
                         <a class="dropdown-item" href="#">Alice</a> 
                         <a class="dropdown-item" href="#">Bob</a> 
                         <a class="dropdown-item" href="#">Charlie</a> 
-                        <!-- Aggiungi altri destinatari qui --> 
+                      
                       </div> 
                     </div> 
                   </div> 
@@ -128,6 +102,79 @@
                       <span class="label-squeal visual" id="squeal_visual' + i + '">Visual 500</span> 
                     </div> 
                   </div> 
+                </div>-->
+
+
+                <div class="card squeal" id="' + squeals[i]._id + '">
+                  <div class="card-header">
+                    <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">
+                    <div class="info_utente">
+                      <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
+                      <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>
+                      <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>
+                    </div>
+                    <div class="recipients-dropdown destinatari">
+                      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">
+                        <i class="fa-solid fa-users destinatari-icona"></i>
+                      </button>      
+                      <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"> 
+                        <a class="dropdown-item" href="#">Alice</a> 
+                        <a class="dropdown-item" href="#">Bob</a> 
+                        <a class="dropdown-item" href="#">Charlie</a> 
+                        <!-- Aggiungi altri destinatari qui --> 
+                      </div> 
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p id="squeal_testo' + i + '"> </p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="row reazioni btn-group">
+                      <div class="col reazioni-left">
+                        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">
+                          <i class="fab fa-sketch reazioni-icone"> </i>
+                          <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>
+                        </label>
+                        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">
+                          <i class="fas fa-poo reazioni-icone"> </i>
+                          <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>
+                        </label>
+                      </div>
+                      <div class="col reazioni-mid">
+                        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">
+                          <i class="fas fa-heart reazioni-icone">  </i>
+                          <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>
+                        </label>
+                        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">
+                          <i class="fas fa-heart-crack reazioni-icone"> </i>
+                          <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>
+                        </label>
+                      </div>
+                      <div class="col reazioni-right">
+                        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">
+                          <i class="fas fa-thumbs-up reazioni-icone"> </i>
+                          <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>
+                        </label>
+                        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">
+                          <i class="fas fa-thumbs-down reazioni-icone"> </i>
+                          <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>
+                        </label>
+                      </div>
+                      <div class="col commenti">
+                        <label class="btn btn-reazioni btn-group' + i + '">
+                          <i class="fa-solid fa-comments commento-icona"></i>
+                          <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="info-post" id="squeal_info' + i + '">
+                      <span class="visual">
+                        <i class="fa-solid fa-eye visual-icona"></i>
+                        500
+                      </span>
+                      <span class="label-squeal popolare"> Popolare </span>
+                    </div>
+                  </div>
                 </div>
 
 
@@ -154,7 +201,7 @@
   
   <script>
     //richiesta squeal
-    var squeals;
+    /*var squeals;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -267,10 +314,10 @@
         var Et_auto = document.getElementById('squeal_info' + i);
         Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
       }
-      /*if (!squeals[i].pubblico){ // deprecato
-        var Et_pubblico = document.getElementById('squeal_info' + i);
-        Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
-      }*/
+      //if (!squeals[i].pubblico){ // deprecato
+        //var Et_pubblico = document.getElementById('squeal_info' + i);
+        //Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
+      //}
     }
 
     //bottoni
@@ -314,7 +361,7 @@
         }
       });
     }
-
+    */
   </script>
 </body>
 

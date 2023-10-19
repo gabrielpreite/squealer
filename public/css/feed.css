@@ -181,7 +181,6 @@
 }
 
 .contenitore-squeal {
-  padding: 10px 0 10px 0;
   width: 100%;
 }
 
@@ -190,18 +189,11 @@
   height: auto;
   padding: 10px;
   margin: auto;
-  margin-bottom: 20px;
-  background-color: white;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0;
-  /*
+  margin-bottom: 20px; 
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
   background-color: rgb(255, 255, 255);
   padding: 0.8rem;
-  width: 33rem;
-  */
 }
 
 .card-header {
@@ -209,15 +201,56 @@
   align-items: center;
   border: none;
   background-color: white;
-  justify-content: space-between;
+}
+
+.profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.info_utente {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+}
+
+.nome_utente {
+  font-weight: bold;
+}
+
+.destinatari{
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+.btn-destinatari {
+  color: #555 !important;
+  font-size: auto;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.dropdown-menu {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  max-height: 200px;
+  min-width: 120px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.dropdown-item {
+  font-weight: 400;
+  white-space: normal;
 }
 
 .card-footer {
   border-top: 1px solid #ccc;
   background-color: white;
-  padding: 8px 4px 4px 4px;
-  text-align: center;
-  width: 100%;
+  padding: 8px 0 0 0;
 }
 
 .btn-reazioni {
@@ -230,16 +263,21 @@
   font-size: 20px;
 }
 
+.commento-icona {
+  font-size: 16px;
+}
+
+.visual-icona {
+  font-size: 18px;
+  color: #777;
+}
+
 .n-reazioni {
   color: #262d33;
 }
 
 .reazioni {
-  padding: 8px 3px 8px 3px;
-}
-
-.n-commenti {
-  color: #262d33;
+  padding: auto;
 }
 
 .label-squeal {
@@ -251,10 +289,10 @@
 }
 
 .visual {
+  color: black;
+  border-radius: 8px;
+  padding: 5px;
   float: left;
-  color: #777;
-  font-size: 14px;
-  margin-top: 5px;
 }
 
 .popolare {
@@ -280,51 +318,6 @@
   background-color: red;
 }
 */
-
-.profile-image {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.info_utente {
-  display: flex;
-  flex-direction: column;
-}
-
-.nome_utente {
-  font-weight: bold;
-}
-
-.destinatari-icona {
-  font-size: 1.2rem;
-}
-
-.btn-destinatari {
-  color: #555 !important;
-  font-size: auto;
-  text-decoration: none !important;
-  border: none !important;
-  padding-bottom: 5px;
-}
-
-.dropdown-menu {
-  border: 1px solid #aaa;
-  border-radius: 10px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 0;
-  max-height: 200px;
-  min-width: 120px;
-  overflow-y: auto;
-  margin-top: 10px;
-}
-
-.destinatari, .dropdown-item {
-  font-weight: 400;
-  white-space: normal;
-}
-
 
 /* Stile per i commenti */
 .contenitore-commenti {
