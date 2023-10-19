@@ -41,6 +41,7 @@
             <h6 class="dropdown-header">Gestisci altri account</h6>
           </div>
         </div>
+        <div id="managed-account-username"></div>
       </div>
       <div id="quota">
         <div class="char-count-item">
@@ -230,6 +231,11 @@
     $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
   })*/
 
+  //se sto gestendo un account lo mostro nella barra
+  let managed = get_cookie_by_name("managed")
+  if(!(managed === undefined)){
+    $("#managed-account-username").text(managed)
+  }
 
   array_dest_canali=[]//array destinatari per uso interno
   array_dest_utenti=[]//array destinatari per uso interno
