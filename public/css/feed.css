@@ -289,6 +289,10 @@
   margin-left: 10px;
 }
 
+.visual-icona { //da vedere
+  margin-right: 5px;
+}
+
 .visual {
   float: left;
   color: #777;
