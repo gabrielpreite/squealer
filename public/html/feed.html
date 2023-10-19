@@ -418,6 +418,7 @@
         function switch_account(username){
           set_cookie("managed", username)
           $("#managed-account-username").text(username)
+          location.reload()
         }
 
         //bottoni
