@@ -338,7 +338,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		campi["timestamp"] = date.getTime();
 
 		//username
-		campi["username"] = session.userid;
+		campi["username"] = req.body.user_id
 
 		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
 

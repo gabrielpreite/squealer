@@ -466,6 +466,13 @@
       if(check_post() == true){ //  check post da rivedere in base ai 3 tipi di messaggio
         const formData = new FormData(document.getElementById("crea_post"))
 
+        //controllo a chi appartiene il post
+        let target_user = get_cookie_by_name("username")
+        let managed = get_cookie_by_name("managed")
+        if(!(managed === undefined))
+          target_user = managed
+        formData.append("user_id", target_user) 
+
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           formData.append("contenuto", "testo")
         }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
