@@ -486,13 +486,19 @@
             });
           }
 
+          //controllo a chi assegnare la reaction
+          let target_user = get_cookie_by_name("username")
+          let managed = get_cookie_by_name("managed")
+          if(!(managed === undefined))
+            target_user = managed
+          
           //chiamata update db
           $.ajax({
             type: 'GET',
             dataType: "json",
             async: false,
             url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-            data: { _id: id, reac: reac },
+            data: { _id: id, reac: reac, user_id: target_user},
             headers: { },
             success: function (data, status, xhr) {
               console.log('data: ', data);

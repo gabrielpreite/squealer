@@ -441,7 +441,7 @@ app.post('/search', async function(req, res) {
 
 app.get('/update_reazioni', async function(req, res) {
 	try{
-		req.query.userid = session.userid
+		//req.query.userid = session.userid //deprecato
 		let r = await mymongo.update_reazioni(req.query, mongoCredentials)
 		res.status(200)
 		res.send(JSON.stringify(r))
