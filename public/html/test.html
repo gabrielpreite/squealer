@@ -228,7 +228,7 @@
       var sono_contrario = "sono_contrario";
 
       //squeal
-      var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">    <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">    <div class="info_utente">      <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>      <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>      <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>    </div>    <div class="recipients-dropdown destinatari">      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">        <i class="fa-solid fa-users destinatari-icona"></i>      </button>            <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">         <a class="dropdown-item" href="#">Alice</a>         <a class="dropdown-item" href="#">Bob</a>         <a class="dropdown-item" href="#">Charlie</a>         <!-- Aggiungi altri destinatari qui -->       </div>     </div>  </div>  <div class="card-body">    <p id="squeal_testo' + i + '"> </p>  </div>  <div class="card-footer">    <div class="row reazioni btn-group">      <div class="col reazioni-left">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">          <i class="fab fa-sketch reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">          <i class="fas fa-poo reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-mid">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">          <i class="fas fa-heart reazioni-icone">  </i>          <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">          <i class="fas fa-heart-crack reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-right">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">          <i class="fas fa-thumbs-up reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">          <i class="fas fa-thumbs-down reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>        </label>      </div>      <div class="col commenti">        <label class="btn btn-reazioni btn-group' + i + '">          <i class="fa-solid fa-comments commento-icona"></i>          <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>        </label>      </div>    </div>    <div class="info-post" id="squeal_info' + i + '">      <span class="visual">        <i class="fa-solid fa-eye visual-icona"></i>        500      </span>    </div>  </div></div>';
+      var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">    <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">    <div class="info_utente">      <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>      <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>      <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>    </div>    <div class="recipients-dropdown destinatari">      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">        <i class="fa-solid fa-users destinatari-icona"></i>      </button>            <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">         <a class="dropdown-item" href="#">Alice</a>         <a class="dropdown-item" href="#">Bob</a>         <a class="dropdown-item" href="#">Charlie</a>         <!-- Aggiungi altri destinatari qui -->       </div>     </div>  </div>  <div class="card-body">    <p id="squeal_testo' + i + '"> </p>  </div>  <div class="card-footer">    <div class="row reazioni btn-group">      <div class="col reazioni-left">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">          <i class="fab fa-sketch reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">          <i class="fas fa-poo reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-mid">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">          <i class="fas fa-heart reazioni-icone">  </i>          <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">          <i class="fas fa-heart-crack reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-right">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">          <i class="fas fa-thumbs-up reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">          <i class="fas fa-thumbs-down reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>        </label>      </div>      <div class="col commenti">        <label class="btn btn-reazioni btn-group' + i + '">          <i class="fa-solid fa-comments commento-icona"></i>          <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>        </label>      </div>    </div>    <div class="info-post" id="squeal_info' + i + '">      <span class="visual" id="squeal_visual' + i + '">        <i class="fa-solid fa-eye visual-icona"></i>        500      </span>    </div>  </div></div>';
       contenitore.insertAdjacentHTML('beforeend', htmlCode);
 
       //info utente
@@ -279,32 +279,32 @@
 
       //console.log("fv");
       //get_cookie_by_name("username")
-      if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+      if (squeals[i].reazioni.positive.adoro.includes("fv")) {
         var nreazioni0 = document.getElementById(id_sketch);
         var premuto0 = nreazioni0.parentNode;
         premuto0.style.color= "#00AFFF";
         premuto0.checked = true;
-      } else if (squeals[i].reazioni.negative.mi_disgusta.includes(get_cookie_by_name("username"))) {
+      } else if (squeals[i].reazioni.negative.mi_disgusta.includes("fv")) {
         var nreazioni1 = document.getElementById(id_poo);
         var premuto1 = nreazioni1.parentNode;
         premuto1.style.color= "#8B4513";
         premuto1.checked = true;
-      } else if (squeals[i].reazioni.positive.mi_piace.includes(get_cookie_by_name("username"))) {
+      } else if (squeals[i].reazioni.positive.mi_piace.includes("fv")) {
         var nreazioni2 = document.getElementById(id_heart);
         var premuto2 = nreazioni2.parentNode;
         premuto2.style.color= "#FF0000";
         premuto2.checked = true;
-      } else if (squeals[i].reazioni.negative.odio.includes(get_cookie_by_name("username"))) {
+      } else if (squeals[i].reazioni.negative.odio.includes("fv")) {
         var nreazioni3 = document.getElementById(id_disheart);
         var premuto3 = nreazioni3.parentNode;
         premuto3.style.color= "#FF0000";
         premuto3.checked = true;
-      } else if (squeals[i].reazioni.positive.concordo.includes(get_cookie_by_name("username"))) {
+      } else if (squeals[i].reazioni.positive.concordo.includes("fv")) {
         var nreazioni4 = document.getElementById(id_like);
         var premuto4 = nreazioni4.parentNode;
         premuto4.style.color= "#007FFF";
         premuto4.checked = true;
-      } else if (squeals[i].reazioni.negative.sono_contrario.includes(get_cookie_by_name("username"))) {
+      } else if (squeals[i].reazioni.negative.sono_contrario.includes("fv")) {
         var nreazioni5 = document.getElementById(id_dislike);
         var premuto5 = nreazioni5.parentNode;
         premuto5.style.color= "#007FFF";
