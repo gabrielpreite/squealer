@@ -428,11 +428,23 @@
         }
         //FINE SQUEAL
 
-        // switch account
+        // switch account e re-set quota
         function switch_account(username){
           set_cookie("managed", username)
           $("#managed-account-username").text(username)
-          location.reload()
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/get_quota?username=${username}`,
+            headers: { },
+            success: function (data, status, xhr) {
+              set_cookie("quota_giorno", data["quota"]["g"])
+              set_cookie("quota_settimana", data["quota"]["s"])
+              set_cookie("quota_mese", data["quota"]["m"])
+              location.reload()
+            }
+          });
         }
 
         //bottoni

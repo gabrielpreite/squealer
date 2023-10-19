@@ -276,14 +276,8 @@ app.get("/user_info", async function(req, res) {
 app.get("/get_quota", async function(req, res) {
 	try{
 		let result = await mymongo.get_quota(req.query, mongoCredentials)
-		res.clearCookie('quota_giorno')
-		res.clearCookie('quota_settimana')
-		res.clearCookie('quota_mese')
-		res.cookie('quota_giorno', result["quota"]["g"])
-		res.cookie('quota_settimana', result["quota"]["s"])
-		res.cookie('quota_mese', result["quota"]["m"])
 		res.status(200)
-		res.send("ok")
+		res.send(result)
 	}catch(e){
 		res.status(500)
 		res.send("errore")
