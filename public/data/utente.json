@@ -23,7 +23,7 @@
         "professional_flag": false,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": null
+        "managed_by": "fvSMM"
     },
     {
         "img" : "",
@@ -74,7 +74,7 @@
         "verificato_flag": false,
         "professional_flag": true,
         "abilitato_flag": true,
-        "manager_of": ["fvPro", "NomeBuffo1", "NomeBuffo2"],
+        "manager_of": ["fvPro", "NomeBuffo1", "NomeBuffo2", "fv"],
         "managed_by": null
     },
     {

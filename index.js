@@ -354,6 +354,20 @@ app.get('/user_feed', async function(req, res) {
 	}
 });
 
+app.get('/smm_feed', async function(req, res) {
+	let result;
+	try{
+		let campi = {}
+		campi["smm"] = session.userid;
+		result = await mymongo.user_feed(req.query, campi, mongoCredentials);
+		res.status(200)
+		res.send(result)
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella richiesta del feed")
+	}
+});
+
 // ottiene gli squeal in risposta al post selezionato
 app.get('/get_replies', async function(req, res) {
 	let result

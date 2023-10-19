@@ -629,6 +629,101 @@ exports.user_feed = async function(q, campi, credentials) {
 	}
 }
 
+exports.smm_feed = async function(q, campi, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	try{
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		//console.log("dentro mongo con user "+campi.username)
+		//il feed e' composto dai post degli account gestiti
+
+		let utenti_gestiti = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find({username: campi.smm})
+			.project({ manager_of: 1})
+			.forEach( (r) => { 
+				utenti_gestiti.push(r["manager_of"])
+			} );
+		utenti_gestiti = utenti_gestiti[0] //da fixare
+
+		/*console.log("ottenuti canali seguiti da "+campi.username)
+		canali_seguiti.forEach((element) => console.log(element))
+		console.log("ottenuti utenti seguiti da "+campi.username)
+		utenti_seguiti.forEach((element) => console.log(element))*/
+
+		//canali_seguiti.push("@"+campi.username) //l'utente non vede i propri post
+		//console.log("aggiunto utente")
+
+		//debug
+
+		let result = []
+
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.aggregate([
+				{
+				  $match: {
+					$or: [
+					  { username: { $in: utenti_gestiti } },
+					]
+				  }
+				},
+				{
+				  $lookup: {
+					from: "utente", // nome seconda tabella
+					localField: "utente", // nome chiave in prima tabella (corrente)
+					foreignField: "username", // nome chiave in seconda tabella
+					as: "utenteData" // rename del record ottenuto (da seconda tabella)
+				  }
+				},
+				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
+					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+					  "newRoot": {
+						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+						  "$$ROOT", //campi originali in messaggio
+						  {
+							nome:"$utenteData.nome"
+						  }
+						]
+					  }
+					}
+				},
+				{
+					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						utenteData: 0
+					}
+				}
+			  ])
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		/*console.log("post in canali seguiti:")
+		result.forEach((element) => console.log(element))*/
+		
+
+		// aumento le visual dei post ottenuti
+		var id_arr = []
+		result.forEach((el) => id_arr.push(el._id))
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.updateMany(
+				{_id : {$in: id_arr}},
+				{$inc: {visualizzazioni : 1}}
+			)
+
+		//console.log("ottenuto feed")
+		await mongo.close();
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
 exports.update_reazioni = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
