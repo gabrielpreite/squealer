@@ -243,6 +243,7 @@
   border-radius: 8px;
   padding: 5px;
   float: right;
+  margin-left: 10px;
 }
 
 .visual {
@@ -334,8 +335,8 @@
 }
 
 .contenitore-commenti {
-  margin-top: 10px;
-  height: 78vh;
+  margin-top: 15px;
+  height: 81%;
   overflow-y: auto;
   border-bottom: 1px solid #ccc;
 }
