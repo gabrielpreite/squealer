@@ -359,7 +359,7 @@ app.get('/smm_feed', async function(req, res) {
 	try{
 		let campi = {}
 		campi["smm"] = session.userid;
-		result = await mymongo.user_feed(req.query, campi, mongoCredentials);
+		result = await mymongo.smm_feed(req.query, campi, mongoCredentials);
 		res.status(200)
 		res.send(result)
 	} catch (e) {
