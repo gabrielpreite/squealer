@@ -9,3 +9,7 @@ function get_cookie_by_name(name) {
         return undefined
     }
 }
+
+function set_cookie(key, value) {
+    document.cookie = key+"="+value 
+}

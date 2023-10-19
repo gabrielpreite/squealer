@@ -37,7 +37,7 @@
             </script>
           </strong>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
+          <div disabled class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
             <h6 class="dropdown-header">Gestisci altri account</h6>
           </div>
         </div>
@@ -213,7 +213,7 @@
 
   <script>
   // INSERIMENTO ACCOUNT GESTITI DA SMM
-  let account = []
+  /*let account = []
   $.ajax({
     type: 'GET',
     dataType: "json",
@@ -226,9 +226,9 @@
     }
   });
       
-  account.forEach((el) => {
-    $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button">${el}</button>`)
-  })
+  *account.forEach((el) => {
+    $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
+  })*/
 
 
   array_dest_canali=[]//array destinatari per uso interno

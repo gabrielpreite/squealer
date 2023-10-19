@@ -46,6 +46,8 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
+            <div id="managed-account-username">
+            </div>
           </div>
         </div>
         <div id="quota">
@@ -275,7 +277,7 @@
         });
         
         account.forEach((el) => {
-          $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button">${el}</button>`)
+          $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
         })
 
         //RICHIESTA E COSTRUZIONE SQUEAL
@@ -412,6 +414,12 @@
           }*/
         }
         //FINE SQUEAL
+
+        // switch account
+        function switch_account(username){
+          set_cookie("managed", username)
+          $("#managed-account-username").text(username)
+        }
 
         //bottoni
         function premibottone(button, reac, id) {
