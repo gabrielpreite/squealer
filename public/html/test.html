@@ -313,7 +313,7 @@
 
       //etichette
       var id_visual = 'squeal_visual' + i;
-      document.getElementById(id_visual).innerHTML = squeals[i].visualizzazioni;
+      document.getElementById(id_visual).innerHTML = '<i class="fa-solid fa-eye visual-icona"></i>' + squeals[i].visualizzazioni;
       if (squeals[i].categoria == "popolare"){
         var Et_popolarita = document.getElementById('squeal_info' + i);
         Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolare"> Popolare </span>');
