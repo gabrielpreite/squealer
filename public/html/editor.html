@@ -37,11 +37,8 @@
             </script>
           </strong>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
             <h6 class="dropdown-header">Gestisci altri account</h6>
-            <button class="dropdown-item" type="button">Felon Muskrat</button>
-            <button class="dropdown-item" type="button">Tizio Caio</button>
-            <button class="dropdown-item" type="button">Sempronio Boh</button>
           </div>
         </div>
       </div>
@@ -215,6 +212,25 @@
     crossorigin="anonymous"></script>
 
   <script>
+  // INSERIMENTO ACCOUNT GESTITI DA SMM
+  let account = []
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/get_managed`,
+    headers: { },
+    success: function (data, status, xhr) {
+      console.log('data: ', data);
+      account = data;
+    }
+  });
+      
+  account.forEach((el) => {
+    $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button">${el}</button>`)
+  })
+
+
   array_dest_canali=[]//array destinatari per uso interno
   array_dest_utenti=[]//array destinatari per uso interno
   let imageFileURL = null;
