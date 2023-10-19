@@ -206,6 +206,7 @@ app.post('/api_login', async function(req, res) {
 		res.cookie('quota_giorno', db_res["quota"]["g"])
 		res.cookie('quota_settimana', db_res["quota"]["s"])
 		res.cookie('quota_mese', db_res["quota"]["m"])
+		res.clearCookie('managed')
 		res.redirect("/")
 	}catch(e){
 		res.cookie('username', "null")
@@ -264,7 +265,6 @@ app.get('/permessi_canale', async function(req, res) {
 app.get("/user_info", async function(req, res) {
 	try{
 		let result = await mymongo.user_info(req.query, mongoCredentials)
-		result = result
 		res.status(200)
 		res.send(result)
 	}catch(e){
@@ -272,6 +272,17 @@ app.get("/user_info", async function(req, res) {
 		res.send("errore")
 	}
 });
+
+app.get("/get_quota", async function(req, res) {
+	try{
+		let result = await mymongo.get_quota(req.query, mongoCredentials)
+		res.status(200)
+		res.send(result)
+	}catch(e){
+		res.status(500)
+		res.send("errore")
+	}
+})
 
 app.get("/user_exist", async function(req, res) {
 	try{
@@ -327,7 +338,7 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		campi["timestamp"] = date.getTime();
 
 		//username
-		campi["username"] = session.userid;
+		campi["username"] = req.body.user_id
 
 		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
 
@@ -430,7 +441,7 @@ app.post('/search', async function(req, res) {
 
 app.get('/update_reazioni', async function(req, res) {
 	try{
-		req.query.userid = session.userid
+		//req.query.userid = session.userid //deprecato
 		let r = await mymongo.update_reazioni(req.query, mongoCredentials)
 		res.status(200)
 		res.send(JSON.stringify(r))
