@@ -611,6 +611,16 @@ exports.user_feed = async function(q, campi, credentials) {
 		//console.log("post in bacheca di utenti seguiti")
 		//result.forEach((element) => console.log(element))
 
+		// aumento le visual dei post ottenuti
+		var id_arr = []
+		result.forEach((el) => id_arr.push(el._id))
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.updateMany(
+				{_id : {$in: id_arr}},
+				{$inc: {visualizzazioni : 1}}
+			)
+
 		//console.log("ottenuto feed")
 		await mongo.close();
 		return result
