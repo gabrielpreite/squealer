@@ -11,5 +11,13 @@ function get_cookie_by_name(name) {
 }
 
 function set_cookie(key, value) {
-    document.cookie = key+"="+value 
+    var now = new Date()
+    var time = now.getTime()
+    var expireTime = time + 1000*36000
+    now.setTime(expireTime)
+    document.cookie = key+"="+value+"; expires="+now.toUTCString()
+}
+
+function delete_cookie(key) {
+    document.cookie = key+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC"
 }
