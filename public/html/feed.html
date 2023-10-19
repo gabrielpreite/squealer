@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<head>
+  <head>
     <title>Squealer</title>
 
     <!----BOOSTRAP-->
@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="../css/feed.css">
     <link rel="stylesheet" href="../css/navbar.css">
 
-</head>
-<body>
+  </head>
+  <body>
     <header>
       <div class="navbar fixed-top">
         <div id="profile">
@@ -45,6 +45,9 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
               <h6 class="dropdown-header">Gestisci altri account</h6>
+              <button class="dropdown-item" type="button">Felon Muskrat</button>
+              <button class="dropdown-item" type="button">Tizio Caio</button>
+              <button class="dropdown-item" type="button">Sempronio Boh</button>
             </div>
           </div>
         </div>
@@ -122,100 +125,135 @@
       </div>
 
       <div class="container-fluid">
-        <div class="row">
 
-          <!-- First Column -->
-          <div class="col-md-3" id="col-sx">
-            <div class="social-channels">
-              <a href="" class="channel-button" style="margin-left: 15px"><i class="fas fa-wrench"></i> Staff</a>
-              <a href="" class="channel-button"><i class="far fa-newspaper fa-fw"></i> News</a>
-              <a href="" class="channel-button" style="margin-right: 5px;"><i class="far fa-sun"></i> Meteo</a>
-              <a href="" class="channel-button small">...</a>
-            </div>
-
-            <h4 class="statistiche-title" style="text-align: left">Tendenze</h4>
-            <ol class="tendenze-list">
-              <li class="tendenze-item">
-                <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-                <span class="tendenze-count">100k Squeals</span>
-              </li>
-              <li class="tendenze-item">
-                <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-                <span class="tendenze-count">80k Squeals</span>
-              </li>
-              <li class="tendenze-item">
-                <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-                <span class="tendenze-count">50k Squeals</span>
-              </li>
-              <li class="tendenze-item">
-                <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-                <span class="tendenze-count">40k Squeals</span>
-              </li>
-              <li class="tendenze-item">
-                <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-                <span class="tendenze-count">30k Squeals</span>
-              </li>
-            </ol>
-
-            <h4 class="statistiche-title">Trend</h4>
-            <div class="grafico mosaic-container">
-                <!-- Le tessere del mosaico saranno generate dinamicamente con JavaScript -->
-            </div>
-
-            <h4 class="statistiche-title">Picchi di utenza</h4>
-            <div class="grafico" id="grafico-attivita"></div>
-
+        <!-- First Column -->
+        <div class="col-md-3" id="col-sx">
+          <div class="social-channels">
+            <a href="" class="channel-button" style="margin-left: 15px"><i class="fas fa-wrench"></i> Staff</a>
+            <a href="" class="channel-button"><i class="far fa-newspaper fa-fw"></i> News</a>
+            <a href="" class="channel-button" style="margin-right: 5px;"><i class="far fa-sun"></i> Meteo</a>
+            <a href="" class="channel-button small">...</a>
           </div>
 
-          <!-- Second Column -->
-          <div class="col-md-6" id="feed">
+          <h4 class="statistiche-title" style="text-align: left">Tendenze</h4>
+          <ol class="tendenze-list">
+            <li class="tendenze-item">
+              <span class="tendenze-tag"><a href="#">#hashtag</a></span>
+              <span class="tendenze-count">100k Squeals</span>
+            </li>
+            <li class="tendenze-item">
+              <span class="tendenze-tag"><a href="#">#hashtag</a></span>
+              <span class="tendenze-count">80k Squeals</span>
+            </li>
+            <li class="tendenze-item">
+              <span class="tendenze-tag"><a href="#">#hashtag</a></span>
+              <span class="tendenze-count">50k Squeals</span>
+            </li>
+            <li class="tendenze-item">
+              <span class="tendenze-tag"><a href="#">#hashtag</a></span>
+              <span class="tendenze-count">40k Squeals</span>
+            </li>
+            <li class="tendenze-item">
+              <span class="tendenze-tag"><a href="#">#hashtag</a></span>
+              <span class="tendenze-count">30k Squeals</span>
+            </li>
+          </ol>
 
-            <div class="container pt-2">
-              <div class="row">
-                  <div class="col-10 mx-auto">
-                      <form method="GET" action="/search">
-                          <div class="input-group mb-3">
-                              <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
+          <h4 class="statistiche-title">Trend</h4>
+          <div class="grafico mosaic-container">
+              <!-- Le tessere del mosaico saranno generate dinamicamente con JavaScript -->
+          </div>
 
-                              <select class="form-select" id="filtro" name="filtro" aria-label="Select">
-                                  <option selected value="default" id="default" onclick="">
-                                    Ordina per:</option>
-                                  <option value="data" id="data" onclick="">
-                                    Data</option>
-                                  <option value="visual" id="visual" onclick="">
-                                    Numero di visualizzazioni</option>
-                                  <option value="Impression" id="Impression" onclick="">
-                                    Impression</option>
-                              </select>
+          <h4 class="statistiche-title">Picchi di utenza</h4>
+          <div class="grafico" id="grafico-attivita"></div>
 
-                              <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
-                              border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-            </div>
+        </div>
 
-            <div class="row overflow-auto" style="height: 50em">
-              <div class="container posts-content">
-                <div class="row contenitore-squeal" id="squeal_contenitore">
+        <!-- Second Column -->
+        <div class="col-md-6" id="feed">
 
+          <div class="container pt-2">
+            <div class="row searchbar">
+                <div class="col-10 mx-auto barra">
+                    <form method="GET" action="/search">
+                        <div class="input-group mb-3">
+                            <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
 
+                            <select class="form-select" id="filtro" name="filtro" aria-label="Select">
+                                <option selected value="default" id="default" onclick="">
+                                  Ordina per:</option>
+                                <option value="data" id="data" onclick="">
+                                  Data</option>
+                                <option value="visual" id="visual" onclick="">
+                                  Numero di visualizzazioni</option>
+                                <option value="Impression" id="Impression" onclick="">
+                                  Impression</option>
+                            </select>
 
+                            <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
+                            border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
+          </div>
+
+          <div class="row overflow-auto" style="height: 50em">
+            <div class="container posts-content">
+              <div class="row contenitore-squeal" id="squeal_contenitore">
+
+
 
               </div>
             </div>
-
           </div>
 
-            <!-- Third Column -->
-            <div class="col-md-3" id="col-dx">
+        </div>
 
+        <!-- Third Column -->
+        <div class="col-md-3" id="col-dx">
+          <div id="vuoto" hidden="false">
+
+          </div>
+          <div id="mostra-commenti" hidden="true">
+            <h4 class="statistiche-title">Commenti</h4>
+            <div class="contenitore-commenti">
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <!-- Altri commenti possono essere inseriti qui -->
             </div>
-
+            <button id="aggiungi-commento" class="btn btn-primary mt-3" onclick="aggiungiCommento()">
+              Aggiungi Commento
+            </button>
           </div>
         </div>
+      </div>
 
       <!--JQuery-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -224,301 +262,332 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
 
-        <script>
-          // INSERIMENTO ACCOUNT GESTITI DA SMM
-          let account = []
-          $.ajax({
-            type: 'GET',
-            dataType: "json",
-            async: false,
-            url: `https://site212251.tw.cs.unibo.it/get_managed`,
-            headers: { },
-            success: function (data, status, xhr) {
-              console.log('data: ', data);
-              account = data;
+      <script>
+        // INSERIMENTO ACCOUNT GESTITI DA SMM
+        let account = []
+        $.ajax({
+          type: 'GET',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/get_managed`,
+          headers: { },
+          success: function (data, status, xhr) {
+            console.log('data: ', data);
+            account = data;
+          }
+        });
+        
+        account.forEach((el) => {
+          $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button">${el}</button>`)
+        })
+
+        //RICHIESTA E COSTRUZIONE SQUEAL
+        var squeals;
+        $.ajax({
+          type: 'GET',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/user_feed`,
+          headers: { },
+          success: function (data, status, xhr) {
+            console.log('data: ', data);
+            squeals = data;
+          }
+        });
+        var n_squeal = squeals.length;
+
+        var contenitore = document.getElementById('squeal_contenitore');
+
+        for (var i = 0; i < n_squeal; i++) {
+          //setup
+          var id = "squeals[" + i + "]._id";
+          var adoro = "adoro";
+          var mi_disgusta = "mi_disgusta";
+          var mi_piace = "mi_piace";
+          var odio = "odio";
+          var concordo = "concordo";
+          var sono_contrario = "sono_contrario";
+
+          //squeal
+          var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">    <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">    <div class="info_utente">      <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>      <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>      <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>    </div>    <div class="recipients-dropdown destinatari">      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">        <i class="fa-solid fa-users destinatari-icona"></i>      </button>            <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">         <a class="dropdown-item" href="#">Alice</a>         <a class="dropdown-item" href="#">Bob</a>         <a class="dropdown-item" href="#">Charlie</a>         <!-- Aggiungi altri destinatari qui -->       </div>     </div>  </div>  <div class="card-body">    <p id="squeal_testo' + i + '"> </p>  </div>  <div class="card-footer">    <div class="row reazioni btn-group">      <div class="col reazioni-left">        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">          <i class="fab fa-sketch reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>        </label>        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">          <i class="fas fa-poo reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-mid">        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">          <i class="fas fa-heart reazioni-icone">  </i>          <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>        </label>        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">          <i class="fas fa-heart-crack reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-right">        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">          <i class="fas fa-thumbs-up reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>        </label>        <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">          <i class="fas fa-thumbs-down reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>        </label>      </div>      <div class="col commenti">        <label class="btn btn-reazioni btn-group' + i + '">          <i class="fa-solid fa-comments"></i>          <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>        </label>      </div>    </div>    <div class="info-post" id="squeal_info' + i + '">      <i class="fa-solid fa-eye"></i>      <span class="label-squeal visual" id="squeal_visual' + i + '"> 500 </span>    </div>  </div></div>';
+          contenitore.insertAdjacentHTML('beforeend', htmlCode);
+
+          //info utente
+          var id_nome = 'squeal_nome' + i;
+          var id_tag = 'squeal_tag' + i;
+          var id_timestamp = 'squeal_timestamp' + i;
+          document.getElementById(id_nome).innerHTML = squeals[i].nome;
+          document.getElementById(id_tag).innerHTML = squeals[i].utente;
+          document.getElementById(id_timestamp).innerHTML = squeals[i].timestamp;
+
+          //corpo squeal
+          var id_testo = 'squeal_testo' + i;
+          if(squeals[i].contenuto == "testo"){
+            document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+          } else if(squeals[i].contenuto == "img"){
+            document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
+          }
+          //destinatari da finire
+          if (squeals[i].tipo_destinatari != null) {
+            var id_destinatari = 'btn-destinatari' + i;
+            if (squeals[i].tipo_destinatari == "canali"){
+              var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
+              document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
+            } else if (squeals[i].tipo_destinatari == "utenti") {
+              var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
+              document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
             }
-          });
-          
-          account.forEach((el) => {
-            $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button">${el}</button>`)
-          })
-
-          // RICHIESTA E COSTRUZIONE SQUEAL
-          var squeals;
-          $.ajax({
-            type: 'GET',
-            dataType: "json",
-            async: false,
-            url: `https://site212251.tw.cs.unibo.it/user_feed`,
-            headers: { },
-            success: function (data, status, xhr) {
-              console.log('data: ', data);
-              squeals = data;
-            }
-          });
-          var n_squeal = squeals.length;
-              
-          var contenitore = document.getElementById('squeal_contenitore');
-
-          for (var i = 0; i < n_squeal; i++) {
-            //setup
-            var id = "squeals[" + i + "]._id";
-            var adoro = "adoro";
-            var mi_disgusta = "mi_disgusta";
-            var mi_piace = "mi_piace";
-            var odio = "odio";
-            var concordo = "concordo";
-            var sono_contrario = "sono_contrario";
-            //squeal
-            var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">     <div class="card-header">      <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">      <div class="info_utente">         <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>        <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>        <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>       </div>       <div class="recipients-dropdown" class="destinatari">        <button class="btn btn-link btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">             Destinatari         </button>         <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">           <a class="dropdown-item" href="#">Alice</a>           <a class="dropdown-item" href="#">Bob</a>           <a class="dropdown-item" href="#">Charlie</a>           <!-- Aggiungi altri destinatari qui -->         </div>       </div>     </div>     <div class="card-body">                       <p id="squeal_testo' + i + '"> </p>     </div>     <div class="card-footer">       <div class="row reazioni btn-group">         <div class="col reazioni-left">           <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">             <i class="fab fa-sketch reazioni-icone"> </i>            <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>           </label>          <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">            <i class="fas fa-poo reazioni-icone"> </i>            <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>           </label>         </div>         <div class="col reazioni-mid">           <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">             <i class="fas fa-heart reazioni-icone">  </i>            <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>          </label>           <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">             <i class="fas fa-heart-crack reazioni-icone"> </i>            <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>          </label>         </div>         <div class="col reazioni-right">           <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">             <i class="fas fa-thumbs-up reazioni-icone"> </i>             <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>          </label>           <label class="btn btn-primary btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">             <i class="fas fa-thumbs-down reazioni-icone"> </i>             <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>           </label>         </div>       </div>       <div class="info-post" id="squeal_info' + i + '">         <span class="label-squeal visual" id="squeal_visual' + i + '">Visual 500</span>       </div>     </div> </div>';
-            contenitore.insertAdjacentHTML('beforeend', htmlCode);
-
-            //info utente
-            var id_nome = 'squeal_nome' + i;
-            var id_tag = 'squeal_tag' + i;
-            var id_timestamp = 'squeal_timestamp' + i;
-            document.getElementById(id_nome).innerHTML = squeals[i].nome;
-            document.getElementById(id_tag).innerHTML = squeals[i].utente;
-            document.getElementById(id_timestamp).innerHTML = squeals[i].timestamp;
-
-            //corpo squeal
-            var id_testo = 'squeal_testo' + i;
-            if(squeals[i].contenuto == "testo"){
-              document.getElementById(id_testo).innerHTML = squeals[i].corpo;
-            } else if(squeals[i].contenuto == "img"){
-              document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
-            }
-            //destinatari da finire
             var lista_destinatari = document.getElementById('squeal_destinatari' + i);
             var n_destinatari = squeals[i].destinatari.length;
             for (var j = 0; j < n_destinatari; j++) {
-              lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#">' + squeals[i].destinatari[j] + '</a>');
+              lista_destinatari.insertAdjacentHTML('beforeend', '<div><a class="dropdown-item" href="#">' + squeals[i].destinatari[j] + '</a></div>');
             }
-            
-            //reazioni
-            var id_sketch = 'squeal_sketch' + i;
-            document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
-            var id_poo = 'squeal_poo' + i;
-            document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
-            var id_heart = 'squeal_heart' + i;
-            document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
-            var id_disheart = 'squeal_disheart' + i;
-            document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
-            var id_like = 'squeal_like' + i;
-            document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;  
-            var id_dislike = 'squeal_dislike' + i;
-            document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
-            
-            //console.log("fv");
-            //get_cookie_by_name("username")
-            if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
-              var nreazioni0 = document.getElementById(id_sketch);
-              var premuto0 = nreazioni0.parentNode;
-              premuto0.style.color= "red";
-              premuto0.checked = true;
-            } else if (squeals[i].reazioni.negative.mi_disgusta.includes(get_cookie_by_name("username"))) {
-              var nreazioni1 = document.getElementById(id_poo);
-              var premuto1 = nreazioni1.parentNode;
-              premuto1.style.color= "red";
-              premuto1.checked = true;
-            } else if (squeals[i].reazioni.positive.mi_piace.includes(get_cookie_by_name("username"))) {
-              var nreazioni2 = document.getElementById(id_heart);
-              var premuto2 = nreazioni2.parentNode;
-              premuto2.style.color= "red";
-              premuto2.checked = true;
-            } else if (squeals[i].reazioni.negative.odio.includes(get_cookie_by_name("username"))) {
-              var nreazioni3 = document.getElementById(id_disheart);
-              var premuto3 = nreazioni3.parentNode;
-              premuto3.style.color= "red";
-              premuto3.checked = true;
-            } else if (squeals[i].reazioni.positive.concordo.includes(get_cookie_by_name("username"))) {
-              var nreazioni4 = document.getElementById(id_like);
-              var premuto4 = nreazioni4.parentNode;
-              premuto4.style.color= "red";
-              premuto4.checked = true;
-            } else if (squeals[i].reazioni.negative.sono_contrario.includes(get_cookie_by_name("username"))) {
-              var nreazioni5 = document.getElementById(id_dislike);
-              var premuto5 = nreazioni5.parentNode;
-              premuto5.style.color= "red";
-              premuto5.checked = true;
-            }
-            
-            //etichette
-            var id_visual = 'squeal_visual' + i;
-            document.getElementById(id_visual).innerHTML = 'Visual: ' + squeals[i].visualizzazioni;
-            if (squeals[i].categoria == "popolare"){
-              var Et_popolarita = document.getElementById('squeal_info' + i);
-              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Popolare </span>');
-            } else if (squeals[i].categoria == "impopolare"){
-              var Et_popolarita = document.getElementById('squeal_info' + i);
-              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Impopolare </span>');
-            } else if (squeals[i].categoria == "controverso"){
-              var Et_popolarita = document.getElementById('squeal_info' + i);
-              Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolarita"> Controverso </span>');
-            }
-            if (squeals[i].automatico){
-              var Et_auto = document.getElementById('squeal_info' + i);
-              Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
-            }
-            /*if (!squeals[i].pubblico){ // deprecato
-              var Et_pubblico = document.getElementById('squeal_info' + i);
-              Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
-            }*/
           }
-          //FINE SQUEAL
 
-          //bottoni
-          function premibottone(button, reac, id) {
-            //console.log(button.querySelector(".n-reazioni"));
-            //console.log(button);
-            if (button.checked) {
-              button.style.color= "white";
-              button.checked = false;
-              var Nreaz = button.querySelector(".n-reazioni");
-              Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
-            } else {
-              const buttonGroup = document.getElementsByClassName(button.className);
-              const buttonArray = Array.from(buttonGroup);
-              //console.log(buttonGroup);
-              buttonArray.forEach((btnradio) => {
-                if (button==btnradio){
-                  button.style.color= "red";
-                  button.checked = true;
-                  var Nreaz = btnradio.querySelector(".n-reazioni");
-                  Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
-                } else if (btnradio.checked) {
-                  btnradio.style.color= "white";
-                  btnradio.checked = false;
-                  var Nreaz = btnradio.querySelector(".n-reazioni");
-                  Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+          //reazioni
+          var id_sketch = 'squeal_sketch' + i;
+          document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
+          var id_poo = 'squeal_poo' + i;
+          document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
+          var id_heart = 'squeal_heart' + i;
+          document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
+          var id_disheart = 'squeal_disheart' + i;
+          document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
+          var id_like = 'squeal_like' + i;
+          document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
+          var id_dislike = 'squeal_dislike' + i;
+          document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
+
+          //console.log("fv");
+          //get_cookie_by_name("username")
+          if (squeals[i].reazioni.positive.adoro.includes(get_cookie_by_name("username"))) {
+            var nreazioni0 = document.getElementById(id_sketch);
+            var premuto0 = nreazioni0.parentNode;
+            premuto0.style.color= "#00AFFF";
+            premuto0.checked = true;
+          } else if (squeals[i].reazioni.negative.mi_disgusta.includes(get_cookie_by_name("username"))) {
+            var nreazioni1 = document.getElementById(id_poo);
+            var premuto1 = nreazioni1.parentNode;
+            premuto1.style.color= "#8B4513";
+            premuto1.checked = true;
+          } else if (squeals[i].reazioni.positive.mi_piace.includes(get_cookie_by_name("username"))) {
+            var nreazioni2 = document.getElementById(id_heart);
+            var premuto2 = nreazioni2.parentNode;
+            premuto2.style.color= "#FF0000";
+            premuto2.checked = true;
+          } else if (squeals[i].reazioni.negative.odio.includes(get_cookie_by_name("username"))) {
+            var nreazioni3 = document.getElementById(id_disheart);
+            var premuto3 = nreazioni3.parentNode;
+            premuto3.style.color= "#FF0000";
+            premuto3.checked = true;
+          } else if (squeals[i].reazioni.positive.concordo.includes(get_cookie_by_name("username"))) {
+            var nreazioni4 = document.getElementById(id_like);
+            var premuto4 = nreazioni4.parentNode;
+            premuto4.style.color= "#007FFF";
+            premuto4.checked = true;
+          } else if (squeals[i].reazioni.negative.sono_contrario.includes(get_cookie_by_name("username"))) {
+            var nreazioni5 = document.getElementById(id_dislike);
+            var premuto5 = nreazioni5.parentNode;
+            premuto5.style.color= "#007FFF";
+            premuto5.checked = true;
+          }
+
+          //etichette
+          var id_visual = 'squeal_visual' + i;
+          document.getElementById(id_visual).innerHTML = squeals[i].visualizzazioni;
+          if (squeals[i].categoria == "popolare"){
+            var Et_popolarita = document.getElementById('squeal_info' + i);
+            Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolare"> Popolare </span>');
+          } else if (squeals[i].categoria == "impopolare"){
+            var Et_popolarita = document.getElementById('squeal_info' + i);
+            Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal impopolare"> Impopolare </span>');
+          } else if (squeals[i].categoria == "controverso"){
+            var Et_popolarita = document.getElementById('squeal_info' + i);
+            Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal controverso"> Controverso </span>');
+          }
+          if (squeals[i].automatico){
+            var Et_auto = document.getElementById('squeal_info' + i);
+            Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
+          }
+          /*if (!squeals[i].pubblico){ // deprecato
+            var Et_pubblico = document.getElementById('squeal_info' + i);
+            Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
+          }*/
+        }
+        //FINE SQUEAL
+
+        //bottoni
+        function premibottone(button, reac, id) {
+          //console.log(button.querySelector(".n-reazioni"));
+          if (button.checked) {
+            button.style.color= "#777";
+            button.checked = false;
+            var Nreaz = button.querySelector(".n-reazioni");
+            Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+          } else {
+            const buttonGroup = document.getElementsByClassName(button.className);
+            const buttonArray = Array.from(buttonGroup);
+            //console.log(buttonGroup);
+            buttonArray.forEach((btnradio) => {
+              if (button==btnradio){
+                if (reac == "adoro"){
+                  button.style.color= "#00AFFF";
+                } else if (reac == "mi_disgusta") {
+                  button.style.color= "#8B4513";
+                } else if (reac == "mi_piace") {
+                  button.style.color= "#FF0000";
+                } else if (reac == "odio") {
+                  button.style.color= "#FF0000";
+                } else if (reac == "concordo") {
+                  button.style.color= "#007FFF";
+                } else if (reac == "sono_contrario") {
+                  button.style.color= "#007FFF";
                 }
-              });
-            }
-            
-            //chiamata update db
-            $.ajax({
-              type: 'GET',
-              dataType: "json",
-              async: false,
-              url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-              data: { _id: id, reac: reac },
-              headers: { },
-              success: function (data, status, xhr) {
-                console.log('data: ', data);
+                button.checked = true;
+                var Nreaz = btnradio.querySelector(".n-reazioni");
+                Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
+              } else if (btnradio.checked) {
+                btnradio.style.color= "#777";
+                btnradio.checked = false;
+                var Nreaz = btnradio.querySelector(".n-reazioni");
+                Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
               }
             });
           }
 
-          function riempiFeed(){
-
-          }
-
-          function redirectToEditor() {
-            window.location.href = "/editor";
-          }
-
-          function redirectToSettings() {
-            window.location.href = "/settings";
-          }
-
-          function redirectToHome() {
-            window.location.href = "/";
-          }
-
-          google.charts.load('current', { 'packages': ['corechart'] });
-          google.charts.setOnLoadCallback(drawChart);
-
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Orario', 'Utenti'],
-              [00, 120],
-              [02, 80],
-              [05, 150],
-              [08, 250],
-              [12, 320],
-              [16, 280],
-              [19, 200],
-              [22, 180],
-            ]);
-
-            var options = {
-              height: 200,
-              width: 305.4,
-              legend: { position: 'none' },
-              vAxis: { minValue: 0 },
-              hAxis: {
-                gridlines: { color: 'transparent' },
-                ticks: [
-                  {v: 00, f: '0:00'},
-                  {v: 01, f: ''},
-                  {v: 02, f: ''},
-                  {v: 03, f: ''},
-                  {v: 04, f: ''},
-                  {v: 05, f: ''},
-                  {v: 06, f: '6:00'},
-                  {v: 07, f: ''},
-                  {v: 08, f: ''},
-                  {v: 09, f: ''},
-                  {v: 10, f: ''},
-                  {v: 11, f: ''},
-                  {v: 12, f: '12:00'},
-                  {v: 13, f: ''},
-                  {v: 14, f: ''},
-                  {v: 15, f: ''},
-                  {v: 16, f: ''},
-                  {v: 17, f: ''},
-                  {v: 18, f: '18:00'},
-                  {v: 19, f: ''},
-                  {v: 20, f: ''},
-                  {v: 21, f: ''},
-                  {v: 22, f: ''},
-                  {v: 23, f: ''},
-                ],
-                slantedText: false,
-              },
-              series: {
-                0: { type: 'line', color: '#4285F4' },
-              },
-              backgroundColor: 'transparent',
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('grafico-attivita'));
-            chart.draw(data, options);
-          }
-
-          // TRENDS
-          const pastelColors = [
-            '#FF8080', '#FFB380', '#FFD480', '#FFFF80', '#BFFF80',
-            '#80FF80', '#80FFBF', '#C0B3FF', '#CFAEFF'
-          ];
-
-          function getRandomPastelColor() {
-            const randomIndex = Math.floor(Math.random() * pastelColors.length);
-            return pastelColors[randomIndex];
-          }
-
-          // Crea le tessere del mosaico dinamicamente
-          function createMosaicTiles() {
-            const container = document.querySelector('.mosaic-container');
-            const tileSize = 30; // Dimensione della tessera
-
-            // Array dei trend
-            var trends = ['#Trend1', '#prova', '#ciaociaociao', '#Trend4', '#squealer'];
-
-            for (let i = 0; i < trends.length; i++) {
-              const tile = document.createElement('a');
-              tile.classList.add('mosaic-tile');
-              tile.style.backgroundColor = getRandomPastelColor();
-              tile.textContent = trends[i];
-              tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
-              tile.style.height = tileSize + 'px';
-              tile.href = '#'; // Imposta l'URL del link
-
-              container.appendChild(tile);
+          //chiamata update db
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
+            data: { _id: id, reac: reac },
+            headers: { },
+            success: function (data, status, xhr) {
+              console.log('data: ', data);
             }
-          }
-          createMosaicTiles();
-        </script>
-    </body>
+          });
+        }
 
+        function aggiungicommento() {
+          // Cambia il colore dell'icona del commento a nero
+          var icon = document.querySelector('.fa-solid.fa-comments');
+          icon.style.color = 'black';
+          // Nascondi il div "vuoto"
+          document.getElementById("vuoto").hidden = true;
+          // Mostra il div "mostra-squeal"
+          document.getElementById("mostra-commenti").hidden = false;
+        }
+
+        function riempiFeed(){
+
+        }
+
+        function redirectToEditor() {
+          window.location.href = "/editor";
+        }
+
+        function redirectToSettings() {
+          window.location.href = "/settings";
+        }
+
+        function redirectToHome() {
+          window.location.href = "/";
+        }
+
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Orario', 'Utenti'],
+            [00, 120],
+            [02, 80],
+            [05, 150],
+            [08, 250],
+            [12, 320],
+            [16, 280],
+            [19, 200],
+            [22, 180],
+          ]);
+
+          var options = {
+            height: 200,
+            width: 305.4,
+            legend: { position: 'none' },
+            vAxis: { minValue: 0 },
+            hAxis: {
+              gridlines: { color: 'transparent' },
+              ticks: [
+                {v: 00, f: '0:00'},
+                {v: 01, f: ''},
+                {v: 02, f: ''},
+                {v: 03, f: ''},
+                {v: 04, f: ''},
+                {v: 05, f: ''},
+                {v: 06, f: '6:00'},
+                {v: 07, f: ''},
+                {v: 08, f: ''},
+                {v: 09, f: ''},
+                {v: 10, f: ''},
+                {v: 11, f: ''},
+                {v: 12, f: '12:00'},
+                {v: 13, f: ''},
+                {v: 14, f: ''},
+                {v: 15, f: ''},
+                {v: 16, f: ''},
+                {v: 17, f: ''},
+                {v: 18, f: '18:00'},
+                {v: 19, f: ''},
+                {v: 20, f: ''},
+                {v: 21, f: ''},
+                {v: 22, f: ''},
+                {v: 23, f: ''},
+              ],
+              slantedText: false,
+            },
+            series: {
+              0: { type: 'line', color: '#4285F4' },
+            },
+            backgroundColor: 'transparent',
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('grafico-attivita'));
+          chart.draw(data, options);
+        }
+
+        // TRENDS
+        const pastelColors = [
+          '#FF8080', '#FFB380', '#FFD480', '#FFFF80', '#BFFF80',
+          '#80FF80', '#80FFBF', '#C0B3FF', '#CFAEFF'
+        ];
+
+        function getRandomPastelColor() {
+          const randomIndex = Math.floor(Math.random() * pastelColors.length);
+          return pastelColors[randomIndex];
+        }
+
+        // Crea le tessere del mosaico dinamicamente
+        function createMosaicTiles() {
+          const container = document.querySelector('.mosaic-container');
+          const tileSize = 30; // Dimensione della tessera
+
+          // Array dei trend
+          var trends = ['#Trend1', '#prova', '#ciaociaociao', '#Trend4', '#squealer'];
+
+          for (let i = 0; i < trends.length; i++) {
+            const tile = document.createElement('a');
+            tile.classList.add('mosaic-tile');
+            tile.style.backgroundColor = getRandomPastelColor();
+            tile.textContent = trends[i];
+            tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
+            tile.style.height = tileSize + 'px';
+            tile.href = '#'; // Imposta l'URL del link
+
+            container.appendChild(tile);
+          }
+        }
+        createMosaicTiles();
+      </script>
+  </body>
 </html>
