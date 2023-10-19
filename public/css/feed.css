@@ -268,7 +268,7 @@
 }
 
 .visual-icona {
-  font-size: 18px;
+  font-size: 14px;
   color: #777;
 }
 
@@ -290,6 +290,7 @@
 
 .visual {
   color: black;
+  font-size: 14px;
   border-radius: 8px;
   padding: 5px;
   float: left;
