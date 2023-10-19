@@ -265,7 +265,6 @@ app.get('/permessi_canale', async function(req, res) {
 app.get("/user_info", async function(req, res) {
 	try{
 		let result = await mymongo.user_info(req.query, mongoCredentials)
-		result = result
 		res.status(200)
 		res.send(result)
 	}catch(e){
@@ -273,6 +272,20 @@ app.get("/user_info", async function(req, res) {
 		res.send("errore")
 	}
 });
+
+app.get("/get_quota", async function(req, res) {
+	try{
+		let result = await mymongo.get_quota(req.query, mongoCredentials)
+		res.cookie('quota_giorno', result["quota"]["g"])
+		res.cookie('quota_settimana', result["quota"]["s"])
+		res.cookie('quota_mese', result["quota"]["m"])
+		res.status(200)
+		res.send("ok")
+	}catch(e){
+		res.status(500)
+		res.send("errore")
+	}
+})
 
 app.get("/user_exist", async function(req, res) {
 	try{

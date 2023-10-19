@@ -946,6 +946,32 @@ exports.get_managed = async function(q, campi, credentials) {
 	}
 }
 
+exports.get_quota = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.find(
+				{
+					username: q.username
+				}
+			)
+			.project({ quota: 1})
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		await mongo.close()
+		return result[0]
+	} catch (e) {
+		return e
+	}
+}
+
 exports.get_mychannels = async function(q, campi, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let result = []

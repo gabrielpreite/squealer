@@ -6,7 +6,7 @@
         "email": "fv@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 50, "s": 120, "m": 567
         },
         "acquisti": [
             {
@@ -32,7 +32,7 @@
         "email": "fvPro@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 49, "s": 1023, "m": 2300
         },
         "acquisti": [
             {
