@@ -279,6 +279,12 @@
           $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
         })
 
+        //se sto gestendo un account lo mostro nella barra
+        let managed = get_cookie_by_name("managed")
+        if(!(managed === undefined)){
+          $("#managed-account-username").text(managed)
+        }
+
         //RICHIESTA E COSTRUZIONE SQUEAL
         var squeals;
         $.ajax({
