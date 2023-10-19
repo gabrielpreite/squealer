@@ -665,7 +665,7 @@ exports.smm_feed = async function(q, campi, credentials) {
 				{
 				  $match: {
 					$or: [
-					  { username: { $in: utenti_gestiti } },
+					  { utente: { $in: utenti_gestiti } },
 					]
 				  }
 				},
