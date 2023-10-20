@@ -23,7 +23,8 @@
         "professional_flag": false,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": "fvSMM"
+        "managed_by": "fvSMM",
+        "bio": ""
     },
     {
         "img" : "",
@@ -49,7 +50,8 @@
         "professional_flag": true,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": "fvSMM"
+        "managed_by": "fvSMM",
+        "bio": ""
     },
     {
         "img" : "",
@@ -75,7 +77,8 @@
         "professional_flag": true,
         "abilitato_flag": true,
         "manager_of": ["fvPro", "NomeBuffo1", "NomeBuffo2", "fv"],
-        "managed_by": null
+        "managed_by": null,
+        "bio": ""
     },
     {
         "img" : "",
@@ -101,7 +104,8 @@
         "professional_flag": true,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": "fvSMM"
+        "managed_by": "fvSMM",
+        "bio": ""
     },
     {
         "img" : "",
@@ -127,7 +131,8 @@
         "professional_flag": true,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": "fvSMM"
+        "managed_by": "fvSMM",
+        "bio": ""
     },
     {
         "img" : "",
@@ -153,7 +158,8 @@
         "professional_flag": false,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": null
+        "managed_by": null,
+        "bio": ""
     },
     {
         "img" : "",
@@ -179,6 +185,7 @@
         "professional_flag": true,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": null
+        "managed_by": null,
+        "bio": ""
     }
 ]
