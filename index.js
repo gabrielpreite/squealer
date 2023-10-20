@@ -423,6 +423,7 @@ app.get('/get_mychannels', async function(req,res) {
 
 //risultati della ricerca
 app.post('/search', async function(req, res) {
+	//req.body.tipo = "utente" //forzata temporaneamente
 	//req.body.tipo = utente|canale|keyword
 	//req.body.query
 	//req.body.ordina = data|visual|popolari
@@ -430,6 +431,7 @@ app.post('/search', async function(req, res) {
 	let campi = {}
 	try{
 		campi = session.userid
+		console.log(req.body)
 		result = await mymongo.search(req.body, campi, mongoCredentials)
 		res.status(200)
 		res.send(result)
