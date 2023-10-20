@@ -853,8 +853,6 @@ exports.search = async function(q, campi, credentials) {
 		// canale: nome
 		// keyword: keyword
 		meta["tipo"] = q.tipo
-		console.log(q.tipo)
-		console.log(q.query)
 		let ordine
 		
 		if(q.tipo == "utente"){ // caso ricerca utenti
@@ -880,7 +878,6 @@ exports.search = async function(q, campi, credentials) {
 				});
 
 		} else if(q.tipo == "canale"){
-			console.log("dentro caso canale")
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.find({
@@ -915,7 +912,6 @@ exports.search = async function(q, campi, credentials) {
 
 		result["meta"] = meta
 		result["post"] = post
-		console.log(result)
 		await mongo.close()
 		return result
 	} catch (e) {
