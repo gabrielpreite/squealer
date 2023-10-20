@@ -884,9 +884,7 @@ exports.search = async function(q, campi, credentials) {
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.find({
-					$or: [
-						{ [q.query]: { $in: destinatari } },  
-					  ]
+					destinatari: { $in: [q.query] }
 				})
 				.forEach( (r) => { 
 					post.push(r) 
