@@ -841,7 +841,7 @@ exports.update_reazioni = async function(q, credentials) {
 	}
 }
 
-exports.search = async function(q,credentials) {
+exports.search = async function(q, campi, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let meta = {} //metadati risposta: tipo ricerca, info user/canale
 	let post = [] //lista post
