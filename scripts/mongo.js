@@ -881,18 +881,18 @@ exports.search = async function(q, campi, credentials) {
 
 		} else if(q.tipo == "canale"){
 			console.log("dentro caso canale")
-			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
+			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.find({
 					$or: [
 						{ [q.query]: { $in: destinatari } },  
-					  ],
+					  ]
 				})
 				.forEach( (r) => { 
 					post.push(r) 
 				});
 
-			await mongo.db(dbname) // user info
+			await mongo.db(dbname) // info canale
 				.collection("canale")
 				.find({
 					nome: q.query
