@@ -423,6 +423,7 @@ app.get('/get_mychannels', async function(req,res) {
 
 //risultati della ricerca
 app.post('/search', async function(req, res) {
+	//req.body.tipo = "utente" //forzata temporaneamente
 	//req.body.tipo = utente|canale|keyword
 	//req.body.query
 	//req.body.ordina = data|visual|popolari

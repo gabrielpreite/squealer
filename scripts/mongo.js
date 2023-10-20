@@ -867,15 +867,15 @@ exports.search = async function(q, campi, credentials) {
 			
 			await mongo.db(dbname) // user info
 				.collection("utente")
-					.find({
-						username: q.query
-					})
-					.project(
-						{ username:1, nome:1, img:1, bio:1 }
-					)
-					.forEach( (r) => { 
-						meta["info"] = r
-					});
+				.find({
+					username: q.query
+				})
+				.project(
+					{ username:1, nome:1, img:1, bio:1 }
+				)
+				.forEach( (r) => { 
+					meta["info"] = r
+				});
 
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
@@ -888,6 +888,19 @@ exports.search = async function(q, campi, credentials) {
 				.forEach( (r) => { 
 					post.push(r) 
 				});
+
+			await mongo.db(dbname) // user info
+				.collection("canale")
+				.find({
+					nome: q.query
+				})
+				.project(
+					{ img:1, nome:1, descrizione:1 }
+				)
+				.forEach( (r) => { 
+					meta["info"] = r
+				});
+
 		} else if(q.tipo == "keyword"){
 			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
 				.collection("messaggio")
