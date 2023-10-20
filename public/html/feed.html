@@ -167,35 +167,45 @@
 
         <!-- Second Column -->
         <div class="col-md-6 container-fluid" id="feed">
-            <div class="searchbar">
-                <div class="barra">
-                    <form method="GET" action="/search">
-                        <div class="input-group mb-3">
-                            <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
 
-                            <select class="form-select" id="filtro" name="filtro" aria-label="Select">
-                                <option selected value="default" id="default" onclick="">
-                                  Ordina per:</option>
-                                <option value="data" id="data" onclick="">
-                                  Data</option>
-                                <option value="visual" id="visual" onclick="">
-                                  Numero di visualizzazioni</option>
-                                <option value="Impression" id="Impression" onclick="">
-                                  Impression</option>
-                            </select>
+          <div class="searchbar">
+            <div class="barra">
+              <form method="POST" action="/search">
+                <div class="input-group mb-3">
+                  <select class="form-select" id="tipo" name="tipo" aria-label="Select">
+                    <option selected value="default" id="default" onclick="">
+                      Cerca:</option>
+                    <option value="utente" id="utente" onclick="">
+                      @</option>
+                    <option value="canale" id="canale" onclick="">
+                      $</option>
+                    <option value="keyword" id="keyword" onclick="">
+                      #</option>
+                  </select>
 
-                            <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
-                            border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
-                        </div>
-                    </form>
+                  <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
+
+                  <select class="form-select" id="filtro" name="filtro" aria-label="Select">
+                    <option selected value="data" id="data" onclick="">
+                      Data</option>
+                    <option value="visual" id="visual" onclick="">
+                      Numero di visualizzazioni</option>
+                    <option value="impression" id="impression" onclick="">
+                      Impression</option>
+                  </select>
+
+                  <button type="submit" class="btn searchbar-style" style="color: #1d9bf0;
+                    border-color: #1d9bf0;"><em class="fa-solid fa-magnifying-glass"></em>Cerca</button>
                 </div>
+              </form>
             </div>
+          </div>
 
-              <div class="contenitore-squeal posts-content" id="squeal_contenitore">
+          <div class="contenitore-squeal posts-content" id="squeal_contenitore">
 
 
 
-              </div>
+          </div>
 
         </div>
 
