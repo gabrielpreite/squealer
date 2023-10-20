@@ -431,6 +431,7 @@ app.post('/search', async function(req, res) {
 	let campi = {}
 	try{
 		campi = session.userid
+		console.log(req.body)
 		result = await mymongo.search(req.body, campi, mongoCredentials)
 		res.status(200)
 		res.send(result)
