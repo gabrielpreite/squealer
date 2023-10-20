@@ -880,6 +880,7 @@ exports.search = async function(q, campi, credentials) {
 				});
 
 		} else if(q.tipo == "canale"){
+			console.log("dentro caso canale")
 			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
 				.collection("messaggio")
 				.find({
@@ -916,6 +917,7 @@ exports.search = async function(q, campi, credentials) {
 
 		result["meta"] = meta
 		result["post"] = post
+		console.log(result)
 		await mongo.close()
 		return result
 	} catch (e) {
