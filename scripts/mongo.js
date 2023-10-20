@@ -850,9 +850,11 @@ exports.search = async function(q, campi, credentials) {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		// utente : nome
-		// canale: $nome
-		// keyword: #keyword
+		// canale: nome
+		// keyword: keyword
 		meta["tipo"] = q.tipo
+		console.log(q.tipo)
+		console.log(q.query)
 		let ordine
 		
 		if(q.tipo == "utente"){ // caso ricerca utenti
