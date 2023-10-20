@@ -47,7 +47,6 @@
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
           </div>
-          <div id="managed-account-username" onclick="switch_to_smm()"></div>
         </div>
         <div id="quota">
           <div class="char-count-item">
@@ -122,8 +121,10 @@
         </button>
       </div>
 
+      <div class="container-fluid">
+
         <!-- First Column -->
-        <div class="col-md-3 barra-scorrimento" id="col-sx">
+        <div class="col-md-3" id="col-sx">
           <div class="social-channels">
             <a href="" class="channel-button" style="margin-left: 15px"><i class="fas fa-wrench"></i> Staff</a>
             <a href="" class="channel-button"><i class="far fa-newspaper fa-fw"></i> News</a>
@@ -166,9 +167,11 @@
         </div>
 
         <!-- Second Column -->
-        <div class="container-fluid" id="feed">
+        <div class="col-md-6" id="feed">
+
+          <div class="row container pt-2">
             <div class="searchbar">
-                <div class="barra">
+                <div class="col-10 mx-auto barra">
                     <form method="GET" action="/search">
                         <div class="input-group mb-3">
                             <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
@@ -190,12 +193,16 @@
                     </form>
                 </div>
             </div>
+          </div>
 
-              <div class="contenitore-squeal posts-content" id="squeal_contenitore">
+          <div class="row overflow-auto" style="height: 50em">
+            <div class="container posts-content">
+              <div class="contenitore-squeal" id="squeal_contenitore">
 
 
 
               </div>
+            </div>
           </div>
 
         </div>
@@ -204,104 +211,46 @@
         <div class="col-md-3" id="col-dx">
           <div id="vuoto" hidden="false">
 
-           </div>
-           <div id="mostra-commenti" hidden="true">
-             <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento('chiudi')"></i></h4>
-             <div class="contenitore-commenti barra-scorrimento">
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-                 <div class="comment">
-                   <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
-                   <div class="comment-content">
-                     <strong class="comment-username">Nome Utente</strong>
-                     <p class="comment-text">Questo è un commento.</p>
-                   </div>
-                 </div>
-
-               <!-- Altri commenti possono essere inseriti qui -->
-             </div>
-             <div class="">
-             <button id="aggiungi-commento" class="btn btn-primary" onclick="aggiungicommento('commenta')">
-               Commenta   <i class="fa-solid fa-comment-dots icona-commento"></i>
-             </button>
-           </div>
-           </div>
+          </div>
+          <div id="mostra-commenti" hidden="true">
+            <h4 class="statistiche-title">Commenti</h4>
+            <div class="contenitore-commenti">
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <div class="comment-content">
+                  <strong class="comment-username">Nome Utente</strong>
+                  <p class="comment-text">Questo è un commento.</p>
+                </div>
+              </div>
+              <!-- Altri commenti possono essere inseriti qui -->
+            </div>
+            <button id="aggiungi-commento" class="btn btn-primary mt-3" onclick="aggiungiCommento()">
+              Aggiungi Commento
+            </button>
+          </div>
         </div>
+      </div>
 
       <!--JQuery-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -324,16 +273,10 @@
             account = data;
           }
         });
-
+        
         account.forEach((el) => {
-          $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
+          $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button">${el}</button>`)
         })
-
-        //se sto gestendo un account lo mostro nella barra
-        let managed = get_cookie_by_name("managed")
-        if(!(managed === undefined)){
-          $("#managed-account-username").text(managed)
-        }
 
         //RICHIESTA E COSTRUZIONE SQUEAL
         var squeals;
@@ -349,7 +292,7 @@
           }
         });
         var n_squeal = squeals.length;
-
+            
         var contenitore = document.getElementById('squeal_contenitore');
 
         for (var i = 0; i < n_squeal; i++) {
@@ -363,7 +306,7 @@
           var sono_contrario = "sono_contrario";
 
           //squeal
-          var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">    <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">    <div class="info_utente">      <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>      <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>      <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>    </div>    <div class="recipients-dropdown destinatari">      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">        <i class="fa-solid fa-users destinatari-icona"></i>      </button>            <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">         <a class="dropdown-item" href="#">Alice</a>         <a class="dropdown-item" href="#">Bob</a>         <a class="dropdown-item" href="#">Charlie</a>         <!-- Aggiungi altri destinatari qui -->       </div>     </div>  </div>  <div class="card-body">    <p id="squeal_testo' + i + '"> </p>  </div>  <div class="card-footer">    <div class="row reazioni btn-group">      <div class="col reazioni-left">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">          <i class="fab fa-sketch reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">          <i class="fas fa-poo reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-mid">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">          <i class="fas fa-heart reazioni-icone">  </i>          <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">          <i class="fas fa-heart-crack reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-right">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">          <i class="fas fa-thumbs-up reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">          <i class="fas fa-thumbs-down reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>        </label>      </div>      <div class="col commenti">        <label class="btn btn-reazioni btn-group' + i + '">          <i class="fa-solid fa-comments reazioni-icone"></i>          <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>        </label>      </div>    </div>    <div class="info-post" id="squeal_info' + i + '">      <span class="visual" id="squeal_visual' + i + '">        <i class="fa-solid fa-eye icona-visual"></i>        500      </span>    </div>  </div></div>';
+          var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">    <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">    <div class="info_utente">      <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>      <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>      <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>    </div>    <div class="recipients-dropdown destinatari">      <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '">        <i class="fa-solid fa-users destinatari-icona"></i>      </button>            <div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '">         <a class="dropdown-item" href="#">Alice</a>         <a class="dropdown-item" href="#">Bob</a>         <a class="dropdown-item" href="#">Charlie</a>         <!-- Aggiungi altri destinatari qui -->       </div>     </div>  </div>  <div class="card-body">    <p id="squeal_testo' + i + '"> </p>  </div>  <div class="card-footer">    <div class="row reazioni btn-group">      <div class="col reazioni-left">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + adoro + ', ' + id + ')">          <i class="fab fa-sketch reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_sketch' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_disgusta + ', ' + id + ')">          <i class="fas fa-poo reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_poo' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-mid">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + mi_piace + ', ' + id + ')">          <i class="fas fa-heart reazioni-icone">  </i>          <span class="n-reazioni" id="squeal_heart' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + odio + ', ' + id + ')">          <i class="fas fa-heart-crack reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_disheart' + i + '"> 500 </span>        </label>      </div>      <div class="col reazioni-right">        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + concordo + ', ' + id + ')">          <i class="fas fa-thumbs-up reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_like' + i + '"> 500 </span>        </label>        <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, ' + sono_contrario + ', ' + id + ')">          <i class="fas fa-thumbs-down reazioni-icone"> </i>          <span class="n-reazioni" id="squeal_dislike' + i + '"> 500 </span>        </label>      </div>      <div class="col commenti">        <label class="btn btn-reazioni btn-group' + i + '">          <i class="fa-solid fa-comments commento-icona"></i>          <span class="n-reazioni" id="squeal_comment' + i + '"> 500 </span>        </label>      </div>    </div>    <div class="info-post" id="squeal_info' + i + '">      <span class="visual" id="squeal_visual' + i + '">        <i class="fa-solid fa-eye visual-icona"></i>        500      </span>    </div>  </div></div>';
           contenitore.insertAdjacentHTML('beforeend', htmlCode);
 
           //info utente
@@ -394,7 +337,7 @@
             var lista_destinatari = document.getElementById('squeal_destinatari' + i);
             var n_destinatari = squeals[i].destinatari.length;
             for (var j = 0; j < n_destinatari; j++) {
-              lista_destinatari.insertAdjacentHTML('beforeend', '<div><a class="dropdown-item" href="#" onclick="nomeprovvisorio()">' + squeals[i].destinatari[j] + '</a></div>');
+              lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#" onclick="nomeprovvisorio()">' + squeals[i].destinatari[j] + '</a>');
             }
           }
 
@@ -427,27 +370,27 @@
             var premuto0 = nreazioni0.parentNode;
             premuto0.style.color= "#00AFFF";
             premuto0.checked = true;
-          } else if (squeals[i].reazioni.negative.mi_disgusta.includes(target_user)) {
+          } else if (squeals[i].reazioni.negative.mi_disgusta.includes(get_cookie_by_name("username"))) {
             var nreazioni1 = document.getElementById(id_poo);
             var premuto1 = nreazioni1.parentNode;
             premuto1.style.color= "#8B4513";
             premuto1.checked = true;
-          } else if (squeals[i].reazioni.positive.mi_piace.includes(target_user)) {
+          } else if (squeals[i].reazioni.positive.mi_piace.includes(get_cookie_by_name("username"))) {
             var nreazioni2 = document.getElementById(id_heart);
             var premuto2 = nreazioni2.parentNode;
             premuto2.style.color= "#FF0000";
             premuto2.checked = true;
-          } else if (squeals[i].reazioni.negative.odio.includes(target_user)) {
+          } else if (squeals[i].reazioni.negative.odio.includes(get_cookie_by_name("username"))) {
             var nreazioni3 = document.getElementById(id_disheart);
             var premuto3 = nreazioni3.parentNode;
             premuto3.style.color= "#FF0000";
             premuto3.checked = true;
-          } else if (squeals[i].reazioni.positive.concordo.includes(target_user)) {
+          } else if (squeals[i].reazioni.positive.concordo.includes(get_cookie_by_name("username"))) {
             var nreazioni4 = document.getElementById(id_like);
             var premuto4 = nreazioni4.parentNode;
             premuto4.style.color= "#007FFF";
             premuto4.checked = true;
-          } else if (squeals[i].reazioni.negative.sono_contrario.includes(target_user)) {
+          } else if (squeals[i].reazioni.negative.sono_contrario.includes(get_cookie_by_name("username"))) {
             var nreazioni5 = document.getElementById(id_dislike);
             var premuto5 = nreazioni5.parentNode;
             premuto5.style.color= "#007FFF";
@@ -477,42 +420,6 @@
           }*/
         }
         //FINE SQUEAL
-
-        // switch account e re-set quota
-        function switch_account(username){
-          set_cookie("managed", username)
-          $("#managed-account-username").text(username)
-          $.ajax({
-            type: 'GET',
-            dataType: "json",
-            async: false,
-            url: `https://site212251.tw.cs.unibo.it/get_quota?username=${username}`,
-            headers: { },
-            success: function (data, status, xhr) {
-              set_cookie("quota_giorno", data["quota"]["g"])
-              set_cookie("quota_settimana", data["quota"]["s"])
-              set_cookie("quota_mese", data["quota"]["m"])
-              location.reload()
-            }
-          });
-        }
-
-        function switch_to_smm(){
-          delete_cookie("managed")
-          $.ajax({
-            type: 'GET',
-            dataType: "json",
-            async: false,
-            url: `https://site212251.tw.cs.unibo.it/get_quota?username=${get_cookie_by_name("username")}`,
-            headers: { },
-            success: function (data, status, xhr) {
-              set_cookie("quota_giorno", data["quota"]["g"])
-              set_cookie("quota_settimana", data["quota"]["s"])
-              set_cookie("quota_mese", data["quota"]["m"])
-              location.reload()
-            }
-          });
-        }
 
         //bottoni
         function premibottone(button, reac, id) {
@@ -553,19 +460,13 @@
             });
           }
 
-          //controllo a chi assegnare la reaction
-          let target_user = get_cookie_by_name("username")
-          let managed = get_cookie_by_name("managed")
-          if(!(managed === undefined))
-            target_user = managed
-
           //chiamata update db
           $.ajax({
             type: 'GET',
             dataType: "json",
             async: false,
             url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-            data: { _id: id, reac: reac, userid: target_user},
+            data: { _id: id, reac: reac },
             headers: { },
             success: function (data, status, xhr) {
               console.log('data: ', data);
@@ -573,28 +474,14 @@
           });
         }
 
-        function aggiungicommento(azione) {
+        function aggiungicommento() {
+          // Cambia il colore dell'icona del commento a nero
           var icon = document.querySelector('.fa-solid.fa-comments');
-          if (azione == 'apri') {
-            if (document.getElementById("mostra-commenti").hidden == true) {
-              // Cambia il colore dell'icona del commento a nero
-              icon.style.color = 'black';
-              // Nascondi il div "vuoto"
-              document.getElementById("vuoto").hidden = true;
-              // Mostra il div "mostra-squeal"
-              document.getElementById("mostra-commenti").hidden = false;
-            } else {
-              icon.style.color = '#777';
-              document.getElementById("vuoto").hidden = false;
-              document.getElementById("mostra-commenti").hidden = true;
-            }
-          } else if (azione == 'chiudi') {
-            icon.style.color = '#777';
-            document.getElementById("vuoto").hidden = false;
-            document.getElementById("mostra-commenti").hidden = true;
-          } else {
-            //apri editor commento
-          }
+          icon.style.color = 'black';
+          // Nascondi il div "vuoto"
+          document.getElementById("vuoto").hidden = true;
+          // Mostra il div "mostra-squeal"
+          document.getElementById("mostra-commenti").hidden = false;
         }
 
         function riempiFeed(){
