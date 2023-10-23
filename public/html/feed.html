@@ -215,7 +215,7 @@
 
            </div>
            <div id="mostra-commenti" hidden="true">
-             <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento('chiudi')"></i></h4>
+             <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento("chiudi")"></i></h4>
              <div class="contenitore-commenti barra-scorrimento">
                  <div class="comment">
                    <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
@@ -469,7 +469,7 @@
 
         function aggiungicommento(azione) {
           var icon = document.querySelector('.fa-solid.fa-comments');
-          if (azione == 'apri') {
+          if (azione == "apri") {
             if (document.getElementById("mostra-commenti").hidden == true) {
               // Cambia il colore dell'icona del commento a nero
               icon.style.color = 'black';
@@ -482,7 +482,7 @@
               document.getElementById("vuoto").hidden = false;
               document.getElementById("mostra-commenti").hidden = true;
             }
-          } else if (azione == 'chiudi') {
+          } else if (azione == "chiudi") {
             icon.style.color = '#777';
             document.getElementById("vuoto").hidden = false;
             document.getElementById("mostra-commenti").hidden = true;
