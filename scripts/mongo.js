@@ -890,6 +890,24 @@ exports.search = async function(q, credentials) {
 						$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
 							utenteData: 0
 						}
+					},
+					{
+					  $lookup: {
+						from: "messaggio",
+						localField: "_id",
+						foreignField: "risponde_a",
+						as: "risposte"
+					  }
+					},
+					{
+					  $addFields: {
+						numRisposte: { $size: "$risposte" }
+					  }
+					},
+					{
+					  $project: {
+						risposte: 0
+					  }
 					}
 				  ])
 				.forEach( (r) => { 
@@ -1007,6 +1025,7 @@ exports.search = async function(q, credentials) {
 
 		result["meta"] = meta
 		result["post"] = post
+		console.log(result)
 		await mongo.close()
 		return result
 	} catch (e) {
