@@ -857,9 +857,41 @@ exports.search = async function(q, credentials) {
 		if(q.tipo == "utente"){ // caso ricerca utenti
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
-				.find({
-					utente: q.query
-				})
+				.aggregate([
+					{
+					  $match: {
+						utente: q.query
+					  }
+					},
+					{
+					  $lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					  }
+					},
+					{
+						$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					},
+					{
+						"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+						  "newRoot": {
+							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+							  "$$ROOT", //campi originali in messaggio
+							  {
+								nome:"$utenteData.nome"
+							  }
+							]
+						  }
+						}
+					},
+					{
+						$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+							utenteData: 0
+						}
+					}
+				  ])
 				.forEach( (r) => { 
 					post.push(r) 
 				});
@@ -879,9 +911,41 @@ exports.search = async function(q, credentials) {
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
-				.find({
-					destinatari: { $in: [q.query] }
-				})
+				.aggregate([
+					{
+					  $match: {
+						destinatari: { $in: [q.query] }
+					  }
+					},
+					{
+					  $lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					  }
+					},
+					{
+						$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					},
+					{
+						"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+						  "newRoot": {
+							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+							  "$$ROOT", //campi originali in messaggio
+							  {
+								nome:"$utenteData.nome"
+							  }
+							]
+						  }
+						}
+					},
+					{
+						$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+							utenteData: 0
+						}
+					}
+				  ])
 				.forEach( (r) => { 
 					post.push(r) 
 				});
@@ -901,9 +965,41 @@ exports.search = async function(q, credentials) {
 		} else if(q.tipo == "keyword"){
 			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
 				.collection("messaggio")
-				.find({
-					corpo: {$regex: q.query} //?
-				})
+				.aggregate([
+					{
+					  $match: {
+						corpo: {$regex: q.query}
+					  }
+					},
+					{
+					  $lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					  }
+					},
+					{
+						$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					},
+					{
+						"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+						  "newRoot": {
+							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+							  "$$ROOT", //campi originali in messaggio
+							  {
+								nome:"$utenteData.nome"
+							  }
+							]
+						  }
+						}
+					},
+					{
+						$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+							utenteData: 0
+						}
+					}
+				  ])
 				.forEach( (r) => { 
 					post.push(r) 
 				});

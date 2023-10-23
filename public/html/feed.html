@@ -322,7 +322,8 @@
       <script>
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
-          ricerca_squeal();
+          squeals = ricerca_squeal().post;
+          var info_ricerca = ricerca_squeal().meta;
         });
 
         // INSERIMENTO ACCOUNT GESTITI DA SMM
