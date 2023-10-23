@@ -122,6 +122,7 @@ function aggiungi_squeal(squeals) {
     }*/
   }
   //FINE SQUEAL
+  console.log(squeals);
 }
 
 //RICERCA SQUEAL...
@@ -131,7 +132,7 @@ function ricerca_squeal() {
     alert("Inserisci qualcosa da cercare");  	
     return false; 
   }
-
+  console.log("CIAON~~E");
   //check tipo document.getElementById("tipo").value
 
   //check filtro document.getElementById("filtro").value
