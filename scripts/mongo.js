@@ -552,26 +552,26 @@ exports.user_feed = async function(q, campi, credentials) {
 					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
 						utenteData: 0
 					}
+				},
+				{
+				  $lookup: {
+					from: "messaggio",
+					localField: "_id",
+					foreignField: "risponde_a",
+					as: "risposte"
+				  }
+				},
+				{
+				  $addFields: {
+					numRisposte: { $size: "$risposte" }
+				  }
+				},
+				{
+				  $project: {
+					risposte: 0
+				  }
 				}
-			  ]),
-			  {
-				$lookup: {
-				  from: "messaggio",
-				  localField: "_id",
-				  foreignField: "risponde_a",
-				  as: "risposte"
-				}
-			  },
-			  {
-				$addFields: {
-				  numRisposte: { $size: "$risposte" }
-				}
-			  },
-			  {
-				$project: {
-				  risposte: 0
-				}
-			  }
+			  ])
 			.forEach( (r) => { 
 				result.push(r) 
 			});
