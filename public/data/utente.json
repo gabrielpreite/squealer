@@ -1,6 +1,6 @@
 [
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Fv rossi",
         "username": "fv",
         "email": "fv@gmail.com",
@@ -27,7 +27,7 @@
         "bio": ""
     },
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Fv Pro",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
@@ -54,7 +54,7 @@
         "bio": ""
     },
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Fv SMM",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
@@ -81,7 +81,7 @@
         "bio": ""
     },
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Nome Buffo1",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
@@ -108,7 +108,7 @@
         "bio": ""
     },
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Nome Buffo2",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
@@ -135,7 +135,7 @@
         "bio": ""
     },
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Fv Mod",
         "username": "fvMod",
         "email": "fvMod@gmail.com",
@@ -162,7 +162,7 @@
         "bio": ""
     },
     {
-        "img" : "",
+        "img" : "default_propic.png",
         "nome" : "Redazione Squeal",
         "username": "redazione",
         "email": "redazione@gmail.com",
