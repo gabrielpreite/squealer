@@ -358,7 +358,7 @@ exports.add_user = async function(q, credentials) {
 					.collection("utente")
 					.insertOne(
 						{
-							img: "",
+							img: "default_propic.png",
 							nome: q.nome + " " + q.cognome,
 							username: q.username,
 							email: q.email,
