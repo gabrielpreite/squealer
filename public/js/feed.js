@@ -138,7 +138,9 @@ function ricerca_squeal() {
   //check filtro document.getElementById("filtro").value
 
 
+  console.log(document.getElementById("query").value);
   var query = document.getElementById("query").value;
+  console.log(query);
   var tipo = document.getElementById("tipo").value;
   var filtro = document.getElementById("filtro").value;
 
