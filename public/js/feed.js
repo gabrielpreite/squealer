@@ -1,4 +1,4 @@
-function aggiungi_squeal(squeals, meta) {
+function aggiungi_squeal(squeals) {
   var n_squeal = squeals.length;
 
   var contenitore = document.getElementById('squeal_contenitore');
@@ -161,8 +161,9 @@ function ricerca_squeal() {
 
 
 
-  
-  aggiungi_squeal(all_info.post, all_info.meta);
+  console.log(all_info);
+  aggiungi_squeal(all_info.post);
+  //aggiungi_info(all_info.meta);
 
   return true;
 }
