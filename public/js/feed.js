@@ -15,7 +15,7 @@ function aggiungi_squeal(squeals) {
     var id_nome = 'squeal_nome' + i;
     var id_tag = 'squeal_tag' + i;
     var id_timestamp = 'squeal_timestamp' + i;
-    document.getElementById(id_nome).innerHTML = squeals[i].nome;
+    //document.getElementById(id_nome).innerHTML = squeals[i].nome;
     document.getElementById(id_tag).innerHTML = squeals[i].utente;
     document.getElementById(id_timestamp).innerHTML = squeals[i].timestamp;
 
@@ -122,7 +122,6 @@ function aggiungi_squeal(squeals) {
     }*/
   }
   //FINE SQUEAL
-  console.log(squeals);
 }
 
 //RICERCA SQUEAL...
@@ -132,15 +131,12 @@ function ricerca_squeal() {
     alert("Inserisci qualcosa da cercare");
     return false;
   }
-  console.log("CIAON~~E");
   //check tipo document.getElementById("tipo").value
 
   //check filtro document.getElementById("filtro").value
 
 
-  console.log(document.getElementById("query").value);
   var query = document.getElementById("query").value;
-  console.log(query);
   var tipo = document.getElementById("tipo").value;
   var filtro = document.getElementById("filtro").value;
 
@@ -163,10 +159,14 @@ function ricerca_squeal() {
 
 
 
+  svuota_squeals();
 
-  console.log(all_info);
   aggiungi_squeal(all_info.post);
   //aggiungi_info(all_info.meta);
 
   return true;
+}
+
+function svuota_squeals() {
+  document.getElementById('squeal_contenitore').innerHTML = '';
 }
