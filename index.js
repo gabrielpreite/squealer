@@ -475,7 +475,7 @@ app.use(function(req, res){
 			"message": "Richiesta non valida",
 			"statusCode": 404,
 		},
-		message: "Richiesta non valida"
+		message: req.originalUrl
 	});
 });
 
