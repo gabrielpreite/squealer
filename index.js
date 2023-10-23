@@ -430,6 +430,7 @@ app.post('/search', async function(req, res) {
 	let result
 	let campi = {}
 	try{
+		console.log("in search")
 		campi = session.userid
 		result = await mymongo.search(req.body, campi, mongoCredentials)
 		res.status(200)

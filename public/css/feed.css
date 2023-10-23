@@ -289,9 +289,6 @@
   margin-left: 10px;
 }
 
-.visual-icona { //da vedere
-  margin-right: 5px;
-}
 
 .visual {
   float: left;
@@ -299,6 +296,10 @@
   padding: 5px;
   font-size: 14px;
   margin-top: 5px;
+}
+
+.visual-icona {
+    margin-right:  5px;
 }
 
 .popolare {
@@ -343,16 +344,16 @@
 
 /* Personalizza la barra di scorrimento */
 .barra-scorrimento::-webkit-scrollbar {
-  width: 10px; /* Larghezza della barra di scorrimento */
+  width: 10px;
 }
 
 .barra-scorrimento::-webkit-scrollbar-thumb {
-  background: #ccc; /* Colore della barra di scorrimento stessa */
-  border-radius: 5px; /* Bordo arrotondato per la barra di scorrimento */
+  background: #ccc;
+  border-radius: 5px;
 }
 
 .barra-scorrimento::-webkit-scrollbar-track {
-  background: transparent; /* Colore dell'area di sfondo della barra di scorrimento */
+  background: transparent; 
 }
 
 .comment {
