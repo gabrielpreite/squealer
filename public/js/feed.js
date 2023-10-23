@@ -151,7 +151,7 @@ function ricerca_squeal() {
     async: false,
     url: `https://site212251.tw.cs.unibo.it/search`,
     headers: { },
-    body: { query: query, tipo: tipo, filtro: filtro },
+    data: { query: query, tipo: tipo, filtro: filtro },
     success: function (data, status, xhr) {
       console.log('data: ', data);
       all_info = data;
