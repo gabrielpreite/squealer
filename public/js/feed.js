@@ -1,9 +1,9 @@
 function aggiungi_squeal(squeals) {
-  var n_squeal = squeals.length;
+  var n_squeal = squeals.length - 1;
 
   var contenitore = document.getElementById('squeal_contenitore');
 
-  for (var i = 0; i < n_squeal; i++) {
+  for (var i = n_squeal; i >= 0; i--) {
     //setup
     var id = "squeals[" + i + "]._id";
 
@@ -132,10 +132,10 @@ function ricerca_squeal() {
     return false;
   }
 
-  var query = document.getElementById("query").value;
-  var tipo = document.getElementById("tipo").value;
+  let query = document.getElementById("query").value;
+  let tipo = document.getElementById("tipo").value;
 
-  var all_info;
+  let all_info;
   $.ajax({
     type: 'POST',
     dataType: "json",
@@ -149,9 +149,7 @@ function ricerca_squeal() {
     }
   });
 
-  svuota_squeals();
-
-  aggiungi_squeal(all_info.post);
+  rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   //aggiungi_info(all_info.meta);
 
   return all_info;
@@ -160,4 +158,26 @@ function ricerca_squeal() {
 //Svuota il feed
 function svuota_squeals() {
   document.getElementById('squeal_contenitore').innerHTML = '';
+}
+
+//Ordina Squeal
+function ordina_squeals(posts, filtro) {
+  if (filtro == "visual") {
+    posts.sort(function(a, b){return a.visualizzazioni - b.visualizzazioni});
+  } else if (filtro == "impression") {
+    posts.sort(function(a, b) {
+      let reaz_a = a.reazioni.positive.adoro.length() + a.reazioni.positive.mi_piace.length() + a.reazioni.positive.concordo.length() - a.reazioni.negative.mi_disgusta.length() - a.reazioni.negative.odio.length() - a.reazioni.negative.sono_contrario.length();
+      let reaz_b = b.reazioni.positive.adoro.length() + b.reazioni.positive.mi_piace.length() + b.reazioni.positive.concordo.length() - b.reazioni.negative.mi_disgusta.length() - b.reazioni.negative.odio.length() - b.reazioni.negative.sono_contrario.length();
+      return reaz_a - reaz_b;
+    });
+  }
+  return posts;
+}
+
+function rimpiazza_squeals(posts, filtro) {
+  svuota_squeals();
+
+  let posts_ordinati = ordina_squeals(posts, filtro);
+
+  aggiungi_squeal(posts_ordinati);
 }
