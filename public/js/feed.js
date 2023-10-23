@@ -197,3 +197,86 @@ function switch_to_smm(){
     }
   });
 }
+
+//bottoni
+function premibottone(button, reac, id) {
+  //console.log(button.querySelector(".n-reazioni"));
+  if (button.checked) {
+    button.style.color= "#777";
+    button.checked = false;
+    var Nreaz = button.querySelector(".n-reazioni");
+    Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+  } else {
+    const buttonGroup = document.getElementsByClassName(button.className);
+    const buttonArray = Array.from(buttonGroup);
+    //console.log(buttonGroup);
+    buttonArray.forEach((btnradio) => {
+      if (button==btnradio){
+        if (reac == "adoro"){
+          button.style.color= "#00AFFF";
+        } else if (reac == "mi_disgusta") {
+          button.style.color= "#8B4513";
+        } else if (reac == "mi_piace") {
+          button.style.color= "#FF0000";
+        } else if (reac == "odio") {
+          button.style.color= "#FF0000";
+        } else if (reac == "concordo") {
+          button.style.color= "#007FFF";
+        } else if (reac == "sono_contrario") {
+          button.style.color= "#007FFF";
+        }
+        button.checked = true;
+        var Nreaz = btnradio.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
+      } else if (btnradio.checked) {
+        btnradio.style.color= "#777";
+        btnradio.checked = false;
+        var Nreaz = btnradio.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+      }
+    });
+  }
+
+  //controllo a chi assegnare la reaction
+  let target_user = get_cookie_by_name("username")
+  let managed = get_cookie_by_name("managed")
+  if(!(managed === undefined))
+    target_user = managed
+
+  //chiamata update db
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
+    data: { _id: id, reac: reac, userid: target_user},
+    headers: { },
+    success: function (data, status, xhr) {
+      console.log('data: ', data);
+    }
+  });
+}
+
+function aggiungicommento(azione) {
+  var icon = document.querySelector('.fa-solid.fa-comments');
+  if (azione == "apri") {
+    if (document.getElementById("mostra-commenti").hidden == true) {
+      // Cambia il colore dell'icona del commento a nero
+      icon.style.color = 'black';
+      // Nascondi il div "vuoto"
+      document.getElementById("vuoto").hidden = true;
+      // Mostra il div "mostra-squeal"
+      document.getElementById("mostra-commenti").hidden = false;
+    } else {
+      icon.style.color = '#777';
+      document.getElementById("vuoto").hidden = false;
+      document.getElementById("mostra-commenti").hidden = true;
+    }
+  } else if (azione == "chiudi") {
+    icon.style.color = '#777';
+    document.getElementById("vuoto").hidden = false;
+    document.getElementById("mostra-commenti").hidden = true;
+  } else {
+    //apri editor commento
+  }
+}

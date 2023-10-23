@@ -21,3 +21,15 @@ function set_cookie(key, value) {
 function delete_cookie(key) {
     document.cookie = key+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC"
 }
+
+function redirectToEditor() {
+    window.location.href = "/editor";
+}
+
+function redirectToSettings() {
+    window.location.href = "/settings";
+}
+
+function redirectToHome() {
+    window.location.href = "/";
+}
