@@ -423,16 +423,13 @@ app.get('/get_mychannels', async function(req,res) {
 
 //risultati della ricerca
 app.post('/search', async function(req, res) {
-	//req.body.tipo = "utente" //forzata temporaneamente
 	//req.body.tipo = utente|canale|keyword
 	//req.body.query
-	//req.body.ordina = data|visual|popolari
 	let result
-	let campi = {}
 	try{
 		console.log("in search")
 		campi = session.userid
-		result = await mymongo.search(req.body, campi, mongoCredentials)
+		result = await mymongo.search(req.body, mongoCredentials)
 		res.status(200)
 		res.send(result)
 	} catch(e){ // todo due errori: server error, ricerca senza risultati
