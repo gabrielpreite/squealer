@@ -358,7 +358,7 @@ exports.add_user = async function(q, credentials) {
 					.collection("utente")
 					.insertOne(
 						{
-							img: "",
+							img: "default_propic.png",
 							nome: q.nome + " " + q.cognome,
 							username: q.username,
 							email: q.email,
@@ -841,7 +841,7 @@ exports.update_reazioni = async function(q, credentials) {
 	}
 }
 
-exports.search = async function(q, campi, credentials) {
+exports.search = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let meta = {} //metadati risposta: tipo ricerca, info user/canale
 	let post = [] //lista post
@@ -853,7 +853,6 @@ exports.search = async function(q, campi, credentials) {
 		// canale: nome
 		// keyword: keyword
 		meta["tipo"] = q.tipo
-		let ordine
 		
 		if(q.tipo == "utente"){ // caso ricerca utenti
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
