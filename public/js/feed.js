@@ -131,14 +131,9 @@ function ricerca_squeal() {
     alert("Inserisci qualcosa da cercare");
     return false;
   }
-  //check tipo document.getElementById("tipo").value
-
-  //check filtro document.getElementById("filtro").value
-
 
   var query = document.getElementById("query").value;
   var tipo = document.getElementById("tipo").value;
-  var filtro = document.getElementById("filtro").value;
 
   var all_info;
   $.ajax({
@@ -147,26 +142,22 @@ function ricerca_squeal() {
     async: false,
     url: `https://site212251.tw.cs.unibo.it/search`,
     headers: { },
-    data: { query: query, tipo: tipo, filtro: filtro },
+    data: { query: query, tipo: tipo },
     success: function (data, status, xhr) {
       console.log('data: ', data);
       all_info = data;
     }
   });
 
-
-
-
-
-
   svuota_squeals();
 
   aggiungi_squeal(all_info.post);
   //aggiungi_info(all_info.meta);
 
-  return true;
+  return all_info;
 }
 
+//Svuota il feed
 function svuota_squeals() {
   document.getElementById('squeal_contenitore').innerHTML = '';
 }

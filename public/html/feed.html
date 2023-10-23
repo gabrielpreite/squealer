@@ -121,7 +121,7 @@
           +
         </button>
       </div>
-  
+
         <!-- First Column -->
         <div class="col-md-3 barra-scorrimento" id="col-sx">
           <div class="social-channels">
@@ -201,7 +201,7 @@
             </div>
           </div>
 
-          <div class="contenitore-squeal posts-content" id="squeal_contenitore">
+          <div class="contenitore-squeal posts-content barra-scorrimento" id="squeal_contenitore">
 
 
 
@@ -322,7 +322,8 @@
       <script>
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
-          ricerca_squeal();
+          squeals = ricerca_squeal().post;
+          var info_ricerca = ricerca_squeal().meta;
         });
 
         // INSERIMENTO ACCOUNT GESTITI DA SMM

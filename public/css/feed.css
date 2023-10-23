@@ -180,14 +180,14 @@
   margin-left: 25%;
   margin-right: 25%;
   background-color: #f9f9f9;
-  max-height: calc(100vh - 56px);
-  overflow: auto;
+
 }
 
 .contenitore-squeal {
   padding: 10px 0 10px 0;
   width: 100%;
-
+  max-height: calc(100vh - 56px - 83.6px);
+  overflow: auto;
 }
 
 .squeal {
