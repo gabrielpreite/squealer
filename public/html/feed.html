@@ -170,7 +170,7 @@
 
           <div class="searchbar">
             <div class="barra">
-              <form method="POST" onsubmit="return ricerca_squeal()">
+              <form id="form_ricerca">
                 <div class="input-group mb-3">
                   <select class="form-select" id="tipo" name="tipo" aria-label="Select">
                     <option selected value="default" id="default">
@@ -320,6 +320,11 @@
         crossorigin="anonymous"></script>
 
       <script>
+          document.getElementById("crea_post").addEventListener('submit', async event => {
+            event.preventDefault();
+            ricerca_squeal();
+          });
+
         // INSERIMENTO ACCOUNT GESTITI DA SMM
         let account = []
         $.ajax({
