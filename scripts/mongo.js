@@ -645,16 +645,16 @@ exports.user_feed = async function(q, campi, credentials) {
 				  $project: {
 					risposte: 0
 				  }
-				}
-			]),
-			{
-			  $sort: {
-				timestamp: -1 // Sort by timestamp in descending order
-			  }
-			},
-			{
-			  $limit: 100 // Limit the result to 100 records
-			}
+				},
+				{
+					$sort: {
+					  timestamp: -1 // Sort by timestamp in descending order
+					}
+				  },
+				  {
+					$limit: 100 // Limit the result to 100 records
+				  }
+			])
 			.forEach( (r) => { 
 				result.push(r) 
 			});
