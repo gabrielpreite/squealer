@@ -540,10 +540,9 @@ exports.user_feed = async function(q, campi, credentials) {
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
 					  "newRoot": {
 						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-						  "$$ROOT", //campi originali in messaggio
-						  {
-							nome:"$utenteData.nome"
-						  }
+							"$$ROOT", //campi originali in messaggio
+							{ nome: "$utenteData.nome" },
+							{ img: "$utenteData.img" }
 						]
 					  }
 					}
@@ -615,10 +614,9 @@ exports.user_feed = async function(q, campi, credentials) {
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
 					"newRoot": {
 						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-						"$$ROOT", //campi originali in messaggio
-						{
-							nome:"$utenteData.nome"
-						}
+							"$$ROOT", //campi originali in messaggio
+							{ nome: "$utenteData.nome" },
+							{ img: "$utenteData.img" }
 						]
 					}
 					}
@@ -736,10 +734,9 @@ exports.smm_feed = async function(q, campi, credentials) {
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
 					  "newRoot": {
 						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-						  "$$ROOT", //campi originali in messaggio
-						  {
-							nome:"$utenteData.nome"
-						  }
+							"$$ROOT", //campi originali in messaggio
+							{ nome: "$utenteData.nome" },
+							{ img: "$utenteData.img" }
 						]
 					  }
 					}
@@ -957,9 +954,8 @@ exports.search = async function(q, credentials) {
 						  "newRoot": {
 							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
 							  "$$ROOT", //campi originali in messaggio
-							  {
-								nome:"$utenteData.nome"
-							  }
+							  { nome: "$utenteData.nome" },
+							  { img: "$utenteData.img" }
 							]
 						  }
 						}
@@ -1037,9 +1033,8 @@ exports.search = async function(q, credentials) {
 						  "newRoot": {
 							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
 							  "$$ROOT", //campi originali in messaggio
-							  {
-								nome:"$utenteData.nome"
-							  }
+							  { nome: "$utenteData.nome" },
+							  { img: "$utenteData.img" }
 							]
 						  }
 						}
@@ -1117,9 +1112,8 @@ exports.search = async function(q, credentials) {
 						  "newRoot": {
 							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
 							  "$$ROOT", //campi originali in messaggio
-							  {
-								nome:"$utenteData.nome"
-							  }
+							  { nome: "$utenteData.nome" },
+							  { img: "$utenteData.img" }
 							]
 						  }
 						}
