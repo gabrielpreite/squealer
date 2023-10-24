@@ -1,9 +1,9 @@
 function aggiungi_squeal(squeals) {
-  var n_squeal = squeals.length - 1;
+  var n_squeal = squeals.length;
 
   var contenitore = document.getElementById('squeal_contenitore');
 
-  for (var i = n_squeal; i >= 0; i--) {
+  for (var i = 0; i < n_squeal; i++) {
     //setup
     var id = "squeals[" + i + "]._id";
 
@@ -167,20 +167,21 @@ function svuota_squeals() {
 //Ordina Squeal
 function ordina_squeals(posts, filtro) {
   if (filtro == "visual") {
-    posts.sort(function(a, b){return a.visualizzazioni - b.visualizzazioni});
+    posts.sort(function(a, b){return b.visualizzazioni - a.visualizzazioni});
   } else if (filtro == "impression") {
     posts.sort(function(a, b) {
       let reaz_a = a.reazioni.positive.adoro.length() + a.reazioni.positive.mi_piace.length() + a.reazioni.positive.concordo.length() - a.reazioni.negative.mi_disgusta.length() - a.reazioni.negative.odio.length() - a.reazioni.negative.sono_contrario.length();
       let reaz_b = b.reazioni.positive.adoro.length() + b.reazioni.positive.mi_piace.length() + b.reazioni.positive.concordo.length() - b.reazioni.negative.mi_disgusta.length() - b.reazioni.negative.odio.length() - b.reazioni.negative.sono_contrario.length();
-      return reaz_a - reaz_b;
+      return reaz_b - reaz_a;
     });
   }
   return posts;
 }
 
-function rimpiazza_squeals(posts, filtro) {
+function rimpiazza_squeals(squeals, filtro) {
   svuota_squeals();
 
+  let posts = squeals;
   let posts_ordinati = ordina_squeals(posts, filtro);
 
   aggiungi_squeal(posts_ordinati);
