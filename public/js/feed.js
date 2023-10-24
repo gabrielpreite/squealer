@@ -166,7 +166,9 @@ function svuota_squeals() {
 
 //Ordina Squeal
 function ordina_squeals(posts, filtro) {
-  if (filtro == "visual") {
+  if (filtro == "data") {
+    posts.sort(function(a, b){return b.timestamp - a.timestamp});
+  } else if (filtro == "visual") {
     posts.sort(function(a, b){return b.visualizzazioni - a.visualizzazioni});
   } else if (filtro == "impression") {
     posts.sort(function(a, b) {
@@ -178,10 +180,9 @@ function ordina_squeals(posts, filtro) {
   return posts;
 }
 
-function rimpiazza_squeals(squeals, filtro) {
+function rimpiazza_squeals(posts, filtro) {
   svuota_squeals();
 
-  let posts = squeals;
   let posts_ordinati = ordina_squeals(posts, filtro);
 
   aggiungi_squeal(posts_ordinati);
