@@ -57,7 +57,7 @@ function aggiungi_squeal(squeals) {
     var id_dislike = 'squeal_dislike' + i;
     document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
     var id_comment = 'squeal_comment' + i;
-    document.getElementById(id_dislike).innerHTML = squeals[i].numCommenti;
+    document.getElementById(id_comment).innerHTML = squeals[i].numCommenti;
 
 
     //console.log("fv");
@@ -101,6 +101,7 @@ function aggiungi_squeal(squeals) {
       premuto5.style.color= "#007FFF";
       premuto5.checked = true;
     }
+
 
     //etichette
     var id_visual = 'squeal_visual' + i;
