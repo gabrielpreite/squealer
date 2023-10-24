@@ -185,8 +185,7 @@ app.get('/api_utente', async function(req, res) {
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
-	r = await mymongo.search_messaggio(req.query, mongoCredentials)
-	res.send(JSON.stringify(r))
+	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
 //tabella canale o singolo canale da nome
