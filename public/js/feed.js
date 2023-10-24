@@ -305,6 +305,6 @@ function aggiungicommento(azione, id) {
     document.getElementById("vuoto").hidden = false;
     document.getElementById("mostra-commenti").hidden = true;
   } else {
-    window.location.replace(`http://site212251.tw.cs.unibo.it/editor?post_id=${id}`);
+    window.location.replace(`http://site212251.tw.cs.unibo.it/editor?post_id=` + id);
   }
 }
