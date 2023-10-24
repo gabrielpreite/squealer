@@ -17,7 +17,7 @@ function aggiungi_squeal(squeals) {
     var id_timestamp = 'squeal_timestamp' + i;
     document.getElementById(id_nome).innerHTML = squeals[i].nome;
     document.getElementById(id_tag).innerHTML = squeals[i].utente;
-    document.getElementById(id_timestamp).innerHTML = squeals[i].timestamp;
+    document.getElementById(id_timestamp).innerHTML = timeConverter(squeals[i].timestamp);
 
     //corpo squeal
     var id_testo = 'squeal_testo' + i;
