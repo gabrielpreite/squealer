@@ -275,6 +275,15 @@
 
 .reazioni-icone{
   font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.reazioni-icone:hover {
+  transform: scale(1.2);
+}
+
+.reazioni:hover{
+  color: #777;
 }
 
 .n-reazioni {
@@ -289,6 +298,7 @@
   justify-content: space-between;
   margin: 0 auto;
   flex-wrap: wrap;
+  transition: transform 0.2s;
 }
 
 .label-squeal {
