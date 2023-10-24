@@ -57,7 +57,7 @@ function aggiungi_squeal(squeals) {
     var id_dislike = 'squeal_dislike' + i;
     document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
     var id_comment = 'squeal_comment' + i;
-    document.getElementById(id_comment).innerHTML = squeals[i].numCommenti;
+    document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
 
 
     //console.log("fv");
