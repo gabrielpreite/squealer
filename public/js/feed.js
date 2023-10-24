@@ -1,9 +1,9 @@
 function aggiungi_squeal(squeals) {
-  var n_squeal = squeals.length;
+  var n_squeal = squeals.length - 1;
 
   var contenitore = document.getElementById('squeal_contenitore');
 
-  for (var i = 0; i < n_squeal; i++) {
+  for (var i = n_squeal; i >= 0; i--) {
     //setup
     var id = "squeals[" + i + "]._id";
 
@@ -15,8 +15,8 @@ function aggiungi_squeal(squeals) {
     var id_nome = 'squeal_nome' + i;
     var id_tag = 'squeal_tag' + i;
     var id_timestamp = 'squeal_timestamp' + i;
-    //document.getElementById(id_nome).innerHTML = squeals[i].nome;
-    document.getElementById(id_tag).innerHTML = "@" + squeals[i].utente;
+    document.getElementById(id_nome).innerHTML = squeals[i].nome;
+    document.getElementById(id_tag).innerHTML = squeals[i].utente;
     document.getElementById(id_timestamp).innerHTML = squeals[i].timestamp;
 
     //corpo squeal
@@ -135,10 +135,10 @@ function ricerca_squeal() {
     return false;
   }
 
-  var query = document.getElementById("query").value;
-  var tipo = document.getElementById("tipo").value;
+  let query = document.getElementById("query").value;
+  let tipo = document.getElementById("tipo").value;
 
-  var all_info;
+  let all_info;
   $.ajax({
     type: 'POST',
     dataType: "json",
@@ -152,9 +152,7 @@ function ricerca_squeal() {
     }
   });
 
-  svuota_squeals();
-
-  aggiungi_squeal(all_info.post);
+  rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   //aggiungi_info(all_info.meta);
 
   return all_info;
@@ -163,4 +161,145 @@ function ricerca_squeal() {
 //Svuota il feed
 function svuota_squeals() {
   document.getElementById('squeal_contenitore').innerHTML = '';
+}
+
+//Ordina Squeal
+function ordina_squeals(posts, filtro) {
+  if (filtro == "visual") {
+    posts.sort(function(a, b){return a.visualizzazioni - b.visualizzazioni});
+  } else if (filtro == "impression") {
+    posts.sort(function(a, b) {
+      let reaz_a = a.reazioni.positive.adoro.length() + a.reazioni.positive.mi_piace.length() + a.reazioni.positive.concordo.length() - a.reazioni.negative.mi_disgusta.length() - a.reazioni.negative.odio.length() - a.reazioni.negative.sono_contrario.length();
+      let reaz_b = b.reazioni.positive.adoro.length() + b.reazioni.positive.mi_piace.length() + b.reazioni.positive.concordo.length() - b.reazioni.negative.mi_disgusta.length() - b.reazioni.negative.odio.length() - b.reazioni.negative.sono_contrario.length();
+      return reaz_a - reaz_b;
+    });
+  }
+  return posts;
+}
+
+function rimpiazza_squeals(posts, filtro) {
+  svuota_squeals();
+
+  let posts_ordinati = ordina_squeals(posts, filtro);
+
+  aggiungi_squeal(posts_ordinati);
+}
+
+// switch account e re-set quota
+function switch_account(username){
+  set_cookie("managed", username)
+  $("#managed-account-username").text(username)
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/get_quota?username=${username}`,
+    headers: { },
+    success: function (data, status, xhr) {
+      set_cookie("quota_giorno", data["quota"]["g"])
+      set_cookie("quota_settimana", data["quota"]["s"])
+      set_cookie("quota_mese", data["quota"]["m"])
+      location.reload()
+    }
+  });
+}
+
+function switch_to_smm(){
+  delete_cookie("managed")
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/get_quota?username=${get_cookie_by_name("username")}`,
+    headers: { },
+    success: function (data, status, xhr) {
+      set_cookie("quota_giorno", data["quota"]["g"])
+      set_cookie("quota_settimana", data["quota"]["s"])
+      set_cookie("quota_mese", data["quota"]["m"])
+      location.reload()
+    }
+  });
+}
+
+//bottoni
+function premibottone(button, reac, id) {
+  //console.log(button.querySelector(".n-reazioni"));
+  if (button.checked) {
+    button.style.color= "#777";
+    button.checked = false;
+    var Nreaz = button.querySelector(".n-reazioni");
+    Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+  } else {
+    const buttonGroup = document.getElementsByClassName(button.className);
+    const buttonArray = Array.from(buttonGroup);
+    //console.log(buttonGroup);
+    buttonArray.forEach((btnradio) => {
+      if (button==btnradio){
+        if (reac == "adoro"){
+          button.style.color= "#00AFFF";
+        } else if (reac == "mi_disgusta") {
+          button.style.color= "#8B4513";
+        } else if (reac == "mi_piace") {
+          button.style.color= "#FF0000";
+        } else if (reac == "odio") {
+          button.style.color= "#FF0000";
+        } else if (reac == "concordo") {
+          button.style.color= "#007FFF";
+        } else if (reac == "sono_contrario") {
+          button.style.color= "#007FFF";
+        }
+        button.checked = true;
+        var Nreaz = btnradio.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
+      } else if (btnradio.checked) {
+        btnradio.style.color= "#777";
+        btnradio.checked = false;
+        var Nreaz = btnradio.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+      }
+    });
+  }
+
+  //controllo a chi assegnare la reaction
+  let target_user = get_cookie_by_name("username")
+  let managed = get_cookie_by_name("managed")
+  if(!(managed === undefined))
+    target_user = managed
+
+  //chiamata update db
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
+    data: { _id: id, reac: reac, userid: target_user},
+    headers: { },
+    success: function (data, status, xhr) {
+      console.log('data: ', data);
+    }
+  });
+}
+
+function aggiungicommento(azione) {
+  var icon = document.querySelector('.fa-solid.fa-comments');
+  if (azione == "apri") {
+    if (document.getElementById("mostra-commenti").hidden == true) {
+      // Cambia il colore dell'icona del commento a nero
+      icon.style.color = 'black';
+      // Nascondi il div "vuoto"
+      document.getElementById("vuoto").hidden = true;
+      // Mostra il div "mostra-squeal"
+      document.getElementById("mostra-commenti").hidden = false;
+    } else {
+      icon.style.color = '#777';
+      document.getElementById("vuoto").hidden = false;
+      document.getElementById("mostra-commenti").hidden = true;
+    }
+  } else if (azione == "chiudi") {
+    icon.style.color = '#777';
+    document.getElementById("vuoto").hidden = false;
+    document.getElementById("mostra-commenti").hidden = true;
+  } else {
+    //apri editor commento
+  }
 }

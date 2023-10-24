@@ -76,15 +76,6 @@ app.use(sessions({
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
 
-
-/*app.get('/', async function (req, res) {
-	let sitename = req.hostname.split('.')[0]
-	res.send(await template.generate('index.html', {
-			host: req.hostname,
-			site: sitename
-	}));
-})*/
-
 app.get('/', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	res.sendFile(global.rootDir+"/public/html/feed.html")
@@ -121,48 +112,6 @@ app.get('/logout', function (req, res) {
 app.get('/test', function (req, res) {
 	res.sendFile(global.rootDir+"/public/html/test.html")
 })
-
-/*app.get('/hw', async function(req, res) {
-	var text = "Hello world as a Node service";
-	res.send(
-`<!doctype html>
-<html>
-	<body>
-		<h1>${text}</h1>
-		<p><a href="javascript:history.back()">Go back</a></p>
-	</body>
-</html>
-			`)
-});
-
-app.get('/hwhb', async function(req, res) {
-	res.send(await template.generate('generic.html', {
-		text: "Hello world as a Handlebar service",
-	}));
-});
-
-const info = async function(req, res) {
-	let data = {
-		startDate: global.startDate.toLocaleString(),
-		requestDate: (new Date()).toLocaleString(),
-		request: {
-			host: req.hostname,
-			method: req.method,
-			path: req.path,
-			protocol: req.protocol
-		},
-		query: req.query,
-		body: req.body
-	}
-	res.send( await template.generate('info.html', data));
-}
-
-app.get('/info', info )
-app.post('/info', info )
-*/
-
-
-
 
 /* ========================== */
 /*                            */
@@ -323,15 +272,8 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 			let path = req.file.path
 			campi["path"] = path.split("/").slice(-1)[0]
 		}
-		/*console.log("destinatari post (index) :")
-		console.log(req.body.destinatari)
-		console.log("---------")*/
 
 		req.body.destinatari = JSON.parse(req.body.destinatari)
-
-		/*console.log("destinatari post (index - parse) :")
-		console.log(req.body.destinatari)
-		console.log("---------")*/
 
 		//timestamp
 		let date = new Date()
