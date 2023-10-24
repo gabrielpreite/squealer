@@ -151,6 +151,8 @@ app.post('/api_login', async function(req, res) {
 		session.userid=req.body.username;
 		console.log(req.session)
 		res.cookie('username', session.userid)
+		res.cookie('nome', db_res["nome"])
+		res.cookie('img', db_res["img"])
 		res.cookie('login_result', "success")
 		res.cookie('quota_giorno', db_res["quota"]["g"])
 		res.cookie('quota_settimana', db_res["quota"]["s"])
