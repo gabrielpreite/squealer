@@ -36,7 +36,7 @@ function redirectToHome() {
 }
 
 function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
+    var a = new Date(UNIX_timestamp);
     var year = a.getFullYear();
     var month = a.getMonth();
     var date = a.getDate();
