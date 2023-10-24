@@ -12,8 +12,9 @@ function get_cookie_by_name(name) {
 
 function set_cookie(key, value) {
     var now = new Date()
-    var time = now.getTime()
-    var expireTime = time + 1000*36000
+    var time = now.getTime() 
+                            //ore     giorni
+    var expireTime = time + 1000*3600*24*14
     now.setTime(expireTime)
     document.cookie = key+"="+value+"; expires="+now.toUTCString()
 }
