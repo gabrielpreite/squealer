@@ -15,9 +15,11 @@ function aggiungi_squeal(squeals) {
     var id_nome = 'squeal_nome' + i;
     var id_tag = 'squeal_tag' + i;
     var id_timestamp = 'squeal_timestamp' + i;
+    var id_squeal_img_utente = 'squeal_img_utente' + i;
     document.getElementById(id_nome).innerHTML = squeals[i].nome;
     document.getElementById(id_tag).innerHTML = squeals[i].utente;
     document.getElementById(id_timestamp).innerHTML = timeConverter(squeals[i].timestamp);
+    document.getElementById(id_squeal_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${squeals[i].img}`
 
     //corpo squeal
     var id_testo = 'squeal_testo' + i;
