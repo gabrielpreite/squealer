@@ -283,7 +283,7 @@ function premibottone(button, reac, id) {
   });
 }
 
-function aggiungicommento(azione) {
+function aggiungicommento(azione, id) {
   var icon = document.querySelector('.fa-solid.fa-comments');
   if (azione == "apri") {
     if (document.getElementById("mostra-commenti").hidden == true) {
@@ -303,6 +303,6 @@ function aggiungicommento(azione) {
     document.getElementById("vuoto").hidden = false;
     document.getElementById("mostra-commenti").hidden = true;
   } else {
-    //apri editor commento
+    window.location.replace(`http://site212251.tw.cs.unibo.it/editor?post_id=${id}`);
   }
 }
