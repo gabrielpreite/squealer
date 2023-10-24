@@ -42,7 +42,9 @@ function timeConverter(UNIX_timestamp){
     var date = a.getDate();
     var hour = a.getHours();
     var min = a.getMinutes();
-    var sec = a.getSeconds();
+    if (min < 10) {
+        min = '0' + min;
+    }
     var time = date + '/' + month + '/' + year + ' ' + hour + ':' + min;
     return time;
 }
