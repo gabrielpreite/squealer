@@ -170,8 +170,8 @@ function ordina_squeals(posts, filtro) {
     posts.sort(function(a, b){return b.visualizzazioni - a.visualizzazioni});
   } else if (filtro == "impression") {
     posts.sort(function(a, b) {
-      let reaz_a = a.reazioni.positive.adoro.length() + a.reazioni.positive.mi_piace.length() + a.reazioni.positive.concordo.length() - a.reazioni.negative.mi_disgusta.length() - a.reazioni.negative.odio.length() - a.reazioni.negative.sono_contrario.length();
-      let reaz_b = b.reazioni.positive.adoro.length() + b.reazioni.positive.mi_piace.length() + b.reazioni.positive.concordo.length() - b.reazioni.negative.mi_disgusta.length() - b.reazioni.negative.odio.length() - b.reazioni.negative.sono_contrario.length();
+      let reaz_a = a.reazioni.positive.adoro.length + a.reazioni.positive.mi_piace.length + a.reazioni.positive.concordo.length - a.reazioni.negative.mi_disgusta.length - a.reazioni.negative.odio.length - a.reazioni.negative.sono_contrario.length;
+      let reaz_b = b.reazioni.positive.adoro.length + b.reazioni.positive.mi_piace.length + b.reazioni.positive.concordo.length - b.reazioni.negative.mi_disgusta.length - b.reazioni.negative.odio.length - b.reazioni.negative.sono_contrario.length;
       return reaz_b - reaz_a;
     });
   }
