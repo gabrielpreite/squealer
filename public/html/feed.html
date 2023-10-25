@@ -215,7 +215,7 @@
 
           </div>
           <div id="mostra-commenti" hidden="true">
-            <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento('chiudi')"></i></h4>
+            <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></i></h4>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
               <div class="comment">
                 <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
@@ -234,7 +234,7 @@
 
             </div>
             <div class="">
-              <button class="btn btn-primary aggiungi-commento" onclick="aggiungicommento('commenta', this.id)">
+              <button class="btn btn-primary aggiungi-commento" onclick="aggiungicommento(this, 'commenta', this.id)">
                 Commenta   <i class="fa-solid fa-comment-dots icona-commento"></i>
               </button>
             </div>
