@@ -41,7 +41,7 @@ function aggiungi_squeal(squeals) {
       var lista_destinatari = document.getElementById('squeal_destinatari' + i);
       var n_destinatari = squeals[i].destinatari.length;
       for (var j = 0; j < n_destinatari; j++) {
-        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest1(this)">' + squeals[i].destinatari[j] + '</a>');
+        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest(this)">' + squeals[i].destinatari[j] + '</a>');
       }
     }
 
@@ -141,8 +141,8 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let col_2_1 = `<div class="col">${meta["info"]["nome"]}<br>${meta["info"]["username"]}</div>`
-    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+    let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
+    let col_2_2 = `<div class="col"><button onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
@@ -228,20 +228,13 @@ function rimpiazza_squeals(posts, filtro) {
 
 function ricerca_dest(elem) {
   let query = elem.value;
-  let tipo = document.getElementById("tipo").value;
-
-  //check varie cose
+  let tipo = query[0];
+  
   if (tipo == "@") {
-    if (query[0] == "@") {
-      let length = query.length;
-      query = query.slice(1,length);
-    }
-  } else if (tipo == "$") {
-    if (query[0] != "$") {
-      query = "$" + query;
-    }
+    let length = query.length;
+    query = query.slice(1,length);
   }
-  /*
+  
   let all_info;
   $.ajax({
     type: 'POST',
@@ -259,7 +252,7 @@ function ricerca_dest(elem) {
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   aggiungi_info(all_info.meta);
 
-  return all_info;*/
+  return all_info;
 }
 
 // switch account e re-set quota
