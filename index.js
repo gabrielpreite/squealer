@@ -234,6 +234,17 @@ app.get("/get_quota", async function(req, res) {
 	}
 })
 
+app.post("/add_follow", async function(req, res){
+	try{
+		let result = await mymongo.add_follow(req.body, mongoCredentials)
+		res.status(200)
+		res.send(result)
+	}catch(e){
+		res.status(500)
+		res.send("errore")
+	}
+})
+
 app.get("/user_exist", async function(req, res) {
 	try{
 		let result = await mymongo.user_exist(req.query, mongoCredentials)

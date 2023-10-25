@@ -1298,6 +1298,37 @@ exports.get_mychannels = async function(q, campi, credentials) {
 	}
 }
 
+exports.add_follow = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		if(q.tipo == "utente"){
+			await mongo.db(dbname)
+				.collection("utente")
+				.updateOne(
+					{ _id:  q.origin},
+					{ $push: { utenti_seguiti: q.target } }
+				)
+
+		} else if(q.tipo == "canale"){
+			await mongo.db(dbname)
+				.collection("utente")
+				.updateOne(
+					{ _id:  q.origin},
+					{ $push: { canali_seguiti: q.target } }
+				)
+		}
+
+		await mongo.close()
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
 /* Untested */
 // https://stackoverflow.com/questions/39599063/check-if-mongodb-is-connected/39602781
 exports.isConnected = async function() {

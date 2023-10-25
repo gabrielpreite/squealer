@@ -130,6 +130,25 @@ function aggiungi_squeal(squeals) {
   //FINE SQUEAL
 }
 
+function add_follow(target, tipo){
+  //come user (smm) o come account gestito (se esiste il cookie)
+  let origin = get_cookie_by_name("username")
+  let managed = get_cookie_by_name("managed")
+  if(!(managed === undefined))
+    origin = managed
+
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    url: `https://site212251.tw.cs.unibo.it/add_follow`,
+    headers: { },
+    data: { origin: origin, target: target, tipo: tipo },
+    success: function (data, status, xhr) {
+      //modifica pulsante
+    }
+  });
+}
+
 function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()
@@ -157,7 +176,7 @@ function aggiungi_info(meta){
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["nome"]}</div>`
-    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="add_follow('${meta["info"]["nome"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="add_follow('${meta["info"]["nome"]}', 'canale')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
