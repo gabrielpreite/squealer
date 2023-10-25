@@ -8,7 +8,7 @@ function aggiungi_squeal(squeals) {
     var id = "squeals[" + i + "]._id";
 
     //squeal
-    var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">  <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">  <div class="info_utente"><span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>  <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>  <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span></div>  <div class="recipients-dropdown destinatari"><button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '"><i class="fa-solid fa-users destinatari-icona"></i></button><div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"></div></div></div>  <div class="card-body"><p id="squeal_testo' + i + '"></p></div>  <div class="card-footer">  <div class="reazioni btn-group"><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')"><i class="fab fa-sketch reazioni-icone"></i><br><span class="n-reazioni" id="squeal_sketch' + i + '">500</span></label><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')"><i class="fas fa-heart reazioni-icone"></i><br><span class="n-reazioni" id="squeal_heart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')"><i class="fas fa-thumbs-up reazioni-icone"></i><br><span class="n-reazioni" id="squeal_like' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')"><i class="fas fa-thumbs-down reazioni-icone"></i><br><span class="n-reazioni" id="squeal_dislike' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')"><i class="fas fa-heart-crack reazioni-icone"></i><br><span class="n-reazioni" id="squeal_disheart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')"><i class="fas fa-poo reazioni-icone"></i><br><span class="n-reazioni" id="squeal_poo' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '"  onclick="aggiungicommento(apri, '+id+')"><i class="fa-solid fa-comments reazioni-icone"></i><br><span class="n-reazioni" id="squeal_comment' + i + '">500</span></label></div>  <div class="info-post" id="squeal_info' + i + '"><span class="visual" id="squeal_visual' + i + '"><i class="fa-solid fa-eye icona-visual"></i>500</span></div></div></div>';
+    var htmlCode = '<div class="card squeal" id="' + squeals[i]._id + '">  <div class="card-header">  <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">  <div class="info_utente"><span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>  <span class="text-muted tag-username" id="squeal_tag' + i + '">username</span>  <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span></div>  <div class="recipients-dropdown destinatari"><button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '"><i class="fa-solid fa-users destinatari-icona"></i></button><div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"></div></div></div>  <div class="card-body"><p id="squeal_testo' + i + '"></p></div>  <div class="card-footer">  <div class="reazioni btn-group"><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')"><i class="fab fa-sketch reazioni-icone"></i><br><span class="n-reazioni" id="squeal_sketch' + i + '">500</span></label><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')"><i class="fas fa-heart reazioni-icone"></i><br><span class="n-reazioni" id="squeal_heart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')"><i class="fas fa-thumbs-up reazioni-icone"></i><br><span class="n-reazioni" id="squeal_like' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')"><i class="fas fa-thumbs-down reazioni-icone"></i><br><span class="n-reazioni" id="squeal_dislike' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')"><i class="fas fa-heart-crack reazioni-icone"></i><br><span class="n-reazioni" id="squeal_disheart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')"><i class="fas fa-poo reazioni-icone"></i><br><span class="n-reazioni" id="squeal_poo' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '"  onclick="aggiungicommento(this, apri, '+id+')"><i class="fa-solid fa-comments reazioni-icone"></i><br><span class="n-reazioni" id="squeal_comment' + i + '">500</span></label></div>  <div class="info-post" id="squeal_info' + i + '"><span class="visual" id="squeal_visual' + i + '"><i class="fa-solid fa-eye icona-visual"></i>500</span></div></div></div>';
     contenitore.insertAdjacentHTML('beforeend', htmlCode);
 
     //info utente
@@ -302,8 +302,7 @@ function premibottone(button, reac, id) {
   });
 }
 
-function aggiungicommento(azione, id) {
-  var icon = document.querySelector('.fa-solid.fa-comments');
+function aggiungicommento(icon, azione, id) {
   var id_commento = document.querySelector('.aggiungi-commento');;
   if (azione == "apri") {
     if (document.getElementById("mostra-commenti").hidden == true) {
@@ -351,16 +350,16 @@ function rimpiazza_commenti(id) {
   });
   var n_commenti = lista_commenti.length;
   for (var c = 0; c < n_commenti; c++) {
-    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + i + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + i + '">  </strong> <p class="comment-text" id="c_text' + i + '">  </p> </div></div>');
-    var c_img_utente = 'c_img_utente' + i;
-    document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i].img}`
-    var id_tag = 'c_username' + i;
-    document.getElementById(id_tag).innerHTML = lista_commenti[i].utente;
-    var id_testo = 'c_text' + i;
-    if(lista_commenti[i].contenuto == "testo"){
-      document.getElementById(id_testo).innerHTML = lista_commenti[i].corpo;
-    } else if(lista_commenti[i].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i].corpo}" alt="immagine_squeal">`
+    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+    var c_img_utente = 'c_img_utente' + c;
+    document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
+    var id_tag = 'c_username' + c;
+    document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
+    var id_testo = 'c_text' + c;
+    if(lista_commenti[c].contenuto == "testo"){
+      document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
+    } else if(lista_commenti[c].contenuto == "img"){
+      document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
     }
   }
 }
