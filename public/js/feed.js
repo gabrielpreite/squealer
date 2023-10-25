@@ -316,9 +316,8 @@ function aggiungicommento(icon, azione, id) {
       //rimpiazza commenti
       rimpiazza_commenti(id);
     } else {
-      const c_Group = document.getElementsByClassName(icon.className);
+      const c_Group = document.getElementsByClassName("c");
       const c_Array = Array.from(c_Group);
-      //console.log(buttonGroup);
       c_Array.forEach((c_btn) => {
         id_commento.id = "";
         c_btn.style.color = '#777';
@@ -327,9 +326,8 @@ function aggiungicommento(icon, azione, id) {
       document.getElementById("mostra-commenti").hidden = true;
     }
   } else if (azione == "chiudi") {
-    const c_Group = document.getElementsByClassName(icon.className);
+    const c_Group = document.getElementsByClassName("c");
     const c_Array = Array.from(c_Group);
-    //console.log(buttonGroup);
     c_Array.forEach((c_btn) => {
       id_commento.id = "";
       c_btn.style.color = '#777';
