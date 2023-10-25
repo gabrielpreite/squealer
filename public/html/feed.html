@@ -247,6 +247,12 @@
         crossorigin="anonymous"></script>
 
       <script>
+        function ricerca_dest1(elem) {
+          console.log(elem);
+          console.log(elem.value);
+        }
+
+
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
           let result = ricerca_squeal()

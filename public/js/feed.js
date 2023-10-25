@@ -41,7 +41,7 @@ function aggiungi_squeal(squeals) {
       var lista_destinatari = document.getElementById('squeal_destinatari' + i);
       var n_destinatari = squeals[i].destinatari.length;
       for (var j = 0; j < n_destinatari; j++) {
-        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" href="#" onclick="nomeprovvisorio()">' + squeals[i].destinatari[j] + '</a>');
+        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest1(this)">' + squeals[i].destinatari[j] + '</a>');
       }
     }
 
@@ -224,6 +224,42 @@ function rimpiazza_squeals(posts, filtro) {
   let posts_ordinati = ordina_squeals(posts, filtro);
 
   aggiungi_squeal(posts_ordinati);
+}
+
+function ricerca_dest(elem) {
+  let query = elem.value;
+  let tipo = document.getElementById("tipo").value;
+
+  //check varie cose
+  if (tipo == "@") {
+    if (query[0] == "@") {
+      let length = query.length;
+      query = query.slice(1,length);
+    }
+  } else if (tipo == "$") {
+    if (query[0] != "$") {
+      query = "$" + query;
+    }
+  }
+  /*
+  let all_info;
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/search`,
+    headers: { },
+    data: { query: query, tipo: tipo },
+    success: function (data, status, xhr) {
+      console.log('data: ', data);
+      all_info = data;
+    }
+  });
+
+  rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
+  aggiungi_info(all_info.meta);
+
+  return all_info;*/
 }
 
 // switch account e re-set quota
