@@ -1174,9 +1174,38 @@ exports.get_replies = async function(q, credentials) {
 
 		await mongo.db(dbname)
 			.collection("messaggio")
-			.find(
+			.aggregate([
 				{
+				  $match: {
 					risponde_a: q.post_id
+				  }
+				},
+				{
+				  $lookup: {
+					from: "utente", // nome seconda tabella
+					localField: "utente", // nome chiave in prima tabella (corrente)
+					foreignField: "username", // nome chiave in seconda tabella
+					as: "utenteData" // rename del record ottenuto (da seconda tabella)
+				  }
+				},
+				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
+					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+					  "newRoot": {
+						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+						  "$$ROOT", //campi originali in messaggio
+						  { nome: "$utenteData.nome" },
+						  { img: "$utenteData.img" }
+						]
+					  }
+					}
+				},
+				{
+					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						utenteData: 0
+					}
 				}
 			)
 			.sort({timestamp: -1}) // Sort by timestamp in descending order
