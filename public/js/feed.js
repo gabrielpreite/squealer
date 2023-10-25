@@ -169,7 +169,7 @@ function aggiungi_info(meta){
     let riga3 = `<div class="row" id="riga3"><div id="search-bio">${meta["info"]["bio"]}</div></div>`
     container.append(riga3)
 
-  } else if(meta["tipo" == "canale"]) { //caso ricerca canale
+  } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
     container.append(riga1)
     $("#riga1").append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
