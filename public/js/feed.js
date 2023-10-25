@@ -312,6 +312,8 @@ function aggiungicommento(azione, id) {
       document.getElementById("barra-destra").hidden = true;
       // Mostra il div "mostra-squeal"
       document.getElementById("mostra-commenti").hidden = false;
+      //rimpiazza commenti
+      rimpiazza_commenti(id);
     } else {
       id_commento.id = "";
       icon.style.color = '#777';
@@ -325,5 +327,38 @@ function aggiungicommento(azione, id) {
     document.getElementById("mostra-commenti").hidden = true;
   } else {
     window.location.replace(`http://site212251.tw.cs.unibo.it/editor?post_id=` + id);
+  }
+}
+
+function rimpiazza_commenti(id) {
+  //elimina tutto il contenuto del cont_commenti
+  document.getElementById("contenitore-commenti").innerHTML = '';
+
+  //aggiungi nuovi commenti
+  var contenitore_commenti = document.getElementById("contenitore-commenti");
+  var lista_commenti;
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/get_replies?post_id=` + id,
+    headers: { },
+    success: function (data, status, xhr) {
+      lista_commenti = data;
+    }
+  });
+  var n_commenti = lista_commenti.length;
+  for (var c = 0; c < n_commenti; c++) {
+    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + i + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + i + '">  </strong> <p class="comment-text" id="c_text' + i + '">  </p> </div></div>');
+    var c_img_utente = 'c_img_utente' + i;
+    document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i].img}`
+    var id_tag = 'c_username' + i;
+    document.getElementById(id_tag).innerHTML = lista_commenti[i].utente;
+    var id_testo = 'c_text' + i;
+    if(lista_commenti[i].contenuto == "testo"){
+      document.getElementById(id_testo).innerHTML = lista_commenti[i].corpo;
+    } else if(lista_commenti[i].contenuto == "img"){
+      document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i].corpo}" alt="immagine_squeal">`
+    }
   }
 }
