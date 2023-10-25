@@ -141,8 +141,8 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
-    let col_2_2 = `<div class="col"><button onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
+    let col_2_1 = `<div class="col">${meta["info"]["nome"]}<br>${meta["info"]["username"]}</div>`
+    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
