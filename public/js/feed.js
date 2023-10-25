@@ -134,15 +134,25 @@ function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()
   container.removeAttr("hidden")
-  // propic
-  let riga1 = `<div class="row"><img src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}"></div>`
-  // nome - segui - #follower
-  let riga2 = `<div class="row><div class="col">${meta["info"]["username"]}</div><div class="col"><button>Segui</button></div></div>`
-  // bio/desc
-  let riga3 = `<div class="row"><div id="search-bio">${meta["info"]["bio"]}</div></div>`
-  container.append(riga1)
-  container.append(riga2)
-  container.append(riga3)
+
+  if(meta["tipo"] == "utente") { // caso ricerca utente
+    let riga1 = `<div class="row" id="riga1"></div>`
+    riga1.append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
+    container.append(riga1)
+
+    let riga2 = `<div class="row" id="riga2"></div>`
+    let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
+    let col_2_2 = `<div class="col"><button onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
+    riga2.append(col_2_1)
+    riga2.append(col_2_2)
+    container.append(riga2)
+
+    let riga3 = `<div class="row" id="riga3"><div id="search-bio">${meta["info"]["bio"]}</div></div>`
+    container.append(riga3)
+
+  } else if(meta["tipo" == "canale"]) { //caso ricerca canale
+
+  }
 }
 
 //RICERCA SQUEAL...
