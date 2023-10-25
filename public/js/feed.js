@@ -197,12 +197,12 @@ function ricerca_squeal() {
     return false;
   }
   //check varie cose
-  if (tipo == "@") {
+  if (tipo == "utente") {
     if (query[0] == "@") {
       let length = query.length;
       query = query.slice(1,length);
     }
-  } else if (tipo == "$") {
+  } else if (tipo == "canale") {
     if (query[0] != "$") {
       query = "$" + query;
     }
@@ -261,7 +261,7 @@ function ricerca_dest(elem) {
   let query = elem.innerHTML;
   let tipo = query[0];
   
-  if (tipo == "@") {
+  if (tipo == "utente") {
     let length = query.length;
     query = query.slice(1,length);
   }
