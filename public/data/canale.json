@@ -1,6 +1,6 @@
 [
     {
-        "img" : "",
+        "img" : "default_channelpic.png",
         "nome" : "$TEST",
         "descrizione" : "Boh un bel canale",
         "ufficiale" : true,
@@ -11,7 +11,7 @@
         "abilitato" : true
     },
     {
-        "img" : "",
+        "img" : "default_channelpic.png",
         "nome" : "$free",
         "descrizione" : "boh un brutto canale",
         "ufficiale" : false,
@@ -22,7 +22,7 @@
         "abilitato" : true
     },
     {
-        "img" : "",
+        "img" : "default_channelpic.png",
         "nome" : "$cosebrutte",
         "descrizione" : "boh un brutto canale",
         "ufficiale" : false,
@@ -33,7 +33,7 @@
         "abilitato" : true
     },
     {
-        "img" : "",
+        "img" : "default_channelpic.png",
         "nome" : "$cats",
         "descrizione" : "gatti che fan cose",
         "ufficiale" : false,
