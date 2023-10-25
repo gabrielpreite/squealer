@@ -295,8 +295,8 @@ function aggiungicommento(azione, id) {
       id_commento.id = id;
       // Cambia il colore dell'icona del commento a nero
       icon.style.color = 'black';
-      // Nascondi il div "vuoto"
-      document.getElementById("vuoto").hidden = true;
+      // Nascondi il div "barra destra"
+      document.getElementById("barra-destra").hidden = true;
       // Mostra il div "mostra-squeal"
       document.getElementById("mostra-commenti").hidden = false;
       //rimpiazza commenti
@@ -304,13 +304,13 @@ function aggiungicommento(azione, id) {
     } else {
       id_commento.id = "";
       icon.style.color = '#777';
-      document.getElementById("vuoto").hidden = false;
+      document.getElementById("barra-destra").hidden = false;
       document.getElementById("mostra-commenti").hidden = true;
     }
   } else if (azione == "chiudi") {
     id_commento.id = "";
     icon.style.color = '#777';
-    document.getElementById("vuoto").hidden = false;
+    document.getElementById("barra-destra").hidden = false;
     document.getElementById("mostra-commenti").hidden = true;
   } else {
     window.location.replace(`http://site212251.tw.cs.unibo.it/editor?post_id=` + id);
