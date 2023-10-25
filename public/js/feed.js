@@ -137,8 +137,8 @@ function aggiungi_info(meta){
 
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
-    riga1.append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
     container.append(riga1)
+    container.children()[0].append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
