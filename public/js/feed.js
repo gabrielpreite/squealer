@@ -261,14 +261,10 @@ function ricerca_dest(elem) {
   let query = elem.innerHTML;
   let tipo = query[0];
   
-  if (tipo == "@") {
-    let length = query.length;
-    query = query.slice(1,length);
-    tipo = "utente";
-  } else if (tipo == "$") {
+  if (tipo == "$") {
     tipo = "canale";
   } else {
-    tipo = "keyword";
+    tipo = "utente";
   }
   
   let all_info;
