@@ -157,15 +157,26 @@ function aggiungi_info(meta){
 
 //RICERCA SQUEAL...
 function ricerca_squeal() {
-  //check query vuota
-  if (document.getElementById("query").value.length == 0) {
-    alert("Inserisci qualcosa da cercare");
-    return false;
-  }
-
   let query = document.getElementById("query").value;
   let tipo = document.getElementById("tipo").value;
 
+  //check query vuota
+  if (query.length == 0) {
+    alert("Inserisci qualcosa da cercare");
+    return false;
+  }
+  //check varie cose
+  if (tipo == "@") {
+    if (query[0] == "@") {
+      let length = query.length;
+      query = query.slice(1,length);
+    }
+  } else if (tipo == "$") {
+    if (query[0] != "$") {
+      query = "$" + query;
+    }
+  }
+  
   let all_info;
   $.ajax({
     type: 'POST',
