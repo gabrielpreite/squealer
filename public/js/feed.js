@@ -132,6 +132,8 @@ function aggiungi_squeal(squeals) {
 
 function aggiungi_info(meta){
   let container = $("#barra-destra")
+  container.empty()
+  container.removeAttr("hidden")
   // propic
   let riga1 = `<div class="row"><img src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}"></div>`
   // nome - segui - #follower
