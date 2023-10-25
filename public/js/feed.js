@@ -144,7 +144,7 @@ function aggiungi_info(meta){
     let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
     let col_2_2 = `<div class="col"><button onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
     container.append(riga2)
-    $("#riga1").append(col_2_1)
+    $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
 
     let riga3 = `<div class="row" id="riga3"><div id="search-bio">${meta["info"]["bio"]}</div></div>`
