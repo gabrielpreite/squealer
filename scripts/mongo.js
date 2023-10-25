@@ -933,24 +933,15 @@ exports.search = async function(q, credentials) {
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.aggregate([
-					{
-					  $match: {
-						utente: q.query
-					  }
-					},
-					{
-					  $lookup: {
+					{ $match: { utente: q.query } },
+					{ $lookup: {
 						from: "utente", // nome seconda tabella
 						localField: "utente", // nome chiave in prima tabella (corrente)
 						foreignField: "username", // nome chiave in seconda tabella
 						as: "utenteData" // rename del record ottenuto (da seconda tabella)
-					  }
-					},
-					{
-						$unwind: "$utenteData" // Unwind the joined data (if necessary)
-					},
-					{
-						"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+					} },
+					{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
+					{ "$replaceRoot": { //ricrea la "root" della struttura ottenuta
 						  "newRoot": {
 							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
 							  "$$ROOT", //campi originali in messaggio
@@ -958,39 +949,18 @@ exports.search = async function(q, credentials) {
 							  { img: "$utenteData.img" }
 							]
 						  }
-						}
-					},
-					{
-						$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
-							utenteData: 0
-						}
-					},
-					{
-					  $lookup: {
+					} },
+					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+					{ $lookup: {
 						from: "messaggio",
 						localField: "_id",
 						foreignField: "risponde_a",
 						as: "risposte"
-					  }
-					},
-					{
-					  $addFields: {
-						numRisposte: { $size: "$risposte" }
-					  }
-					},
-					{
-					  $project: {
-						risposte: 0
-					  }
-					},
-					{
-					  $sort: {
-						timestamp: -1 // Sort by timestamp in descending order
-					  }
-					},
-					{
-					  $limit: 100 // Limit the result to 100 records
-					}
+					} },
+					{ $addFields: { numRisposte: { $size: "$risposte" } } },
+					{ $project: { risposte: 0 } },
+					{ $sort: { timestamp: -1 } },
+					{ $limit: 100 }// Limit the result to 100 records
 				  ])
 				.forEach( (r) => { 
 					post.push(r) 
@@ -1007,6 +977,19 @@ exports.search = async function(q, credentials) {
 				.forEach( (r) => { 
 					meta["info"] = r
 				});
+			
+			let numFollowers = 0
+			await mongo.db(dbname) // #follower
+				.collection("utente")
+				.find(
+					{
+						utenti_seguiti: { $in: [q.query] }
+					}
+				)
+				.forEach((r) => {
+					numFollowers++;
+				});
+			meta["info"]["num_followers"] = numFollowers
 
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
