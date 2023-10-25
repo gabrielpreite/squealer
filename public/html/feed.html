@@ -251,8 +251,9 @@
       <script>
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
-          squeals = ricerca_squeal().post;
-          var info_ricerca = ricerca_squeal().meta;
+          let result = ricerca_squeal()
+          squeals = result.post;
+          var info_ricerca = result.meta;
         });
 
         // INSERIMENTO PROPIC UTENTE
