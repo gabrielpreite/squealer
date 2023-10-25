@@ -138,14 +138,14 @@ function aggiungi_info(meta){
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
     container.append(riga1)
-    container.children()[0].append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
+    $("#riga1").append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
     let col_2_2 = `<div class="col"><button onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
     container.append(riga2)
-    container.children()[0].append(col_2_1)
-    container.children()[0].append(col_2_2)
+    $("#riga1").append(col_2_1)
+    $("#riga2").append(col_2_2)
 
     let riga3 = `<div class="row" id="riga3"><div id="search-bio">${meta["info"]["bio"]}</div></div>`
     container.append(riga3)
