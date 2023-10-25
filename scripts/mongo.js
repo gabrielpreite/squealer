@@ -1070,6 +1070,19 @@ exports.search = async function(q, credentials) {
 					meta["info"] = r
 				});
 
+			let numFollowers = 0
+			await mongo.db(dbname) // #follower
+				.collection("utente")
+				.find(
+					{
+						canali_seguiti: { $in: [q.query] }
+					}
+				)
+				.forEach((r) => {
+					numFollowers++;
+				});
+			meta["info"]["num_followers"] = numFollowers
+
 		} else if(q.tipo == "keyword"){
 			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
 				.collection("messaggio")

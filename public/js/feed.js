@@ -151,7 +151,19 @@ function aggiungi_info(meta){
     container.append(riga3)
 
   } else if(meta["tipo" == "canale"]) { //caso ricerca canale
+    let riga1 = `<div class="row" id="riga1"></div>`
+    container.append(riga1)
+    $("#riga1").append(`<img id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
+    let riga2 = `<div class="row" id="riga2"></div>`
+    let col_2_1 = `<div class="col">${meta["info"]["nome"]}</div>`
+    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="add_follow('${meta["info"]["nome"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+    container.append(riga2)
+    $("#riga2").append(col_2_1)
+    $("#riga2").append(col_2_2)
+
+    let riga3 = `<div class="row" id="riga3"><div id="search-bio">${meta["info"]["descrizione"]}</div></div>`
+    container.append(riga3)
   }
 }
 
