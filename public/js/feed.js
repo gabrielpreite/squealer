@@ -258,7 +258,7 @@ function rimpiazza_squeals(posts, filtro) {
 }
 
 function ricerca_dest(elem) {
-  let query = elem.value;
+  let query = elem.innerHTML;
   let tipo = query[0];
   
   if (tipo == "@") {
