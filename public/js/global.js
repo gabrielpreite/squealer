@@ -38,9 +38,18 @@ function redirectToHome() {
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp);
     var year = a.getFullYear();
-    var month = a.getMonth();
+    var month = a.getMonth()+1;
+    if (month < 10) {
+        month = '0' + month;
+    }
     var date = a.getDate();
+    if (date < 10) {
+        date = '0' + date;
+    }
     var hour = a.getHours();
+    if (hour < 10) {
+        hour = '0' + hour;
+    }
     var min = a.getMinutes();
     if (min < 10) {
         min = '0' + min;
