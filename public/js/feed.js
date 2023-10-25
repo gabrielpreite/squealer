@@ -130,6 +130,19 @@ function aggiungi_squeal(squeals) {
   //FINE SQUEAL
 }
 
+function aggiungi_info(meta){
+  let container = $("#barra-destra")
+  // propic
+  let riga1 = `<div class="row"><img src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}"></div>`
+  // nome - segui - #follower
+  let riga2 = `<div class="row><div class="col">${meta["info"]["username"]}</div><div class="col"><button>Segui</button></div></div>`
+  // bio/desc
+  let riga3 = `<div class="row"><div id="search-bio">${meta["info"]["bio"]}</div></div>`
+  container.append(riga1)
+  container.append(riga2)
+  container.append(riga3)
+}
+
 //RICERCA SQUEAL...
 function ricerca_squeal() {
   //check query vuota
@@ -156,7 +169,7 @@ function ricerca_squeal() {
   });
 
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
-  //aggiungi_info(all_info.meta);
+  aggiungi_info(all_info.meta);
 
   return all_info;
 }
