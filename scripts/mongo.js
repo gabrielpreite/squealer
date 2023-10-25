@@ -1207,7 +1207,7 @@ exports.get_replies = async function(q, credentials) {
 						utenteData: 0
 					}
 				}
-			)
+			])
 			.sort({timestamp: -1}) // Sort by timestamp in descending order
 			.limit(100)
 			.forEach( (r) => { 
