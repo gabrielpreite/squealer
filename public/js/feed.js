@@ -439,7 +439,7 @@ function rimpiazza_commenti(id) {
     if(lista_commenti[c].contenuto == "testo"){
       document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
     } else if(lista_commenti[c].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
+      document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
     }
   }
 }
