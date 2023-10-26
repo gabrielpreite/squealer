@@ -24,25 +24,9 @@
 }
 
 
-[hidden="true"] {
+/*[hidden="true"] {
   display: none;
-}
-
-#selezione-destinatari {
-  display: block; /* Imposta il div come visibile di default */
-}
-
-#vuoto {
-  display: block; /* Imposta il div come visibile di default */
-}
-
-#mostra-squeal {
-  display: none; /* Imposta il div come nascosto di default */
-}
-
-#mostra-commenti {
-  display: none; /* Imposta il div come nascosto di default */
-}
+}*/
 
 
 #tipo-messaggio {

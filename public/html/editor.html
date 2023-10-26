@@ -93,7 +93,7 @@
   <!--<form method="POST" action="/crea_post">-->
         <!-- First Column -->
         <div class="col-md-3" id="col-sx">
-          <div id="selezione-destinatari">
+          <div id="selezione-destinatari" hidden="false">
           <div id="tipo-messaggio">
             <div class="title-bar">
               <div class="title-line"></div>
@@ -151,7 +151,7 @@
             </div>
           </div>
 
-            <div id="mostra-squeal">
+            <div id="mostra-squeal" hidden="true">
               <div class="squeal">
                   <div class="squeal-header">
                     <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo">
@@ -207,10 +207,10 @@
 
         <!-- Third Column -->
         <div class="col-md-3" id="col-dx">
-          <div id="vuoto">
+          <div id="vuoto" hidden="false">
 
            </div>
-           <div id="mostra-commenti">
+           <div id="mostra-commenti" hidden="true">
 
            </div>
          </div>
@@ -268,10 +268,12 @@
 
   function interfaccia_risposta(post_id){
     // Nascondi il div "selezione-destinatari"
-    document.getElementById("selezione-destinatari").style.display = "none";
-    document.getElementById("vuoto").style.display = "none";
+    document.getElementById("selezione-destinatari").hidden = true;
+    document.getElementById("vuoto").hidden = true;
+
     // Mostra il div "mostra-squeal"
-    document.getElementById("mostra-commenti").style.display = "block";
+    document.getElementById("mostra-squeal").hidden = false;
+    document.getElementById("mostra-commenti").hidden = false;
 
     // prendo il post originale
     var post_originale
