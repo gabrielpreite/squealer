@@ -1338,7 +1338,6 @@ exports.toggle_follow = async function(q, credentials) {
 					{
 						$match: {
 							username: q.origin,
-							utenti_seguiti: q.query
 						}
 					},
 					{
