@@ -1411,6 +1411,7 @@ exports.toggle_follow = async function(q, credentials) {
 				.then(async (results) => {
 					const pull_list = results.filter((doc) => doc.result === "pull");
 					for (const doc of pull_list) { //se e' gia' follower lo rimuovo
+						console.log("pulling")
 						try {
 							await mongo.db(dbname)
 								.collection("utente")
@@ -1425,6 +1426,7 @@ exports.toggle_follow = async function(q, credentials) {
 
 					const push_list = results.filter((doc) => doc.result === "push");
 					for (const doc of push_list) { //altrimento lo aggiungo
+						console.log("pushing")
 						try {
 							await mongo.db(dbname)
 								.collection("utente")
