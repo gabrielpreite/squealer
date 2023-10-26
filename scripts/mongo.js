@@ -1333,11 +1333,11 @@ exports.toggle_follow = async function(q, credentials) {
 
 		if(q.tipo == "utente"){
 			await mongo.db(dbname)
+				.collection("utente")
 				.aggregate([
 					{
 						$match: {
 							username: q.origin,
-							utenti_seguiti: q.query
 						}
 					},
 					{
