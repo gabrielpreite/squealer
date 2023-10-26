@@ -1322,7 +1322,7 @@ exports.get_mychannels = async function(q, campi, credentials) {
 	}
 }
 
-exports.add_follow = async function(q, credentials) {
+exports.toggle_follow = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let result = []
 	try {
@@ -1331,19 +1331,54 @@ exports.add_follow = async function(q, credentials) {
 
 		if(q.tipo == "utente"){
 			await mongo.db(dbname)
-				.collection("utente")
-				.updateOne(
-					{ username:  q.origin},
-					{ $push: { utenti_seguiti: q.target } }
-				)
+				.aggregate([
+					{
+						$match: {
+							username: q.origin
+						}
+					},
+					{
+						$project: {
+							result: {
+								$cond: {
+									if: { utenti_seguiti: { $in: [q.target]} }, // controlla se l'utente e' follower
+									then: {
+										$pull: { utenti_seguiti: q.target } // se lo e' deve rimuovere
+									},
+									else: {
+										$push: { utenti_seguiti: q.target } // altrimenti lo aggiunge
+									}
+								}
+							}
+						}
+					}
+				])
 
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname)
 				.collection("utente")
-				.updateOne(
-					{ username:  q.origin},
-					{ $push: { canali_seguiti: q.target } }
-				)
+				.aggregate([
+					{
+						$match: {
+							username: q.origin
+						}
+					},
+					{
+						$project: {
+							result: {
+								$cond: {
+									if: { canali_seguiti: { $in: [q.target]} }, // controlla se l'utente e' follower
+									then: {
+										$pull: { canali_seguiti: q.target } // se lo e' deve rimuovere
+									},
+									else: {
+										$push: { canali_seguiti: q.target } // altrimenti lo aggiunge
+									}
+								}
+							}
+						}
+					}
+				])
 		}
 
 		await mongo.close()

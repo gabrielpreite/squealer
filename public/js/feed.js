@@ -130,7 +130,7 @@ function aggiungi_squeal(squeals) {
   //FINE SQUEAL
 }
 
-function add_follow(target, tipo){
+function toggle_follow(target, tipo){
   //come user (smm) o come account gestito (se esiste il cookie)
   let origin = get_cookie_by_name("username")
   let managed = get_cookie_by_name("managed")
@@ -140,7 +140,7 @@ function add_follow(target, tipo){
   $.ajax({
     type: 'POST',
     dataType: "json",
-    url: `https://site212251.tw.cs.unibo.it/add_follow`,
+    url: `https://site212251.tw.cs.unibo.it/toggle_follow`,
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
@@ -161,7 +161,7 @@ function aggiungi_info(meta){
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
-    let col_2_2 = `<div class="col"><button onclick="add_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
+    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
@@ -176,7 +176,7 @@ function aggiungi_info(meta){
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["nome"]}</div>`
-    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="add_follow('${meta["info"]["nome"]}', 'canale')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
