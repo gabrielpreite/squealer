@@ -144,7 +144,7 @@ function add_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      //modifica pulsante
+      console.log("aggiunto follow")
     }
   });
 }

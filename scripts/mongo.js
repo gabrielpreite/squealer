@@ -1309,7 +1309,7 @@ exports.add_follow = async function(q, credentials) {
 			await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
-					{ _id:  q.origin},
+					{ username:  q.origin},
 					{ $push: { utenti_seguiti: q.target } }
 				)
 
@@ -1317,7 +1317,7 @@ exports.add_follow = async function(q, credentials) {
 			await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
-					{ _id:  q.origin},
+					{ username:  q.origin},
 					{ $push: { canali_seguiti: q.target } }
 				)
 		}
