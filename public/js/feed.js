@@ -207,7 +207,7 @@ function ricerca_squeal() {
       query = "$" + query;
     }
   }
-  
+
   let all_info;
   $.ajax({
     type: 'POST',
@@ -260,13 +260,13 @@ function rimpiazza_squeals(posts, filtro) {
 function ricerca_dest(elem) {
   let query = elem.innerHTML;
   let tipo = query[0];
-  
+
   if (tipo == "$") {
     tipo = "canale";
   } else {
     tipo = "utente";
   }
-  
+
   let all_info;
   $.ajax({
     type: 'POST',
@@ -387,7 +387,6 @@ function premibottone(button, reac, id) {
 function aggiungicommento(icon, azione, id) {
   var id_commento = document.querySelector('.aggiungi-commento');;
   if (azione == "apri") {
-    if (document.getElementById("mostra-commenti").hidden == true) {
       id_commento.id = id;
       // Cambia il colore dell'icona del commento a nero
       icon.style.color = 'black';
@@ -397,16 +396,6 @@ function aggiungicommento(icon, azione, id) {
       document.getElementById("mostra-commenti").hidden = false;
       //rimpiazza commenti
       rimpiazza_commenti(id);
-    } else {
-      const c_Group = document.getElementsByClassName("c");
-      const c_Array = Array.from(c_Group);
-      c_Array.forEach((c_btn) => {
-        id_commento.id = "";
-        c_btn.style.color = '#777';
-      });
-      document.getElementById("barra-destra").hidden = false;
-      document.getElementById("mostra-commenti").hidden = true;
-    }
   } else if (azione == "chiudi") {
     const c_Group = document.getElementsByClassName("c");
     const c_Array = Array.from(c_Group);
