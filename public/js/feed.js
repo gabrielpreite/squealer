@@ -237,7 +237,7 @@ function ricerca_squeal() {
 //Svuota il feed e info
 function svuota_pagina() {
   document.getElementById('squeal_contenitore').innerHTML = '';
-  aggiungicommento('', 'chiudi')
+  aggiungicommento('', 'chiudi');
 }
 
 //Ordina Squeal
@@ -398,7 +398,8 @@ function premibottone(button, reac, id) {
 }
 
 function aggiungicommento(icon, azione, id) {
-  var id_commento = document.querySelector('.aggiungi-commento');;
+  aggiungicommento('', 'chiudi');
+  var id_commento = document.querySelector('.aggiungi-commento');
   if (azione == "apri") {
       id_commento.id = id;
       // Cambia il colore dell'icona del commento a nero
