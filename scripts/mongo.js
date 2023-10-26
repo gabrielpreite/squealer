@@ -1336,8 +1336,7 @@ exports.toggle_follow = async function(q, credentials) {
 				.aggregate([
 					{
 						$match: {
-							username: q.origin,
-							utenti_seguiti: q.target
+							username: q.origin
 						}
 					},
 					{
@@ -1356,10 +1355,6 @@ exports.toggle_follow = async function(q, credentials) {
 						}
 					}
 				])
-				.toArray()
-				.then((results) => {
-					console.log("Results:", results);
-				})
 
 		} else if(q.tipo == "canale"){
 			mongo.db(dbname)
