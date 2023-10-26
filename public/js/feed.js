@@ -145,6 +145,7 @@ function toggle_follow(target, tipo){
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
       console.log("toggle follow")
+      //todo cambia aspetto bottone
     }
   });
 }
