@@ -1332,18 +1332,19 @@ exports.toggle_follow = async function(q, credentials) {
 		await mongo.connect();
 
 		if(q.tipo == "utente"){
-			await mongo.db(dbname)
+			mongo.db(dbname)
 				.aggregate([
 					{
 						$match: {
-							username: q.origin
+							username: q.origin,
+							utenti_seguiti: q.target
 						}
 					},
 					{
 						$project: {
 							result: {
 								$cond: {
-									if: { utenti_seguiti: { $in: [q.target]} }, // controlla se l'utente e' follower
+									if: { $in: [q.target, "$utenti_seguiti"] }, // controlla se l'utente e' follower
 									then: {
 										$pull: { utenti_seguiti: q.target } // se lo e' deve rimuovere
 									},
@@ -1355,9 +1356,13 @@ exports.toggle_follow = async function(q, credentials) {
 						}
 					}
 				])
+				.toArray()
+				.then((results) => {
+					console.log("Results:", results);
+				})
 
 		} else if(q.tipo == "canale"){
-			await mongo.db(dbname)
+			mongo.db(dbname)
 				.collection("utente")
 				.aggregate([
 					{
