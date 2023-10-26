@@ -1399,7 +1399,7 @@ exports.toggle_follow = async function(q, credentials) {
 						$project: {
 							result: {
 								$cond: {
-									if: { canali_seguiti : {$in: [q.target] }}, // controlla se l'utente e' follower
+									if: { $in: [q.target, "$canali_seguiti"] }, // controlla se l'utente e' follower
 									then: "pull",
 									else: "push"
 								}
