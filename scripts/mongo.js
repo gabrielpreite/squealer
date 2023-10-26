@@ -1399,7 +1399,7 @@ exports.toggle_follow = async function(q, credentials) {
 						$project: {
 							result: {
 								$cond: {
-									if: { $in: [q.target, "$canali_seguiti"] }, // controlla se l'utente e' follower
+									if: { canali_seguiti : {$in: [q.target] }}, // controlla se l'utente e' follower
 									then: "pull",
 									else: "push"
 								}
@@ -1411,7 +1411,7 @@ exports.toggle_follow = async function(q, credentials) {
 				.then(async (results) => {
 					const pull_list = results.filter((doc) => doc.result === "pull");
 					for (const doc of pull_list) { //se e' gia' follower lo rimuovo
-						console.log("pulling")
+						console.log("pulling "+q.target)
 						try {
 							await mongo.db(dbname)
 								.collection("utente")
@@ -1426,7 +1426,7 @@ exports.toggle_follow = async function(q, credentials) {
 
 					const push_list = results.filter((doc) => doc.result === "push");
 					for (const doc of push_list) { //altrimento lo aggiungo
-						console.log("pushing")
+						console.log("pushing "+q.target)
 						try {
 							await mongo.db(dbname)
 								.collection("utente")
