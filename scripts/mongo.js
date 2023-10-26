@@ -991,6 +991,18 @@ exports.search = async function(q, credentials) {
 				});
 			meta["info"]["num_followers"] = numFollowers
 
+			let isFollower = false
+			await mongo.db(dbname) // check se utente segue gia' l'utente/canale
+				.collection("utente")
+				.find({
+					username: q.target,
+					utenti_seguiti: {$in: [q.query]}
+				})
+				.forEach((r) => {
+					isFollower = true
+				})
+			meta["info"]["is_follower"] = isFollower
+
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
@@ -1082,6 +1094,18 @@ exports.search = async function(q, credentials) {
 					numFollowers++;
 				});
 			meta["info"]["num_followers"] = numFollowers
+
+			let isFollower = false
+			await mongo.db(dbname) // check se utente segue gia' l'utente/canale
+				.collection("utente")
+				.find({
+					username: q.target,
+					canali_seguiti: {$in: [q.query]}
+				})
+				.forEach((r) => {
+					isFollower = true
+				})
+			meta["info"]["is_follower"] = isFollower
 
 		} else if(q.tipo == "keyword"){
 			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
