@@ -144,7 +144,7 @@ function toggle_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      console.log("aggiunto follow")
+      console.log("toggle follow")
     }
   });
 }
@@ -161,7 +161,13 @@ function aggiungi_info(meta){
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["username"]}</div>`
-    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
+
+    let col_2_2
+    if(meta["info"]["is_follower"]){
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
+    } else {
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]}</div></div>`
+    }
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
@@ -176,7 +182,14 @@ function aggiungi_info(meta){
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">${meta["info"]["nome"]}</div>`
-    let col_2_2 = `<div class="col"><button class="btn btn-primary" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+
+    let col_2_2
+    if(meta["info"]["is_follower"]){
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+    } else {
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} followers</div></div>`
+    }
+
     container.append(riga2)
     $("#riga2").append(col_2_1)
     $("#riga2").append(col_2_2)
@@ -443,7 +456,7 @@ function rimpiazza_commenti(id) {
   });
   var n_commenti = lista_commenti.length;
   for (var c = 0; c < n_commenti; c++) {
-    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + ' onclick="ricerca_dest(this)"">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
     var c_img_utente = 'c_img_utente' + c;
     document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
     var id_tag = 'c_username' + c;
