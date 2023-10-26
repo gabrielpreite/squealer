@@ -1388,6 +1388,7 @@ exports.toggle_follow = async function(q, credentials) {
 
 		} else if(q.tipo == "canale"){
 			const escapedTarget = q.target.replace(/[$]/g, '\\$');
+			console.log(escapedTarget)
 			await mongo.db(dbname)
 				.collection("utente")
 				.aggregate([
