@@ -1355,6 +1355,14 @@ exports.toggle_follow = async function(q, credentials) {
 						}
 					}
 				])
+				/*.then((err, result) => {
+					if (err) {
+					  console.error("Error in aggregation:", err);
+					} else {
+					  // Handle the result here
+					  console.log("Aggregation result:", result);
+					}
+				});*/
 
 		} else if(q.tipo == "canale"){
 			mongo.db(dbname)
