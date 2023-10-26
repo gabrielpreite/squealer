@@ -1387,6 +1387,7 @@ exports.toggle_follow = async function(q, credentials) {
 				});
 
 		} else if(q.tipo == "canale"){
+			const escapedTarget = q.target.replace(/[$]/g, '\\$');
 			await mongo.db(dbname)
 				.collection("utente")
 				.aggregate([
@@ -1399,7 +1400,7 @@ exports.toggle_follow = async function(q, credentials) {
 						$project: {
 							result: {
 								$cond: {
-									if: { $in: [q.target, "$canali_seguiti"] }, // controlla se l'utente e' follower
+									if: { $in: [escapedTarget, "$canali_seguiti"] }, // controlla se l'utente e' follower
 									then: "pull",
 									else: "push"
 								}
