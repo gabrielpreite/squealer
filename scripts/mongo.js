@@ -1344,25 +1344,51 @@ exports.toggle_follow = async function(q, credentials) {
 							result: {
 								$cond: {
 									if: { $in: [q.target, "$utenti_seguiti"] }, // controlla se l'utente e' follower
-									then: {
-										$pull: { utenti_seguiti: q.target } // se lo e' deve rimuovere
-									},
-									else: {
-										$push: { utenti_seguiti: q.target } // altrimenti lo aggiunge
-									}
+									then: "pull",
+									else: "push"
 								}
 							}
 						}
 					}
 				])
-				/*.then((err, result) => {
-					if (err) {
-					  console.error("Error in aggregation:", err);
-					} else {
-					  // Handle the result here
-					  console.log("Aggregation result:", result);
+				.toArray()
+				.then(async (results) => {
+					// Process the results, where each document has a "result" field
+					console.log("Results:", results);
+					
+					const pull_list = results.filter((doc) => doc.result === "pull");
+					for (const doc of pull_list) {
+						try {
+							await mongo.db(dbname)
+								.collection("utente")
+								.updateOne(
+									{ username: q.origin },
+									{ $pull: { utenti_seguiti: q.target } }
+								);
+							console.log(`Removed ${q.query} from utenti_seguiti in document with username ${doc.username}`);
+						} catch (error) {
+							console.error("Error:", error);
+						}
 					}
-				});*/
+
+					const push_list = results.filter((doc) => doc.result === "push");
+					for (const doc of push_list) {
+						try {
+							await mongo.db(dbname)
+								.collection("utente")
+								.updateOne(
+									{ username: q.origin },
+									{ $push: { utenti_seguiti: q.target } }
+								);
+							console.log(`pushed ${q.query} from utenti_seguiti in document with username ${doc.username}`);
+						} catch (error) {
+							console.error("Error:", error);
+						}
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 
 		} else if(q.tipo == "canale"){
 			mongo.db(dbname)
