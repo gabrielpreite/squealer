@@ -1179,7 +1179,7 @@ exports.search = async function(q, credentials) {
 
 		result["meta"] = meta
 		result["post"] = post
-		console.log(result)
+		//console.log(result)
 		await mongo.close()
 		return result
 	} catch (e) {
@@ -1332,7 +1332,7 @@ exports.toggle_follow = async function(q, credentials) {
 		await mongo.connect();
 
 		if(q.tipo == "utente"){
-			mongo.db(dbname)
+			await mongo.db(dbname)
 				.aggregate([
 					{
 						$match: {
