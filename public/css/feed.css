@@ -226,6 +226,10 @@
   font-weight: bold;
 }
 
+.tag-username, .comment-username {
+  cursor: pointer;
+}
+
 .destinatari{
   margin-left: auto;
   margin-right: 0;
