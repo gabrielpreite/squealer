@@ -1336,7 +1336,8 @@ exports.toggle_follow = async function(q, credentials) {
 				.aggregate([
 					{
 						$match: {
-							username: q.origin
+							username: q.origin,
+							utenti_seguiti: q.query
 						}
 					},
 					{
