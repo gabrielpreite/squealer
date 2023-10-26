@@ -152,7 +152,19 @@
           </div>
 
             <div id="mostra-squeal">
-
+              <div class="squeal">
+                  <div class="squeal-header">
+                    <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo">
+                    <div class="squeal-info">
+                      <span class="squeal-nome-utente">Nome Utente</span>
+                      <span class="squeal-username">@username</span>
+                      <span class="squeal-data">10 minuti fa</span>
+                    </div>
+                  </div>
+                  <div class="squeal-contenuto">
+                    Contenuto del squeal qui...
+                  </div>
+                </div>
             </div>
             </div>
         <form id="crea_post" enctype="multipart/form-data">
@@ -226,7 +238,7 @@
       account = data;
     }
   });
-      
+
   *account.forEach((el) => {
     $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
   })*/
@@ -278,7 +290,7 @@
         })
 
     // stampo il post
-    
+
     //todo
 
     // stampo i commenti
@@ -474,7 +486,7 @@
         let managed = get_cookie_by_name("managed")
         if(!(managed === undefined))
           target_user = managed
-        formData.append("user_id", target_user) 
+        formData.append("user_id", target_user)
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           formData.append("contenuto", "testo")
