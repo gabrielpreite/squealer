@@ -229,8 +229,9 @@ function ricerca_squeal() {
 }
 
 //Svuota il feed
-function svuota_squeals() {
+function svuota_pagina() {
   document.getElementById('squeal_contenitore').innerHTML = '';
+  document.getElementById("contenitore-commenti").innerHTML = '';
 }
 
 //Ordina Squeal
@@ -250,7 +251,7 @@ function ordina_squeals(posts, filtro) {
 }
 
 function rimpiazza_squeals(posts, filtro) {
-  svuota_squeals();
+  svuota_pagina();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
 
@@ -399,8 +400,8 @@ function aggiungicommento(icon, azione, id) {
   } else if (azione == "chiudi") {
     const c_Group = document.getElementsByClassName("c");
     const c_Array = Array.from(c_Group);
+    id_commento.id = "";
     c_Array.forEach((c_btn) => {
-      id_commento.id = "";
       c_btn.style.color = '#777';
     });
     document.getElementById("barra-destra").hidden = false;
