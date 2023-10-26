@@ -398,9 +398,9 @@ function premibottone(button, reac, id) {
 }
 
 function aggiungicommento(icon, azione, id) {
-  aggiungicommento('', 'chiudi');
   var id_commento = document.querySelector('.aggiungi-commento');
   if (azione == "apri") {
+      aggiungicommento('', 'chiudi');
       id_commento.id = id;
       // Cambia il colore dell'icona del commento a nero
       icon.style.color = 'black';
