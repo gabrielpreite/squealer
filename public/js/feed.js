@@ -145,6 +145,7 @@ function toggle_follow(target, tipo){
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
       console.log("toggle follow")
+      //todo cambia aspetto bottone
     }
   });
 }
@@ -456,7 +457,7 @@ function rimpiazza_commenti(id) {
   });
   var n_commenti = lista_commenti.length;
   for (var c = 0; c < n_commenti; c++) {
-    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + ' onclick="ricerca_dest(this)"">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '" onclick="ricerca_dest(this)">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
     var c_img_utente = 'c_img_utente' + c;
     document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
     var id_tag = 'c_username' + c;

@@ -716,7 +716,9 @@ exports.smm_feed = async function(q, campi, credentials) {
 				  $match: {
 					$or: [
 					  { utente: { $in: utenti_gestiti } },
-					]
+					],
+					tipo_destinatari: null,
+					risponde_a: null
 				  }
 				},
 				{
@@ -933,7 +935,7 @@ exports.search = async function(q, credentials) {
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.aggregate([
-					{ $match: { utente: q.query } },
+					{ $match: { utente: q.query, tipo_destinatari: null, risponde_a: null } },
 					{ $lookup: {
 						from: "utente", // nome seconda tabella
 						localField: "utente", // nome chiave in prima tabella (corrente)
@@ -1009,7 +1011,9 @@ exports.search = async function(q, credentials) {
 				.aggregate([
 					{
 					  $match: {
-						destinatari: { $in: [q.query] }
+						destinatari: { $in: [q.query] },
+						tipo_destinatari: null,
+						risponde_a: null
 					  }
 					},
 					{
@@ -1113,7 +1117,9 @@ exports.search = async function(q, credentials) {
 				.aggregate([
 					{
 					  $match: {
-						corpo: {$regex: q.query}
+						corpo: {$regex: q.query},
+						tipo_destinatari: null,
+						risponde_a: null
 					  }
 					},
 					{
