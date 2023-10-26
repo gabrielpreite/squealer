@@ -207,6 +207,12 @@ function ricerca_squeal() {
       query = "$" + query;
     }
   }
+
+  //come user (smm) o come account gestito (se esiste il cookie)
+  let target_user = get_cookie_by_name("username")
+  let managed = get_cookie_by_name("managed")
+  if(!(managed === undefined))
+    target_user = managed
   
   let all_info;
   $.ajax({
@@ -215,7 +221,7 @@ function ricerca_squeal() {
     async: false,
     url: `https://site212251.tw.cs.unibo.it/search`,
     headers: { },
-    data: { query: query, tipo: tipo },
+    data: { query: query, tipo: tipo, target: target_user },
     success: function (data, status, xhr) {
       console.log('data: ', data);
       all_info = data;
@@ -266,7 +272,13 @@ function ricerca_dest(elem) {
   } else {
     tipo = "utente";
   }
-  
+
+  //come user (smm) o come account gestito (se esiste il cookie)
+  let target_user = get_cookie_by_name("username")
+  let managed = get_cookie_by_name("managed")
+  if(!(managed === undefined))
+    target_user = managed
+
   let all_info;
   $.ajax({
     type: 'POST',
@@ -274,7 +286,7 @@ function ricerca_dest(elem) {
     async: false,
     url: `https://site212251.tw.cs.unibo.it/search`,
     headers: { },
-    data: { query: query, tipo: tipo },
+    data: { query: query, tipo: tipo, target: target_user },
     success: function (data, status, xhr) {
       console.log('data: ', data);
       all_info = data;
