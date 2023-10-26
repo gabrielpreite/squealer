@@ -387,6 +387,12 @@
   background-color: white;
 }
 
+.comment img {
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+
 .comment-profile-image {
   width: 36px;
   height: 36px;
