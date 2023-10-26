@@ -228,10 +228,10 @@ function ricerca_squeal() {
   return all_info;
 }
 
-//Svuota il feed
+//Svuota il feed e info
 function svuota_pagina() {
   document.getElementById('squeal_contenitore').innerHTML = '';
-  document.getElementById("contenitore-commenti").innerHTML = '';
+  aggiungicommento('', 'chiudi')
 }
 
 //Ordina Squeal
