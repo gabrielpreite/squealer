@@ -1354,11 +1354,8 @@ exports.toggle_follow = async function(q, credentials) {
 				])
 				.toArray()
 				.then(async (results) => {
-					// Process the results, where each document has a "result" field
-					console.log("Results:", results);
-					
 					const pull_list = results.filter((doc) => doc.result === "pull");
-					for (const doc of pull_list) {
+					for (const doc of pull_list) { //se e' gia' follower lo rimuovo
 						try {
 							await mongo.db(dbname)
 								.collection("utente")
@@ -1366,14 +1363,13 @@ exports.toggle_follow = async function(q, credentials) {
 									{ username: q.origin },
 									{ $pull: { utenti_seguiti: q.target } }
 								);
-							console.log(`Removed ${q.query} from utenti_seguiti in document with username ${doc.username}`);
 						} catch (error) {
 							console.error("Error:", error);
 						}
 					}
 
 					const push_list = results.filter((doc) => doc.result === "push");
-					for (const doc of push_list) {
+					for (const doc of push_list) { //altrimento lo aggiungo
 						try {
 							await mongo.db(dbname)
 								.collection("utente")
@@ -1381,7 +1377,6 @@ exports.toggle_follow = async function(q, credentials) {
 									{ username: q.origin },
 									{ $push: { utenti_seguiti: q.target } }
 								);
-							console.log(`pushed ${q.query} from utenti_seguiti in document with username ${doc.username}`);
 						} catch (error) {
 							console.error("Error:", error);
 						}
@@ -1392,30 +1387,59 @@ exports.toggle_follow = async function(q, credentials) {
 				});
 
 		} else if(q.tipo == "canale"){
-			mongo.db(dbname)
+			await mongo.db(dbname)
 				.collection("utente")
 				.aggregate([
 					{
 						$match: {
-							username: q.origin
+							username: q.origin,
 						}
 					},
 					{
 						$project: {
 							result: {
 								$cond: {
-									if: { canali_seguiti: { $in: [q.target]} }, // controlla se l'utente e' follower
-									then: {
-										$pull: { canali_seguiti: q.target } // se lo e' deve rimuovere
-									},
-									else: {
-										$push: { canali_seguiti: q.target } // altrimenti lo aggiunge
-									}
+									if: { $in: [q.target, "$canali_seguiti"] }, // controlla se l'utente e' follower
+									then: "pull",
+									else: "push"
 								}
 							}
 						}
 					}
 				])
+				.toArray()
+				.then(async (results) => {
+					const pull_list = results.filter((doc) => doc.result === "pull");
+					for (const doc of pull_list) { //se e' gia' follower lo rimuovo
+						try {
+							await mongo.db(dbname)
+								.collection("utente")
+								.updateOne(
+									{ username: q.origin },
+									{ $pull: { canali_seguiti: q.target } }
+								);
+						} catch (error) {
+							console.error("Error:", error);
+						}
+					}
+
+					const push_list = results.filter((doc) => doc.result === "push");
+					for (const doc of push_list) { //altrimento lo aggiungo
+						try {
+							await mongo.db(dbname)
+								.collection("utente")
+								.updateOne(
+									{ username: q.origin },
+									{ $push: { canali_seguiti: q.target } }
+								);
+						} catch (error) {
+							console.error("Error:", error);
+						}
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 		}
 
 		await mongo.close()
