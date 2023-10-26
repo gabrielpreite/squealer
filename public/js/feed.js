@@ -311,6 +311,7 @@ function ricerca_dest(elem) {
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   aggiungi_info(all_info.meta);
 
+  squeals = all_info.post;
   return all_info;
 }
 
