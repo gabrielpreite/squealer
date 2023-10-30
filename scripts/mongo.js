@@ -175,8 +175,6 @@ exports.search_messaggio = async function(q,credentials) {
 		}
 		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args :"+q.messaggio_id)
-			console.log("-"+q.messaggio_id+"-")
-			console.log(typeof q.messaggio_id)
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 					.collection("messaggio")
 					.aggregate([
@@ -218,8 +216,6 @@ exports.search_messaggio = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		console.log("debug: "+debug)
-		console.log("result: "+result)
 		return result
 	} catch (e) {
 		data.debug = debug
@@ -482,8 +478,6 @@ exports.add_post = async function(q, campi, credentials) {
 									{ _id: newDocumentId },
 									{ $set: { post_id: String(newDocumentId) } }
 								);
-							console.log("aggiunto id:"+newDocumentId+"---")
-							console.log(typeof newDocumentId)
 						})
 						.catch((error) => {
 							console.error("Error:", error);
