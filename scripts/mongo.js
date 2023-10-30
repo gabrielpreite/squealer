@@ -175,6 +175,7 @@ exports.search_messaggio = async function(q,credentials) {
 		}
 		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args :"+q.messaggio_id)
+			console.log("-"+q.messaggio_id+"-")
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.find({post_id: q.messaggio_id})
