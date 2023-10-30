@@ -178,40 +178,38 @@ exports.search_messaggio = async function(q,credentials) {
 			console.log("-"+q.messaggio_id+"-")
 			console.log(typeof q.messaggio_id)
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
-				.collection("messaggio")
-				.find({post_id: q.messaggio_id})
-				.forEach( (r) => { 
-					result.push(r) 
-				});
-				/*.aggregate([
-					{ $match: { post_id: q.messaggio_id } },
-					{ $lookup: {
-						from: "utente", // nome seconda tabella
-						localField: "utente", // nome chiave in prima tabella (corrente)
-						foreignField: "username", // nome chiave in seconda tabella
-						as: "utenteData" // rename del record ottenuto (da seconda tabella)
-					} },
-					{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
-					{ "$replaceRoot": { //ricrea la "root" della struttura ottenuta
-						  "newRoot": {
-							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-							  "$$ROOT", //campi originali in messaggio
-							  { nome: "$utenteData.nome" },
-							  { img: "$utenteData.img" }
-							]
-						  }
-					} },
-					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
-					{ $lookup: {
-						from: "messaggio",
-						localField: "post_id",
-						foreignField: "risponde_a",
-						as: "risposte"
-					} },
-					{ $addFields: { numRisposte: { $size: "$risposte" } } },
-					{ $project: { risposte: 0 } }
-				  ])*/
-				
+					.collection("messaggio")
+					.aggregate([
+						{ $match: { post_id: {$literal: q.messaggio_id} } },
+						{ $lookup: {
+							from: "utente", // nome seconda tabella
+							localField: "utente", // nome chiave in prima tabella (corrente)
+							foreignField: "username", // nome chiave in seconda tabella
+							as: "utenteData" // rename del record ottenuto (da seconda tabella)
+						} },
+						{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
+						{ "$replaceRoot": { //ricrea la "root" della struttura ottenuta
+							"newRoot": {
+								"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+								"$$ROOT", //campi originali in messaggio
+								{ nome: "$utenteData.nome" },
+								{ img: "$utenteData.img" }
+								]
+							}
+						} },
+						{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						{ $lookup: {
+							from: "messaggio",
+							localField: "post_id",
+							foreignField: "risponde_a",
+							as: "risposte"
+						} },
+						{ $addFields: { numRisposte: { $size: "$risposte" } } },
+						{ $project: { risposte: 0 } }
+					])
+					.forEach( (r) => { 
+						result.push(r) 
+					});	
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
