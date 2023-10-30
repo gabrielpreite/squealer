@@ -168,6 +168,7 @@ exports.search_messaggio = async function(q,credentials) {
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.find()
+						.project({_id:0})
 						.forEach( (r) => { 
 							result.push(r) 
 						} );
