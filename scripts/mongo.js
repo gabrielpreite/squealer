@@ -480,9 +480,10 @@ exports.add_post = async function(q, campi, credentials) {
 								.collection("messaggio")
 								.updateOne(
 									{ _id: newDocumentId },
-									{ $set: { post_id: newDocumentId } }
+									{ $set: { post_id: String(newDocumentId) } }
 								);
 							console.log("aggiunto id:"+newDocumentId+"---")
+							console.log(typeof newDocumentId)
 						})
 						.catch((error) => {
 							console.error("Error:", error);
