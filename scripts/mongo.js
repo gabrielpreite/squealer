@@ -597,7 +597,7 @@ exports.user_feed = async function(q, campi, credentials) {
 				{
 				  $lookup: {
 					from: "messaggio",
-					localField: "_id",
+					localField: "post_id",
 					foreignField: "risponde_a",
 					as: "risposte"
 				  }
@@ -671,7 +671,7 @@ exports.user_feed = async function(q, campi, credentials) {
 				{
 				  $lookup: {
 					from: "messaggio",
-					localField: "_id",
+					localField: "post_id",
 					foreignField: "risponde_a",
 					as: "risposte"
 				  }
@@ -709,7 +709,7 @@ exports.user_feed = async function(q, campi, credentials) {
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.updateMany(
-				{_id : {$in: id_arr}},
+				{post_id : {$in: id_arr}},
 				{$inc: {visualizzazioni : 1}}
 			)
 
@@ -792,7 +792,7 @@ exports.smm_feed = async function(q, campi, credentials) {
 				{
 				  $lookup: {
 					from: "messaggio",
-					localField: "_id",
+					localField: "post_id",
 					foreignField: "risponde_a",
 					as: "risposte"
 				  }
@@ -830,7 +830,7 @@ exports.smm_feed = async function(q, campi, credentials) {
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.updateMany(
-				{_id : {$in: id_arr}},
+				{post_id : {$in: id_arr}},
 				{$inc: {visualizzazioni : 1}}
 			)
 
@@ -852,7 +852,7 @@ exports.update_reazioni = async function(q, credentials) {
 		let result = {}
 		await mongo.db(dbname)
 					.collection("messaggio")
-					.find({_id: q._id})
+					.find({post_id: q._id})
 					.forEach( (r) => { 
 						result = r
 					} );
@@ -944,7 +944,7 @@ exports.update_reazioni = async function(q, credentials) {
 		await mongo.db(dbname)
 					.collection("messaggio")
 					.updateOne(
-						{ _id:  q._id},
+						{ post_id:  q._id},
 						{ $set:
 						   {
 							 reazioni: result.reazioni
@@ -996,7 +996,7 @@ exports.search = async function(q, credentials) {
 					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
 					{ $lookup: {
 						from: "messaggio",
-						localField: "_id",
+						localField: "post_id",
 						foreignField: "risponde_a",
 						as: "risposte"
 					} },
@@ -1085,7 +1085,7 @@ exports.search = async function(q, credentials) {
 					{
 					  $lookup: {
 						from: "messaggio",
-						localField: "_id",
+						localField: "post_id",
 						foreignField: "risponde_a",
 						as: "risposte"
 					  }
@@ -1190,7 +1190,7 @@ exports.search = async function(q, credentials) {
 					{
 					  $lookup: {
 						from: "messaggio",
-						localField: "_id",
+						localField: "post_id",
 						foreignField: "risponde_a",
 						as: "risposte"
 					  }
