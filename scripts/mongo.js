@@ -482,6 +482,7 @@ exports.add_post = async function(q, campi, credentials) {
 									{ _id: newDocumentId },
 									{ $set: { post_id: newDocumentId } }
 								);
+							console.log("aggiunto id:"+newDocumentId+"---")
 						})
 						.catch((error) => {
 							console.error("Error:", error);
