@@ -70,7 +70,7 @@
     },
     {
         "img" : "default_propic.png",
-        "nome" : "",
+        "nome" : "Valterio Bianco",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "12345678",
@@ -89,7 +89,7 @@
         "abilitato_flag": true,
         "manager_of": [],
         "managed_by": "fvSMM",
-        "bio": ""
+        "bio": "Import/export king"
     },
     {
         "img" : "default_propic.png",
