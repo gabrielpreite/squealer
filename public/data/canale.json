@@ -1,6 +1,6 @@
 [
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_free.png",
         "nome" : "$free",
         "descrizione" : "tana libera tutti - canale di fvPro",
         "ufficiale" : false,
@@ -11,7 +11,7 @@
         "abilitato" : true
     },
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_bologna.png",
         "nome" : "$bologna",
         "descrizione" : "info su Bologna",
         "ufficiale" : false,
@@ -22,7 +22,7 @@
         "abilitato" : true
     },
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_cats.png",
         "nome" : "$cats",
         "descrizione" : "gatti che fan cose",
         "ufficiale" : false,
@@ -33,7 +33,7 @@
         "abilitato" : true
     },
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_fedevara.png",
         "nome" : "$fedevara",
         "descrizione" : "Canale privato - Federico Varano fanpage",
         "ufficiale" : false,
@@ -44,7 +44,7 @@
         "abilitato" : true
     },
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_controversial.png",
         "nome" : "$CONTROVERSIAL",
         "descrizione" : "Canale per quando hai voglia di arrabbiarti",
         "ufficiale" : true,
@@ -55,7 +55,7 @@
         "abilitato" : true
     },
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_news.png",
         "nome" : "$NEWS",
         "descrizione" : "Notizie da tutto il mondo",
         "ufficiale" : true,
@@ -66,7 +66,7 @@
         "abilitato" : true
     },
     {
-        "img" : "default_channelpic.png",
+        "img" : "cha_emergency.png",
         "nome" : "$EMERGENCY",
         "descrizione" : "Comunicazioni di emergenza",
         "ufficiale" : true,
