@@ -174,12 +174,41 @@ exports.search_messaggio = async function(q,credentials) {
 		}
 		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args")
-			await mongo.db(dbname)
-						.collection("messaggio")
-						.find({messaggio_id: q.messaggio_id})
-						.forEach( (r) => { 
-							result.push(r) 
-						} );
+			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
+				.collection("messaggio")
+				.aggregate([
+					{ $match: { messaggio_id: q.messaggio_id } },
+					{ $lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					} },
+					{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
+					{ "$replaceRoot": { //ricrea la "root" della struttura ottenuta
+						  "newRoot": {
+							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+							  "$$ROOT", //campi originali in messaggio
+							  { nome: "$utenteData.nome" },
+							  { img: "$utenteData.img" }
+							]
+						  }
+					} },
+					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+					{ $lookup: {
+						from: "messaggio",
+						localField: "_id",
+						foreignField: "risponde_a",
+						as: "risposte"
+					} },
+					{ $addFields: { numRisposte: { $size: "$risposte" } } },
+					{ $project: { risposte: 0 } },
+					{ $sort: { timestamp: -1 } },
+					{ $limit: 100 }// Limit the result to 100 records
+				  ])
+				.forEach( (r) => { 
+					post.push(r) 
+				});
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
