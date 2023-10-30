@@ -180,7 +180,7 @@ exports.search_messaggio = async function(q,credentials) {
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 					.collection("messaggio")
 					.aggregate([
-						{ $match: { "$messaggio.post_id": q.messaggio_id } },
+						{ $match: { post_id: q.messaggio_id } },
 						{ $lookup: {
 							from: "utente", // nome seconda tabella
 							localField: "utente", // nome chiave in prima tabella (corrente)
