@@ -23,7 +23,7 @@
     },
     {
         "img" : "cha_cats.png",
-        "nome" : "$cats",
+        "nome" : "$gatti",
         "descrizione" : "gatti che fan cose",
         "ufficiale" : false,
         "proprieta" : "fvSMM",
@@ -45,7 +45,7 @@
     },
     {
         "img" : "cha_controversial.png",
-        "nome" : "$CONTROVERSIAL",
+        "nome" : "$CONTROVERSO",
         "descrizione" : "Canale per quando hai voglia di arrabbiarti",
         "ufficiale" : true,
         "proprieta" : "redazione",
@@ -56,7 +56,7 @@
     },
     {
         "img" : "cha_news.png",
-        "nome" : "$NEWS",
+        "nome" : "$NOTIZIE",
         "descrizione" : "Notizie da tutto il mondo",
         "ufficiale" : true,
         "proprieta" : "redazione",
@@ -67,7 +67,7 @@
     },
     {
         "img" : "cha_emergency.png",
-        "nome" : "$EMERGENCY",
+        "nome" : "$EMERGENZA",
         "descrizione" : "Comunicazioni di emergenza",
         "ufficiale" : true,
         "proprieta" : "redazione",
