@@ -177,7 +177,8 @@ exports.search_messaggio = async function(q,credentials) {
 			debug.push("found args :"+q.messaggio_id)
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
-				.aggregate([
+				.find({post_id: q.messaggio_id})
+				/*.aggregate([
 					{ $match: { post_id: q.messaggio_id } },
 					{ $lookup: {
 						from: "utente", // nome seconda tabella
@@ -204,7 +205,7 @@ exports.search_messaggio = async function(q,credentials) {
 					} },
 					{ $addFields: { numRisposte: { $size: "$risposte" } } },
 					{ $project: { risposte: 0 } }
-				  ])
+				  ])*/
 				.forEach( (r) => { 
 					result.push(r) 
 				});
@@ -1253,7 +1254,7 @@ exports.get_replies = async function(q, credentials) {
 			.aggregate([
 				{
 				  $match: {
-					risponde_a: q._id
+					risponde_a: q.post_id
 				  }
 				},
 				{
