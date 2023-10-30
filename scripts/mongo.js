@@ -176,9 +176,8 @@ exports.search_messaggio = async function(q,credentials) {
 			debug.push("found args :"+q.messaggio_id)
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
-				.find({_id: q.messaggio_id})
-				/*.aggregate([
-					{ $match: { _id: q.messaggio_id } },
+				.aggregate([
+					{ $match: { post_id: q.messaggio_id } },
 					{ $lookup: {
 						from: "utente", // nome seconda tabella
 						localField: "utente", // nome chiave in prima tabella (corrente)
@@ -198,13 +197,13 @@ exports.search_messaggio = async function(q,credentials) {
 					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
 					{ $lookup: {
 						from: "messaggio",
-						localField: "_id",
+						localField: "post_id",
 						foreignField: "risponde_a",
 						as: "risposte"
 					} },
 					{ $addFields: { numRisposte: { $size: "$risposte" } } },
 					{ $project: { risposte: 0 } }
-				  ])*/
+				  ])
 				.forEach( (r) => { 
 					result.push(r) 
 				});
@@ -472,6 +471,19 @@ exports.add_post = async function(q, campi, credentials) {
 								automatico: false
 							}
 						)
+						.then(async (result) => {
+							const newDocumentId = result.insertedId;
+							await mongo.db(dbname)
+								.collection("messaggio")
+								.updateOne(
+									{ _id: newDocumentId },
+									{ $set: { post_id: newDocumentId } }
+								);
+							console.log("Inserted document ID:", newDocumentId);
+						})
+						.catch((error) => {
+							console.error("Error:", error);
+						});
 
 		}else if(q.contenuto == "img"){//caso immagine
 			await mongo.db(dbname)

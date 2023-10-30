@@ -1,6 +1,6 @@
 [
   {
-    "_id": "653fd2c3ea3263dff6a3cccd",
+    "post_id": "653fd2c3ea3263dff6a3cccd",
     "risponde_a": null,
     "corpo": "1698681539114-ahboh.png",
     "contenuto": "img",
@@ -27,7 +27,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd2d7ea3263dff6a3ccce",
+    "post_id": "653fd2d7ea3263dff6a3ccce",
     "risponde_a": null,
     "corpo": "Federico sei il mio idolooo",
     "contenuto": "testo",
@@ -54,7 +54,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd32bea3263dff6a3cccf",
+    "post_id": "653fd32bea3263dff6a3cccf",
     "risponde_a": null,
     "corpo": "Grande Fede la tua ultima recensione spacca",
     "contenuto": "testo",
@@ -81,7 +81,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd36fea3263dff6a3ccd0",
+    "post_id": "653fd36fea3263dff6a3ccd0",
     "risponde_a": null,
     "corpo": "Grande Kebab da ProntoPizza. Sempre al top raga",
     "contenuto": "testo",
@@ -106,7 +106,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd384ea3263dff6a3ccd1",
+    "post_id": "653fd384ea3263dff6a3ccd1",
     "risponde_a": null,
     "corpo": "1698681732088-gatto-depresso.avif",
     "contenuto": "img",
@@ -133,7 +133,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd395ea3263dff6a3ccd2",
+    "post_id": "653fd395ea3263dff6a3ccd2",
     "risponde_a": null,
     "corpo": "1698681749122-Screenshot_1.png",
     "contenuto": "img",
@@ -158,7 +158,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd397ea3263dff6a3ccd3",
+    "post_id": "653fd397ea3263dff6a3ccd3",
     "risponde_a": null,
     "corpo": "1698681751521-gatto-pelato1.jpeg",
     "contenuto": "img",
@@ -185,7 +185,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd3acea3263dff6a3ccd4",
+    "post_id": "653fd3acea3263dff6a3ccd4",
     "risponde_a": null,
     "corpo": "1698681772688-gatto-ghepardo.webp",
     "contenuto": "img",
@@ -212,7 +212,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd3dcea3263dff6a3ccd5",
+    "post_id": "653fd3dcea3263dff6a3ccd5",
     "risponde_a": null,
     "corpo": "1698681820525-Screenshot_2.png",
     "contenuto": "img",
@@ -239,7 +239,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd401ea3263dff6a3ccd6",
+    "post_id": "653fd401ea3263dff6a3ccd6",
     "risponde_a": null,
     "corpo": "1698681857216-gatto-pelato2.jpeg",
     "contenuto": "img",
@@ -266,7 +266,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd413ea3263dff6a3ccd7",
+    "post_id": "653fd413ea3263dff6a3ccd7",
     "risponde_a": null,
     "corpo": "1698681875517-gatto-sbadiglia.webp",
     "contenuto": "img",
@@ -293,7 +293,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd421ea3263dff6a3ccd8",
+    "post_id": "653fd421ea3263dff6a3ccd8",
     "risponde_a": null,
     "corpo": "1698681889711-gatto-strambo.jpeg",
     "contenuto": "img",
@@ -320,7 +320,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd428ea3263dff6a3ccd9",
+    "post_id": "653fd428ea3263dff6a3ccd9",
     "risponde_a": null,
     "corpo": "Il Prof Barzocco è fantastico, ottima lezione oggi",
     "contenuto": "testo",
@@ -345,7 +345,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd492ea3263dff6a3ccda",
+    "post_id": "653fd492ea3263dff6a3ccda",
     "risponde_a": null,
     "corpo": "Offro singola 3mq a 850€+spese no DAMS/matricole",
     "contenuto": "testo",
@@ -372,7 +372,7 @@
     "automatico": false
   },
   {
-    "_id": "653fd4a7ea3263dff6a3ccdb",
+    "post_id": "653fd4a7ea3263dff6a3ccdb",
     "risponde_a": null,
     "corpo": "Emergenza piogge in Emilia Romagna, dilaga il pane",
     "contenuto": "testo",
