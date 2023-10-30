@@ -176,9 +176,13 @@ exports.search_messaggio = async function(q,credentials) {
 		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args :"+q.messaggio_id)
 			console.log("-"+q.messaggio_id+"-")
+			console.log(typeof q.messaggio_id)
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
 				.collection("messaggio")
 				.find({post_id: q.messaggio_id})
+				.forEach( (r) => { 
+					result.push(r) 
+				});
 				/*.aggregate([
 					{ $match: { post_id: q.messaggio_id } },
 					{ $lookup: {
@@ -207,9 +211,7 @@ exports.search_messaggio = async function(q,credentials) {
 					{ $addFields: { numRisposte: { $size: "$risposte" } } },
 					{ $project: { risposte: 0 } }
 				  ])*/
-				.forEach( (r) => { 
-					result.push(r) 
-				});
+				
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
