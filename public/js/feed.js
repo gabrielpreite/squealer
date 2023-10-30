@@ -158,16 +158,16 @@ function aggiungi_info(meta){
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
     container.append(riga1)
-    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}"><br>`)
+    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col">@${meta["info"]["username"]}<br>${meta["info"]["nome"]}</div>`
 
     let col_2_2
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div><br>`
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div><br>`
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
     container.append(riga2)
     $("#riga2").append(col_2_1)
@@ -179,16 +179,16 @@ function aggiungi_info(meta){
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
     container.append(riga1)
-    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}"><br>`)
+    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let col_2_1 = `<div class="col"><h3>${meta["info"]["nome"]}</h3></div>`
 
     let col_2_2
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div><br>`
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div><br>`
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
 
     container.append(riga2)
