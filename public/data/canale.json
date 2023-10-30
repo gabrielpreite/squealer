@@ -1,19 +1,8 @@
 [
     {
         "img" : "default_channelpic.png",
-        "nome" : "$TEST",
-        "descrizione" : "Boh un bel canale",
-        "ufficiale" : true,
-        "proprieta" : "redazione",
-        "mod" : ["fvMod"],
-        "lettura" : ["*"],
-        "scrittura" : [],
-        "abilitato" : true
-    },
-    {
-        "img" : "default_channelpic.png",
         "nome" : "$free",
-        "descrizione" : "boh un brutto canale",
+        "descrizione" : "tana libera tutti - canale di fvPro",
         "ufficiale" : false,
         "proprieta" : "fvPro",
         "mod" : [],
@@ -23,8 +12,8 @@
     },
     {
         "img" : "default_channelpic.png",
-        "nome" : "$cosebrutte",
-        "descrizione" : "boh un brutto canale",
+        "nome" : "$bologna",
+        "descrizione" : "info su Bologna",
         "ufficiale" : false,
         "proprieta" : "fvPro",
         "mod" : [],
@@ -37,10 +26,54 @@
         "nome" : "$cats",
         "descrizione" : "gatti che fan cose",
         "ufficiale" : false,
-        "proprieta" : "redazione",
+        "proprieta" : "fvSMM",
         "mod" : ["fvPro", "NomeBuffo1"],
         "lettura" : ["*"],
         "scrittura" : ["*"],
+        "abilitato" : true
+    },
+    {
+        "img" : "default_channelpic.png",
+        "nome" : "$fedevara",
+        "descrizione" : "Canale privato - Federico Varano fanpage",
+        "ufficiale" : false,
+        "proprieta" : "fvPro",
+        "mod" : ["fvPro", "NomeBuffo1"],
+        "lettura" : ["*"],
+        "scrittura" : ["*"],
+        "abilitato" : true
+    },
+    {
+        "img" : "default_channelpic.png",
+        "nome" : "$CONTROVERSIAL",
+        "descrizione" : "Canale per quando hai voglia di arrabbiarti",
+        "ufficiale" : true,
+        "proprieta" : "redazione",
+        "mod" : ["", ""],
+        "lettura" : ["*"],
+        "scrittura" : ["redazione"],
+        "abilitato" : true
+    },
+    {
+        "img" : "default_channelpic.png",
+        "nome" : "$NEWS",
+        "descrizione" : "Notizie da tutto il mondo",
+        "ufficiale" : true,
+        "proprieta" : "redazione",
+        "mod" : ["fvPro"],
+        "lettura" : ["*"],
+        "scrittura" : ["redazione", "robosquealer"],
+        "abilitato" : true
+    },
+    {
+        "img" : "default_channelpic.png",
+        "nome" : "$EMERGENCY",
+        "descrizione" : "Comunicazioni di emergenza",
+        "ufficiale" : true,
+        "proprieta" : "redazione",
+        "mod" : ["fvMod"],
+        "lettura" : ["*"],
+        "scrittura" : ["redazione", "robosquealer"],
         "abilitato" : true
     }
 ]
