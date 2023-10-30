@@ -182,7 +182,7 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}"><br>`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let col_2_1 = `<div class="col"><h3>$${meta["info"]["nome"]}</h3></div>`
+    let col_2_1 = `<div class="col"><h3>${meta["info"]["nome"]}</h3></div>`
 
     let col_2_2
     if(meta["info"]["is_follower"]){
