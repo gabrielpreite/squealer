@@ -479,7 +479,6 @@ exports.add_post = async function(q, campi, credentials) {
 									{ _id: newDocumentId },
 									{ $set: { post_id: newDocumentId } }
 								);
-							console.log("Inserted document ID:", newDocumentId);
 						})
 						.catch((error) => {
 							console.error("Error:", error);
@@ -514,6 +513,18 @@ exports.add_post = async function(q, campi, credentials) {
 								automatico: false
 							}
 						)
+						.then(async (result) => {
+							const newDocumentId = result.insertedId;
+							await mongo.db(dbname)
+								.collection("messaggio")
+								.updateOne(
+									{ _id: newDocumentId },
+									{ $set: { post_id: newDocumentId } }
+								);
+						})
+						.catch((error) => {
+							console.error("Error:", error);
+						});
 
 		}
 
@@ -705,7 +716,7 @@ exports.user_feed = async function(q, campi, credentials) {
 
 		// aumento le visual dei post ottenuti
 		var id_arr = []
-		result.forEach((el) => id_arr.push(el._id))
+		result.forEach((el) => id_arr.push(el.post_id))
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.updateMany(
@@ -826,7 +837,7 @@ exports.smm_feed = async function(q, campi, credentials) {
 
 		// aumento le visual dei post ottenuti
 		var id_arr = []
-		result.forEach((el) => id_arr.push(el._id))
+		result.forEach((el) => id_arr.push(el.post_id))
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.updateMany(
@@ -1241,7 +1252,7 @@ exports.get_replies = async function(q, credentials) {
 			.aggregate([
 				{
 				  $match: {
-					risponde_a: q.post_id
+					risponde_a: q._id
 				  }
 				},
 				{
