@@ -207,7 +207,7 @@ exports.search_messaggio = async function(q,credentials) {
 					{ $limit: 100 }// Limit the result to 100 records
 				  ])
 				.forEach( (r) => { 
-					post.push(r) 
+					result.push(r) 
 				});
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)

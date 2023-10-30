@@ -89,11 +89,11 @@
         "abilitato_flag": true,
         "manager_of": [],
         "managed_by": "fvSMM",
-        "bio": "Import/export king"
+        "bio": "Blue empire king"
     },
     {
         "img" : "default_propic.png",
-        "nome" : "Nome Buffo2",
+        "nome" : "Giovanni Rosa",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
         "password": "12345678",
