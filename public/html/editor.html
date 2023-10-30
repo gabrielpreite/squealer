@@ -151,21 +151,21 @@
             </div>
           </div>
 
-            <div id="mostra-squeal" hidden="true">
-              <div class="squeal">
+              <div id="mostra-squeal" hidden="true">
+                <div class="squeal">
                   <div class="squeal-header">
-                    <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo">
+                    <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                     <div class="squeal-info">
-                      <span class="squeal-nome-utente">Nome Utente</span>
-                      <span class="squeal-username">@username</span>
-                      <span class="squeal-data">10 minuti fa</span>
+                      <span class="squeal-nome-utente" id="squeal-nome-utente">Nome Utente</span>
+                      <span class="squeal-username" id="squeal-username">@username</span>
+                      <span class="squeal-data" id="squeal-data">10 minuti fa</span>
                     </div>
                   </div>
-                  <div class="squeal-contenuto">
+                  <div class="squeal-contenuto" id="squeal-contenuto">
                     Contenuto del squeal qui...
                   </div>
                 </div>
-            </div>
+              </div>
             </div>
         <form id="crea_post" enctype="multipart/form-data">
         <!-- Second Column -->
@@ -210,7 +210,7 @@
           <div id="vuoto" hidden="false">
 
           </div>
-          <div id="mostra-commenti">
+          <div id="mostra-commenti" hidden="true">
             <h4 class="statistiche-title">Commenti</h4>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
 
@@ -295,8 +295,15 @@
         })
 
     // stampo il post
-
-    //todo
+    document.getElementById("squeal-nome-utente").innerHTML = post_originale.nome;
+    document.getElementById("squeal-username").innerHTML = post_originale.utente;
+    document.getElementById("squeal-data").innerHTML = timeConverter(post_originale.timestamp);
+    document.getElementById("squeal-immagine-profilo").src = `http://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
+    if(post_originale.contenuto == "testo"){
+      document.getElementById("squeal-contenuto").innerHTML = post_originale.corpo;
+    } else if(post_originale.contenuto == "img"){
+      document.getElementById("squeal-contenuto").innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine_squeal">`
+    }
 
     // stampo i commenti
     aggiungicommenti(post_id);
