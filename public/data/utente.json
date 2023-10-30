@@ -1,7 +1,7 @@
 [
     {
         "img" : "default_propic.png",
-        "nome" : "Fv rossi",
+        "nome" : "Francesco Verosimile",
         "username": "fv",
         "email": "fv@gmail.com",
         "password": "12345678",
@@ -9,11 +9,7 @@
             "g": 50, "s": 120, "m": 567
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST", "$free"],
@@ -23,12 +19,12 @@
         "professional_flag": false,
         "abilitato_flag": true,
         "manager_of": [],
-        "managed_by": "fvSMM",
-        "bio": "fv rossi - frogger pro player"
+        "managed_by": null,
+        "bio": "Biochem student @ UniBO"
     },
     {
         "img" : "default_propic.png",
-        "nome" : "Fv Pro",
+        "nome" : "Federico Varano",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
         "password": "12345678",
@@ -36,11 +32,7 @@
             "g": 49, "s": 1023, "m": 2300
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST", "$free"],
@@ -51,11 +43,11 @@
         "abilitato_flag": true,
         "manager_of": [],
         "managed_by": "fvSMM",
-        "bio": ""
+        "bio": "Local celebrity - Food blogger - Kebab connoisseur"
     },
     {
         "img" : "default_propic.png",
-        "nome" : "Fv SMM",
+        "nome" : "FV Social Guru",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
         "password": "12345678",
@@ -63,11 +55,7 @@
             "g": 50, "s": 300, "m": 1000
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST", "$free"],
@@ -76,13 +64,13 @@
         "verificato_flag": false,
         "professional_flag": true,
         "abilitato_flag": true,
-        "manager_of": ["fvPro", "NomeBuffo1", "NomeBuffo2", "fv"],
+        "manager_of": ["fvPro", "NomeBuffo1", "NomeBuffo2"],
         "managed_by": null,
-        "bio": ""
+        "bio": "SEO guru - networking samurai - social rockstar - dm for rates"
     },
     {
         "img" : "default_propic.png",
-        "nome" : "Nome Buffo1",
+        "nome" : "",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "12345678",
@@ -90,11 +78,7 @@
             "g": 50, "s": 300, "m": 1000
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST", "$free"],
@@ -117,11 +101,7 @@
             "g": 50, "s": 300, "m": 1000
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST"],
@@ -144,11 +124,7 @@
             "g": 50, "s": 300, "m": 1000
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST"],
@@ -171,11 +147,7 @@
             "g": 50, "s": 300, "m": 1000
         },
         "acquisti": [
-            {
-                "timestamp": "0",
-                "mult": "0",
-                "tipo": "g"
-            }
+
         ],
         "popolarita": 0,
         "canali_seguiti": ["$TEST"],
