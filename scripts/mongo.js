@@ -202,9 +202,7 @@ exports.search_messaggio = async function(q,credentials) {
 						as: "risposte"
 					} },
 					{ $addFields: { numRisposte: { $size: "$risposte" } } },
-					{ $project: { risposte: 0 } },
-					{ $sort: { timestamp: -1 } },
-					{ $limit: 100 }// Limit the result to 100 records
+					{ $project: { risposte: 0 } }
 				  ])
 				.forEach( (r) => { 
 					result.push(r) 
@@ -217,6 +215,8 @@ exports.search_messaggio = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
+		console.log("debug: "+debug)
+		console.log("result: "+result)
 		return result
 	} catch (e) {
 		data.debug = debug
@@ -516,7 +516,7 @@ exports.user_feed = async function(q, campi, credentials) {
 	try{
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		console.log("dentro mongo con user "+campi.username)
+		//console.log("dentro mongo con user "+campi.username)
 		//il feed e' composto da canali e account seguiti
 
 		let canali_seguiti = []

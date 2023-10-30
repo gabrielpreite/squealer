@@ -13,7 +13,7 @@
     {
         "img" : "cha_bologna.png",
         "nome" : "$bologna",
-        "descrizione" : "La grassa, la rossa, la dotta",
+        "descrizione" : "La grassa, la rossa, la dotta (e la rotta)",
         "ufficiale" : false,
         "proprieta" : "fvPro",
         "mod" : [],
