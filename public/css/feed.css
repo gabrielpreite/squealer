@@ -346,6 +346,17 @@
   border-radius: 50%;
 }
 
+.info {
+  display: block;
+  margin-top: 10px;
+}
+
+.follow_button {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+}
+
 /*
 .pubblico {
   margin-left: 3px;

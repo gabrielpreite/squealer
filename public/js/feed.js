@@ -168,20 +168,23 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let col_2_1 = `<div class="col">@${meta["info"]["username"]}<br>${meta["info"]["nome"]}</div>`
+    let riga3 = `<div class="row" id="riga3"></div>`
 
-    let col_2_2
+    let info = `<div class="info">@${meta["info"]["username"]}<br>${meta["info"]["nome"]}</div>`
+
+    let follow
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Unfollow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Unfollow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Follow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Follow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
     container.append(riga2)
-    $("#riga2").append(col_2_1)
-    $("#riga2").append(col_2_2)
-
-    let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["bio"]}</div></div>`
+    $("#riga2").append(follow)
     container.append(riga3)
+    $("#riga3").append(info)
+
+    let riga4 = `<div class="row" id="riga4"><div class="card" id="search-bio">${meta["info"]["bio"]}</div></div>`
+    container.append(riga4)
 
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
@@ -189,21 +192,24 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let col_2_1 = `<div class="col"><h3>${meta["info"]["nome"]}</h3></div>`
+    let riga3 = `<div class="row" id="riga3"></div>`
 
-    let col_2_2
+    let info = `<div class="info"><h3>${meta["info"]["nome"]}</h3></div>`
+
+    let follow
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Unfollow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Unfollow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Follow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Follow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
 
     container.append(riga2)
-    $("#riga2").append(col_2_1)
-    $("#riga2").append(col_2_2)
-
-    let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
+    $("#riga2").append(follow)
     container.append(riga3)
+    $("#riga3").append(info)
+
+    let riga4 = `<div class="row" id="riga4"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
+    container.append(riga4)
   }
 }
 
