@@ -1567,7 +1567,7 @@ exports.add_quota = async function(q, credentials) {
 			.updateOne(
 				{ username: q.target },
 				{
-					$inc: { 'quota.g': q.qnt },
+					$inc: { 'quota.g': parseInt(q.qnt) },
 					$push: { acquisti: acquisto }
 				}
 			)
