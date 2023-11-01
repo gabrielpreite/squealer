@@ -155,7 +155,7 @@ function toggle_follow(target, tipo){
       }
     }
   });
-
+/*
   var pulsanteSegui = document.getElementById("pulsante-segui");
   if (pulsanteSegui.value === "Follow") {
     pulsanteSegui.style.backgroundColor = "#007BFF";
@@ -165,7 +165,7 @@ function toggle_follow(target, tipo){
     pulsanteSegui.style.backgroundColor = "white";
     pulsanteSegui.style.color = "#007BFF";
     pulsanteSegui.value = "Follow";
-  }
+  }*/
 }
 
 function aggiungi_info(meta){
