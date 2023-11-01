@@ -172,7 +172,7 @@ function aggiungi_info(meta){
 
     let col_2_2
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Unfollow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Unfollow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
       col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Follow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
@@ -234,7 +234,7 @@ function ricerca_squeal() {
   let managed = get_cookie_by_name("managed")
   if(!(managed === undefined))
     target_user = managed
-  
+
   let all_info;
   $.ajax({
     type: 'POST',

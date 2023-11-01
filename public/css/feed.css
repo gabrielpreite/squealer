@@ -342,6 +342,10 @@
   background-color:  #ffb07c;
 }
 
+.img-rounded {
+  border-radius: 50%;
+}
+
 /*
 .pubblico {
   margin-left: 3px;
