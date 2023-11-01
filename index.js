@@ -283,6 +283,8 @@ app.post('/crea_post', upload.single("img"), async function(req, res) {
 		if(req.body.contenuto == "img"){//caso immagine
 			let path = req.file.path
 			campi["path"] = path.split("/").slice(-1)[0]
+		} else if(req.body.contenuto == "map"){
+		
 		}
 
 		req.body.destinatari = JSON.parse(req.body.destinatari)
