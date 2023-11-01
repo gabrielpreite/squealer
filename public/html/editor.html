@@ -583,8 +583,8 @@
       if(opzione == "Testo") {
       const charLength = textarea.value.length;
       remainingChars_g = initialQuota_g - charLength;
-      remainingChars_s = initialQuota_s - charLength;
-      remainingChars_m = initialQuota_m - charLength;
+      //remainingChars_s = initialQuota_s - charLength;
+      //remainingChars_m = initialQuota_m - charLength;
       } else if (opzione == "Immagine") {
         remainingChars_g = initialQuota_g - 120;
         //remainingChars_s = initialQuota_s - 120;
@@ -594,15 +594,15 @@
       }
 
       charCount_g.textContent = remainingChars_g;
-      //charCount_s.textContent = remainingChars_s;
-      //charCount_m.textContent = remainingChars_m;
+      charCount_s.textContent = remainingChars_s;
+      charCount_m.textContent = remainingChars_m;
 
       if (remainingChars_g < 0) {
         charCount_g.classList.add('negative');
       } else {
         charCount_g.classList.remove('negative');
       }
-      /*if (remainingChars_s < 0) {
+      if (remainingChars_s < 0) {
         charCount_s.classList.add('negative');
       } else {
         charCount_s.classList.remove('negative');
@@ -611,7 +611,7 @@
         charCount_m.classList.add('negative');
       } else {
         charCount_m.classList.remove('negative');
-      }*/
+      }
 
       const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
       if (remainingChars.some((count) => count < 0)) {
