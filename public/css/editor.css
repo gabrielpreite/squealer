@@ -106,9 +106,10 @@
   margin-right: 10px;
 }
 
-.squeal-info {
-  display: block;
-  margin-top: 10px;
+.info_utente {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
   color: #6c757d;
 }
 
