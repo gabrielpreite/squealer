@@ -218,18 +218,19 @@
             <div id="preview"></div>
           </div>
           <div id="contenuto_posizione" hidden="true">
-              <div id="map" style="height: 60vh;">
-              </div>
+            <div id="map" style="height: 60vh;">
             </div>
+            <input type="text" id="imgMap" hidden></div>
+          </div>
           <div class="text-end">
-          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+            <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
           </div>
         </div>
 
         <!-- Third Column -->
         <div class="col-md-3" id="col-dx">
           <div id="vuoto" hidden="false">
-            <div id="imgMap"></div>
+          
           </div>
           <div id="mostra-commenti" hidden="true">
             <h4 class="statistiche-title">Commenti</h4>
@@ -529,6 +530,8 @@
           formData.append("contenuto", "testo")
         }else if(!$("#contenuto_immagine").attr("hidden")){//caso img
           formData.append("contenuto", "img")
+        }else if(!$("#contenuto_posizione").attr("hidden")){//caso map
+          formData.append("contenuto", "map")
         }
 
         let arr = window.location.href.split('?');
