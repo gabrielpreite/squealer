@@ -208,7 +208,7 @@
         <!-- Third Column -->
         <div class="col-md-3" id="col-dx">
           <div id="vuoto" hidden="false">
-
+            <div id="imgMap"></div>
           </div>
           <div id="mostra-commenti" hidden="true">
             <h4 class="statistiche-title">Commenti</h4>
@@ -799,7 +799,7 @@
       staticMapUrl += "&zoom=" + map.zoom;
 
       //Loop and add Markers.
-      staticMapUrl += "&markers=" + document.getElementById('lat').value + "," + document.getElementById('lng').value;
+      staticMapUrl += "&markers=" + map.getCenter().lat() + "," + map.getCenter().lng();
 
       //Display the Image of Google Map.
       var imgMap = document.getElementById("imgMap");
