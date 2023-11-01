@@ -29,7 +29,7 @@ function aggiungi_squeal(squeals) {
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     }
     //destinatari
-    if (squeals[i].destinatari.length > 0) {
+    if (squeals[i].tipo_destinatari != null) {
       var id_destinatari = 'btn-destinatari' + i;
       if (squeals[i].tipo_destinatari == "canali"){
         var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
