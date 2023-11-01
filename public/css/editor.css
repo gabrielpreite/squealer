@@ -90,6 +90,13 @@
   font-weight: 500;
 }
 
+.squeal-header {
+  display: flex;
+  align-items: center;
+  border: none;
+  justify-content: space-between;
+}
+
 .squeal {
   background-color: #fff;
   border-radius: 10px;
@@ -100,15 +107,16 @@
 }
 
 .squeal-header .squeal-immagine-profilo {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.squeal-info {
-  display: block;
-  margin-top: 10px;
+.info_utente {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
   color: #6c757d;
 }
 
@@ -119,6 +127,10 @@
 
 .squeal-contenuto {
   margin-top: 10px;
+}
+
+.squeal img {
+  width: 300px;
 }
 
 
