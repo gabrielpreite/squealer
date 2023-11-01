@@ -168,6 +168,7 @@ exports.search_messaggio = async function(q,credentials) {
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.find()
+						.project({_id:0})
 						.forEach( (r) => { 
 							result.push(r) 
 						} );
@@ -175,38 +176,38 @@ exports.search_messaggio = async function(q,credentials) {
 		else{ //passo userid nel get, ritorno il record corretto
 			debug.push("found args :"+q.messaggio_id)
 			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
-				.collection("messaggio")
-				.aggregate([
-					{ $match: { post_id: q.messaggio_id } },
-					{ $lookup: {
-						from: "utente", // nome seconda tabella
-						localField: "utente", // nome chiave in prima tabella (corrente)
-						foreignField: "username", // nome chiave in seconda tabella
-						as: "utenteData" // rename del record ottenuto (da seconda tabella)
-					} },
-					{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
-					{ "$replaceRoot": { //ricrea la "root" della struttura ottenuta
-						  "newRoot": {
-							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-							  "$$ROOT", //campi originali in messaggio
-							  { nome: "$utenteData.nome" },
-							  { img: "$utenteData.img" }
-							]
-						  }
-					} },
-					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
-					{ $lookup: {
-						from: "messaggio",
-						localField: "post_id",
-						foreignField: "risponde_a",
-						as: "risposte"
-					} },
-					{ $addFields: { numRisposte: { $size: "$risposte" } } },
-					{ $project: { risposte: 0 } }
-				  ])
-				.forEach( (r) => { 
-					result.push(r) 
-				});
+					.collection("messaggio")
+					.aggregate([
+						{ $match: { post_id: q.messaggio_id } },
+						{ $lookup: {
+							from: "utente", // nome seconda tabella
+							localField: "utente", // nome chiave in prima tabella (corrente)
+							foreignField: "username", // nome chiave in seconda tabella
+							as: "utenteData" // rename del record ottenuto (da seconda tabella)
+						} },
+						{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
+						{ "$replaceRoot": { //ricrea la "root" della struttura ottenuta
+							"newRoot": {
+								"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+								"$$ROOT", //campi originali in messaggio
+								{ nome: "$utenteData.nome" },
+								{ img: "$utenteData.img" }
+								]
+							}
+						} },
+						{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						{ $lookup: {
+							from: "messaggio",
+							localField: "post_id",
+							foreignField: "risponde_a",
+							as: "risposte"
+						} },
+						{ $addFields: { numRisposte: { $size: "$risposte" } } },
+						{ $project: { risposte: 0 } }
+					])
+					.forEach( (r) => { 
+						result.push(r) 
+					});	
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
@@ -215,8 +216,6 @@ exports.search_messaggio = async function(q,credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		console.log("debug: "+debug)
-		console.log("result: "+result)
 		return result
 	} catch (e) {
 		data.debug = debug
@@ -477,7 +476,7 @@ exports.add_post = async function(q, campi, credentials) {
 								.collection("messaggio")
 								.updateOne(
 									{ _id: newDocumentId },
-									{ $set: { post_id: newDocumentId } }
+									{ $set: { post_id: String(newDocumentId) } }
 								);
 						})
 						.catch((error) => {
@@ -519,7 +518,7 @@ exports.add_post = async function(q, campi, credentials) {
 								.collection("messaggio")
 								.updateOne(
 									{ _id: newDocumentId },
-									{ $set: { post_id: newDocumentId } }
+									{ $set: { post_id: String(newDocumentId) } }
 								);
 						})
 						.catch((error) => {
@@ -1252,7 +1251,7 @@ exports.get_replies = async function(q, credentials) {
 			.aggregate([
 				{
 				  $match: {
-					risponde_a: q._id
+					risponde_a: q.post_id
 				  }
 				},
 				{
@@ -1379,7 +1378,7 @@ exports.get_mychannels = async function(q, campi, credentials) {
 
 exports.toggle_follow = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
-	let result = []
+	let result
 	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
@@ -1419,6 +1418,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "removed"
 					}
 
 					const push_list = results.filter((doc) => doc.result === "push");
@@ -1433,6 +1433,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "added"
 					}
 				})
 				.catch((error) => {
@@ -1475,6 +1476,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "removed"
 					}
 
 					const push_list = results.filter((doc) => doc.result === "push");
@@ -1490,6 +1492,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "added"
 					}
 				})
 				.catch((error) => {
@@ -1501,6 +1504,39 @@ exports.toggle_follow = async function(q, credentials) {
 		return result
 	} catch (e) {
 		return e
+	}
+}
+
+exports.add_quota = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	// q.target, q.qnt (giornalieria)
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		let date = new Date()
+
+		let acquisto = {}
+		acquisto["timestamp"] = date.getTime();
+		acquisto["quantita"] = q.qnt
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{ username: q.target },
+				{
+					$inc: { 'quota.g': q.qnt },
+					$push: { acquisti: acquisto }
+				}
+			)
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		await mongo.close()
+		return "success"
+	} catch (e) {
+		return "errore"
 	}
 }
 

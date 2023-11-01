@@ -90,8 +90,16 @@
   font-weight: 500;
 }
 
+.squeal-header {
+  display: flex;
+  align-items: center;
+  border: none;
+  justify-content: space-between;
+}
+
 .squeal {
   background-color: #fff;
+  border-radius: 10px;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px 0;
@@ -99,23 +107,30 @@
 }
 
 .squeal-header .squeal-immagine-profilo {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.squeal-info {
-  display: inline-block;
-  vertical-align: middle;
+.info_utente {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+  color: #6c757d;
 }
 
 .squeal-nome-utente {
   font-weight: bold;
+  color: black;
 }
 
 .squeal-contenuto {
   margin-top: 10px;
+}
+
+.squeal img {
+  width: 300px;
 }
 
 
@@ -401,6 +416,7 @@
   padding: 15px;
   margin: 0px 5px 10px 5px;
   border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: white;
 }

@@ -1,19 +1,24 @@
 [
     {
-        "img" : "propic_fv.png",
-        "nome" : "Francesco Verosimile",
+        "img": "propic_fv.png",
+        "nome": "Francesco Verosimile",
         "username": "fv",
         "email": "fv@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 120, "m": 567
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
-        "canali_seguiti": ["$free"],
-        "utenti_seguiti": ["fvPro", "NomeBuffo1"],
+        "canali_seguiti": [
+            "$free"
+        ],
+        "utenti_seguiti": [
+            "fvPro",
+            "NomeBuffo1"
+        ],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": false,
@@ -23,20 +28,25 @@
         "bio": "Biochem student @ UniBO"
     },
     {
-        "img" : "propic_pro.png",
-        "nome" : "Federico Varano",
+        "img": "propic_pro.png",
+        "nome": "Federico Varano",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 49, "s": 1023, "m": 2300
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
-        "canali_seguiti": ["$free"],
-        "utenti_seguiti": ["fv", "NomeBuffo1"],
+        "canali_seguiti": [
+            "$free"
+        ],
+        "utenti_seguiti": [
+            "fv",
+            "NomeBuffo1"
+        ],
         "redazione_flag": false,
         "verificato_flag": true,
         "professional_flag": true,
@@ -46,42 +56,50 @@
         "bio": "Local celebrity - Food blogger - Kebab connoisseur"
     },
     {
-        "img" : "propic_smm.png",
-        "nome" : "FV Social Guru",
+        "img": "propic_smm.png",
+        "nome": "FV Social Guru",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
-        "canali_seguiti": ["$free"],
+        "canali_seguiti": [
+            "$free"
+        ],
         "utenti_seguiti": [],
         "redazione_flag": false,
         "verificato_flag": true,
         "professional_flag": true,
         "abilitato_flag": true,
-        "manager_of": ["fvPro", "NomeBuffo1", "NomeBuffo2"],
+        "manager_of": [
+            "fvPro",
+            "NomeBuffo1",
+            "NomeBuffo2"
+        ],
         "managed_by": null,
         "bio": "SEO guru - networking samurai - social rockstar - dm for rates"
     },
     {
-        "img" : "propic_nb1.png",
-        "nome" : "Valterio Bianco",
+        "img": "propic_nb1.png",
+        "nome": "Valterio Bianco",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
-        "canali_seguiti": ["$free"],
+        "canali_seguiti": [
+            "$free"
+        ],
         "utenti_seguiti": [],
         "redazione_flag": false,
         "verificato_flag": false,
@@ -92,17 +110,17 @@
         "bio": "Blue empire king"
     },
     {
-        "img" : "propic_nb2.png",
-        "nome" : "Giovanni Rosauomo",
+        "img": "propic_nb2.png",
+        "nome": "Giovanni Rosauomo",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -115,17 +133,17 @@
         "bio": "At risk teen camp counselor - apprendista cuoco"
     },
     {
-        "img" : "propic_modteam.png",
-        "nome" : "MODTEAM",
+        "img": "propic_modteam.png",
+        "nome": "MODTEAM",
         "username": "fvMod",
         "email": "fvMod@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -138,17 +156,17 @@
         "bio": ""
     },
     {
-        "img" : "propic_redazione.png",
-        "nome" : "Redazione Squeal",
+        "img": "propic_redazione.png",
+        "nome": "Redazione Squeal",
         "username": "redazione",
         "email": "redazione@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -161,17 +179,17 @@
         "bio": "Account ufficiale redazione Squealer"
     },
     {
-        "img" : "propic_bot.png",
-        "nome" : "SquealBot",
+        "img": "propic_bot.png",
+        "nome": "SquealBot",
         "username": "robosquealer",
         "email": "robosquealer@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 50, "s": 300, "m": 1000
+            "g": 300,
+            "s": 2000,
+            "m": 7500
         },
-        "acquisti": [
-
-        ],
+        "acquisti": [],
         "popolarita": 0,
         "canali_seguiti": [],
         "utenti_seguiti": [],
