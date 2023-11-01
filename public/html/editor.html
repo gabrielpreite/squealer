@@ -583,12 +583,12 @@
       if(opzione == "Testo") {
       const charLength = textarea.value.length;
       remainingChars_g = initialQuota_g - charLength;
-      //remainingChars_s = initialQuota_s - charLength;
-      //remainingChars_m = initialQuota_m - charLength;
+      remainingChars_s = initialQuota_s// - charLength;
+      remainingChars_m = initialQuota_m// - charLength;
       } else if (opzione == "Immagine") {
         remainingChars_g = initialQuota_g - 120;
-        //remainingChars_s = initialQuota_s - 120;
-        //remainingChars_m = initialQuota_m - 120;
+        remainingChars_s = initialQuota_s// - 120;
+        remainingChars_m = initialQuota_m// - 120;
       } else if (opzione == "Posizione") {
 
       }
@@ -617,9 +617,13 @@
       if (remainingChars.some((count) => count < 0)) {
         button.classList.add('button-disabled');
         button.value = "Compra quota"
+        shopButton.classList.remove("btn-unstyled")
+        shopButton.classList.add("btn-danger")
       } else {
         button.classList.remove('button-disabled');
         button.value = "Conferma"
+        shopButton.classList.remove("btn-danger")
+        shopButton.classList.add("btn-unstyled")
       }
     }
 
