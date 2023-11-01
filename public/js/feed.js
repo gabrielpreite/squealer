@@ -145,11 +145,11 @@ function toggle_follow(target, tipo){
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
       if (status.responseText == "added"){
-        $("#pulsante-segui").value("Unfollow")
+        $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
         $("#pulsante-segui").addClass("btn-outline-primary")
       } else if (status.responseText == "removed") {
-        $("#pulsante-segui").value("Follow")
+        $("#pulsante-segui").text("Follow")
         $("#pulsante-segui").removeClass("btn-outline-primary")
         $("#pulsante-segui").addClass("btn-primary")
       }
@@ -174,9 +174,9 @@ function aggiungi_info(meta){
 
     let follow
     if(meta["info"]["is_follower"]){
-      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Unfollow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Follow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
     container.append(riga2)
     $("#riga2").append(follow)
@@ -198,9 +198,9 @@ function aggiungi_info(meta){
 
     let follow
     if(meta["info"]["is_follower"]){
-      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Unfollow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Follow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
 
     container.append(riga2)
