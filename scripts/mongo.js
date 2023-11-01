@@ -1378,7 +1378,7 @@ exports.get_mychannels = async function(q, campi, credentials) {
 
 exports.toggle_follow = async function(q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
-	let result = []
+	let result
 	try {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
@@ -1418,6 +1418,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "removed"
 					}
 
 					const push_list = results.filter((doc) => doc.result === "push");
@@ -1432,6 +1433,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "added"
 					}
 				})
 				.catch((error) => {
@@ -1474,6 +1476,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "removed"
 					}
 
 					const push_list = results.filter((doc) => doc.result === "push");
@@ -1489,6 +1492,7 @@ exports.toggle_follow = async function(q, credentials) {
 						} catch (error) {
 							console.error("Error:", error);
 						}
+						result = "added"
 					}
 				})
 				.catch((error) => {
