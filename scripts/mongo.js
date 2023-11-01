@@ -1507,6 +1507,39 @@ exports.toggle_follow = async function(q, credentials) {
 	}
 }
 
+exports.add_quota = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	// q.target, q.qnt (giornalieria)
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		let date = new Date()
+
+		let acquisto = {}
+		acquisto["timestamp"] = date.getTime();
+		acquisto["quantita"] = q.qnt
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{ username: q.target },
+				{
+					$inc: { 'quota.g': q.qnt },
+					$push: { acquisti: acquisto }
+				}
+			)
+			.forEach( (r) => { 
+				result.push(r) 
+			});
+
+		await mongo.close()
+		return "success"
+	} catch (e) {
+		return "errore"
+	}
+}
+
 /* Untested */
 // https://stackoverflow.com/questions/39599063/check-if-mongodb-is-connected/39602781
 exports.isConnected = async function() {

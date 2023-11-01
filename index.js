@@ -398,7 +398,18 @@ app.get('/update_reazioni', async function(req, res) {
 		res.send(JSON.stringify(r))
 	} catch (e) {
 		res.status(500)
-		res.send("errore nella modifica del post")
+		res.send("errore nell'aggiunta di reaction")
+	}
+});
+
+app.post('/add_quota', async function(req, res) {
+	try{
+		let result = await mymongo.add_quota(req.body, mongoCredentials)
+		res.status(200)
+		res.send(result)
+	} catch (e) {
+		res.status(500)
+		res.send("errore nell'acquisto di quota")
 	}
 });
 
