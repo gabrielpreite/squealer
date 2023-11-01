@@ -312,6 +312,7 @@
     let formData = new FormData()
     formData.append("target", target_user)
     formData.append("qnt", qnt)
+    console.log(formData)
 
     fetch("/add_quota", {
           method: "POST",
