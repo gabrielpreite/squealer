@@ -525,6 +525,48 @@ exports.add_post = async function(q, campi, credentials) {
 							console.error("Error:", error);
 						});
 
+		}else if(q.contenuto == "map"){//caso mappa
+			await mongo.db(dbname)
+						.collection("messaggio")
+						.insertOne(
+							{
+								risponde_a: risposta,
+								corpo: q.imgMap,
+								contenuto: "map",
+								destinatari: q.destinatari,
+								tipo_destinatari: tipo_destinatari,
+								utente: campi.username,
+								timestamp: campi.timestamp,
+								visualizzazioni: 0,
+								reazioni: {
+									positive: {
+										concordo: [],
+										mi_piace: [],
+										adoro: []
+									},
+									negative: {
+										sono_contrario: [],
+										mi_disgusta: [],
+										odio: []
+									}
+								},
+								categoria: null,
+								automatico: false
+							}
+						)
+						.then(async (result) => {
+							const newDocumentId = result.insertedId;
+							await mongo.db(dbname)
+								.collection("messaggio")
+								.updateOne(
+									{ _id: newDocumentId },
+									{ $set: { post_id: String(newDocumentId) } }
+								);
+						})
+						.catch((error) => {
+							console.error("Error:", error);
+						});
+
 		}
 
 		await mongo.close();
