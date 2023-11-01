@@ -131,6 +131,17 @@ function aggiungi_squeal(squeals) {
 }
 
 function toggle_follow(target, tipo){
+/*
+  var pulsanteSegui = document.getElementById("pulsante-segui");
+  if (pulsanteSegui.value === "Follow") {
+    pulsanteSegui.style.backgroundColor = "white";
+    pulsanteSegui.style.color = "blue";
+  } else if (pulsanteSegui.value === "Unfollow") {
+    pulsanteSegui.style.backgroundColor = "blue";
+    pulsanteSegui.style.color = "white";
+  }
+  */
+
   //come user (smm) o come account gestito (se esiste il cookie)
   let origin = get_cookie_by_name("username")
   let managed = get_cookie_by_name("managed")
@@ -168,9 +179,9 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let riga3 = `<div class="row" id="riga3"></div>`
+    let riga4 = `<div class="row" id="riga4"></div>`
 
-    let info = `<div class="info">@${meta["info"]["username"]}<br>${meta["info"]["nome"]}</div>`
+    let info = `<div class="info"><b>${meta["info"]["nome"]}</b><br>@${meta["info"]["username"]}</div>`
 
     let follow
     if(meta["info"]["is_follower"]){
@@ -179,12 +190,13 @@ function aggiungi_info(meta){
       follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Follow">Segui</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
     container.append(riga2)
-    $("#riga2").append(follow)
-    container.append(riga3)
-    $("#riga3").append(info)
+    $("#riga2").append(info)
 
-    let riga4 = `<div class="row" id="riga4"><div class="card" id="search-bio">${meta["info"]["bio"]}</div></div>`
+    let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["bio"]}</div></div>`
+    container.append(riga3)
+
     container.append(riga4)
+    $("#riga4").append(follow)
 
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
@@ -192,7 +204,7 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let riga3 = `<div class="row" id="riga3"></div>`
+    let riga4 = `<div class="row" id="riga4"></div>`
 
     let info = `<div class="info"><h3>${meta["info"]["nome"]}</h3></div>`
 
@@ -208,10 +220,11 @@ function aggiungi_info(meta){
     container.append(riga3)
     $("#riga3").append(info)
 
-    let riga4 = `<div class="row" id="riga4"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
-    container.append(riga4)
+    let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
+    container.append(riga3)
   }
 }
+
 
 //RICERCA SQUEAL...
 function ricerca_squeal() {
