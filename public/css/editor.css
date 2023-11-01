@@ -121,6 +121,10 @@
   margin-top: 10px;
 }
 
+.squeal img {
+  width: 300px;
+}
+
 
 /* Stile generale del campo di ricerca */
 .search-container {
