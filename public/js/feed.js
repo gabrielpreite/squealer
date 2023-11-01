@@ -144,13 +144,12 @@ function toggle_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      console.log(data)
-      if (data == "added"){
-        $("#pulsante-segui").text("Unfollow")
+      if (status.responseText == "added"){
+        $("#pulsante-segui").value("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
         $("#pulsante-segui").addClass("btn-outline-primary")
-      } else if (data == "removed") {
-        $("#pulsante-segui").text("Follow")
+      } else if (status.responseText == "removed") {
+        $("#pulsante-segui").value("Follow")
         $("#pulsante-segui").removeClass("btn-outline-primary")
         $("#pulsante-segui").addClass("btn-primary")
       }
@@ -173,9 +172,9 @@ function aggiungi_info(meta){
 
     let col_2_2
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Unfollow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')" value="Follow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
     container.append(riga2)
     $("#riga2").append(col_2_1)
@@ -194,9 +193,9 @@ function aggiungi_info(meta){
 
     let col_2_2
     if(meta["info"]["is_follower"]){
-      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      col_2_2 = `<div class="col"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Unfollow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      col_2_2 = `<div class="col"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')" value="Follow"></button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
 
     container.append(riga2)
