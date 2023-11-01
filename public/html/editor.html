@@ -309,21 +309,22 @@
     if(!(managed === undefined))
       target_user = managed
 
-    let formData = new FormData()
-    formData.append("target", target_user)
-    formData.append("qnt", qnt)
-    console.log(formData)
+    let data = {"target": target_user, "qnt": qnt}
+    console.log(data)
 
     fetch("/add_quota", {
-          method: "POST",
-          body: formData,
-        })
-        .then((response) => {
-          console.log(response)
-          //aggiorna quota visualizzata
-          //modifica pulsante
-          //aggiorna cookie
-        })
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json' // Specify the content type as JSON
+      },
+      body: JSON.stringify(data)
+    })
+    .then((response) => {
+      console.log(response)
+      //aggiorna quota visualizzata
+      //modifica pulsante
+      //aggiorna cookie
+    })
   }
 
     function interfaccia_risposta(post_id){
