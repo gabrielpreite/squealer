@@ -92,7 +92,7 @@
 
 .squeal {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 10px;
   margin: 10px 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -106,12 +106,14 @@
 }
 
 .squeal-info {
-  display: inline-block;
-  vertical-align: middle;
+  display: block;
+  margin-top: 10px;
+  color: #6c757d;
 }
 
 .squeal-nome-utente {
   font-weight: bold;
+  color: black;
 }
 
 .squeal-contenuto {
