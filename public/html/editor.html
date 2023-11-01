@@ -9,13 +9,13 @@
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
   integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
 
@@ -249,41 +249,41 @@
     crossorigin="anonymous"></script>
 
   <script>
-  // INSERIMENTO ACCOUNT GESTITI DA SMM
-  /*let account = []
-  $.ajax({
-    type: 'GET',
-    dataType: "json",
-    async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_managed`,
-    headers: { },
-    success: function (data, status, xhr) {
-      console.log('data: ', data);
-      account = data;
+    // INSERIMENTO ACCOUNT GESTITI DA SMM
+    /*let account = []
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/get_managed`,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        account = data;
+      }
+    });
+
+    *account.forEach((el) => {
+      $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
+    })*/
+
+    // INSERIMENTO PROPIC UTENTE
+    $("#propic").attr("src", "http://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+
+    //se sto gestendo un account lo mostro nella barra
+    let managed = get_cookie_by_name("managed")
+    if(!(managed === undefined)){
+      $("#managed-account-username").text(managed)
     }
-  });
 
-  *account.forEach((el) => {
-    $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
-  })*/
+    array_dest_canali=[]//array destinatari per uso interno
+    array_dest_utenti=[]//array destinatari per uso interno
+    let imageFileURL = null;
 
-  // INSERIMENTO PROPIC UTENTE
-  $("#propic").attr("src", "http://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-
-  //se sto gestendo un account lo mostro nella barra
-  let managed = get_cookie_by_name("managed")
-  if(!(managed === undefined)){
-    $("#managed-account-username").text(managed)
-  }
-
-  array_dest_canali=[]//array destinatari per uso interno
-  array_dest_utenti=[]//array destinatari per uso interno
-  let imageFileURL = null;
-
-  let arr = window.location.href.split('?');
-  if (arr.length > 1 && arr[1] !== '') { // caso risposta
-    interfaccia_risposta(arr[1].split("=")[1])
-  }
+    let arr = window.location.href.split('?');
+    if (arr.length > 1 && arr[1] !== '') { // caso risposta
+      interfaccia_risposta(arr[1].split("=")[1])
+    }
 
   document.getElementById("crea_post").addEventListener('submit', async event => {
     event.preventDefault();
@@ -298,95 +298,95 @@
 
   }
 
-  function interfaccia_risposta(post_id){
-    // Nascondi il div "selezione-destinatari"
-    document.getElementById("selezione-destinatari").hidden = true;
-    document.getElementById("vuoto").hidden = true;
+    function interfaccia_risposta(post_id){
+      // Nascondi il div "selezione-destinatari"
+      document.getElementById("selezione-destinatari").hidden = true;
+      document.getElementById("vuoto").hidden = true;
 
-    // Mostra il div "mostra-squeal"
-    document.getElementById("mostra-squeal").hidden = false;
-    document.getElementById("mostra-commenti").hidden = false;
+      // Mostra il div "mostra-squeal"
+      document.getElementById("mostra-squeal").hidden = false;
+      document.getElementById("mostra-commenti").hidden = false;
 
-    // prendo il post originale
-    var post_originale
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_id}`,
-      headers: { },
-      success: function (data, status, xhr) {
-        post_originale = data[0];
+      // prendo il post originale
+      var post_originale
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_id}`,
+        headers: { },
+        success: function (data, status, xhr) {
+          post_originale = data[0];
+        }
+      });
+
+      // stampo il post
+      document.getElementById("squeal-nome-utente").innerHTML = post_originale.nome;
+      document.getElementById("squeal-username").innerHTML = post_originale.utente;
+      document.getElementById("squeal-data").innerHTML = timeConverter(post_originale.timestamp);
+      document.getElementById("squeal-immagine-profilo").src = `http://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
+      if(post_originale.contenuto == "testo"){
+        document.getElementById("squeal-contenuto").innerHTML = post_originale.corpo;
+      } else if(post_originale.contenuto == "img"){
+        document.getElementById("squeal-contenuto").innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine_squeal">`
       }
-    });
 
-    // stampo il post
-    document.getElementById("squeal-nome-utente").innerHTML = post_originale.nome;
-    document.getElementById("squeal-username").innerHTML = post_originale.utente;
-    document.getElementById("squeal-data").innerHTML = timeConverter(post_originale.timestamp);
-    document.getElementById("squeal-immagine-profilo").src = `http://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
-    if(post_originale.contenuto == "testo"){
-      document.getElementById("squeal-contenuto").innerHTML = post_originale.corpo;
-    } else if(post_originale.contenuto == "img"){
-      document.getElementById("squeal-contenuto").innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine_squeal">`
+      // stampo i commenti
+      aggiungicommenti(post_id);
     }
 
-    // stampo i commenti
-    aggiungicommenti(post_id);
-  }
+    function mostraCampo(tipo) {
+      var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
 
-  function mostraCampo(tipo) {
-    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
+      // Rimuovi tutte le classi esistenti da col-sx
+      var colSx = document.getElementById("col-sx");
+      var colDx = document.getElementById("col-dx");
+      colSx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
+      colDx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
 
-    // Rimuovi tutte le classi esistenti da col-sx
-    var colSx = document.getElementById("col-sx");
-    var colDx = document.getElementById("col-dx");
-    colSx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
-    colDx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
+      // Nascondi tutti i campi inizialmente
+      document.getElementById("campo-canali").hidden = true;
+      document.getElementById("campo-utenti").hidden = true;
+      document.getElementById("lista_destinatari").hidden = false;
+      document.getElementById("campo-bacheca").hidden = true;
 
-    // Nascondi tutti i campi inizialmente
-    document.getElementById("campo-canali").hidden = true;
-    document.getElementById("campo-utenti").hidden = true;
-    document.getElementById("lista_destinatari").hidden = false;
-    document.getElementById("campo-bacheca").hidden = true;
+      // Rimuovi la classe 'attiva' da tutte le icone
+      var icone = document.querySelectorAll(".tipo-icona");
+      icone.forEach(function (icona) {
+        icona.classList.remove("attiva");
+      });
 
-    // Rimuovi la classe 'attiva' da tutte le icone
-    var icone = document.querySelectorAll(".tipo-icona");
-    icone.forEach(function (icona) {
-      icona.classList.remove("attiva");
-    });
+      // Mostra il campo corrispondente al tipo selezionato
+      if (tipo === "canali") {
+        document.getElementById("campo-canali").hidden = false;
+        document.getElementById("lista_destinatari").hidden = true;
+        destinatariInseritiDiv.innerHTML = "";
+        array_dest_utenti = [];
+        document.getElementById("icona-canali").classList.add("attiva");
+        colSx.classList.add("col-sx-canali");
+        colDx.classList.add("col-sx-canali");
 
-    // Mostra il campo corrispondente al tipo selezionato
-    if (tipo === "canali") {
-      document.getElementById("campo-canali").hidden = false;
-      document.getElementById("lista_destinatari").hidden = true;
-      destinatariInseritiDiv.innerHTML = "";
-      array_dest_utenti = [];
-      document.getElementById("icona-canali").classList.add("attiva");
-      colSx.classList.add("col-sx-canali");
-      colDx.classList.add("col-sx-canali");
+      } else if (tipo === "utenti") {
+        document.getElementById("campo-utenti").hidden = false;
+        document.getElementById("lista_destinatari").hidden = true;
+        destinatariInseritiDiv.innerHTML = "";
+        array_dest_canali = [];
+        document.getElementById("icona-utenti").classList.add("attiva");
+        colSx.classList.add("col-sx-utenti");
+        colDx.classList.add("col-sx-utenti");
 
-    } else if (tipo === "utenti") {
-      document.getElementById("campo-utenti").hidden = false;
-      document.getElementById("lista_destinatari").hidden = true;
-      destinatariInseritiDiv.innerHTML = "";
-      array_dest_canali = [];
-      document.getElementById("icona-utenti").classList.add("attiva");
-      colSx.classList.add("col-sx-utenti");
-      colDx.classList.add("col-sx-utenti");
+      } else if (tipo === "bacheca") {
+        document.getElementById("lista_destinatari").hidden = true;
+        document.getElementById("campo-bacheca").hidden = false;
+        destinatariInseritiDiv.innerHTML = "";
+        array_dest_utenti = [];
+        array_dest_canali = [];
+        document.getElementById("icona-bacheca").classList.add("attiva");
+        colSx.classList.add("col-sx-bacheca");
+        colDx.classList.add("col-sx-bacheca");
 
-    } else if (tipo === "bacheca") {
-      document.getElementById("lista_destinatari").hidden = true;
-      document.getElementById("campo-bacheca").hidden = false;
-      destinatariInseritiDiv.innerHTML = "";
-      array_dest_utenti = [];
-      array_dest_canali = [];
-      document.getElementById("icona-bacheca").classList.add("attiva");
-      colSx.classList.add("col-sx-bacheca");
-      colDx.classList.add("col-sx-bacheca");
-
+      }
     }
-  }
 
 
     function check_destinatari_canali() {
@@ -405,22 +405,22 @@
           a = a.substring(1)
           //console.log('data: ', data);
           if (!array_dest_canali.includes(a)) {
-             // Aggiungi il destinatario al riquadro dei destinatari inseriti
-             $("#destinatari-inseriti").append(`
-               <div class="inserito-item name-${a}">
-               <div class="left-content">
-                 <i class="fas fa-users"></i>
-                 <p>${a}</p>
-               </div>
-               <div class="right-content">
-                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+              // Aggiungi il destinatario al riquadro dei destinatari inseriti
+              $("#destinatari-inseriti").append(`
+                <div class="inserito-item name-${a}">
+                <div class="left-content">
+                  <i class="fas fa-users"></i>
+                  <p>${a}</p>
                 </div>
-               </div>
-             `);
-             document.getElementById("lista_destinatari").hidden = false;
-             array_dest_canali.push(a); // Aggiungi all'array
-             $("#cerca_destinatari_canali").val(""); // Resetta il campo
-           }
+                <div class="right-content">
+                  <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
+                </div>
+                </div>
+              `);
+              document.getElementById("lista_destinatari").hidden = false;
+              array_dest_canali.push(a); // Aggiungi all'array
+              $("#cerca_destinatari_canali").val(""); // Resetta il campo
+            }
         },
         error: function (xhr, status, e){
           alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
@@ -454,7 +454,7 @@
               </div>
               <div class="right-content">
                 <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
-               </div>
+                </div>
               </div>
             `);
             document.getElementById("lista_destinatari").hidden = false;
@@ -589,22 +589,22 @@
         $("#contenuto_testo").attr("hidden", false)
         $(".icona-scelta.fas.fa-font").addClass("attiva");
         if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
-           aggiornaQuota("Testo");
-         }
+            aggiornaQuota("Testo");
+          }
       } else if (opzione == "Immagine") {
         resetQuota()
         $("#contenuto_immagine").attr("hidden", false)
         $(".icona-scelta.fas.fa-image").addClass("attiva");
         if ($(".icona-scelta.fas.fa-image").hasClass("attiva")&& inputImage.files && inputImage.files[0]) {
-           aggiornaQuota("Immagine");
-         }
+            aggiornaQuota("Immagine");
+          }
       } else if (opzione == "Posizione") {
         resetQuota()
         $("#contenuto_posizione").attr("hidden", false)
         $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
         if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
-           //aggiornaQuota("Posizione");
-         }
+            //aggiornaQuota("Posizione");
+          }
       }
     }
 
@@ -673,23 +673,23 @@
 
     document.getElementById('img').addEventListener('change', function(event) {
       aggiornaQuota("Immagine");
-    var file = event.target.files[0]; // Ottieni il file selezionato
+      var file = event.target.files[0]; // Ottieni il file selezionato
 
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      var preview = document.getElementById('preview');
-      preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var preview = document.getElementById('preview');
+        preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
 
-      var img = document.createElement('img');
-      img.src = e.target.result; // Imposta l'URL dell'immagine
-      img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+        var img = document.createElement('img');
+        img.src = e.target.result; // Imposta l'URL dell'immagine
+        img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
 
-      preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
-      imageFileURL = e.target.result;
-    };
+        preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+        imageFileURL = e.target.result;
+      };
 
-    reader.readAsDataURL(file); // Leggi il file come URL dati
-  });
+      reader.readAsDataURL(file); // Leggi il file come URL dati
+    });
 
 
     // Initialize and add the map
@@ -776,12 +776,37 @@
       infoWindow.open(map, marker);
     }
 
-    window.initMap = initMap;
+    window.initMap() = initMap();
     // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
-    google.maps.event.addDomListener(window, "load", initMap);
+    google.maps.event.addDomListener(window, "load", initMap());
 
 
     //map.on('click', onClickCoord)
+
+    function mapeado(map) {
+      var staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap";
+
+      //Set the Google Map Center.
+      staticMapUrl += "?center=" + map.getCenter().lat() + "," + map.getCenter().lng();
+
+      //Set the Google Map Size.
+      staticMapUrl += "&size=640x480&scale=2";
+
+      //Set the Google Map Type.
+      staticMapUrl += "&maptype=hybrid";
+
+      //Set the Google Map Zoom.
+      staticMapUrl += "&zoom=" + map.zoom;
+
+      //Loop and add Markers.
+      staticMapUrl += "&markers=" + document.getElementById('lat').value + "," + document.getElementById('lng').value;
+
+      //Display the Image of Google Map.
+      var imgMap = document.getElementById("imgMap");
+
+      $("#imgMap").attr("src", staticMapUrl);
+      return imgMap + "png";
+    }
 
     function aggiungicommenti(id) {
       //aggiungi nuovi commenti
