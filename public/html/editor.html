@@ -800,11 +800,14 @@
       //Loop and add Markers.
       staticMapUrl += "&markers=" + map.getCenter().lat() + "," + map.getCenter().lng();
 
+      //Key
+      staticMapUrl += "&key=" + "AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M";
+
       //Display the Image of Google Map.
       var imgMap = document.getElementById("imgMap");
 
       $("#imgMap").attr("src", staticMapUrl);
-      return imgMap + "png";
+      return imgMap + ".png";
     }
 
     function aggiungicommenti(id) {
