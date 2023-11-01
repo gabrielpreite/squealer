@@ -1561,7 +1561,7 @@ exports.add_quota = async function(q, credentials) {
 		let acquisto = {}
 		acquisto["timestamp"] = date.getTime();
 		acquisto["quantita"] = parseInt(q.qnt)
-		console.log("aggiungo "+q.qnt+" caratteri a "+q.target)
+		
 		await mongo.db(dbname)
 			.collection("utente")
 			.updateOne(
