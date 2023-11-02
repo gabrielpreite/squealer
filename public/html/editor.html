@@ -200,9 +200,9 @@
               </div>
             </div>
         <form id="crea_post" enctype="multipart/form-data">
-        <!-- Second Column -->
-        <div class="col-md-6" id="col-cx">
-          <div id="campo_scelta">
+          <!-- Second Column -->
+          <div class="col-md-6" id="col-cx">
+            <div id="campo_scelta">
               <label>
                 <input type="radio" hidden>
                 <i class="fas fa-font icona-scelta attiva" onclick="cambia_campo('Testo')"></i>
@@ -217,41 +217,44 @@
               </label>
             </div>
 
-          <div id="contenuto_testo">
-            <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
-          </div>
-          <div id="contenuto_immagine" hidden="true">
-            <label for="img">Seleziona un'immagine</label>
-            <!--<form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">-->
-              <input type="file" id="img" name="img" accept="image/*">
-              <!--<input type="submit" value="Carica Immagine">
-            </form>-->
-            <div id="preview"></div>
-          </div>
-          <div id="contenuto_posizione" hidden="true">
-            <div id="map" style="height: 60vh;">
+            <div id="contenuto_testo">
+              <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
             </div>
-            <input type="text" id="imgMap" hidden></div>
-          </div>
-          <div class="text-end">
-            <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
-          </div>
-        </div>
 
-        <!-- Third Column -->
-        <div class="col-md-3" id="col-dx">
-          <div id="vuoto" hidden="false">
-          
-          </div>
-          <div id="mostra-commenti" hidden="true">
-            <h4 class="statistiche-title">Commenti</h4>
-            <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
+            <div id="contenuto_immagine" hidden="true">
+              <label for="img">Seleziona un'immagine</label>
+              <!--<form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">-->
+                <input type="file" id="img" name="img" accept="image/*">
+                <!--<input type="submit" value="Carica Immagine">
+              </form>-->
+              <div id="preview"></div>
+            </div>
 
+            <div id="contenuto_posizione" hidden="true">
+              <div id="map" style="height: 60vh;">
+              </div>
+              <input type="text" id="imgMap" hidden></div>
+            </div>
+
+            <div class="text-end">
+              <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
             </div>
           </div>
-        </div>
-  <!--</form>-->
-  </form>
+
+          <!-- Third Column -->
+          <div class="col-md-3" id="col-dx">
+            <div id="vuoto" hidden="false">
+            
+            </div>
+            <div id="mostra-commenti" hidden="true">
+              <h4 class="statistiche-title">Commenti</h4>
+              <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
+
+              </div>
+            </div>
+          </div>
+        <!--</form>-->
+        </form>
 
   <!--JQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
