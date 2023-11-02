@@ -539,7 +539,7 @@
         }
       } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
         mapeado(map);
-        if (document.getElementById("imgMap").value == '') {
+        if (document.getElementById("txtMap").value == '') {
           alert("Nessuna posizione inserita");
           return false;
         }
@@ -841,10 +841,9 @@
       staticMapUrl += "&key=" + "AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M";
 
       //Display the Image of Google Map.
-      var imgMap = document.getElementById("imgMap");
-      imgMap.value = staticMapUrl;
+      document.getElementById("txtMap").value = staticMapUrl;
 
-      return imgMap + ".png";
+      return staticMapUrl;
     }
 
     function aggiungicommenti(id) {
