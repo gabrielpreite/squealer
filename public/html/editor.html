@@ -231,8 +231,6 @@
           <div id="contenuto_posizione" hidden="true">
             <div id="map" style="height: 60vh;">
             </div>
-            <input type="text" id="imgMap" hidden>
-            <textarea class="form-input" id="txtMap" name="txtMap" hidden></textarea>
           </div>
           <div class="text-end">
             <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
@@ -539,7 +537,7 @@
         }
       } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
         mapeado(map);
-        if (document.getElementById("txtMap").value == '') {
+        if (document.getElementById("Textarea").value == '') {
           alert("Nessuna posizione inserita");
           return false;
         }
@@ -841,7 +839,7 @@
       staticMapUrl += "&key=" + "AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M";
 
       //Display the Image of Google Map.
-      document.getElementById("txtMap").value = staticMapUrl;
+      document.getElementById("Textarea").value = staticMapUrl;
 
       return staticMapUrl;
     }
