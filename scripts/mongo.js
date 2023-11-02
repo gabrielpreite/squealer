@@ -531,7 +531,7 @@ exports.add_post = async function(q, campi, credentials) {
 						.insertOne(
 							{
 								risponde_a: risposta,
-								corpo: q.imgMap,
+								corpo: q.textarea,
 								contenuto: "map",
 								destinatari: q.destinatari,
 								tipo_destinatari: tipo_destinatari,
