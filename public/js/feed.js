@@ -172,7 +172,9 @@ function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()
   container.removeAttr("hidden")
-  conainer.append(`<i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i>`)
+
+  let riga0 = `<div class="row" id="riga0"><i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i></div>`
+  container.append(riga0)
 
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
@@ -205,7 +207,6 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let riga4 = `<div class="row" id="riga4"></div>`
 
     let info = `<div class="info"><h3>${meta["info"]["nome"]}</h3></div>`
 
@@ -217,12 +218,16 @@ function aggiungi_info(meta){
     }
 
     container.append(riga2)
-    $("#riga2").append(follow)
-    container.append(riga3)
-    $("#riga3").append(info)
+    $("#riga2").append(info)
 
     let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
     container.append(riga3)
+
+    let riga4 = `<div class="row" id="riga4"></div>`
+    container.append(riga4)
+    $("#riga4").append(follow)
+
+
   }
 }
 
