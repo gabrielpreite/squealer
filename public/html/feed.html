@@ -447,6 +447,24 @@
         });
 
         //SQUEAL
+
+        // Importa la libreria Moment.js
+        import moment from 'moment';
+
+        // Configura l'adattatore di data di Chart.js
+        Chart.register(ChartDataLabels, {
+          plugins: [ChartDataLabels],
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                parser: 'YYYY-MM-DD', // Formato della data
+                tooltipFormat: 'll', // Formato della data per il tooltip
+              },
+            },
+          },
+        });
+
         // Supponiamo che tu abbia un array di date e un array di conteggi squeal
         const date = ["2023-01-01", "2023-01-02", "2023-01-03"]; // Sostituisci con le tue date
         const squealCount = [10, 20, 15]; // Sostituisci con i tuoi conteggi squeal
