@@ -37,6 +37,8 @@ function aggiungi_squeal(squeals) {
       } else if (squeals[i].tipo_destinatari == "utenti") {
         var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
         document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
+      } else {
+        document.getElementById(id_destinatari).hidden = true;
       }
       var lista_destinatari = document.getElementById('squeal_destinatari' + i);
       var n_destinatari = squeals[i].destinatari.length;
