@@ -144,7 +144,7 @@ function toggle_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      let num_foll = parseInt($("#num_follower").split(" ")[0])
+      let num_foll = parseInt($("#num_follower").text().split(" ")[0])
       if (data.result == "added"){
         $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
