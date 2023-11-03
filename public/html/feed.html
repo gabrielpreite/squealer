@@ -12,8 +12,12 @@
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 
-    <!--Google Charts-->
+    <!--Chart.js-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <!--Google Charts-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <!--Fonts-->
     <link href="http://fonts.cdnfonts.com/css/chirp-2" rel="stylesheet">
@@ -128,7 +132,6 @@
             <a href="" class="channel-button" style="margin-left: 15px"><i class="fas fa-wrench"></i> Staff</a>
             <a href="" class="channel-button"><i class="far fa-newspaper fa-fw"></i> News</a>
             <a href="" class="channel-button" style="margin-right: 5px;"><i class="far fa-sun"></i> Meteo</a>
-            <a href="" class="channel-button small">...</a>
           </div>
 
           <h4 class="statistiche-title" style="text-align: left">Tendenze</h4>
@@ -160,8 +163,22 @@
               <!-- Le tessere del mosaico saranno generate dinamicamente con JavaScript -->
           </div>
 
-          <h4 class="statistiche-title">Picchi di utenza</h4>
-          <div class="grafico" id="grafico-attivita"></div>
+          <h4 class="statistiche-title">Cronologia Squeal</h4>
+          <div class="grafico" id="grafico-squeal">
+            <canvas id="squealChart"></canvas>
+          </div>
+
+          <h4 class="statistiche-title">Numero Commenti</h4>
+          <div class="grafico" id="grafico-commenti">
+              <canvas id="commentiChart"></canvas>
+          </div>
+
+          <h4 class="statistiche-title">Andamento Popolarità</h4>
+          <div class="grafico" id="grafico-popolarità">
+            <canvas id="popolaritaChart"></canvas>
+          </div>
+
+          <br><br><br>
 
         </div>
 
@@ -304,7 +321,7 @@
         var sono_contrario = "sono_contrario";
         var apri = "apri";
         aggiungi_squeal(squeals);
-
+/*
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
@@ -365,6 +382,129 @@
           var chart = new google.visualization.LineChart(document.getElementById('grafico-attivita'));
           chart.draw(data, options);
         }
+        */
+
+        // COMMENTI
+        const datiCommenti = [10, 5, 20, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
+
+        // Ottieni il riferimento al canvas del grafico
+        const canvasGraficoCommenti = document.getElementById("commentiChart");
+
+        // Crea il grafico utilizzando Chart.js
+        const graficoCommenti = new Chart(canvasGraficoCommenti, {
+          type: "bar", // Tipo di grafico (puoi scegliere il tipo di grafico desiderato)
+          data: {
+            labels: ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"], // Etichette per i post
+            datasets: [
+              {
+                label: "Numero di commenti ricevuti",
+                data: datiCommenti,
+                backgroundColor: "rgba(70, 130, 180, 0.2)", // Colore di sfondo delle barre
+                borderColor: "rgba(70, 130, 180, 1)", // Colore del bordo delle barre
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        // POPOLARITA
+        // Dati di esempio: popolarità nel tempo
+        const datiPopolarita = [100, 150, 200, 250, 300, 350]; // Sostituisci questi dati con i tuoi dati reali
+
+        // Etichette temporali
+        const etichetteTemporali = ["Mese 1", "Mese 2", "Mese 3", "Mese 4", "Mese 5", "Mese 6"]; // Sostituisci con le tue etichette temporali
+
+        // Ottieni il riferimento al canvas del grafico
+        const canvasGraficoPopolarita = document.getElementById("popolaritaChart");
+
+        // Crea il grafico a linea utilizzando Chart.js
+        const graficoPopolarita = new Chart(canvasGraficoPopolarita, {
+          type: "line", // Tipo di grafico (linea)
+          data: {
+            labels: etichetteTemporali, // Etichette temporali
+            datasets: [
+              {
+                label: "Numero di Squeals popolari",
+                data: datiPopolarita,
+                borderColor: "rgba(0, 128, 0, 0.8)", // Colore della linea
+                borderWidth: 2,
+                fill: false, // Non riempire l'area sottostante la linea
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        //SQUEAL
+
+        // Importa la libreria Moment.js
+        import moment from 'moment';
+
+        // Configura l'adattatore di data di Chart.js
+        Chart.register(ChartDataLabels, {
+          plugins: [ChartDataLabels],
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                parser: 'YYYY-MM-DD', // Formato della data
+                tooltipFormat: 'll', // Formato della data per il tooltip
+              },
+            },
+          },
+        });
+
+        // Supponiamo che tu abbia un array di date e un array di conteggi squeal
+        const date = ["2023-01-01", "2023-01-02", "2023-01-03"]; // Sostituisci con le tue date
+        const squealCount = [10, 20, 15]; // Sostituisci con i tuoi conteggi squeal
+
+        // Imposta il canvas del grafico
+        const canvasGraficoSqueal = document.getElementById("squealChart");
+
+        // Crea il grafico utilizzando Chart.js
+        const graficoSqueal = new Chart(canvasGraficoSqueal, {
+          type: "line",
+          data: {
+            labels: date,
+            datasets: [
+              {
+                label: "Squeal postati",
+                data: squealCount,
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 2,
+                fill: false,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {
+                type: "time",
+                time: {
+                  unit: "day", // Puoi impostare l'unità di tempo desiderata
+                },
+              },
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+
 
         // TRENDS
         const pastelColors = [
@@ -398,6 +538,36 @@
           }
         }
         createMosaicTiles();
+
+        var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
+        var commentData = [10, 20, 15, 30, 25];
+
+        // Ottieni il riferimento all'elemento canvas
+        var ctx = document.getElementById("commentChart").getContext("2d");
+
+        // Crea il grafico
+        var myChart = new Chart(ctx, {
+          type: "bar", // Puoi utilizzare diversi tipi di grafici (bar, pie, line, etc.)
+          data: {
+            labels: postLabels,
+            datasets: [
+              {
+                label: "Numero di Commenti",
+                data: commentData,
+                backgroundColor: "rgba(75, 192, 192, 0.2)", // Colore di sfondo delle barre
+                borderColor: "rgba(75, 192, 192, 1)", // Colore del bordo delle barre
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
 
       </script>
   </body>

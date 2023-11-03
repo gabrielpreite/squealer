@@ -324,11 +324,11 @@
     .then((response) => {
       //chiudo modal
       $("#shop-quota").modal("toggle")
-      let new_quota = get_cookie_by_name("quota_giorno")+qnt
+      let new_quota = parseInt(get_cookie_by_name("quota_giorno"))+qnt
       //aggiorno il cookie quota
       set_cookie("quota_giorno", new_quota)
       //aggiorno navbar
-      $("#charCount_giorno").textContent(new_quota)
+      $("#charCount_giorno").text(new_quota)
       //aggiorno vars
       initialQuota_g = new_quota
       //aggiorno pulsante/ricalcolo quota
