@@ -238,7 +238,7 @@ app.post("/toggle_follow", async function(req, res){
 	try{
 		let result = await mymongo.toggle_follow(req.body, mongoCredentials)
 		res.status(200)
-		res.send({"result": result})
+		res.send(JSON.stringify({"result": result}))
 	}catch(e){
 		res.status(500)
 		res.send("errore")
