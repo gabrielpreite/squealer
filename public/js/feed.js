@@ -144,12 +144,12 @@ function toggle_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      console.log(status.responseText)
-      if (status.responseText == "added"){
+      console.log(data)
+      if (data == "added"){
         $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
         $("#pulsante-segui").addClass("btn-outline-primary")
-      } else if (status.responseText == "removed") {
+      } else if (data == "removed") {
         $("#pulsante-segui").text("Follow")
         $("#pulsante-segui").removeClass("btn-outline-primary")
         $("#pulsante-segui").addClass("btn-primary")
