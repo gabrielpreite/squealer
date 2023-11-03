@@ -174,7 +174,9 @@ function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()
   container.removeAttr("hidden")
-  conainer.append(`<i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i>`)
+
+  let riga0 = `<div class="row" id="riga0"><i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i></div>`
+  container.append(riga0)
 
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
