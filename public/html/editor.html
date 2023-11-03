@@ -536,11 +536,11 @@
           return false;
         }
       } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
-        mapeado(map);
-        if (document.getElementById("Textarea").value == '') {
+        if (marker.position == undefined) {
           alert("Nessuna posizione inserita");
           return false;
         }
+        mapeado(map, marker);
       }
       // Altri controlli se necessari, come il testo, immagini o posizione
       return true;
@@ -817,7 +817,7 @@
 
     //map.on('click', onClickCoord)
 
-    function mapeado(map) {
+    function mapeado(map, marker) {
       var staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap";
 
       //Set the Google Map Center.
@@ -833,7 +833,7 @@
       staticMapUrl += "&zoom=" + map.zoom;
 
       //Loop and add Markers.
-      staticMapUrl += "&markers=" + map.getCenter().lat() + "," + map.getCenter().lng();
+      staticMapUrl += "&markers=" + marker.position.lat() + "," + marker.position.lng();
 
       //Key
       staticMapUrl += "&key=" + "AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M";
