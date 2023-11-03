@@ -6,7 +6,7 @@
         "email": "fv@gmail.com",
         "password": "12345678",
         "quota": {
-            "g": 300,
+            "g": 50,
             "s": 2000,
             "m": 7500
         },

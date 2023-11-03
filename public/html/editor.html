@@ -318,10 +318,24 @@
       body: JSON.stringify(data)
     })
     .then((response) => {
-      console.log(response)
-      //aggiorna quota visualizzata
-      //modifica pulsante
-      //aggiorna cookie
+      //chiudo modal
+      $("#shop-quota").modal("toggle")
+      let new_quota = get_cookie_by_name("quota_giorno")+qnt
+      //aggiorno il cookie quota
+      set_cookie("quota_giorno", new_quota)
+      //aggiorno navbar
+      $("#charCount_giorno").textContent(new_quota)
+      //aggiorno vars
+      initialQuota_g = new_quota
+      //aggiorno pulsante/ricalcolo quota
+      let opzione = "Testo"
+      if(!document.getElementById("contenuto_testo").hidden)
+        opzione = "Testo"
+      else if(!document.getElementById("contenuto_immagine").hidden)
+        opzione = "Imaggine"
+      else if(!document.getElementById("contenuto_posizione").hidden)
+        opzione = "Posizione"
+      aggiornaQuota(opzione)
     })
   }
 
