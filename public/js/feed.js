@@ -29,22 +29,20 @@ function aggiungi_squeal(squeals) {
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     }
     //destinatari
-    if (squeals[i].tipo_destinatari != null) {
-      var id_destinatari = 'btn-destinatari' + i;
-      if (squeals[i].tipo_destinatari == "canali"){
-        var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
-        document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
-      } else if (squeals[i].tipo_destinatari == "utenti") {
-        var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
-        document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
-      }
-      var lista_destinatari = document.getElementById('squeal_destinatari' + i);
-      var n_destinatari = squeals[i].destinatari.length;
-      for (var j = 0; j < n_destinatari; j++) {
-        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest(this)">' + squeals[i].destinatari[j] + '</a>');
-      }
+    var id_destinatari = 'btn-destinatari' + i;
+    if (squeals[i].tipo_destinatari == "canali"){
+      var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
+      document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
+    } else if (squeals[i].tipo_destinatari == "utenti") {
+      var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
+      document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
     } else {
       document.getElementById(id_destinatari).hidden = true;
+    }
+    var lista_destinatari = document.getElementById('squeal_destinatari' + i);
+    var n_destinatari = squeals[i].destinatari.length;
+    for (var j = 0; j < n_destinatari; j++) {
+      lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest(this)">' + squeals[i].destinatari[j] + '</a>');
     }
 
     //reazioni
@@ -146,11 +144,12 @@ function toggle_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      if (status.responseText == "added"){
+      console.log(data)
+      if (data == "added"){
         $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
         $("#pulsante-segui").addClass("btn-outline-primary")
-      } else if (status.responseText == "removed") {
+      } else if (data == "removed") {
         $("#pulsante-segui").text("Follow")
         $("#pulsante-segui").removeClass("btn-outline-primary")
         $("#pulsante-segui").addClass("btn-primary")
