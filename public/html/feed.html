@@ -18,6 +18,8 @@
     <!--Google Charts-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!--Adattatore date-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.23.0/date-fns.min.js"></script>
 
     <!--Fonts-->
     <link href="http://fonts.cdnfonts.com/css/chirp-2" rel="stylesheet">
@@ -449,27 +451,21 @@
         });
 
         //SQUEAL
+/*
+        // Importa date-fns
+        const { toDate } = require('date-fns');
 
-        // Importa la libreria Moment.js
-        import moment from 'moment';
+        // Registra l'adattatore di data in Chart.js
+        Chart.register(ToadapteDate(data), 'data', 'toBase');
 
-        // Configura l'adattatore di data di Chart.js
-        Chart.register(ChartDataLabels, {
-          plugins: [ChartDataLabels],
-          scales: {
-            x: {
-              type: 'time',
-              time: {
-                parser: 'YYYY-MM-DD', // Formato della data
-                tooltipFormat: 'll', // Formato della data per il tooltip
-              },
-            },
-          },
-        });
+        // Ora puoi utilizzare `toDate` per convertire le date quando necessario
 
         // Supponiamo che tu abbia un array di date e un array di conteggi squeal
-        const date = ["2023-01-01", "2023-01-02", "2023-01-03"]; // Sostituisci con le tue date
+        const dateStrings = ["2023-01-01", "2023-01-02", "2023-01-03"]; // Sostituisci con le tue date
         const squealCount = [10, 20, 15]; // Sostituisci con i tuoi conteggi squeal
+
+        // Converte le date in oggetti Date utilizzando date-fns
+        const dates = dateStrings.map(dateString => toDate(dateString));
 
         // Imposta il canvas del grafico
         const canvasGraficoSqueal = document.getElementById("squealChart");
@@ -478,7 +474,7 @@
         const graficoSqueal = new Chart(canvasGraficoSqueal, {
           type: "line",
           data: {
-            labels: date,
+            labels: dates, // Utilizza le date convertite
             datasets: [
               {
                 label: "Squeal postati",
@@ -504,7 +500,7 @@
           },
         });
 
-
+*/
 
         // TRENDS
         const pastelColors = [
