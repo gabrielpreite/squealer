@@ -370,6 +370,10 @@
 }
 */
 
+#riga0 {
+  text-align: right;
+}
+
 /* Stile per i commenti */
 .icona-chiudi {
   color: #FF5733;

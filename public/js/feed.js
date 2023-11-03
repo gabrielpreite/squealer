@@ -29,22 +29,20 @@ function aggiungi_squeal(squeals) {
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     }
     //destinatari
-    if (squeals[i].tipo_destinatari != null) {
-      var id_destinatari = 'btn-destinatari' + i;
-      if (squeals[i].tipo_destinatari == "canali"){
-        var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
-        document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
-      } else if (squeals[i].tipo_destinatari == "utenti") {
-        var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
-        document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
-      } else {
-        document.getElementById(id_destinatari).hidden = true;
-      }
-      var lista_destinatari = document.getElementById('squeal_destinatari' + i);
-      var n_destinatari = squeals[i].destinatari.length;
-      for (var j = 0; j < n_destinatari; j++) {
-        lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest(this)">' + squeals[i].destinatari[j] + '</a>');
-      }
+    var id_destinatari = 'btn-destinatari' + i;
+    if (squeals[i].tipo_destinatari == "canali"){
+      var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
+      document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
+    } else if (squeals[i].tipo_destinatari == "utenti") {
+      var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
+      document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
+    } else {
+      document.getElementById(id_destinatari).hidden = true;
+    }
+    var lista_destinatari = document.getElementById('squeal_destinatari' + i);
+    var n_destinatari = squeals[i].destinatari.length;
+    for (var j = 0; j < n_destinatari; j++) {
+      lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_dest(this)">' + squeals[i].destinatari[j] + '</a>');
     }
 
     //reazioni
@@ -175,7 +173,9 @@ function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()
   container.removeAttr("hidden")
-  conainer.append(`<i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i>`)
+
+  let riga0 = `<div class="row" id="riga0"><i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i></div>`
+  container.append(riga0)
 
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
@@ -208,7 +208,6 @@ function aggiungi_info(meta){
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
-    let riga4 = `<div class="row" id="riga4"></div>`
 
     let info = `<div class="info"><h3>${meta["info"]["nome"]}</h3></div>`
 
@@ -220,12 +219,16 @@ function aggiungi_info(meta){
     }
 
     container.append(riga2)
-    $("#riga2").append(follow)
-    container.append(riga3)
-    $("#riga3").append(info)
+    $("#riga2").append(info)
 
     let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
     container.append(riga3)
+
+    let riga4 = `<div class="row" id="riga4"></div>`
+    container.append(riga4)
+    $("#riga4").append(follow)
+
+
   }
 }
 
