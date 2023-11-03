@@ -170,7 +170,7 @@
 
           <h4 class="statistiche-title">Cronologia Squeal</h4>
           <div class="grafico" id="grafico-squeal">
-            <canvas id="grafico-squeal-canvas"></canvas>
+            <canvas id="squealChart"></canvas>
           </div>
 
           <h4 class="statistiche-title">Numero Commenti</h4>
@@ -319,7 +319,7 @@
         var sono_contrario = "sono_contrario";
         var apri = "apri";
         aggiungi_squeal(squeals);
-
+/*
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
@@ -380,6 +380,7 @@
           var chart = new google.visualization.LineChart(document.getElementById('grafico-attivita'));
           chart.draw(data, options);
         }
+        */
 
         // COMMENTI
         const datiCommenti = [10, 5, 20, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
@@ -446,24 +447,36 @@
         });
 
         //SQUEAL
-        const canvasGraficoSqueal = document.getElementById("grafico-squeal-canvas");
+        // Supponiamo che tu abbia un array di date e un array di conteggi squeal
+        const date = ["2023-01-01", "2023-01-02", "2023-01-03"]; // Sostituisci con le tue date
+        const squealCount = [10, 20, 15]; // Sostituisci con i tuoi conteggi squeal
 
+        // Imposta il canvas del grafico
+        const canvasGraficoSqueal = document.getElementById("squealChart");
+
+        // Crea il grafico utilizzando Chart.js
         const graficoSqueal = new Chart(canvasGraficoSqueal, {
-          type: "bar", // Usa un grafico a barre per la cronologia Squeal
+          type: "line",
           data: {
-            labels: etichetteTemporali,
+            labels: date,
             datasets: [
               {
-                label: "Squeal",
-                data: datiSqueal,
-                backgroundColor: "rgba(255, 99, 132, 0.6)", // Colore diverso, ad esempio rosso tenue
-                borderColor: "rgba(255, 99, 132, 1)", // Colore del bordo
-                borderWidth: 1,
+                label: "Squeal postati",
+                data: squealCount,
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 2,
+                fill: false,
               },
             ],
           },
           options: {
             scales: {
+              x: {
+                type: "time",
+                time: {
+                  unit: "day", // Puoi impostare l'unità di tempo desiderata
+                },
+              },
               y: {
                 beginAtZero: true,
               },
