@@ -459,3 +459,18 @@
   align-items: center;
   text-align: center;
 }
+
+/* Stile personalizzato per il pulsante di chiusura */
+.close {
+  font-size: 28px;
+  color: red;
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  text-align: center;
+  cursor: pointer;
+}
+
+.modal-title {
+  text-align: center !important;
+}
