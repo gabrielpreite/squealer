@@ -144,15 +144,17 @@ function toggle_follow(target, tipo){
     headers: { },
     data: { origin: origin, target: target, tipo: tipo },
     success: function (data, status, xhr) {
-      console.log(data)
-      if (data == "added"){
+      let num_foll = parseInt($("#num_follower").text().split(" ")[0])
+      if (data.result == "added"){
         $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
         $("#pulsante-segui").addClass("btn-outline-primary")
-      } else if (data == "removed") {
+        $("#num_follower").text(String(num_foll+1)+" follower(s)")
+      } else if (data.result == "removed") {
         $("#pulsante-segui").text("Follow")
         $("#pulsante-segui").removeClass("btn-outline-primary")
         $("#pulsante-segui").addClass("btn-primary")
+        $("#num_follower").text(String(num_foll-1)+" follower(s)")
       }
     }
   });
