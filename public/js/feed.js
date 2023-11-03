@@ -174,6 +174,7 @@ function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()
   container.removeAttr("hidden")
+  conainer.append(`<i class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></i>`)
 
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
@@ -227,6 +228,9 @@ function aggiungi_info(meta){
   }
 }
 
+function ricarica() {
+  location.reload();
+}
 
 //RICERCA SQUEAL...
 function ricerca_squeal() {
