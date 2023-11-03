@@ -190,9 +190,9 @@ function aggiungi_info(meta){
 
     let follow
     if(meta["info"]["is_follower"]){
-      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]}</div> follower(s)</div>`
+      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div><p id="num_follower">${meta["info"]["num_followers"]}</p> follower(s)</div></div>`
     } else {
-      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]}</div> follower(s)</div>`
+      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div><p id="num_follower">${meta["info"]["num_followers"]}</p> follower(s)</div></div>`
     }
     container.append(riga2)
     $("#riga2").append(info)
@@ -214,9 +214,9 @@ function aggiungi_info(meta){
 
     let follow
     if(meta["info"]["is_follower"]){
-      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]}</div> follower(s)</div>`
+      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div><p id="num_follower">${meta["info"]["num_followers"]}</p> follower(s)</div></div>`
     } else {
-      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]}</div> follower(s)</div>`
+      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div><p id="num_follower">${meta["info"]["num_followers"]}</p> follower(s)</div></div>`
     }
 
     container.append(riga2)
