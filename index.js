@@ -40,9 +40,8 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
 const upload = require('./multer'); // Import the multer configuration
-console.log("ciao");
 const CryptoJS = require('crypto-js');
-console.log("ciao1");
+console.log("ciao0");
 
 
 
@@ -66,8 +65,6 @@ app.use(express.json()); //?
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
-app.use(CryptoJS)
-console.log("ciao3");
 var session;
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({

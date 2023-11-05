@@ -387,7 +387,11 @@ exports.add_user = async function(q, credentials) {
 		await mongo.connect();
 
 		//Cripta la psw
+		console.log("ciao1");
+
 		let psw = CryptoJS.SHA3(q.password);
+		console.log("ciao2");
+
 
 		await mongo.db(dbname)
 					.collection("utente")
