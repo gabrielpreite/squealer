@@ -291,8 +291,8 @@ exports.user_login = async function(q,credentials) {
 					.find({$and: 
 						[
 							{username: q.username},
-							//{password: q.password}
-							{password: ""+psw}
+							{password: q.password}
+							//{password: ""+psw}
 						]
 					},{
 						password: 0
@@ -388,10 +388,7 @@ exports.add_user = async function(q, credentials) {
 		await mongo.connect();
 
 		//Cripta la psw
-		console.log("ciao1");
 		let psw = CryptoJS.SHA3(q.password);
-		console.log("ciao2");
-
 
 		await mongo.db(dbname)
 					.collection("utente")
@@ -401,8 +398,8 @@ exports.add_user = async function(q, credentials) {
 							nome: q.nome + " " + q.cognome,
 							username: q.username,
 							email: q.email,
-							//password: q.password,
-							password: ""+psw,
+							password: q.password,
+							//password: ""+psw,
 							quota: {
 								"g": 50, "s": 300, "m": 1000
 							},
