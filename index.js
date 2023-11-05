@@ -40,8 +40,9 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
 const upload = require('./multer'); // Import the multer configuration
+console.log("ciao");
 const CryptoJS = require('crypto-js');
-
+console.log("ciao1");
 
 
 
@@ -63,9 +64,11 @@ app.use('/img' , express.static(global.rootDir +'/public/media/img'));
 app.use('/uploads', express.static(global.rootDir +'/public/media/uploads'));
 app.use(express.json()); //?
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(CryptoJS());
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+console.log("ciao2");
+app.use(CryptoJS())
+console.log("ciao3");
 var session;
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
