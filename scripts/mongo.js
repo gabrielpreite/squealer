@@ -20,6 +20,7 @@ Copyright (c) 2021 by Fabio Vitali
    CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 */
+const CryptoJS = require('crypto-js');
 
 /* Dati di prova */
 let fn_utente = "/public/data/utente.json"
