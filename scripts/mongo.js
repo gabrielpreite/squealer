@@ -392,7 +392,7 @@ exports.add_user = async function(q, credentials) {
 		try{
 			let psw = CryptoJS.SHA3(q.password);
 			console.log(q.password);
-			console.log(psw);
+			console.log(psw.text());
 		}catch(e){
 			console.log(e);
 		}
