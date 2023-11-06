@@ -35,7 +35,7 @@
             <h6 class="dropdown-header">Gestisci altri account</h6>
           </div>
         </div>
-        <div id="managed-account-username" class="btn btn-outline-primary"></div>
+        <div id="managed-account-username" class="btn btn-outline-primary" hidden="true"></div>
       </div>
       <div id="quota">
         <div class="char-count-item">
@@ -95,7 +95,7 @@
         </script>
       </div>
   </header>
-  
+
   <div id="main">
     <!-- MENU -->
     <div id="sidebar">
@@ -154,6 +154,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
+    <script>
+      // INSERIMENTO PROPIC UTENTE
+      $("#propic").attr("src", "http://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
+
+      //se sto gestendo un account lo mostro nella barra
+      let managed = get_cookie_by_name("managed")
+      if (!(managed === undefined)) {
+        $("#managed-account-username").text(managed)
+        $("#managed-account-username").removeAttr("hidden")
+      }
+    </script>
 </body>
 
 </html>

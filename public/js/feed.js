@@ -357,6 +357,7 @@ function ricerca_dest(elem) {
 function switch_account(username){
   set_cookie("managed", username)
   $("#managed-account-username").text(username)
+  $("#managed-account-username").attr("hidden")
   $.ajax({
     type: 'GET',
     dataType: "json",
