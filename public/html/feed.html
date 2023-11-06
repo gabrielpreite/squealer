@@ -492,24 +492,22 @@
           startDate.setDate(startDate.getDate() + 7);
         }
 
-        var postFrequenza = []; // Inizializza l'array vuoto
+        var postFrequenza = new Array(weeksData.length).fill(0); // Inizializza un array con zeri, uno per ogni settimana
 
-        // Calcola la frequenza dei post per ogni settimana
-        for (var i = 0; i < weeksData.length; i++) {
-          var weekStart = weeksData[i].start;
-          var weekEnd = weeksData[i].end;
-          var count = 0;
+        for (var i = 0; i < postData.length; i++) {
+          var postDate = new Date(postData[i]);
 
-          for (var j = 0; j < postData.length; j++) {
-            var postDate = new Date(postData[j]);
+          for (var j = 0; j < weeksData.length; j++) {
+            var weekStart = weeksData[j].start;
+            var weekEnd = weeksData[j].end;
 
             if (postDate >= weekStart && postDate <= weekEnd) {
-              count++;
+              // Incrementa il conteggio di post per la settimana corrente
+              postFrequenza[j]++;
             }
           }
-
-          postFrequenza.push(count);
         }
+
 
         // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in weeksData
 
