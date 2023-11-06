@@ -291,8 +291,7 @@ exports.user_login = async function(q,credentials) {
 					.find({$and: 
 						[
 							{username: q.username},
-							{password: q.password}
-							//{password: ""+psw}
+							{password: ""+psw}
 						]
 					},{
 						password: 0
@@ -398,8 +397,7 @@ exports.add_user = async function(q, credentials) {
 							nome: q.nome + " " + q.cognome,
 							username: q.username,
 							email: q.email,
-							password: q.password,
-							//password: ""+psw,
+							password: ""+psw,
 							quota: {
 								"g": 50, "s": 300, "m": 1000
 							},

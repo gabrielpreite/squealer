@@ -41,7 +41,6 @@ const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
 const upload = require('./multer'); // Import the multer configuration
 const CryptoJS = require('crypto-js');
-console.log("ciao0");
 
 
 
