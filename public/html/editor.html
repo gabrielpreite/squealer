@@ -785,7 +785,6 @@
               marker.setPosition(pos); // Imposta la posizione del marker
 
               infoWindow.close(); // Chiudi la finestra informativa se era aperta
-              infoWindow.open(map, marker);
             },
             () => {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -825,8 +824,7 @@
 
       // Puoi fare altro con il marker qui se necessario
       // Ad esempio, salvare le coordinate in una variabile o inviarle al server
-
-      infoWindow.open(map, marker);
+      infoWindow.close(); // Chiudi la finestra informativa se era aperta
     }
 
     // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
@@ -844,7 +842,7 @@
       //Set the Google Map Size.
       staticMapUrl += "&size=640x480&scale=2";
 
-      //Set the Google Map Type.
+      //Set the Google Map Type. roadmap/satellite/hybrid/terrain
       staticMapUrl += "&maptype=hybrid";
 
       //Set the Google Map Zoom.
