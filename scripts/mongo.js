@@ -166,21 +166,18 @@ exports.search_utente = async function(q,credentials) {
 
 exports.search_notifica = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
-	let result = []
+
 	try {
-		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
-		debug.push("... managed to connect to MongoDB.")
 
 		let result = []
-			debug.push("no args found")
-			await mongo.db(dbname)
-						.collection("notifica")
-						.find()
-						.forEach( (r) => { 
-							result.push(r) 
-						} );
+		await mongo.db(dbname)
+			.collection("notifica")
+			.find()
+			.forEach( (r) => { 
+				result.push(r) 
+			} );
 		
 		return result
 	} catch (e) {
