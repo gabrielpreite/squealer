@@ -757,6 +757,7 @@
 
       const locationButton = document.createElement("button");
 
+      locationButton.type = "button";
       locationButton.textContent = "Trova la mia posizione";
       locationButton.classList.add("custom-map-control-button");
       map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
@@ -794,6 +795,7 @@
           // Il browser non supporta la geolocalizzazione
           handleLocationError(false, infoWindow, map.getCenter());
         }
+        return false;
       });
     }
 
