@@ -401,8 +401,8 @@
               {
                 label: "Numero di commenti ricevuti",
                 data: datiCommenti,
-                backgroundColor: "rgba(70, 130, 180, 0.2)", // Colore di sfondo delle barre
-                borderColor: "rgba(70, 130, 180, 1)", // Colore del bordo delle barre
+                backgroundColor: "rgba(0, 102, 255, 0.3)", // Colore di sfondo delle barre
+                borderColor: "rgba(0, 102, 255, 1)", // Colore del bordo delle barre
                 borderWidth: 1,
               },
             ],
@@ -451,55 +451,69 @@
         });
 
         //SQUEAL
+        var postData = [
+          { date: '2023-03-12' },
+          { date: '2023-03-13' },
+          { date: '2023-03-18' },
+          { date: '2023-03-25' },
+          // Altre date
+        ];
 
-        // Importa date-fns
-        const { toDate } = require('date-fns');
+        var weeksData = [];
 
-        // Registra l'adattatore di data in Chart.js
-        Chart.register(ToadapteDate(data), 'data', 'toBase');
+        var currentWeekStart = null;
+        var currentWeekEnd = null;
+        var currentWeek = null;
 
-        // Ora puoi utilizzare `toDate` per convertire le date quando necessario
-
-        // Supponiamo che tu abbia un array di date e un array di conteggi squeal
-        const dateStrings = ["2023-01-01", "2023-01-02", "2023-01-03"]; // Sostituisci con le tue date
-        const squealCount = [10, 20, 15]; // Sostituisci con i tuoi conteggi squeal
-
-        // Converte le date in oggetti Date utilizzando date-fns
-        const dates = dateStrings.map(dateString => toDate(dateString));
-
-        // Imposta il canvas del grafico
-        const canvasGraficoSqueal = document.getElementById("squealChart");
-
-        // Crea il grafico utilizzando Chart.js
-        const graficoSqueal = new Chart(canvasGraficoSqueal, {
-          type: "line",
-          data: {
-            labels: dates, // Utilizza le date convertite
-            datasets: [
-              {
-                label: "Squeal postati",
-                data: squealCount,
-                borderColor: "rgba(255, 99, 132, 1)",
-                borderWidth: 2,
-                fill: false,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              x: {
-                type: "time",
-                time: {
-                  unit: "day", // Puoi impostare l'unità di tempo desiderata
-                },
-              },
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
+        postData.forEach(function(post) {
+          var postDate = new Date(post.date);
+          if (!currentWeekStart) {
+            currentWeekStart = new Date(postDate);
+            currentWeekStart.setDate(currentWeekStart.getDate() - postDate.getDay()); // Imposta la data di inizio settimana al lunedì
+            currentWeek = postDate.toLocaleDateString() + ' - ';
+          }
+          currentWeekEnd = postDate;
+          if (postDate.getDay() === 0) {
+            // Se il post è di domenica, chiudi la settimana corrente
+            currentWeek += currentWeekEnd.toLocaleDateString();
+            weeksData.push({ week: currentWeek, start: currentWeekStart, end: currentWeekEnd });
+            currentWeekStart = null;
+            currentWeekEnd = null;
+          }
         });
 
+        // Gestisci l'ultima settimana se necessario
+        if (currentWeekStart && currentWeekEnd) {
+          currentWeek += currentWeekEnd.toLocaleDateString();
+          weeksData.push({ week: currentWeek, start: currentWeekStart, end: currentWeekEnd });
+        }
+
+        // Supponiamo di avere dati di frequenza dei post associati a ciascuna settimana
+        var postFrequenza = [10, 20, 15, 30]; // Sostituisci con i dati reali
+
+        // Ottieni il riferimento al canvas e crea il grafico
+        var canvas = document.getElementById('squealChart');
+        var ctx = canvas.getContext('2d');
+
+        var chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: weeksData.map(function(weekData) {
+              return weekData.week;
+            }),
+            datasets: [{
+              label: 'Frequenza dei Post',
+              data: postFrequenza, // Includi i dati di frequenza dei post
+              borderColor: 'rgba(255, 139, 45, 1)', // Colore della linea del grafico
+              borderWidth: 2,
+              fill: false, // Non riempire l'area sotto la curva
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+          }
+        });
 
 
         // TRENDS
