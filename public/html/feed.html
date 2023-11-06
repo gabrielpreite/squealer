@@ -500,9 +500,10 @@
           type: 'line',
           data: {
             labels: weeksData.map(function(weekData) {
-              return weekData.week;
-            }),
-            datasets: [{
+                var start = weekData.start.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+                var end = weekData.end.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+                return start + ' - ' + end;
+            }),            datasets: [{
               label: 'Frequenza dei Post',
               data: postFrequenza, // Includi i dati di frequenza dei post
               borderColor: 'rgba(255, 139, 45, 1)', // Colore della linea del grafico
