@@ -453,67 +453,100 @@
 
         //SQUEAL
         var postData = [
-          { date: '2023-03-12' },
-          { date: '2023-03-13' },
-          { date: '2023-03-18' },
-          { date: '2023-03-25' },
-          // Altre date
+          '2023-03-12',
+          '2023-03-13',
+          '2023-03-18',
+          '2023-03-27'
         ];
 
-        var weeksData = [];
+        function getPreviousMonday(giorno) {
+          date = new Date(giorno);
+          var dayOfWeek = date.getDay(); // Ottieni il giorno della settimana (0 = Domenica, 1 = Lunedì, ..., 6 = Sabato)
+          if (dayOfWeek == 1) {
+            // La data fornita è già un lunedì, quindi la restituisci senza modificarla
+            return date;
+          } else {
+            // Calcola quanti giorni devi retrocedere per raggiungere il lunedì precedente
+            var daysToSubtract = (dayOfWeek == 0) ? 6 : dayOfWeek - 1;
 
-        var currentWeekStart = null;
-        var currentWeekEnd = null;
-        var currentWeek = null;
+            // Crea una copia della data fornita e sottrai i giorni necessari per ottenere il lunedì precedente
+            var previousMonday = new Date(date);
+            previousMonday.setDate(date.getDate() - daysToSubtract);
 
-        postData.forEach(function(post) {
-          var postDate = new Date(post.date);
-          if (!currentWeekStart) {
-            currentWeekStart = new Date(postDate);
-            currentWeekStart.setDate(currentWeekStart.getDate() - postDate.getDay()); // Imposta la data di inizio settimana al lunedì
-            currentWeek = postDate.toLocaleDateString() + ' - ';
+            return previousMonday;
           }
-          currentWeekEnd = postDate;
-          if (postDate.getDay() === 0) {
-            // Se il post è di domenica, chiudi la settimana corrente
-            currentWeek += currentWeekEnd.toLocaleDateString();
-            weeksData.push({ week: currentWeek, start: currentWeekStart, end: currentWeekEnd });
-            currentWeekStart = null;
-            currentWeekEnd = null;
-          }
-        });
-
-        // Gestisci l'ultima settimana se necessario
-        if (currentWeekStart && currentWeekEnd) {
-          currentWeek += currentWeekEnd.toLocaleDateString();
-          weeksData.push({ week: currentWeek, start: currentWeekStart, end: currentWeekEnd });
         }
 
-        // Supponiamo di avere dati di frequenza dei post associati a ciascuna settimana
-        var postFrequenza = [10, 20, 15, 30]; // Sostituisci con i dati reali
+        var startDate = (getPreviousMonday(postData[0]));
+        var endDate = new Date(postData[postData.length - 1]);
 
-        // Ottieni il riferimento al canvas e crea il grafico
+        var weeksData = [];
+        while (startDate <= endDate) {
+          var weekStart = new Date(startDate);
+          var weekEnd = new Date(startDate);
+          weekEnd.setDate(weekEnd.getDate() + 6);
+
+          var weekLabel = weekStart.toLocaleDateString() + ' - ' + weekEnd.toLocaleDateString();
+          weeksData.push({ week: weekLabel, start: weekStart, end: weekEnd });
+
+          startDate.setDate(startDate.getDate() + 7);
+        }
+
+        var postFrequenza = []; // Inizializza l'array vuoto
+
+        // Calcola la frequenza dei post per ogni settimana
+        for (var i = 0; i < weeksData.length; i++) {
+          var weekStart = weeksData[i].start;
+          var weekEnd = weeksData[i].end;
+          var count = 0;
+
+          for (var j = 0; j < postData.length; j++) {
+            var postDate = new Date(postData[j]);
+
+            if (postDate >= weekStart && postDate <= weekEnd) {
+              count++;
+            }
+          }
+
+          postFrequenza.push(count);
+        }
+
+        // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in weeksData
+
+        // Continua con la creazione del grafico come nel tuo codice originale
         var canvas = document.getElementById('squealChart');
         var ctx = canvas.getContext('2d');
 
         var chart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: weeksData.map(function(weekData) {
-                var start = weekData.start.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
-                var end = weekData.end.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
-                return start + ' - ' + end;
-            }),            datasets: [{
+            labels: weeksData.map(function (weekData) {
+              var start = weekData.start.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+              var end = weekData.end.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+              return start + ' - ' + end;
+            }),
+            datasets: [{
               label: 'Frequenza dei Post',
-              data: postFrequenza, // Includi i dati di frequenza dei post
-              borderColor: 'rgba(255, 139, 45, 1)', // Colore della linea del grafico
+              data: postFrequenza, // Utilizza il nuovo array postFrequenza
+              borderColor: 'rgba(255, 139, 45, 1)',
               borderWidth: 2,
-              fill: false, // Non riempire l'area sotto la curva
+              fill: false,
             }]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                // Imposta il formato degli assi y come interi anziché con la virgola
+                ticks: {
+                  callback: function(value) {
+                    return value.toFixed(0);
+                  }
+                }
+              }
+            }
           }
         });
 
