@@ -53,7 +53,7 @@
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
           </div>
-          <div id="managed-account-username" class="btn btn-outline-primary" onclick="switch_to_smm()"></div>
+          <div id="managed-account-username" class="btn btn-outline-primary" onclick="switch_to_smm()" hidden="true"></div>
         </div>
         <div id="quota">
           <div class="char-count-item">
@@ -298,6 +298,7 @@
         let managed = get_cookie_by_name("managed")
         if(!(managed === undefined)){
           $("#managed-account-username").text(managed)
+          $("#managed-account-username").removeAttr("hidden")
         }
 
         //RICHIESTA E COSTRUZIONE SQUEAL

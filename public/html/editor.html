@@ -41,7 +41,7 @@
             <h6 class="dropdown-header">Gestisci altri account</h6>
           </div>
         </div>
-        <div id="managed-account-username" class="btn btn-outline-primary"></div>
+        <div id="managed-account-username" class="btn btn-outline-primary" hidden="true"></div>
       </div>
       <div id="quota">
         <div class="char-count-item">
@@ -289,6 +289,7 @@
     let managed = get_cookie_by_name("managed")
     if(!(managed === undefined)){
       $("#managed-account-username").text(managed)
+      $("#managed-account-username").removeAttr("hidden")
     }
 
     array_dest_canali=[]//array destinatari per uso interno
@@ -785,7 +786,6 @@
               marker.setPosition(pos); // Imposta la posizione del marker
 
               infoWindow.close(); // Chiudi la finestra informativa se era aperta
-              infoWindow.open(map, marker);
             },
             () => {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -825,8 +825,7 @@
 
       // Puoi fare altro con il marker qui se necessario
       // Ad esempio, salvare le coordinate in una variabile o inviarle al server
-
-      infoWindow.open(map, marker);
+      infoWindow.close(); // Chiudi la finestra informativa se era aperta
     }
 
     // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
@@ -844,7 +843,7 @@
       //Set the Google Map Size.
       staticMapUrl += "&size=640x480&scale=2";
 
-      //Set the Google Map Type.
+      //Set the Google Map Type. roadmap/satellite/hybrid/terrain
       staticMapUrl += "&maptype=hybrid";
 
       //Set the Google Map Zoom.
