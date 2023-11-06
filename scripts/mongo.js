@@ -26,6 +26,7 @@ const CryptoJS = require('crypto-js');
 let fn_utente = "/public/data/utente.json"
 let fn_canale = "/public/data/canale.json"
 let fn_messaggio = "/public/data/messaggio.json"
+let fn_notifica = "/public/data/notifica.json"
 let dbname = "db"
 
 const { MongoClient } = require("mongodb");
@@ -93,6 +94,17 @@ exports.create = async function(credentials) {
 		 			.insertMany(data3);	
 		debug.push(`... ${added3?.insertedCount || 0} records added.`)
 
+		//AGGIUNGO NOTIFICA
+		debug.push(`Trying to read file '${fn_notifica}'... `)
+		let doc4 = await fs.readFile(rootDir + fn_notifica, 'utf8')
+		let data4 = JSON.parse(doc4)
+		debug.push(`... read ${data4.length} records successfully. `)			
+		debug.push(`Trying to add ${data4.length} new records... `)
+		let added4 = await mongo.db(dbname)
+					.collection("notifica")
+		 			.insertMany(data4);	
+		debug.push(`... ${added4?.insertedCount || 0} records added.`)
+
 		//CHIUDO
 		await mongo.close();
 		debug.push("Managed to close connection to MongoDB.")
@@ -149,6 +161,27 @@ exports.search_utente = async function(q,credentials) {
 		data.debug = debug
 		data.error = e
 		return data
+	}
+}
+
+exports.search_notifica = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		let result = []
+		await mongo.db(dbname)
+			.collection("notifica")
+			.find()
+			.forEach( (r) => { 
+				result.push(r) 
+			} );
+		
+		return result
+	} catch (e) {
+		return e
 	}
 }
 

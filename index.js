@@ -190,6 +190,11 @@ app.get('/api_canale', async function(req, res) {
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
 });
 
+//tabella notifica
+app.get('/api_notifica', async function(req, res) {
+	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
+});
+
 app.get('/permessi_canale', async function(req, res) {
 	try{
 		let result = await mymongo.search_canale(req.query, mongoCredentials)

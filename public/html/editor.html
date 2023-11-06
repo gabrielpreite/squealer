@@ -41,7 +41,7 @@
             <h6 class="dropdown-header">Gestisci altri account</h6>
           </div>
         </div>
-        <div id="managed-account-username" class="btn btn-outline-primary" hidden="true"></div>
+        <div id="managed-account-username" class="btn btn-primary" hidden="true"></div>
       </div>
       <div id="quota">
         <div class="char-count-item">
@@ -758,6 +758,7 @@
 
       const locationButton = document.createElement("button");
 
+      locationButton.type = "button";
       locationButton.textContent = "Trova la mia posizione";
       locationButton.classList.add("custom-map-control-button");
       map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
@@ -795,6 +796,7 @@
           // Il browser non supporta la geolocalizzazione
           handleLocationError(false, infoWindow, map.getCenter());
         }
+        return false;
       });
     }
 
