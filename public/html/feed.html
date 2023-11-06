@@ -451,7 +451,7 @@
         });
 
         //SQUEAL
-/*
+
         // Importa date-fns
         const { toDate } = require('date-fns');
 
@@ -500,7 +500,7 @@
           },
         });
 
-*/
+
 
         // TRENDS
         const pastelColors = [
@@ -537,33 +537,6 @@
 
         var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
         var commentData = [10, 20, 15, 30, 25];
-
-        // Ottieni il riferimento all'elemento canvas
-        var ctx = document.getElementById("commentChart").getContext("2d");
-
-        // Crea il grafico
-        var myChart = new Chart(ctx, {
-          type: "bar", // Puoi utilizzare diversi tipi di grafici (bar, pie, line, etc.)
-          data: {
-            labels: postLabels,
-            datasets: [
-              {
-                label: "Numero di Commenti",
-                data: commentData,
-                backgroundColor: "rgba(75, 192, 192, 0.2)", // Colore di sfondo delle barre
-                borderColor: "rgba(75, 192, 192, 1)", // Colore del bordo delle barre
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
-        });
 
       </script>
   </body>
