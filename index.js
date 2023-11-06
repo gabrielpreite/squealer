@@ -191,7 +191,7 @@ app.get('/api_canale', async function(req, res) {
 });
 
 //tabella notifica
-app.get('/api_canale', async function(req, res) {
+app.get('/api_notifica', async function(req, res) {
 	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
 });
 
