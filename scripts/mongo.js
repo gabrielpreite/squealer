@@ -486,6 +486,8 @@ exports.add_post = async function(q, campi, credentials) {
 			tipo_destinatari = null
 		}
 
+		let newDocumentId
+
 		//console.log(q.tipo)
 		if(q.contenuto == "testo"){//caso testo
 			await mongo.db(dbname)
@@ -517,7 +519,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 						.then(async (result) => {
-							const newDocumentId = result.insertedId;
+							newDocumentId = result.insertedId;
 							await mongo.db(dbname)
 								.collection("messaggio")
 								.updateOne(
@@ -559,7 +561,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 						.then(async (result) => {
-							const newDocumentId = result.insertedId;
+							newDocumentId = result.insertedId;
 							await mongo.db(dbname)
 								.collection("messaggio")
 								.updateOne(
@@ -601,7 +603,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 						.then(async (result) => {
-							const newDocumentId = result.insertedId;
+							newDocumentId = result.insertedId;
 							await mongo.db(dbname)
 								.collection("messaggio")
 								.updateOne(
@@ -613,6 +615,19 @@ exports.add_post = async function(q, campi, credentials) {
 							console.error("Error:", error);
 						});
 
+		}
+
+		// notifica commento all'autore del post
+		if(!(risposta == null)){
+			let autore_originale
+			await mongo.db(dbname)
+				.collection("messaggio")
+				.find({post_id: risposta})
+				.project({utente:1})
+				.forEach((el) => {
+					autore_originale = el.utente
+				})
+			add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, campi.username)
 		}
 
 		await mongo.close();
@@ -1523,7 +1538,7 @@ exports.toggle_follow = async function(q, credentials) {
 						}
 						result = "added"
 						//invio notifica di follow
-						add_notifica(q.target, "follow", q.origin, credentials, null)
+						add_notifica(q.target, "follow", q.origin, credentials, null, null)
 					}
 				})
 				.catch((error) => {
@@ -1638,7 +1653,7 @@ exports.isConnected = async function() {
 }
 
 /* SUPPORT FUNCTIONS */
-async function add_notifica(target, tipo, ref_id, credentials, bonus){
+async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let notifica = {}
 	try {
@@ -1654,7 +1669,7 @@ async function add_notifica(target, tipo, ref_id, credentials, bonus){
 		notifica["timestamp"] = date.getTime();
 
 		if(tipo == "menzione"){
-			notifica["testo"] = `${ref_id} sta parlando di te!`
+			notifica["testo"] = `${origin} sta parlando di te!`
 		} else if(tipo == "follow") {
 			notifica["testo"] = `${ref_id} ha iniziato a seguirti!`
 			await mongo.db(dbname)
@@ -1673,7 +1688,22 @@ async function add_notifica(target, tipo, ref_id, credentials, bonus){
 					console.error("Error:", error);
 				});
 		} else if(tipo == "risposta"){
-			notifica["testo"] = `${ref_id} ha commentato un tuo post!`
+			notifica["testo"] = `${origin} ha commentato un tuo post!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 		} else if(tipo == "popolarita"){
 			if(bonus>0)
 				notifica["testo"] = `I tuoi post sono popolari! Oggi avrai ${bonus} caratteri bonus :)`
