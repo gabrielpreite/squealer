@@ -4,8 +4,44 @@
         "utente": "fv",
         "timestamp": 1698681875530,
         "letta": false,
+        "tipo": "popolarita",
+        "testo": "I tuoi post sono popolari! Oggi avrai 17 caratteri bonus :)",
+        "ref_id": null
+    },
+    {
+        "utente": "fvPro",
         "tipo": "menzione",
-        "testo": "fvPro ti ha menzionato in un post!",
-        "ref_id": "753fd413ea3263dff6a3ccd7"
+        "ref_id": "654a775b95edb43a53c45e12",
+        "letta": true,
+        "timestamp": 1699379035065,
+        "testo": "fv sta parlando di te!",
+        "not_id": "654a775b95edb43a53c45e13"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "menzione",
+        "ref_id": "654a775b95edb43a53c45e12",
+        "letta": false,
+        "timestamp": 1699379035069,
+        "testo": "fv sta parlando di te!",
+        "not_id": "654a775b95edb43a53c45e14"
+    },
+    {
+        "utente": "fvPro",
+        "tipo": "follow",
+        "ref_id": "fv",
+        "letta": false,
+        "timestamp": 1699379426315,
+        "testo": "fv ha iniziato a seguirti!",
+        "not_id": "654a78e2cb559ea118cbee2e"
+    },
+    {
+        "utente": "fvPro",
+        "tipo": "risposta",
+        "ref_id": "654a78f6cb559ea118cbee2f",
+        "letta": false,
+        "timestamp": 1699379446465,
+        "testo": "fv ha commentato un tuo post!",
+        "not_id": "654a78f6cb559ea118cbee30"
     }
 ]
