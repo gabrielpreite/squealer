@@ -1784,12 +1784,14 @@ async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
 				.catch((error) => {
 					console.error("Error:", error);
 				});
-		} else if(tipo == "popolarita"){
+		} else if(tipo == "quota"){
 			if(bonus>0)
-				notifica["testo"] = `I tuoi post sono popolari! Oggi avrai ${bonus} caratteri bonus :)`
+				notifica["testo"] = `Sei popolare! Oggi avrai ${bonus} caratteri bonus :)`
 			else
-				notifica["testo"] = `I tuoi post sono impopolari... Oggi avrai ${bonus} caratteri in meno :(`
+				notifica["testo"] = `Sei impopolare... Oggi avrai ${bonus} caratteri in meno :(`
 			//todo notifica quando ricalcolo la quota
+		} else if(tipo == "popolarita"){
+			//todo notifica quando calcolo la popolarita' di un post (ogni giorno, stesso trigger tipo quota)
 		}
 	} catch (e) {
 		return e

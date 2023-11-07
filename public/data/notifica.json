@@ -4,9 +4,18 @@
         "utente": "fv",
         "timestamp": 1698681875530,
         "letta": false,
-        "tipo": "popolarita",
-        "testo": "I tuoi post sono popolari! Oggi avrai 17 caratteri bonus :)",
+        "tipo": "quota",
+        "testo": "Sei popolare! Oggi avrai 17 caratteri bonus :)",
         "ref_id": null
+    },
+    {
+        "not_id": "752fd413ea3263dff6a3ccd7",
+        "utente": "fv",
+        "timestamp": 1698681875530,
+        "letta": false,
+        "tipo": "quota",
+        "testo": "Il tuo post è diventato popolare!",
+        "ref_id": "654a775b95edb43a53c45e12"
     },
     {
         "utente": "fvPro",
