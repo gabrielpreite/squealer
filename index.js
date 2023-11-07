@@ -105,6 +105,7 @@ app.get('/logout', function (req, res) {
 })
 
 app.get('/test', function (req, res) {
+	console.log(req.session)
 	res.sendFile(global.rootDir+"/public/html/test.html")
 })
 
