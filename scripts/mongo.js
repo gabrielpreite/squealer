@@ -1522,6 +1522,9 @@ exports.toggle_follow = async function(q, credentials) {
 					console.error("Error:", error);
 				});
 
+				//invio notifica di follow
+				add_notifica(q.target, "follow", q.origin, credentials, null)
+
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname)
 				.collection("utente")
@@ -1630,6 +1633,49 @@ exports.isConnected = async function() {
 }
 
 /* SUPPORT FUNCTIONS */
-async function add_notifica(target, tipo, ref_id){
-	
+async function add_notifica(target, tipo, ref_id, credentials, bonus){
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let notifica = {}
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		notifica["utente"] = target
+		notifica["tipo"] = tipo
+		notifica["ref_id"] = ref_id
+		notifica["letta"] = false
+
+		let date = new Date()
+		notifica["timestamp"] = date.getTime();
+
+		if(tipo == "menzione"){
+			notifica["testo"] = `${ref_id} sta parlando di te!`
+		} else if(tipo == "follow") {
+			notifica["testo"] = `${ref_id} ha iniziato a seguirti!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "risposta"){
+			notifica["testo"] = `${ref_id} ha commentato un tuo post!`
+		} else if(tipo == "popolarita"){
+			if(bonus>0)
+				notifica["testo"] = `I tuoi post sono popolari! Oggi avrai ${bonus} caratteri bonus :)`
+			else
+				notifica["testo"] = `I tuoi post sono impopolari... Oggi avrai ${bonus} caratteri in meno :(`
+		}
+	} catch (e) {
+		return e
+	}
 }
