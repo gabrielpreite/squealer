@@ -96,7 +96,11 @@ app.get('/register', function (req, res) {
 })
 
 app.get('/login', function (req, res) {
-	res.sendFile(global.rootDir+"/public/html/login.html")
+	if(!req.session || !req.session.userid) {
+		res.sendFile(global.rootDir+"/public/html/login.html")
+	} else {
+		res.redirect("/")
+	}
 })
 
 app.get('/logout', function (req, res) {
@@ -105,8 +109,6 @@ app.get('/logout', function (req, res) {
 })
 
 app.get('/test', function (req, res) {
-	console.log(req.session)
-	if(!req.session || !req.session.userid) { console.log("sessione non trovata") }
 	res.sendFile(global.rootDir+"/public/html/test.html")
 })
 
