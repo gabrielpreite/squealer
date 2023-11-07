@@ -538,16 +538,16 @@ exports.add_post = async function(q, campi, credentials) {
 
 			if (matches.length > 0) {
 				for(const match of matches){
-					console.log(match)
+					console.log(match[1])
 					let found = false
 					await mongo.db(dbname)
 						.collection("utente")
-						.find({username: match})
+						.find({username: match[1]})
 						.forEach((el) => {
 							found = true
 						})
 					if(found) { //la menzione e' un utente esistente
-						add_notifica(match, "menzione", String(newDocumentId), credentials, null, campi.username)
+						add_notifica(match[1], "menzione", String(newDocumentId), credentials, null, campi.username)
 					}
 				}
 			}
