@@ -435,6 +435,28 @@ app.post('/add_quota', async function(req, res) {
 	}
 });
 
+app.get('/get_notifiche', async function(req, res) {
+	try{
+		let r = await mymongo.get_notifiche(req.query, mongoCredentials)
+		res.status(200)
+		res.send(JSON.stringify(r))
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella ricerca di notifiche")
+	}
+});
+
+app.post('/read_notifica', async function(req, res) {
+	try{
+		await mymongo.read_notifica(req.body, mongoCredentials)
+		res.status(200)
+		res.send("ok")
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella lettura della notifica")
+	}
+});
+
 app.post('/upload', upload.single('img'), (req, res) => {  // ---- DEBUG USE
 	// You can access the uploaded file through req.file
 	if (!req.file) {

@@ -538,7 +538,7 @@ exports.add_post = async function(q, campi, credentials) {
 
 			if (matches.length > 0) {
 				for(const match of matches){
-					console.log(match[1])
+					//console.log(match[1])
 					let found = false
 					await mongo.db(dbname)
 						.collection("utente")
@@ -1657,6 +1657,50 @@ exports.add_quota = async function(q, credentials) {
 			.forEach( (r) => { 
 				console.log(r)
 			});
+
+		await mongo.close()
+		return "success"
+	} catch (e) {
+		return "errore"
+	}
+}
+
+exports.get_notifiche = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+			.collection("notifica")
+			.find({utente: q.username})
+			.forEach( (r) => { 
+				result.push(r)
+			});
+
+		await mongo.close()
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
+exports.read_notifica = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+			.collection("notifica")
+			.updateOne(
+				{ not_id: q.not_id },
+				{
+					$set: { letta: true }
+				}
+			)
 
 		await mongo.close()
 		return "success"
