@@ -1691,6 +1691,21 @@ async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
 
 		if(tipo == "menzione"){
 			notifica["testo"] = `${origin} sta parlando di te!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 		} else if(tipo == "follow") {
 			notifica["testo"] = `${ref_id} ha iniziato a seguirti!`
 			await mongo.db(dbname)
