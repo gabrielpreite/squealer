@@ -439,16 +439,16 @@ app.get('/get_notifiche', async function(req, res) {
 	try{
 		let r = await mymongo.get_notifiche(req.query, mongoCredentials)
 		res.status(200)
-		res.send(JSON.stringify(r))
+		res.send(r)
 	} catch (e) {
 		res.status(500)
 		res.send("errore nella ricerca di notifiche")
 	}
 });
 
-app.post('/read_notifica', async function(req, res) {
+app.get('/read_notifica', async function(req, res) {
 	try{
-		await mymongo.read_notifica(req.body, mongoCredentials)
+		await mymongo.read_notifica(req.query, mongoCredentials)
 		res.status(200)
 		res.send("ok")
 	} catch (e) {
