@@ -60,6 +60,11 @@ exports.create = async function(credentials) {
 					.collection("canale")
 					.deleteMany()
 		debug.push(`... ${cleared3?.deletedCount || 0} records deleted.`)
+		debug.push(`Trying to remove all records in table '${dbname}'... `)
+		let cleared4 = await mongo.db(dbname)
+					.collection("notifica")
+					.deleteMany()
+		debug.push(`... ${cleared4?.deletedCount || 0} records deleted.`)
 
 		//AGGIUNGO UTENTE
 		debug.push(`Trying to read file '${fn_utente}'... `)
@@ -1516,14 +1521,13 @@ exports.toggle_follow = async function(q, credentials) {
 							console.error("Error:", error);
 						}
 						result = "added"
+						//invio notifica di follow
+						add_notifica(q.target, "follow", q.origin, credentials, null)
 					}
 				})
 				.catch((error) => {
 					console.error("Error:", error);
 				});
-
-				//invio notifica di follow
-				add_notifica(q.target, "follow", q.origin, credentials, null)
 
 		} else if(q.tipo == "canale"){
 			await mongo.db(dbname)
