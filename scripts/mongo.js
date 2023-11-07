@@ -180,6 +180,7 @@ exports.search_notifica = async function(q,credentials) {
 		await mongo.db(dbname)
 			.collection("notifica")
 			.find()
+			.project({_id:0})
 			.forEach( (r) => { 
 				result.push(r) 
 			} );
