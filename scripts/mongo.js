@@ -530,7 +530,27 @@ exports.add_post = async function(q, campi, credentials) {
 						.catch((error) => {
 							console.error("Error:", error);
 						});
+					
+			// notifica di menzione
+			const regex = /@([^[\s.,:;!?]+)/g
 
+			const matches = [...q.textarea.matchAll(regex)];
+
+			if (matches.length > 0) {
+				for(const match of matches){
+					console.log(match)
+					let found = false
+					await mongo.db(dbname)
+						.collection("utente")
+						.find({username: match})
+						.forEach((el) => {
+							found = true
+						})
+					if(found) { //la menzione e' un utente esistente
+						add_notifica(match, "menzione", String(newDocumentId), credentials, null, campi.username)
+					}
+				}
+			}
 		}else if(q.contenuto == "img"){//caso immagine
 			await mongo.db(dbname)
 						.collection("messaggio")
@@ -628,27 +648,6 @@ exports.add_post = async function(q, campi, credentials) {
 					autore_originale = el.utente
 				})
 			add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, campi.username)
-		}
-
-		// notifica di menzione
-		const regex = /@([^[\s.,:;!?]+)/g
-
-		const matches = [...text.matchAll(regex)];
-
-		if (matches.length > 0) {
-			for(const match of matches){
-				console.log(match)
-				let found = false
-				await mongo.db(dbname)
-					.collection("utente")
-					.find({username: match})
-					.forEach((el) => {
-						found = true
-					})
-				if(found) { //la menzione e' un utente esistente
-					add_notifica(match, "menzione", String(newDocumentId), credentials, null, campi.username)
-				}
-			}
 		}
 
 		await mongo.close();
