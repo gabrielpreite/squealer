@@ -60,6 +60,11 @@ exports.create = async function(credentials) {
 					.collection("canale")
 					.deleteMany()
 		debug.push(`... ${cleared3?.deletedCount || 0} records deleted.`)
+		debug.push(`Trying to remove all records in table '${dbname}'... `)
+		let cleared4 = await mongo.db(dbname)
+					.collection("notifica")
+					.deleteMany()
+		debug.push(`... ${cleared4?.deletedCount || 0} records deleted.`)
 
 		//AGGIUNGO UTENTE
 		debug.push(`Trying to read file '${fn_utente}'... `)
@@ -175,6 +180,7 @@ exports.search_notifica = async function(q,credentials) {
 		await mongo.db(dbname)
 			.collection("notifica")
 			.find()
+			.project({_id:0})
 			.forEach( (r) => { 
 				result.push(r) 
 			} );
@@ -480,6 +486,8 @@ exports.add_post = async function(q, campi, credentials) {
 			tipo_destinatari = null
 		}
 
+		let newDocumentId
+
 		//console.log(q.tipo)
 		if(q.contenuto == "testo"){//caso testo
 			await mongo.db(dbname)
@@ -511,7 +519,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 						.then(async (result) => {
-							const newDocumentId = result.insertedId;
+							newDocumentId = result.insertedId;
 							await mongo.db(dbname)
 								.collection("messaggio")
 								.updateOne(
@@ -522,7 +530,27 @@ exports.add_post = async function(q, campi, credentials) {
 						.catch((error) => {
 							console.error("Error:", error);
 						});
+					
+			// notifica di menzione
+			const regex = /@([^[\s.,:;!?]+)/g
 
+			const matches = [...q.textarea.matchAll(regex)];
+
+			if (matches.length > 0) {
+				for(const match of matches){
+					//console.log(match[1])
+					let found = false
+					await mongo.db(dbname)
+						.collection("utente")
+						.find({username: match[1]})
+						.forEach((el) => {
+							found = true
+						})
+					if(found) { //la menzione e' un utente esistente
+						add_notifica(match[1], "menzione", String(newDocumentId), credentials, null, campi.username)
+					}
+				}
+			}
 		}else if(q.contenuto == "img"){//caso immagine
 			await mongo.db(dbname)
 						.collection("messaggio")
@@ -553,7 +581,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 						.then(async (result) => {
-							const newDocumentId = result.insertedId;
+							newDocumentId = result.insertedId;
 							await mongo.db(dbname)
 								.collection("messaggio")
 								.updateOne(
@@ -595,7 +623,7 @@ exports.add_post = async function(q, campi, credentials) {
 							}
 						)
 						.then(async (result) => {
-							const newDocumentId = result.insertedId;
+							newDocumentId = result.insertedId;
 							await mongo.db(dbname)
 								.collection("messaggio")
 								.updateOne(
@@ -607,6 +635,19 @@ exports.add_post = async function(q, campi, credentials) {
 							console.error("Error:", error);
 						});
 
+		}
+
+		// notifica commento all'autore del post
+		if(!(risposta == null)){
+			let autore_originale
+			await mongo.db(dbname)
+				.collection("messaggio")
+				.find({post_id: risposta})
+				.project({utente:1})
+				.forEach((el) => {
+					autore_originale = el.utente
+				})
+			add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, campi.username)
 		}
 
 		await mongo.close();
@@ -1516,6 +1557,8 @@ exports.toggle_follow = async function(q, credentials) {
 							console.error("Error:", error);
 						}
 						result = "added"
+						//invio notifica di follow
+						add_notifica(q.target, "follow", q.origin, credentials, null, null)
 					}
 				})
 				.catch((error) => {
@@ -1622,9 +1665,135 @@ exports.add_quota = async function(q, credentials) {
 	}
 }
 
+exports.get_notifiche = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let result = []
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+			.collection("notifica")
+			.find({utente: q.username})
+			.project({_id:0})
+			.forEach( (r) => { 
+				result.push(r)
+			});
+
+		await mongo.close()
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
+exports.read_notifica = async function(q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+			.collection("notifica")
+			.updateOne(
+				{ not_id: q.not_id },
+				{
+					$set: { letta: true }
+				}
+			)
+
+		await mongo.close()
+		return "success"
+	} catch (e) {
+		return "errore"
+	}
+}
+
 /* Untested */
 // https://stackoverflow.com/questions/39599063/check-if-mongodb-is-connected/39602781
 exports.isConnected = async function() {
 	let client = await MongoClient.connect(mongouri) ;
 	return !!client && !!client.topology && client.topology.isConnected()
+}
+
+/* SUPPORT FUNCTIONS */
+async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let notifica = {}
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		notifica["utente"] = target
+		notifica["tipo"] = tipo
+		notifica["ref_id"] = ref_id
+		notifica["letta"] = false
+
+		let date = new Date()
+		notifica["timestamp"] = date.getTime();
+
+		if(tipo == "menzione"){
+			notifica["testo"] = `${origin} sta parlando di te!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "follow") {
+			notifica["testo"] = `${ref_id} ha iniziato a seguirti!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "risposta"){
+			notifica["testo"] = `${origin} ha commentato un tuo post!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "quota"){
+			if(bonus>0)
+				notifica["testo"] = `Sei popolare! Oggi avrai ${bonus} caratteri bonus :)`
+			else
+				notifica["testo"] = `Sei impopolare... Oggi avrai ${bonus} caratteri in meno :(`
+			//todo notifica quando ricalcolo la quota
+		} else if(tipo == "popolarita"){
+			//todo notifica quando calcolo la popolarita' di un post (ogni giorno, stesso trigger tipo quota)
+		}
+	} catch (e) {
+		return e
+	}
 }

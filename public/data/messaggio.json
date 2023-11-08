@@ -397,5 +397,30 @@
     },
     "categoria": null,
     "automatico": false
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Io, @fvPro, @NomeBuffo1 e mia mamma andiamo a prendere un caffè! Chi vuole unirsi può scrivermi a fv@gmail.com",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1699379035019,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "654a775b95edb43a53c45e12"
   }
 ]

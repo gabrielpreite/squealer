@@ -39,7 +39,7 @@ const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
-const upload = require('./multer'); // Import the multer configuration
+const upload = require('./multer');
 
 /* ========================== */
 /*                            */
@@ -73,34 +73,52 @@ app.enable('trust proxy');
 
 app.get('/', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	res.sendFile(global.rootDir+"/public/html/feed.html")
+	else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.redirect("/login")
+	} else {res.sendFile(global.rootDir+"/public/html/feed.html")}
 })
 
 app.get('/editor', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	res.sendFile(global.rootDir+"/public/html/editor.html")
+	else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.redirect("/login")
+	} else {res.sendFile(global.rootDir+"/public/html/editor.html")}
 })
 
 app.get('/settings', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	res.sendFile(global.rootDir+"/public/html/settings.html")
+	else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.redirect("/login")
+	} else {res.sendFile(global.rootDir+"/public/html/settings.html")}
 })
 
 app.get('/testdb', function (req, res) { // ---- DEBUG USE
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	res.sendFile(global.rootDir+"/public/html/testdb.html")
+	else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.redirect("/login")
+	} else {res.sendFile(global.rootDir+"/public/html/testdb.html")}
 })
 
 app.get('/register', function (req, res) {
-	res.sendFile(global.rootDir+"/public/html/register.html")
+	if(!req.session || !req.session.userid) {
+		res.sendFile(global.rootDir+"/public/html/register.html")
+	} else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.sendFile(global.rootDir+"/public/html/register.html")
+	} else {res.redirect("/")}
 })
 
 app.get('/login', function (req, res) {
 	if(!req.session || !req.session.userid) {
 		res.sendFile(global.rootDir+"/public/html/login.html")
-	} else {
-		res.redirect("/")
-	}
+	} else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.sendFile(global.rootDir+"/public/html/login.html")
+	} else {res.redirect("/")}
 })
 
 app.get('/logout', function (req, res) {
@@ -414,6 +432,28 @@ app.post('/add_quota', async function(req, res) {
 	} catch (e) {
 		res.status(500)
 		res.send("errore nell'acquisto di quota")
+	}
+});
+
+app.get('/get_notifiche', async function(req, res) {
+	try{
+		let r = await mymongo.get_notifiche(req.query, mongoCredentials)
+		res.status(200)
+		res.send(r)
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella ricerca di notifiche")
+	}
+});
+
+app.get('/read_notifica', async function(req, res) {
+	try{
+		await mymongo.read_notifica(req.query, mongoCredentials)
+		res.status(200)
+		res.send("ok")
+	} catch (e) {
+		res.status(500)
+		res.send("errore nella lettura della notifica")
 	}
 });
 
