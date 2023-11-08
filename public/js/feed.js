@@ -330,6 +330,9 @@ function ricerca_dest(elem) {
   let query = elem.innerHTML;
   let tipo = query[0];
 
+  if (tipo == " ") {
+    tipo = query[1];
+  }
   if (tipo == "$") {
     tipo = "canale";
   } else {
