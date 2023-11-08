@@ -316,14 +316,23 @@
         var lista_notifiche = document.getElementById('notificationsDropdown');
         var n_notifiche = notifiche.length;
         for (var n = 0; n < n_notifiche; n++) {
-          lista_notifiche.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_notifica(this)">' +  + '</a>');
+          //costruzione notifica
+          const notifica = document.createElement("button");
+          notifica.type = "a";
+          notifica.id = notifiche[n].not_id;
+          notifica.classList.add("dropdown-item");
+          if (notifiche[n].letta) {
+            notifica.classList.add("letta");
+          } else {
+            notifica.classList.add("non_letta");
+          }
+          notifica.classList.add(notifiche[n].tipo)
+          notifica.textContent = notifiche[n].testo;
+          notifica.onclick = "ricerca_notifica(this," + notifiche[n].ref_id + ")";
+
+          lista_notifiche.insertAdjacentHTML('beforeend', notifica);
         }
 
-
-
-
-
-        
         //RICHIESTA E COSTRUZIONE SQUEAL
         var squeals;
         $.ajax({

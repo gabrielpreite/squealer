@@ -524,3 +524,35 @@ function rimpiazza_commenti(id) {
     }
   }
 }
+
+
+
+//NOTIFICHE
+function ricerca_notifica(this, ref_id) {
+  var not_id = this.not_id;
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/read_notifica?not_id=${not_id}`,
+    headers: { },
+    success: function (data, status, xhr) {}
+  });
+  var tipo = this.tipo;
+  if (tipo == "follow") {
+    ricerca_dest(ref_id);
+  } else if (tipo == "menzione" || tipo == "risposta") {
+    var post_notifica;
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${ref_id}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        post_notifica = data[0];
+      }
+    });
+    rimpiazza_squeals(post_notifica, document.getElementById("filtro").value);
+  }
+}
