@@ -332,6 +332,7 @@ function ricerca_dest(elem) {
 
   if (tipo == " ") {
     tipo = query[1];
+    query = query.substring(2);
   }
   if (tipo == "$") {
     tipo = "canale";
