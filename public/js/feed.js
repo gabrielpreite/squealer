@@ -28,11 +28,13 @@ function aggiungi_squeal(squeals) {
       const at = /(?:^|\s)@(\w+)/g;
       const at_arr = squeals[i].corpo.match(at);
       let new_corpo = squeals[i].corpo;
+      console.log(new_corpo + '0');
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
           new_corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_dest(this)">' + nome + '</button>');
         });
       }
+      console.log(new_corpo + '1');
       document.getElementById(id_testo).innerHTML = new_corpo;
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
