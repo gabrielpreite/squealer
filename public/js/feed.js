@@ -528,8 +528,8 @@ function rimpiazza_commenti(id) {
 
 
 //NOTIFICHE
-function ricerca_notifica(this, ref_id) {
-  var not_id = this.not_id;
+function ricerca_notifica(elem, ref_id) {
+  var not_id = elem.not_id;
   $.ajax({
     type: 'GET',
     dataType: "json",
@@ -538,7 +538,7 @@ function ricerca_notifica(this, ref_id) {
     headers: { },
     success: function (data, status, xhr) {}
   });
-  var tipo = this.tipo;
+  var tipo = elem.tipo;
   if (tipo == "follow") {
     ricerca_dest(ref_id);
   } else if (tipo == "menzione" || tipo == "risposta") {
