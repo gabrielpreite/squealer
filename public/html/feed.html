@@ -317,8 +317,8 @@
         var n_notifiche = notifiche.length;
         for (var n = 0; n < n_notifiche; n++) {
           //costruzione notifica
-          const notifica = document.createElement("button");
-          notifica.type = "a";
+          const notifica = document.createElement("a");
+          notifica.type = "button";
           notifica.id = notifiche[n].not_id;
           notifica.classList.add("dropdown-item");
           if (notifiche[n].letta) {
@@ -328,6 +328,7 @@
           }
           notifica.classList.add(notifiche[n].tipo)
           notifica.textContent = notifiche[n].testo;
+          notifica.addEventListener('click', ricerca_notifica(this, notifiche[n].ref_id));
           notifica.onclick = "ricerca_notifica(this," + notifiche[n].ref_id + ")";
 
           lista_notifiche.appendChild(notifica);
