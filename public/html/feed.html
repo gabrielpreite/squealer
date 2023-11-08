@@ -298,12 +298,16 @@
         }
 
         //aggiunta e gestione notifiche
+        var account_now = get_cookie_by_name("managed");
+        if (!(account_now == undefined)) {
+          account_now = get_cookie_by_name("username");
+        }
         var notifiche;
         $.ajax({
           type: 'GET',
           dataType: "json",
           async: false,
-          url: `https://site212251.tw.cs.unibo.it/get_notifiche?username=${username}`,
+          url: `https://site212251.tw.cs.unibo.it/get_notifiche?username=${account_now}`,
           headers: { },
           success: function (data, status, xhr) {
             notifiche = data;
@@ -315,6 +319,11 @@
           lista_notifiche.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_notifica(this)">' +  + '</a>');
         }
 
+
+
+
+
+        
         //RICHIESTA E COSTRUZIONE SQUEAL
         var squeals;
         $.ajax({
