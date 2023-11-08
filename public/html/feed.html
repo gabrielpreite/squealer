@@ -330,7 +330,7 @@
           notifica.textContent = notifiche[n].testo;
           notifica.onclick = "ricerca_notifica(this," + notifiche[n].ref_id + ")";
 
-          lista_notifiche.insertAdjacentHTML('beforeend', notifica);
+          lista_notifiche.appendChild(notifica);
         }
 
 
