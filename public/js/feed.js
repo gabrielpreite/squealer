@@ -23,10 +23,18 @@ function aggiungi_squeal(squeals) {
 
     //corpo squeal
     var id_testo = 'squeal_testo' + i;
-    if(squeals[i].contenuto == "testo" || squeals[i].contenuto == "map"){
+    if(squeals[i].contenuto == "testo"){
+      //parole con @ all'inizio
+      const at = /(?:^|\s)@(\w+)/g;
+      const at_arr = squeals[i].corpo.match(at);
+      at_arr.forEach(function(nome) {
+        squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_dest(this)">' + nome + '</button>');
+      });
       document.getElementById(id_testo).innerHTML = squeals[i].corpo;
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
+    } else if(squeals[i].contenuto == "map"){
+      document.getElementById(id_testo).innerHTML = squeals[i].corpo;
     }
     //destinatari
     var id_destinatari = 'btn-destinatari' + i;

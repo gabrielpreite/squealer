@@ -473,3 +473,9 @@
 #aggiungi-commento:hover {
   background-color: #0d88c2;
 }
+
+/*btn link nomi corpo testo*/
+.btn_nomi { 
+  background:none; 
+  border:none; 
+}

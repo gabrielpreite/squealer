@@ -397,6 +397,24 @@
       // Mostra il div "mostra-squeal"
       document.getElementById("mostra-commenti").hidden = false;
     }
+    /*function handlePermission() {
+  navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    if (result.state === "granted") {
+      report(result.state);
+      geoBtn.style.display = "none";
+    } else if (result.state === "prompt") {
+      report(result.state);
+      geoBtn.style.display = "none";
+      navigator.geolocation.getCurrentPosition(
+        revealPosition,
+        positionDenied,
+        geoSettings,
+      );
+    } else if (result.state === "denied") {
+      report(result.state);
+    }
+  });
+}*/
   </script>
 </body>
 
