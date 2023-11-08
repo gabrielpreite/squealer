@@ -85,10 +85,6 @@
       </button>
       <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
         <h3 class="dropdown-header">Notifiche</h3>
-        <a class="dropdown-item" href="#">Notifica 1</a>
-        <a class="dropdown-item" href="#">Notifica 2</a>
-        <a class="dropdown-item" href="#">Notifica 3</a>
-        <!-- Aggiungi altre notifiche qui -->
       </div>
     </div>
     <!-- VERSIONE HOME
@@ -299,6 +295,24 @@
         if(!(managed === undefined)){
           $("#managed-account-username").text(managed)
           $("#managed-account-username").removeAttr("hidden")
+        }
+
+        //aggiunta e gestione notifiche
+        var notifiche;
+        $.ajax({
+          type: 'GET',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/get_notifiche?username=${username}`,
+          headers: { },
+          success: function (data, status, xhr) {
+            notifiche = data;
+          }
+        });
+        var lista_notifiche = document.getElementById('notificationsDropdown');
+        var n_notifiche = notifiche.length;
+        for (var n = 0; n < n_notifiche; n++) {
+          lista_notifiche.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_notifica(this)">' +  + '</a>');
         }
 
         //RICHIESTA E COSTRUZIONE SQUEAL
