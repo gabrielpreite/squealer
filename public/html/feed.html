@@ -318,7 +318,8 @@
         for (var n = 0; n < n_notifiche; n++) {
           //costruzione notifica
           var not_tipo = 'type="button" ';
-          var not_id = 'id="' + notifiche[n].not_id + '" ';
+          var id = "notifiche[" + n + "].not_id";
+          var not_id = 'id=' + id;
           var not_class = 'class="dropdown-item ';
           if (notifiche[n].letta) {
             not_class = not_class + 'letta ';
@@ -326,7 +327,7 @@
             not_class = not_class + 'not_letta ';
           }
           not_class = not_class + notifiche[n].tipo + '" ';
-          var on_click = 'onclick="ricerca_notifica(this,' + notifiche[n].ref_id + ')"';
+          var on_click = 'onclick="ricerca_notifica(this,"' + notifiche[n].ref_id + '")"';
 
           var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
           lista_notifiche.insertAdjacentHTML('beforeend', notifica);
