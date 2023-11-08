@@ -27,12 +27,13 @@ function aggiungi_squeal(squeals) {
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
       const at_arr = squeals[i].corpo.match(at);
+      let new_corpo = squeals[i].corpo;
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
-          squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_dest(this)">' + nome + '</button>');
+          new_corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_dest(this)">' + nome + '</button>');
         });
       }
-      document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+      document.getElementById(id_testo).innerHTML = new_corpo;
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     } else if(squeals[i].contenuto == "map"){
