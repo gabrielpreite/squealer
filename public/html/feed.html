@@ -166,17 +166,17 @@
             <canvas id="squealChart"></canvas>
           </div>
 
-          <h4 class="statistiche-title">Numero Commenti</h4>
-          <div class="grafico" id="grafico-commenti">
-              <canvas id="commentiChart"></canvas>
-          </div>
-
           <h4 class="statistiche-title">Andamento Popolarità</h4>
           <div class="grafico" id="grafico-popolarità">
             <canvas id="popolaritaChart"></canvas>
           </div>
 
-          <br><br><br>
+          <h4 class="statistiche-title">Numero Commenti</h4>
+            <div class="grafico" id="grafico-commenti">
+                <canvas id="commentiChart"></canvas>
+            </div>
+
+          <br><br>
 
         </div>
 
@@ -421,71 +421,6 @@
         }
         */
 
-        // COMMENTI
-        const datiCommenti = [10, 5, 20, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
-
-        // Ottieni il riferimento al canvas del grafico
-        const canvasGraficoCommenti = document.getElementById("commentiChart");
-
-        // Crea il grafico utilizzando Chart.js
-        const graficoCommenti = new Chart(canvasGraficoCommenti, {
-          type: "bar", // Tipo di grafico (puoi scegliere il tipo di grafico desiderato)
-          data: {
-            labels: ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"], // Etichette per i post
-            datasets: [
-              {
-                label: "Numero di commenti ricevuti",
-                data: datiCommenti,
-                backgroundColor: "rgba(0, 102, 255, 0.3)", // Colore di sfondo delle barre
-                borderColor: "rgba(0, 102, 255, 1)", // Colore del bordo delle barre
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
-        });
-
-        // POPOLARITA
-        // Dati di esempio: popolarità nel tempo
-        const datiPopolarita = [10, 20, 5, -10, -5, 15]; // Sostituisci questi dati con i tuoi dati reali
-
-        // Etichette temporali
-        const etichetteTemporali = ["Mese 1", "Mese 2", "Mese 3", "Mese 4", "Mese 5", "Mese 6"]; // Sostituisci con le tue etichette temporali
-
-        // Ottieni il riferimento al canvas del grafico
-        const canvasGraficoPopolarita = document.getElementById("popolaritaChart");
-
-        // Crea il grafico a linea utilizzando Chart.js
-        const graficoPopolarita = new Chart(canvasGraficoPopolarita, {
-          type: "line", // Tipo di grafico (linea)
-          data: {
-            labels: etichetteTemporali, // Etichette temporali
-            datasets: [
-              {
-                label: "Numero di Squeals popolari",
-                data: datiPopolarita,
-                borderColor: "rgba(0, 128, 0, 0.8)", // Colore della linea
-                borderWidth: 2,
-                fill: false, // Non riempire l'area sottostante la linea
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
-        });
-
-        //SQUEAL
         var postData = [
           '2023-03-15',
           '2023-03-13',
@@ -526,6 +461,73 @@
           startDate.setDate(startDate.getDate() + 7);
         }
 
+
+        // COMMENTI
+        const datiCommenti = [10, 5, 2, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
+
+        // Ottieni il riferimento al canvas del grafico
+        const canvasGraficoCommenti = document.getElementById("commentiChart");
+
+        // Crea il grafico utilizzando Chart.js
+        const graficoCommenti = new Chart(canvasGraficoCommenti, {
+          type: "bar", // Tipo di grafico (puoi scegliere il tipo di grafico desiderato)
+          data: {
+            labels: ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"], // Etichette per i post
+            datasets: [
+              {
+                label: "Numero di commenti ricevuti",
+                data: datiCommenti,
+                backgroundColor: "rgba(0, 102, 255, 0.3)", // Colore di sfondo delle barre
+                borderColor: "rgba(0, 102, 255, 1)", // Colore del bordo delle barre
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        // POPOLARITA
+        // Dati di esempio: popolarità nel tempo
+        const datiPopolarita = [10, 20, 5, -10, -5, 15]; // Sostituisci questi dati con i tuoi dati reali
+
+        // Ottieni il riferimento al canvas del grafico
+        const canvasGraficoPopolarita = document.getElementById("popolaritaChart");
+
+        // Crea il grafico a linea utilizzando Chart.js
+        const graficoPopolarita = new Chart(canvasGraficoPopolarita, {
+          type: "line", // Tipo di grafico (linea)
+          data: {
+            labels: weeksData.map(function (weekData) {
+              var start = weekData.start.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+              var end = weekData.end.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+              return start + ' - ' + end;
+            }),
+            datasets: [
+              {
+                label: "Numero di Squeals popolari",
+                data: datiPopolarita,
+                borderColor: "rgba(0, 128, 0, 0.8)", // Colore della linea
+                borderWidth: 2,
+                fill: false, // Non riempire l'area sottostante la linea
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        //SQUEAL
         var postFrequenza = new Array(weeksData.length).fill(0); // Inizializza un array con zeri, uno per ogni settimana
 
         for (var i = 0; i < postData.length; i++) {
