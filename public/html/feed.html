@@ -317,21 +317,20 @@
         var n_notifiche = notifiche.length;
         for (var n = 0; n < n_notifiche; n++) {
           //costruzione notifica
-          const notifica = document.createElement("a");
-          notifica.type = "button";
-          notifica.id = notifiche[n].not_id;
-          notifica.classList.add("dropdown-item");
+          var not_tipo = 'type="button" ';
+          var not_id = 'id="' + notifiche[n].not_id + '" ';
+          var not_class = 'class="dropdown-item " ';
           if (notifiche[n].letta) {
-            notifica.classList.add("letta");
+            not_class = not_class + 'letta ';
           } else {
-            notifica.classList.add("non_letta");
+            not_class = not_class + 'not_letta ';
           }
-          notifica.classList.add(notifiche[n].tipo)
-          notifica.textContent = notifiche[n].testo;
-          notifica.addEventListener('click', ricerca_notifica(this, notifiche[n].ref_id));
-          notifica.onclick = "ricerca_notifica(this," + notifiche[n].ref_id + ")";
+          not_class = not_class + notifiche[n].tipo;
+          var not_testo = notifiche[n].testo;
+          var on_click = ' onclick="ricerca_notifica(this,' + notifiche[n].ref_id + ')"';
 
-          lista_notifiche.appendChild(notifica);
+          var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + not_testo + '</a>';
+          lista_notifiche.insertAdjacentHTML('beforeend', notifica);
         }
 
 
