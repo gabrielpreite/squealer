@@ -247,7 +247,7 @@ function aggiungi_info(meta){
 function rimuovi_info() {
   let container = $("#barra-destra")
   container.empty()
-  container.Attr("hidden")
+  container.attr("hidden")
 }
 
 function ricarica() {
