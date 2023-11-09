@@ -534,6 +534,7 @@ function ricerca_notifica(notifica) {
     ricerca_squeal(elem_notifica);
   } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
     var post_notifica;
+    console.log(notifica.ref_id);
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -542,11 +543,13 @@ function ricerca_notifica(notifica) {
       headers: { },
       success: function (data, status, xhr) {
         post_notifica = data;
+        console.log(post_notifica);
       }
     });
+    console.log(post_notifica);
     if (notifica.tipo == "risposta") {
       console.log(post_notifica);
-      onsole.log(post_notifica.risponde_a);
+      console.log(post_notifica.risponde_a);
       $.ajax({
         type: 'GET',
         dataType: "json",
