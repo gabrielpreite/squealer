@@ -509,7 +509,7 @@ function ricerca_notifica(notifica) {
     elem_notifica.innerHTML = notifica.ref_id;
     ricerca_squeal(elem_notifica);
   } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
-    var post_notifica;
+    var post_notifica = [];
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -517,7 +517,7 @@ function ricerca_notifica(notifica) {
       url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${notifica.ref_id}`,
       headers: { },
       success: function (data, status, xhr) {
-        post_notifica = data[0];
+        post_notifica[0] = data[0];
       }
     });
     rimpiazza_squeals(post_notifica, "filtro");
