@@ -73,7 +73,7 @@ app.enable('trust proxy');
 
 app.get('/', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	else if(!req.cookies || !req.cookies.username) {
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == null) {
 		req.session.destroy()
 		res.redirect("/login")
 	} else {res.sendFile(global.rootDir+"/public/html/feed.html")}
@@ -81,7 +81,7 @@ app.get('/', function (req, res) {
 
 app.get('/editor', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	else if(!req.cookies || !req.cookies.username) {
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == null) {
 		req.session.destroy()
 		res.redirect("/login")
 	} else {res.sendFile(global.rootDir+"/public/html/editor.html")}
@@ -89,7 +89,7 @@ app.get('/editor', function (req, res) {
 
 app.get('/settings', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	else if(!req.cookies || !req.cookies.username) {
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == null) {
 		req.session.destroy()
 		res.redirect("/login")
 	} else {res.sendFile(global.rootDir+"/public/html/settings.html")}
@@ -97,14 +97,14 @@ app.get('/settings', function (req, res) {
 
 app.get('/testdb', function (req, res) { // ---- DEBUG USE
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	else if(!req.cookies || !req.cookies.username) {
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == null) {
 		req.session.destroy()
 		res.redirect("/login")
 	} else {res.sendFile(global.rootDir+"/public/html/testdb.html")}
 })
 
 app.get('/register', function (req, res) {
-	if(!req.session || !req.session.userid) {
+	if(!req.session || !req.session.userid || req.cookies.username == null) {
 		res.sendFile(global.rootDir+"/public/html/register.html")
 	} else if(!req.cookies || !req.cookies.username) {
 		req.session.destroy()
@@ -115,7 +115,7 @@ app.get('/register', function (req, res) {
 app.get('/login', function (req, res) {
 	if(!req.session || !req.session.userid) {
 		res.sendFile(global.rootDir+"/public/html/login.html")
-	} else if(!req.cookies || !req.cookies.username) {
+	} else if(!req.cookies || !req.cookies.username || req.cookies.username == null) {
 		req.session.destroy()
 		res.sendFile(global.rootDir+"/public/html/login.html")
 	} else {res.redirect("/")}
