@@ -1117,8 +1117,8 @@ exports.search = async function(q, credentials) {
 							$or: [
 								{ tipo_destinatari: "canali" }, //post in canali
 								{ tipo_destinatari: null }, //post in bacheca
-								{ destinatari: {$in: [q.target]} }, //messaggi privati destinatario
-								{ utente: q.target } //messaggi privati mittente
+								{ destinatari: {$in: [q.target]} }, //messaggi privati di cui sei destinatario
+								//{ utente: q.target } //messaggi privati mittente
 							]
 						} 
 					},
