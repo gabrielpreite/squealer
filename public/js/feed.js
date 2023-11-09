@@ -502,6 +502,14 @@ function rimpiazza_commenti(id) {
     document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
     var id_testo = 'c_text' + c;
     if(lista_commenti[c].contenuto == "testo"){
+      //parole con @ all'inizio
+      const at = /(?:^|\s)@(\w+)/g;
+      const at_arr = lista_commenti[c].corpo.match(at);
+      if (at_arr != null) {
+        at_arr.forEach(function(nome) {
+          lista_commenti[c].corpo = lista_commenti[c].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
+        });
+      }
       document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
     } else if(lista_commenti[c].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
@@ -529,7 +537,20 @@ function ricerca_notifica(notifica) {
         post_notifica = data;
       }
     });
+    if (notifica.tipo == "risposta") {
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica.risponde_a}`,
+        headers: { },
+        success: function (data, status, xhr) {
+          post_notifica = data;
+        }
+      });
+    }
     rimpiazza_squeals(post_notifica, "filtro");
+    rimpiazza_commenti(post_notifica.post_id);
     squeals = post_notifica;
   }
 
