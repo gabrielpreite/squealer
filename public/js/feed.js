@@ -250,7 +250,7 @@ function ricarica() {
 
 //RICERCA SQUEAL...
 function ricerca_squeal(elem) {
-  //if (elem == null) {
+  if (elem == null) {
     let query = document.getElementById("query").value;
     let tipo = document.getElementById("tipo").value;
 
@@ -270,6 +270,7 @@ function ricerca_squeal(elem) {
         query = "$" + query;
       }
     }
+  }
   /*} else {
     let query = elem.innerHTML;
     let tipo = query[0];
