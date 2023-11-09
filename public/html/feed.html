@@ -333,7 +333,7 @@
         }
 
 
-        
+
         //RICHIESTA E COSTRUZIONE SQUEAL
         var squeals;
         $.ajax({
@@ -420,12 +420,37 @@
         }
         */
 
-        var postData = [
-          '2023-03-15',
-          '2023-03-13',
-          '2023-03-18',
-          '2023-03-27'
-        ];
+        let target_user = get_cookie_by_name("username")
+        managed = get_cookie_by_name("managed")
+        if(!(managed === undefined))
+          target_user = managed
+
+        let all_info;
+        $.ajax({
+          type: 'POST',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/search`,
+          headers: { },
+          data: { query: target_user, tipo: 'utente', target: target_user },
+          success: function (data, status, xhr) {
+            all_info = data;
+          }
+        });
+        console.log('all_info: ');
+        console.log(data);
+
+      const postData = [];
+      const datiCommenti = [];
+
+        for (const info of all_info) {
+          if (info.timestamp) {
+            postData.push(info.timestamp);
+          }
+          if (info.numRisposte) {
+            datiCommenti.push(info.numRisposte);
+          }
+        }
 
         function getPreviousMonday(giorno) {
           date = new Date(giorno);
@@ -462,7 +487,7 @@
 
 
         // COMMENTI
-        const datiCommenti = [10, 5, 2, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
+      //  const datiCommenti = [10, 5, 2, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
 
         // Ottieni il riferimento al canvas del grafico
         const canvasGraficoCommenti = document.getElementById("commentiChart");
