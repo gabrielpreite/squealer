@@ -434,7 +434,7 @@
           headers: { },
           data: { query: target_user, tipo: 'utente', target: target_user },
           success: function (data, status, xhr) {
-            all_info = data;
+            all_info = data.post;
             console.log('all_info: ');
             console.log(all_info);
           }
