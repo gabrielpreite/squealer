@@ -244,6 +244,12 @@ function aggiungi_info(meta){
   }
 }
 
+function rimuovi_info() {
+  let container = $("#barra-destra")
+  container.empty()
+  container.Attr("hidden")
+}
+
 function ricarica() {
   location.reload();
 }
@@ -338,6 +344,7 @@ function ordina_squeals(posts, filtro) {
 
 function rimpiazza_squeals(posts, filtro) {
   svuota_pagina();
+  rimuovi_info();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
 
@@ -511,7 +518,7 @@ function ricerca_notifica(notifica) {
     elem_notifica.innerHTML = notifica.ref_id;
     ricerca_squeal(elem_notifica);
   } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
-    var post_notifica = [];
+    var post_notifica;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -519,10 +526,20 @@ function ricerca_notifica(notifica) {
       url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${notifica.ref_id}`,
       headers: { },
       success: function (data, status, xhr) {
-        post_notifica[0] = data[0];
+        post_notifica = data;
       }
     });
     rimpiazza_squeals(post_notifica, "filtro");
     squeals = post_notifica;
   }
+
+  //leggi notifica
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/read_notifica?not_id=${notifica.not_id}`,
+    headers: { },
+    success: function (data, status, xhr) {}
+  });
 }
