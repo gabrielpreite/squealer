@@ -250,7 +250,7 @@ function ricarica() {
 
 //RICERCA SQUEAL...
 function ricerca_squeal(elem) {
-  if (elem == null) {
+  //if (elem == null) {
     let query = document.getElementById("query").value;
     let tipo = document.getElementById("tipo").value;
 
@@ -270,7 +270,7 @@ function ricerca_squeal(elem) {
         query = "$" + query;
       }
     }
-  } else {
+  /*} else {
     let query = elem.innerHTML;
     let tipo = query[0];
 
@@ -283,7 +283,7 @@ function ricerca_squeal(elem) {
     } else {
       tipo = "utente";
     }
-  }
+  }*/
 
   //come user (smm) o come account gestito (se esiste il cookie)
   let target_user = get_cookie_by_name("username")
