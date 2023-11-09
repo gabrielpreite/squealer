@@ -1106,10 +1106,20 @@ exports.search = async function(q, credentials) {
 		meta["tipo"] = q.tipo
 		
 		if(q.tipo == "utente"){ // caso ricerca utenti
-			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
+			await mongo.db(dbname)
 				.collection("messaggio")
 				.aggregate([
-					{ $match: { utente: q.query, risponde_a: null } },
+					{ $match: 
+						{ 
+							utente: q.query,
+							risponde_a: null,
+							$or: [
+								{ tipo_destinatari: "canali" }, //post in canali
+								{ tipo_destinatari: null }, //post in bacheca
+								{ destinatari: {$in: [q.target_user]} } //messaggi privati
+							]
+						} 
+					},
 					{ $lookup: {
 						from: "utente", // nome seconda tabella
 						localField: "utente", // nome chiave in prima tabella (corrente)
@@ -1180,7 +1190,7 @@ exports.search = async function(q, credentials) {
 			meta["info"]["is_follower"] = isFollower
 
 		} else if(q.tipo == "canale"){
-			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
+			await mongo.db(dbname) // TODO regole di visibilita'
 				.collection("messaggio")
 				.aggregate([
 					{
@@ -1284,13 +1294,18 @@ exports.search = async function(q, credentials) {
 			meta["info"]["is_follower"] = isFollower
 
 		} else if(q.tipo == "keyword"){
-			await mongo.db(dbname) // TODO nome ai post, canale info, regole di visibilita', ordine
+			await mongo.db(dbname) // TODO regole di visibilita'
 				.collection("messaggio")
 				.aggregate([
 					{
 					  $match: {
 						corpo: {$regex: q.query},
-						risponde_a: null
+						risponde_a: null,
+						$or: [
+							{ tipo_destinatari: "canali" }, //post in canali
+							{ tipo_destinatari: null }, //post in bacheca
+							{ destinatari: {$in: [q.target_user]} } //messaggi privati
+						]
 					  }
 					},
 					{
