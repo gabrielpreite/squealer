@@ -312,6 +312,9 @@ function ricerca_squeal(elem) {
       all_info = data;
     }
   });
+  if (all_info === undefined) {
+    return console.log("error");
+  }
 
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   aggiungi_info(all_info.meta);
@@ -501,7 +504,7 @@ function rimpiazza_commenti(id) {
     var id_tag = 'c_username' + c;
     document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
     var id_testo = 'c_text' + c;
-    if(lista_commenti[c].contenuto == "testo"){
+    if (lista_commenti[c].contenuto == "testo") {
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
       const at_arr = lista_commenti[c].corpo.match(at);
