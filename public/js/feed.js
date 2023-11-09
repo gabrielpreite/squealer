@@ -250,28 +250,27 @@ function ricarica() {
 
 //RICERCA SQUEAL...
 function ricerca_squeal(elem) {
-  if (elem == "null") {
-    let query = document.getElementById("query").value;
-    let tipo = document.getElementById("tipo").value;
+  let query = document.getElementById("query").value;
+  let tipo = document.getElementById("tipo").value;
 
-    //check query vuota
-    if (query.length == 0) {
-      alert("Inserisci qualcosa da cercare");
-      return false;
+  //check query vuota
+  if (query.length == 0) {
+    alert("Inserisci qualcosa da cercare");
+    return false;
+  }
+  //check varie cose
+  if (tipo == "utente") {
+    if (query[0] == "@") {
+      let length = query.length;
+      query = query.slice(1,length);
     }
-    //check varie cose
-    if (tipo == "utente") {
-      if (query[0] == "@") {
-        let length = query.length;
-        query = query.slice(1,length);
-      }
-    } else if (tipo == "canale") {
-      if (query[0] != "$") {
-        query = "$" + query;
-      }
+  } else if (tipo == "canale") {
+    if (query[0] != "$") {
+      query = "$" + query;
     }
   }
-  /*} else {
+
+  if (elem != null) {
     let query = elem.innerHTML;
     let tipo = query[0];
 
@@ -284,7 +283,7 @@ function ricerca_squeal(elem) {
     } else {
       tipo = "utente";
     }
-  }*/
+  }
 
   //come user (smm) o come account gestito (se esiste il cookie)
   let target_user = get_cookie_by_name("username")
