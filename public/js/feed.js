@@ -312,7 +312,7 @@ function ricerca_squeal(elem) {
       all_info = data;
     }
   });
-  if (all_info === undefined) {
+  if (all_info.post === undefined) {
     return console.log("error");
   }
 
