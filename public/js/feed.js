@@ -252,7 +252,7 @@ function ricarica() {
 function ricerca_squeal(elem) {
   let query;
   let tipo;
-  if (elem != null) {
+  if (elem === null) {
     query = document.getElementById("query").value;
     tipo = document.getElementById("tipo").value;
 
