@@ -280,6 +280,7 @@ function ricerca_squeal(elem) {
     }
   } else {
     query = elem.innerHTML;
+    console.log(query);
     tipo = query[0];
 
     if (tipo == " ") {
