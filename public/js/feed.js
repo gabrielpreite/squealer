@@ -250,29 +250,31 @@ function ricarica() {
 
 //RICERCA SQUEAL...
 function ricerca_squeal(elem) {
-  let query = document.getElementById("query").value;
-  let tipo = document.getElementById("tipo").value;
+  let query;
+  let tipo;
+  if (elem === null) {
+    query = document.getElementById("query").value;
+    tipo = document.getElementById("tipo").value;
 
-  //check query vuota
-  if (query.length == 0) {
-    alert("Inserisci qualcosa da cercare");
-    return false;
-  }
-  //check varie cose
-  if (tipo == "utente") {
-    if (query[0] == "@") {
-      let length = query.length;
-      query = query.slice(1,length);
+    //check query vuota
+    if (query.length == 0) {
+      alert("Inserisci qualcosa da cercare");
+      return false;
     }
-  } else if (tipo == "canale") {
-    if (query[0] != "$") {
-      query = "$" + query;
+    //check varie cose
+    if (tipo == "utente") {
+      if (query[0] == "@") {
+        let length = query.length;
+        query = query.slice(1,length);
+      }
+    } else if (tipo == "canale") {
+      if (query[0] != "$") {
+        query = "$" + query;
+      }
     }
-  }
-
-  if (elem != null) {
-    let query = elem.innerHTML;
-    let tipo = query[0];
+  } else {
+    query = elem.innerHTML;
+    tipo = query[0];
 
     if (tipo == " ") {
       tipo = query[1];
