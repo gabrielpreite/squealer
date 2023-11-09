@@ -514,7 +514,7 @@ function ricerca_notifica(notifica) {
       type: 'GET',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${ref_id}`,
+      url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${notifica.ref_id}`,
       headers: { },
       success: function (data, status, xhr) {
         post_notifica = data[0];
