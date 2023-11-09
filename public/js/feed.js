@@ -280,7 +280,6 @@ function ricerca_squeal(elem) {
     }
   } else {
     query = elem.innerHTML;
-    console.log(query);
     tipo = query[0];
 
     if (tipo == " ") {
@@ -290,6 +289,10 @@ function ricerca_squeal(elem) {
     if (tipo == "$") {
       tipo = "canale";
     } else {
+      if (query[0] == "@") {
+        let length = query.length;
+        query = query.slice(1,length);
+      }
       tipo = "utente";
     }
   }
