@@ -264,7 +264,7 @@
       <script>
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
-          let result = ricerca_squeal()
+          let result = ricerca_squeal(null)
           squeals = result.post;
           var info_ricerca = result.meta;
         });
@@ -326,7 +326,7 @@
             not_class = not_class + 'not_letta ';
           }
           not_class = not_class + notifiche[n].tipo + '" ';
-          var on_click = 'onclick="ricerca_notifica(this,notifiche[' + n + '].ref_id)"';
+          var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
 
           var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
           lista_notifiche.insertAdjacentHTML('beforeend', notifica);
