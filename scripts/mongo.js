@@ -1104,6 +1104,7 @@ exports.search = async function(q, credentials) {
 		// canale: nome
 		// keyword: keyword
 		meta["tipo"] = q.tipo
+		console.log(q)
 		
 		if(q.tipo == "utente"){ // caso ricerca utenti
 			await mongo.db(dbname)
@@ -1116,7 +1117,8 @@ exports.search = async function(q, credentials) {
 							$or: [
 								{ tipo_destinatari: "canali" }, //post in canali
 								{ tipo_destinatari: null }, //post in bacheca
-								{ destinatari: {$in: [q.target_user]} } //messaggi privati
+								{ destinatari: {$in: [q.target_user]} }, //messaggi privati destinatario
+								{ utente: q.target_user } //messaggi privati mittente
 							]
 						} 
 					},
