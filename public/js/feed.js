@@ -545,6 +545,8 @@ function ricerca_notifica(notifica) {
       }
     });
     if (notifica.tipo == "risposta") {
+      console.log(post_notifica);
+      onsole.log(post_notifica.risponde_a);
       $.ajax({
         type: 'GET',
         dataType: "json",
@@ -555,6 +557,7 @@ function ricerca_notifica(notifica) {
           post_notifica = data;
         }
       });
+      console.log(post_notifica);
     }
     rimpiazza_squeals(post_notifica, "filtro");
     rimpiazza_commenti(post_notifica.post_id);
