@@ -420,11 +420,11 @@
         }
         */
 
-        let target_user = get_cookie_by_name("username")
-        managed = get_cookie_by_name("managed")
+        let target_user = 'fv'//get_cookie_by_name("username")
+        /*managed = get_cookie_by_name("managed")
         if(!(managed === undefined))
           target_user = managed
-
+*/
         let all_info;
         $.ajax({
           type: 'POST',
@@ -435,10 +435,10 @@
           data: { query: target_user, tipo: 'utente', target: target_user },
           success: function (data, status, xhr) {
             all_info = data;
+            console.log('all_info: ');
+            console.log(all_info);
           }
         });
-        console.log('all_info: ');
-        console.log(data);
 
       const postData = [];
       const datiCommenti = [];
