@@ -102,6 +102,21 @@
     </div>
     </div>
     <script type="text/javascript">
+      //aggiorno la quota
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/get_quota?username=${target_user}`,
+        headers: { },
+        success: function (data, status, xhr) {
+          set_cookie("quota_giorno", data["quota"]["g"])
+          set_cookie("quota_settimana", data["quota"]["s"])
+          set_cookie("quota_mese", data["quota"]["m"])
+          location.reload()
+        }
+      });
+
       // Assegna i valori alle variabili
       let quota_giorno = get_cookie_by_name("quota_giorno");
       let quota_settimana = get_cookie_by_name("quota_settimana");
@@ -456,7 +471,11 @@
             idSqueals.push(info.post_id);
           }
           if (info.corpo) {
-            corpoSqueals.push(info.corpo);
+            if (info.contenuto == 'testo') {
+              corpoSqueals.push(info.corpo);
+            } else {
+              corpoSqueals.push('Immagine')
+            }
           }
         }
 
