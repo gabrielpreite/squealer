@@ -24,16 +24,16 @@ function aggiungi_squeal(squeals) {
     //corpo squeal
     var id_testo = 'squeal_testo' + i;
     if(squeals[i].contenuto == "testo"){
+      let testo_squeal = squeals[i].corpo;
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
       const at_arr = squeals[i].corpo.match(at);
       //url in text
-      const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\S+)?\b/g;
+      const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\/\S*)?\b/g;
       const url_arr = squeals[i].corpo.match(url);
-      let testo_squeal = squeals[i].corpo;
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
-          testo_squeal = squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
+          testo_squeal = testo_squeal.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
         });
       }
       if (url_arr != null) {
