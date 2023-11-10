@@ -293,7 +293,7 @@
         })
 
         //se sto gestendo un account lo mostro nella barra
-        managed = get_cookie_by_name("managed")
+        let managed = get_cookie_by_name("managed")
         if(!(managed === undefined)){
           $("#managed-account-username").text(managed)
           $("#managed-account-username").removeAttr("hidden")
@@ -422,7 +422,7 @@
         }
         */
         let target_user = get_cookie_by_name("username")
-        let managed = get_cookie_by_name("managed")
+        managed = get_cookie_by_name("managed")
         if(!(managed === undefined))
           target_user = managed
 
