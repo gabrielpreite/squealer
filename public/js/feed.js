@@ -534,7 +534,6 @@ function ricerca_notifica(notifica) {
     ricerca_squeal(elem_notifica);
   } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
     var post_notifica;
-    console.log(notifica.ref_id);
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -546,20 +545,21 @@ function ricerca_notifica(notifica) {
       }
     });
     if (notifica.tipo == "risposta") {
-      console.log(post_notifica);
-      console.log("risponde a: ");
-      console.log(post_notifica[0].risponde_a);
-      $.ajax({
-        type: 'GET',
-        dataType: "json",
-        async: false,
-        url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica[0].risponde_a}`,
-        headers: { },
-        success: function (data, status, xhr) {
-          post_notifica = data;
-        }
-      });
-      console.log(post_notifica);
+      if (post_notifica[0].risponde_a != null) {
+        $.ajax({
+          type: 'GET',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica[0].risponde_a}`,
+          headers: { },
+          success: function (data, status, xhr) {
+            post_notifica = data;
+          }
+        });
+      }
+    }
+    if (post_notifica == null) {
+      return alert("Post non trovato");
     }
     rimpiazza_squeals(post_notifica, "filtro");
     rimpiazza_commenti(post_notifica.post_id);
