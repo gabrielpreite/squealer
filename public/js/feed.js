@@ -29,7 +29,7 @@ function aggiungi_squeal(squeals) {
       const at = /(?:^|\s)@(\w+)/g;
       const at_arr = squeals[i].corpo.match(at);
       //url in text
-      const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\S+)?\b/g;
+      const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\/\S*)?\b/g;
       const url_arr = squeals[i].corpo.match(url);
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
