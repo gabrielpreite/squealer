@@ -421,6 +421,10 @@
           chart.draw(data, options);
         }
         */
+        let target_user = get_cookie_by_name("username")
+        let managed = get_cookie_by_name("managed")
+        if(!(managed === undefined))
+          target_user = managed
 
         let all_info;
         $.ajax({
