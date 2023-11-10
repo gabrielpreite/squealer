@@ -473,8 +473,10 @@
           if (info.corpo) {
             if (info.contenuto == 'testo') {
               corpoSqueals.push(info.corpo);
-            } else {
+            } else if (info.contenuto == 'img'){
               corpoSqueals.push('Img')
+            } else {
+              corpoSqueals.push('Mappa')
             }
           }
         }
