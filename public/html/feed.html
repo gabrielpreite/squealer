@@ -456,7 +456,11 @@
             idSqueals.push(info.post_id);
           }
           if (info.corpo) {
-            corpoSqueals.push(info.corpo);
+            if (info.contenuto == 'testo') {
+              corpoSqueals.push(info.corpo);
+            } else {
+              corpoSqueals.push('Immagine')
+            }
           }
         }
 
