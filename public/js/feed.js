@@ -545,7 +545,9 @@ function ricerca_notifica(notifica) {
       }
     });
     if (notifica.tipo == "risposta") {
-      if (post_notifica[0].risponde_a != null) {
+      if (post_notifica == []) {
+        return alert("Post non trovato");
+      } else if (post_notifica[0].risponde_a != null) {
         $.ajax({
           type: 'GET',
           dataType: "json",
@@ -558,7 +560,7 @@ function ricerca_notifica(notifica) {
         });
       }
     }
-    if (post_notifica == null) {
+    if (post_notifica == []) {
       return alert("Post non trovato");
     }
     rimpiazza_squeals(post_notifica, "filtro");
