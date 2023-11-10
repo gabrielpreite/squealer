@@ -30,7 +30,7 @@ function aggiungi_squeal(squeals) {
       //url in text
       const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\S+)?\b/g;
       const url_arr = squeals[i].corpo.match(url);
-      let testo_squeal;
+      let testo_squeal = squeals[i].corpo;
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
           testo_squeal = squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
