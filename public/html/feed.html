@@ -436,7 +436,6 @@
           data: { query: target_user, tipo: 'utente', target: target_user },
           success: function (data, status, xhr) {
             all_info = data.post;
-            console.log('all_info: ');
             console.log(all_info);
           }
         });
@@ -497,15 +496,15 @@
 
         // COMMENTI
         var corpoSquealsTagliati = corpoSqueals.map((frase) => {
-          if (frase.length > 13) {
-            return frase.slice(0, 13) + '...';
+          if (frase.length > 10) {
+            return frase.slice(0, 10) + '...';
           }
           return frase;
         });
 
-        datiCommenti = datiCommenti.slice(0, 6);
-        corpoSquealsTagliati = corpoSquealsTagliati.slice(0,6);
-        idSqueals = idSqueals.slice(0,6);
+        datiCommenti = datiCommenti.slice(0, 5);
+        corpoSquealsTagliati = corpoSquealsTagliati.slice(0,5);
+        idSqueals = idSqueals.slice(0,5);
 
         // Ottieni il riferimento al canvas del grafico
         const canvasGraficoCommenti = document.getElementById("commentiChart");
