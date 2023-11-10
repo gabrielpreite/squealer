@@ -102,6 +102,25 @@
     </div>
     </div>
     <script type="text/javascript">
+      let target_user = get_cookie_by_name("username")
+      let managed = get_cookie_by_name("managed")
+      if(!(managed === undefined))
+        target_user = managed
+
+      //aggiorno la quota
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/get_quota?username=${target_user}`,
+        headers: { },
+        success: function (data, status, xhr) {
+          set_cookie("quota_giorno", data["quota"]["g"])
+          set_cookie("quota_settimana", data["quota"]["s"])
+          set_cookie("quota_mese", data["quota"]["m"])
+        }
+      });
+      
       // Assegna i valori alle variabili
       let quota_giorno = get_cookie_by_name("quota_giorno");
       let quota_settimana = get_cookie_by_name("quota_settimana");
@@ -263,25 +282,7 @@
         crossorigin="anonymous"></script>
 
       <script>
-        let target_user = get_cookie_by_name("username")
-        let managed = get_cookie_by_name("managed")
-        if(!(managed === undefined))
-          target_user = managed
-
-        //aggiorno la quota
-        $.ajax({
-          type: 'GET',
-          dataType: "json",
-          async: false,
-          url: `https://site212251.tw.cs.unibo.it/get_quota?username=${target_user}`,
-          headers: { },
-          success: function (data, status, xhr) {
-            set_cookie("quota_giorno", data["quota"]["g"])
-            set_cookie("quota_settimana", data["quota"]["s"])
-            set_cookie("quota_mese", data["quota"]["m"])
-            location.reload()
-          }
-        });
+        
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
           let result = ricerca_squeal(null);
