@@ -561,7 +561,7 @@ function ricerca_notifica(notifica) {
     rimpiazza_squeals(post_notifica, "filtro");
     rimpiazza_commenti(post_notifica.post_id);
     squeals = post_notifica;
-    aggiungicommento('', 'apri', squeals[0].post_id);
+    aggiungicommento(document.getElementsByClassName("btn btn-reazioni c btn-group0"), 'apri', squeals[0].post_id);
   }
 
   //leggi notifica
