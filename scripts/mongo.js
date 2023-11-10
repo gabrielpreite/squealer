@@ -438,7 +438,7 @@ exports.add_user = async function(q, credentials) {
 							email: q.email,
 							password: ""+psw,
 							quota: {
-								"g": 50, "s": 300, "m": 1000
+								"g": 300, "s": 2000, "m": 7500
 							},
 							acquisti: [],
 							popolarita: 0,
