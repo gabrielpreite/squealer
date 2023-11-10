@@ -441,10 +441,10 @@
           }
         });
 
-        const postData = [];
-        const datiCommenti = [];
-        const idSqueals = [];
-        const corpoSqueals = [];
+        var postData = [];
+        var datiCommenti = [];
+        var idSqueals = [];
+        var corpoSqueals = [];
 
         for (const info of all_info) {
           if (info.timestamp) {
@@ -496,13 +496,16 @@
 
 
         // COMMENTI
-        const corpoSquealsTagliati = corpoSqueals.map((frase) => {
+        var corpoSquealsTagliati = corpoSqueals.map((frase) => {
           if (frase.length > 13) {
             return frase.slice(0, 13) + '...';
           }
           return frase;
         });
-      //  const datiCommenti = [10, 5, 2, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
+
+        datiCommenti = datiCommenti.slice(0, 6);
+        corpoSquealsTagliati = corpoSquealsTagliati.slice(0,6);
+        idSqueals = idSqueals.slice(0,6);
 
         // Ottieni il riferimento al canvas del grafico
         const canvasGraficoCommenti = document.getElementById("commentiChart");
