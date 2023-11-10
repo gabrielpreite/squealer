@@ -210,6 +210,10 @@
  justify-content: space-between;
 }
 
+.card-body img{
+  width: 680px;
+}
+
 .profile-image {
   width: 48px;
   height: 48px;
@@ -475,7 +479,7 @@
 }
 
 /*btn link nomi corpo testo*/
-.btn_nomi { 
-  background:none; 
-  border:none; 
+.btn_nomi {
+  background:none;
+  border:none;
 }
