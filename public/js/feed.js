@@ -30,7 +30,7 @@ function aggiungi_squeal(squeals) {
       //url in text
       const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\S+)?\b/g;
       const url_arr = squeals[i].corpo.match(url);
-      let testo_squeal;
+      let testo_squeal = squeals[i].corpo;
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
           testo_squeal = squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
@@ -45,7 +45,7 @@ function aggiungi_squeal(squeals) {
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     } else if(squeals[i].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+      document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa_squeal">`;
     }
     //destinatari
     var id_destinatari = 'btn-destinatari' + i;
