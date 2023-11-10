@@ -548,12 +548,12 @@ function ricerca_notifica(notifica) {
     if (notifica.tipo == "risposta") {
       console.log(post_notifica);
       console.log("risponde a: ");
-      console.log(post_notifica.risponde_a);
+      console.log(post_notifica[0].risponde_a);
       $.ajax({
         type: 'GET',
         dataType: "json",
         async: false,
-        url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica.risponde_a}`,
+        url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica[0].risponde_a}`,
         headers: { },
         success: function (data, status, xhr) {
           post_notifica = data;
