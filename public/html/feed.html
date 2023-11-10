@@ -565,8 +565,20 @@
         });
 
         // POPOLARITA
-        // Dati di esempio: popolarità nel tempo
-        const datiPopolarita = [10, 20, 5, -10, -5, 15]; // Sostituisci questi dati con i tuoi dati reali
+        var datiPopolarita = [];
+        var settPopolarita = [];
+
+        $.ajax({
+          type: 'GET',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/user_info?username=${target_user}`,
+          headers: { },
+          success: function (data, status, xhr) {
+            datiPopolarita = data.popolarita.valori;
+            settPopolarita = data.popolarita.settimane;
+          }
+        });
 
         // Ottieni il riferimento al canvas del grafico
         const canvasGraficoPopolarita = document.getElementById("popolaritaChart");
@@ -575,11 +587,7 @@
         const graficoPopolarita = new Chart(canvasGraficoPopolarita, {
           type: "line", // Tipo di grafico (linea)
           data: {
-            labels: weeksData.map(function (weekData) {
-              var start = weekData.start.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
-              var end = weekData.end.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
-              return start + ' - ' + end;
-            }),
+            labels: settPopolarita,
             datasets: [
               {
                 label: "Numero di Squeals popolari",
