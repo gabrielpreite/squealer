@@ -15,8 +15,9 @@
     <!--Chart.js-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-    <!--Google Charts-->
+    <!--chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
     <!--Adattatore date-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.23.0/date-fns.min.js"></script>
@@ -442,13 +443,21 @@
 
         const postData = [];
         const datiCommenti = [];
+        const idSqueals = [];
+        const corpoSqueals = [];
 
         for (const info of all_info) {
           if (info.timestamp) {
-            postData.push(timeConverter(info.timestamp));
+            postData.push(convertiTimestampInData(info.timestamp));
           }
           if (info.numRisposte) {
             datiCommenti.push(info.numRisposte);
+          }
+          if (info.post_id) {
+            idSqueals.push(info.post_id);
+          }
+          if (info.corpo) {
+            corpoSqueals.push(info.corpo);
           }
         }
 
@@ -470,8 +479,8 @@
           }
         }
 
-        var startDate = (getPreviousMonday(postData[0]));
-        var endDate = new Date(postData[postData.length - 1]);
+        var startDate = new Date(postData[postData.length - 1]);
+        var endDate = new Date(getPreviousMonday(postData[0]));
 
         var weeksData = [];
         while (startDate <= endDate) {
@@ -487,6 +496,12 @@
 
 
         // COMMENTI
+        const corpoSquealsTagliati = corpoSqueals.map((frase) => {
+          if (frase.length > 13) {
+            return frase.slice(0, 13) + '...';
+          }
+          return frase;
+        });
       //  const datiCommenti = [10, 5, 2, 15, 8]; // Sostituisci questi dati con i tuoi dati reali
 
         // Ottieni il riferimento al canvas del grafico
@@ -494,15 +509,15 @@
 
         // Crea il grafico utilizzando Chart.js
         const graficoCommenti = new Chart(canvasGraficoCommenti, {
-          type: "bar", // Tipo di grafico (puoi scegliere il tipo di grafico desiderato)
+          type: "bar",
           data: {
-            labels: ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"], // Etichette per i post
+            labels: corpoSquealsTagliati,
             datasets: [
               {
                 label: "Numero di commenti ricevuti",
                 data: datiCommenti,
-                backgroundColor: "rgba(0, 102, 255, 0.3)", // Colore di sfondo delle barre
-                borderColor: "rgba(0, 102, 255, 1)", // Colore del bordo delle barre
+                backgroundColor: "rgba(0, 102, 255, 0.3)",
+                borderColor: "rgba(0, 102, 255, 1)",
                 borderWidth: 1,
               },
             ],
@@ -511,7 +526,37 @@
             scales: {
               y: {
                 beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                },
               },
+            },
+            plugins: {
+              datalabels: {
+                anchor: 'end',
+                align: 'end',
+                offset: 4,
+                labels: {
+                  title: {
+                    font: {
+                      weight: 'bold',
+                    },
+                  },
+                },
+              },
+            },
+            onClick: function (event, elements) {
+              // Controllo se è stato cliccato un elemento del grafico
+              if (elements.length > 0) {
+                // Recupero l'indice dell'elemento cliccato
+                const index = elements[0].index;
+
+                // Recupero l'ID del squeal corrispondente all'indice
+                const idSqueal = idSqueals[index];
+
+                // Reindirizzo alla pagina desiderata usando l'ID del squeal
+                window.location.href = `site212251.tw.cs.unibo.it/${idSqueal}`;
+              }
             },
           },
         });
@@ -584,7 +629,7 @@
               return start + ' - ' + end;
             }),
             datasets: [{
-              label: 'Frequenza dei Post',
+              label: 'Numero di squeals postati',
               data: postFrequenza, // Utilizza il nuovo array postFrequenza
               borderColor: 'rgba(255, 139, 45, 1)',
               borderWidth: 2,

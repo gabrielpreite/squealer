@@ -12,7 +12,7 @@ function get_cookie_by_name(name) {
 
 function set_cookie(key, value) {
     var now = new Date()
-    var time = now.getTime() 
+    var time = now.getTime()
                             //ore     giorni
     var expireTime = time + 1000*3600*24*14
     now.setTime(expireTime)
@@ -56,4 +56,16 @@ function timeConverter(UNIX_timestamp){
     }
     var time = date + '/' + month + '/' + year + ' ' + hour + ':' + min;
     return time;
+}
+
+function convertiTimestampInData(unixTimestamp) {
+  const data = new Date(unixTimestamp);
+
+  const anno = data.getFullYear();
+  const mese = String(data.getMonth() + 1).padStart(2, '0');
+  const giorno = String(data.getDate()).padStart(2, '0');
+
+  const dataNelFormatoDesiderato = `${anno}-${mese}-${giorno}`;
+
+  return dataNelFormatoDesiderato;
 }
