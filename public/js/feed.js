@@ -27,9 +27,17 @@ function aggiungi_squeal(squeals) {
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
       const at_arr = squeals[i].corpo.match(at);
+      //url in text
+      const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\S+)?\b/g;
+      const url_arr = squeals[i].corpo.match(url);
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
           squeals[i].corpo = squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
+        });
+      }
+      if (url_arr != null) {
+        url_arr.forEach(function(link) {
+          squeals[i].corpo = squeals[i].corpo.replace(link,'<a class="btn_link" href="' + link + '">' + link + '</a>');
         });
       }
       document.getElementById(id_testo).innerHTML = squeals[i].corpo;
