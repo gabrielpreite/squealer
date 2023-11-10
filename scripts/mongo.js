@@ -652,7 +652,9 @@ exports.add_post = async function(q, campi, credentials) {
 
 		// notifica messaggio privato
 		if(tipo_destinatari == "utenti"){
-			add_notifica(autore_originale, "privato", String(newDocumentId), credentials, null, campi.username)
+			q.destinatari.forEach((el) => {
+				add_notifica(el, "privato", String(newDocumentId), credentials, null, campi.username)
+			})
 		}
 
 		await mongo.close();
@@ -695,7 +697,7 @@ exports.user_feed = async function(q, campi, credentials) {
 
 		let result = []
 
-		await mongo.db(dbname)
+		await mongo.db(dbname) // feed da canali
 			.collection("messaggio")
 			.aggregate([
 				{
@@ -767,7 +769,7 @@ exports.user_feed = async function(q, campi, credentials) {
 		result.forEach((element) => console.log(element))
 		console.log("cerco post bacheca utenti seguiti")*/
 
-		await mongo.db(dbname)
+		await mongo.db(dbname) // feed da utenti
 			.collection("messaggio")
 			.aggregate([
 				{
@@ -840,6 +842,83 @@ exports.user_feed = async function(q, campi, credentials) {
 		// debug
 		//console.log("post in bacheca di utenti seguiti")
 		//result.forEach((element) => console.log(element))
+
+		let canali_ufficiali = [] // ottengo la lista di canali ufficiali
+		await mongo.db(dbname)
+			.collection("canale")
+			.find({ufficiale: true})
+			.forEach((el) => {
+				canali_ufficiali.push(el.nome)
+			})
+
+		await mongo.db(dbname) // feed da canali ufficiali
+			.collection("messaggio")
+			.aggregate([
+				{
+					$match: {
+						destinatari: { $in: canali_ufficiali },
+					}
+				},
+				{
+					$lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					}
+				},
+				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
+					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+					"newRoot": {
+						"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+							"$$ROOT", //campi originali in messaggio
+							{ nome: "$utenteData.nome" },
+							{ img: "$utenteData.img" }
+						]
+					}
+					}
+				},
+				{
+					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						utenteData: 0
+					}
+				},
+				{
+				  $lookup: {
+					from: "messaggio",
+					localField: "post_id",
+					foreignField: "risponde_a",
+					as: "risposte"
+				  }
+				},
+				{
+				  $addFields: {
+					numRisposte: { $size: "$risposte" }
+				  }
+				},
+				{
+				  $project: {
+					risposte: 0
+				  }
+				},
+				{
+					$sort: {
+					  timestamp: -1 // Sort by timestamp in descending order
+					}
+				  },
+				  {
+					$limit: 100 // Limit the result to 100 records
+				  }
+			])
+			.forEach( (r) => {
+				if(!(result.some(e => e.post_id == r.post_id))) { //aggiungo post da canali ufficiali evitando duplicati
+					r["suggerito"] = true
+					result.push(r) 
+				}
+			});
 
 		// aumento le visual dei post ottenuti
 		var id_arr = []
