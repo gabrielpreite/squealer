@@ -211,7 +211,8 @@
 }
 
 .card-body img{
-  width: 680px;
+  max-width: 600px;
+  border-radius: 10px;
 }
 
 .profile-image {
