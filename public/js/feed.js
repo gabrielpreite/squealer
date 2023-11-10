@@ -543,12 +543,11 @@ function ricerca_notifica(notifica) {
       headers: { },
       success: function (data, status, xhr) {
         post_notifica = data;
-        console.log(post_notifica);
       }
     });
-    console.log(post_notifica);
     if (notifica.tipo == "risposta") {
       console.log(post_notifica);
+      console.log("risponde a: ");
       console.log(post_notifica.risponde_a);
       $.ajax({
         type: 'GET',
