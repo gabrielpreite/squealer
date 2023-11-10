@@ -652,7 +652,9 @@ exports.add_post = async function(q, campi, credentials) {
 
 		// notifica messaggio privato
 		if(tipo_destinatari == "utenti"){
-			add_notifica(autore_originale, "privato", String(newDocumentId), credentials, null, campi.username)
+			q.destinatari.forEach((el) => {
+				add_notifica(el, "privato", String(newDocumentId), credentials, null, campi.username)
+			})
 		}
 
 		await mongo.close();
