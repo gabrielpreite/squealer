@@ -13,7 +13,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [10, 5, -5],
+          "valori": [10, 5, -5]
         },
         "canali_seguiti": [
             "$free"
@@ -44,7 +44,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [0, -5, -15],
+          "valori": [0, -5, -15]
         },
         "canali_seguiti": [
             "$free"
@@ -75,7 +75,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [10, 15, 10],
+          "valori": [10, 15, 10]
         },
         "canali_seguiti": [
             "$free"
@@ -107,7 +107,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [3, -1, 5],
+          "valori": [3, -1, 5]
         },
         "canali_seguiti": [
             "$free"
@@ -135,7 +135,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [2, 5, -5],
+          "valori": [2, 5, -5]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -161,7 +161,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [10, 15, -5],
+          "valori": [10, 15, -5]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -187,7 +187,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [10, 0, -5],
+          "valori": [10, 0, -5]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -213,7 +213,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [1, 3, -5],
+          "valori": [1, 3, -5]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
