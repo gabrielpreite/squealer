@@ -365,7 +365,7 @@ exports.user_info = async function(q, credentials) {
 		await mongo.db(dbname)
 				.collection("utente")
 				.find({username: q.username})
-				.project({ img: 1, username: 1, nome: 1})
+				.project({ img: 1, username: 1, nome: 1, popolarita: 1})
 				.forEach( (r) => { 
 					result.push(r) 
 				} );
