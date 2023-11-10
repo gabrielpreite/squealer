@@ -575,3 +575,22 @@ function ricerca_notifica(notifica) {
     success: function (data, status, xhr) {}
   });
 }
+
+function ricerca_post(id_post) {
+  var post_notifica;
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${id_post}`,
+    headers: { },
+    success: function (data, status, xhr) {
+      post_notifica = data;
+    }
+  });
+  rimpiazza_squeals(post_notifica, "filtro");
+  rimpiazza_commenti(post_notifica.post_id);
+  squeals = post_notifica;
+  let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
+  aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
+}
