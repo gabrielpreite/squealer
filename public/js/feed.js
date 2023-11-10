@@ -30,17 +30,18 @@ function aggiungi_squeal(squeals) {
       //url in text
       const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\S+)?\b/g;
       const url_arr = squeals[i].corpo.match(url);
+      let testo_squeal;
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
-          squeals[i].corpo = squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
+          testo_squeal = squeals[i].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
         });
       }
       if (url_arr != null) {
         url_arr.forEach(function(link) {
-          squeals[i].corpo = squeals[i].corpo.replace(link,'<a class="btn_link" href="' + link + '">' + link + '</a>');
+          testo_squeal = testo_squeal.replace(link,'<a class="btn_link" href="' + link + '">' + link + '</a>');
         });
       }
-      document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+      document.getElementById(id_testo).innerHTML = testo_squeal;
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     } else if(squeals[i].contenuto == "map"){
