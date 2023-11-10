@@ -44,7 +44,7 @@ function aggiungi_squeal(squeals) {
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     } else if(squeals[i].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+      document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa_squeal">`;
     }
     //destinatari
     var id_destinatari = 'btn-destinatari' + i;
