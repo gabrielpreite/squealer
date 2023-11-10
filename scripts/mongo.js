@@ -650,6 +650,11 @@ exports.add_post = async function(q, campi, credentials) {
 			add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, campi.username)
 		}
 
+		// notifica messaggio privato
+		if(tipo_destinatari == "utenti"){
+			add_notifica(autore_originale, "privato", String(newDocumentId), credentials, null, campi.username)
+		}
+
 		await mongo.close();
 		return
 	} catch (e) {
@@ -1786,6 +1791,23 @@ async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
 				});
 		} else if(tipo == "risposta"){
 			notifica["testo"] = `${origin} ha commentato un tuo post!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "privato"){
+			notifica["testo"] = `${origin} ti ha mandato un messaggio privato!`
 			await mongo.db(dbname)
 				.collection("notifica")
 				.insertOne(notifica)
