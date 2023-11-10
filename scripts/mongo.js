@@ -487,9 +487,11 @@ exports.add_post = async function(q, campi, credentials) {
 		}
 
 		let newDocumentId
+		let quota_usata
 
 		//console.log(q.tipo)
 		if(q.contenuto == "testo"){//caso testo
+			quota_usata = q.textarea.length
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
@@ -552,6 +554,7 @@ exports.add_post = async function(q, campi, credentials) {
 				}
 			}
 		}else if(q.contenuto == "img"){//caso immagine
+			quota_usata = 120
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
@@ -594,6 +597,7 @@ exports.add_post = async function(q, campi, credentials) {
 						});
 
 		}else if(q.contenuto == "map"){//caso mappa
+			quota_usata = 120
 			await mongo.db(dbname)
 						.collection("messaggio")
 						.insertOne(
@@ -655,7 +659,17 @@ exports.add_post = async function(q, campi, credentials) {
 			q.destinatari.forEach((el) => {
 				add_notifica(el, "privato", String(newDocumentId), credentials, null, campi.username)
 			})
+			// se il messaggio e' privato non consuma quota
+			quota_usata = 0
 		}
+
+		//aggiorno la quota
+		await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{ username: campi.username },
+				{ $inc: {"quota.g" : (-quota_usata)}}
+			);
 
 		await mongo.close();
 		return
