@@ -580,3 +580,24 @@ function ricerca_post(id_post) {
   let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
   aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
 }
+
+function compra_quota(qnt){
+  let data = {"target": CURRENT_USER, "qnt": qnt}
+
+  fetch("/add_quota", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then((response) => {
+    //chiudo modal
+    $("#shop-quota").modal("toggle")
+    let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
+    //aggiorno il cookie quota
+    set_cookie("quota_g", new_quota)
+    //aggiorno navbar
+    $("#charCount_giorno").text(new_quota)
+  })
+}
