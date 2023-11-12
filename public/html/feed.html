@@ -262,9 +262,9 @@
 
         // aggiorno la quota
         refresh_quota()
-        let quota_giorno = get_cookie_by_name("quota_giorno");
-        let quota_settimana = get_cookie_by_name("quota_settimana");
-        let quota_mese = get_cookie_by_name("quota_mese");
+        let quota_giorno = get_cookie_by_name("quota_g");
+        let quota_settimana = get_cookie_by_name("quota_s");
+        let quota_mese = get_cookie_by_name("quota_m");
 
         // Aggiorna il contenuto delle span con i nuovi valori
         document.getElementById("charCount_mese").textContent = quota_mese;
