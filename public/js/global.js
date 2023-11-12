@@ -10,6 +10,21 @@ function get_cookie_by_name(name) {
     }
 }
 
+function refresh_quota(){
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/get_quota?username=${CURRENT_USER}`,
+        headers: { },
+        success: function (data, status, xhr) {
+          set_cookie("quota_g", data["quota"]["g"])
+          set_cookie("quota_s", data["quota"]["s"])
+          set_cookie("quota_m", data["quota"]["m"])
+        }
+    });
+}
+
 function set_cookie(key, value) {
     var now = new Date()
     var time = now.getTime()
