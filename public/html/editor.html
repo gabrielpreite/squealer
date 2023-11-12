@@ -264,6 +264,12 @@
     crossorigin="anonymous"></script>
 
   <script>
+    // controllo l'account corrente (gestione smm)
+    var CURRENT_USER = get_cookie_by_name("managed");
+    if (CURRENT_USER == undefined) {
+      CURRENT_USER = get_cookie_by_name("username");
+    }
+
     // INSERIMENTO ACCOUNT GESTITI DA SMM
     /*let account = []
     $.ajax({
@@ -308,12 +314,8 @@
 
   function compra_quota(qnt){
     //controllo chi sta comprando
-    let target_user = get_cookie_by_name("username")
-    let managed = get_cookie_by_name("managed")
-    if(!(managed === undefined))
-      target_user = managed
 
-    let data = {"target": target_user, "qnt": qnt}
+    let data = {"target": CURRENT_USER, "qnt": qnt}
 
     fetch("/add_quota", {
       method: "POST",
@@ -570,12 +572,7 @@
       if(check_post() == true){ //  check post da rivedere in base ai 3 tipi di messaggio
         const formData = new FormData(document.getElementById("crea_post"))
 
-        //controllo a chi appartiene il post
-        let target_user = get_cookie_by_name("username")
-        let managed = get_cookie_by_name("managed")
-        if(!(managed === undefined))
-          target_user = managed
-        formData.append("user_id", target_user)
+        formData.append("user_id", CURRENT_USER)
 
         if(!$("#contenuto_testo").attr("hidden")){//caso testo
           formData.append("contenuto", "testo")

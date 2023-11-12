@@ -159,11 +159,10 @@
     // INSERIMENTO PROPIC UTENTE
     $("#propic").attr("src", "http://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
 
-    //se sto gestendo un account lo mostro nella barra
-    let managed = get_cookie_by_name("managed")
-    if (!(managed === undefined)) {
-      $("#managed-account-username").text(managed)
-      $("#managed-account-username").removeAttr("hidden")
+    // controllo l'account corrente (gestione smm)
+    var CURRENT_USER = get_cookie_by_name("managed");
+    if (CURRENT_USER == undefined) {
+      CURRENT_USER = get_cookie_by_name("username");
     }
   </script>
 </body>
