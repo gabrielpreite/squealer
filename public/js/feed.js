@@ -19,7 +19,7 @@ function aggiungi_squeal(squeals) {
     document.getElementById(id_nome).innerHTML = squeals[i].nome;
     document.getElementById(id_tag).innerHTML = squeals[i].utente;
     document.getElementById(id_timestamp).innerHTML = timeConverter(squeals[i].timestamp);
-    document.getElementById(id_squeal_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${squeals[i].img}`
+    document.getElementById(id_squeal_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${squeals[i].img}`
 
     //corpo squeal
     var id_testo = 'squeal_testo' + i;
@@ -43,7 +43,7 @@ function aggiungi_squeal(squeals) {
       }
       document.getElementById(id_testo).innerHTML = testo_squeal;
     } else if(squeals[i].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
+      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
     } else if(squeals[i].contenuto == "map"){
       document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa_squeal">`;
     }
@@ -190,7 +190,7 @@ function aggiungi_info(meta){
   if(meta["tipo"] == "utente") { // caso ricerca utente
     let riga1 = `<div class="row" id="riga1"></div>`
     container.append(riga1)
-    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
+    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
     let riga4 = `<div class="row" id="riga4"></div>`
@@ -215,7 +215,7 @@ function aggiungi_info(meta){
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
     container.append(riga1)
-    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="http://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
+    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
     let riga2 = `<div class="row" id="riga2"></div>`
 
@@ -465,7 +465,7 @@ function aggiungicommento(icon, azione, id) {
     document.getElementById("barra-destra").hidden = false;
     document.getElementById("mostra-commenti").hidden = true;
   } else {
-    window.location.replace(`http://site212251.tw.cs.unibo.it/editor?post_id=` + id);
+    window.location.replace(`https://site212251.tw.cs.unibo.it/editor?post_id=` + id);
   }
 }
 
@@ -490,7 +490,7 @@ function rimpiazza_commenti(id) {
   for (var c = 0; c < n_commenti; c++) {
     contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '" onclick="ricerca_squeal(this)">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
     var c_img_utente = 'c_img_utente' + c;
-    document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
+    document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
     var id_tag = 'c_username' + c;
     document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
     var id_testo = 'c_text' + c;
@@ -505,7 +505,7 @@ function rimpiazza_commenti(id) {
       }
       document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
     } else if(lista_commenti[c].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
+      document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
     }
   }
 }

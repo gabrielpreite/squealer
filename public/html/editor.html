@@ -142,19 +142,19 @@
           <div class="row">
             <div class="col-4">
               <div class="text-center"> <!-- Centered image and button -->
-                <img src="http://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99" class="img-fluid">
+                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99" class="img-fluid">
                 <button onclick="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button> <!-- Added margin top -->
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
-                <img src="http://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 240 caratteri per 1.99" class="img-fluid">
+                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 240 caratteri per 1.99" class="img-fluid">
                 <button onclick="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
-                <img src="http://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 480 caratteri per 4.99" class="img-fluid">
+                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 480 caratteri per 4.99" class="img-fluid">
                 <button onclick="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
@@ -338,7 +338,7 @@
     })*/
 
     // INSERIMENTO PROPIC UTENTE
-    $("#propic").attr("src", "http://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
 
     //se sto gestendo un account lo mostro nella barra
     let managed = get_cookie_by_name("managed")
@@ -421,11 +421,11 @@
       document.getElementById("squeal-nome-utente").innerHTML = post_originale.nome;
       document.getElementById("squeal-username").innerHTML = post_originale.utente;
       document.getElementById("squeal-data").innerHTML = timeConverter(post_originale.timestamp);
-      document.getElementById("squeal-immagine-profilo").src = `http://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
+      document.getElementById("squeal-immagine-profilo").src = `https://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
       if(post_originale.contenuto == "testo"){
         document.getElementById("squeal-contenuto").innerHTML = post_originale.corpo;
       } else if(post_originale.contenuto == "img"){
-        document.getElementById("squeal-contenuto").innerHTML = `<img src="http://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine_squeal">`
+        document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine_squeal">`
       }
 
       // stampo i commenti
@@ -658,7 +658,7 @@
         .then((response) => {
           if (response.ok) {
             // The initial request was successful
-            window.location.replace("http://site212251.tw.cs.unibo.it");
+            window.location.replace("https://site212251.tw.cs.unibo.it");
           } else {
             throw new Error("Network response was not ok.");
           }
@@ -876,14 +876,14 @@
       for (var c = 0; c < n_commenti; c++) {
         contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
         var c_img_utente = 'c_img_utente' + c;
-        document.getElementById(c_img_utente).src = `http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
+        document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
         var id_tag = 'c_username' + c;
         document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
         var id_testo = 'c_text' + c;
         if(lista_commenti[c].contenuto == "testo"){
           document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
         } else if(lista_commenti[c].contenuto == "img"){
-          document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="http://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
+          document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
         }
       }
     }
