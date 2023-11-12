@@ -362,9 +362,9 @@ function switch_account(username){
     url: `https://site212251.tw.cs.unibo.it/get_quota?username=${username}`,
     headers: { },
     success: function (data, status, xhr) {
-      set_cookie("quota_giorno", data["quota"]["g"])
-      set_cookie("quota_settimana", data["quota"]["s"])
-      set_cookie("quota_mese", data["quota"]["m"])
+      set_cookie("quota_g", data["quota"]["g"])
+      set_cookie("quota_s", data["quota"]["s"])
+      set_cookie("quota_m", data["quota"]["m"])
       location.reload()
     }
   });
@@ -379,9 +379,9 @@ function switch_to_smm(){
     url: `https://site212251.tw.cs.unibo.it/get_quota?username=${get_cookie_by_name("username")}`,
     headers: { },
     success: function (data, status, xhr) {
-      set_cookie("quota_giorno", data["quota"]["g"])
-      set_cookie("quota_settimana", data["quota"]["s"])
-      set_cookie("quota_mese", data["quota"]["m"])
+      set_cookie("quota_g", data["quota"]["g"])
+      set_cookie("quota_s", data["quota"]["s"])
+      set_cookie("quota_m", data["quota"]["m"])
       location.reload()
     }
   });

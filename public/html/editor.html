@@ -326,9 +326,9 @@
     .then((response) => {
       //chiudo modal
       $("#shop-quota").modal("toggle")
-      let new_quota = parseInt(get_cookie_by_name("quota_giorno"))+qnt
+      let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
       //aggiorno il cookie quota
-      set_cookie("quota_giorno", new_quota)
+      set_cookie("quota_g", new_quota)
       //aggiorno navbar
       $("#charCount_giorno").text(new_quota)
       //aggiorno vars
