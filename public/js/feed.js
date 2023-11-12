@@ -85,38 +85,33 @@ function aggiungi_squeal(squeals) {
     //get_cookie_by_name("username")
 
     //aggiungo le reaction gia' inserite
-    //come user (smm) o come account gestito (se esiste il cookie)
-    let target_user = get_cookie_by_name("username")
-    let managed = get_cookie_by_name("managed")
-    if(!(managed === undefined))
-      target_user = managed
 
-    if (squeals[i].reazioni.positive.adoro.includes(target_user)) {
+    if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
       var nreazioni0 = document.getElementById(id_sketch);
       var premuto0 = nreazioni0.parentNode;
       premuto0.style.color= "#00AFFF";
       premuto0.checked = true;
-    } else if (squeals[i].reazioni.negative.mi_disgusta.includes(target_user)) {
+    } else if (squeals[i].reazioni.negative.mi_disgusta.includes(CURRENT_USER)) {
       var nreazioni1 = document.getElementById(id_poo);
       var premuto1 = nreazioni1.parentNode;
       premuto1.style.color= "#8B4513";
       premuto1.checked = true;
-    } else if (squeals[i].reazioni.positive.mi_piace.includes(target_user)) {
+    } else if (squeals[i].reazioni.positive.mi_piace.includes(CURRENT_USER)) {
       var nreazioni2 = document.getElementById(id_heart);
       var premuto2 = nreazioni2.parentNode;
       premuto2.style.color= "#FF0000";
       premuto2.checked = true;
-    } else if (squeals[i].reazioni.negative.odio.includes(target_user)) {
+    } else if (squeals[i].reazioni.negative.odio.includes(CURRENT_USER)) {
       var nreazioni3 = document.getElementById(id_disheart);
       var premuto3 = nreazioni3.parentNode;
       premuto3.style.color= "#FF0000";
       premuto3.checked = true;
-    } else if (squeals[i].reazioni.positive.concordo.includes(target_user)) {
+    } else if (squeals[i].reazioni.positive.concordo.includes(CURRENT_USER)) {
       var nreazioni4 = document.getElementById(id_like);
       var premuto4 = nreazioni4.parentNode;
       premuto4.style.color= "#007FFF";
       premuto4.checked = true;
-    } else if (squeals[i].reazioni.negative.sono_contrario.includes(target_user)) {
+    } else if (squeals[i].reazioni.negative.sono_contrario.includes(CURRENT_USER)) {
       var nreazioni5 = document.getElementById(id_dislike);
       var premuto5 = nreazioni5.parentNode;
       premuto5.style.color= "#007FFF";
@@ -150,18 +145,12 @@ function aggiungi_squeal(squeals) {
 }
 
 function toggle_follow(target, tipo){
-  //come user (smm) o come account gestito (se esiste il cookie)
-  let origin = get_cookie_by_name("username")
-  let managed = get_cookie_by_name("managed")
-  if(!(managed === undefined))
-    origin = managed
-
   $.ajax({
     type: 'POST',
     dataType: "json",
     url: `https://site212251.tw.cs.unibo.it/toggle_follow`,
     headers: { },
-    data: { origin: origin, target: target, tipo: tipo },
+    data: { origin: CURRENT_USER, target: target, tipo: tipo },
     success: function (data, status, xhr) {
       let num_foll = parseInt($("#num_follower").text().split(" ")[0])
       if (data.result == "added"){
@@ -306,12 +295,6 @@ function ricerca_squeal(elem) {
     }
   }
 
-  //come user (smm) o come account gestito (se esiste il cookie)
-  let target_user = get_cookie_by_name("username")
-  let managed = get_cookie_by_name("managed")
-  if(!(managed === undefined))
-    target_user = managed
-
   let all_info;
   $.ajax({
     type: 'POST',
@@ -319,7 +302,7 @@ function ricerca_squeal(elem) {
     async: false,
     url: `https://site212251.tw.cs.unibo.it/search`,
     headers: { },
-    data: { query: query, tipo: tipo, target: target_user },
+    data: { query: query, tipo: tipo, target: CURRENT_USER },
     success: function (data, status, xhr) {
       console.log('data: ', data);
       all_info = data;
@@ -445,19 +428,13 @@ function premibottone(button, reac, id) {
     });
   }
 
-  //controllo a chi assegnare la reaction
-  let target_user = get_cookie_by_name("username")
-  let managed = get_cookie_by_name("managed")
-  if(!(managed === undefined))
-    target_user = managed
-
   //chiamata update db
   $.ajax({
     type: 'GET',
     dataType: "json",
     async: false,
     url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-    data: { _id: id, reac: reac, userid: target_user},
+    data: { _id: id, reac: reac, userid: CURRENT_USER},
     headers: { },
     success: function (data, status, xhr) {
       console.log('data: ', data);
