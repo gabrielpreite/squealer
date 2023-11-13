@@ -268,7 +268,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
     try{
         const user_id = req.params.user_id
     
-        response = await mymongo.user_feed(user_id, req.body, mongoCredentials)
+        response = await mymongo.user_feed(user_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
             res.status(200)
