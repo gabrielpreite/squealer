@@ -148,9 +148,9 @@ function toggle_follow(target, tipo){
   $.ajax({
     type: 'POST',
     dataType: "json",
-    url: `https://site212251.tw.cs.unibo.it/toggle_follow`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
     headers: { },
-    data: { origin: CURRENT_USER, target: target, tipo: tipo },
+    data: { target: target, tipo: tipo },
     success: function (data, status, xhr) {
       let num_foll = parseInt($("#num_follower").text().split(" ")[0])
       if (data.result == "added"){
@@ -266,12 +266,12 @@ function ricerca_squeal(elem) {
       return false;
     }
     //check varie cose
-    if (tipo == "utente") {
+    if (tipo == "user") {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
-    } else if (tipo == "canale") {
+    } else if (tipo == "channel") {
       if (query[0] != "$") {
         query = "$" + query;
       }
@@ -285,13 +285,13 @@ function ricerca_squeal(elem) {
       query = query.substring(2);
     }
     if (tipo == "$") {
-      tipo = "canale";
+      tipo = "channel";
     } else {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
-      tipo = "utente";
+      tipo = "user";
     }
   }
 
@@ -300,9 +300,9 @@ function ricerca_squeal(elem) {
     type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/search`,
+    url: `https://site212251.tw.cs.unibo.it/squeal/by_${tipo}`,
     headers: { },
-    data: { query: query, tipo: tipo, target: CURRENT_USER },
+    data: { query: query, target: CURRENT_USER },
     success: function (data, status, xhr) {
       console.log('data: ', data);
       all_info = data;
