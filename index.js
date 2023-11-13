@@ -195,7 +195,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -225,7 +225,7 @@ app.post('/user/:user_id/quota', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -255,7 +255,7 @@ app.post('/user/:user_id/follow', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -275,7 +275,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -299,7 +299,7 @@ app.get('/user/:user_id/managed_by', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -327,7 +327,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -351,7 +351,7 @@ app.get('/user/:user_id/manager_of', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -375,7 +375,7 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -425,7 +425,7 @@ app.get('/user/:user_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -455,7 +455,7 @@ app.delete('/user/:user_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -538,7 +538,7 @@ app.get('/squeal/:squeal_id/reply', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -563,7 +563,7 @@ app.post('/squeal/:squeal_id/reaction', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -587,7 +587,7 @@ app.get('/squeal/:squeal_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -619,7 +619,7 @@ app.delete('/squeal/:squeal_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -643,7 +643,7 @@ app.post('/squeal/by_user', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -666,7 +666,7 @@ app.post('/squeal/by_channel', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -689,7 +689,7 @@ app.post('/squeal/by_keyword', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -725,7 +725,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -752,7 +752,7 @@ app.get('/channel/:channel_id/auth', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -777,7 +777,7 @@ app.get('/channel/:channel_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -832,7 +832,7 @@ app.delete('/channel/:channel_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -880,7 +880,7 @@ app.get('/notification/:user_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
@@ -904,7 +904,7 @@ app.post('/notification/:notification_id', async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        response["errore"] = e
+        response["errore"] = e.toString()
         res.status(500)
         res.send(response)
     }
