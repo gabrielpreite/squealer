@@ -172,9 +172,9 @@ app.post('/api_login', async function(req, res) {
 		res.cookie('nome', db_res["nome"])
 		res.cookie('img', db_res["img"])
 		res.cookie('login_result', "success")
-		res.cookie('quota_giorno', db_res["quota"]["g"])
-		res.cookie('quota_settimana', db_res["quota"]["s"])
-		res.cookie('quota_mese', db_res["quota"]["m"])
+		res.cookie('quota_g', db_res["quota"]["g"])
+		res.cookie('quota_s', db_res["quota"]["s"])
+		res.cookie('quota_m', db_res["quota"]["m"])
 		res.clearCookie('managed')
 		res.redirect("/")
 	}catch(e){
