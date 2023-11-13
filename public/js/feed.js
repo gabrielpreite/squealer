@@ -428,11 +428,11 @@ function premibottone(button, reac, id) {
 
   //chiamata update db
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-    data: { _id: id, reac: reac, userid: CURRENT_USER},
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reaction`,
+    data: {reac: reac, userid: CURRENT_USER},
     headers: { },
     success: function (data, status, xhr) {
       console.log('data: ', data);
@@ -478,10 +478,10 @@ function rimpiazza_commenti(id) {
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_replies?post_id=` + id,
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
     headers: { },
     success: function (data, status, xhr) {
-      lista_commenti = data;
+      lista_commenti = data.data;
     }
   });
   var n_commenti = lista_commenti.length;
