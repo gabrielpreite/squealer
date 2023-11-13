@@ -252,6 +252,7 @@ app.delete('/user/:user_id', async function(req, res) {
 });
 
 // modifica impostazioni utente
+//body: todo mongo
 app.post('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
@@ -280,6 +281,7 @@ app.post('/user/:user_id', async function(req, res) {
 });
 
 // login
+//body: password, username
 app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
@@ -338,6 +340,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
 });
 
 // aggiorna quota
+//body: qnt
 app.post('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
@@ -409,7 +412,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
             res.status(403)
             res.send(response)
         }
-        response = await mymongo.user_feed(user_id, req.body, mongoCredentials)
+        response = await mymongo.user_feed(user_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
             res.status(200)
