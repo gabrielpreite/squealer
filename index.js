@@ -1,4 +1,4 @@
-﻿/*
+/*
 File: index.js
 Author: Fabio Vitali
 Version: 1.0
@@ -40,6 +40,7 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
 const upload = require('./multer');
+const { Timestamp } = require('mongodb');
 
 /* ========================== */
 /*                            */
@@ -71,6 +72,12 @@ app.use(sessions({
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
 
+/* ========================== */
+/*                            */
+/*           PAGINE           */
+/*                            */
+/* ========================== */
+
 app.get('/', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
@@ -93,14 +100,6 @@ app.get('/settings', function (req, res) {
 		req.session.destroy()
 		res.redirect("/login")
 	} else {res.sendFile(global.rootDir+"/public/html/settings.html")}
-})
-
-app.get('/testdb', function (req, res) { // ---- DEBUG USE
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
-	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
-		req.session.destroy()
-		res.redirect("/login")
-	} else {res.sendFile(global.rootDir+"/public/html/testdb.html")}
 })
 
 app.get('/register', function (req, res) {
@@ -126,7 +125,7 @@ app.get('/logout', function (req, res) {
 	res.redirect("/login")
 })
 
-app.get('/test', function (req, res) {
+app.get('/test', function (req, res) { // DEBUG USE
 	res.sendFile(global.rootDir+"/public/html/test.html")
 })
 
@@ -135,71 +134,20 @@ app.get('/test', function (req, res) {
 /*           MONGODB          */
 /*                            */
 /* ========================== */
+//chiamate di debug/mantenimento
 
-/* Replace these info with the ones you were given when activating mongoDB */
 const mongoCredentials = {
-        user: "site212251",
-        pwd: "iot7Eewe",
-        site: "mongo_site212251"
+    user: "site212251",
+    pwd: "iot7Eewe",
+    site: "mongo_site212251"
 }
-/* end */
 
 app.get('/db/create', async function(req, res) {
-	res.send(await mymongo.create(mongoCredentials))
-});
-app.get('/db/search', async function(req, res) {
-	res.send(await mymongo.search(req.query, mongoCredentials))
-});
-
-/* ========================== */
-/*                            */
-/*          DB CALLS	      */
-/*                            */
-/* ========================== */
-
-//login
-
-app.post('/api_login', async function(req, res) {
-	try{
-		var db_res = await mymongo.user_login(req.body, mongoCredentials);
-		//console.log(db_res);
-		if(db_res === null)
-			throw new Error("errore db")
-		session=req.session; //login riuscito
-		session.userid=req.body.username;
-		console.log(req.session)
-		res.cookie('username', session.userid)
-		res.cookie('nome', db_res["nome"])
-		res.cookie('img', db_res["img"])
-		res.cookie('login_result', "success")
-		res.cookie('quota_giorno', db_res["quota"]["g"])
-		res.cookie('quota_settimana', db_res["quota"]["s"])
-		res.cookie('quota_mese', db_res["quota"]["m"])
-		res.clearCookie('managed')
-		res.redirect("/")
-	}catch(e){
-		res.cookie('username', "null")
-		res.cookie('login_result', "failed")
-		//res.sendFile(global.rootDir+"/public/html/login.html")
-		res.redirect("/login")
-	}
-});
-
-//registrazione
-app.post('/api_register', async function(req, res) {
-	try{
-		let result = await mymongo.add_user(req.body, mongoCredentials);
-
-		res.status(200)
-		res.redirect("/login")
-	} catch (e) {
-		res.status(500)
-		res.redirect("/register")
-	}
+res.send(await mymongo.create(mongoCredentials))
 });
 
 //tabella utente o singolo utente da username
-app.get('/api_utente', async function(req, res) {
+app.get('/db/user', async function(req, res) {
 	res.send(await mymongo.search_utente(req.query, mongoCredentials))
 });
 
@@ -218,282 +166,751 @@ app.get('/api_notifica', async function(req, res) {
 	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
 });
 
-app.get('/permessi_canale', async function(req, res) {
-	try{
-		let result = await mymongo.search_canale(req.query, mongoCredentials)
-		result = result["result"][0]
-		if(result["abilitato"] == true && (result["scrittura"].includes(session.userid) || result["scrittura"].includes("*"))){
-			res.status(200)
-			res.send("true")
-		}else{
-			res.status(403)
-			res.send("false")
-		}
-	}catch(e){
-		res.status(500)
-		res.send("errore")
-	}
-});
-
-app.get("/user_info", async function(req, res) {
-	try{
-		let result = await mymongo.user_info(req.query, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	}catch(e){
-		res.status(500)
-		res.send("errore")
-	}
-});
-
-app.get("/get_quota", async function(req, res) {
-	try{
-		let result = await mymongo.get_quota(req.query, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	}catch(e){
-		res.status(500)
-		res.send("errore")
-	}
-})
-
-app.post("/toggle_follow", async function(req, res){
-	try{
-		let result = await mymongo.toggle_follow(req.body, mongoCredentials)
-		res.status(200)
-		res.send(JSON.stringify({"result": result}))
-	}catch(e){
-		res.status(500)
-		res.send("errore")
-	}
-})
-
-app.get("/user_exist", async function(req, res) {
-	try{
-		let result = await mymongo.user_exist(req.query, mongoCredentials)
-		res.status(200)
-		if (result.length == 0) {
-			res.send(false) //utente non esiste
-		} else {
-			res.send(true) //utente esiste
-		}
-	}catch(e){
-		res.status(500)
-		res.send("errore")
-	}
-});
-
-app.get("/email_exist", async function(req, res) {
-	try{
-		let result = await mymongo.email_exist(req.query, mongoCredentials)
-		res.status(200)
-		if (result.length == 0) {
-			res.send(false) //email non esiste
-		} else {
-			res.send(true) //email esiste
-		}
-	}catch(e){
-		res.status(500)
-		res.send("errore")
-	}
-});
-
-//crea uno squeal
-app.post('/crea_post', upload.single("img"), async function(req, res) {
-	try{
-		//aggiungo i vari campi mancanti
-		var campi = {}
-		if(req.body.contenuto == "img"){//caso immagine
-			let path = req.file.path
-			campi["path"] = path.split("/").slice(-1)[0]
-		}
-
-		req.body.destinatari = JSON.parse(req.body.destinatari)
-
-		//timestamp
-		let date = new Date()
-		campi["timestamp"] = date.getTime();
-
-		//username
-		campi["username"] = req.body.user_id
-
-		let result = await mymongo.add_post(req.body, campi, mongoCredentials);
-
-		res.status(200)
-		res.send("ok")
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella creazione del post")
-	}
-});
-
-//user feed
-app.get('/user_feed', async function(req, res) {
-	let result;
-	try{
-		let campi = {}
-		campi["username"] = session.userid;
-		result = await mymongo.user_feed(req.query, campi, mongoCredentials);
-		res.status(200)
-		res.send(result)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella richiesta del feed")
-	}
-});
-
-app.get('/smm_feed', async function(req, res) {
-	let result;
-	try{
-		let campi = {}
-		campi["smm"] = session.userid;
-		result = await mymongo.smm_feed(req.query, campi, mongoCredentials);
-		res.status(200)
-		res.send(result)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella richiesta del feed")
-	}
-});
-
-// ottiene gli squeal in risposta al post selezionato
-app.get('/get_replies', async function(req, res) {
-	let result
-	try{
-		result = await mymongo.get_replies(req.query, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella richiesta dei commenti")
-	}
-});
-
-// ottiene gli account gestiti dall'utente
-app.get('/get_managed', async function(req,res) {
-	let result
-	let campi = {}
-	try{
-		campi["username"] = session.userid
-		result = await mymongo.get_managed(req, campi, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella richiesta degli account gestiti1")
-	}
-});
-
-//otiene i canali dell'utente
-app.get('/get_mychannels', async function(req,res) {
-	let campi = {}
-	try{
-		campi["username"] = session.userid
-		result = await mymongo.get_mychannels(req, campi, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella richiesta dei canali gestiti1")
-	}
-}),
-
-//risultati della ricerca
-app.post('/search', async function(req, res) {
-	//req.body.tipo = utente|canale|keyword
-	//req.body.query
-	let result
-	try{
-		result = await mymongo.search(req.body, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	} catch(e){ // todo due errori: server error, ricerca senza risultati
-		res.status(404)
-		res.send("errore nella ricerca")
-	}
-});
-
-app.get('/update_reazioni', async function(req, res) {
-	try{
-		//req.query.userid = session.userid //deprecato
-		let r = await mymongo.update_reazioni(req.query, mongoCredentials)
-		res.status(200)
-		res.send(JSON.stringify(r))
-	} catch (e) {
-		res.status(500)
-		res.send("errore nell'aggiunta di reaction")
-	}
-});
-
-app.post('/add_quota', async function(req, res) {
-	try{
-		let result = await mymongo.add_quota(req.body, mongoCredentials)
-		res.status(200)
-		res.send(result)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nell'acquisto di quota")
-	}
-});
-
-app.get('/get_notifiche', async function(req, res) {
-	try{
-		let r = await mymongo.get_notifiche(req.query, mongoCredentials)
-		res.status(200)
-		res.send(r)
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella ricerca di notifiche")
-	}
-});
-
-app.get('/read_notifica', async function(req, res) {
-	try{
-		await mymongo.read_notifica(req.query, mongoCredentials)
-		res.status(200)
-		res.send("ok")
-	} catch (e) {
-		res.status(500)
-		res.send("errore nella lettura della notifica")
-	}
-});
-
-app.post('/upload', upload.single('img'), (req, res) => {  // ---- DEBUG USE
-	// You can access the uploaded file through req.file
-	if (!req.file) {
-	  return res.status(400).json({ message: 'No file uploaded' });
-	}
-
-	// You can perform further processing here, such as saving the file path to a database
-	const imagePath = req.file.path;
-
-	return res.status(200).json({ message: 'File uploaded successfully', imagePath });
-  });
-
-//route che matcha su endpoint non esistenti
-//DEVE STARE IN FONDO
-app.use(function(req, res){
-	res.json({
-		error:{
-			"name": "error",
-			"status": 404,
-			"message": "Richiesta non valida",
-			"statusCode": 404,
-		},
-		message: req.originalUrl
-	});
-});
-
 /* ========================== */
 /*                            */
-/*    ACTIVATE NODE SERVER    */
+/*          RISORSE           */
 /*                            */
 /* ========================== */
 
-app.listen(8000, function() {
-	global.startDate = new Date() ;
-	console.log(`App listening on port 8000 started ${global.startDate.toLocaleString()}` )
-})
+// ========================== USER
 
 
-/*       END OF SCRIPT        */
+// get quota
+app.get('/user/:user_id/quota', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const user_id = req.params.user_id
+        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+        if(user_id !== session.userid || smm["data"] !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+
+        response = await mymongo.user_get_quota(user_id, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// aggiorna quota
+app.post('/user/:user_id/quota', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const user_id = req.params.user_id
+        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+        
+        response = await mymongo.user_update_quota(user_id, req.body, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// toggle follow
+//body: target
+app.post('/user/:user_id/follow', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.params.user_id
+        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+        response = await mymongo.user_toggle_follow(user_id, req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username/canale non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get user feed
+app.post('/user/:user_id/feed', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const user_id = req.params.user_id
+        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+        response = await mymongo.user_feed(user_id, req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get smm dell'utente
+app.get('/user/:user_id/managed_by', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.params.user_id
+        
+        response = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// aggiorna smm dell'utente
+app.post('/user/:user_id/managed_by', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const user_id = req.params.user_id
+        if(user_id !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+        response = await mymongo.user_set_managed_by(user_id, req.body, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get account gestiti dall'utente
+app.get('/user/:user_id/manager_of', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const user_id = req.params.user_id
+        
+        response = await mymongo.user_manager_of(user_id, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get canali gestiti dall'utente, insieme al ruolo
+app.get('/user/:user_id/my_channels', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.params.user_id
+        
+        response = await mymongo.user_my_channels(user_id, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// user info
+app.get('/user/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.params.user_id
+        response = await mymongo.user_info(user_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else {
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+
+// cancella utente
+app.delete('/user/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.params.user_id
+        if(user_id !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+
+        response = await mymongo.user_delete(user_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// modifica impostazioni utente
+app.post('/user/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const user_id = req.params.user_id
+        if(user_id !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+
+        response = await mymongo.user_update(user_id, req.body, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
+// login
+app.post('/user/login', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+
+        response = await mymongo.user_login(req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            session=req.session; //login riuscito
+            session.userid=req.body.username;
+            console.log(req.session)
+            res.cookie('username', session.userid)
+            res.cookie('nome', db_res["nome"])
+            res.cookie('img', db_res["img"])
+            res.cookie('login_result', "success")
+            res.cookie('quota_giorno', db_res["quota"]["g"])
+            res.cookie('quota_settimana', db_res["quota"]["s"])
+            res.cookie('quota_mese', db_res["quota"]["m"])
+            res.clearCookie('managed')
+            res.redirect("/")
+        } else if(response["risultato"] == "username/password errati"){
+            response["errore"] = "errore"
+            res.status(401)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
+// registra nuovo utente
+app.post('/user', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        response = await mymongo.user_register(req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username esistente"){
+            response["errore"] = "errore"
+            res.status(400)
+            res.send(response)
+        } else if(response["risultato"] == "email esistente"){
+            response["errore"] = "errore"
+            res.status(400)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
+// ========================== SQUEAL
+
+// get squeal replies
+app.get('/squeal/:squeal_id/reply', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const squeal_id = req.params.squeal_id
+
+        response = await mymongo.get_squeal_replies(squeal_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "squeal non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// modifica reaction
+//body: userid, reac
+app.post('/squeal/:squeal_id/reaction', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        const squeal_id = req.params.squeal_id
+        
+        response = await mymongo.set_reaction(squeal_id, req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "squeal non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get squeal by id
+app.get('/squeal/:squeal_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const squeal_id = req.params.squeal_id
+        
+        response = await mymongo.get_squeal(squeal_id, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "squeal non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+
+// cancella squeal
+//body: user_id
+app.delete('/squeal/:squeal_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        let allowed_users = [req.body.user_id]
+        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+        allowed_users.push(smm)
+
+        response = await mymongo.delete_squeal(squeal_id, allowed_users, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "squeal non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        } else if(response["risultato"] == "errore di permessi"){
+            response["errore"] = "errore"
+            res.status(403)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+
+// ricerca per utente
+//body
+app.post('/squeal/by_user', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        response = await mymongo.search_by_user(req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "utente non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// ricerca per canale
+//body
+app.post('/squeal/by_channel', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        response = await mymongo.search_by_channel(req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "canale non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// ricerca per keyword
+//body
+app.post('/squeal/by_keyword', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        response = await mymongo.search_by_keyword(req.body, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "keyword non trovata"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// add post
+app.post('/squeal', upload.single("img"), async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.body.user_id
+        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
+        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+        if(req.body.contenuto == "img"){//caso immagine
+            let path = req.file.path
+            req.body["path"] = path.split("/").slice(-1)[0]
+        }
+
+        req.body.destinatari = JSON.parse(req.body.destinatari)
+
+        //timestamp
+        let date = new Date()
+        campi["timestamp"] = date.getTime();
+
+        response = await mymongo.add_squeal(req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// ========================== CHANNEL
+
+// controlla se l'utente ha permessi sul canale {"lettura": true, "scrittura": false}
+//query: userid
+app.get('/channel/:channel_id/auth', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const channel_id = req.params.channel_id
+        
+        response = await mymongo.channel_auth(channel_id, req.query, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "canale non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get channel info
+app.get('/channel/:channel_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+
+    try{
+        const channel_id = req.params.channel_id
+
+        response = await mymongo.channel_info(channel_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "canale non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// modifica impostazioni canale
+app.post('/channel/:channel_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const channel_id = req.params.channel_id
+        //todo check if userid is proprietario
+
+        response = await mymongo.channel_update(channel_id, req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "canale non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
+// cancella canale
+app.delete('/channel/:channel_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+
+        // todo check se l'utente e' proprietario
+        const user_id = req.params.user_id
+        if(user_id !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+
+        response = await mymongo.channel_delete(user_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// crea nuovo canale
+//body: nome, userid
+app.post('/channel', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        response = await mymongo.channel_create(req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "canale esistente"){
+            response["errore"] = "errore"
+            res.status(403)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
+// ========================== NOTIFICATION
+
+// get notifiche dell'utente
+app.get('/notification/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const user_id = req.params.user_id
+
+        response = await mymongo.get_notifications(user_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// segna notifica come letta
+app.post('/notification/:notification_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const notification_id = req.params.notification_id
+
+        response = await mymongo.mark_notification(notification_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "notifica non trovata"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        response["errore"] = e
+        res.status(500)
+        res.send(response)
+    }
+});
