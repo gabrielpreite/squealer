@@ -153,6 +153,7 @@ app.get('/db/user', async function(req, res) {
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
+    console.log("api messaggio")
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
