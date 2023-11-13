@@ -494,14 +494,13 @@
       $.ajax({
         type: 'GET',
         dataType: "json",
-        url: `${window.location.origin}/channel/${a}/auth`,
+        url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           
           //rimuovo $ iniziale per visualizzazione in lista
           a = a.substring(1)
-          console.log('data_canali: ', data);
           if (!array_dest_canali.includes(a)) {
               // Aggiungi il destinatario al riquadro dei destinatari inseriti
               $("#destinatari-inseriti").append(`
@@ -541,7 +540,6 @@
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-          console.log('data_utenti: ', data);
           if (!array_dest_utenti.includes(a)) {
             // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
