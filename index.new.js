@@ -197,9 +197,10 @@ app.get('/user/:user_id', async function(req, res) {
 });
 
 // registra nuovo utente
+//body: username, email, password, nome, cognome
 app.post('/user', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         response = await mymongo.user_register(req.body, mongoCredentials)
 
@@ -253,7 +254,7 @@ app.delete('/user/:user_id', async function(req, res) {
 // modifica impostazioni utente
 app.post('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -281,7 +282,7 @@ app.post('/user/:user_id', async function(req, res) {
 // login
 app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
 
         response = await mymongo.user_login(req.body, mongoCredentials)
@@ -762,7 +763,7 @@ app.get('/channel/:channel_id', async function(req, res) {
 //body: nome, userid
 app.post('/channel', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         response = await mymongo.channel_create(req.body, mongoCredentials)
 
@@ -783,7 +784,7 @@ app.post('/channel', async function(req, res) {
 // modifica impostazioni canale
 app.post('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const channel_id = req.params.channel_id
         //todo check if userid is proprietario
