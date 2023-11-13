@@ -180,13 +180,6 @@ app.get('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("quota")
     try{
-        const user_id = req.params.user_id
-        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
-        if(user_id !== session.userid || smm["data"] !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
 
         response = await mymongo.user_get_quota(user_id, mongoCredentials)
         
@@ -206,13 +199,6 @@ app.post('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("agg quota")
     try{
-        const user_id = req.params.user_id
-        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
-        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
         
         response = await mymongo.user_update_quota(user_id, req.body, mongoCredentials)
         
@@ -237,13 +223,7 @@ app.post('/user/:user_id/follow', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("follow")
     try{
-        const user_id = req.params.user_id
-        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
-        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
+        
         response = await mymongo.user_toggle_follow(user_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -311,12 +291,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("set smm")
     try{
-        const user_id = req.params.user_id
-        if(user_id !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
+        
         response = await mymongo.user_set_managed_by(user_id, req.body, mongoCredentials)
         
         if(response["risultato"] == "successo"){
@@ -387,13 +362,7 @@ app.post('/user/:user_id/settings', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("mod impost ute")
     try{
-        const user_id = req.params.user_id
-        if(user_id !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
-
+    
         response = await mymongo.user_update(user_id, req.body, mongoCredentials)
         
         if(response["risultato"] == "successo"){
@@ -439,11 +408,6 @@ app.delete('/user/:user_id', async function(req, res) {
     console.log("del user")
     try{
         const user_id = req.params.user_id
-        if(user_id !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
 
         response = await mymongo.user_delete(user_id, mongoCredentials)
 
@@ -701,13 +665,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
-        const user_id = req.body.user_id
-        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
-        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
+        
         if(req.body.contenuto == "img"){//caso immagine
             let path = req.file.path
             req.body["path"] = path.split("/").slice(-1)[0]
@@ -815,12 +773,6 @@ app.delete('/channel/:channel_id', async function(req, res) {
     try{
 
         // todo check se l'utente e' proprietario
-        const user_id = req.params.user_id
-        if(user_id !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
 
         response = await mymongo.channel_delete(user_id, mongoCredentials)
 
