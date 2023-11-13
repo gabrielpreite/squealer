@@ -494,10 +494,11 @@
       $.ajax({
         type: 'GET',
         dataType: "json",
-        url: `${window.location.origin}/permessi_canale?nome=${a}`,
+        url: `${window.location.origin}/channel/${a}/auth`,
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+          
           //rimuovo $ iniziale per visualizzazione in lista
           a = a.substring(1)
           //console.log('data: ', data);
