@@ -442,9 +442,9 @@ app.post('/user/login', async function(req, res) {
             res.cookie('nome', response["data"]["nome"])
             res.cookie('img', response["data"]["img"])
             res.cookie('login_result', "success")
-            res.cookie('quota_giorno', response["data"]["quota"]["g"])
-            res.cookie('quota_settimana', response["data"]["quota"]["s"])
-            res.cookie('quota_mese', response["data"]["quota"]["m"])
+            res.cookie('quota_g', response["data"]["quota"]["g"])
+            res.cookie('quota_s', response["data"]["quota"]["s"])
+            res.cookie('quota_m', response["data"]["quota"]["m"])
             res.clearCookie('managed')
             res.redirect("/")
         } else if(response["risultato"] == "username/password errati"){

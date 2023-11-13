@@ -1503,13 +1503,12 @@ exports.delete_squeal = async function(squeal_id, allowed_users, credentials) {
 }
 
 // get squeal replies
-exports.get_squeal_replies = async function(squeal_id, allowed_users, credentials) {
+exports.get_squeal_replies = async function(squeal_id, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
     try{
         let result = []
-        let found = false
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
@@ -1518,7 +1517,7 @@ exports.get_squeal_replies = async function(squeal_id, allowed_users, credential
 			.aggregate([
 				{
 				  $match: {
-					risponde_a: q.post_id
+					risponde_a: squeal_id
 				  }
 				},
 				{
@@ -1553,13 +1552,10 @@ exports.get_squeal_replies = async function(squeal_id, allowed_users, credential
 			.limit(100)
 			.forEach( (r) => {
 				result.push(r)
-                found = true
 			});
 
-        if(found)
-            response["risultato"] = "successo"
-        else
-            response["risultato"] = "squeal non trovato"
+        response["risultato"] = "successo"
+		response["data"] = result
         await mongo.close();
 		return response
 	} catch (e) {
@@ -1794,7 +1790,7 @@ exports.search_by_user = async function(q, credentials) {
 
 		response["data"] = {"post": post, "meta": meta}
 		response["risultato"] = "successo"
-		
+
 		return response
 	} catch (e) {
 		//response["errore"] = e.toString()
