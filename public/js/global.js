@@ -15,12 +15,12 @@ function refresh_quota(){
         type: 'GET',
         dataType: "json",
         async: false,
-        url: `https://site212251.tw.cs.unibo.it/get_quota?username=${CURRENT_USER}`,
+        url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
         headers: { },
         success: function (data, status, xhr) {
-          set_cookie("quota_g", data["quota"]["g"])
-          set_cookie("quota_s", data["quota"]["s"])
-          set_cookie("quota_m", data["quota"]["m"])
+          set_cookie("quota_g", data["data"]["quota"]["g"])
+          set_cookie("quota_s", data["data"]["quota"]["s"])
+          set_cookie("quota_m", data["data"]["quota"]["m"])
         }
     });
 }
