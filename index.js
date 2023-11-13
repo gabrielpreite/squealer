@@ -386,6 +386,34 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
     }
 });
 
+// modifica impostazioni utente
+app.post('/user/:user_id/settings', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("mod impost ute")
+    try{
+        const user_id = req.params.user_id
+        if(user_id !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+
+        response = await mymongo.user_update(user_id, req.body, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
 // user info
 app.get('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
@@ -393,7 +421,7 @@ app.get('/user/:user_id', async function(req, res) {
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_info(user_id, mongoCredentials)
-
+        
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -438,33 +466,6 @@ app.delete('/user/:user_id', async function(req, res) {
     }
 });
 
-// modifica impostazioni utente
-app.post('/user/:user_id', async function(req, res) {
-    let response = {"data": null, "risultato": null, "errore": null}
-    console.log("mod impost ute")
-    try{
-        const user_id = req.params.user_id
-        if(user_id !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
-
-        response = await mymongo.user_update(user_id, req.body, mongoCredentials)
-        
-        if(response["risultato"] == "successo"){
-            res.status(200)
-            res.send(response)
-        } else if(response["risultato"] == "username non trovato"){
-            response["errore"] = "errore"
-            res.status(404)
-            res.send(response)
-        }
-    } catch (e){
-        res.status(500)
-        res.send({"errore":e})
-    }
-});
 
 // login
 app.post('/user/login', async function(req, res) {
