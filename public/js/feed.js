@@ -531,12 +531,12 @@ function ricerca_notifica(notifica) {
       }
     });
     if (notifica.tipo == "risposta") {
-      if (post_notifica[0].risponde_a != null) {
+      if (post_notifica.risponde_a != null) {
         $.ajax({
           type: 'GET',
           dataType: "json",
           async: false,
-          url: `https://site212251.tw.cs.unibo.it/squeal/${post_notifica[0].risponde_a}`,
+          url: `https://site212251.tw.cs.unibo.it/squeal/${post_notifica.risponde_a}`,
           headers: { },
           success: function (data, status, xhr) {
             post_notifica = data.data;
