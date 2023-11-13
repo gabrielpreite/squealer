@@ -1131,7 +1131,7 @@ exports.user_manager_of = async function(user_id, credentials) {
 		await mongo.close();
 
         if(result.length == 1){
-            response["data"] = result[0]
+            response["data"] = result[0]["manager_of"]
             response["risultato"] = "successo"
         } else {
             response["risultato"] = "username non trovato"
