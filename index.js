@@ -153,7 +153,6 @@ app.get('/db/user', async function(req, res) {
 
 //tabella messaggio o singolo messaggio da messaggio-id
 app.get('/api_messaggio', async function(req, res) {
-    console.log("api messaggio")
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
@@ -205,7 +204,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
 // aggiorna quota
 app.post('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("agg quota")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -236,7 +235,7 @@ app.post('/user/:user_id/quota', async function(req, res) {
 //body: target
 app.post('/user/:user_id/follow', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("follow")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -265,7 +264,7 @@ app.post('/user/:user_id/follow', async function(req, res) {
 // get user feed
 app.post('/user/:user_id/feed', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("feed")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -290,7 +289,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
 // get smm dell'utente
 app.get('/user/:user_id/managed_by', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("smm")
     try{
         const user_id = req.params.user_id
         
@@ -314,7 +313,7 @@ app.get('/user/:user_id/managed_by', async function(req, res) {
 // aggiorna smm dell'utente
 app.post('/user/:user_id/managed_by', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("set smm")
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -342,7 +341,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
 // get account gestiti dall'utente
 app.get('/user/:user_id/manager_of', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("manager of")
     try{
         const user_id = req.params.user_id
         
@@ -366,7 +365,7 @@ app.get('/user/:user_id/manager_of', async function(req, res) {
 // get canali gestiti dall'utente, insieme al ruolo
 app.get('/user/:user_id/my_channels', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("my chann")
     try{
         const user_id = req.params.user_id
         
@@ -390,7 +389,7 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
 // user info
 app.get('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("user info")
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_info(user_id, mongoCredentials)
@@ -413,7 +412,7 @@ app.get('/user/:user_id', async function(req, res) {
 // cancella utente
 app.delete('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("del user")
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -442,7 +441,7 @@ app.delete('/user/:user_id', async function(req, res) {
 // modifica impostazioni utente
 app.post('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("mod impost ute")
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -502,7 +501,7 @@ app.post('/user/login', async function(req, res) {
 // registra nuovo utente
 app.post('/user', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("register")
     try{
         response = await mymongo.user_register(req.body, mongoCredentials)
 
