@@ -148,9 +148,9 @@ function toggle_follow(target, tipo){
   $.ajax({
     type: 'POST',
     dataType: "json",
-    url: `https://site212251.tw.cs.unibo.it/toggle_follow`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
     headers: { },
-    data: { origin: CURRENT_USER, target: target, tipo: tipo },
+    data: { target: target, tipo: tipo },
     success: function (data, status, xhr) {
       let num_foll = parseInt($("#num_follower").text().split(" ")[0])
       if (data.result == "added"){
@@ -266,12 +266,12 @@ function ricerca_squeal(elem) {
       return false;
     }
     //check varie cose
-    if (tipo == "utente") {
+    if (tipo == "user") {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
-    } else if (tipo == "canale") {
+    } else if (tipo == "channel") {
       if (query[0] != "$") {
         query = "$" + query;
       }
@@ -285,13 +285,13 @@ function ricerca_squeal(elem) {
       query = query.substring(2);
     }
     if (tipo == "$") {
-      tipo = "canale";
+      tipo = "channel";
     } else {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
-      tipo = "utente";
+      tipo = "user";
     }
   }
 
@@ -300,12 +300,12 @@ function ricerca_squeal(elem) {
     type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/search`,
+    url: `https://site212251.tw.cs.unibo.it/squeal/by_${tipo}`,
     headers: { },
-    data: { query: query, tipo: tipo, target: CURRENT_USER },
+    data: { query: query, target: CURRENT_USER },
     success: function (data, status, xhr) {
       console.log('data: ', data);
-      all_info = data;
+      all_info = data.data;
     }
   });
   if (all_info.post === undefined) {
@@ -522,10 +522,10 @@ function ricerca_notifica(notifica) {
       type: 'GET',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${notifica.ref_id}`,
+      url: `https://site212251.tw.cs.unibo.it/squeal/${notifica.ref_id}`,
       headers: { },
       success: function (data, status, xhr) {
-        post_notifica = data;
+        post_notifica = data.data;
       }
     });
     if (notifica.tipo == "risposta") {
@@ -534,10 +534,10 @@ function ricerca_notifica(notifica) {
           type: 'GET',
           dataType: "json",
           async: false,
-          url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica[0].risponde_a}`,
+          url: `https://site212251.tw.cs.unibo.it/squeal/${post_notifica[0].risponde_a}`,
           headers: { },
           success: function (data, status, xhr) {
-            post_notifica = data;
+            post_notifica = data.data;
           }
         });
       }
@@ -551,10 +551,10 @@ function ricerca_notifica(notifica) {
 
   //leggi notifica
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/read_notifica?not_id=${notifica.not_id}`,
+    url: `https://site212251.tw.cs.unibo.it/notification/${notifica.not_id}`,
     headers: { },
     success: function (data, status, xhr) {}
   });
@@ -566,10 +566,10 @@ function ricerca_post(id_post) {
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${id_post}`,
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id_post}`,
     headers: { },
     success: function (data, status, xhr) {
-      post_notifica = data;
+      post_notifica = data.data;
     }
   });
   rimpiazza_squeals(post_notifica, "filtro");
