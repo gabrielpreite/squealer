@@ -178,7 +178,7 @@ app.get('/api_notifica', async function(req, res) {
 // get quota
 app.get('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("quota")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
