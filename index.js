@@ -469,7 +469,7 @@ app.post('/user/:user_id', async function(req, res) {
 // login
 app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("pretry")
     try{
         console.log("prima")
         response = await mymongo.user_login(req.body, mongoCredentials)
