@@ -470,11 +470,11 @@ app.delete('/user/:user_id', async function(req, res) {
 // login
 app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    console.log("pretry")
+    console.log("login")
     try{
-        console.log("prima")
+
         response = await mymongo.user_login(req.body, mongoCredentials)
-        console.log("dopo")
+
         if(response["risultato"] == "successo"){
             session=req.session; //login riuscito
             session.userid=req.body.username;
