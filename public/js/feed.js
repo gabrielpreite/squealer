@@ -366,7 +366,8 @@ function switch_account(username){
       set_cookie("quota_s", data["data"]["quota"]["s"])
       set_cookie("quota_m", data["data"]["quota"]["m"])
     }
-});
+  });
+  ricarica()
 }
 
 function switch_to_smm(){
@@ -382,7 +383,8 @@ function switch_to_smm(){
       set_cookie("quota_s", data["data"]["quota"]["s"])
       set_cookie("quota_m", data["data"]["quota"]["m"])
     }
-});
+  });
+  ricarica()
 }
 
 
