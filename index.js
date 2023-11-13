@@ -671,7 +671,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
 
         //timestamp
         let date = new Date()
-        campi["timestamp"] = date.getTime();
+        req.body.timestamp = date.getTime();
 
         response = await mymongo.add_squeal(req.body, mongoCredentials)
 
