@@ -353,7 +353,7 @@ exports.user_info = async function(user_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -426,7 +426,7 @@ exports.user_register = async function(q, credentials) {
         response["risultato"] == "successo"
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -453,7 +453,7 @@ exports.user_delete = async function(user_id, credentials) {
         await mongo.close();
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -478,7 +478,7 @@ exports.user_update = async function(user_id, q, credentials) {
         await mongo.close();
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -523,7 +523,7 @@ exports.user_login = async function(q, credentials) {
         await mongo.close();
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -556,7 +556,7 @@ exports.user_get_quota = async function(user_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -614,7 +614,7 @@ async function user_update_quota(user_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 exports.user_update_quota = user_update_quota
@@ -758,7 +758,7 @@ exports.user_toggle_follow = async function(user_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -785,10 +785,11 @@ exports.user_feed = async function(user_id, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
 
-		/*console.log("ottenuti canali seguiti da "+user_id)
+
+		console.log("ottenuti canali seguiti da "+user_id)
 		canali_seguiti.forEach((element) => console.log(element))
 		console.log("ottenuti utenti seguiti da "+user_id)
-		utenti_seguiti.forEach((element) => console.log(element))*/
+		utenti_seguiti.forEach((element) => console.log(element))
 
 		//canali_seguiti.push("@"+user_id) //l'utente non vede i propri post
 		//console.log("aggiunto utente")
@@ -863,9 +864,9 @@ exports.user_feed = async function(user_id, credentials) {
 				result.push(r)
 			});
 
-		/*console.log("post in canali seguiti:")
+		console.log("post in canali seguiti:")
 		result.forEach((element) => console.log(element))
-		console.log("cerco post bacheca utenti seguiti")*/
+		console.log("cerco post bacheca utenti seguiti")
 
 		await mongo.db(dbname) // feed da utenti
 			.collection("messaggio")
@@ -938,8 +939,8 @@ exports.user_feed = async function(user_id, credentials) {
 			});
 
 		// debug
-		//console.log("post in bacheca di utenti seguiti")
-		//result.forEach((element) => console.log(element))
+		console.log("post in bacheca di utenti seguiti")
+		result.forEach((element) => console.log(element))
 
 		let canali_ufficiali = [] // ottengo la lista di canali ufficiali
 		await mongo.db(dbname)
@@ -1030,12 +1031,14 @@ exports.user_feed = async function(user_id, credentials) {
 
 		await mongo.close();
 
+		console.log("prefine")
         response["data"] = result
         response["risultato"] = "successo"
+		console.log("postfine")
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1068,7 +1071,7 @@ exports.user_get_managed_by = async function(user_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1103,7 +1106,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1136,7 +1139,7 @@ exports.user_manager_of = async function(user_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1173,7 +1176,7 @@ exports.user_my_channels = async function(user_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1234,7 +1237,7 @@ exports.get_squeal = async function(squeal_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1455,7 +1458,7 @@ exports.add_squeal = async function(q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1495,7 +1498,7 @@ exports.delete_squeal = async function(squeal_id, allowed_users, credentials) {
         await mongo.close();
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1560,7 +1563,7 @@ exports.get_squeal_replies = async function(squeal_id, allowed_users, credential
         await mongo.close();
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1688,7 +1691,7 @@ exports.set_reaction = async function(squeal_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1800,7 +1803,7 @@ exports.search_by_user = async function(q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -1931,7 +1934,7 @@ exports.search_by_channel = async function(q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2031,7 +2034,7 @@ exports.search_by_keyword = async function(q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2070,7 +2073,7 @@ exports.channel_info = async function(channel_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2119,7 +2122,7 @@ exports.channel_create = async function(q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2146,7 +2149,7 @@ exports.channel_update = async function(channel_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2173,7 +2176,7 @@ exports.channel_delete = async function(channel_id, credentials) {
         await mongo.close();
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2212,7 +2215,7 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2244,7 +2247,7 @@ exports.get_notifications = async function(user_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
@@ -2273,7 +2276,7 @@ exports.mark_notification = async function(notification_id, credentials) {
 
 		return response
 	} catch (e) {
-		response["errore"] = e
+		//response["errore"] = e.toString()
 	}
 }
 
