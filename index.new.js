@@ -197,9 +197,10 @@ app.get('/user/:user_id', async function(req, res) {
 });
 
 // registra nuovo utente
+//body: username, email, password, nome, cognome
 app.post('/user', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         response = await mymongo.user_register(req.body, mongoCredentials)
 
@@ -251,9 +252,10 @@ app.delete('/user/:user_id', async function(req, res) {
 });
 
 // modifica impostazioni utente
+//body: todo mongo
 app.post('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -279,9 +281,10 @@ app.post('/user/:user_id', async function(req, res) {
 });
 
 // login
+//body: password, username
 app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
 
         response = await mymongo.user_login(req.body, mongoCredentials)
@@ -337,6 +340,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
 });
 
 // aggiorna quota
+//body: qnt
 app.post('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
@@ -408,7 +412,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
             res.status(403)
             res.send(response)
         }
-        response = await mymongo.user_feed(user_id, req.body, mongoCredentials)
+        response = await mymongo.user_feed(user_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
             res.status(200)
@@ -762,7 +766,7 @@ app.get('/channel/:channel_id', async function(req, res) {
 //body: nome, userid
 app.post('/channel', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         response = await mymongo.channel_create(req.body, mongoCredentials)
 
@@ -783,7 +787,7 @@ app.post('/channel', async function(req, res) {
 // modifica impostazioni canale
 app.post('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const channel_id = req.params.channel_id
         //todo check if userid is proprietario
@@ -874,7 +878,7 @@ app.get('/notification/:user_id', async function(req, res) {
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "canale non trovato"){
+        } else if(response["risultato"] == "username non trovato"){
             response["errore"] = "errore"
             res.status(404)
             res.send(response)
@@ -887,18 +891,18 @@ app.get('/notification/:user_id', async function(req, res) {
 });
 
 // segna notifica come letta
-app.get('/notification/:notification_id', async function(req, res) {
+app.post('/notification/:notification_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
         const notification_id = req.params.notification_id
 
-        response = await mymongo.get_notifications(user_id, mongoCredentials)
+        response = await mymongo.mark_notification(notification_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "canale non trovato"){
+        } else if(response["risultato"] == "notifica non trovata"){
             response["errore"] = "errore"
             res.status(404)
             res.send(response)

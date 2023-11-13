@@ -1,7 +1,7 @@
 /*
 File: mongo.js
 Author: Fabio Vitali
-Version: 1.0 
+Version: 1.0
 Last change on: 10 April 2021
 
 
@@ -47,7 +47,7 @@ exports.create = async function(credentials) {
 	try {
 		//CONNESSIONE
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
@@ -77,44 +77,44 @@ exports.create = async function(credentials) {
 		debug.push(`Trying to read file '${fn_utente}'... `)
 		let doc1 = await fs.readFile(rootDir + fn_utente, 'utf8')
 		let data1 = JSON.parse(doc1)
-		debug.push(`... read ${data1.length} records successfully. `)			
+		debug.push(`... read ${data1.length} records successfully. `)
 		debug.push(`Trying to add ${data1.length} new records... `)
 		let added1 = await mongo.db(dbname)
 					.collection("utente")
-		 			.insertMany(data1);	
+		 			.insertMany(data1);
 		debug.push(`... ${added1?.insertedCount || 0} records added.`)
 
 		//AGGIUNGO CANALE
 		debug.push(`Trying to read file '${fn_canale}'... `)
 		let doc2 = await fs.readFile(rootDir + fn_canale, 'utf8')
 		let data2 = JSON.parse(doc2)
-		debug.push(`... read ${data2.length} records successfully. `)			
+		debug.push(`... read ${data2.length} records successfully. `)
 		debug.push(`Trying to add ${data2.length} new records... `)
 		let added2 = await mongo.db(dbname)
 					.collection("canale")
-		 			.insertMany(data2);	
+		 			.insertMany(data2);
 		debug.push(`... ${added2?.insertedCount || 0} records added.`)
 
 		//AGGIUNGO MESSAGGIO
 		debug.push(`Trying to read file '${fn_messaggio}'... `)
 		let doc3 = await fs.readFile(rootDir + fn_messaggio, 'utf8')
 		let data3 = JSON.parse(doc3)
-		debug.push(`... read ${data3.length} records successfully. `)			
+		debug.push(`... read ${data3.length} records successfully. `)
 		debug.push(`Trying to add ${data3.length} new records... `)
 		let added3 = await mongo.db(dbname)
 					.collection("messaggio")
-		 			.insertMany(data3);	
+		 			.insertMany(data3);
 		debug.push(`... ${added3?.insertedCount || 0} records added.`)
 
 		//AGGIUNGO NOTIFICA
 		debug.push(`Trying to read file '${fn_notifica}'... `)
 		let doc4 = await fs.readFile(rootDir + fn_notifica, 'utf8')
 		let data4 = JSON.parse(doc4)
-		debug.push(`... read ${data4.length} records successfully. `)			
+		debug.push(`... read ${data4.length} records successfully. `)
 		debug.push(`Trying to add ${data4.length} new records... `)
 		let added4 = await mongo.db(dbname)
 					.collection("notifica")
-		 			.insertMany(data4);	
+		 			.insertMany(data4);
 		debug.push(`... ${added4?.insertedCount || 0} records added.`)
 
 		//CHIUDO
@@ -122,7 +122,7 @@ exports.create = async function(credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		return {
-			message: `<h1>Removed ${(cleared1?.deletedCount+cleared2?.deletedCount+cleared3?.deletedCount) || 0} records, added ${(added1?.insertedCount+added2?.insertedCount+added3?.insertedCount) || 0} records</h1>`, 
+			message: `<h1>Removed ${(cleared1?.deletedCount+cleared2?.deletedCount+cleared3?.deletedCount) || 0} records, added ${(added1?.insertedCount+added2?.insertedCount+added3?.insertedCount) || 0} records</h1>`,
 			debug: debug
 		}
 	} catch (e) {
@@ -138,7 +138,7 @@ exports.search_utente = async function(q,credentials) {
 	let data = {query: q.username, result: null}
 	try {
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
@@ -148,8 +148,8 @@ exports.search_utente = async function(q,credentials) {
 			await mongo.db(dbname)
 						.collection("utente")
 						.find()
-						.forEach( (r) => { 
-							result.push(r) 
+						.forEach( (r) => {
+							result.push(r)
 						} );
 		}
 		else{ //passo userid nel get, ritorno il record corretto
@@ -157,8 +157,8 @@ exports.search_utente = async function(q,credentials) {
 			await mongo.db(dbname)
 						.collection("utente")
 						.find({username: q.username})
-						.forEach( (r) => { 
-							result.push(r) 
+						.forEach( (r) => {
+							result.push(r)
 						} );
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
@@ -180,7 +180,7 @@ exports.search_notifica = async function(q,credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	try {
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
 		let result = []
@@ -188,10 +188,10 @@ exports.search_notifica = async function(q,credentials) {
 			.collection("notifica")
 			.find()
 			.project({_id:0})
-			.forEach( (r) => { 
-				result.push(r) 
+			.forEach( (r) => {
+				result.push(r)
 			} );
-		
+
 		return result
 	} catch (e) {
 		return e
@@ -205,7 +205,7 @@ exports.search_messaggio = async function(q,credentials) {
 	let data = {query: q.messaggio_id, result: null}
 	try {
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
@@ -216,8 +216,8 @@ exports.search_messaggio = async function(q,credentials) {
 						.collection("messaggio")
 						.find()
 						.project({_id:0})
-						.forEach( (r) => { 
-							result.push(r) 
+						.forEach( (r) => {
+							result.push(r)
 						} );
 		}
 		else{ //passo userid nel get, ritorno il record corretto
@@ -252,9 +252,9 @@ exports.search_messaggio = async function(q,credentials) {
 						{ $addFields: { numRisposte: { $size: "$risposte" } } },
 						{ $project: { risposte: 0 } }
 					])
-					.forEach( (r) => { 
-						result.push(r) 
-					});	
+					.forEach( (r) => {
+						result.push(r)
+					});
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
@@ -278,7 +278,7 @@ exports.search_canale = async function(q,credentials) {
 	let data = {query: q.nome, result: null}
 	try {
 		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		debug.push("... managed to connect to MongoDB.")
 
@@ -288,8 +288,8 @@ exports.search_canale = async function(q,credentials) {
 			await mongo.db(dbname)
 						.collection("canale")
 						.find()
-						.forEach( (r) => { 
-							result.push(r) 
+						.forEach( (r) => {
+							result.push(r)
 						} );
 		}
 		else{ //passo nome nel get, ritorno il record corretto
@@ -297,8 +297,8 @@ exports.search_canale = async function(q,credentials) {
 			await mongo.db(dbname)
 						.collection("canale")
 						.find({nome: q.nome})
-						.forEach( (r) => { 
-							result.push(r) 
+						.forEach( (r) => {
+							result.push(r)
 						} );
 		}
 		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
@@ -331,15 +331,15 @@ exports.user_info = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("utente")
 				.find({username: user_id})
 				.project({ img: 1, username: 1, nome: 1, popolarita: 1})
-				.forEach( (r) => { 
-					result.push(r) 
+				.forEach( (r) => {
+					result.push(r)
 				} );
 
 		await mongo.close();
@@ -364,15 +364,15 @@ exports.user_register = async function(q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
         //controllo l'esistenza dello username
         await mongo.db(dbname)
             .collection("utente")
             .find({username: q.username})
-            .forEach( (r) => { 
-                result.push(r) 
+            .forEach( (r) => {
+                result.push(r)
             } );
         if(result.length>0){
             response["risultato"] = "username esistente"
@@ -384,8 +384,8 @@ exports.user_register = async function(q, credentials) {
         await mongo.db(dbname)
             .collection("utente")
             .find({email: q.email})
-            .forEach( (r) => { 
-                result.push(r) 
+            .forEach( (r) => {
+                result.push(r)
             } );
         if(result.length>0){
             response["risultato"] = "email esistente"
@@ -437,19 +437,19 @@ exports.user_delete = async function(user_id, credentials) {
 
     try{
         let result
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		result = await mongo.db(dbname)
 				.collection("utente")
 				.deleteOne({username: user_id})
-        
+
         if(result.deletedCount == 1){
             response["risultato"] = "successo"
         } else {
             response["risultato"] = "username non trovato"
         }
-        
+
         await mongo.close();
 		return response
 	} catch (e) {
@@ -464,9 +464,9 @@ exports.user_update = async function(user_id, q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		//todo
 
         if(result.matchedCount == 1){
@@ -474,7 +474,7 @@ exports.user_update = async function(user_id, q, credentials) {
         } else {
             response["risultato"] = "username non trovato"
         }
-        
+
         await mongo.close();
 		return response
 	} catch (e) {
@@ -489,16 +489,16 @@ exports.user_login = async function(q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		//Cripta la psw
 		let psw = CryptoJS.SHA3(q.password);
 		//debug.push(`found args ${q.username} e ${q.password}`)
 
 		await mongo.db(dbname)
 					.collection("utente")
-					.find({$and: 
+					.find({$and:
 						[
 							{username: q.username},
 							{password: ""+psw}
@@ -507,8 +507,8 @@ exports.user_login = async function(q, credentials) {
 						password: 0
 					}
 					)
-					.forEach( (r) => { 
-						result.push(r) 
+					.forEach( (r) => {
+						result.push(r)
 					} );
 
         if(result.length == 1){
@@ -516,7 +516,7 @@ exports.user_login = async function(q, credentials) {
         } else {
             response["risultato"] = "username/password errati"
         }
-        
+
         await mongo.close();
 		return response
 	} catch (e) {
@@ -531,15 +531,15 @@ exports.user_get_quota = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("utente")
 				.find({username: user_id})
 				.project({ quota: 1})
-				.forEach( (r) => { 
-					result.push(r) 
+				.forEach( (r) => {
+					result.push(r)
 				} );
 
 		await mongo.close();
@@ -557,23 +557,23 @@ exports.user_get_quota = async function(user_id, credentials) {
 	}
 }
 
-// update quota
+// aggiorna quota
 async function user_update_quota(user_id, q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
         if(q.acquisto == true){ // caso acquisto quota
             let date = new Date()
 
             let acquisto = {}
             acquisto["timestamp"] = date.getTime();
             acquisto["quantita"] = parseInt(q.qnt)
-            
+
             await mongo.db(dbname)
                 .collection("utente")
                 .updateOne(
@@ -583,7 +583,7 @@ async function user_update_quota(user_id, q, credentials) {
                         $push: { acquisti: acquisto }
                     }
                 )
-                .forEach( (r) => { 
+                .forEach( (r) => {
                     result.push(r)
                 });
         } else{
@@ -595,7 +595,7 @@ async function user_update_quota(user_id, q, credentials) {
                         $inc: { 'quota.g': parseInt(q.qnt) },
                     }
                 )
-                .forEach( (r) => { 
+                .forEach( (r) => {
                     result.push(r)
                 });
         }
@@ -623,9 +623,9 @@ exports.user_toggle_follow = async function(user_id, q, credentials) {
 
     try{
         let result = null
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		if(q.tipo == "utente"){
 			await mongo.db(dbname)
 				.collection("utente")
@@ -760,22 +760,22 @@ exports.user_toggle_follow = async function(user_id, q, credentials) {
 }
 
 // get user feed
-exports.user_feed = async function(user_id, q, credentials) {
+exports.user_feed = async function(user_id, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		let canali_seguiti = []
 		let utenti_seguiti = []
 		await mongo.db(dbname)
 			.collection("utente")
 			.find({username: user_id})
 			.project({ canali_seguiti: 1, utenti_seguiti: 1})
-			.forEach( (r) => { 
+			.forEach( (r) => {
 				canali_seguiti.push(r["canali_seguiti"])
 				utenti_seguiti.push(r["utenti_seguiti"])
 			} );
@@ -856,8 +856,8 @@ exports.user_feed = async function(user_id, q, credentials) {
 				  $limit: 100 // Limit the result to 100 records
 				}
 			  ])
-			.forEach( (r) => { 
-				result.push(r) 
+			.forEach( (r) => {
+				result.push(r)
 			});
 
 		/*console.log("post in canali seguiti:")
@@ -870,7 +870,7 @@ exports.user_feed = async function(user_id, q, credentials) {
 				{
 					$match: {
 						$or: [
-							{ utente: { $in: utenti_seguiti } },  
+							{ utente: { $in: utenti_seguiti } },
 						],
 						tipo_destinatari: null,
 						risponde_a: null
@@ -930,8 +930,8 @@ exports.user_feed = async function(user_id, q, credentials) {
 					$limit: 100 // Limit the result to 100 records
 				  }
 			])
-			.forEach( (r) => { 
-				result.push(r) 
+			.forEach( (r) => {
+				result.push(r)
 			});
 
 		// debug
@@ -1011,7 +1011,7 @@ exports.user_feed = async function(user_id, q, credentials) {
 			.forEach( (r) => {
 				if(!(result.some(e => e.post_id == r.post_id))) { //aggiungo post da canali ufficiali evitando duplicati
 					r["suggerito"] = true
-					result.push(r) 
+					result.push(r)
 				}
 			});
 
@@ -1043,15 +1043,15 @@ exports.user_get_managed_by = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("utente")
 				.find({username: user_id})
 				.project({ managed_by: 1})
-				.forEach( (r) => { 
-					result.push(r) 
+				.forEach( (r) => {
+					result.push(r)
 				} );
 
 		await mongo.close();
@@ -1076,17 +1076,17 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
                     {username: user_id},
                     {managed_by: q.target}
                 )
-				.forEach( (r) => { 
-					result.push(r) 
+				.forEach( (r) => {
+					result.push(r)
 				} );
 
 		await mongo.close();
@@ -1111,15 +1111,15 @@ exports.user_manager_of = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("utente")
 				.find({username: user_id})
 				.project({ manager_of: 1})
-				.forEach( (r) => { 
-					result.push(r) 
+				.forEach( (r) => {
+					result.push(r)
 				} );
 
 		await mongo.close();
@@ -1144,14 +1144,14 @@ exports.user_my_channels = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
             .collection("canale")
             .find({proprieta: user_id})
-            .forEach( (r) => { 
-                result.push({"canale": r.nome, "ruolo": "proprietario"}) 
+            .forEach( (r) => {
+                result.push({"canale": r.nome, "ruolo": "proprietario"})
             } );
 
         await mongo.db(dbname)
@@ -1159,8 +1159,8 @@ exports.user_my_channels = async function(user_id, credentials) {
             .find(
                 {mod: { $elemMatch: { $eq: user_id } }}
             )
-            .forEach( (r) => { 
-                result.push({"canale": r.nome, "ruolo": "mod"}) 
+            .forEach( (r) => {
+                result.push({"canale": r.nome, "ruolo": "mod"})
             } );
 
 		await mongo.close();
@@ -1183,9 +1183,9 @@ exports.get_squeal = async function(squeal_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
             .collection("messaggio")
             .aggregate([
@@ -1216,9 +1216,9 @@ exports.get_squeal = async function(squeal_id, credentials) {
                 { $addFields: { numRisposte: { $size: "$risposte" } } },
                 { $project: { risposte: 0 } }
             ])
-            .forEach( (r) => { 
-                result.push(r) 
-            });	
+            .forEach( (r) => {
+                result.push(r)
+            });
 
 		await mongo.close();
 
@@ -1242,9 +1242,9 @@ exports.add_squeal = async function(q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		//controlli su campi situazionali
 		let risposta
 		try{
@@ -1306,7 +1306,7 @@ exports.add_squeal = async function(q, credentials) {
 						.catch((error) => {
 							console.error("Error:", error);
 						});
-					
+
 			// notifica di menzione
 			const regex = /@([^[\s.,:;!?]+)/g
 
@@ -1463,7 +1463,7 @@ exports.delete_squeal = async function(squeal_id, allowed_users, credentials) {
 
     try{
         let result = true
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
         result = await mongo.db(dbname)
@@ -1479,7 +1479,7 @@ exports.delete_squeal = async function(squeal_id, allowed_users, credentials) {
             result = await mongo.db(dbname)
                 .collection("messaggio")
                 .deleteOne({post_id: squeal_id})
-            
+
             if(result.deletedCount == 1){
                 response["risultato"] = "successo"
             } else {
@@ -1488,7 +1488,7 @@ exports.delete_squeal = async function(squeal_id, allowed_users, credentials) {
         } else {
             response["risultato"] = "errore di permessi"
         }
-        
+
         await mongo.close();
 		return response
 	} catch (e) {
@@ -1504,7 +1504,7 @@ exports.get_squeal_replies = async function(squeal_id, allowed_users, credential
     try{
         let result = []
         let found = false
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
         await mongo.db(dbname)
@@ -1545,11 +1545,11 @@ exports.get_squeal_replies = async function(squeal_id, allowed_users, credential
 			])
 			.sort({timestamp: -1}) // Sort by timestamp in descending order
 			.limit(100)
-			.forEach( (r) => { 
+			.forEach( (r) => {
 				result.push(r)
                 found = true
 			});
-        
+
         if(found)
             response["risultato"] = "successo"
         else
@@ -1568,15 +1568,15 @@ exports.set_reaction = async function(squeal_id, q, credentials) {
 
     try{
         let result = {}
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
-					.collection("messaggio")
-					.find({post_id: squeal_id})
-					.forEach( (r) => { 
-						result = r
-					} );
+                .collection("messaggio")
+                .find({post_id: squeal_id})
+                .forEach( (r) => {
+                    result = r
+                } );
 
         if(result == {}){
             response["risultato"] = "squeal non trovato"
@@ -1665,7 +1665,7 @@ exports.set_reaction = async function(squeal_id, q, credentials) {
 			if (result.reazioni.negative.sono_contrario.includes(q.userid)) {
 				const indice = result.reazioni.negative.sono_contrario.indexOf(q.userid);
 				result.reazioni.negative.sono_contrario.splice(indice, 1);
-			} 
+			}
 		}
 
 		await mongo.db(dbname)
@@ -1698,14 +1698,14 @@ exports.search_by_user = async function(q, credentials) {
     try{
         let found = false
         meta["tipo"] = "utente"
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("messaggio")
 				.aggregate([
-					{ $match: 
-						{ 
+					{ $match:
+						{
 							utente: q.query,
 							risponde_a: null,
 							$or: [
@@ -1714,7 +1714,7 @@ exports.search_by_user = async function(q, credentials) {
 								{ destinatari: {$in: [q.target]} }, //messaggi privati di cui sei destinatario
 								//{ utente: q.target } //messaggi privati mittente
 							]
-						} 
+						}
 					},
 					{ $lookup: {
 						from: "utente", // nome seconda tabella
@@ -1744,11 +1744,11 @@ exports.search_by_user = async function(q, credentials) {
 					{ $sort: { timestamp: -1 } },
 					{ $limit: 100 }// Limit the result to 100 records
 				  ])
-				.forEach( (r) => { 
-					post.push(r) 
+				.forEach( (r) => {
+					post.push(r)
                     found = true
 				});
-			
+
 			await mongo.db(dbname) // user info
 				.collection("utente")
 				.find({
@@ -1757,10 +1757,10 @@ exports.search_by_user = async function(q, credentials) {
 				.project(
 					{ username:1, nome:1, img:1, bio:1 }
 				)
-				.forEach( (r) => { 
+				.forEach( (r) => {
 					meta["info"] = r
 				});
-			
+
 			let numFollowers = 0
 			await mongo.db(dbname) // #follower
 				.collection("utente")
@@ -1810,9 +1810,9 @@ exports.search_by_channel = async function(q, credentials) {
     try{
         let found = false
         meta["tipo"] = "canale"
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname) // TODO regole di visibilita'
 				.collection("messaggio")
 				.aggregate([
@@ -1875,8 +1875,8 @@ exports.search_by_channel = async function(q, credentials) {
 					  $limit: 100 // Limit the result to 100 records
 					}
 				  ])
-				.forEach( (r) => { 
-					post.push(r) 
+				.forEach( (r) => {
+					post.push(r)
                     found = true
 				});
 
@@ -1888,7 +1888,7 @@ exports.search_by_channel = async function(q, credentials) {
 				.project(
 					{ img:1, nome:1, descrizione:1 }
 				)
-				.forEach( (r) => { 
+				.forEach( (r) => {
 					meta["info"] = r
 				});
 
@@ -1941,9 +1941,9 @@ exports.search_by_keyword = async function(q, credentials) {
     try{
         let found = false
         meta["tipo"] = "keyword"
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname) // TODO regole di visibilita'
 				.collection("messaggio")
 				.aggregate([
@@ -2012,8 +2012,8 @@ exports.search_by_keyword = async function(q, credentials) {
 					  $limit: 100 // Limit the result to 100 records
 					}
 				  ])
-				.forEach( (r) => { 
-					post.push(r) 
+				.forEach( (r) => {
+					post.push(r)
                     found = true
 				});
 
@@ -2041,9 +2041,9 @@ exports.channel_info = async function(channel_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname) // info canale
 				.collection("canale")
 				.find({
@@ -2052,7 +2052,7 @@ exports.channel_info = async function(channel_id, credentials) {
 				.project(
 					{ img:1, nome:1, descrizione:1 }
 				)
-				.forEach( (r) => { 
+				.forEach( (r) => {
 					result.push(r)
 				});
 
@@ -2078,15 +2078,15 @@ exports.channel_create = async function(q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		//controllo l'esistenza della mail
         await mongo.db(dbname)
             .collection("canale")
             .find({nome: q.nome})
-            .forEach( (r) => { 
-                result.push(r) 
+            .forEach( (r) => {
+                result.push(r)
             } );
         if(result.length>0){
             response["risultato"] = "canale esistente"
@@ -2127,9 +2127,9 @@ exports.channel_update = async function(channel_id, q, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		//todo
 
 		await mongo.close();
@@ -2154,19 +2154,19 @@ exports.channel_delete = async function(channel_id, credentials) {
 
     try{
         let result
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		result = await mongo.db(dbname)
 				.collection("canale")
 				.deleteOne({nome: channel_id})
-        
+
         if(result.deletedCount == 1){
             response["risultato"] = "successo"
         } else {
             response["risultato"] = "canale non trovato"
         }
-        
+
         await mongo.close();
 		return response
 	} catch (e) {
@@ -2181,15 +2181,15 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 
     try{
         let result = {"lettura": false, "scrittura": false}
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
+
 		await mongo.db(dbname)
 				.collection("canale")
 				.find({
 					nome: channel_id
 				})
-				.forEach( (r) => { 
+				.forEach( (r) => {
 					if(r.lettura == "*" || r.lettura.indexOf(q.userid) != -1){
                         result["data"]["lettura"] = "true"
                     }
@@ -2222,15 +2222,15 @@ exports.get_notifications = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		
-		await mongo.db(dbname) // info canale
+
+		await mongo.db(dbname)
 				.collection("notifica")
 				.find({
 					utente: user_id
 				})
-				.forEach( (r) => { 
+				.forEach( (r) => {
 					result.push(r)
 				});
 
@@ -2242,5 +2242,136 @@ exports.get_notifications = async function(user_id, credentials) {
 		return response
 	} catch (e) {
 		response["errore"] = e
+	}
+}
+
+// segna notifica come letta
+exports.mark_notification = async function(notification_id, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        let result = []
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		await mongo.db(dbname)
+            .collection("notifica")
+            .updateOne(
+                { not_id: notification_id },
+                {
+                    $set: { letta: true }
+                }
+            )
+
+		await mongo.close();
+
+        response["risultato"] = "successo"
+
+		return response
+	} catch (e) {
+		response["errore"] = e
+	}
+}
+
+/* ========================== */
+/*                            */
+/*         SUPPORTO           */
+/*                            */
+/* ========================== */
+async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let notifica = {}
+	try {
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		notifica["utente"] = target
+		notifica["tipo"] = tipo
+		notifica["ref_id"] = ref_id
+		notifica["letta"] = false
+
+		let date = new Date()
+		notifica["timestamp"] = date.getTime();
+
+		if(tipo == "menzione"){
+			notifica["testo"] = `${origin} sta parlando di te!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "follow") {
+			notifica["testo"] = `${ref_id} ha iniziato a seguirti!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "risposta"){
+			notifica["testo"] = `${origin} ha commentato un tuo post!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "privato"){
+			notifica["testo"] = `${origin} ti ha mandato un messaggio privato!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "quota"){
+			if(bonus>0)
+				notifica["testo"] = `Sei popolare! Oggi avrai ${bonus} caratteri bonus :)`
+			else
+				notifica["testo"] = `Sei impopolare... Oggi avrai ${bonus} caratteri in meno :(`
+			//todo notifica quando ricalcolo la quota
+		} else if(tipo == "popolarita"){
+			//todo notifica quando calcolo la popolarita' di un post (ogni giorno, stesso trigger tipo quota)
+		}
+	} catch (e) {
+		return e
 	}
 }
