@@ -331,7 +331,7 @@ exports.user_info = async function(user_id, credentials) {
 
     try{
         let result = []
-		const mongo = new MongoClient(mongouri);		
+		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		
 		await mongo.db(dbname)
@@ -1572,11 +1572,11 @@ exports.set_reaction = async function(squeal_id, q, credentials) {
 		await mongo.connect();
 		
 		await mongo.db(dbname)
-					.collection("messaggio")
-					.find({post_id: squeal_id})
-					.forEach( (r) => { 
-						result = r
-					} );
+                .collection("messaggio")
+                .find({post_id: squeal_id})
+                .forEach( (r) => { 
+                    result = r
+                } );
 
         if(result == {}){
             response["risultato"] = "squeal non trovato"
@@ -2225,7 +2225,7 @@ exports.get_notifications = async function(user_id, credentials) {
 		const mongo = new MongoClient(mongouri);		
 		await mongo.connect();
 		
-		await mongo.db(dbname) // info canale
+		await mongo.db(dbname) 
 				.collection("notifica")
 				.find({
 					utente: user_id
@@ -2242,5 +2242,136 @@ exports.get_notifications = async function(user_id, credentials) {
 		return response
 	} catch (e) {
 		response["errore"] = e
+	}
+}
+
+// segna notifica come letta
+exports.mark_notification = async function(notification_id, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        let result = []
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+		
+		await mongo.db(dbname)
+            .collection("notifica")
+            .updateOne(
+                { not_id: notification_id },
+                {
+                    $set: { letta: true }
+                }
+            )
+
+		await mongo.close();
+
+        response["risultato"] = "successo"
+
+		return response
+	} catch (e) {
+		response["errore"] = e
+	}
+}
+
+/* ========================== */
+/*                            */
+/*         SUPPORTO           */
+/*                            */
+/* ========================== */
+async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let notifica = {}
+	try {
+		const mongo = new MongoClient(mongouri);		
+		await mongo.connect();
+
+		notifica["utente"] = target
+		notifica["tipo"] = tipo
+		notifica["ref_id"] = ref_id
+		notifica["letta"] = false
+
+		let date = new Date()
+		notifica["timestamp"] = date.getTime();
+
+		if(tipo == "menzione"){
+			notifica["testo"] = `${origin} sta parlando di te!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "follow") {
+			notifica["testo"] = `${ref_id} ha iniziato a seguirti!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "risposta"){
+			notifica["testo"] = `${origin} ha commentato un tuo post!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "privato"){
+			notifica["testo"] = `${origin} ti ha mandato un messaggio privato!`
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		} else if(tipo == "quota"){
+			if(bonus>0)
+				notifica["testo"] = `Sei popolare! Oggi avrai ${bonus} caratteri bonus :)`
+			else
+				notifica["testo"] = `Sei impopolare... Oggi avrai ${bonus} caratteri in meno :(`
+			//todo notifica quando ricalcolo la quota
+		} else if(tipo == "popolarita"){
+			//todo notifica quando calcolo la popolarita' di un post (ogni giorno, stesso trigger tipo quota)
+		}
+	} catch (e) {
+		return e
 	}
 }

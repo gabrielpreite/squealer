@@ -874,7 +874,7 @@ app.get('/notification/:user_id', async function(req, res) {
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "canale non trovato"){
+        } else if(response["risultato"] == "username non trovato"){
             response["errore"] = "errore"
             res.status(404)
             res.send(response)
@@ -887,18 +887,18 @@ app.get('/notification/:user_id', async function(req, res) {
 });
 
 // segna notifica come letta
-app.get('/notification/:notification_id', async function(req, res) {
+app.post('/notification/:notification_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
         const notification_id = req.params.notification_id
 
-        response = await mymongo.get_notifications(user_id, mongoCredentials)
+        response = await mymongo.mark_notification(notification_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "canale non trovato"){
+        } else if(response["risultato"] == "notifica non trovata"){
             response["errore"] = "errore"
             res.status(404)
             res.send(response)
