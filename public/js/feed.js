@@ -359,15 +359,14 @@ function switch_account(username){
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_quota?username=${username}`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
     headers: { },
     success: function (data, status, xhr) {
-      set_cookie("quota_g", data["quota"]["g"])
-      set_cookie("quota_s", data["quota"]["s"])
-      set_cookie("quota_m", data["quota"]["m"])
-      location.reload()
+      set_cookie("quota_g", data["data"]["quota"]["g"])
+      set_cookie("quota_s", data["data"]["quota"]["s"])
+      set_cookie("quota_m", data["data"]["quota"]["m"])
     }
-  });
+});
 }
 
 function switch_to_smm(){
@@ -376,15 +375,14 @@ function switch_to_smm(){
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_quota?username=${get_cookie_by_name("username")}`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
     headers: { },
     success: function (data, status, xhr) {
-      set_cookie("quota_g", data["quota"]["g"])
-      set_cookie("quota_s", data["quota"]["s"])
-      set_cookie("quota_m", data["quota"]["m"])
-      location.reload()
+      set_cookie("quota_g", data["data"]["quota"]["g"])
+      set_cookie("quota_s", data["data"]["quota"]["s"])
+      set_cookie("quota_m", data["data"]["quota"]["m"])
     }
-  });
+});
 }
 
 
@@ -430,11 +428,11 @@ function premibottone(button, reac, id) {
 
   //chiamata update db
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-    data: { _id: id, reac: reac, userid: CURRENT_USER},
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reaction`,
+    data: {reac: reac, userid: CURRENT_USER},
     headers: { },
     success: function (data, status, xhr) {
       console.log('data: ', data);
@@ -480,10 +478,10 @@ function rimpiazza_commenti(id) {
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_replies?post_id=` + id,
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
     headers: { },
     success: function (data, status, xhr) {
-      lista_commenti = data;
+      lista_commenti = data.data;
     }
   });
   var n_commenti = lista_commenti.length;
