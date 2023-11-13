@@ -602,10 +602,6 @@ app.post('/squeal/by_user', async function(req, res) {
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "utente non trovato"){
-            response["errore"] = "errore"
-            res.status(404)
-            res.send(response)
         }
     } catch (e){
         //response["errore"] = e.toString()

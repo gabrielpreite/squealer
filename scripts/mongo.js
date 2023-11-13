@@ -1702,7 +1702,6 @@ exports.search_by_user = async function(q, credentials) {
     let meta = {} //metadati risposta: tipo ricerca, info user/canale
 	let post = [] //lista post
     try{
-        let found = false
         meta["tipo"] = "utente"
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
@@ -1752,7 +1751,6 @@ exports.search_by_user = async function(q, credentials) {
 				  ])
 				.forEach( (r) => {
 					post.push(r)
-                    found = true
 				});
 
 			await mongo.db(dbname) // user info
@@ -1794,13 +1792,9 @@ exports.search_by_user = async function(q, credentials) {
 
 		await mongo.close();
 
-        if(found){
-            response["data"] = {"post": post, "meta": meta}
-            response["risultato"] = "successo"
-        } else {
-            response["risultato"] = "utente non trovato"
-        }
-
+		response["data"] = {"post": post, "meta": meta}
+		response["risultato"] = "successo"
+		
 		return response
 	} catch (e) {
 		//response["errore"] = e.toString()
