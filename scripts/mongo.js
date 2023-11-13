@@ -491,7 +491,7 @@ exports.user_login = async function(q, credentials) {
         let result = []
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-
+	
 		//Cripta la psw
 		let psw = CryptoJS.SHA3(q.password);
 		//debug.push(`found args ${q.username} e ${q.password}`)
@@ -513,10 +513,13 @@ exports.user_login = async function(q, credentials) {
 
         if(result.length == 1){
             response["risultato"] = "successo"
+			console.log("successo")
         } else {
             response["risultato"] = "username/password errati"
+			console.log("errati")
         }
 
+		response["data"] = result[0]
         await mongo.close();
 		return response
 	} catch (e) {

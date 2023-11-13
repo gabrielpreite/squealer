@@ -178,7 +178,7 @@ app.get('/api_notifica', async function(req, res) {
 // get quota
 app.get('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("quota")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -204,7 +204,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
 // aggiorna quota
 app.post('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("agg quota")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -235,7 +235,7 @@ app.post('/user/:user_id/quota', async function(req, res) {
 //body: target
 app.post('/user/:user_id/follow', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("follow")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -264,7 +264,7 @@ app.post('/user/:user_id/follow', async function(req, res) {
 // get user feed
 app.post('/user/:user_id/feed', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("feed")
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -289,7 +289,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
 // get smm dell'utente
 app.get('/user/:user_id/managed_by', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("smm")
     try{
         const user_id = req.params.user_id
         
@@ -313,7 +313,7 @@ app.get('/user/:user_id/managed_by', async function(req, res) {
 // aggiorna smm dell'utente
 app.post('/user/:user_id/managed_by', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("set smm")
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -341,7 +341,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
 // get account gestiti dall'utente
 app.get('/user/:user_id/manager_of', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("manager of")
     try{
         const user_id = req.params.user_id
         
@@ -365,7 +365,7 @@ app.get('/user/:user_id/manager_of', async function(req, res) {
 // get canali gestiti dall'utente, insieme al ruolo
 app.get('/user/:user_id/my_channels', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("my chann")
     try{
         const user_id = req.params.user_id
         
@@ -386,14 +386,42 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
     }
 });
 
+// modifica impostazioni utente
+app.post('/user/:user_id/settings', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("mod impost ute")
+    try{
+        const user_id = req.params.user_id
+        if(user_id !== session.userid){ // utente non corrisponde
+            response["risultato"] = "non hai i permessi"
+            res.status(403)
+            res.send(response)
+        }
+
+        response = await mymongo.user_update(user_id, req.body, mongoCredentials)
+        
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "username non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        res.status(500)
+        res.send({"errore":e})
+    }
+});
+
 // user info
 app.get('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("user info")
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_info(user_id, mongoCredentials)
-
+        
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -412,7 +440,7 @@ app.get('/user/:user_id', async function(req, res) {
 // cancella utente
 app.delete('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    console.log("del user")
     try{
         const user_id = req.params.user_id
         if(user_id !== session.userid){ // utente non corrisponde
@@ -438,38 +466,11 @@ app.delete('/user/:user_id', async function(req, res) {
     }
 });
 
-// modifica impostazioni utente
-app.post('/user/:user_id', async function(req, res) {
-    let response = {"data": null, "risultato": null, "errore": null}
-    
-    try{
-        const user_id = req.params.user_id
-        if(user_id !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
-
-        response = await mymongo.user_update(user_id, req.body, mongoCredentials)
-        
-        if(response["risultato"] == "successo"){
-            res.status(200)
-            res.send(response)
-        } else if(response["risultato"] == "username non trovato"){
-            response["errore"] = "errore"
-            res.status(404)
-            res.send(response)
-        }
-    } catch (e){
-        res.status(500)
-        res.send({"errore":e})
-    }
-});
 
 // login
 app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("login")
     try{
 
         response = await mymongo.user_login(req.body, mongoCredentials)
@@ -479,12 +480,12 @@ app.post('/user/login', async function(req, res) {
             session.userid=req.body.username;
             console.log(req.session)
             res.cookie('username', session.userid)
-            res.cookie('nome', db_res["nome"])
-            res.cookie('img', db_res["img"])
+            res.cookie('nome', response["data"]["nome"])
+            res.cookie('img', response["data"]["img"])
             res.cookie('login_result', "success")
-            res.cookie('quota_giorno', db_res["quota"]["g"])
-            res.cookie('quota_settimana', db_res["quota"]["s"])
-            res.cookie('quota_mese', db_res["quota"]["m"])
+            res.cookie('quota_giorno', response["data"]["quota"]["g"])
+            res.cookie('quota_settimana', response["data"]["quota"]["s"])
+            res.cookie('quota_mese', response["data"]["quota"]["m"])
             res.clearCookie('managed')
             res.redirect("/")
         } else if(response["risultato"] == "username/password errati"){
@@ -501,7 +502,7 @@ app.post('/user/login', async function(req, res) {
 // registra nuovo utente
 app.post('/user', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+    console.log("register")
     try{
         response = await mymongo.user_register(req.body, mongoCredentials)
 
