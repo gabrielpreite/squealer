@@ -2197,10 +2197,10 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 				})
 				.forEach( (r) => {
 					if(r.lettura == "*" || r.lettura.indexOf(q.userid) != -1){
-                        result["data"]["lettura"] = "true"
+                        result["lettura"] = "true"
                     }
                     if(r.scrittura == "*" || r.scrittura.indexOf(q.userid) != -1){
-                        result["data"]["scrittura"] = "true"
+                        result["scrittura"] = "true"
                     }
 				});
 
