@@ -480,12 +480,12 @@ app.post('/user/login', async function(req, res) {
             session.userid=req.body.username;
             console.log(req.session)
             res.cookie('username', session.userid)
-            res.cookie('nome', db_res["nome"])
-            res.cookie('img', db_res["img"])
+            res.cookie('nome', response["data"]["nome"])
+            res.cookie('img', response["data"]["img"])
             res.cookie('login_result', "success")
-            res.cookie('quota_giorno', db_res["quota"]["g"])
-            res.cookie('quota_settimana', db_res["quota"]["s"])
-            res.cookie('quota_mese', db_res["quota"]["m"])
+            res.cookie('quota_giorno', response["data"]["quota"]["g"])
+            res.cookie('quota_settimana', response["data"]["quota"]["s"])
+            res.cookie('quota_mese', response["data"]["quota"]["m"])
             res.clearCookie('managed')
             res.redirect("/")
         } else if(response["risultato"] == "username/password errati"){
