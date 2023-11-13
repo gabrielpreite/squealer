@@ -2184,6 +2184,8 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
+		console.log(channel_id);
+		console.log(q);
 		await mongo.db(dbname)
 				.collection("canale")
 				.find({
