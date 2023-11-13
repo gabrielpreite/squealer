@@ -235,7 +235,7 @@ app.post('/user/:user_id/quota', async function(req, res) {
 //body: target
 app.post('/user/:user_id/follow', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const user_id = req.params.user_id
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
@@ -767,6 +767,7 @@ app.get('/channel/:channel_id/auth', async function(req, res) {
 app.get('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
+
     try{
         const channel_id = req.params.channel_id
 
@@ -790,7 +791,7 @@ app.get('/channel/:channel_id', async function(req, res) {
 // modifica impostazioni canale
 app.post('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const channel_id = req.params.channel_id
         //todo check if userid is proprietario
