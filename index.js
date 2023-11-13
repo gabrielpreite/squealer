@@ -267,12 +267,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
     console.log("feed")
     try{
         const user_id = req.params.user_id
-        let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
-        if(user_id !== session.userid || smm !== session.userid){ // utente non corrisponde
-            response["risultato"] = "non hai i permessi"
-            res.status(403)
-            res.send(response)
-        }
+    
         response = await mymongo.user_feed(user_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -472,7 +467,6 @@ app.post('/user/login', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("login")
     try{
-
         response = await mymongo.user_login(req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
