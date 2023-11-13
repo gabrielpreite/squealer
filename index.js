@@ -180,7 +180,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("quota")
     try{
-
+        const user_id = req.params.user_id
         response = await mymongo.user_get_quota(user_id, mongoCredentials)
         
         if(response["risultato"] == "successo"){
@@ -199,7 +199,7 @@ app.post('/user/:user_id/quota', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("agg quota")
     try{
-        
+        const user_id = req.params.user_id
         response = await mymongo.user_update_quota(user_id, req.body, mongoCredentials)
         
         if(response["risultato"] == "successo"){
@@ -223,7 +223,7 @@ app.post('/user/:user_id/follow', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("follow")
     try{
-        
+        const user_id = req.params.user_id
         response = await mymongo.user_toggle_follow(user_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -291,7 +291,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("set smm")
     try{
-        
+        const user_id = req.params.user_id
         response = await mymongo.user_set_managed_by(user_id, req.body, mongoCredentials)
         
         if(response["risultato"] == "successo"){
@@ -362,7 +362,7 @@ app.post('/user/:user_id/settings', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("mod impost ute")
     try{
-    
+        const user_id = req.params.user_id
         response = await mymongo.user_update(user_id, req.body, mongoCredentials)
         
         if(response["risultato"] == "successo"){
@@ -568,7 +568,7 @@ app.delete('/squeal/:squeal_id', async function(req, res) {
         let allowed_users = [req.body.user_id]
         let smm = await mymongo.user_get_managed_by(user_id, mongoCredentials)
         allowed_users.push(smm)
-
+        const squeal_id = req.params.squeal_id
         response = await mymongo.delete_squeal(squeal_id, allowed_users, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -766,7 +766,7 @@ app.post('/channel/:channel_id', async function(req, res) {
     }
 });
 
-// cancella canale
+// cancella canale --------------------------------------------TODO FIX
 app.delete('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
