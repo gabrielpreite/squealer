@@ -584,7 +584,7 @@ function ricerca_post(id_post) {
 function compra_quota(qnt){
   let data = {"target": CURRENT_USER, "qnt": qnt}
 
-  fetch("/add_quota", {
+  fetch("/user/" + CURRENT_USER + "/quota", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'

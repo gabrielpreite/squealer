@@ -1,0 +1,172 @@
+#PAGINE
+/
+/login
+/register
+/editor
+/settings
+/logout
+
+#RISORSE
+/user
+	#ROOT
+	[GET] /<user_id> (user_info)
+		{200} json user info
+		{404} utente non trovato
+		{500} server error
+	[POST] /<user_id> (register)
+		{200} utente registrato
+		{400} username/email già esistenti
+		{500} server error
+	[POST] (modifica impostazioni)
+		{200} impostazioni aggiornate
+		{403} non sei loggato/non è il tuo account
+		{404} utente non trovato
+		{500} server error
+	[DELETE] /<user_id> (cancella account)
+		{200} utente cancellato
+		{403} non sei loggato/non è il tuo account
+		{404} utente non trovato
+		{500} server error
+	
+	#FIGLI
+	[POST] /login (login)
+		{200} login ok
+		{401} username/pwd sbagliati
+		{500} server error
+		
+	[GET] /<user_id>/quota (get_quota)
+		{200} ritorno la quota
+		{403} non sei loggato/user_id sbagliato
+		{500} server error
+	[POST] /<user_id>/quota (add/remove_quota)
+		{200} quota aggiornata
+		{403} non sei loggato/userid sbagliato
+		{500} server error
+		
+	[POST] /<user_id_origin>/follow (toggle_follow)
+		{200} toggle follow con successo
+		{403} non sei loggato/user_id_origin sbagliato
+		{404} <user_id_target> non esiste
+		{500} server error
+		
+	[POST] /<user_id>/feed (user_feed)
+		{200} feed ottenuto
+		{401} non sei loggato/user_id sbagliato
+		{500} server error
+		
+	[GET] /<user_id>/managed_by (get smm)
+		{200} ottenuto smm
+		{401} non sei loggato/user_id sbagliato
+		{500} server error
+	[POST] /<user_id>/managed_by (set smm)
+		{200} aggiornato smm
+		{401} non sei loggato/user_id sbagliato
+		{404} smm non trovato
+		{500} server error
+		
+	[GET] /<user_id>/manager_of (get account gestiti)
+		{200} ottenuti account gestiti
+		{404} user_id sbagliato
+		{500} server error
+		
+	[GET] /<user_id>/my_channels (ritorno i canali gestiti insieme al ruolo)
+		{200} ottenuti canali gestiti
+		{404} non sei loggato/user_id sbagliato
+		{500} server error
+
+/squeal
+	#ROOT
+	[GET] /<squeal_id> (get squeal by id)
+		{200} ottenuto
+		{404} squeal non trovato/non hai i permessi
+		{500} server error
+	[POST] (add_post)
+		{200} squeal postato
+		{401} non sei loggato
+		{500} server error
+	[DELETE] /<squeal_id> (cancella squeal)
+		{200} squeal rimosso
+		{401} non sei loggato
+		{403} non hai permessi
+		{500} server error
+	
+	#FIGLI
+	[GET] /<squeal_id>/reply (get_replies)
+		{200} ottenuti commenti
+		{401} non sei loggato
+		{404} squeal non trovato
+		{500} server error
+		
+	[POST] /<squeal_id>/reaction (modifica reazione)
+		{200} reaction modificata
+		{401} non sei loggato
+		{404} squeal non trovato
+		{500} server error
+		
+	/search
+		[POST] /by_user (ricerca utente)
+			{200} ricerca effettuata
+			{401} non sei loggato
+			{404} user non trovato
+			{500} server error
+		[POST] /by_channel (ricerca canale)
+			{200} ricerca effettuata
+			{401} non sei loggato
+			{404} canale non trovato
+			{500} server error
+		[POST] /by_keyword (ricerca keyword)
+			{200} ricerca effettuata
+			{401} non sei loggato
+			{500} server error
+			
+/channel
+	#ROOT
+	[GET] /<channel_id> (info canale)
+		{200} ottenute info canale
+		{401} non sei loggato
+		{404} canale non trovato/non hai i permessi
+		{500} server error
+	[POST]  (crea canale)
+		{200} canale creato
+		{401} non sei loggato
+		{403} canale non valido/non hai i permessi
+		{500} server error
+	[POST] /<channel_id> (modifica canale)
+		{200} canale creato
+		{401} non sei loggato
+		{403} canale non valido/non hai i permessi
+		{500} server error
+	[DELETE] /<channel_id> (cancella canale)
+		{200} canale cancellato
+		{401} non sei loggato
+		{404} canale non valido/non hai i permessi
+		{500} server error
+		
+	#FIGLI
+	[GET] /<channel_id>/auth (controlla se utente ha permessi sul canale)
+		{200} permessi ottenuti
+		{401} non sei loggato
+		{404} canale inesistente
+		{500} server error
+
+/notification
+	#ROOT
+	[GET] /<user_id> (ottieni notifiche dell'utente)
+		{200} notifiche ottenute
+		{401} non sei loggato
+		{500} server error
+	[POST] /<notification_id> (segna come letta)
+		{200} notifica segnata come letta
+		{401} non sei loggato/notifica non ti appartiene
+		{404} notifica inesistente
+		{500} server error
+
+#DEBUG, MANTENIMENTO ED USO INTERNO
+/db
+	#FIGLI
+	[GET] /user?<user_id>
+	[GET] /squeal?<squeal_id>
+	[GET] /channel?<channel_id>
+	[GET] /notification?<notification_id>
+	
+	[GET] /create
