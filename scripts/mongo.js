@@ -1503,7 +1503,7 @@ exports.delete_squeal = async function(squeal_id, allowed_users, credentials) {
 }
 
 // get squeal replies
-exports.get_squeal_replies = async function(squeal_id, allowed_users, credentials) {
+exports.get_squeal_replies = async function(squeal_id, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
@@ -1517,7 +1517,7 @@ exports.get_squeal_replies = async function(squeal_id, allowed_users, credential
 			.aggregate([
 				{
 				  $match: {
-					risponde_a: q.post_id
+					risponde_a: squeal_id
 				  }
 				},
 				{
