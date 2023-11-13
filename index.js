@@ -275,6 +275,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
             res.send(response)
         }
     } catch (e){
+        console.log(response)
         response["errore"] = e.toString()
         res.status(500)
         res.send(response)
