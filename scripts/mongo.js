@@ -470,13 +470,8 @@ exports.user_update = async function (user_id, q, credentials) {
         const collection = mongo.db(credentials.db).collection('utente');
 				const existingUser = await collection.findOne({ "username": user_id });
 
-				console.log("user_id:");
-				console.log(user_id);
-
-				if (!existingUser) {
-				    response["risultato"] = "username non trovato";
-				    return response;
-				}
+				console.log("user_id:", user_id);
+				console.log("existingUser:", existingUser);
 
         const updateResult = await collection.updateOne(
             { "username": user_id }, // Criterio di ricerca per l'utente
@@ -491,11 +486,12 @@ exports.user_update = async function (user_id, q, credentials) {
             }
         );
 
-				console.log("updateResult:");
-				console.log(updateResult);
+				console.log("updateResult:", updateResult);
 
         if (updateResult.matchedCount == 1) {
             response["risultato"] = "successo";
+        } else {
+            response["risultato"] = "username non trovato"
         }
 
         await mongo.close();
