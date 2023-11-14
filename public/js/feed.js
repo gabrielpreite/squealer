@@ -505,7 +505,7 @@ function rimpiazza_commenti(id) {
       }
       document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
     } else if(lista_commenti[c].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
+      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
     } else if(lista_commenti[c].contenuto == "map"){
       document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
     }
