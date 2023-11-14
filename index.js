@@ -878,7 +878,7 @@ app.use(function(req, res){
 /*                            */
 /*    ACTIVATE NODE SERVER    */
 /*                            */
-/* ========================= */
+/* ========================== */
 
 app.listen(8000, function() {
 	global.startDate = new Date() ;
