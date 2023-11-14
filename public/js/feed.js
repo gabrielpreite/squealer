@@ -43,9 +43,9 @@ function aggiungi_squeal(squeals) {
       }
       document.getElementById(id_testo).innerHTML = testo_squeal;
     } else if(squeals[i].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
+      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" class="immagini_post" alt="immagine_squeal">`
     } else if(squeals[i].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa_squeal">`;
+      document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" class="immagini_post" alt="mappa_squeal">`;
     }
     //destinatari
     let id_destinatari = 'btn-destinatari' + i;
@@ -505,9 +505,9 @@ function rimpiazza_commenti(id) {
       }
       document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
     } else if(lista_commenti[c].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
+      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" class="immagini_post" alt="immagine_squeal">`
     } else if(lista_commenti[c].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
+      document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" class="immagini_post" alt="mappa_squeal">`;
     }
   }
 }
