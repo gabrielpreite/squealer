@@ -467,7 +467,22 @@ exports.user_update = async function(user_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		//todo
+		const collection = mongo.db(credentials.db).collection('utente');
+
+		const updateResult = await collection.updateOne(
+		    { "_id": ObjectId(user_id) }, // Criterio di ricerca per l'utente
+		    {
+		        $set: {
+		            "img": q.img,
+		            "nome": q.nome,
+		            "email": q.email,
+		            "password": q.password,
+		            "bio": q.bio
+		        }
+		    }
+		);
+
+		result = updateResult.result;
 
         if(result.matchedCount == 1){
             response["risultato"] = "successo"
@@ -491,7 +506,7 @@ exports.user_login = async function(q, credentials) {
         let result = []
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-	
+
 		//Cripta la psw
 		let psw = CryptoJS.SHA3(q.password);
 		//debug.push(`found args ${q.username} e ${q.password}`)
