@@ -465,6 +465,7 @@ exports.user_update = async function (user_id, q, credentials) {
     try {
         const mongo = new MongoClient(mongouri);
         await mongo.connect();
+				console.log("Connessione a MongoDB stabilita");
 
         const collection = mongo.db(credentials.db).collection('utente');
 
@@ -480,6 +481,9 @@ exports.user_update = async function (user_id, q, credentials) {
                 }
             }
         );
+
+				console.log("updateResult:");
+				console.log(updateResult);
 
         if (updateResult.matchedCount == 1) {
             response["risultato"] = "successo";
