@@ -457,7 +457,7 @@ exports.user_delete = async function(user_id, credentials) {
 	}
 }
 
-// modifica impostazioni utente
+// modifica impostazioni utente.
 exports.user_update = async function (user_id, q, credentials) {
     const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
     let response = { "data": null, "risultato": null, "errore": null };
