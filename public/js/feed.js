@@ -470,7 +470,7 @@ function aggiungicommento(icon, azione, id) {
 }
 
 function rimpiazza_commenti(id) {
-  //elimina tutto il contenuto del cont_commenti
+  //elimina tutto il contenuto del cont_commenti 
   document.getElementById("contenitore-commenti").innerHTML = '';
 
   //aggiungi nuovi commenti
