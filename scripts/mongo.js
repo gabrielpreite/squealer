@@ -458,44 +458,44 @@ exports.user_delete = async function(user_id, credentials) {
 }
 
 // modifica impostazioni utente
-exports.user_update = async function(user_id, q, credentials) {
-	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
-	let response = {"data": null, "risultato": null, "errore": null}
+exports.user_update = async function (user_id, q, credentials) {
+    const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+    let response = { "data": null, "risultato": null, "errore": null };
 
-    try{
-        let result = []
-		const mongo = new MongoClient(mongouri);
-		await mongo.connect();
+    try {
+        const mongo = new MongoClient(mongouri);
+        await mongo.connect();
 
-		const collection = mongo.db(credentials.db).collection('utente');
+        const collection = mongo.db(credentials.db).collection('utente');
 
-		const updateResult = await collection.updateOne(
-		    { "_id": ObjectId(user_id) }, // Criterio di ricerca per l'utente
-		    {
-		        $set: {
-		            "img": q.img,
-		            "nome": q.nome,
-		            "email": q.email,
-		            "password": q.password,
-		            "bio": q.bio
-		        }
-		    }
-		);
+        const updateResult = await collection.updateOne(
+            { "_id": ObjectId(user_id) }, // Criterio di ricerca per l'utente
+            {
+                $set: {
+                    "img": q.img,
+                    "nome": q.nome,
+                    "email": q.email,
+                    "password": q.password,
+                    "bio": q.bio
+                }
+            }
+        );
 
-		result = updateResult.result;
-
-        if(result.matchedCount == 1){
-            response["risultato"] = "successo"
+        if (updateResult.matchedCount == 1) {
+            response["risultato"] = "successo";
         } else {
-            response["risultato"] = "username non trovato"
+            response["risultato"] = "username non trovato";
         }
 
         await mongo.close();
-		return response
-	} catch (e) {
-		//response["errore"] = e.toString()
-	}
-}
+        return response;
+    } catch (error) {
+        console.error("Errore durante l'aggiornamento dell'utente:", error);
+        response["errore"] = error.toString();
+        return response;
+    }
+};
+
 
 // login
 exports.user_login = async function(q, credentials) {
