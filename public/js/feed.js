@@ -148,9 +148,9 @@ function toggle_follow(target, tipo){
   $.ajax({
     type: 'POST',
     dataType: "json",
-    url: `https://site212251.tw.cs.unibo.it/toggle_follow`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
     headers: { },
-    data: { origin: CURRENT_USER, target: target, tipo: tipo },
+    data: { target: target, tipo: tipo },
     success: function (data, status, xhr) {
       let num_foll = parseInt($("#num_follower").text().split(" ")[0])
       if (data.result == "added"){
@@ -266,12 +266,12 @@ function ricerca_squeal(elem) {
       return false;
     }
     //check varie cose
-    if (tipo == "utente") {
+    if (tipo == "user") {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
-    } else if (tipo == "canale") {
+    } else if (tipo == "channel") {
       if (query[0] != "$") {
         query = "$" + query;
       }
@@ -285,13 +285,13 @@ function ricerca_squeal(elem) {
       query = query.substring(2);
     }
     if (tipo == "$") {
-      tipo = "canale";
+      tipo = "channel";
     } else {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
-      tipo = "utente";
+      tipo = "user";
     }
   }
 
@@ -300,12 +300,12 @@ function ricerca_squeal(elem) {
     type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/search`,
+    url: `https://site212251.tw.cs.unibo.it/squeal/by_${tipo}`,
     headers: { },
-    data: { query: query, tipo: tipo, target: CURRENT_USER },
+    data: { query: query, target: CURRENT_USER },
     success: function (data, status, xhr) {
       console.log('data: ', data);
-      all_info = data;
+      all_info = data.data;
     }
   });
   if (all_info.post === undefined) {
@@ -353,21 +353,21 @@ function rimpiazza_squeals(posts, filtro) {
 // switch account e re-set quota
 function switch_account(username){
   set_cookie("managed", username)
-  $("#managed-account-username").text(username)
-  $("#managed-account-username").attr("hidden")
+  //$("#managed-account-username").text(username)
+  //$("#managed-account-username").attr("hidden")
   $.ajax({
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_quota?username=${username}`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
     headers: { },
     success: function (data, status, xhr) {
-      set_cookie("quota_g", data["quota"]["g"])
-      set_cookie("quota_s", data["quota"]["s"])
-      set_cookie("quota_m", data["quota"]["m"])
-      location.reload()
+      set_cookie("quota_g", data["data"]["quota"]["g"])
+      set_cookie("quota_s", data["data"]["quota"]["s"])
+      set_cookie("quota_m", data["data"]["quota"]["m"])
     }
   });
+  ricarica()
 }
 
 function switch_to_smm(){
@@ -376,15 +376,15 @@ function switch_to_smm(){
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_quota?username=${get_cookie_by_name("username")}`,
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
     headers: { },
     success: function (data, status, xhr) {
-      set_cookie("quota_g", data["quota"]["g"])
-      set_cookie("quota_s", data["quota"]["s"])
-      set_cookie("quota_m", data["quota"]["m"])
-      location.reload()
+      set_cookie("quota_g", data["data"]["quota"]["g"])
+      set_cookie("quota_s", data["data"]["quota"]["s"])
+      set_cookie("quota_m", data["data"]["quota"]["m"])
     }
   });
+  ricarica()
 }
 
 
@@ -430,11 +430,11 @@ function premibottone(button, reac, id) {
 
   //chiamata update db
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/update_reazioni`,
-    data: { _id: id, reac: reac, userid: CURRENT_USER},
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reaction`,
+    data: {reac: reac, userid: CURRENT_USER},
     headers: { },
     success: function (data, status, xhr) {
       console.log('data: ', data);
@@ -480,10 +480,10 @@ function rimpiazza_commenti(id) {
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/get_replies?post_id=` + id,
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
     headers: { },
     success: function (data, status, xhr) {
-      lista_commenti = data;
+      lista_commenti = data.data;
     }
   });
   var n_commenti = lista_commenti.length;
@@ -524,39 +524,39 @@ function ricerca_notifica(notifica) {
       type: 'GET',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${notifica.ref_id}`,
+      url: `https://site212251.tw.cs.unibo.it/squeal/${notifica.ref_id}`,
       headers: { },
       success: function (data, status, xhr) {
-        post_notifica = data;
+        post_notifica = data.data;
       }
     });
     if (notifica.tipo == "risposta") {
-      if (post_notifica[0].risponde_a != null) {
+      if (post_notifica.risponde_a != null) {
         $.ajax({
           type: 'GET',
           dataType: "json",
           async: false,
-          url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${post_notifica[0].risponde_a}`,
+          url: `https://site212251.tw.cs.unibo.it/squeal/${post_notifica.risponde_a}`,
           headers: { },
           success: function (data, status, xhr) {
-            post_notifica = data;
+            post_notifica = data.data;
           }
         });
       }
     }
-    rimpiazza_squeals(post_notifica, "filtro");
+    rimpiazza_squeals([post_notifica], "filtro");
     rimpiazza_commenti(post_notifica.post_id);
     squeals = post_notifica;
     let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
-    aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
+    aggiungicommento(pulsante[0], 'apri', squeals.post_id);
   }
 
   //leggi notifica
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/read_notifica?not_id=${notifica.not_id}`,
+    url: `https://site212251.tw.cs.unibo.it/notification/${notifica.not_id}`,
     headers: { },
     success: function (data, status, xhr) {}
   });
@@ -568,23 +568,23 @@ function ricerca_post(id_post) {
     type: 'GET',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/api_messaggio?messaggio_id=${id_post}`,
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id_post}`,
     headers: { },
     success: function (data, status, xhr) {
-      post_notifica = data;
+      post_notifica = data.data;
     }
   });
-  rimpiazza_squeals(post_notifica, "filtro");
+  rimpiazza_squeals([post_notifica], "filtro");
   rimpiazza_commenti(post_notifica.post_id);
   squeals = post_notifica;
   let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
-  aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
+  aggiungicommento(pulsante[0], 'apri', squeals.post_id);
 }
 
 function compra_quota(qnt){
   let data = {"target": CURRENT_USER, "qnt": qnt}
 
-  fetch("/add_quota", {
+  fetch("/user/" + CURRENT_USER + "/quota", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
