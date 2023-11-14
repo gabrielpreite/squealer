@@ -448,6 +448,12 @@
   color: #333;
 }
 
+.comment-text img {
+  max-width:100%;
+  max-height:100%;
+  border-radius: 10px;
+}
+
 .icona-commento{
   margin-left: 5px;
 }
