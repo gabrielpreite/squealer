@@ -469,7 +469,7 @@ exports.user_update = async function (user_id, q, credentials) {
         const collection = mongo.db(credentials.db).collection('utente');
 
         const updateResult = await collection.updateOne(
-            { "_id": ObjectId(user_id) }, // Criterio di ricerca per l'utente
+            { "username": user_id }, // Criterio di ricerca per l'utente
             {
                 $set: {
                     "img": q.img,
