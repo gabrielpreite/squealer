@@ -529,7 +529,7 @@
       var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
       if (a.startsWith('@')) {
         a = a.substring(1)
-      } if (a == get_cookie_by_name("username")) {
+      } else if (a == get_cookie_by_name("username")) {
         alert("Non è possibile inserire il proprio username tra i destinatari");
         return;
       }
@@ -718,7 +718,9 @@
         remainingChars_s = initialQuota_s// - 120;
         remainingChars_m = initialQuota_m// - 120;
       } else if (opzione == "Posizione") {
-
+        remainingChars_g = initialQuota_g - 120;
+        remainingChars_s = initialQuota_s// - 120;
+        remainingChars_m = initialQuota_m// - 120;
       }
 
       charCount_g.textContent = remainingChars_g;
@@ -882,7 +884,9 @@
         if(lista_commenti[c].contenuto == "testo"){
           document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
         } else if(lista_commenti[c].contenuto == "img"){
-          document.getElementById(id_testo).innerHTML = `<div class="img-commento"><img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal"></div>`
+          document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine_squeal">`
+        } else if(lista_commenti[c].contenuto == "map"){
+          document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa_squeal">`;
         }
       }
     }
