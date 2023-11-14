@@ -1,28 +1,28 @@
 function aggiungi_squeal(squeals) {
-  var n_squeal = squeals.length;
+  let n_squeal = squeals.length;
 
-  var contenitore = document.getElementById('squeal_contenitore');
+  let contenitore = document.getElementById('squeal_contenitore');
 
-  for (var i = 0; i < n_squeal; i++) {
+  for (let i = 0; i < n_squeal; i++) {
     //setup
-    var id = "squeals[" + i + "].post_id";
+    let id = "squeals[" + i + "].post_id";
 
     //squeal
-    var htmlCode = '<div class="card squeal" id="' + squeals[i].post_id + '">  <div class="card-header">  <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">  <div class="info_utente"><span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>  <span class="text-muted tag-username" id="squeal_tag' + i + '" onclick="ricerca_squeal(this)">username</span>  <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span></div>  <div class="recipients-dropdown destinatari"><button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '"></button><div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"></div></div></div>  <div class="card-body"><p id="squeal_testo' + i + '"></p></div>  <div class="card-footer">  <div class="reazioni btn-group"><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')"><i class="fab fa-sketch reazioni-icone"></i><br><span class="n-reazioni" id="squeal_sketch' + i + '">500</span></label><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')"><i class="fas fa-heart reazioni-icone"></i><br><span class="n-reazioni" id="squeal_heart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')"><i class="fas fa-thumbs-up reazioni-icone"></i><br><span class="n-reazioni" id="squeal_like' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')"><i class="fas fa-thumbs-down reazioni-icone"></i><br><span class="n-reazioni" id="squeal_dislike' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')"><i class="fas fa-heart-crack reazioni-icone"></i><br><span class="n-reazioni" id="squeal_disheart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')"><i class="fas fa-poo reazioni-icone"></i><br><span class="n-reazioni" id="squeal_poo' + i + '">500</span></label>  <label class="btn btn-reazioni c btn-group' + i + '"  onclick="aggiungicommento(this, apri, '+id+')"><i class="fa-solid fa-comments reazioni-icone"></i><br><span class="n-reazioni" id="squeal_comment' + i + '">500</span></label></div>  <div class="info-post" id="squeal_info' + i + '"><span class="visual" id="squeal_visual' + i + '"><i class="fa-solid fa-eye icona-visual"></i>500</span></div></div></div>';
+    let htmlCode = '<div class="card squeal" id="' + squeals[i].post_id + '">  <div class="card-header">  <img src="https://via.placeholder.com/60x60" alt="Profile Image" class="profile-image" id="squeal_img_utente' + i + '">  <div class="info_utente"><span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>  <span class="text-muted tag-username" id="squeal_tag' + i + '" onclick="ricerca_squeal(this)">username</span>  <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span></div>  <div class="recipients-dropdown destinatari"><button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn-destinatari' + i + '"></button><div class="dropdown-menu" aria-labelledby="destinatari" id="squeal_destinatari' + i + '"></div></div></div>  <div class="card-body"><p id="squeal_testo' + i + '"></p></div>  <div class="card-footer">  <div class="reazioni btn-group"><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')"><i class="fab fa-sketch reazioni-icone"></i><br><span class="n-reazioni" id="squeal_sketch' + i + '">500</span></label><label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')"><i class="fas fa-heart reazioni-icone"></i><br><span class="n-reazioni" id="squeal_heart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')"><i class="fas fa-thumbs-up reazioni-icone"></i><br><span class="n-reazioni" id="squeal_like' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')"><i class="fas fa-thumbs-down reazioni-icone"></i><br><span class="n-reazioni" id="squeal_dislike' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')"><i class="fas fa-heart-crack reazioni-icone"></i><br><span class="n-reazioni" id="squeal_disheart' + i + '">500</span></label>  <label class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')"><i class="fas fa-poo reazioni-icone"></i><br><span class="n-reazioni" id="squeal_poo' + i + '">500</span></label>  <label class="btn btn-reazioni c btn-group' + i + '"  onclick="aggiungicommento(this, apri, '+id+')"><i class="fa-solid fa-comments reazioni-icone"></i><br><span class="n-reazioni" id="squeal_comment' + i + '">500</span></label></div>  <div class="info-post" id="squeal_info' + i + '"><span class="visual" id="squeal_visual' + i + '"><i class="fa-solid fa-eye icona-visual"></i>500</span></div></div></div>';
     contenitore.insertAdjacentHTML('beforeend', htmlCode);
 
     //info utente
-    var id_nome = 'squeal_nome' + i;
-    var id_tag = 'squeal_tag' + i;
-    var id_timestamp = 'squeal_timestamp' + i;
-    var id_squeal_img_utente = 'squeal_img_utente' + i;
+    let id_nome = 'squeal_nome' + i;
+    let id_tag = 'squeal_tag' + i;
+    let id_timestamp = 'squeal_timestamp' + i;
+    let id_squeal_img_utente = 'squeal_img_utente' + i;
     document.getElementById(id_nome).innerHTML = squeals[i].nome;
     document.getElementById(id_tag).innerHTML = squeals[i].utente;
     document.getElementById(id_timestamp).innerHTML = timeConverter(squeals[i].timestamp);
     document.getElementById(id_squeal_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${squeals[i].img}`
 
     //corpo squeal
-    var id_testo = 'squeal_testo' + i;
+    let id_testo = 'squeal_testo' + i;
     if(squeals[i].contenuto == "testo"){
       let testo_squeal = squeals[i].corpo;
       //parole con @ all'inizio
@@ -48,36 +48,36 @@ function aggiungi_squeal(squeals) {
       document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa_squeal">`;
     }
     //destinatari
-    var id_destinatari = 'btn-destinatari' + i;
+    let id_destinatari = 'btn-destinatari' + i;
     if (squeals[i].tipo_destinatari == "canali"){
-      var bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
+      let bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
       document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
     } else if (squeals[i].tipo_destinatari == "utenti") {
-      var bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
+      let bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
       document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
     } else {
       document.getElementById(id_destinatari).hidden = true;
     }
-    var lista_destinatari = document.getElementById('squeal_destinatari' + i);
-    var n_destinatari = squeals[i].destinatari.length;
-    for (var j = 0; j < n_destinatari; j++) {
+    let lista_destinatari = document.getElementById('squeal_destinatari' + i);
+    let n_destinatari = squeals[i].destinatari.length;
+    for (let j = 0; j < n_destinatari; j++) {
       lista_destinatari.insertAdjacentHTML('beforeend', '<a class="dropdown-item" onclick="ricerca_squeal(this)">' + squeals[i].destinatari[j] + '</a>');
     }
 
     //reazioni
-    var id_sketch = 'squeal_sketch' + i;
+    let id_sketch = 'squeal_sketch' + i;
     document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
-    var id_poo = 'squeal_poo' + i;
+    let id_poo = 'squeal_poo' + i;
     document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
-    var id_heart = 'squeal_heart' + i;
+    let id_heart = 'squeal_heart' + i;
     document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
-    var id_disheart = 'squeal_disheart' + i;
+    let id_disheart = 'squeal_disheart' + i;
     document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
-    var id_like = 'squeal_like' + i;
+    let id_like = 'squeal_like' + i;
     document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
-    var id_dislike = 'squeal_dislike' + i;
+    let id_dislike = 'squeal_dislike' + i;
     document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
-    var id_comment = 'squeal_comment' + i;
+    let id_comment = 'squeal_comment' + i;
     document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
 
 
@@ -87,53 +87,53 @@ function aggiungi_squeal(squeals) {
     //aggiungo le reaction gia' inserite
 
     if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
-      var nreazioni0 = document.getElementById(id_sketch);
-      var premuto0 = nreazioni0.parentNode;
+      let nreazioni0 = document.getElementById(id_sketch);
+      let premuto0 = nreazioni0.parentNode;
       premuto0.style.color= "#00AFFF";
       premuto0.checked = true;
     } else if (squeals[i].reazioni.negative.mi_disgusta.includes(CURRENT_USER)) {
-      var nreazioni1 = document.getElementById(id_poo);
-      var premuto1 = nreazioni1.parentNode;
+      let nreazioni1 = document.getElementById(id_poo);
+      let premuto1 = nreazioni1.parentNode;
       premuto1.style.color= "#8B4513";
       premuto1.checked = true;
     } else if (squeals[i].reazioni.positive.mi_piace.includes(CURRENT_USER)) {
-      var nreazioni2 = document.getElementById(id_heart);
-      var premuto2 = nreazioni2.parentNode;
+      let nreazioni2 = document.getElementById(id_heart);
+      let premuto2 = nreazioni2.parentNode;
       premuto2.style.color= "#FF0000";
       premuto2.checked = true;
     } else if (squeals[i].reazioni.negative.odio.includes(CURRENT_USER)) {
-      var nreazioni3 = document.getElementById(id_disheart);
-      var premuto3 = nreazioni3.parentNode;
+      let nreazioni3 = document.getElementById(id_disheart);
+      let premuto3 = nreazioni3.parentNode;
       premuto3.style.color= "#FF0000";
       premuto3.checked = true;
     } else if (squeals[i].reazioni.positive.concordo.includes(CURRENT_USER)) {
-      var nreazioni4 = document.getElementById(id_like);
-      var premuto4 = nreazioni4.parentNode;
+      let nreazioni4 = document.getElementById(id_like);
+      let premuto4 = nreazioni4.parentNode;
       premuto4.style.color= "#007FFF";
       premuto4.checked = true;
     } else if (squeals[i].reazioni.negative.sono_contrario.includes(CURRENT_USER)) {
-      var nreazioni5 = document.getElementById(id_dislike);
-      var premuto5 = nreazioni5.parentNode;
+      let nreazioni5 = document.getElementById(id_dislike);
+      let premuto5 = nreazioni5.parentNode;
       premuto5.style.color= "#007FFF";
       premuto5.checked = true;
     }
 
 
     //etichette
-    var id_visual = 'squeal_visual' + i;
+    let id_visual = 'squeal_visual' + i;
     document.getElementById(id_visual).innerHTML = '<i class="fa-solid fa-eye visual-icona"></i>' + squeals[i].visualizzazioni;
     if (squeals[i].categoria == "popolare"){
-      var Et_popolarita = document.getElementById('squeal_info' + i);
+      let Et_popolarita = document.getElementById('squeal_info' + i);
       Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolare"> Popolare </span>');
     } else if (squeals[i].categoria == "impopolare"){
-      var Et_popolarita = document.getElementById('squeal_info' + i);
+      let Et_popolarita = document.getElementById('squeal_info' + i);
       Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal impopolare"> Impopolare </span>');
     } else if (squeals[i].categoria == "controverso"){
-      var Et_popolarita = document.getElementById('squeal_info' + i);
+      let Et_popolarita = document.getElementById('squeal_info' + i);
       Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal controverso"> Controverso </span>');
     }
     if (squeals[i].automatico){
-      var Et_auto = document.getElementById('squeal_info' + i);
+      let Et_auto = document.getElementById('squeal_info' + i);
       Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
     }
     /*if (!squeals[i].pubblico){ // deprecato
@@ -417,12 +417,12 @@ function premibottone(button, reac, id) {
           button.style.color= "#007FFF";
         }
         button.checked = true;
-        var Nreaz = btnradio.querySelector(".n-reazioni");
+        let Nreaz = btnradio.querySelector(".n-reazioni");
         Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
       } else if (btnradio.checked) {
         btnradio.style.color= "#777";
         btnradio.checked = false;
-        var Nreaz = btnradio.querySelector(".n-reazioni");
+        let Nreaz = btnradio.querySelector(".n-reazioni");
         Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
       }
     });
@@ -443,7 +443,7 @@ function premibottone(button, reac, id) {
 }
 
 function aggiungicommento(icon, azione, id) {
-  var id_commento = document.querySelector('.aggiungi-commento');
+  let id_commento = document.querySelector('.aggiungi-commento');
   if (azione == "apri") {
       aggiungicommento('', 'chiudi');
       id_commento.id = id;
@@ -474,8 +474,8 @@ function rimpiazza_commenti(id) {
   document.getElementById("contenitore-commenti").innerHTML = '';
 
   //aggiungi nuovi commenti
-  var contenitore_commenti = document.getElementById("contenitore-commenti");
-  var lista_commenti;
+  let contenitore_commenti = document.getElementById("contenitore-commenti");
+  let lista_commenti;
   $.ajax({
     type: 'GET',
     dataType: "json",
@@ -486,14 +486,14 @@ function rimpiazza_commenti(id) {
       lista_commenti = data.data;
     }
   });
-  var n_commenti = lista_commenti.length;
-  for (var c = 0; c < n_commenti; c++) {
+  let n_commenti = lista_commenti.length;
+  for (let c = 0; c < n_commenti; c++) {
     contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '" onclick="ricerca_squeal(this)">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
-    var c_img_utente = 'c_img_utente' + c;
+    let c_img_utente = 'c_img_utente' + c;
     document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
-    var id_tag = 'c_username' + c;
+    let id_tag = 'c_username' + c;
     document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
-    var id_testo = 'c_text' + c;
+    let id_testo = 'c_text' + c;
     if (lista_commenti[c].contenuto == "testo") {
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
@@ -519,7 +519,7 @@ function ricerca_notifica(notifica) {
     elem_notifica.innerHTML = notifica.ref_id;
     ricerca_squeal(elem_notifica);
   } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita" || notifica.tipo == "privato") {
-    var post_notifica;
+    let post_notifica;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -563,7 +563,7 @@ function ricerca_notifica(notifica) {
 }
 
 function ricerca_post(id_post) {
-  var post_notifica;
+  let post_notifica;
   $.ajax({
     type: 'GET',
     dataType: "json",
