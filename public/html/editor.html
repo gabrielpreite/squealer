@@ -682,7 +682,7 @@
 
         button.classList.remove('button-disabled');
       }
-
+ 
       if (opzione == "Testo") {
         resetQuota()
         $("#contenuto_testo").attr("hidden", false)
@@ -702,7 +702,7 @@
         $("#contenuto_posizione").attr("hidden", false)
         $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
         if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
-            //aggiornaQuota("Posizione");
+            aggiornaQuota("Posizione");
           }
       }
     }
