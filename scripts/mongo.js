@@ -2177,6 +2177,7 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 
     try{
         let result = {"lettura": false, "scrittura": false}
+		let found = false
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
@@ -2188,6 +2189,7 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 					nome: channel_id
 				})
 				.forEach( (r) => {
+					found = true
 					if(r.lettura == "*" || r.lettura.indexOf(q.userid) != -1){
                         result["lettura"] = "true"
                     }
@@ -2198,7 +2200,7 @@ exports.channel_auth = async function(channel_id, q, credentials) {
 
 		await mongo.close();
 
-        if(result.length == 1){
+        if(found){
             response["data"] = result
             response["risultato"] = "successo"
         } else {
