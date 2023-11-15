@@ -465,41 +465,24 @@ exports.user_update = async function (user_id, q, credentials) {
     try {
         const mongo = new MongoClient(mongouri);
         await mongo.connect();
-        console.log("Connessione a MongoDB stabilita");
+
+        const updateFields = {
+            $set: {
+                "img": q.img,
+                "nome": q.nome,
+                "email": q.email,
+                "password": q.password,
+                "bio": q.bio
+            }
+        };
 
         const collection = mongo.db(credentials.db).collection('utente');
+        const updateResult = await collection.updateOne({ "username": user_id }, updateFields);
 
-        console.log("user_id:", user_id);
-
-        // Using find to locate the user
-        const existingUser = await collection.find({ "username": user_id }).toArray();
-
-        console.log("existingUser:", existingUser);
-
-        if (existingUser.length === 1) {
-            // If user is found, update the fields
-            const updateResult = await collection.updateOne(
-                { "username": user_id }, // Criterio di ricerca per l'utente
-                {
-                    $set: {
-                        "img": q.img,
-                        "nome": q.nome,
-                        "email": q.email,
-                        "password": q.password,
-                        "bio": q.bio
-                    }
-                }
-            );
-
-            console.log("updateResult:", updateResult);
-
-            if (updateResult.matchedCount === 1) {
-                response["risultato"] = "successo";
-            } else {
-                response["risultato"] = "Errore nell'aggiornamento dell'utente";
-            }
+        if (updateResult.matchedCount === 1) {
+            response["risultato"] = "successo";
         } else {
-            response["risultato"] = "Utente non trovato";
+            response["risultato"] = "username non trovato";
         }
 
         await mongo.close();
@@ -509,7 +492,7 @@ exports.user_update = async function (user_id, q, credentials) {
         response["errore"] = error.toString();
         return response;
     }
-};
+}
 
 
 // login
