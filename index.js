@@ -78,7 +78,7 @@ const app = express();
 
 // Middleware per abilitare CORS
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://site212251.tw.cs.unibo.it/');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
