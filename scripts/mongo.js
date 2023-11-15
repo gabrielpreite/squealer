@@ -462,31 +462,37 @@ exports.user_update = async function (user_id, q, credentials) {
     const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
     let response = { "data": null, "risultato": null, "errore": null };
 
-    try {
-        const mongo = new MongoClient(mongouri);
-        await mongo.connect();
+		try {
+	    const mongo = new MongoClient(mongouri);
+	    await mongo.connect();
 
-        const updateFields = {
-            $set: {
-                "img": q.img,
-                "nome": q.nome,
-                "email": q.email,
-                "password": q.password,
-                "bio": q.bio
-            }
-        };
+	    const updateFields = {
+	        $set: {
+	            "img": q.img,
+	            "nome": q.nome,
+	            "email": q.email,
+	            "password": q.password,
+	            "bio": q.bio
+	        }
+	    };
 
-        const collection = mongo.db(credentials.db).collection('utente');
-        const updateResult = await collection.updateOne({ "username": user_id }, updateFields);
+	    const collection = mongo.db(credentials.db).collection('utente');
+	    const updateResult = await collection.updateOne({ "username": user_id }, updateFields);
 
-        if (updateResult.matchedCount === 1) {
-            response["risultato"] = "successo";
-        } else {
-            response["risultato"] = "username non trovato";
-        }
+	    if (updateResult.matchedCount === 1) {
+	        response["risultato"] = "successo";
+	    } else {
+	        response["risultato"] = "username non trovato";
+	        console.error(`Nessun documento trovato per l'username ${user_id}`);
+	    }
 
-        await mongo.close();
-        return response;
+	    await mongo.close();
+	    return response;
+	} catch (error) {
+	    console.error("Errore durante l'aggiornamento dell'utente:", error);
+	    response["errore"] = error.toString();
+	    return response;
+	}
     } catch (error) {
         console.error("Errore durante l'aggiornamento dell'utente:", error);
         response["errore"] = error.toString();
