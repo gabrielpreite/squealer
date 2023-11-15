@@ -40,7 +40,9 @@ body {
 
 #content {
  margin-left: 15%;
- padding: 50px;
+ padding: 30px;
+ width: 100%;
+ background-color: #fefefe;
 }
 
 #notifiche:target, #post-popolari:target, #post-impopolari:target, #quota:target,
@@ -48,44 +50,48 @@ body {
  scroll-margin-top: 70px;
 }
 
-h1 {
- font-size: 28px;
- margin-bottom: 20px;
-}
+        section {
+            margin-bottom: 30px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-h2 {
- font-size: 24px;
- margin-bottom: 15px;
-}
+        h2 {
+            color: #333;
+        }
 
-label {
- font-weight: bold;
- display: block;
- margin-bottom: 10px;
-}
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+        }
 
-input[type="text"],
-input[type="email"],
-select {
- width: 100%;
- padding: 10px;
- margin-bottom: 20px;
- border-radius: 5px;
- border: 1px solid #ccc;
- box-sizing: border-box;
- font-size: 16px;
-}
+        label {
+            margin-top: 10px;
+            color: #333;
+        }
 
-input[type="submit"] {
- background-color: #1da1f2;
- color: white;
- border: none;
- padding: 10px 20px;
- border-radius: 5px;
- cursor: pointer;
- font-size: 18px;
-}
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-input[type="submit"]:hover {
- background-color: #0c84c6;
-}
+        button {
+            background-color: #1da1f2;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d8be0;
+        }

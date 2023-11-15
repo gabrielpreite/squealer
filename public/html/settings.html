@@ -139,18 +139,28 @@
 
     <!-- CONTENUTO -->
     <div id="content">
-      <h1>Impostazioni</h1>
-      <section id="notifiche">
-        <h2>Notifiche</h2>
-        <form>
-          <label for="notif-email">Indirizzo email</label>
-          <input type="email" id="notif-email" name="notif-email" placeholder="Inserisci il tuo indirizzo email"
-            required>
-          <input type="submit" value="Salva">
-        </form>
-      </section>
-      <br>
-      <section id="post-popolari">
+      <section id="dati-utente">
+              <h2>Impostazioni Utente</h2>
+              <form action="#" method="post" id="impostazioni-form">
+                  <div>
+                      <label for="email">Nuova Email:</label>
+                      <input type="email" id="email" name="email" required>
+                  </div>
+                  <div>
+                      <label for="password-attuale">Password Attuale:</label>
+                      <input type="password" id="password-attuale" name="password-attuale" required>
+                  </div>
+                  <div>
+                      <label for="nuova-password">Nuova Password:</label>
+                      <input type="password" id="nuova-password" name="nuova-password" required>
+                  </div>
+                  <div>
+                      <label for="conferma-nuova-password">Conferma Nuova Password:</label>
+                      <input type="password" id="conferma-nuova-password" name="conferma-nuova-password" required>
+                  </div>
+                  <button type="submit">Salva Modifiche</button>
+              </form>
+          </section>      <section id="post-popolari">
         <h2>Post Popolari</h2>
         <form>
           <label for="num-post">Numero di post da visualizzare</label>
@@ -162,7 +172,6 @@
           <input type="submit" value="Salva">
         </form>
       </section>
-      <br>
       <section id="post-impopolari">
         <h2>Post Impopolari</h2>
         <form>
