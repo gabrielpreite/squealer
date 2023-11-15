@@ -72,6 +72,25 @@ app.use(sessions({
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
 
+//CORS
+const express = require('express');
+const app = express();
+
+// Middleware per abilitare CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://site212251.tw.cs.unibo.it/');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+// Avvio del server sulla porta 3000
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+
 /* ========================== */
 /*                            */
 /*           PAGINE           */
@@ -182,7 +201,7 @@ app.get('/user/:user_id/quota', async function(req, res) {
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_get_quota(user_id, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -201,7 +220,7 @@ app.post('/user/:user_id/quota', async function(req, res) {
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_update_quota(user_id, req.body, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -247,7 +266,7 @@ app.post('/user/:user_id/feed', async function(req, res) {
     console.log("feed")
     try{
         const user_id = req.params.user_id
-    
+
         response = await mymongo.user_feed(user_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -268,7 +287,7 @@ app.get('/user/:user_id/managed_by', async function(req, res) {
     console.log("smm")
     try{
         const user_id = req.params.user_id
-        
+
         response = await mymongo.user_get_managed_by(user_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -293,7 +312,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_set_managed_by(user_id, req.body, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -315,9 +334,9 @@ app.get('/user/:user_id/manager_of', async function(req, res) {
     console.log("manager of")
     try{
         const user_id = req.params.user_id
-        
+
         response = await mymongo.user_manager_of(user_id, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -339,9 +358,9 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
     console.log("my chann")
     try{
         const user_id = req.params.user_id
-        
+
         response = await mymongo.user_my_channels(user_id, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -364,7 +383,7 @@ app.post('/user/:user_id/settings', async function(req, res) {
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_update(user_id, req.body, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -386,7 +405,7 @@ app.get('/user/:user_id', async function(req, res) {
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_info(user_id, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -513,10 +532,10 @@ app.get('/squeal/:squeal_id/reply', async function(req, res) {
 //body: userid, reac
 app.post('/squeal/:squeal_id/reaction', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         const squeal_id = req.params.squeal_id
-        
+
         response = await mymongo.set_reaction(squeal_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -540,9 +559,9 @@ app.get('/squeal/:squeal_id', async function(req, res) {
 
     try{
         const squeal_id = req.params.squeal_id
-        
+
         response = await mymongo.get_squeal(squeal_id, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -640,7 +659,7 @@ app.post('/squeal/by_keyword', async function(req, res) {
 
     try{
         response = await mymongo.search_by_keyword(req.body, mongoCredentials)
-        
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -661,7 +680,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
-        
+
         if(req.body.contenuto == "img"){//caso immagine
             let path = req.file.path
             req.body["path"] = path.split("/").slice(-1)[0]
@@ -695,7 +714,7 @@ app.get('/channel/:channel_id/auth', async function(req, res) {
 
     try{
         const channel_id = req.params.channel_id
-        
+
         response = await mymongo.channel_auth(channel_id, req.query, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -791,7 +810,7 @@ app.delete('/channel/:channel_id', async function(req, res) {
 //body: nome, userid
 app.post('/channel', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    
+
     try{
         response = await mymongo.channel_create(req.body, mongoCredentials)
 
