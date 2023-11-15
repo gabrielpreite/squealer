@@ -10,42 +10,37 @@ body {
 }
 
 #sidebar {
- position: fixed;
- top: 50px;
- left: 0;
- height: 100%;
- background-color: #f2f2f2;
- width: 20%;
- padding: 20px;
- overflow: auto;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: 100%;
+  overflow: auto;
+  background-color: #f2f2f2;
 }
 
 #menu {
- list-style-type: none;
- margin: 0;
- padding: 0;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
 }
 
-#menu li {
- margin-bottom: 10px;
+#menu a {
+  text-decoration: none;
+  color: rgb(38, 45, 51);
+  font-weight: bold;
+  padding: 15px 30px 15px 30px;
+  display: block;
+  transition: background-color 0.3s ease;
 }
 
-#menu li a {
- color: #1da1f2;
- text-decoration: none;
- font-weight: bold;
- font-size: 18px;
+#menu a:hover {
+  background-color: #e0e0e0;
 }
 
-#menu li a:hover {
- text-decoration: underline;
-}
 
 #content {
- top: 50px;
- margin-left: 23%;
- width: 75%;
- padding: 20px;
+ margin-left: 15%;
+ padding: 50px;
 }
 
 #notifiche:target, #post-popolari:target, #post-impopolari:target, #quota:target,
