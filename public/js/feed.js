@@ -192,6 +192,9 @@ function aggiungi_info(meta){
     container.append(riga1)
     $("#riga1").append(`<img class="img-rounded" id="bd_img" src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
 
+    let riga1_5 = `<div class="row" id="riga1_5"><button class="btn btn-info" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}')"><i class="fa-solid fa-message"></i> Inizia Chat</button></div>`;
+    container.append(riga1_5);
+
     let riga2 = `<div class="row" id="riga2"></div>`
     let riga4 = `<div class="row" id="riga4"></div>`
 
