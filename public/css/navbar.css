@@ -1,6 +1,6 @@
 /*NAVBAR*/
 .navbar {
-background-color: #1da1f2;
+background-color: ##0A5C8F;
 color: white;
 box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 height: 56px;
@@ -63,6 +63,24 @@ color: #007bff;
 background-color: #f5f5f5;
 border-radius: 0;
 }
+
+
+#dropdown-account-smm .dropdown-item.logout-button {
+  color: #fff; /* Colore del testo */
+  background-color: #dc3545; /* Colore di sfondo del pulsante (rosso tipico di logout) */
+  border-color: #dc3545; /* Colore del bordo del pulsante */
+}
+
+#dropdown-account-smm .dropdown-item.logout-button:hover {
+  background-color: #bd2130; /* Colore di sfondo al passaggio del mouse */
+  border-color: #bd2130; /* Colore del bordo al passaggio del mouse */
+}
+
+#dropdown-account-smm .dropdown-item.logout-button:active {
+  background-color: #dc3545; /* Colore di sfondo quando è attivo */
+  border-color: #dc3545; /* Colore del bordo quando è attivo */
+}
+
 
 #quota {
 flex-grow: 1;
