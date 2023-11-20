@@ -1105,7 +1105,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 			.collection("utente")
 			.updateOne(
 				{username: user_id},
-				{managed_by: q.target}
+				{$set:{managed_by: q.target}}
 			)
 			.forEach( (r) => {
 				result.push(r)
