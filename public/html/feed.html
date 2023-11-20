@@ -96,8 +96,8 @@
     </div>
       -->
     <div id="impostazioni">
-      <button type="button" class="btn btn-unstiled" id="settingsButton" text="Impostazioni" onclick="redirectToSettings()">
-        <i class="fas fa-cog" aria-hidden="true"></i>
+      <button class="btn btn-unstiled" id="settingsButton" onclick="redirectToSettings()">
+        <i class="fas fa-cog"></i>
       </button>
     </div>
     </div>
@@ -112,7 +112,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Acquista Quota</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Chiudi">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> <!-- Changed to the "x" icon symbol -->
           </button>
         </div>
@@ -144,7 +144,7 @@
 
       <!--PULSANTE NUOVO SQUEAL-->
       <div class="fixed-button" id="nuovo-squeal">
-        <button type="button" class="round-button" alt="Crea nuovo squeal" onclick="redirectToEditor()">
+        <button class="round-button" onclick="redirectToEditor()">
           +
         </button>
       </div>
@@ -212,7 +212,7 @@
             <div class="barra">
               <form id="form_ricerca">
                 <div class="input-group mb-3">
-                  <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
+                  <select class="form-select" id="tipo" name="tipo" aria-label="Select">
                     <option selected value="user" id="utente">
                       @</option>
                     <option value="channel" id="canale">
@@ -221,9 +221,9 @@
                       #</option>
                   </select>
 
-                  <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query" aria-label="Testo da ricercare">
+                  <input class="form-select input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
 
-                  <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca" onchange="rimpiazza_squeals(squeals, this.value)">
+                  <select class="form-select" id="filtro" name="filtro" aria-label="Select" onchange="rimpiazza_squeals(squeals, this.value)">
                     <option selected value="data" id="data">
                       Data</option>
                     <option value="visual" id="visual">
@@ -412,19 +412,31 @@
           }
         });
 
-        var dataPoints = [];
+        var postData = [];
+        var datiCommenti = [];
+        var idSqueals = [];
+        var corpoSqueals = [];
 
         for (const info of all_info) {
-          if (info.timestamp && info.numRisposte && info.post_id && info.corpo) {
-            dataPoints.push({
-              timestamp: convertiTimestampInData(info.timestamp),
-              numRisposte: info.numRisposte,
-              post_id: info.post_id,
-              corpo: (info.contenuto === 'testo') ? info.corpo : (info.contenuto === 'img') ? 'Immagine' : 'Posizione',
-            });
+          if (info.timestamp) {
+            postData.push(convertiTimestampInData(info.timestamp));
+          }
+          if (info.numRisposte) {
+            datiCommenti.push(info.numRisposte);
+          }
+          if (info.post_id) {
+            idSqueals.push(info.post_id);
+          }
+          if (info.corpo) {
+            if (info.contenuto == 'testo') {
+              corpoSqueals.push(info.corpo);
+            } else if (info.contenuto == 'img'){
+              corpoSqueals.push('Immagine')
+            } else {
+              corpoSqueals.push('Posizione')
+            }
           }
         }
-
 
         function getPreviousMonday(giorno) {
           date = new Date(giorno);
