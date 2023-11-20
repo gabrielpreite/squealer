@@ -212,7 +212,7 @@
             <div class="barra">
               <form id="form_ricerca">
                 <div class="input-group mb-3">
-                  <select class="form-select" id="tipo" name="tipo" aria-label="Select">
+                  <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
                     <option selected value="user" id="utente">
                       @</option>
                     <option value="channel" id="canale">
@@ -221,9 +221,9 @@
                       #</option>
                   </select>
 
-                  <input class="form-select input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query">
+                  <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query" aria-label="Testo da ricercare">
 
-                  <select class="form-select" id="filtro" name="filtro" aria-label="Select" onchange="rimpiazza_squeals(squeals, this.value)">
+                  <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca" onchange="rimpiazza_squeals(squeals, this.value)">
                     <option selected value="data" id="data">
                       Data</option>
                     <option value="visual" id="visual">
