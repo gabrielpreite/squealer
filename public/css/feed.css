@@ -348,6 +348,11 @@
   background-color:  #ffb07c;
 }
 
+.consigliato {
+  background-color: #add8e6;
+}
+
+
 .img-rounded {
   border-radius: 50%;
 }
@@ -367,14 +372,6 @@
   text-align: right;
 }
 
-
-/*
-.pubblico {
-  margin-left: 3px;
-  float: right;
-  background-color: red;
-}
-*/
 
 #riga0 {
   text-align: right;
