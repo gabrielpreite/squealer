@@ -136,10 +136,10 @@ function aggiungi_squeal(squeals) {
       let Et_auto = document.getElementById('squeal_info' + i);
       Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
     }
-    /*if (!squeals[i].pubblico){ // deprecato
-      var Et_pubblico = document.getElementById('squeal_info' + i);
-      Et_pubblico.insertAdjacentHTML('beforeend', '<span class="label-squeal pubblico"> Privato </span>');
-    }*/
+    if (squeals[i].consigliato){
+      let Et_consigliato = document.getElementById('squeal_info' + i);
+      Et_consigliato.insertAdjacentHTML('beforeend', '<span class="label-squeal consigliato"> Consigliato </span>');
+    }
   }
   //FINE SQUEAL
 }
@@ -470,7 +470,7 @@ function aggiungicommento(icon, azione, id) {
 }
 
 function rimpiazza_commenti(id) {
-  //elimina tutto il contenuto del cont_commenti 
+  //elimina tutto il contenuto del cont_commenti
   document.getElementById("contenitore-commenti").innerHTML = '';
 
   //aggiungi nuovi commenti
