@@ -372,6 +372,12 @@
   text-align: right;
 }
 
+.pulsante_chat {
+  display: block;
+  margin-top: 15px;
+  text-align: right;
+}
+
 
 #riga0 {
   text-align: right;
