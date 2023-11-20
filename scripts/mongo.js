@@ -1122,7 +1122,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
