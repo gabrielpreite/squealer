@@ -14,6 +14,7 @@
 
   <!--JavaScript Scripts-->
   <script type="text/javascript" src="/js/global.js"></script>
+  <script type="text/javascript" src="/js/settings.js"></script>
 
 </head>
 
@@ -126,66 +127,35 @@
     <!-- MENU -->
     <div id="sidebar">
       <ul id="menu">
-        <li><a href="#altro">Dati Utente</a></li>
-        <li><a href="#notifiche">Account</a></li>
-        <li><a href="#post-popolari">Notifiche</a></li>
-        <li><a href="#quota">Followers</a></li>
-        <li><a href="#storico-acquisti">Quota</a></li>
-        <li><a href="#storico-acquisti">Storico Acquisti</a></li>
-        <li><a href="#cambia-account">Social Media Manager</a></li>
-        <li><a href="#altro">Popolarità</a></li>
+        <li><button onclick="switch_settings('profilo')">Profilo</button></li>
+        <li><button onclick="switch_settings('account')">Account</button></li>
+        <li><button onclick="switch_settings('acquisti')">Storico Acquisti</button></li>
+        <li><button onclick="switch_settings('smm')">Gestion SMM</button></li>
+        <li><button onclick="switch_settings('follow')">Follow</button></li>
+        <li><button onclick="switch_settings('popolarita')">Popolarità</button></li>
       </ul>
     </div>
 
     <!-- CONTENUTO -->
     <div id="content">
-      <section id="dati-utente">
-              <h2>Impostazioni Utente</h2>
-              <form action="#" method="post" id="impostazioni-form">
-                  <div>
-                      <label for="email">Nuova Email:</label>
-                      <input type="email" id="email" name="email" required>
-                  </div>
-                  <div>
-                      <label for="password-attuale">Password Attuale:</label>
-                      <input type="password" id="password-attuale" name="password-attuale" required>
-                  </div>
-                  <div>
-                      <label for="nuova-password">Nuova Password:</label>
-                      <input type="password" id="nuova-password" name="nuova-password" required>
-                  </div>
-                  <div>
-                      <label for="conferma-nuova-password">Conferma Nuova Password:</label>
-                      <input type="password" id="conferma-nuova-password" name="conferma-nuova-password" required>
-                  </div>
-                  <button type="submit">Salva Modifiche</button>
-              </form>
-          </section>      <section id="post-popolari">
-        <h2>Post Popolari</h2>
-        <form>
-          <label for="num-post">Numero di post da visualizzare</label>
-          <select id="num-post" name="num-post">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-          <input type="submit" value="Salva">
-        </form>
-      </section>
-      <section id="post-impopolari">
-        <h2>Post Impopolari</h2>
-        <form>
-          <label for="hide-post">Nascondi post con meno di</label>
-          <select id="hide-post" name="hide-post">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-          <span>mi piace</span>
-          <input type="submit" value="Salva">
-        </form>
-      </section>
+      <div id="profilo">
+        TODO - info profilo + form update
+      </div>
+      <div id="account" hidden="true">
+        TODO - cambia mail/pwd con verifica pwd
+      </div>
+      <div id="acquisti" hidden="true">
+        TODO - storico acquisti da db
+      </div>
+      <div id="smm" hidden="true">
+        TODO - account gestiti/tuo smm (form aggiungi)
+      </div>
+      <div id="follow" hidden="true">
+        TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
+      </div>
+      <div id="popolarita" hidden="true">
+        TODO - lista post pop/impop/contr + previsione andamento quota (+ grafico?)
+      </div>
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
