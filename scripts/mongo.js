@@ -493,11 +493,6 @@ exports.user_update = async function (user_id, q, credentials) {
 	    response["errore"] = error.toString();
 	    return response;
 	}
-    } catch (error) {
-        console.error("Errore durante l'aggiornamento dell'utente:", error);
-        response["errore"] = error.toString();
-        return response;
-    }
 }
 
 
