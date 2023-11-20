@@ -1096,17 +1096,17 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
         let result = []
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-
+		console.log("precall")
 		await mongo.db(dbname)
-				.collection("utente")
-				.updateOne(
-                    {username: user_id},
-                    {managed_by: q.target}
-                )
-				.forEach( (r) => {
-					result.push(r)
-				} );
-
+			.collection("utente")
+			.updateOne(
+				{username: user_id},
+				{managed_by: q.target}
+			)
+			.forEach( (r) => {
+				result.push(r)
+			} );
+		console.log("postcall")
 		await mongo.close();
 
         if(result.length == 1){
