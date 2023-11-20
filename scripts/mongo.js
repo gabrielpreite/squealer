@@ -1096,6 +1096,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
         let result = []
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
+		console.log("qtarget: "+q.target)
 		console.log("precall")
 		await mongo.db(dbname)
 			.collection("utente")
