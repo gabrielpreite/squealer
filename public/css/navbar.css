@@ -66,19 +66,8 @@ border-radius: 0;
 
 
 #dropdown-account-smm .dropdown-item.logout-button {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-#dropdown-account-smm .dropdown-item.logout-button:hover {
-  background-color: #bd2130;
-  border-color: #bd2130;
-}
-
-#dropdown-account-smm .dropdown-item.logout-button:active {
-  background-color: #dc3545;
-  border-color: #dc3545;
+  color: #dc3545;
+  font-weight: bold;
 }
 
 
