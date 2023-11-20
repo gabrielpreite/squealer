@@ -292,6 +292,7 @@ app.post('/user/:user_id/managed_by', async function(req, res) {
     console.log("set smm")
     try{
         const user_id = req.params.user_id
+        console.log("reqbody: "+req.body)
         response = await mymongo.user_set_managed_by(user_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
