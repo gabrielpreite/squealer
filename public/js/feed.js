@@ -211,6 +211,9 @@ function aggiungi_info(meta){
 
     container.append(riga4)
     $("#riga4").append(follow)
+    
+    let riga5 = `<div class="row" id="riga5"><button class="btn btn-info" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}')"><i class="fa-solid fa-message"></i> Inizia Chat</button></div>`;
+    container.append(riga5);
 
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
