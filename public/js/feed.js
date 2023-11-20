@@ -136,7 +136,7 @@ function aggiungi_squeal(squeals) {
       let Et_auto = document.getElementById('squeal_info' + i);
       Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
     }
-    if (squeals[i].consigliato){
+    if (squeals[i].suggerito !== null){
       let Et_consigliato = document.getElementById('squeal_info' + i);
       Et_consigliato.insertAdjacentHTML('beforeend', '<span class="label-squeal consigliato"> Consigliato </span>');
     }
