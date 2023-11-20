@@ -412,31 +412,19 @@
           }
         });
 
-        var postData = [];
-        var datiCommenti = [];
-        var idSqueals = [];
-        var corpoSqueals = [];
+        var dataPoints = [];
 
         for (const info of all_info) {
-          if (info.timestamp) {
-            postData.push(convertiTimestampInData(info.timestamp));
-          }
-          if (info.numRisposte) {
-            datiCommenti.push(info.numRisposte);
-          }
-          if (info.post_id) {
-            idSqueals.push(info.post_id);
-          }
-          if (info.corpo) {
-            if (info.contenuto == 'testo') {
-              corpoSqueals.push(info.corpo);
-            } else if (info.contenuto == 'img'){
-              corpoSqueals.push('Img')
-            } else {
-              corpoSqueals.push('Mappa')
-            }
+          if (info.timestamp && info.numRisposte && info.post_id && info.corpo) {
+            dataPoints.push({
+              timestamp: convertiTimestampInData(info.timestamp),
+              numRisposte: info.numRisposte,
+              post_id: info.post_id,
+              corpo: (info.contenuto === 'testo') ? info.corpo : (info.contenuto === 'img') ? 'Immagine' : 'Posizione',
+            });
           }
         }
+
 
         function getPreviousMonday(giorno) {
           date = new Date(giorno);
@@ -473,6 +461,7 @@
 
 
         // COMMENTI
+        corpoSqueals = corpoSqueals.slice(0,5);
         var corpoSquealsTagliati = corpoSqueals.map((frase) => {
           if (frase.length > 7) {
             return frase.slice(0, 7) + '...';
@@ -481,7 +470,6 @@
         });
 
         datiCommenti = datiCommenti.slice(0, 5);
-        corpoSquealsTagliati = corpoSquealsTagliati.slice(0,5);
         idSqueals = idSqueals.slice(0,5);
 
         // Ottieni il riferimento al canvas del grafico
