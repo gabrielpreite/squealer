@@ -130,7 +130,7 @@
         <li><button class="btn btn-outline-primary" onclick="switch_settings('profilo')">Profilo</button></li>
         <li><button class="btn btn-outline-primary" onclick="switch_settings('account')">Account</button></li>
         <li><button class="btn btn-outline-primary" onclick="switch_settings('acquisti')">Storico Acquisti</button></li>
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('smm')">Gestion SMM</button></li>
+        <li><button class="btn btn-outline-primary" onclick="switch_settings('smm')">Gestione SMM</button></li>
         <li><button class="btn btn-outline-primary" onclick="switch_settings('follow')">Follow</button></li>
         <li><button class="btn btn-outline-primary" onclick="switch_settings('popolarita')">Popolarità</button></li>
       </ul>
@@ -147,8 +147,19 @@
       <div id="acquisti" hidden="true">
         TODO - storico acquisti da db
       </div>
-      <div id="smm" hidden="true">
-        TODO - account gestiti/tuo smm (form aggiungi)
+
+      <div id="smm" hidden="true"> <!-- ACCOUNT GESTITI/SMM -->
+        <h3>I tuoi account gestiti</h3>
+        <div id="div_account_gestiti"></div>
+
+        <h3>SMM che gestisce il tuo account</h3>
+        <div id="div_smm"></div>
+        <h5>Aggiungi/cambia SMM</h5>
+        <form id="update_smm" method="POST"> <!-- action aggiunta da js -->
+          <input type="text" name="target">
+          <input type="submit" value="Conferma">
+        </form>
+
       </div>
       <div id="follow" hidden="true">
         TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
@@ -205,6 +216,54 @@
           $("#charCount_giorno").text(new_quota)
         })
     }
+
+    // ================= SEZIONI
+
+    // === SMM
+    let account = []
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/manager_of`,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        account = data["data"];
+      }
+    });
+
+    if(account.length > 0){
+      let tmp = "<ul id='lista_account_gestiti'>"
+      account.forEach((el) => {
+        tmp += `<li>${el}</li>`
+      })
+      tmp += "</ul>"
+      $("#div_account_gestiti").append(tmp)
+    } else {
+      $("#div_account_gestiti").text("Non gestisci nessun account")
+    }
+
+    let result = null
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/managed_by`,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        result = data["data"];
+      }
+    });
+
+    if(result == null){
+      $("#div_smm").text("Non ci sono SMM che gestiscono il tuo account")
+    } else {
+      $("#div_smm").text(result)
+    }
+
+    $("#update_smm").attr("action", `/user/${CURRENT_USER}/managed_by`);
   </script>
 </body>
 
