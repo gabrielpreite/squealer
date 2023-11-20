@@ -75,13 +75,13 @@
             </span>
             <span class="label">Giorno</span>
           </div>
-          <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal" data-bs-target="#shop-quota">
+          <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal" data-bs-target="#shop-quota" aria-haspopup="true" title="compra più quota">
             <i class="fas fa-shopping-cart"></i>
           </button>
     </div>
     <div class="lateral-buttons">
       <div id="notifiche">
-      <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche">
         <i class="fas fa-bell"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
@@ -112,7 +112,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Acquista Quota</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Chiudi">
+          <button type="button" class="close" data-bs-dismiss="modal" title="chiudi negozio">
             <span aria-hidden="true">&times;</span> <!-- Changed to the "x" icon symbol -->
           </button>
         </div>
@@ -120,20 +120,20 @@
           <div class="row">
             <div class="col-4">
               <div class="text-center"> <!-- Centered image and button -->
-                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99" class="img-fluid">
-                <button onclick="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button> <!-- Added margin top -->
+                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99€" class="img-fluid">
+                <button type="button" onclick="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button> <!-- Added margin top -->
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
-                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 240 caratteri per 1.99" class="img-fluid">
-                <button onclick="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
+                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 240 caratteri per 1.99€" class="img-fluid">
+                <button type="button" onclick="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
-                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 480 caratteri per 4.99" class="img-fluid">
-                <button onclick="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
+                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 480 caratteri per 4.99€" class="img-fluid">
+                <button type="button" onclick="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@
 
       <!--PULSANTE NUOVO SQUEAL-->
       <div class="fixed-button" id="nuovo-squeal">
-        <button type="button" class="round-button" alt="Crea nuovo squeal" onclick="redirectToEditor()">
+        <button type="button" class="round-button" title="Crea nuovo squeal" onclick="redirectToEditor()">
           +
         </button>
       </div>
@@ -272,7 +272,7 @@
 
             </div>
             <div class="">
-              <button class="btn btn-primary aggiungi-commento" onclick="aggiungicommento(this, 'commenta', this.id)">
+              <button type="button" class="btn btn-primary aggiungi-commento" onclick="aggiungicommento(this, 'commenta', this.id)">
                 Commenta   <i class="fa-solid fa-comment-dots icona-commento"></i>
               </button>
             </div>
