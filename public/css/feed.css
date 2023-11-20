@@ -374,8 +374,13 @@
 
 .pulsante_chat {
   display: block;
-  margin-top: 15px;
-  text-align: right;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn-chat, .btn-chat:hover {
+  background-color: #1da1f2;
+  color: white;
 }
 
 
