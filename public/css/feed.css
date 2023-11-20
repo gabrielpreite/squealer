@@ -379,8 +379,9 @@
 }
 
 .btn-chat, .btn-chat:hover {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #1da1f2 !important;
+  color: white !important;
+  width: 50%;
 }
 
 
