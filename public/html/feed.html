@@ -330,9 +330,12 @@
           }
         });
 
+
         account.forEach((el) => {
           $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
         })
+
+        $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><a class="dropdown-item" href="#">Logout</a>`)
 
         //se sto gestendo un account lo mostro nella barra
         let managed = get_cookie_by_name("managed")
