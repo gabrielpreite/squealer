@@ -1093,12 +1093,12 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 	let response = {"data": null, "risultato": null, "errore": null}
 
     try{
-        let result = []
+        let result
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		console.log("qtarget: "+q.target)
 		console.log("precall")
-		await mongo.db(dbname)
+		result = await mongo.db(dbname)
 			.collection("utente")
 			.updateOne(
 				{username: user_id},
@@ -1110,7 +1110,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 		console.log("postcall")
 		await mongo.close();
 
-        if(result.length == 1){
+        if(result.matchedCount == 1) {
             response["data"] = result[0]
             response["risultato"] = "successo"
         } else {
