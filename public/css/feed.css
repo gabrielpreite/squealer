@@ -234,6 +234,7 @@
 
 .tag-username, .comment-username {
   cursor: pointer;
+  font-weight: bold;
 }
 
 .destinatari{
