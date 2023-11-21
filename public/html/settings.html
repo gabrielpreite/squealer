@@ -152,11 +152,12 @@
         <h3>I tuoi account gestiti</h3>
         <div id="div_account_gestiti"></div>
 
-        <h3>SMM che gestisce il tuo account</h3>
-        <div id="div_smm"></div>
-        <h5>Aggiungi/cambia SMM</h5>
-        <form id="update_smm" method="POST"> <!-- action aggiunta da js -->
-          <input type="text" name="target">
+        <form id="update_smm" enctype="multipart/form-data">
+          <h3>SMM che gestisce il tuo account</h3>
+          <input type="text" id="current_smm" name="current_smm" disabled>
+          <input type="submit" class="btn btn-danger" value="Rimuovi SMM">
+          <h5>Aggiungi/cambia SMM</h5>
+          <input type="text" id="new_smm" name="new_smm">
           <input type="submit" value="Conferma">
         </form>
 
@@ -176,6 +177,13 @@
   </script>
 
   <script>
+    // override funzione form update_smm
+    document.getElementById("update_smm").addEventListener('submit', async event => {
+      event.preventDefault();
+      update_smm();
+    });
+
+
     // INSERIMENTO PROPIC UTENTE
     $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
 
@@ -220,6 +228,8 @@
     // ================= SEZIONI
 
     // === SMM
+
+    //tuoi account gestiti
     let account = []
     $.ajax({
       type: 'GET',
@@ -240,10 +250,12 @@
       })
       tmp += "</ul>"
       $("#div_account_gestiti").append(tmp)
+      
     } else {
       $("#div_account_gestiti").text("Non gestisci nessun account")
     }
 
+    //tuo smm
     let result = null
     $.ajax({
       type: 'GET',
@@ -258,12 +270,10 @@
     });
 
     if(result == null){
-      $("#div_smm").text("Non ci sono SMM che gestiscono il tuo account")
+      $("#current_smm").attr("value", "Non ci sono SMM che gestiscono il tuo account")
     } else {
-      $("#div_smm").text(result)
+      $("#current_smm").attr("value", result)
     }
-
-    $("#update_smm").attr("action", `/user/${CURRENT_USER}/managed_by`);
   </script>
 </body>
 
