@@ -24,7 +24,7 @@ function update_smm(){
     .then((response) => {
         if (response.ok) {
         // The initial request was successful
-        window.location.replace("https://site212251.tw.cs.unibo.it/settings");
+        //window.location.replace("https://site212251.tw.cs.unibo.it/settings");
         } else {
         throw new Error("Network response was not ok.");
         }
