@@ -1094,6 +1094,8 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
+	console.log("old: "+q.current_smm+" new: "+q.new_smm)
+
     try{
         let result
 		const mongo = new MongoClient(mongouri);
@@ -1108,12 +1110,16 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 					{$pull:{manager_of: user_id}}
 				)
 
+			console.log("rimosso vecchio (pull)")
+
 			await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
 					{username: user_id},
 					{$set:{managed_by: null}}
 				)
+			
+			console.log("rimosso vecchio (set null)")
 		}
 
 		//aggiungo il nuovo smm (se esiste)
@@ -1124,6 +1130,8 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 					{username: user_id},
 					{$set:{managed_by: q.new_smm}}
 				)
+
+			console.log("aggiunto nuovo (set)")
 				
 			await mongo.db(dbname)
 				.collection("utente")
@@ -1131,6 +1139,8 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 					{username: q.new_smm},
 					{$push:{manager_of: user_id}}
 				)
+
+			console.log("aggiunto nuovo (push)")
 		}
 			
 		await mongo.close();

@@ -12,9 +12,9 @@ function switch_settings(param){
 function update_smm(){
     const formData = new FormData(document.getElementById("update_smm"))
 
-    if(formData.get("current_smm") === "Non ci sono SMM che gestiscono il tuo account")
+    if(formData.get("current_smm") === "null")
         formData.set("current_smm", "null")
-        if(formData.get("new_smm") === "")
+    if(formData.get("new_smm") === "")
         formData.set("new_smm", "null")
 
     fetch(`/user/${CURRENT_USER}/managed_by`, {
