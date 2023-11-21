@@ -54,7 +54,7 @@
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
           </div>
-          <button id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true"></button>
+          <button id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true" aria-hidden="true"></button>
         </div>
         <div id="quota">
           <div class="char-count-item">
@@ -111,7 +111,7 @@
     <div class="modal-dialog modal-lg" role="document"> <!-- Modal size changed to large (modal-lg) -->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Acquista Quota</h5>
+          <button class="modal-title">Acquista Quota</button>
           <button type="button" class="close" data-bs-dismiss="modal" title="chiudi negozio">
             <span aria-hidden="true">&times;</span> <!-- Changed to the "x" icon symbol -->
           </button>
@@ -223,7 +223,7 @@
 
                   <input class="form-control input-sm searchbar-style" type="text" placeholder="Search" name="query" id="query" aria-label="Testo da ricercare">
 
-                  <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca" onchange="rimpiazza_squeals(squeals, this.value)">
+                  <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca">
                     <option selected value="data" id="data">
                       Data</option>
                     <option value="visual" id="visual">
@@ -253,8 +253,9 @@
 
           </div>
           <div id="mostra-commenti" hidden="true">
-            <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></i></h4>
+            <button class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></i></button>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
+              <!--
               <div class="comment">
                 <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
                 <div class="comment-content">
@@ -269,7 +270,7 @@
                   <p class="comment-text">Questo è un commento.</p>
                 </div>
               </div>
-
+              -->
             </div>
             <div class="">
               <button type="button" class="btn btn-primary aggiungi-commento" onclick="aggiungicommento(this, 'commenta', this.id)">
@@ -278,7 +279,7 @@
             </div>
           </div>
           <div id="chat" hidden="true">
-            <h4 class="statistiche-title">Chat<i class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></i></h4>
+            <button class="statistiche-title">Chat<i class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></i></button>
             <div id="chat-container">
               <div class="chat">
                 <div class="message received">
