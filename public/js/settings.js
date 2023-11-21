@@ -7,25 +7,26 @@ function switch_settings(param){
 
     //visualizzo solo quella richiesta
     $("#"+param).removeAttr("hidden")
+}
 
-    switch(param){
-        case "profilo":
-            console.log(param)
-            break
-        case "account":
-            console.log(param)
-            break
-        case "acquisti":
-            console.log(param)
-            break
-        case "smm":
-            console.log(param)
-            break
-        case "follow":
-            console.log(param)
-            break
-        case "popolarita":
-            console.log(param)
-            break
-    }
+function update_smm(){
+    const formData = new FormData(document.getElementById("update_smm"))
+
+    if(formData.get("current_smm") === "null")
+        formData.set("current_smm", "null")
+    if(formData.get("new_smm") === "")
+        formData.set("new_smm", "null")
+
+    fetch(`/user/${CURRENT_USER}/managed_by`, {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => {
+        if (response.ok) {
+        // The initial request was successful
+        //window.location.replace("https://site212251.tw.cs.unibo.it/settings");
+        } else {
+        throw new Error("Network response was not ok.");
+        }
+    })
 }

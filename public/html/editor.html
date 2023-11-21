@@ -78,7 +78,7 @@
   <header>
     <div class="navbar fixed-top">
       <div id="profile">
-        <img src="https://via.placeholder.com/60x60" alt="Profile picture" id="propic">
+        <img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic">
         <div class="dropdown" id="username">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <strong>
@@ -132,7 +132,7 @@
     <div class="modal-dialog modal-lg" role="document"> <!-- Modal size changed to large (modal-lg) -->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Acquista Quota</h5>
+          <div class="modal-title">Acquista Quota</div>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> <!-- Changed to the "x" icon symbol -->
           </button>
@@ -877,7 +877,7 @@
       });
       var n_commenti = lista_commenti.length;
       for (var c = 0; c < n_commenti; c++) {
-        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
         var c_img_utente = 'c_img_utente' + c;
         document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
         var id_tag = 'c_username' + c;
