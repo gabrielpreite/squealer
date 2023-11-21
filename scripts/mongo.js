@@ -1089,61 +1089,30 @@ exports.user_get_managed_by = async function(user_id, credentials) {
 
 // aggiorna smm dell'utente
 exports.user_set_managed_by = async function(user_id, q, credentials) {
-	//q.current_smm: vecchio smm | "null"
-	//q.new_smm: nuovo smm | "null"
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
-
-	console.log("old: "+q.current_smm+" new: "+q.new_smm)
 
     try{
         let result
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-
-		//modifico il vecchio smm (se esiste)
-		if(q.current_smm !== "null"){
-			await mongo.db(dbname)
-				.collection("utente")
-				.updateOne(
-					{username: q.current_smm},
-					{$pull:{manager_of: user_id}}
-				)
-
-			console.log("rimosso vecchio (pull)")
-
-			await mongo.db(dbname)
-				.collection("utente")
-				.updateOne(
-					{username: user_id},
-					{$set:{managed_by: null}}
-				)
-			
-			console.log("rimosso vecchio (set null)")
-		}
-
-		//aggiungo il nuovo smm (se esiste)
-		if(q.new_smm !== "null"){
-			result = await mongo.db(dbname)
-				.collection("utente")
-				.updateOne(
-					{username: user_id},
-					{$set:{managed_by: q.new_smm}}
-				)
-
-			console.log("aggiunto nuovo (set)")
-				
-			await mongo.db(dbname)
-				.collection("utente")
-				.updateOne(
-					{username: q.new_smm},
-					{$push:{manager_of: user_id}}
-				)
-
-			console.log("aggiunto nuovo (push)")
-		}
-			
+		console.log("qtarget: "+q.target)
+		console.log(typeof q.target)
+		console.log("userid: "+user_id)
+		console.log(typeof user_id)
+		console.log("precall")
+		result = await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{username: user_id},
+				{$set:{managed_by: q.target}}
+			)
+			.forEach( (r) => {
+				result.push(r)
+			} );
+		console.log("postcall")
 		await mongo.close();
+
         if(result.matchedCount == 1) {
             response["data"] = result[0]
             response["risultato"] = "successo"
