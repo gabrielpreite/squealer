@@ -212,7 +212,7 @@ function aggiungi_info(meta){
     container.append(riga4)
     $("#riga4").append(follow)
 
-    let riga5 = `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}')"><i class="fa-regular fa-message"></i> Chat</button></div></div>`;
+    let riga5 = `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`;
     container.append(riga5);
 
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
@@ -605,4 +605,14 @@ function compra_quota(qnt){
     //aggiorno navbar
     $("#charCount_giorno").text(new_quota)
   })
+}
+
+function inizia_chat(username, azione) {
+  if (azione == 'apri') {
+    document.getElementById("barra-destra").hidden = true;
+    document.getElementById("chat").hidden = false;
+  } else if (azione == 'chiudi') {
+    document.getElementById("barra-destra").hidden = false;
+    document.getElementById("chat").hidden = true;
+  }
 }
