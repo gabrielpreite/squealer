@@ -54,7 +54,7 @@
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
           </div>
-          <button type="button" id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true" aria-hidden="true"></button>
+          <button type="button" id="managed-account-username" class="btn btn-primary" title="Torna all'account SMM" onclick="switch_to_smm()" hidden="true"></button>
         </div>
         <div id="quota">
           <div class="char-count-item">
@@ -253,7 +253,7 @@
 
           </div>
           <div id="mostra-commenti" hidden="true">
-            <div class="statistiche-title">Commenti<button type="button" class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></button></div>
+            <div class="statistiche-title">Commenti<button type="button" class="fa-solid fa-times icona-chiudi" title="Chiudi barra dei commenti" onclick="aggiungicommento(this, 'chiudi')"></button></div>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
               <!--
               <div class="comment">
@@ -279,7 +279,7 @@
             </div>
           </div>
           <div id="chat" hidden="true">
-            <div class="statistiche-title">Chat<button type="button" class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></button></div>
+            <div class="statistiche-title">Chat<button type="button" class="fa-solid fa-times icona-chiudi" title="Chiudi chat" onclick="inizia_chat('', 'chiudi')"></button></div>
             <div id="chat-container">
               <div class="chat">
                 <div class="message received">
