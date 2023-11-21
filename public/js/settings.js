@@ -7,7 +7,6 @@ function switch_settings(param){
 
     //visualizzo solo quella richiesta
     $("#"+param).removeAttr("hidden")
-}
 
 function update_smm(){
     const formData = new FormData(document.getElementById("update_smm"))
