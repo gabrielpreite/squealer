@@ -41,7 +41,7 @@
     <header>
       <div class="navbar fixed-top">
         <div id="profile">
-          <img src="https://via.placeholder.com/60x60" alt="Profile picture" id="propic">
+          <img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic">
           <div class="dropdown" id="username">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <strong>
@@ -256,14 +256,14 @@
             <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></i></h4>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
               <div class="comment">
-                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image">
                 <div class="comment-content">
                   <strong class="comment-username">Nome Utente</strong>
                   <p class="comment-text">Questo è un commento.</p>
                 </div>
               </div>
               <div class="comment">
-                <img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image">
+                <img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image">
                 <div class="comment-content">
                   <strong class="comment-username">Nome Utente</strong>
                   <p class="comment-text">Questo è un commento.</p>
@@ -276,6 +276,26 @@
                 Commenta   <i class="fa-solid fa-comment-dots icona-commento"></i>
               </button>
             </div>
+          </div>
+          <div id="chat" hidden="true">
+            <h4 class="statistiche-title">Chat<i class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></i></h4>
+            <div id="chat-container">
+              <div class="chat">
+                <div class="message received">
+                  <div class="message-content">
+                    <p>Questo è un messaggio ricevuto.</p>
+                  </div>
+                </div>
+                <div class="message sent">
+                  <div class="message-content">
+                    <p>Questo è un messaggio inviato.</p>
+                  </div>
+                </div>
+                <!-- Aggiungi altri messaggi secondo necessità -->
+              </div>
+               <button class="add-message-btn" onclick="aggiungiMessaggio()">Aggiungi Messaggio</button>
+            </div>
+
           </div>
         </div>
 
