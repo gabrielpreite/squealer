@@ -1094,6 +1094,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
+	console.log(q)
 	console.log("old: "+q.current_smm+" new: "+q.new_smm)
 
     try{
