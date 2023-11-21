@@ -75,5 +75,16 @@
         "lettura" : ["*"],
         "scrittura" : ["redazione", "robosquealer"],
         "abilitato" : true
+    },
+    {
+        "img" : "cha_meteo.jpg",
+        "nome" : "$METEO",
+        "descrizione" : "Com'è il tempo in Italia?",
+        "ufficiale" : true,
+        "proprieta" : "redazione",
+        "mod" : ["fvMod"],
+        "lettura" : ["*"],
+        "scrittura" : ["redazione", "robosquealer"],
+        "abilitato" : true
     }
 ]
