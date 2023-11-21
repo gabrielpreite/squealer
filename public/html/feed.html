@@ -54,7 +54,7 @@
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
           </div>
-          <button id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true"></button>
+          <div id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true"></div>
         </div>
         <div id="quota">
           <div class="char-count-item">
@@ -253,7 +253,7 @@
 
           </div>
           <div id="mostra-commenti" hidden="true">
-            <h4 class="statistiche-title">Commenti<i class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></i></h4>
+            <h4 class="statistiche-title">Commenti<button class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></button></h4>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
               <div class="comment">
                 <img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image">
@@ -278,7 +278,7 @@
             </div>
           </div>
           <div id="chat" hidden="true">
-            <h4 class="statistiche-title">Chat<i class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></i></h4>
+            <h4 class="statistiche-title">Chat<button class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></button></h4>
             <div id="chat-container">
               <div class="chat">
                 <div class="message received">
@@ -390,7 +390,7 @@
           not_class = not_class + notifiche[n].tipo + '" ';
           var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
 
-          var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
+          var notifica = '<button ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</button>';
           lista_notifiche.insertAdjacentHTML('beforeend', notifica);
         }
 
