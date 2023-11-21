@@ -54,7 +54,7 @@
               <h6 class="dropdown-header">Gestisci altri account</h6>
             </div>
           </div>
-          <button id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true" aria-hidden="true"></button>
+          <button type="button" id="managed-account-username" class="btn btn-primary" onclick="switch_to_smm()" hidden="true" aria-hidden="true"></button>
         </div>
         <div id="quota">
           <div class="char-count-item">
@@ -81,7 +81,7 @@
     </div>
     <div class="lateral-buttons">
       <div id="notifiche">
-      <button class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche">
+      <button type="button" class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche">
         <i class="fas fa-bell"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
@@ -253,7 +253,7 @@
 
           </div>
           <div id="mostra-commenti" hidden="true">
-            <div class="statistiche-title">Commenti<button class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></button></div>
+            <div class="statistiche-title">Commenti<button type="button" class="fa-solid fa-times icona-chiudi" onclick="aggiungicommento(this, 'chiudi')"></button></div>
             <div class="contenitore-commenti barra-scorrimento" id="contenitore-commenti">
               <!--
               <div class="comment">
@@ -279,7 +279,7 @@
             </div>
           </div>
           <div id="chat" hidden="true">
-            <div class="statistiche-title">Chat<button class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></button></div>
+            <div class="statistiche-title">Chat<button type="button" class="fa-solid fa-times icona-chiudi" onclick="inizia_chat('', 'chiudi')"></button></div>
             <div id="chat-container">
               <div class="chat">
                 <div class="message received">
@@ -294,7 +294,7 @@
                 </div>
                 <!-- Aggiungi altri messaggi secondo necessità -->
               </div>
-               <button class="add-message-btn" onclick="aggiungiMessaggio()">Aggiungi Messaggio</button>
+               <button type="button" class="add-message-btn" onclick="aggiungiMessaggio()">Aggiungi Messaggio</button>
             </div>
 
           </div>
@@ -356,7 +356,7 @@
           $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
         })
 
-        $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><a class="dropdown-item logout-button" href="/logout">Logout</a>`)
+        $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><button type="button" class="dropdown-item logout-button" href="/logout">Logout</button>`)
 
         //se sto gestendo un account lo mostro nella barra
         let managed = get_cookie_by_name("managed")
