@@ -87,7 +87,8 @@
             </script>
           </strong>
           </button>
-          <div id="dropdown-account-smm">
+          <div disabled class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
+            <h6 class="dropdown-header">Gestisci altri account</h6>
           </div>
         </div>
         <div id="managed-account-username" class="btn btn-primary" hidden="true"></div>
@@ -238,9 +239,6 @@
                     Contenuto del squeal qui...
                   </div>
                 </div>
-              </div>
-              <div id="sx-vuota" hidden="true">
-
               </div>
             </div>
         <form id="crea_post" enctype="multipart/form-data">
@@ -500,7 +498,7 @@
         headers: {
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-
+          
           //rimuovo $ iniziale per visualizzazione in lista
           a = a.substring(1)
           if (!array_dest_canali.includes(a)) {
@@ -684,7 +682,7 @@
 
         button.classList.remove('button-disabled');
       }
-
+ 
       if (opzione == "Testo") {
         resetQuota()
         $("#contenuto_testo").attr("hidden", false)
