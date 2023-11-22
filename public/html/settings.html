@@ -138,47 +138,17 @@
 
     <!-- CONTENUTO -->
     <div id="content">
-      <div id="profilo">
-        <h2 class="mb-4">Impostazioni Informazioni Personali</h2>
-
-        <form role="form" aria-labelledby="profileSettingsHeading">
-          <div class="form-group">
-            <label for="newName">Nome:
-              <label for="currentName">nome</label>
-            </label>
-            <input type="text" class="form-control" id="newName" placeholder="Cambia il tuo nome" aria-label="Nome">
-          </div>
-
-          <div class="form-group">
-            <label for="newSurname">Cognome:
-              <label for="currentSurname">cognome</label>
-            </label>
-            <input type="text" class="form-control" id="newSurname" placeholder="Cambia il tuo cognome" aria-label="Cognome">
-          </div>
-
-          <div class="form-group">
-            <label for="newDesc">Descrizione:
-              <label for="currentDesc">desc</label>
-            </label>
-            <input type="text" class="form-control" id="newDesc" placeholder="Cambia la tua descrizione" aria-label="Descrizione">
-          </div>
-
-          <div class="form-group">
-            <label for="newImg">Immagine profilo:
-              <img alt="immagine profilo attuale">img</img>
-            </label>
-            <input type="text" class="form-control" id="inputName" placeholder="Cambia la tua immagine di profilo" aria-label="Immagine">
-          </div>
-      
-          <button type="submit" class="btn btn-primary" aria-describedby="saveChangesHelp">Save Changes</button>
-          <small id="saveChangesHelp" class="form-text text-muted">Press enter to submit the form.</small>
-        </form>
+      <div id="profilo" hidden="true">
+        TODO - info profilo + form update
       </div>
       <div id="account" hidden="true">
         TODO - cambia mail/pwd con verifica pwd
       </div>
-      <div id="acquisti" hidden="true">
-        TODO - storico acquisti da db
+      <div id="acquisti">
+         <h1>Storico Acquisti<h1>
+        <ul id="acquisti-list">
+            <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
+        </ul>
       </div>
 
       <div id="smm" hidden="true"> <!-- ACCOUNT GESTITI/SMM -->
@@ -198,7 +168,7 @@
       <div id="follow" hidden="true">
         TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
       </div>
-      <div id="popolarita" hidden="true">
+      <div id="popolarita">
         TODO - lista post pop/impop/contr + previsione andamento quota (+ grafico?)
       </div>
     </div>
@@ -283,7 +253,7 @@
       })
       tmp += "</ul>"
       $("#div_account_gestiti").append(tmp)
-      
+
     } else {
       $("#div_account_gestiti").text("Non gestisci nessun account")
     }
