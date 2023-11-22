@@ -287,7 +287,7 @@ app.get('/user/:user_id/managed_by', async function(req, res) {
 });
 
 // aggiorna smm dell'utente
-app.post('/user/:user_id/managed_by', async function(req, res) {
+app.post('/user/:user_id/managed_by', upload.none() , async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("set smm")
     try{
