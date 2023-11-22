@@ -96,6 +96,60 @@ body {
             background-color: #0d8be0;
         }
 
+        /* STORICO ACQUISTI*/
+        .acquisti {
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .acquisto {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .timestamp {
+            color: #555;
+        }
+
+        .quantita {
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* STORICO ACQUISTI*/
+        .acquisti {
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .acquisto {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .timestamp {
+            color: #555;
+        }
+
+        .quantita {
+            color: #333;
+            font-weight: bold;
+        }
+
   
 .label-form {
   font-size: 14x;

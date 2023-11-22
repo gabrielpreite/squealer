@@ -32,3 +32,51 @@ function update_smm(){
         }
     })
 }
+
+// STORICO ACQUISTI
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Effettua la chiamata API per ottenere le informazioni sull'utente
+    fetch(`/user/${CURRENT_USER}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.risultato === 'successo') {
+                // L'utente è stato trovato, puoi accedere agli acquisti
+                var acquisti = data.data.acquisti;
+                popolaListaAcquisti(acquisti);
+            } else {
+                // L'utente non è stato trovato o si è verificato un altro errore
+                console.error('Errore nel recupero delle informazioni utente:', data.errore);
+            }
+        })
+        .catch(error => {
+            console.error('Si è verificato un errore nella richiesta:', error);
+        });
+});
+
+// Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
+function popolaListaAcquisti(acquisti) {
+    var acquistiList = document.getElementById('acquisti-list');
+
+    // Ordina gli acquisti in base al timestamp
+    acquisti.sort(function(a, b) {
+        return a.timestamp - b.timestamp;
+    });
+
+    // Popola la lista degli acquisti
+    acquisti.forEach(function(acquisto) {
+        var listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <div class="acquisto">
+                <div class="timestamp">Data: ${timeConverter(acquisto.timestamp)}</div>
+                <div class="quantita">Quantità: ${acquisto.quantita}</div>
+            </div>
+        `;
+        acquistiList.appendChild(listItem);
+    });
+}

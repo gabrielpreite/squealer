@@ -172,8 +172,11 @@
       <div id="account" hidden="true">
         TODO - cambia mail/pwd con verifica pwd
       </div>
-      <div id="acquisti" hidden="true">
-        TODO - storico acquisti da db
+      <div id="acquisti">
+         <h1>Storico Acquisti<h1>
+        <ul id="acquisti-list">
+            <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
+        </ul>
       </div>
 
       <div id="smm" hidden="true"> <!-- ACCOUNT GESTITI/SMM -->
@@ -193,7 +196,7 @@
       <div id="follow" hidden="true">
         TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
       </div>
-      <div id="popolarita" hidden="true">
+      <div id="popolarita">
         TODO - lista post pop/impop/contr + previsione andamento quota (+ grafico?)
       </div>
     </div>
@@ -302,7 +305,7 @@
       })
       tmp += "</ul>"
       $("#div_account_gestiti").append(tmp)
-      
+
     } else {
       $("#div_account_gestiti").text("Non gestisci nessun account")
     }
