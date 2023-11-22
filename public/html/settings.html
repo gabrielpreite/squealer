@@ -141,7 +141,7 @@
       <div id="profilo">
         <h2 class="mb-4">Impostazioni Informazioni Personali</h2>
 
-        <form role="form" aria-labelledby="Form impostazioni personali">
+        <form role="form" method="POST" aria-labelledby="Form impostazioni personali" id="form_info">
           <div class="form-group">
             <label for="newName" class="label-form">Nome: </label>
             <label for="currentName" id="currentName">nome</label>
@@ -166,7 +166,7 @@
             <input type="file" name="img" class="form-control" id="newImg" placeholder="Cambia la tua immagine di profilo" accept="image/*" aria-label="Immagine">
           </div>
 
-          <button type="submit" class="btn btn-primary" onclick="modifica_info()">Save Changes</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>
       <div id="account" >
@@ -220,6 +220,9 @@
   </script>
 
   <script>
+    //
+    $("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
+
     // override funzione form update_smm
     document.getElementById("update_smm").addEventListener('submit', async event => {
       event.preventDefault();
