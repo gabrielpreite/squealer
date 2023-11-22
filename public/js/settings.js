@@ -80,3 +80,9 @@ function popolaListaAcquisti(acquisti) {
         acquistiList.appendChild(listItem);
     });
 }
+
+function modifica_info() {
+
+
+
+}

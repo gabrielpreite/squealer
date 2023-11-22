@@ -145,28 +145,28 @@
           <div class="form-group">
             <label for="newName" class="label-form">Nome: </label>
             <label for="currentName" id="currentName">nome</label>
-            <input type="text" class="form-control" id="newName" placeholder="Cambia il tuo nome" aria-label="Nome">
+            <input type="text" name="nome" class="form-control" id="newName" placeholder="Cambia il tuo nome" aria-label="Nome">
           </div>
 
           <div class="form-group">
             <label for="newSurname" class="label-form">Cognome: </label>
             <label for="currentSurname" id="currentSurname">cognome</label>
-            <input type="text" class="form-control" id="newSurname" placeholder="Cambia il tuo cognome" aria-label="Cognome">
+            <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Cambia il tuo cognome" aria-label="Cognome">
           </div>
 
           <div class="form-group">
             <label for="newDesc" class="label-form">Descrizione: </label>
             <label for="currentDesc" id="currentDesc">desc</label>
-            <input type="text" class="form-control" id="newDesc" placeholder="Cambia la tua descrizione" aria-label="Descrizione">
+            <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Cambia la tua descrizione" aria-label="Descrizione">
           </div>
 
           <div class="form-group">
             <label for="newImg" class="label-form">Immagine profilo: </label>
             <img alt="immagine profilo attuale" id="currentImg">img</img>
-            <input type="text" class="form-control" id="inputName" placeholder="Cambia la tua immagine di profilo" aria-label="Immagine">
+            <input type="file" name="img" class="form-control" id="newImg" placeholder="Cambia la tua immagine di profilo" accept="image/*" aria-label="Immagine">
           </div>
       
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="submit" class="btn btn-primary" onclick="modifica_info()">Save Changes</button>
         </form>
       </div>
       <div id="account" >
@@ -280,7 +280,14 @@
     document.getElementById("currentName").innerHTML = ArrayCName[0];
     document.getElementById("currentSurname").innerHTML = ArrayCName[1];
     document.getElementById("currentDesc").innerHTML = all_info.meta.info.bio;
-    document.getElementById("currentImg").innerHTML = all_info.meta.info.img;
+    document.getElementById("currentImg").src = "https://site212251.tw.cs.unibo.it/uploads/" + all_info.meta.info.img;
+
+    document.getElementById("newName").value = ArrayCName[0];
+    document.getElementById("newSurname").value = ArrayCName[1];
+    document.getElementById("newDesc").value = all_info.meta.info.bio;
+
+    
+
 
     // === SMM
 
