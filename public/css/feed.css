@@ -235,6 +235,9 @@
 .tag-username, .comment-username {
   cursor: pointer;
   font-weight: bold;
+  background-color: transparent;
+  border: none;
+  text-align: left;  
 }
 
 .destinatari{
@@ -397,6 +400,10 @@
   margin-right: 10px;
   font-size: 22px;
   cursor: pointer;
+  font-weight: bolder;
+  background-color: transparent;
+  border: none;
+  text-align: right;
 }
 
 .contenitore-commenti {
@@ -554,4 +561,19 @@
 .add-message-btn:hover {
   background-color: #1da1f2;
   color: #fff;
+}
+
+.close {
+  font-size: 28px;
+  color: red;
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  text-align: center;
+  cursor: pointer;
+}
+
+.modal-title {
+  text-align: center !important;
+  font-size: 13px;
 }
