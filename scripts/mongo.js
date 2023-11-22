@@ -487,16 +487,17 @@ exports.user_update = async function (user_id, q, credentials) {
 		} else if (q.tipo === "account"){
 			let old_pwd = CryptoJS.SHA3(q.old_password)
 			let new_pwd = CryptoJS.SHA3(q.password)
+			let found = false
 
-			await mongo.db(dbname) //controllo se la vecchia pwd corrisponde
+			updateResult = await mongo.db(dbname) //controllo se la vecchia pwd corrisponde
 				.collection("utente")
 				.find({username: user_id})
 				.forEach((el) =>{
 					if(el.password === old_pwd){
-						updateResult = true
-					} else { updateResult = false}
+						found = true
+					}
 				})
-				if(updateResult){ //modifico mail/pwd
+				if(found){ //modifico mail/pwd
 					updateResult = await mongo.db(dbname)
 						.collection("utente")
 						.updateOne(
