@@ -478,7 +478,10 @@ exports.user_update = async function (user_id, q, credentials) {
 
 	    const collection = mongo.db(credentials.db).collection('utente');
 	    const updateResult = await collection.updateOne({ "username": user_id }, updateFields);
-
+		console.log("=====")
+		console.log(typeof user_id)
+		console.log(user_id)
+		console.log(updateResult)
 	    if (updateResult.matchedCount === 1) {
 	        response["risultato"] = "successo";
 	    } else {
