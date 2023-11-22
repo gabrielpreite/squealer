@@ -152,17 +152,17 @@ app.get('/db/user', async function(req, res) {
 });
 
 //tabella messaggio o singolo messaggio da messaggio-id
-app.get('/api_messaggio', async function(req, res) {
+app.get('/db/squeal', async function(req, res) {
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
 //tabella canale o singolo canale da nome
-app.get('/api_canale', async function(req, res) {
+app.get('/db/channel', async function(req, res) {
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
 });
 
 //tabella notifica
-app.get('/api_notifica', async function(req, res) {
+app.get('/db/notification', async function(req, res) {
 	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
 });
 
