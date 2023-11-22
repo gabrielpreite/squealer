@@ -466,18 +466,13 @@ exports.user_update = async function (user_id, q, credentials) {
 	    const mongo = new MongoClient(mongouri);
 	    await mongo.connect();
 
-	    const updateFields = {
-	        $set: {
-	            "img": q.img,
-	            "nome": q.nome,
-	            "email": q.email,
-	            "password": q.password,
-	            "bio": q.bio
-	        }
-	    };
-
-	    const collection = mongo.db(credentials.db).collection('utente');
-	    const updateResult = await collection.updateOne({ "username": user_id }, updateFields);
+		updateResult = await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{username: user_id}, 
+				{$set: {img: q.img, nome: q.nome, email: q.email, bio: q.bio}}
+			)
+		
 		console.log("=====")
 		console.log(typeof user_id)
 		console.log(user_id)
