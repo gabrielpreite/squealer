@@ -141,47 +141,45 @@
       <div id="profilo">
         <h2 class="mb-4">Impostazioni Informazioni Personali</h2>
 
-        <form role="form" aria-labelledby="profileSettingsHeading">
+        <form role="form" aria-labelledby="Form impostazioni personali">
           <div class="form-group">
-            <label for="newName">Nome:
-              <label for="currentName">nome</label>
-            </label>
+            <label for="newName" class="label-form">Nome: </label>
+            <label for="currentName" id="currentName">nome</label>
             <input type="text" class="form-control" id="newName" placeholder="Cambia il tuo nome" aria-label="Nome">
           </div>
 
           <div class="form-group">
-            <label for="newSurname">Cognome:
-              <label for="currentSurname">cognome</label>
-            </label>
+            <label for="newSurname" class="label-form">Cognome: </label>
+            <label for="currentSurname" id="currentSurname">cognome</label>
             <input type="text" class="form-control" id="newSurname" placeholder="Cambia il tuo cognome" aria-label="Cognome">
           </div>
 
           <div class="form-group">
-            <label for="newDesc">Descrizione:
-              <label for="currentDesc">desc</label>
-            </label>
+            <label for="newDesc" class="label-form">Descrizione: </label>
+            <label for="currentDesc" id="currentDesc">desc</label>
             <input type="text" class="form-control" id="newDesc" placeholder="Cambia la tua descrizione" aria-label="Descrizione">
           </div>
 
           <div class="form-group">
-            <label for="newImg">Immagine profilo:
-              <img alt="immagine profilo attuale">img</img>
-            </label>
+            <label for="newImg" class="label-form">Immagine profilo: </label>
+            <img alt="immagine profilo attuale" id="currentImg">img</img>
             <input type="text" class="form-control" id="inputName" placeholder="Cambia la tua immagine di profilo" aria-label="Immagine">
           </div>
       
-          <button type="submit" class="btn btn-primary" aria-describedby="saveChangesHelp">Save Changes</button>
-          <small id="saveChangesHelp" class="form-text text-muted">Press enter to submit the form.</small>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>
-      <div id="account" hidden="true">
+      <div id="account" >
         TODO - cambia mail/pwd con verifica pwd
       </div>
-      <div id="acquisti" hidden="true">
-        TODO - storico acquisti da db
+      <div id="acquisti" >
+         <h1>Storico Acquisti<h1>
+        <ul id="acquisti-list">
+            <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
+        </ul>
       </div>
 
-      <div id="smm" hidden="true"> <!-- ACCOUNT GESTITI/SMM -->
+      <div id="smm" > <!-- ACCOUNT GESTITI/SMM -->
         <h3>I tuoi account gestiti</h3>
         <div id="div_account_gestiti"></div>
 
@@ -195,10 +193,10 @@
         </form>
 
       </div>
-      <div id="follow" hidden="true">
+      <div id="follow" >
         TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
       </div>
-      <div id="popolarita" hidden="true">
+      <div id="popolarita" >
         TODO - lista post pop/impop/contr + previsione andamento quota (+ grafico?)
       </div>
     </div>
@@ -259,6 +257,30 @@
     }
 
     // ================= SEZIONI
+    let all_info;
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/squeal/by_user`,
+      headers: { },
+      data: { query: CURRENT_USER, target: CURRENT_USER },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        all_info = data.data;
+      }
+    });
+    if (all_info === undefined) {
+      console.log("error");
+    }
+
+    // === PROFILO
+    let NomeCognome = all_info.meta.info.nome;
+    let ArrayCName = NomeCognome.split(' ');
+    document.getElementById("currentName").innerHTML = ArrayCName[0];
+    document.getElementById("currentSurname").innerHTML = ArrayCName[1];
+    document.getElementById("currentDesc").innerHTML = all_info.meta.info.bio;
+    document.getElementById("currentImg").innerHTML = all_info.meta.info.img;
 
     // === SMM
 
@@ -283,7 +305,7 @@
       })
       tmp += "</ul>"
       $("#div_account_gestiti").append(tmp)
-      
+
     } else {
       $("#div_account_gestiti").text("Non gestisci nessun account")
     }
