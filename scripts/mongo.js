@@ -1104,7 +1104,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 
 		//modifico il vecchio smm (se esiste)
 		if(q.current_smm !== "null"){
-			await mongo.db(dbname)
+			result = await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
 					{username: q.current_smm},
