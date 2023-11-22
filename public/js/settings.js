@@ -17,7 +17,7 @@ function update_smm(){
     if(formData.get("new_smm") === "")
         formData.set("new_smm", "null")
 
-    console.log(formData)
+    //console.log(formData)
 
     fetch(`/user/${CURRENT_USER}/managed_by`, {
         method: "POST",
