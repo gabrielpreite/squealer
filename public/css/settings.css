@@ -95,3 +95,9 @@ body {
         button:hover {
             background-color: #0d8be0;
         }
+
+  
+.label-form {
+  font-size: 14x;
+  font-weight: bolder;
+}
