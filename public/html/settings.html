@@ -165,19 +165,31 @@
             <img alt="immagine profilo attuale" id="currentImg">img</img>
             <input type="file" name="img" class="form-control" id="newImg" placeholder="Cambia la tua immagine di profilo" accept="image/*" aria-label="Immagine">
           </div>
-      
+
           <button type="submit" class="btn btn-primary" onclick="modifica_info()">Save Changes</button>
         </form>
       </div>
       <div id="account" >
         TODO - cambia mail/pwd con verifica pwd
       </div>
-      <div id="acquisti" >
-         <h1>Storico Acquisti<h1>
-        <ul id="acquisti-list">
-            <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
-        </ul>
-      </div>
+      <div id="acquisti">
+        <div class="container">
+                   <ul id="acquisti-list">
+                       <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
+                       <li class="acquisto">
+                           <div class="info">
+                               <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                               <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                           </div>
+                           <div class="spesa">
+                               <i class="fas fa-shopping-cart"></i>
+                               <div class="ammontare">4,99 €</div>
+                           </div>
+                       </li>
+
+                   </ul>
+               </div>
+        </div>
 
       <div id="smm" > <!-- ACCOUNT GESTITI/SMM -->
         <h3>I tuoi account gestiti</h3>
@@ -286,7 +298,7 @@
     document.getElementById("newSurname").value = ArrayCName[1];
     document.getElementById("newDesc").value = all_info.meta.info.bio;
 
-    
+
 
 
     // === SMM

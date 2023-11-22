@@ -73,16 +73,28 @@ function popolaListaAcquisti(acquisti) {
         var listItem = document.createElement('li');
         listItem.innerHTML = `
             <div class="acquisto">
-                <div class="timestamp">Data: ${timeConverter(acquisto.timestamp)}</div>
-                <div class="quantita">Quantità: ${acquisto.quantita}</div>
+                <div class="info">
+                    <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                    <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                </div>
+                <div class="spesa">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
+                </div>
             </div>
         `;
         acquistiList.appendChild(listItem);
     });
 }
 
-function modifica_info() {
-
-
-
+function calcolaAmmontare(quantita) {
+    if (quantita === 120) {
+        return '0,99';
+    } else if (quantita === 240) {
+        return '1,99';
+    } else if (quantita === 480) {
+        return '4,99';
+    } else {
+        return '';
+    }
 }

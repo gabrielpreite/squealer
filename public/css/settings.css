@@ -97,8 +97,20 @@ body {
         }
 
         /* STORICO ACQUISTI*/
+        #acquisti {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .acquisti {
-            margin: 20px;
+            margin: 20px 0;
         }
 
         ul {
@@ -106,20 +118,66 @@ body {
             padding: 0;
         }
 
-        .acquisto {
+        #acquisti .acquisto {
             background-color: #fff;
-            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 10px 0;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
         }
 
-        .timestamp {
+        #acquisti .timestamp i {
+            margin-right: 3px;
+        }
+
+        #acquisti .info {
+            flex-grow: 1;
+        }
+
+        #acquisti .timestamp {
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        #acquisti .quantita {
             color: #555;
+            font-weight: normal; /* Rimuovo il grassetto */
+            font-size: 1.2em;
         }
 
-        .quantita {
-            color: #333;
+        #acquisti .quantita .numero {
+            color: #333; /* Cambiato il colore del numero a un grigio più scuro */
+            font-size: 1.2em;
+            font-weight: bold; /* Metto in grassetto solo il numero */
+        }
+
+        #acquisti .caratteri {
+          text-transform: uppercase;
+          color: #777;
+          font-size: 0.7em;
+        }
+
+
+        #acquisti .spesa {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            padding: 10px 15px;
+            border: 2px solid #ddd; /* Colore del bordo grigio chiaro */
+            border-radius: 30px; /* Border radius di 10px */
+        }
+
+        #acquisti .spesa i {
+            font-size: 22px;
+            margin-right: 10px;
+            color: #3498db; /* Colore per l'icona del carrello */
+        }
+
+        #acquisti .ammontare {
+            color: #3498db; /* Colore per l'importo della spesa */
+            font-size: 1.3em;
             font-weight: bold;
         }
 
