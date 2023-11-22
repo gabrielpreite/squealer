@@ -462,16 +462,50 @@ exports.user_update = async function (user_id, q, credentials) {
     const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
     let response = { "data": null, "risultato": null, "errore": null };
 
-		try {
+	try {
 	    const mongo = new MongoClient(mongouri);
 	    await mongo.connect();
+		let updateResult
 
-		updateResult = await mongo.db(dbname)
-			.collection("utente")
-			.updateOne(
-				{username: user_id}, 
-				{$set: {img: q.img, nome: q.nome, bio: q.bio}}
-			)
+		if(q.tipo === "profilo"){
+			if(q.path){ //aggiorno anche immagine profilo
+				updateResult = await mongo.db(dbname)
+				.collection("utente")
+				.updateOne(
+					{username: user_id}, 
+					{$set: {img: q.path, nome: q.nome, bio: q.bio}}
+				)
+			} else {
+				updateResult = await mongo.db(dbname)
+				.collection("utente")
+				.updateOne(
+					{username: user_id}, 
+					{$set: {nome: q.nome, bio: q.bio}}
+				)
+			}
+			
+		} else if (q.tipo === "account"){
+			let old_pwd = CryptoJS.SHA3(q.old_password)
+			let new_pwd = CryptoJS.SHA3(q.password)
+
+			await mongo.db(dbname) //controllo se la vecchia pwd corrisponde
+				.collection("utente")
+				.find({username: user_id})
+				.forEach((el) =>{
+					if(el.password === old_pwd){
+						updateResult = true
+					} else { updateResult = false}
+				})
+				if(updateResult){ //modifico mail/pwd
+					updateResult = await mongo.db(dbname)
+						.collection("utente")
+						.updateOne(
+							{username: user_id}, 
+							{$set: {email: q.email, password: new_pwd}}
+						)
+				}
+		}
+
 		
 	    if (updateResult.matchedCount === 1) {
 	        response["risultato"] = "successo";
