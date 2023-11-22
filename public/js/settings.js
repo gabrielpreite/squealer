@@ -63,11 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function popolaListaAcquisti(acquisti) {
     var acquistiList = document.getElementById('acquisti-list');
 
-    // Ordina gli acquisti in base al timestamp
-    acquisti.sort(function(a, b) {
-        return a.timestamp - b.timestamp;
-    });
-
     // Popola la lista degli acquisti
     acquisti.forEach(function(acquisto) {
         var listItem = document.createElement('li');
