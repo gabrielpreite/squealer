@@ -359,6 +359,9 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
 });
 
 // modifica impostazioni utente
+//body: tipo: "profilo"|"account"
+//caso profilo: img, nome, bio
+//caso account: username, password
 app.post('/user/:user_id/settings', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("mod impost ute")

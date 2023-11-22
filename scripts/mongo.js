@@ -470,13 +470,9 @@ exports.user_update = async function (user_id, q, credentials) {
 			.collection("utente")
 			.updateOne(
 				{username: user_id}, 
-				{$set: {img: q.img, nome: q.nome, email: q.email, bio: q.bio}}
+				{$set: {img: q.img, nome: q.nome, bio: q.bio}}
 			)
 		
-		console.log("=====")
-		console.log(typeof user_id)
-		console.log(user_id)
-		console.log(updateResult)
 	    if (updateResult.matchedCount === 1) {
 	        response["risultato"] = "successo";
 	    } else {
