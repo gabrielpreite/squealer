@@ -220,9 +220,6 @@
   </script>
 
   <script>
-    //
-    $("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
-
     // override funzione form update_smm
     document.getElementById("update_smm").addEventListener('submit', async event => {
       event.preventDefault();
@@ -238,6 +235,9 @@
     if (CURRENT_USER == undefined) {
       CURRENT_USER = get_cookie_by_name("username");
     }
+
+    //azione post form info utente
+    $("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
 
     // aggiorno la quota
     refresh_quota()
