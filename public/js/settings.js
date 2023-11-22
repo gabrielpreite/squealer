@@ -12,7 +12,7 @@ function switch_settings(param){
 function update_smm(){
     const formData = new FormData(document.getElementById("update_smm"))
 
-    if(formData.get("current_smm") === "null")
+    if(formData.get("current_smm") === "Non ci sono SMM che gestiscono il tuo account")
         formData.set("current_smm", "null")
     if(formData.get("new_smm") === "")
         formData.set("new_smm", "null")
