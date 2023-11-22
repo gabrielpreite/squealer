@@ -359,7 +359,7 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
 });
 
 // modifica impostazioni utente
-//body: tipo: "profilo"|"account"
+//tipo: "profilo"|"account"
 //caso profilo: nome, cognome, bio (img passato come file e ottenuto come path)
 //caso account: email, password, old_password
 app.post('/user/:user_id/settings', upload.single("img"), async function(req, res) {
@@ -370,8 +370,15 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
             let path = req.file.path
             req.body["path"] = path.split("/").slice(-1)[0]
         }
+
         const user_id = req.params.user_id
-        req.body["nome"] += " "+req.body["cognome"]
+        if(req.body.nome){ //caso profilo
+            req.body["nome"] += " "+req.body["cognome"]
+            req.body.tipo = "profilo"
+        } else {
+            req.body.tipo = "account"
+        }
+        
         response = await mymongo.user_update(user_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
