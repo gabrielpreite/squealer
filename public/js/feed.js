@@ -587,7 +587,7 @@ function ricerca_post(id_post) {
 }
 
 function compra_quota(qnt){
-  let data = {"target": CURRENT_USER, "qnt": qnt}
+  let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
 
   fetch("/user/" + CURRENT_USER + "/quota", {
     method: "POST",

@@ -152,17 +152,17 @@ app.get('/db/user', async function(req, res) {
 });
 
 //tabella messaggio o singolo messaggio da messaggio-id
-app.get('/api_messaggio', async function(req, res) {
+app.get('/db/squeal', async function(req, res) {
 	res.send(await mymongo.search_messaggio(req.query, mongoCredentials))
 });
 
 //tabella canale o singolo canale da nome
-app.get('/api_canale', async function(req, res) {
+app.get('/db/channel', async function(req, res) {
 	res.send(await mymongo.search_canale(req.query, mongoCredentials))
 });
 
 //tabella notifica
-app.get('/api_notifica', async function(req, res) {
+app.get('/db/notification', async function(req, res) {
 	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
 });
 
@@ -287,15 +287,12 @@ app.get('/user/:user_id/managed_by', async function(req, res) {
 });
 
 // aggiorna smm dell'utente
-app.post('/user/:user_id/managed_by', async function(req, res) {
+app.post('/user/:user_id/managed_by', upload.none() , async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("set smm")
     try{
         const user_id = req.params.user_id
-        console.log("req")
-        console.log(req)
-        console.log("reqbody")
-        console.log(req.body)
+
         response = await mymongo.user_set_managed_by(user_id, req.body, mongoCredentials)
 
         if(response["risultato"] == "successo"){
@@ -362,6 +359,9 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
 });
 
 // modifica impostazioni utente
+//body: tipo: "profilo"|"account"
+//caso profilo: img, nome, bio
+//caso account: username, password
 app.post('/user/:user_id/settings', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("mod impost ute")

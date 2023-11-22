@@ -366,7 +366,7 @@
   function compra_quota(qnt){
     //controllo chi sta comprando
 
-    let data = {"target": CURRENT_USER, "qnt": qnt}
+    let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
 
     fetch("/user/" + CURRENT_USER + "/quota", {
       method: "POST",

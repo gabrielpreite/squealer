@@ -466,19 +466,13 @@ exports.user_update = async function (user_id, q, credentials) {
 	    const mongo = new MongoClient(mongouri);
 	    await mongo.connect();
 
-	    const updateFields = {
-	        $set: {
-	            "img": q.img,
-	            "nome": q.nome,
-	            "email": q.email,
-	            "password": q.password,
-	            "bio": q.bio
-	        }
-	    };
-
-	    const collection = mongo.db(credentials.db).collection('utente');
-	    const updateResult = await collection.updateOne({ "username": user_id }, updateFields);
-
+		updateResult = await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{username: user_id}, 
+				{$set: {img: q.img, nome: q.nome, bio: q.bio}}
+			)
+		
 	    if (updateResult.matchedCount === 1) {
 	        response["risultato"] = "successo";
 	    } else {
@@ -1094,9 +1088,6 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = {"data": null, "risultato": null, "errore": null}
 
-	console.log(q)
-	console.log("old: "+q.current_smm+" new: "+q.new_smm)
-
     try{
         let result
 		const mongo = new MongoClient(mongouri);
@@ -1104,14 +1095,14 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 
 		//modifico il vecchio smm (se esiste)
 		if(q.current_smm !== "null"){
-			await mongo.db(dbname)
+			result = await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
 					{username: q.current_smm},
 					{$pull:{manager_of: user_id}}
 				)
 
-			console.log("rimosso vecchio (pull)")
+			//console.log("rimosso vecchio (pull)")
 
 			await mongo.db(dbname)
 				.collection("utente")
@@ -1120,7 +1111,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 					{$set:{managed_by: null}}
 				)
 			
-			console.log("rimosso vecchio (set null)")
+			//console.log("rimosso vecchio (set null)")
 		}
 
 		//aggiungo il nuovo smm (se esiste)
@@ -1132,7 +1123,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 					{$set:{managed_by: q.new_smm}}
 				)
 
-			console.log("aggiunto nuovo (set)")
+			//console.log("aggiunto nuovo (set)")
 				
 			await mongo.db(dbname)
 				.collection("utente")
@@ -1141,7 +1132,7 @@ exports.user_set_managed_by = async function(user_id, q, credentials) {
 					{$push:{manager_of: user_id}}
 				)
 
-			console.log("aggiunto nuovo (push)")
+			//console.log("aggiunto nuovo (push)")
 		}
 			
 		await mongo.close();
