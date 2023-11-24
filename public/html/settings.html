@@ -145,32 +145,57 @@
           <div class="form-group">
             <label for="newName" class="label-form">Nome: </label>
             <label for="currentName" id="currentName">nome</label>
-            <input type="text" name="nome" class="form-control" id="newName" placeholder="Cambia il tuo nome" aria-label="Nome">
+            <input type="text" name="nome" class="form-control" id="newName" placeholder="Nuovo nome" aria-label="Nome">
           </div>
 
           <div class="form-group">
             <label for="newSurname" class="label-form">Cognome: </label>
             <label for="currentSurname" id="currentSurname">cognome</label>
-            <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Cambia il tuo cognome" aria-label="Cognome">
+            <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Nuovo cognome" aria-label="Cognome">
           </div>
 
           <div class="form-group">
             <label for="newDesc" class="label-form">Descrizione: </label>
             <label for="currentDesc" id="currentDesc">desc</label>
-            <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Cambia la tua descrizione" aria-label="Descrizione">
+            <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Nuova descrizione" aria-label="Descrizione">
           </div>
 
           <div class="form-group">
             <label for="newImg" class="label-form">Immagine profilo: </label>
             <img alt="immagine profilo attuale" id="currentImg"></img>
-            <input type="file" name="img" class="form-control" id="newImg" placeholder="Cambia la tua immagine di profilo" accept="image/*" aria-label="Immagine">
+            <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo" accept="image/*" aria-label="Immagine">
           </div>
 
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>
       <div id="account" >
-        TODO - cambia mail/pwd con verifica pwd
+        <h2 class="mb-4">Impostazioni mail e password</h2>
+
+        <form role="form" method="POST" aria-labelledby="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
+          <div class="form-group">
+            <label for="newEmail" class="label-form">Email: </label>
+            <label for="currentEmail" id="currentEmail">email</label>
+            <input type="text" name="email" class="form-control" id="newEmail" placeholder="Nuova email" aria-label="Email">
+          </div>
+
+          <div class="form-group">
+            <label for="newPassword" class="label-form">Password: </label>
+            <input type="text" name="password" class="form-control" id="newPassword" placeholder="Nuova password" aria-label="Nuova password">
+          </div>
+
+          <div class="form-group">
+            <label for="newCPassword" class="label-form">Conferma password: </label>
+            <input type="text" name="c_password" class="form-control" id="newCPassword" placeholder="Conferma nuova password" aria-label="Conferma nuova password">
+          </div>
+
+          <div class="form-group">
+            <label for="oldPassword" class="label-form">Inserisci la tua password: </label>
+            <input type="text" name="old_password" class="form-control" id="oldPassword" placeholder="Password attuale" aria-label="Password attuale">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
       </div>
       <div id="acquisti">
         <div class="container">
@@ -227,6 +252,9 @@
 
     //azione post form info utente
     $("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
+
+    //azione post form psw utente
+    $("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
 
     // aggiorno la quota
     refresh_quota()
@@ -290,6 +318,8 @@
     document.getElementById("newSurname").value = ArrayCName[1];
     document.getElementById("newDesc").value = all_info.meta.info.bio;
 
+    // === ACCOUNT
+    document.getElementById("currentEmail").innerHTML = all_info.meta.info.email;
 
 
 
