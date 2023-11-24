@@ -1829,7 +1829,7 @@ exports.search_by_user = async function(q, credentials) {
 					username: q.query
 				})
 				.project(
-					{ username:1, nome:1, img:1, bio:1 }
+					{ username:1, nome:1, img:1, bio:1, email:1 }
 				)
 				.forEach( (r) => {
 					meta["info"] = r
