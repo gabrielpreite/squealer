@@ -74,6 +74,15 @@
 		{404} non sei loggato/user_id sbagliato
 		{500} server error
 
+	[GET] /chat/<chat_id> (ottieni chat con user_id)
+		{200} ok
+		{404} chat non trovata
+		{500} server error
+	[POST] /chat/<chat_id> (manda messaggio privato)
+		{200} ok
+		{404} utente non trovato
+		{500} server error
+
 /squeal
 	#ROOT
 	[GET] /<squeal_id> (get squeal by id)

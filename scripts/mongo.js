@@ -570,6 +570,91 @@ exports.user_update = async function (user_id, q, credentials) {
 	}
 }
 
+// get chat
+exports.get_chat = async function(target, q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        let result = []
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		let origin = q.current_user
+
+		let id = get_chat_id(origin, target)
+
+		await mongo.db(dbname)
+					.collection("chat")
+					.find(
+						{chat_id: id}
+					)
+					.forEach( (r) => {
+						result.push(r)
+					} );
+
+        if(result.length == 1){
+            response["risultato"] = "successo"
+			//console.log("successo")
+        } else {
+            response["risultato"] = "chat non trovata"
+			//console.log("errati")
+        }
+
+		response["data"] = result[0]
+        await mongo.close();
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
+// post chat
+exports.post_chat = async function(target, q, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        let result
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		let origin = q.current_user
+		let id = get_chat_id(origin, target)
+		let val = q.text
+		let date = new Date()
+        let timestamp = date.getTime();
+
+		result = await mongo.db(dbname)
+					.collection("chat")
+					.updateOne(
+						{chat_id: id},
+						{$push: {
+							messaggi: {
+								text: val,
+								timestamp: timestamp,
+								user: origin
+							}
+						}}
+					)
+
+        if(result.matchedCount == 1){
+            response["risultato"] = "successo"
+			// todo - notifica dm
+			//console.log("successo")
+        } else {
+            response["risultato"] = "chat non trovata"
+			//console.log("errati")
+        }
+
+		response["data"] = result[0]
+        await mongo.close();
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
 
 // login
 exports.user_login = async function(q, credentials) {
@@ -2399,6 +2484,13 @@ exports.mark_notification = async function(notification_id, credentials) {
 /*         SUPPORTO           */
 /*                            */
 /* ========================== */
+function get_chat_id(user1, user2){
+    const [first, second] = [user1, user2].sort();
+    const result = `${first}_${second}`;
+    return result;
+}
+
+
 async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let notifica = {}
