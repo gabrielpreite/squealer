@@ -548,7 +548,9 @@
   position: fixed;
   bottom: 20px;
   right: 0%;
-  transform: translateX(-25%);
+  transform: translateX(-12.5%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   display: flex;
   width: 300px;
 }
