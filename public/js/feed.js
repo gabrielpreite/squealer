@@ -30,7 +30,7 @@ function aggiungi_squeal(squeals) {
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
       let at_arr = squeals[i].corpo.match(at);
-      arr_trend = push(squeals[i].corpo.match(/(?:^|\s)#(\w+)/g));
+      arr_trend.push(squeals[i].corpo.match(/(?:^|\s)#(\w+)/g));
       //url in text
       const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\/\S*)?\b/g;
       const url_arr = squeals[i].corpo.match(url);

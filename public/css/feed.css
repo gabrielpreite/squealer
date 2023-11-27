@@ -550,6 +550,7 @@
   right: 0%;
   transform: translateX(-25%);
   display: flex;
+  width: 300px;
 }
 
 .input-container input {
