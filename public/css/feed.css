@@ -548,8 +548,11 @@
   position: fixed;
   bottom: 20px;
   right: 0%;
-  transform: translateX(-25%);
+  transform: translateX(-12.5%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   display: flex;
+  width: 300px;
 }
 
 .input-container input {
@@ -562,8 +565,8 @@
     background-color: #1da1f2;
     color: #fff;
     border: none;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
