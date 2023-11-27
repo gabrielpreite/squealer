@@ -400,6 +400,54 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
     }
 });
 
+// get chat
+// req query:
+//  current_user
+app.get('/user/chat/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("get chat")
+    try{
+        const user_id = req.params.user_id //target user
+        response = await mymongo.get_chat(user_id, req.query, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else {
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// post chat
+// req body:
+//  current_user, text
+app.post('/user/chat/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("get chat")
+    try{
+        const user_id = req.params.user_id //target user
+        response = await mymongo.post_chat(user_id, req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else {
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
 // user info
 app.get('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
