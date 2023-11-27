@@ -525,13 +525,15 @@ exports.user_update = async function (user_id, q, credentials) {
 			
 		} else if (q.tipo === "account"){
 			let old_pwd = CryptoJS.SHA3(q.old_password)
-			let new_pwd = CryptoJS.SHA3(q.password)
+			let new_pwd = q.password
 			let found = false
 
 			if (new_pwd == "") {
 				new_pwd = old_pwd;
+			} else {
+				new_pwd = CryptoJS.SHA3(q.password)
 			}
-			
+
 			updateResult = await mongo.db(dbname) //controllo se la vecchia pwd corrisponde
 				.collection("utente")
 				.find({username: user_id})
