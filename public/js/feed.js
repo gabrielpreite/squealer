@@ -614,6 +614,7 @@ function inizia_chat(username, azione) {
   if (azione == 'apri') {
     document.getElementById("barra-destra").hidden = true;
     document.getElementById("chat").hidden = false;
+    document.getElementById("chat_title").innerHTML = username;
 
     $.ajax({
       type: 'GET',
@@ -642,4 +643,25 @@ function inizia_chat(username, azione) {
     document.getElementById("chat").hidden = true;
     document.getElementById("messaggi_chat").innerHTML = ""
   }
+}
+
+function aggiungiMessaggio(){
+  let target = document.getElementById("chat_title").innerHTML
+  let contenuto = $("#messaggioInput").val
+
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    url: `https://site212251.tw.cs.unibo.it/user/chat/${title}`,
+    headers: { },
+    data: { current_user: CURRENT_USER, text: contenuto},
+    success: function (data, status, xhr) {
+      
+    },
+    error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+
+        }
+    }
+  });
 }
