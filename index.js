@@ -519,6 +519,7 @@ app.post('/user/login', async function(req, res) {
             response["errore"] = "errore"
             res.status(401)
             res.send(response)
+            res.redirect("/login")
         }
     } catch (e){
         res.status(500)
