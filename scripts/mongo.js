@@ -485,6 +485,9 @@ exports.user_update = async function (user_id, q, credentials) {
 			}
 			
 		} else if (q.tipo === "account"){
+			console.log("ACOCUNT")
+			console.log(q.old_password)
+			console.log(q.password)
 			let old_pwd = CryptoJS.SHA3(q.old_password)
 			let new_pwd = CryptoJS.SHA3(q.password)
 			let found = false
