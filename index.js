@@ -369,7 +369,6 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
 //caso account: email, password, old_password
 app.post('/user/:user_id/settings', upload.single("img"), async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    console.log("mod impost ute")
     try{
         if(req.file){ //sto cambiando anche immagine profilo
             let path = req.file.path
