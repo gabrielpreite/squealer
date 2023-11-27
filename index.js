@@ -383,8 +383,9 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
         } else {
             req.body.tipo = "account"
         }
-        
+        console.log("tipo = " + req.body.tipo)
         response = await mymongo.user_update(user_id, req.body, mongoCredentials)
+        console.log("risposta = " + response)
 
         if(response["risultato"] == "successo"){
             res.status(200)
