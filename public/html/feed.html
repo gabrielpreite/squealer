@@ -698,8 +698,8 @@
 
           // Array dei trend
           trends = trovaParoleFrequenti(arr_trend);
-          if (trends.lenght == 0) {
-            trends = ["nessun trend presente :("]
+          if (trends.length == 0) {
+            trends.push("nessun trend presente :(");
           }
 
           for (let i = 0; i < trends.length; i++) {
