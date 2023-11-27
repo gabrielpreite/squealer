@@ -647,12 +647,27 @@ exports.post_chat = async function(target, q, credentials) {
 
         if(result.matchedCount == 1){
             response["risultato"] = "successo"
-			// todo - notifica dm
 			//console.log("successo")
-        } else {
-            response["risultato"] = "chat non trovata"
-			//console.log("errati")
+        } else { //creo la chat
+            await mongo.db(dbname)
+				.collection("chat")
+				.insertOne(
+					{
+						"chat_id": id,
+						"users": [origin, target],
+						"messaggi": [
+							{
+								"text": val,
+								"user": origin,
+								"timestamp": timestamp
+							}
+						]
+					}
+				)
+			response["risultato"] = "successo"
         }
+
+		// todo - notifica dm
 
 		response["data"] = result[0]
         await mongo.close();
