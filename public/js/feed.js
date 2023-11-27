@@ -611,6 +611,34 @@ function inizia_chat(username, azione) {
   if (azione == 'apri') {
     document.getElementById("barra-destra").hidden = true;
     document.getElementById("chat").hidden = false;
+
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      url: `https://site212251.tw.cs.unibo.it/user/chat/${username}`,
+      headers: { },
+      data: { current_user: CURRENT_USER,},
+      success: function (data, status, xhr) {
+        let messaggi = data["data"]["messaggi"]
+        messaggi.forEach((el) => {
+          if(el.user === CURRENT_USER){ //messaggio inviato
+            $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
+          } else { // messaggio ricevuto
+            $("#messaggi_chat").append(`<div class="message received"><div class="message-content"><p>${el.text}</p></div></div>`)
+          }
+        })
+      },
+      error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+              // Execute your code for handling a 404 error
+              console.log('Error 404: Resource not found');
+              // Your additional code for handling a 404 error goes here
+          } else {
+              // Handle other types of errors if needed
+              console.log('Error:', error);
+          }
+      }
+    });
   } else if (azione == 'chiudi') {
     document.getElementById("barra-destra").hidden = false;
     document.getElementById("chat").hidden = true;
