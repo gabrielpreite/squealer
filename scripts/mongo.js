@@ -534,20 +534,19 @@ exports.user_update = async function (user_id, q, credentials) {
 			let old_pwd = CryptoJS.SHA3(q.old_password)
 			let new_pwd = q.password
 			let found = false
-			console.log("fase 1")
+
 			if (new_pwd == "") {
 				new_pwd = old_pwd;
 			} else {
 				new_pwd = CryptoJS.SHA3(q.password)
 			}
-			console.log("fase 2")
+
 			updateResult = await mongo.db(dbname) //controllo se la vecchia pwd corrisponde
 				.collection("utente")
 				.find({username: user_id})
 				.forEach((el) =>{
 					if((el.password+"") === (""+old_pwd)){
 						found = true
-						console.log("fase 3")
 					}
 				})
 				if(found){ //modifico mail/pwd
@@ -558,11 +557,12 @@ exports.user_update = async function (user_id, q, credentials) {
 							{$set: {email: q.email, password: ""+new_pwd}}
 						)
 				}
+
 			if (found) {
 				response["risultato"] = "successo";
 			} else {
-				response["risultato"] = "username non trovato";
-				console.error(`Nessun documento trovato per l'username ${user_id}`);
+				response["risultato"] = "password non corretta";
+				console.error(`Password non corretta`);
 			}
 		}
 

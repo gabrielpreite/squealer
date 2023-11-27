@@ -392,6 +392,10 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
             response["errore"] = "errore"
             res.status(404)
             res.send(response)
+        } else if(response["risultato"] == "password non corretta"){
+            response["errore"] = "errore"
+            res.status(401)
+            res.send(response)
         }
     } catch (e){
         res.status(500)

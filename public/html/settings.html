@@ -172,7 +172,7 @@
       <div id="account" >
         <h2 class="mb-4">Impostazioni mail e password</h2>
 
-        <form role="form" method="POST" aria-labelledby="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
+        <form role="form" aria-labelledby="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
           <div class="form-group">
             <label for="newEmail" class="label-form">Email: </label>
             <label for="currentEmail" id="currentEmail">email</label>
@@ -254,7 +254,11 @@
     $("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
 
     //azione post form psw utente
-    $("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
+    //$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
+    document.getElementById("form_psw").addEventListener('submit', async event => {
+      event.preventDefault();
+      form_psw();
+    });
 
     // aggiorno la quota
     refresh_quota()
