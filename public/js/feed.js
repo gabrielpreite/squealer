@@ -659,11 +659,6 @@ function aggiungiMessaggio(){
     success: function (data, status, xhr) {
       document.getElementById("messaggi_chat").innerHTML = ""
       inizia_chat(target, "apri")
-    },
-    error: function (xhr, status, error) {
-        if (xhr.status === 404) {
-
-        }
     }
   });
 }
