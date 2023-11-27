@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
 File: mongo.js
 Author: Fabio Vitali
 Version: 1.0
@@ -545,7 +545,7 @@ exports.user_update = async function (user_id, q, credentials) {
 				.collection("utente")
 				.find({username: user_id})
 				.forEach((el) =>{
-					if(el.password === old_pwd){
+					if((el.password+"") === (""+old_pwd)){
 						found = true
 						console.log("fase 3")
 					}
@@ -555,7 +555,7 @@ exports.user_update = async function (user_id, q, credentials) {
 						.collection("utente")
 						.updateOne(
 							{username: user_id}, 
-							{$set: {email: q.email, password: new_pwd}}
+							{$set: {email: q.email, password: ""+new_pwd}}
 						)
 				}
 			if (found) {
