@@ -124,7 +124,7 @@ exports.create = async function(credentials) {
 		debug.push(`... ${added4?.insertedCount || 0} records added.`)
 
 		//AGGIUNGO CHAT
-		debug.push(`Trying to read file '${fn_notifica}'... `)
+		debug.push(`Trying to read file '${fn_chat}'... `)
 		let doc5 = await fs.readFile(rootDir + fn_chat, 'utf8')
 		let data5 = JSON.parse(doc5)
 		debug.push(`... read ${data5.length} records successfully. `)
