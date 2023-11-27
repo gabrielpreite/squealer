@@ -1,4 +1,4 @@
-﻿﻿/*
+﻿/*
 File: mongo.js
 Author: Fabio Vitali
 Version: 1.0
@@ -582,6 +582,9 @@ exports.get_chat = async function(target, q, credentials) {
 		let origin = q.current_user
 
 		let id = get_chat_id(origin, target)
+		console.log(origin)
+		console.log(target)
+		console.log(id)
 
 		await mongo.db(dbname)
 					.collection("chat")
@@ -623,6 +626,10 @@ exports.post_chat = async function(target, q, credentials) {
 		let val = q.text
 		let date = new Date()
         let timestamp = date.getTime();
+
+		console.log(origin)
+		console.log(target)
+		console.log(id)
 
 		result = await mongo.db(dbname)
 					.collection("chat")
