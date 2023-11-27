@@ -166,6 +166,11 @@ app.get('/db/notification', async function(req, res) {
 	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
 });
 
+//tabella chat
+app.get('/db/chat', async function(req, res) {
+	res.send(await mymongo.search_chat(req.query, mongoCredentials))
+});
+
 /* ========================== */
 /*                            */
 /*          RISORSE           */
