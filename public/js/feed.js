@@ -657,6 +657,7 @@ function aggiungiMessaggio(){
     headers: { },
     data: { current_user: CURRENT_USER, text: contenuto},
     success: function (data, status, xhr) {
+      document.getElementById("messaggi_chat").innerHTML = ""
       inizia_chat(target, "apri")
     },
     error: function (xhr, status, error) {
