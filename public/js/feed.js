@@ -457,6 +457,7 @@ function aggiungicommento(icon, azione, id) {
       icon.style.color = 'black';
       // Nascondi il div "barra destra"
       document.getElementById("barra-destra").hidden = true;
+      document.getElementById("chat").hidden = true;
       // Mostra il div "mostra-squeal"
       document.getElementById("mostra-commenti").hidden = false;
       //rimpiazza commenti
