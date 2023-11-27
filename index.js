@@ -388,12 +388,10 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
-            res.redirect("/settings")
         } else if(response["risultato"] == "username non trovato"){
             response["errore"] = "errore"
             res.status(404)
             res.send(response)
-            res.redirect("/settings")
         }
     } catch (e){
         res.status(500)
@@ -521,7 +519,6 @@ app.post('/user/login', async function(req, res) {
             response["errore"] = "errore"
             res.status(401)
             res.send(response)
-            res.redirect("/login")
         }
     } catch (e){
         res.status(500)
