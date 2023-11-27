@@ -652,11 +652,11 @@ function aggiungiMessaggio(){
   $.ajax({
     type: 'POST',
     dataType: "json",
-    url: `https://site212251.tw.cs.unibo.it/user/chat/${title}`,
+    url: `https://site212251.tw.cs.unibo.it/user/chat/${target}`,
     headers: { },
     data: { current_user: CURRENT_USER, text: contenuto},
     success: function (data, status, xhr) {
-      
+      inizia_chat(target, "apri")
     },
     error: function (xhr, status, error) {
         if (xhr.status === 404) {
