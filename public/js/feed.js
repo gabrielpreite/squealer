@@ -457,6 +457,7 @@ function aggiungicommento(icon, azione, id) {
       icon.style.color = 'black';
       // Nascondi il div "barra destra"
       document.getElementById("barra-destra").hidden = true;
+      document.getElementById("chat").hidden = true;
       // Mostra il div "mostra-squeal"
       document.getElementById("mostra-commenti").hidden = false;
       //rimpiazza commenti
@@ -614,6 +615,7 @@ function inizia_chat(username, azione) {
   if (azione == 'apri') {
     document.getElementById("barra-destra").hidden = true;
     document.getElementById("chat").hidden = false;
+    document.getElementById("chat_title").innerHTML = username;
 
     $.ajax({
       type: 'GET',
@@ -642,4 +644,26 @@ function inizia_chat(username, azione) {
     document.getElementById("chat").hidden = true;
     document.getElementById("messaggi_chat").innerHTML = ""
   }
+}
+
+function aggiungiMessaggio(){
+  let target = document.getElementById("chat_title").innerHTML
+  let contenuto = $("#messaggioInput").val
+
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    url: `https://site212251.tw.cs.unibo.it/user/chat/${target}`,
+    headers: { },
+    data: { current_user: CURRENT_USER, text: contenuto},
+    success: function (data, status, xhr) {
+      document.getElementById("messaggi_chat").innerHTML = ""
+      inizia_chat(target, "apri")
+    },
+    error: function (xhr, status, error) {
+        if (xhr.status === 404) {
+
+        }
+    }
+  });
 }
