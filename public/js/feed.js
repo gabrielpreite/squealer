@@ -633,12 +633,7 @@ function inizia_chat(username, azione) {
       },
       error: function (xhr, status, error) {
           if (xhr.status === 404) {
-              // Execute your code for handling a 404 error
-              console.log('Error 404: Resource not found');
-              // Your additional code for handling a 404 error goes here
-          } else {
-              // Handle other types of errors if needed
-              console.log('Error:', error);
+            
           }
       }
     });
