@@ -5,13 +5,13 @@
         "messaggi": [
             {
                 "text": "ciaooo, come stai?",
-                "user": "fv",
-                "timestamp": "1698681539127"
+                "timestamp": 1698681539127,
+                "user": "fv"
             },
             {
                 "text": "tutto bene, tu?",
-                "user": "fvPro",
-                "timestamp": "1698681559274"
+                "timestamp": 1698681559274,
+                "user": "fvPro"
             }
         ]
     }
