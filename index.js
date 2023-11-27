@@ -166,6 +166,11 @@ app.get('/db/notification', async function(req, res) {
 	res.send(await mymongo.search_notifica(req.query, mongoCredentials))
 });
 
+//tabella chat
+app.get('/db/chat', async function(req, res) {
+	res.send(await mymongo.search_chat(req.query, mongoCredentials))
+});
+
 /* ========================== */
 /*                            */
 /*          RISORSE           */
@@ -364,7 +369,6 @@ app.get('/user/:user_id/my_channels', async function(req, res) {
 //caso account: email, password, old_password
 app.post('/user/:user_id/settings', upload.single("img"), async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    console.log("mod impost ute")
     try{
         if(req.file){ //sto cambiando anche immagine profilo
             let path = req.file.path
@@ -378,8 +382,8 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
         } else {
             req.body.tipo = "account"
         }
-        
         response = await mymongo.user_update(user_id, req.body, mongoCredentials)
+        console.log("risposta = " + response)
 
         if(response["risultato"] == "successo"){
             res.status(200)
@@ -392,6 +396,54 @@ app.post('/user/:user_id/settings', upload.single("img"), async function(req, re
     } catch (e){
         res.status(500)
         res.send({"errore":e})
+    }
+});
+
+// get chat
+// req query:
+//  current_user
+app.get('/user/chat/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("get chat")
+    try{
+        const user_id = req.params.user_id //target user
+        response = await mymongo.get_chat(user_id, req.query, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else {
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// post chat
+// req body:
+//  current_user, text
+app.post('/user/chat/:user_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("get chat")
+    try{
+        const user_id = req.params.user_id //target user
+        response = await mymongo.post_chat(user_id, req.body, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else {
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
     }
 });
 
