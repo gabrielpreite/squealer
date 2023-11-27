@@ -112,3 +112,25 @@ function check_form() {
 
     return true;
 }
+
+function form_psw() {
+    const formData = new FormData(document.getElementById("form_psw"))
+
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/settings`,
+        headers: { },
+        data: formData,
+        success: function (data, status, xhr) {
+            console.log('data: ', data);
+        
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                alert("La password inserita non è corretta");
+            }
+        }
+    });
+}
