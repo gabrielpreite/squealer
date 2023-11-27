@@ -1,4 +1,4 @@
-﻿﻿/*
+﻿/*
 File: mongo.js
 Author: Fabio Vitali
 Version: 1.0
@@ -27,6 +27,7 @@ let fn_utente = "/public/data/utente.json"
 let fn_canale = "/public/data/canale.json"
 let fn_messaggio = "/public/data/messaggio.json"
 let fn_notifica = "/public/data/notifica.json"
+let fn_chat = "/public/data/chat.json"
 let dbname = "db"
 
 const { MongoClient } = require("mongodb");
@@ -72,6 +73,11 @@ exports.create = async function(credentials) {
 					.collection("notifica")
 					.deleteMany()
 		debug.push(`... ${cleared4?.deletedCount || 0} records deleted.`)
+		debug.push(`Trying to remove all records in table '${dbname}'... `)
+		let cleared5 = await mongo.db(dbname)
+					.collection("chat")
+					.deleteMany()
+		debug.push(`... ${cleared5?.deletedCount || 0} records deleted.`)
 
 		//AGGIUNGO UTENTE
 		debug.push(`Trying to read file '${fn_utente}'... `)
@@ -117,12 +123,23 @@ exports.create = async function(credentials) {
 		 			.insertMany(data4);
 		debug.push(`... ${added4?.insertedCount || 0} records added.`)
 
+		//AGGIUNGO CHAT
+		debug.push(`Trying to read file '${fn_notifica}'... `)
+		let doc5 = await fs.readFile(rootDir + fn_chat, 'utf8')
+		let data5 = JSON.parse(doc5)
+		debug.push(`... read ${data5.length} records successfully. `)
+		debug.push(`Trying to add ${data5.length} new records... `)
+		let added5 = await mongo.db(dbname)
+					.collection("chat")
+		 			.insertMany(data5);
+		debug.push(`... ${added5?.insertedCount || 0} records added.`)
+
 		//CHIUDO
 		await mongo.close();
 		debug.push("Managed to close connection to MongoDB.")
 
 		return {
-			message: `<h1>Removed ${(cleared1?.deletedCount+cleared2?.deletedCount+cleared3?.deletedCount) || 0} records, added ${(added1?.insertedCount+added2?.insertedCount+added3?.insertedCount) || 0} records</h1>`,
+			message: `<h1>Removed ${(cleared1?.deletedCount+cleared2?.deletedCount+cleared3?.deletedCount+cleared4?.deletedCount+cleared5?.deletedCount) || 0} records, added ${(added1?.insertedCount+added2?.insertedCount+added3?.insertedCount+added4?.insertedCount+added5?.insertedCount) || 0} records</h1>`,
 			debug: debug
 		}
 	} catch (e) {
@@ -186,6 +203,28 @@ exports.search_notifica = async function(q,credentials) {
 		let result = []
 		await mongo.db(dbname)
 			.collection("notifica")
+			.find()
+			.project({_id:0})
+			.forEach( (r) => {
+				result.push(r)
+			} );
+
+		return result
+	} catch (e) {
+		return e
+	}
+}
+
+exports.search_chat = async function(q,credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+
+	try {
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		let result = []
+		await mongo.db(dbname)
+			.collection("chat")
 			.find()
 			.project({_id:0})
 			.forEach( (r) => {

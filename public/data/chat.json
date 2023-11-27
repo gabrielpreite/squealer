@@ -1,0 +1,18 @@
+[
+    {
+        "chat_id": "fv_fvpro",
+        "users": ["fv", "fvpro"],
+        "messaggi": [
+            {
+                "text": "ciaooo, come stai?",
+                "user": "fv",
+                "timestamp": "1698681539127"
+            },
+            {
+                "text": "tutto bene, tu?",
+                "user": "fvPro",
+                "timestamp": "1698681559274"
+            }
+        ]
+    }
+]
