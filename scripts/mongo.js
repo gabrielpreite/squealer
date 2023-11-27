@@ -522,6 +522,13 @@ exports.user_update = async function (user_id, q, credentials) {
 					{$set: {nome: q.nome, bio: q.bio}}
 				)
 			}
+
+			if (updateResult.matchedCount === 1) {
+				response["risultato"] = "successo";
+			} else {
+				response["risultato"] = "username non trovato";
+				console.error(`Nessun documento trovato per l'username ${user_id}`);
+			}
 			
 		} else if (q.tipo === "account"){
 			let old_pwd = CryptoJS.SHA3(q.old_password)
@@ -551,15 +558,16 @@ exports.user_update = async function (user_id, q, credentials) {
 							{$set: {email: q.email, password: ""+new_pwd}}
 						)
 				}
+			if (found) {
+				response["risultato"] = "successo";
+			} else {
+				response["risultato"] = "username non trovato";
+				console.error(`Nessun documento trovato per l'username ${user_id}`);
+			}
 		}
 
 		
-	    if (updateResult.matchedCount === 1) {
-	        response["risultato"] = "successo";
-	    } else {
-	        response["risultato"] = "username non trovato";
-	        console.error(`Nessun documento trovato per l'username ${user_id}`);
-	    }
+	   
 
 	    await mongo.close();
 	    return response;
