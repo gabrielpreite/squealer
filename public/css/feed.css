@@ -555,7 +555,7 @@
   width: 300px;
 }
 
-.input-container input {
+#messaggioInput {
     flex-grow: 1;
     padding: 8px;
     border: 1px solid #ccc;
