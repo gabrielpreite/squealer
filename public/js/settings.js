@@ -122,10 +122,10 @@ function form_psw() {
         async: false,
         url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/settings`,
         headers: { },
-        data: formData,
+        data: {formData},
         success: function (data, status, xhr) {
             console.log('data: ', data);
-        
+            redirectToSettings();
         },
         error: function (xhr, status, error) {
             if (xhr.status === 401) {
