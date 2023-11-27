@@ -640,5 +640,6 @@ function inizia_chat(username, azione) {
   } else if (azione == 'chiudi') {
     document.getElementById("barra-destra").hidden = false;
     document.getElementById("chat").hidden = true;
+    document.getElementById("messaggi_chat").innerHTML = ""
   }
 }
