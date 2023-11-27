@@ -692,12 +692,12 @@
         }
 
         // Crea le tessere del mosaico dinamicamente
+        let trends = []
         function createMosaicTiles() {
           const container = document.querySelector('.mosaic-container');
           const tileSize = 30; // Dimensione della tessera
 
           // Array dei trend
-          let trends = []
           trends = trovaParoleFrequenti(arr_trend);
           if (trends.lenght == 0) {
             trends = ["nessun trend presente :("]
