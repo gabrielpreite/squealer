@@ -1,3 +1,5 @@
+let arr_trend = []; //array per i trends
+
 function aggiungi_squeal(squeals) {
   let n_squeal = squeals.length;
 
@@ -27,7 +29,8 @@ function aggiungi_squeal(squeals) {
       let testo_squeal = squeals[i].corpo;
       //parole con @ all'inizio
       const at = /(?:^|\s)@(\w+)/g;
-      const at_arr = squeals[i].corpo.match(at);
+      let at_arr = squeals[i].corpo.match(at);
+      arr_trend = push(squeals[i].corpo.match(/(?:^|\s)#(\w+)/g));
       //url in text
       const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\/\S*)?\b/g;
       const url_arr = squeals[i].corpo.match(url);

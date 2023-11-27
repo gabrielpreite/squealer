@@ -669,6 +669,24 @@
 
 
         // TRENDS
+        function trovaParoleFrequenti(arrayParole) {
+          // Trasforma tutte le parole in minuscolo
+          const arrayParoleMinuscolo = arrayParole.map(parola => parola.toLowerCase());
+
+          // Conta le occorrenze di ciascuna parola
+          const conteggioParole = {};
+          arrayParoleMinuscolo.forEach(parola => {
+            conteggioParole[parola] = (conteggioParole[parola] || 0) + 1;
+          });
+
+          // Trova le parole più frequenti
+          const paroleFrequenti = Object.keys(conteggioParole)
+            .sort((a, b) => conteggioParole[b] - conteggioParole[a])
+            .slice(0, 8);
+
+          return paroleFrequenti;
+        }
+
         const pastelColors = [
           '#FF8080', '#FFB380', '#FFD480', '#FFFF80', '#BFFF80',
           '#80FF80', '#80FFBF', '#C0B3FF', '#CFAEFF'
@@ -685,7 +703,7 @@
           const tileSize = 30; // Dimensione della tessera
 
           // Array dei trend
-          var trends = ['#Trend1', '#prova', '#ciaociaociao', '#Trend4', '#squealer'];
+          var trends = trovaParoleFrequenti(arr_trend);
 
           for (let i = 0; i < trends.length; i++) {
             const tile = document.createElement('a');
