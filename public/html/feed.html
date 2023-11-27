@@ -693,6 +693,9 @@
 
           // Array dei trend
           var trends = trovaParoleFrequenti(arr_trend);
+          if (trends.lenght == 0) {
+            trends = ["nessun trend presente :("]
+          }
 
           for (let i = 0; i < trends.length; i++) {
             const tile = document.createElement('a');
