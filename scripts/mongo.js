@@ -664,6 +664,7 @@ exports.post_chat = async function(target, q, credentials) {
 						]
 					}
 				)
+			response["risultato"] = "successo"
         }
 
 		// todo - notifica dm
