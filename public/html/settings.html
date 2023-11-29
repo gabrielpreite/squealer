@@ -141,7 +141,7 @@
       <div id="profilo">
         <h2 class="mb-4">Impostazioni Informazioni Personali</h2>
 
-        <form role="form" method="POST" aria-labelledby="Form impostazioni personali" id="form_info">
+        <form role="form" aria-labelledby="Form impostazioni personali" id="form_info">
           <div class="form-group">
             <label for="newName" class="label-form">Nome: </label>
             <label for="currentName" id="currentName">nome</label>
@@ -252,7 +252,11 @@
     }
 
     //azione post form info utente
-    $("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
+    //$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
+    document.getElementById("form_info").addEventListener('submit', async event => {
+      event.preventDefault();
+      form_info();
+    });
 
     //azione post form psw utente
     //$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)

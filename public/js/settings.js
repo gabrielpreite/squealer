@@ -113,6 +113,30 @@ function check_form() {
     return true;
 }
 
+function form_info() {
+    const formData = new FormData(document.getElementById("form_info"))
+
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/settings`,
+        headers: { },
+        data: formData, 
+        processData: false, 
+        contentType: false,
+        success: function (data, status, xhr) {
+            console.log('data: ', data);
+            redirectToSettings();
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 404) {
+                alert("Errore username");
+            }
+        }
+    });
+}
+
 function form_psw() {
     const formData = new FormData(document.getElementById("form_psw"))
 
