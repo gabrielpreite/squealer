@@ -31,7 +31,7 @@ let fn_chat = "/public/data/chat.json"
 let fn_defaults = "/public/data/defaults.json"
 let dbname = "db"
 
-const { MongoClient } = require("mongodb");
+const { MongoClient, MongoCredentials } = require("mongodb");
 const fs = require('fs').promises;
 const template = require(global.rootDir + '/scripts/tpl.js');
 
@@ -49,6 +49,7 @@ exports.daily = async function(dry, credentials) {
 		await mongo.connect();
 
 		/* [1] RESET QUOTA */
+
 		console.log("[D1] Inizio reset quota")
 		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
 		let def_json = JSON.parse(def_file)
@@ -88,11 +89,12 @@ exports.daily = async function(dry, credentials) {
 				}
 			}
 		})
+		console.log("[D1] Fine reset quota")
 
 		/* [2] CALCOLO SQUEAL POP/IMPOP/CONTR */
 
+		console.log("[D2] Inizio calcolo etichette")
 		result = []
-
 		await mongo.db(dbname)
 			.collection("messaggio")
 			.find()
@@ -139,10 +141,42 @@ exports.daily = async function(dry, credentials) {
 								{$push: {destinatari: "$CONTROVERSO"}}
 							)
 					}
+
+					//notifico l'utente del cambiamento di categoria
+					if(etichetta !== squeal.categoria){ // solo se la categoria e' cambiata
+						console.log("[D2] invio notifica ad utente")
+						add_notifica(squeal.utente, "popolarita", squeal.post_id, MongoCredentials, etichetta, null)
+					}
 				}
 			}
 		})
+		console.log("[D2] Fine calcolo etichette")
 
+		/* [3] RICALCOLO QUOTA PER POPOLARITA' */
+
+		console.log("[D3] Inizio ricalcolo quota popolarita")
+		result = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find()
+			.project({_id:0})
+			.forEach( (r) => {
+				result.push(r)
+			} );
+
+		result.forEach((user) => {
+			let pop = user.popolarita.valori[user.popolarita.valori.length-1]
+			let bonus = (Math.floor(pop/10)/100)*DEF_G //1% +- per ogni 10 di popolarita
+			console.log("[D3] utente "+user.username+", popolarita "+pop+", caratteri bonus/malus "+bonus)
+			if(!dry && bonus != 0){
+				console.log("[D3] aggiorno quota")
+				user_update_quota(user.username, {qnt: bonus, acquisto: false}, MongoCredentials)
+				console.log("[D3] invio notifica")
+				add_notifica(user.username, "quota", null, MongoCredentials, bonus, null)
+			}
+		})
+
+		console.log("[D3] Fine ricalcolo quota popolarita")
 		return "ok"
 	} catch (e) {
 		console.log(e)
@@ -2724,9 +2758,38 @@ async function add_notifica(target, tipo, ref_id, credentials, bonus, origin){
 				notifica["testo"] = `Sei popolare! Oggi avrai ${bonus} caratteri bonus :)`
 			else
 				notifica["testo"] = `Sei impopolare... Oggi avrai ${bonus} caratteri in meno :(`
-			//todo notifica quando ricalcolo la quota
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 		} else if(tipo == "popolarita"){
-			//todo notifica quando calcolo la popolarita' di un post (ogni giorno, stesso trigger tipo quota)
+			notifica["testo"] = "Un tuo post e' diventato "+bonus
+			await mongo.db(dbname)
+				.collection("notifica")
+				.insertOne(notifica)
+				.then(async (result) => {
+					const newDocumentId = result.insertedId;
+					await mongo.db(dbname)
+						.collection("notifica")
+						.updateOne(
+							{ _id: newDocumentId },
+							{ $set: { not_id: String(newDocumentId) } }
+						);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 		}
 	} catch (e) {
 		return e
