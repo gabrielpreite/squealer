@@ -81,7 +81,7 @@ app.enable('trust proxy');
 
 const daily = schedule.scheduleJob({ hour: 0, minute: 15, tz: 'Europe/Rome' }, () => {
     console.log('[D] Starting daily job');
-    mymongo.daily(true, mongoCredentials)
+    mymongo.daily(false, mongoCredentials)
 });
 
 /* ========================== */
@@ -185,7 +185,7 @@ app.get('/db/chat', async function(req, res) {
 
 // dry daily run
 app.get('/db/dry_daily', async function(req, res) {
-	res.send(await mymongo.daily(false, mongoCredentials))
+	res.send(await mymongo.daily(true, mongoCredentials))
 });
 
 /* ========================== */
