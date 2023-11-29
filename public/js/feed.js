@@ -616,6 +616,7 @@ function inizia_chat(username, azione) {
     document.getElementById("barra-destra").hidden = true;
     document.getElementById("chat").hidden = false;
     document.getElementById("chat_title").innerHTML = username;
+    document.getElementById("messaggioInput").value = ""
 
     $.ajax({
       type: 'GET',
@@ -657,7 +658,6 @@ function aggiungiMessaggio(){
     headers: { },
     data: { current_user: CURRENT_USER, text: contenuto},
     success: function (data, status, xhr) {
-      //console.log("success")
       document.getElementById("messaggi_chat").innerHTML = ""
       inizia_chat(target, "apri")
     },
