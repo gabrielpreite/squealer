@@ -145,7 +145,7 @@ exports.daily = async function(dry, credentials) {
 					//notifico l'utente del cambiamento di categoria
 					if(etichetta !== squeal.categoria){ // solo se la categoria e' cambiata
 						console.log("[D2] invio notifica ad utente")
-						add_notifica(squeal.utente, "popolarita", squeal.post_id, MongoCredentials, etichetta, null)
+						add_notifica(squeal.utente, "popolarita", squeal.post_id, credentials, etichetta, null)
 					}
 				}
 			}
@@ -170,9 +170,9 @@ exports.daily = async function(dry, credentials) {
 			console.log("[D3] utente "+user.username+", popolarita "+pop+", caratteri bonus/malus "+bonus)
 			if(!dry && bonus != 0){
 				console.log("[D3] aggiorno quota")
-				user_update_quota(user.username, {qnt: bonus, acquisto: false}, MongoCredentials)
+				user_update_quota(user.username, {qnt: bonus, acquisto: false}, credentials)
 				console.log("[D3] invio notifica")
-				add_notifica(user.username, "quota", null, MongoCredentials, bonus, null)
+				add_notifica(user.username, "quota", null, credentials, bonus, null)
 			}
 		})
 
