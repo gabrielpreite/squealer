@@ -136,7 +136,7 @@ exports.daily = async function(dry, credentials) {
 							.collection("messaggio")
 							.updateOne(
 								{post_id: squeal.post_id},
-								{$push: {destinatari: {$literal: "$CONTROVERSO"}}}
+								{$push: {destinatari: "$CONTROVERSO"}}
 							)
 					}
 				}
