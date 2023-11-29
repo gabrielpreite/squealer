@@ -106,7 +106,7 @@ exports.daily = async function(dry, credentials) {
 			let reac_pos = squeal.reazioni.positive.concordo.length + squeal.reazioni.positive.mi_piace.length + squeal.reazioni.positive.adoro.length
 			let reac_neg = squeal.reazioni.negative.sono_contrario.length + squeal.reazioni.negative.mi_disgusta.length + squeal.reazioni.negative.odio.length
 			let mc = 0.25 * visual
-			console.log("[D2] squeal "+squeal.post_id+", visual "+visual+", positive "+reac_pos+", negative"+reac_neg+", massa critica "+mc)
+			console.log("[D2] squeal "+squeal.post_id+", visual "+visual+", positive "+reac_pos+", negative "+reac_neg+", massa critica "+mc)
 
 			let etichetta = null
 			if(reac_pos>mc && reac_neg>mc){
