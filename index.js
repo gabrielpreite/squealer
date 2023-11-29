@@ -79,8 +79,9 @@ app.enable('trust proxy');
 /*                            */
 /* ========================== */
 
-const job = schedule.scheduleJob('*/1 * * * *', function(){
-    console.log('The answer to life, the universe, and everything!');
+const daily = schedule.scheduleJob({ hour: 0, minute: 15, tz: 'Europe/Rome' }, () => {
+    console.log('[D] Starting daily job');
+    mymongo.daily(true, mongoCredentials)
 });
 
 /* ========================== */
@@ -180,6 +181,11 @@ app.get('/db/notification', async function(req, res) {
 //tabella chat
 app.get('/db/chat', async function(req, res) {
 	res.send(await mymongo.search_chat(req.query, mongoCredentials))
+});
+
+// dry daily run
+app.get('/db/dry_daily', async function(req, res) {
+	res.send(await mymongo.daily(false, mongoCredentials))
 });
 
 /* ========================== */
