@@ -652,7 +652,7 @@ function aggiungiMessaggio(){
 
   $.ajax({
     type: 'POST',
-    //dataType: "json",
+    //dataType: "json", 
     url: `https://site212251.tw.cs.unibo.it/user/chat/${target}`,
     headers: { },
     data: { current_user: CURRENT_USER, text: contenuto},
