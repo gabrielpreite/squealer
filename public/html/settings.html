@@ -191,7 +191,8 @@
 
           <div class="form-group">
             <label for="oldPassword" class="label-form">Inserisci la tua password: </label>
-            <input type="text" name="old_password" class="form-control" id="oldPassword" placeholder="Password attuale" aria-label="Password attuale" required>
+            <input type="password" name="old_password" class="form-control" id="oldPassword" placeholder="Password attuale" aria-label="Password attuale" required>
+            <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
           </div>
 
           <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -258,6 +259,18 @@
     document.getElementById("form_psw").addEventListener('submit', async event => {
       event.preventDefault();
       form_psw();
+    });
+
+    //password show/hide
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#oldPassword');
+
+    togglePassword.addEventListener('click', function (e) {
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      // toggle the eye slash icon
+      this.classList.toggle('fa-eye-slash');
     });
 
     // aggiorno la quota
