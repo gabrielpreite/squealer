@@ -128,6 +128,7 @@ function form_info() {
         success: function (data, status, xhr) {
             console.log('data: ', data);
             redirectToSettings();
+            alert("Modifiche salvate");
         },
         error: function (xhr, status, error) {
             if (xhr.status === 404) {
