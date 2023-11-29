@@ -48,8 +48,8 @@ exports.daily = async function(dry, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		/* RESET QUOTA */
-		console.log("[D] Inizio reset quota")
+		/* [1] RESET QUOTA */
+		console.log("[D1] Inizio reset quota")
 		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
 		let def_json = JSON.parse(def_file)
 		const DEF_G = def_json.quota_default.g
@@ -67,18 +67,18 @@ exports.daily = async function(dry, credentials) {
 
 		result.forEach((user) =>{
 			let new_quota = {"g": user.quota.g, "s": user.quota.s, "m": user.quota.m}
-			console.log("[D] quota utente "+user.username+": "+JSON.stringify(user.quota))
+			console.log("[D1] quota utente "+user.username+": "+JSON.stringify(user.quota))
 			let differenza = DEF_G - user.quota.g //quota necessaria per tornare al valore di default
 			if(differenza > 0){ //la quota non e' gia' piena
-				console.log("[D] richiedo "+differenza+" quota")
+				console.log("[D1] richiedo "+differenza+" quota")
 				differenza = Math.min(differenza, user.quota.s)
-				console.log("[D] ottenuta "+differenza+" dalla quota settimanale")
+				console.log("[D1] ottenuta "+differenza+" dalla quota settimanale")
 				new_quota.s -= differenza
 				new_quota.g += differenza
-				console.log("[D] nuova quota utente "+user.username+": "+new_quota)
+				console.log("[D1] nuova quota utente "+user.username+": "+new_quota)
 
 				if(!dry){
-					console.log("[D] applico nuova quota")
+					console.log("[D1] applico nuova quota")
 					mongo.db(dbname)
 						.collection("utente")
 						.updateOne(
@@ -88,6 +88,59 @@ exports.daily = async function(dry, credentials) {
 				}
 			}
 		})
+
+		/* [2] CALCOLO SQUEAL POP/IMPOP/CONTR */
+
+		result = []
+
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.find()
+			.project({_id:0})
+			.forEach( (r) => {
+				result.push(r)
+			} );
+
+		result.forEach((squeal) => {
+			let visual = squeal.visualizzazioni
+			let reac_pos = squeal.reazioni.positive.concordo + squeal.reazioni.positive.mi_piace + squeal.reazioni.positive.adoro
+			let reac_neg = squeal.reazioni.negative.sono_contrario + squeal.reazioni.negative.mi_disgusta + squeal.reazioni.negative.odio
+			let mc = 0.25 * visual
+			console.log("[D2] squeal "+squeal.post_id+", visual "+visual+", positive "+reac_pos+", negative"+reac_neg+", massa critica "+mc)
+
+			let etichetta = null
+			if(reac_pos>mc && reac_neg>mc){
+				console.log("[D2] squeal controverso")
+				etichetta = "controverso"
+			} else if(reac_pos>mc){
+				console.log("[D2] squeal popolare")
+				etichetta = "popolare"
+			} else if(reac_neg>mc){
+				console.log("[D2] squeal impopolare")
+				etichetta = "impopolare"
+			}
+
+			if(!dry){//applico modifiche
+				console.log("[D2] applico modifiche")
+				if(etichetta !== null){
+					mongo.db(dbname)
+						.collection("messaggio")
+						.updateOne(
+							{post_id: squeal.post_id},
+							{$set: {categoria: etichetta}}
+						)
+					if(etichetta === "controverso"){ //aggiungo il post al canale $CONTROVERSO
+						mongo.db(dbname)
+							.collection("messaggio")
+							.updateOne(
+								{post_id: squeal.post_id},
+								{$push: {destinatari: {$literal: "$CONTROVERSO"}}}
+							)
+					}
+				}
+			}
+		})
+
 		return "ok"
 	} catch (e) {
 		console.log(e)
