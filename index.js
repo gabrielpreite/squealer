@@ -41,6 +41,7 @@ const sessions = require('express-session');
 const { escapeExpression } = require('handlebars');
 const upload = require('./multer');
 const { Timestamp } = require('mongodb');
+const schedule = require('node-schedule');
 
 /* ========================== */
 /*                            */
@@ -71,6 +72,16 @@ app.use(sessions({
 
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
+
+/* ========================== */
+/*                            */
+/*           SCHEDULE         */
+/*                            */
+/* ========================== */
+
+const job = schedule.scheduleJob('/1 * * * *', function(){
+    console.log('The answer to life, the universe, and everything!');
+});
 
 /* ========================== */
 /*                            */
