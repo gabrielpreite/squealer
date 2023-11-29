@@ -28,11 +28,71 @@ let fn_canale = "/public/data/canale.json"
 let fn_messaggio = "/public/data/messaggio.json"
 let fn_notifica = "/public/data/notifica.json"
 let fn_chat = "/public/data/chat.json"
+let fn_defaults = "/public/data/defaults.json"
 let dbname = "db"
 
 const { MongoClient } = require("mongodb");
 const fs = require('fs').promises;
 const template = require(global.rootDir + '/scripts/tpl.js');
+
+/* ========================== */
+/*                            */
+/*           SCHEDULE         */
+/*                            */
+/* ========================== */
+
+exports.daily = async function(dry, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	
+	try {
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		/* RESET QUOTA */
+		console.log("[D] Inizio reset quota")
+		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
+		let def_json = JSON.parse(def_file)
+		const DEF_G = def_json.quota_default.g
+		const DEF_S = def_json.quota_default.s
+		const DEF_M = def_json.quota_default.m
+
+		let result = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find()
+			.project({_id:0})
+			.forEach( (r) => {
+				result.push(r)
+			} );
+
+		result.forEach((user) =>{
+			let new_quota = {"g": user.quota.g, "s": user.quota.s, "m": user.quota.m}
+			console.log("[D] quota utente "+user.username+": "+user.quota)
+			let differenza = DEF_G - user.quota.g //quota necessaria per tornare al valore di default
+			if(differenza > 0){ //la quota non e' gia' piena
+				console.log("[D] richiedo "+differenza+" quota")
+				differenza = Math.min(differenza, user.quota.s)
+				console.log("[D] ottenuta "+differenza+" dalla quota settimanale")
+				new_quota.s -= differenza
+				new_quota.g += differenza
+				console.log("[D] nuova quota utente "+user.username+": "+new_quota)
+
+				if(!dry){
+					console.log("[D] applico nuova quota")
+					mongo.db(dbname)
+						.collection("utente")
+						.updateOne(
+							{username: user.username},
+							{$set: {quota: new_quota}}
+						)
+				}
+			}
+		})
+		return "ok"
+	} catch (e) {
+		console.log(e)
+	}
+}
 
 /* ========================== */
 /*                            */
