@@ -44,11 +44,13 @@
           <img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic">
           <div class="dropdown" id="username">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <strong>
-              <script>
-                document.write(get_cookie_by_name("username"))
-              </script>
-            </strong>
+              <strong>
+                <h1>
+                  <script>
+                    document.write(get_cookie_by_name("username"))
+                  </script>
+                </h1>
+              </strong>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
               <h6 class="dropdown-header">Gestisci altri account</h6>
@@ -78,29 +80,29 @@
           <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal" data-bs-target="#shop-quota" aria-haspopup="true" title="compra più quota">
             <i class="fas fa-shopping-cart"></i>
           </button>
-    </div>
-    <div class="lateral-buttons">
-      <div id="notifiche">
-      <button type="button" class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche">
-        <i class="fas fa-bell"></i>
-      </button>
-      <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
-        <h3 class="dropdown-header">Notifiche</h3>
       </div>
-    </div>
-    <!-- VERSIONE HOME
-    <div id="home">
-      <button class="btn btn-unstyled" id="homeButton">
-        <i class="fas fa-home"></i>
-      </button>
-    </div>
-      -->
-    <div id="impostazioni">
-      <button type="button" class="btn btn-unstiled" id="settingsButton" title="Impostazioni" onclick="redirectToSettings()">
-        <i class="fas fa-cog" aria-hidden="true"></i>
-      </button>
-    </div>
-    </div>
+      <div class="lateral-buttons">
+        <div id="notifiche">
+        <button type="button" class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche">
+          <i class="fas fa-bell"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
+          <h3 class="dropdown-header">Notifiche</h3>
+        </div>
+      </div>
+      <!-- VERSIONE HOME
+      <div id="home">
+        <button class="btn btn-unstyled" id="homeButton">
+          <i class="fas fa-home"></i>
+        </button>
+      </div>
+        -->
+      <div id="impostazioni">
+        <button type="button" class="btn btn-unstiled" id="settingsButton" title="Impostazioni" onclick="redirectToSettings()">
+          <i class="fas fa-cog" aria-hidden="true"></i>
+        </button>
+      </div>
+      </div>
 
       </div>
     </header>
