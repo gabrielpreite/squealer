@@ -103,8 +103,8 @@ exports.daily = async function(dry, credentials) {
 
 		result.forEach((squeal) => {
 			let visual = squeal.visualizzazioni
-			let reac_pos = squeal.reazioni.positive.concordo + squeal.reazioni.positive.mi_piace + squeal.reazioni.positive.adoro
-			let reac_neg = squeal.reazioni.negative.sono_contrario + squeal.reazioni.negative.mi_disgusta + squeal.reazioni.negative.odio
+			let reac_pos = squeal.reazioni.positive.concordo.length + squeal.reazioni.positive.mi_piace.length + squeal.reazioni.positive.adoro.length
+			let reac_neg = squeal.reazioni.negative.sono_contrario.length + squeal.reazioni.negative.mi_disgusta.length + squeal.reazioni.negative.odio.length
 			let mc = 0.25 * visual
 			console.log("[D2] squeal "+squeal.post_id+", visual "+visual+", positive "+reac_pos+", negative"+reac_neg+", massa critica "+mc)
 
