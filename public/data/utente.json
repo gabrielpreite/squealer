@@ -13,7 +13,7 @@
         "acquisti": [],
         "popolarita": {
           "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11"],
-          "valori": [10, 5, -5]
+          "valori": [10, 5, 30]
         },
         "canali_seguiti": [
             "$free"
