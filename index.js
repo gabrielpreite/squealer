@@ -79,16 +79,22 @@ app.enable('trust proxy');
 /*                            */
 /* ========================== */
 
-const daily = schedule.scheduleJob({ hour: 0, minute: 15, tz: 'Europe/Rome' }, () => {
+const daily = schedule.scheduleJob({ hour: 0, minute: 5, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
     console.log("[D] Starting daily job at "+timestamp.toLocaleDateString());
     mymongo.daily(false, mongoCredentials)
     //todo messaggi automatizzati
 });
 
-const weekly = schedule.scheduleJob({ hour: 16, minute: 15, dayOfWeek: 4, tz: 'Europe/Rome' }, () => {
+const weekly = schedule.scheduleJob({ hour: 0, minute: 3, dayOfWeek: 1, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[W] Starting daily job at "+timestamp.toLocaleDateString());
+    console.log("[W] Starting weekly job at "+timestamp.toLocaleDateString());
+    mymongo.weekly(false, mongoCredentials)
+});
+
+const monthly = schedule.scheduleJob({ hour: 0, minute: 1, dayOfMonth: 1, tz: 'Europe/Rome' }, () => {
+    let timestamp = new Date()
+    console.log("[M] Starting monthly job at "+timestamp.toLocaleDateString());
     mymongo.weekly(false, mongoCredentials)
 });
 
@@ -199,6 +205,11 @@ app.get('/db/dry_daily', async function(req, res) {
 // dry weekly run
 app.get('/db/dry_weekly', async function(req, res) {
 	res.send(await mymongo.weekly(false, mongoCredentials))
+});
+
+// dry monthly run
+app.get('/db/dry_monthly', async function(req, res) {
+	res.send(await mymongo.monthly(false, mongoCredentials))
 });
 
 /* ========================== */

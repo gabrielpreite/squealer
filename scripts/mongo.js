@@ -302,6 +302,52 @@ exports.weekly = async function (dry, credentials) {
 	}
 }
 
+exports.monthly = async function (dry, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+
+	try {
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		/* [1] RESET QUOTA */
+		console.log("[M1] Inizio reset quota")
+		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
+		let def_json = JSON.parse(def_file)
+		const DEF_G = def_json.quota_default.g
+		const DEF_S = def_json.quota_default.s
+		const DEF_M = def_json.quota_default.m
+
+		let result = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find()
+			.project({ _id: 0 })
+			.forEach((r) => {
+				result.push(r)
+			});
+
+		result.forEach((user) => {
+			let new_quota = { "g": user.quota.g, "s": user.quota.s, "m": DEF_M }
+			console.log("[M1] nuova quota " + user.username + ": " + JSON.stringify(user.quota))
+
+			if (!dry) {
+				console.log("[M1] applico nuova quota")
+				mongo.db(dbname)
+					.collection("utente")
+					.updateOne(
+						{ username: user.username },
+						{ $set: { quota: new_quota } }
+					)
+			}
+		})
+		console.log("[M1] Fine reset quota")
+
+		return "ok"
+	} catch (e) {
+		console.log(e)
+	}
+}
+
 /* ========================== */
 /*                            */
 /*           MONGODB          */
