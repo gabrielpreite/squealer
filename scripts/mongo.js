@@ -278,6 +278,7 @@ exports.weekly = async function(dry, credentials) {
 						}
 					)
 			}
+			console.log("popolarita post: "+pop)
 		})
 
 		console.log("[W2] fine calcolo popolarita")
