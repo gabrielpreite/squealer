@@ -252,6 +252,7 @@ exports.weekly = async function(dry, credentials) {
 		console.log("[W2] intervallo settimanale: "+intervallo)
 
 		//ricerco i post per ogni utente
+		let update = []
 		result.forEach((user) => {
 			console.log("[W2] utente "+user.username)
 			let pop = 0
@@ -262,30 +263,33 @@ exports.weekly = async function(dry, credentials) {
 				.forEach( (r) => {
 					console.log("[W2] post_id "+r.post_id+" di "+user.username+" con categoria "+r.categoria)
 					if(r.categoria === "popolare") {
-						console.log("pop")
 						pop += 1
 					}
 					if(r.categoria === "impopolare") {
-						console.log("imp")
 						pop -= 1
 					}
 				} );
 			console.log("[W2] popolarita' totale: "+pop)
-			if(!dry){
-				console.log("[W2] aggiungo record popolarita")
+			update.push({"user": user.username, "popolarita": pop})
+		})
+
+		if(!dry){
+			console.log("[W2] aggiungo record popolarita")
+			update.forEach((el) => {
+				console.log(el)
 				mongo.db(dbname)
 					.collection("utente")
 					.updateOne(
-						{ username: user.username },
+						{ username: el.user },
 						{ $push: {
 								"popolarita.settimane": intervallo,
-								"popolarita.valori": pop
+								"popolarita.valori": el.popolarita
 							}
 						}
 					)
-			}
-			console.log("popolarita post: "+pop)
-		})
+
+			})
+		}
 
 		console.log("[W2] fine calcolo popolarita")
 
