@@ -454,40 +454,6 @@
                }
 
 
-        function getPreviousMonday(giorno) {
-          date = new Date(giorno);
-          var dayOfWeek = date.getDay(); // Ottieni il giorno della settimana (0 = Domenica, 1 = Lunedì, ..., 6 = Sabato)
-          if (dayOfWeek == 1) {
-            // La data fornita è già un lunedì, quindi la restituisci senza modificarla
-            return date;
-          } else {
-            // Calcola quanti giorni devi retrocedere per raggiungere il lunedì precedente
-            var daysToSubtract = (dayOfWeek == 0) ? 6 : dayOfWeek - 1;
-
-            // Crea una copia della data fornita e sottrai i giorni necessari per ottenere il lunedì precedente
-            var previousMonday = new Date(date);
-            previousMonday.setDate(date.getDate() - daysToSubtract);
-
-            return previousMonday;
-          }
-        }
-
-        var startDate = new Date(postData[postData.length - 1]);
-        var endDate = new Date(getPreviousMonday(postData[0]));
-
-        var weeksData = [];
-        while (startDate <= endDate) {
-          var weekStart = new Date(startDate);
-          var weekEnd = new Date(startDate);
-          weekEnd.setDate(weekEnd.getDate() + 6);
-
-          var weekLabel = weekStart.toLocaleDateString() + ' - ' + weekEnd.toLocaleDateString();
-          weeksData.push({ week: weekLabel, start: weekStart, end: weekEnd });
-
-          startDate.setDate(startDate.getDate() + 7);
-        }
-
-
         // COMMENTI
         corpoSqueals = corpoSqueals.slice(0,5);
         var corpoSquealsTagliati = corpoSqueals.map((frase) => {
@@ -601,24 +567,28 @@
         });
 
         //SQUEAL
-        var postFrequenza = new Array(weeksData.length).fill(0); // Inizializza un array con zeri, uno per ogni settimana
+        function calcolaFrequenza(settPopolarita, postData) {
+          const postFrequenza = [];
 
-        for (var i = 0; i < postData.length; i++) {
-          var postDate = new Date(postData[i]);
+          settPopolarita.forEach(settimana => {
+            const [inizio, fine] = settimana.split(' - ');
 
-          for (var j = 0; j < weeksData.length; j++) {
-            var weekStart = weeksData[j].start;
-            var weekEnd = weeksData[j].end;
+            const count = postData.filter(data => {
+              const dataFormatted = new Date(data);
+              const inizioSettimanaFormatted = new Date(inizio);
+              const fineSettimanaFormatted = new Date(fine);
 
-            if (postDate >= weekStart && postDate <= weekEnd) {
-              // Incrementa il conteggio di post per la settimana corrente
-              postFrequenza[j]++;
-            }
-          }
+              return dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
+            }).length;
+
+            postFrequenza.push(count);
+          });
+
+          return postFrequenza;
         }
 
-
-        // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in weeksData
+        const postFrequenza = calcolaFrequenza(settPopolarita, postData);
+        // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in settPopolarita
 
         // Continua con la creazione del grafico come nel tuo codice originale
         var canvas = document.getElementById('squealChart');
@@ -627,11 +597,7 @@
         var chart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: weeksData.map(function (weekData) {
-              var start = weekData.start.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
-              var end = weekData.end.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
-              return start + ' - ' + end;
-            }),
+            labels: settPopolarita,
             datasets: [{
               label: 'Numero di squeals postati',
               data: postFrequenza, // Utilizza il nuovo array postFrequenza
@@ -700,13 +666,13 @@
           }
 
           for (let i = 0; i < trends.length; i++) {
-            const tile = document.createElement('a');
+            const tile = document.createElement('button');
             tile.classList.add('mosaic-tile');
             tile.style.backgroundColor = getRandomPastelColor();
             tile.textContent = trends[i];
             tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
             tile.style.height = tileSize + 'px';
-            tile.href = '#'; // Imposta l'URL del link
+            tile.onClick = ""; // Imposta l'URL del link
 
             container.appendChild(tile);
           }
