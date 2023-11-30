@@ -261,8 +261,14 @@ exports.weekly = async function(dry, credentials) {
 				.project({_id:0})
 				.forEach( (r) => {
 					console.log("[W2] post_id "+r.post_id+" di "+user.username+" con categoria "+r.categoria)
-					if(r.categoria === "popolare") { pop++ }
-					if(r.categoria === "impopolare") { pop-- }
+					if(r.categoria === "popolare") {
+						console.log("pop")
+						pop += 1
+					}
+					if(r.categoria === "impopolare") {
+						console.log("imp")
+						pop -= 1
+					}
 				} );
 			console.log("[W2] popolarita' totale: "+pop)
 			if(!dry){
