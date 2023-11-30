@@ -673,7 +673,7 @@
             tile.textContent = trends[i];
             tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
             tile.style.height = tileSize + 'px';
-            tile.onClick = `search_trend(${trends[i]})`; // chiamata per ricerca per keyword
+            tile.onclick = `search_trend(${trends[i]})`; // chiamata per ricerca per keyword
 
             container.appendChild(tile);
           }
