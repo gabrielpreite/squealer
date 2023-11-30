@@ -38,28 +38,21 @@
         </div>
         <div id="managed-account-username" class="btn btn-primary" hidden="true"></div>
       </div>
-      <div id="quota">
-        <div class="char-count-item">
-          <span class="count" id="charCount_mese">
-
-          </span>
+      <div id="quota" aria-label="Sezione quota">
+        <div class="char-count-item" aria-label="Caratteri rimanenti questo mese">
+          <span class="count" id="charCount_mese" aria-live="polite"></span>
           <span class="label">Mese</span>
         </div>
-        <div class="char-count-item">
-          <span class="count" id="charCount_sett">
-
-          </span>
+        <div class="char-count-item" aria-label="Caratteri rimanenti questa settimana">
+          <span class="count" id="charCount_sett" aria-live="polite"></span>
           <span class="label">Settimana</span>
         </div>
-        <div class="char-count-item">
-          <span class="count" id="charCount_giorno">
-
-          </span>
+        <div class="char-count-item" aria-label="Caratteri rimanenti oggi">
+          <span class="count" id="charCount_giorno" aria-live="polite"></span>
           <span class="label">Giorno</span>
         </div>
-        <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal"
-          data-bs-target="#shop-quota">
-          <i class="fas fa-shopping-cart"></i>
+        <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal" data-bs-target="#shop-quota" aria-haspopup="true" title="compra più quota">
+          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
         </button>
       </div>
       <div class="lateral-buttons">
@@ -141,7 +134,7 @@
       <div id="profilo">
         <h2 class="mb-4">Impostazioni Informazioni Personali</h2>
 
-        <form role="form" aria-labelledby="Form impostazioni personali" id="form_info">
+        <form role="form" aria-label="Form impostazioni personali" id="form_info">
           <div class="form-group">
             <label for="newName" class="label-form">Nome: </label>
             <label for="currentName" id="currentName">nome</label>
@@ -172,7 +165,7 @@
       <div id="account" >
         <h2 class="mb-4">Impostazioni mail e password</h2>
 
-        <form role="form" aria-labelledby="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
+        <form role="form" aria-label="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
           <div class="form-group">
             <label for="newEmail" class="label-form">Email: </label>
             <label for="currentEmail" id="currentEmail">email</label>
@@ -211,10 +204,10 @@
         <div id="div_account_gestiti"></div>
 
         <form id="update_smm" enctype="multipart/form-data">
-          <h3>SMM che gestisce il tuo account</h3>
+          <label for="current_smm">SMM che gestisce il tuo account</label>
           <input type="text" id="current_smm" name="current_smm" readonly>
           <input type="submit" class="btn btn-danger" value="Rimuovi SMM">
-          <h5>Aggiungi/cambia SMM</h5>
+          <label for="new_smm">Aggiungi/cambia SMM</label>
           <input type="text" id="new_smm" name="new_smm">
           <input type="submit" value="Conferma">
         </form>
