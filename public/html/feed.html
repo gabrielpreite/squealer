@@ -574,7 +574,8 @@
             const [inizio, fine] = settimana.split(' - ');
 
             const count = postData.filter(data => {
-              const dataFormatted = new Date(data);
+              const [anno, mese, giorno] = data.split('-');
+              const dataFormatted = new Date(anno, mese - 1, giorno); // Mese inizia da 0
               const inizioSettimanaFormatted = new Date(inizio);
               const fineSettimanaFormatted = new Date(fine);
 
