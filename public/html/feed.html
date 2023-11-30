@@ -44,17 +44,17 @@
         <div id="profile">
           <img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic">
           <div class="dropdown" id="username">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <strong>
-                <h1>
+            <h1>
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <strong>
                   <script>
                     document.write(get_cookie_by_name("username"))
                   </script>
-                </h1>
-              </strong>
-            </button>
+                </strong>
+              </button>
+            </h1>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
-              <h6 class="dropdown-header">Gestisci altri account</h6>
+              <h3 class="dropdown-header">Gestisci altri account</h3>
             </div>
           </div>
           <button type="button" id="managed-account-username" class="btn btn-primary" title="Torna all'account SMM" onclick="switch_to_smm()" hidden="true"></button>
@@ -152,7 +152,7 @@
         <a href="" class="channel-button" style="margin-right: 5px;" aria-label="Canale meteo"><i class="far fa-sun" aria-hidden="true"></i> Meteo</a>
       </div>
 
-      <h4 class="statistiche-title" style="text-align: left">Tendenze</h4>
+      <h3 class="statistiche-title" style="text-align: left">Tendenze</h3>
       <ol class="tendenze-list" aria-label="Topic di tendenza">
         <li class="tendenze-item">
           <span class="tendenze-tag"><a href="#">#hashtag</a></span>
@@ -176,22 +176,22 @@
         </li>
       </ol>
 
-      <h4 class="statistiche-title">Trend</h4>
+      <h3 class="statistiche-title">Trend</h3>
       <div class="grafico mosaic-container">
         <!-- Le tessere del mosaico saranno generate dinamicamente con JavaScript -->
       </div>
 
-      <h4 class="statistiche-title">Cronologia Squeal</h4>
+      <h3 class="statistiche-title">Cronologia Squeal</h3>
       <div class="grafico" id="grafico-squeal">
         <canvas id="squealChart"></canvas>
       </div>
 
-      <h4 class="statistiche-title">Andamento Popolarità</h4>
+      <h3 class="statistiche-title">Andamento Popolarità</h3>
       <div class="grafico" id="grafico-popolarità">
         <canvas id="popolaritaChart"></canvas>
       </div>
 
-      <h4 class="statistiche-title">Numero Commenti</h4>
+      <h3 class="statistiche-title">Numero Commenti</h3>
       <div class="grafico" id="grafico-commenti">
         <canvas id="commentiChart"></canvas>
       </div>
