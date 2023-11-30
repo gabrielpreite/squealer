@@ -640,11 +640,17 @@ function inizia_chat(username, azione) {
           }
       }
     });
+    scrollChatToBottom();
   } else if (azione == 'chiudi') {
     document.getElementById("barra-destra").hidden = false;
     document.getElementById("chat").hidden = true;
     document.getElementById("messaggi_chat").innerHTML = ""
   }
+}
+
+function scrollChatToBottom() {
+    var chatContainer = document.getElementById('chat-container');
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 function aggiungiMessaggio(){
@@ -653,7 +659,7 @@ function aggiungiMessaggio(){
 
   $.ajax({
     type: 'POST',
-    dataType: "json", 
+    dataType: "json",
     url: `https://site212251.tw.cs.unibo.it/user/chat/${target}`,
     headers: { },
     data: { current_user: CURRENT_USER, text: contenuto},
@@ -665,4 +671,5 @@ function aggiungiMessaggio(){
         console.error("Error:", error);
     }
   });
+  scrollChatToBottom();
 }
