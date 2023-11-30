@@ -183,6 +183,110 @@ exports.daily = async function(dry, credentials) {
 	}
 }
 
+exports.weekly = async function(dry, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	
+	try {
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		/* [1] RESET QUOTA */
+		console.log("[W1] Inizio reset quota")
+		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
+		let def_json = JSON.parse(def_file)
+		const DEF_G = def_json.quota_default.g
+		const DEF_S = def_json.quota_default.s
+		const DEF_M = def_json.quota_default.m
+
+		let result = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find()
+			.project({_id:0})
+			.forEach( (r) => {
+				result.push(r)
+			} );
+
+		result.forEach((user) =>{
+			let new_quota = {"g": user.quota.g, "s": user.quota.s, "m": user.quota.m}
+			console.log("[W1] quota utente "+user.username+": "+JSON.stringify(user.quota))
+			let differenza = DEF_S - user.quota.s //quota necessaria per tornare al valore di default
+			if(differenza > 0){ //la quota non e' gia' piena
+				console.log("[W1] richiedo "+differenza+" quota")
+				differenza = Math.min(differenza, user.quota.m)
+				console.log("[W1] ottenuta "+differenza+" dalla quota mensile")
+				new_quota.m -= differenza
+				new_quota.s += differenza
+				console.log("[W1] nuova quota utente "+user.username+": "+new_quota)
+
+				if(!dry){
+					console.log("[W1] applico nuova quota")
+					mongo.db(dbname)
+						.collection("utente")
+						.updateOne(
+							{username: user.username},
+							{$set: {quota: new_quota}}
+						)
+				}
+			}
+		})
+		console.log("[W1] Fine reset quota")
+
+		/* [2] CALCOLO POPOLARITA' UTENTE */
+
+		console.log("[W2] inizio calcolo popolarita")
+
+		//trovo intervallo settimanale
+		let curr_date = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+		};
+		let intervallo = curr_date.toLocaleDateString("en-US", options);
+		intervallo += " - "
+
+		let future_date = new Date(curr_date)
+		future_date.setDate(curr_date.getDate() + 6)
+		intervallo += future_date.toLocaleDateString("en-US", options)
+
+		console.log("[W2] intervallo settimanale: "+intervallo)
+
+		//ricerco i post per ogni utente
+		result.forEach((user) => {
+			console.log("[W2] utente "+user.username)
+			let pop = 0
+			mongo.db(dbname)
+				.collection("messaggio")
+				.find({utente: user.username})
+				.project({_id:0})
+				.forEach( (r) => {
+					if(r.categoria === "popolare") { pop++ }
+					if(r.categoria === "impopolare") { pop-- }
+				} );
+			console.log("[W2] popolarita' totale: "+pop)
+			if(!dry){
+				console.log("[W2] aggiungo record popolarita")
+				mongo.db(dbname)
+					.collection("utente")
+					.updateOne(
+						{ username: user.username },
+						{ $push: {
+								"popolarita.settimane": intervallo,
+								"popolarita.valori": pop
+							}
+						}
+					)
+			}
+		})
+
+		console.log("[W2] fine calcolo popolarita")
+
+		return "ok"
+	} catch (e) {
+		console.log(e)
+	}
+}
+
 /* ========================== */
 /*                            */
 /*           MONGODB          */
