@@ -328,7 +328,7 @@ exports.monthly = async function (dry, credentials) {
 
 		result.forEach((user) => {
 			let new_quota = { "g": user.quota.g, "s": user.quota.s, "m": DEF_M }
-			console.log("[M1] nuova quota " + user.username + ": " + JSON.stringify(user.quota))
+			console.log("[M1] nuova quota " + user.username + ": " + JSON.stringify(new_quota))
 
 			if (!dry) {
 				console.log("[M1] applico nuova quota")
