@@ -611,6 +611,11 @@ function compra_quota(qnt){
   })
 }
 
+function scrollChatToBottom() {
+    var chatContainer = document.getElementById('chat-container');
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
 function inizia_chat(username, azione) {
   if (azione == 'apri') {
     document.getElementById("barra-destra").hidden = true;
@@ -633,6 +638,7 @@ function inizia_chat(username, azione) {
             $("#messaggi_chat").append(`<div class="message received"><div class="message-content"><p>${el.text}</p></div></div>`)
           }
         })
+        scrollChatToBottom();
       },
       error: function (xhr, status, error) {
           if (xhr.status === 404) {
@@ -640,17 +646,11 @@ function inizia_chat(username, azione) {
           }
       }
     });
-    scrollChatToBottom();
   } else if (azione == 'chiudi') {
     document.getElementById("barra-destra").hidden = false;
     document.getElementById("chat").hidden = true;
     document.getElementById("messaggi_chat").innerHTML = ""
   }
-}
-
-function scrollChatToBottom() {
-    var chatContainer = document.getElementById('chat-container');
-    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 function aggiungiMessaggio(){
@@ -671,5 +671,4 @@ function aggiungiMessaggio(){
         console.error("Error:", error);
     }
   });
-  scrollChatToBottom();
 }
