@@ -260,7 +260,7 @@ exports.weekly = async function(dry, credentials) {
 				.find({utente: user.username})
 				.project({_id:0})
 				.forEach( (r) => {
-					console.log("[W2] post_id "+r.post_id+" di "+user.username)
+					console.log("[W2] post_id "+r.post_id+" di "+user.username+" con categoria "+r.categoria)
 					if(r.categoria === "popolare") { pop++ }
 					if(r.categoria === "impopolare") { pop-- }
 				} );
