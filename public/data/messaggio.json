@@ -93,7 +93,7 @@
     "reazioni": {
       "positive": {
         "concordo": [],
-        "mi_piace": [],
+        "mi_piace": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
         "adoro": []
       },
       "negative": {
