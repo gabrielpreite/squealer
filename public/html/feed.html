@@ -667,13 +667,13 @@
           }
 
           for (let i = 0; i < trends.length; i++) {
-            const tile = document.createElement('a');
+            const tile = document.createElement('button');
             tile.classList.add('mosaic-tile');
             tile.style.backgroundColor = getRandomPastelColor();
             tile.textContent = trends[i];
             tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
             tile.style.height = tileSize + 'px';
-            tile.href = '#'; // Imposta l'URL del link
+            tile.onClick = ""; // Imposta l'URL del link
 
             container.appendChild(tile);
           }
