@@ -525,6 +525,19 @@
   flex-direction: column;
 }
 
+.chat-header {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #262d33;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+#chat_title {
+    text-align: center;
+}
+
 .message {
   margin-bottom: 10px;
   padding: 10px;
@@ -561,6 +574,7 @@
 .input-container input {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  width: 250px;
 }
 
 #messaggioInput {
