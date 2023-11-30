@@ -525,6 +525,19 @@
   flex-direction: column;
 }
 
+.chat-header {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #262d33;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+#chat_title {
+    text-align: center;
+}
+
 .message {
   margin-bottom: 10px;
   padding: 10px;
@@ -549,10 +562,19 @@
   bottom: 20px;
   right: 0%;
   transform: translateX(-12.5%);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
   display: flex;
   width: 300px;
+  justify-content: space-around;
+}
+
+.input-container form {
+    display: flex;
+}
+
+.input-container input {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 250px;
 }
 
 #messaggioInput {
