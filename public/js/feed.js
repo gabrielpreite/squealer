@@ -31,9 +31,15 @@ function aggiungi_squeal(squeals) {
       const at = /(?:^|\s)@(\w+)/g;
       let at_arr = squeals[i].corpo.match(at);
       arr_trend.push(...squeals[i].corpo.match(/#\w+/g) || []);
+      let ht_arr = squeals[i].corpo.match(/#\w+/g) //match su hashtag
       //url in text
       const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\/\S*)?\b/g;
       const url_arr = squeals[i].corpo.match(url);
+      if(ht_arr != null){
+        ht_arr.forEach(function(hashtag) {
+          testo_squeal = testo_squeal.replace(hashtag,'<button class="btn_hashtag" onclick="ricerca_squeal(this)">' + hashtag + '</button>');
+        });
+      }
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
           testo_squeal = testo_squeal.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
@@ -292,7 +298,11 @@ function ricerca_squeal(elem) {
     }
     if (tipo == "$") {
       tipo = "channel";
-    } else {
+    }
+    if (tipo == "#") {
+      tipo = "keyword"
+    }
+    else {
       if (query[0] == "@") {
         let length = query.length;
         query = query.slice(1,length);
@@ -319,7 +329,7 @@ function ricerca_squeal(elem) {
   }
 
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
-  aggiungi_info(all_info.meta);
+  if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
 
   squeals = all_info.post;
   return all_info;
@@ -671,4 +681,22 @@ function aggiungiMessaggio(){
         console.error("Error:", error);
     }
   });
+}
+
+function search_trend(keyword){
+  let all_info;
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/squeal/by_keyword`,
+    headers: { },
+    data: { query: keyword, target: CURRENT_USER },
+    success: function (data, status, xhr) {
+      all_info = data.data;
+    }
+  });
+
+  rimpiazza_squeals(all_info.post, "data");
+  squeals = all_info.post;
 }
