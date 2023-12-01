@@ -790,7 +790,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
         response = await mymongo.add_squeal(req.body, mongoCredentials)
 
         //ghigliottina
-        console.log(response)
+        console.log(JSON.stringify(response))
         let post_id = response.data.insertedId
         if(req.body.ghigliottina){
             const ghigliottina = {
@@ -801,14 +801,16 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 job: null
             }
 
-            ghigliottina.job = schedule.scheduleJob(`*/5 * * * *`, () => {
+            ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
                 let dt = new Date()
                 if (ghigliottina.counter > 0) {
                   const nextElement = ghigliottina.parole[5-ghigliottina.counter];
                   console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+                  console.log("aggiungo commento a post "+ghigliottina.ref_id)
                 }
                 if (game.counter === 0) {
                     console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                    console.log("aggiungo commento a post "+ghigliottina.ref_id)
                     game.job.cancel();
                 }
                 ghigliottina.counter--;
