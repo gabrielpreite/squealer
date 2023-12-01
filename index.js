@@ -806,9 +806,11 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 if (ghigliottina.counter > 0) {
                   const nextElement = ghigliottina.parole[5-ghigliottina.counter];
                   console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+                  console.log("aggiungo commento a post "+ghigliottina.ref_id)
                 }
                 if (game.counter === 0) {
                     console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                    console.log("aggiungo commento a post "+ghigliottina.ref_id)
                     game.job.cancel();
                 }
                 ghigliottina.counter--;
