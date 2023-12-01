@@ -579,14 +579,23 @@
               const inizioSettimanaFormatted = new Date(inizio);
               const fineSettimanaFormatted = new Date(fine);
 
-              return dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
+              const isInWeek = dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
+
+              console.log(`Data: ${dataFormatted}, Inizio Settimana: ${inizioSettimanaFormatted}, Fine Settimana: ${fineSettimanaFormatted}, isInWeek: ${isInWeek}`);
+
+              return isInWeek;
             }).length;
+
+            console.log(`Count for ${settimana}: ${count}`);
 
             postFrequenza.push(count);
           });
 
+          console.log('Final postFrequenza:', postFrequenza);
+
           return postFrequenza;
         }
+
 
         const postFrequenza = calcolaFrequenza(settPopolarita, postData);
         // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in settPopolarita
