@@ -81,20 +81,20 @@ app.enable('trust proxy');
 
 const daily = schedule.scheduleJob({ hour: 0, minute: 5, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[D] Starting daily job at "+timestamp.toLocaleDateString());
+    console.log("[D] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     mymongo.daily(false, mongoCredentials)
     //todo messaggi automatizzati
 });
 
 const weekly = schedule.scheduleJob({ hour: 0, minute: 3, dayOfWeek: 1, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[W] Starting weekly job at "+timestamp.toLocaleDateString());
+    console.log("[W] Starting weekly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     mymongo.weekly(false, mongoCredentials)
 });
 
 const monthly = schedule.scheduleJob({ hour: 0, minute: 1, dayOfMonth: 1, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[M] Starting monthly job at "+timestamp.toLocaleDateString());
+    console.log("[M] Starting monthly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     mymongo.weekly(false, mongoCredentials)
 });
 
