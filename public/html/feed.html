@@ -576,9 +576,10 @@
             const [fineGiorno, fineMese, fineAnno] = fine.split('/');
 
             const count = postData.filter(data => {
-              const dataFormatted = new Date(data);
-              const inizioSettimanaFormatted = new Date(inizioAnno, inizioMese - 1, inizioGiorno);
-              const fineSettimanaFormatted = new Date(fineAnno, fineMese - 1, fineGiorno);
+              const [anno, mese, giorno] = data.split('-');
+              const dataFormatted = new Date(`${anno}-${mese}-${giorno}`);
+              const inizioSettimanaFormatted = new Date(`${inizioAnno}-${inizioMese}-${inizioGiorno}`);
+              const fineSettimanaFormatted = new Date(`${fineAnno}-${fineMese}-${fineGiorno}`);
 
               const isInWeek = dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
 
@@ -596,7 +597,6 @@
 
           return postFrequenza;
         }
-
         const postFrequenza = calcolaFrequenza(settPopolarita, postData);
         // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in settPopolarita
 
