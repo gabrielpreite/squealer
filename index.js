@@ -802,12 +802,13 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
             }
 
             ghigliottina.job = schedule.scheduleJob(`*/5 * * * *`, () => {
+                let dt = new Date()
                 if (ghigliottina.counter > 0) {
                   const nextElement = ghigliottina.parole[5-ghigliottina.counter];
-                  console.log(nextElement);
+                  console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
                 }
                 if (game.counter === 0) {
-                    console.log("fine partita, la soluzione e "+ghigliottina.soluzione)
+                    console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
                     game.job.cancel();
                 }
                 ghigliottina.counter--;
