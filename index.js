@@ -816,6 +816,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 ghigliottina.counter--;
             })
             ghigliottine.push(ghigliottina)
+            console.log("start game")
         }
 
 
