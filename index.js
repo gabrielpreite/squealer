@@ -83,7 +83,6 @@ const daily = schedule.scheduleJob({ hour: 0, minute: 5, tz: 'Europe/Rome' }, ()
     let timestamp = new Date()
     console.log("[D] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     mymongo.daily(false, mongoCredentials)
-    //todo messaggi automatizzati
 });
 
 const weekly = schedule.scheduleJob({ hour: 0, minute: 3, dayOfWeek: 1, tz: 'Europe/Rome' }, () => {
