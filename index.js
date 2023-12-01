@@ -791,6 +791,8 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
 
         //ghigliottina
         console.log(JSON.stringify(response))
+        console.log(req.body.parole)
+        console.log(typeof req.body.parole)
         let post_id = response.data
         if(req.body.ghigliottina){
             const ghigliottina = {
