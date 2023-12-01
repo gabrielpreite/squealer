@@ -796,7 +796,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
         let post_id = response.data
         if(req.body.ghigliottina){
             const ghigliottina = {
-                "parole" : req.body.parole,
+                "parole" : req.body.parole.split(", "),
                 "soluzione" : req.body.soluzione,
                 "counter": 5,
                 "ref_id": post_id,
