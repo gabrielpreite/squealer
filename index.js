@@ -814,7 +814,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                     if (ghigliottina.counter === 0) {
                         console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
                         console.log("aggiungo commento a post "+ghigliottina.ref_id)
-                        game.job.cancel();
+                        ghigliottina.job.cancel();
                     }
                     ghigliottina.counter--;
                 } catch(e) {
