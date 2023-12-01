@@ -70,6 +70,8 @@ app.use(sessions({
     resave: false
 }));
 
+const ghigliottine = []
+
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
 
@@ -786,6 +788,33 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
         req.body.timestamp = date.getTime();
 
         response = await mymongo.add_squeal(req.body, mongoCredentials)
+
+        //ghigliottina
+        console.log(response)
+        let post_id = response.data.insertedId
+        if(req.body.ghigliottina){
+            const ghigliottina = {
+                "parole" : req.body.parole,
+                "soluzione" : req.body.soluzione,
+                "counter": 5,
+                "ref_id": post_id,
+                job: null
+            }
+
+            ghigliottina.job = schedule.scheduleJob(`*/5 * * * *`, () => {
+                if (ghigliottina.counter > 0) {
+                  const nextElement = ghigliottina.parole[5-ghigliottina.counter];
+                  console.log(nextElement);
+                }
+                if (game.counter === 0) {
+                    console.log("fine partita, la soluzione e "+ghigliottina.soluzione)
+                    game.job.cancel();
+                }
+                ghigliottina.counter--;
+            })
+        }
+
+        ghigliottine.push(ghigliottina)
 
         if(response["risultato"] == "successo"){
             res.status(200)
