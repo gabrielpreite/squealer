@@ -2017,7 +2017,7 @@ exports.add_squeal = async function (q, credentials) {
 
 		await mongo.close();
 
-		response["data"] = result[0]
+		response["data"] = String(newDocumentId)
 		response["risultato"] = "successo"
 
 		return response

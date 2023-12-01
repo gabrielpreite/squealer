@@ -791,40 +791,47 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
 
         //ghigliottina
         console.log(JSON.stringify(response))
-        let post_id = response.data.insertedId
+        console.log(req.body.parole)
+        console.log(typeof req.body.parole)
+        let post_id = response.data
         if(req.body.ghigliottina){
             const ghigliottina = {
-                "parole" : req.body.parole,
+                "parole" : req.body.parole.split(", "),
                 "soluzione" : req.body.soluzione,
                 "counter": 5,
                 "ref_id": post_id,
-                job: null
+                "job": null
             }
 
             ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
-                let dt = new Date()
-                if (ghigliottina.counter > 0) {
-                  const nextElement = ghigliottina.parole[5-ghigliottina.counter];
-                  console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
-                  console.log("aggiungo commento a post "+ghigliottina.ref_id)
-                }
-                if (game.counter === 0) {
-                    console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                try{
+                    let dt = new Date()
+                    if (ghigliottina.counter > 0) {
+                    const nextElement = ghigliottina.parole[5-ghigliottina.counter];
+                    console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
                     console.log("aggiungo commento a post "+ghigliottina.ref_id)
-                    game.job.cancel();
+                    }
+                    if (ghigliottina.counter === 0) {
+                        console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                        console.log("aggiungo commento a post "+ghigliottina.ref_id)
+                        ghigliottina.job.cancel();
+                    }
+                    ghigliottina.counter--;
+                } catch(e) {
+                    console.log(e)
                 }
-                ghigliottina.counter--;
             })
+            ghigliottine.push(ghigliottina)
+            console.log("start game")
         }
 
-        ghigliottine.push(ghigliottina)
 
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
         }
     } catch (e){
-        //response["errore"] = e.toString()
+        console.log(e)
         res.status(500)
         res.send(response)
     }
