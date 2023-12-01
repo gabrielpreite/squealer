@@ -824,7 +824,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
             res.send(response)
         }
     } catch (e){
-        //response["errore"] = e.toString()
+        console.log(e)
         res.status(500)
         res.send(response)
     }
