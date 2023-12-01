@@ -815,9 +815,9 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 }
                 ghigliottina.counter--;
             })
+            ghigliottine.push(ghigliottina)
         }
 
-        ghigliottine.push(ghigliottina)
 
         if(response["risultato"] == "successo"){
             res.status(200)
