@@ -190,6 +190,11 @@
   overflow: auto;
 }
 
+.btn_hashtag {
+  border: none;
+  background-color: transparent;
+}
+
 .squeal {
   width: 100%;
   height: auto;

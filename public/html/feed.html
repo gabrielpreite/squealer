@@ -572,17 +572,27 @@
           settPopolarita.forEach(settimana => {
             const [inizio, fine] = settimana.split(' - ');
 
-            const count = postData.filter(data => {
-              const [anno, mese, giorno] = data.split('-');
-              const dataFormatted = new Date(anno, mese - 1, giorno); // Mese inizia da 0
-              const inizioSettimanaFormatted = new Date(inizio);
-              const fineSettimanaFormatted = new Date(fine);
+            const [inizioGiorno, inizioMese, inizioAnno] = inizio.split('/');
+            const [fineGiorno, fineMese, fineAnno] = fine.split('/');
 
-              return dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
+            const count = postData.filter(data => {
+              const dataFormatted = new Date(data);
+              const inizioSettimanaFormatted = new Date(inizioAnno, inizioMese - 1, inizioGiorno);
+              const fineSettimanaFormatted = new Date(fineAnno, fineMese - 1, fineGiorno);
+
+              const isInWeek = dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
+
+              console.log(`Data: ${dataFormatted}, Inizio Settimana: ${inizioSettimanaFormatted}, Fine Settimana: ${fineSettimanaFormatted}, isInWeek: ${isInWeek}`);
+
+              return isInWeek;
             }).length;
+
+            console.log(`Count for ${settimana}: ${count}`);
 
             postFrequenza.push(count);
           });
+
+          console.log('Final postFrequenza:', postFrequenza);
 
           return postFrequenza;
         }
