@@ -46,11 +46,7 @@
           <div class="dropdown" id="username">
             <h1>
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <strong>
-                  <script>
-                    document.write(get_cookie_by_name("username"))
-                  </script>
-                </strong>
+
               </button>
             </h1>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
@@ -298,6 +294,7 @@
 
       <script>
         // INIT
+        document.getElementById("dropdownMenuButton").innerHTML = get_cookie_by_name("username");
         document.getElementById("chat_privata").addEventListener('submit', async event => {
           event.preventDefault();
           aggiungiMessaggio();
