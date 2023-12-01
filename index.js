@@ -801,7 +801,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 job: null
             }
 
-            ghigliottina.job = schedule.scheduleJob(`*/5 * * * *`, () => {
+            ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
                 let dt = new Date()
                 if (ghigliottina.counter > 0) {
                   const nextElement = ghigliottina.parole[5-ghigliottina.counter];
