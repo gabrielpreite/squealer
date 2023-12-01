@@ -2517,7 +2517,7 @@ exports.search_by_keyword = async function (q, credentials) {
 			.aggregate([
 				{
 					$match: {
-						corpo: { $regex: q.query },
+						corpo: { $regex: q.query, $options: 'i' },
 						risponde_a: null,
 						$or: [
 							{ tipo_destinatari: "canali" }, //post in canali
