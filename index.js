@@ -798,7 +798,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 "soluzione" : req.body.soluzione,
                 "counter": 5,
                 "ref_id": post_id,
-                job: null
+                "job": null
             }
 
             ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
