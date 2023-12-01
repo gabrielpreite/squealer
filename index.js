@@ -70,6 +70,8 @@ app.use(sessions({
     resave: false
 }));
 
+const ghigliottine = []
+
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
 app.enable('trust proxy');
 
@@ -787,12 +789,49 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
 
         response = await mymongo.add_squeal(req.body, mongoCredentials)
 
+        //ghigliottina
+        console.log(JSON.stringify(response))
+        console.log(req.body.parole)
+        console.log(typeof req.body.parole)
+        let post_id = response.data
+        if(req.body.ghigliottina){
+            const ghigliottina = {
+                "parole" : req.body.parole.split(", "),
+                "soluzione" : req.body.soluzione,
+                "counter": 5,
+                "ref_id": post_id,
+                "job": null
+            }
+
+            ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
+                try{
+                    let dt = new Date()
+                    if (ghigliottina.counter > 0) {
+                    const nextElement = ghigliottina.parole[5-ghigliottina.counter];
+                    console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+                    console.log("aggiungo commento a post "+ghigliottina.ref_id)
+                    }
+                    if (ghigliottina.counter === 0) {
+                        console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                        console.log("aggiungo commento a post "+ghigliottina.ref_id)
+                        ghigliottina.job.cancel();
+                    }
+                    ghigliottina.counter--;
+                } catch(e) {
+                    console.log(e)
+                }
+            })
+            ghigliottine.push(ghigliottina)
+            console.log("start game")
+        }
+
+
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
         }
     } catch (e){
-        //response["errore"] = e.toString()
+        console.log(e)
         res.status(500)
         res.send(response)
     }
