@@ -790,7 +790,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
         response = await mymongo.add_squeal(req.body, mongoCredentials)
 
         //ghigliottina
-        console.log(response)
+        console.log(JSON.stringify(response))
         let post_id = response.data.insertedId
         if(req.body.ghigliottina){
             const ghigliottina = {
