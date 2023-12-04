@@ -46,7 +46,11 @@
           <div class="dropdown" id="username">
             <h1>
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
+                <strong>
+                  <script>
+                    document.write(get_cookie_by_name("username"))
+                  </script>
+                </strong>
               </button>
             </h1>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
@@ -279,7 +283,7 @@
           <form id="chat_privata">
             <label for="messaggioInput" id="label-msg" hidden>Messaggio: </label>
             <input type="text" id="messaggioInput" placeholder="Scrivi il tuo messaggio..." aria-label="Messaggio" required>
-            <button type="submit" class="add-message-btn"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+            <button type="submit" class="add-message-btn" title="Invia messaggio"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
           </form>
         </div>
       </div>
@@ -294,7 +298,7 @@
 
       <script>
         // INIT
-        document.getElementById("dropdownMenuButton").innerHTML = get_cookie_by_name("username");
+        //document.getElementById("dropdownMenuButton").innerHTML = get_cookie_by_name("username");
         document.getElementById("chat_privata").addEventListener('submit', async event => {
           event.preventDefault();
           aggiungiMessaggio();
@@ -545,7 +549,7 @@
             labels: settPopolarita,
             datasets: [
               {
-                label: "Numero di Squeals popolari",
+                label: "Popolarità",
                 data: datiPopolarita,
                 borderColor: "rgba(0, 128, 0, 0.8)", // Colore della linea
                 borderWidth: 2,
@@ -563,39 +567,39 @@
         });
 
         //SQUEAL
-        function calcolaFrequenza(settPopolarita, postData) {
-          const postFrequenza = [];
+        function countPostsInWeek(postData, settPopolarita) {
+            const postFrequenza = [];
 
-          settPopolarita.forEach(settimana => {
-            const [inizio, fine] = settimana.split(' - ');
+            for (const settimana of settPopolarita) {
+                const [inizioStr, fineStr] = settimana.split(' - ');
+                const inizio_settimana = parseDate(inizioStr);
+                const fine_settimana = parseDate(fineStr);
 
-            const [inizioGiorno, inizioMese, inizioAnno] = inizio.split('/');
-            const [fineGiorno, fineMese, fineAnno] = fine.split('/');
+                const count = postData.filter(data => {
+                    const dataDate = parseDate(data);
+                    return dataDate >= inizio_settimana && dataDate <= fine_settimana;
+                }).length;
 
-            const count = postData.filter(data => {
-              const [anno, mese, giorno] = data.split('-');
-              const dataFormatted = new Date(`${anno < 100 ? '20' + anno : anno}-${mese}-${giorno}`);
-              const inizioSettimanaFormatted = new Date(`20${inizioAnno}-${inizioMese}-${inizioGiorno}`);
-              const fineSettimanaFormatted = new Date(`20${fineAnno}-${fineMese}-${fineGiorno}`);
+                postFrequenza.push(count);
+            }
 
-              const isInWeek = dataFormatted >= inizioSettimanaFormatted && dataFormatted <= fineSettimanaFormatted;
-
-              console.log(`Data: ${dataFormatted}, Inizio Settimana: ${inizioSettimanaFormatted}, Fine Settimana: ${fineSettimanaFormatted}, isInWeek: ${isInWeek}`);
-
-              return isInWeek;
-            }).length;
-
-            console.log(`Count for ${settimana}: ${count}`);
-
-            postFrequenza.push(count);
-          });
-
-          console.log('Final postFrequenza:', postFrequenza);
-
-          return postFrequenza;
+            return postFrequenza;
         }
 
-        const postFrequenza = calcolaFrequenza(settPopolarita, postData);
+        // Funzione per analizzare la data nel formato "dd/mm"
+        function parseDate(dateString) {
+            const [giorno, mese] = dateString.split('/').map(Number);
+            return new Date(2023, mese - 1, giorno);
+        }
+
+        function trasformaFormatoData(arrayDate) {
+            return arrayDate.map(data => {
+                const [anno, mese, giorno] = data.split('-');
+                return `${giorno}/${mese}`;
+            });
+        }
+        postData = trasformaFormatoData(postData);
+        const postFrequenza = countPostsInWeek(postData, settPopolarita);
         // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in settPopolarita
 
         // Continua con la creazione del grafico come nel tuo codice originale
