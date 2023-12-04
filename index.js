@@ -790,9 +790,9 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
         response = await mymongo.add_squeal(req.body, mongoCredentials)
 
         //ghigliottina
-        console.log(JSON.stringify(response))
+        /*console.log(JSON.stringify(response))
         console.log(req.body.parole)
-        console.log(typeof req.body.parole)
+        console.log(typeof req.body.parole)*/
         let post_id = response.data
         if(req.body.ghigliottina){
             const ghigliottina = {
@@ -809,25 +809,38 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 try{
                     let dt = new Date()
                     if (ghigliottina.counter > 0) {
-                    const nextElement = ghigliottina.parole[5-ghigliottina.counter];
-                    console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
-                    console.log("aggiungo commento a post "+ghigliottina.ref_id)
-                    
-                    body = {
-                        post_id: ghigliottina.ref_id,
-                        tipo_destinatari: null,
-                        destinatari: [],
-                        contenuto: "testo",
-                        user_id: "ghigliottinabot",
-                        textarea: `La parola #${6-ghigliottina.counter} è: ${nextElement}`,
-                        timestamp: dt.getTime()
-                    }
+                        const nextElement = ghigliottina.parole[5-ghigliottina.counter];
+                        //console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+                        //console.log("aggiungo commento a post "+ghigliottina.ref_id)
+                        
+                        body = {
+                            post_id: ghigliottina.ref_id,
+                            tipo_destinatari: null,
+                            destinatari: [],
+                            contenuto: "testo",
+                            user_id: "ghigliottinabot",
+                            textarea: `La parola #${6-ghigliottina.counter} è: ${nextElement}`,
+                            timestamp: dt.getTime()
+                        }
 
-                    mymongo.add_squeal(body, ghigliottina.mongoCredentials)
+                        mymongo.add_squeal(body, ghigliottina.mongoCredentials)
 
                     } else if (ghigliottina.counter === 0) {
-                        console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
-                        console.log("aggiungo commento a post "+ghigliottina.ref_id)
+                        //console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                        //console.log("aggiungo commento a post "+ghigliottina.ref_id)
+
+                        body = {
+                            post_id: ghigliottina.ref_id,
+                            tipo_destinatari: null,
+                            destinatari: [],
+                            contenuto: "testo",
+                            user_id: "ghigliottinabot",
+                            textarea: `TEMPO SCADUTO! La soluzione è: ${ghigliottina.soluzione}`,
+                            timestamp: dt.getTime()
+                        }
+    
+                        mymongo.add_squeal(body, ghigliottina.mongoCredentials)
+
                         ghigliottina.job.cancel();
                     }
                     ghigliottina.counter--;
@@ -836,7 +849,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 }
             })
             ghigliottine.push(ghigliottina)
-            console.log("start game")
+            //console.log("start game")
         }
 
 
