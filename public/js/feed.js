@@ -221,8 +221,10 @@ function aggiungi_info(meta){
     container.append(riga4)
     $("#riga4").append(follow)
 
-    let riga5 = `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`;
-    container.append(riga5);
+    if (meta["info"]["username"] !== CURRENT_USER) {
+      let riga5 = `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`;
+      container.append(riga5);
+    }
 
   } else if(meta["tipo"] == "canale") { //caso ricerca canale
     let riga1 = `<div class="row" id="riga1"></div>`
