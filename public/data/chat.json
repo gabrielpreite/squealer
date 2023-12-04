@@ -1,7 +1,10 @@
 [
     {
         "chat_id": "fv_fvPro",
-        "users": ["fv", "fvPro"],
+        "users": [
+            "fv",
+            "fvPro"
+        ],
         "messaggi": [
             {
                 "text": "ciaooo, come stai?",
@@ -12,6 +15,107 @@
                 "text": "tutto bene, tu?",
                 "timestamp": 1698681559274,
                 "user": "fvPro"
+            }
+        ]
+    },
+    {
+        "chat_id": "fvPro_fvSMM",
+        "users": [
+            "fvPro",
+            "fvSMM"
+        ],
+        "messaggi": [
+            {
+                "text": "hey, potresti farmi uno sconto per il prossimo mese? sono un po' a corto",
+                "user": "fvPro",
+                "timestamp": 1701704721364
+            }
+        ]
+    },
+    {
+        "chat_id": "NomeBuffo1_fvPro",
+        "users": [
+            "NomeBuffo1",
+            "fvPro"
+        ],
+        "messaggi": [
+            {
+                "text": "hey",
+                "user": "NomeBuffo1",
+                "timestamp": 1701704753683
+            },
+            {
+                "text": "hey",
+                "timestamp": 1701704756459,
+                "user": "NomeBuffo1"
+            },
+            {
+                "text": "hey",
+                "timestamp": 1701704757848,
+                "user": "NomeBuffo1"
+            },
+            {
+                "text": "puoi rispondere per favore",
+                "timestamp": 1701704763106,
+                "user": "NomeBuffo1"
+            },
+            {
+                "text": "non volevo spaventarti l'altra sera",
+                "timestamp": 1701704774961,
+                "user": "NomeBuffo1"
+            },
+            {
+                "text": "volevo solo guardarti mentre dormivi",
+                "timestamp": 1701704783301,
+                "user": "NomeBuffo1"
+            },
+            {
+                "text": "smettila o chiamo il mio avvocato",
+                "timestamp": 1701704809888,
+                "user": "fvPro"
+            }
+        ]
+    },
+    {
+        "chat_id": "NomeBuffo2_fvPro",
+        "users": [
+            "fvPro",
+            "NomeBuffo2"
+        ],
+        "messaggi": [
+            {
+                "text": "Hey, hai mai pensato di fare una collaborazione? possiamo fare delle foto carine con i gatti in delle coperte a forma di piadina kebab",
+                "user": "fvPro",
+                "timestamp": 1701704854017
+            },
+            {
+                "text": "mi piacerebbe ma al momento sono molto impegnato",
+                "timestamp": 1701707906079,
+                "user": "NomeBuffo2"
+            },
+            {
+                "text": "magari tra qualche mese?",
+                "timestamp": 1701707910345,
+                "user": "NomeBuffo2"
+            }
+        ]
+    },
+    {
+        "chat_id": "NomeBuffo1_NomeBuffo2",
+        "users": [
+            "NomeBuffo2",
+            "NomeBuffo1"
+        ],
+        "messaggi": [
+            {
+                "text": "per favore cerca di comportarti bene",
+                "user": "NomeBuffo2",
+                "timestamp": 1701707760060
+            },
+            {
+                "text": "voglio andare al compleanno di fedevara ma non mi accettano se continui a stalkerarlo",
+                "timestamp": 1701707782630,
+                "user": "NomeBuffo2"
             }
         ]
     }

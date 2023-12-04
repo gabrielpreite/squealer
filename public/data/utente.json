@@ -1,19 +1,47 @@
 [
     {
+        "_id": "656df19ba26851db3720bd6e",
         "img": "propic_fv.png",
         "nome": "Francesco Verosimile",
         "username": "fv",
         "email": "fv@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 50,
-            "s": 2000,
+            "g": 448,
+            "s": 1750,
             "m": 7500
         },
-        "acquisti": [],
+        "acquisti": [
+            {
+                "timestamp": 1701704322412,
+                "quantita": 240
+            },
+            {
+                "timestamp": 1701704389566,
+                "quantita": 480
+            },
+            {
+                "timestamp": 1701708179747,
+                "quantita": 480
+            }
+        ],
         "popolarita": {
-          "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-          "valori": [10, 5, 30, 15, 23]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                23,
+                0
+            ]
         },
         "canali_seguiti": [
             "$free"
@@ -31,27 +59,60 @@
         "bio": "Biochem student @ UniBO"
     },
     {
+        "_id": "656df19ba26851db3720bd6f",
         "img": "propic_pro.png",
         "nome": "Federico Varano",
         "username": "fvPro",
         "email": "fvPro@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 221,
             "s": 2000,
             "m": 7500
         },
-        "acquisti": [],
+        "acquisti": [
+            {
+                "timestamp": 1701704658644,
+                "quantita": 480
+            },
+            {
+                "timestamp": 1701706561066,
+                "quantita": 480
+            },
+            {
+                "timestamp": 1701707583602,
+                "quantita": 120
+            },
+            {
+                "timestamp": 1701708408304,
+                "quantita": 240
+            }
+        ],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, -30]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                -30,
+                0
+            ]
         },
         "canali_seguiti": [
             "$free"
         ],
         "utenti_seguiti": [
+            "fvSMM",
             "fv",
-            "NomeBuffo1"
+            "NomeBuffo2"
         ],
         "redazione_flag": false,
         "verificato_flag": true,
@@ -62,25 +123,47 @@
         "bio": "Local celebrity - Food blogger - Kebab connoisseur"
     },
     {
+        "_id": "656df19ba26851db3720bd70",
         "img": "propic_smm.png",
         "nome": "FV Social Guru",
         "username": "fvSMM",
         "email": "fvSMM@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 386,
             "s": 2000,
             "m": 7500
         },
-        "acquisti": [],
+        "acquisti": [
+            {
+                "timestamp": 1701708491040,
+                "quantita": 480
+            }
+        ],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, 5]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                5,
+                0
+            ]
         },
         "canali_seguiti": [
             "$free"
         ],
-        "utenti_seguiti": [],
+        "utenti_seguiti": [
+            "fvPro"
+        ],
         "redazione_flag": false,
         "verificato_flag": true,
         "professional_flag": true,
@@ -94,25 +177,47 @@
         "bio": "SEO guru - networking samurai - social rockstar - dm for rates"
     },
     {
+        "_id": "656df19ba26851db3720bd71",
         "img": "propic_nb1.png",
         "nome": "Valterio Bianco",
         "username": "NomeBuffo1",
         "email": "NomeBuffo1@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 1,
             "s": 2000,
             "m": 7500
         },
-        "acquisti": [],
+        "acquisti": [
+            {
+                "timestamp": 1701707709128,
+                "quantita": 120
+            }
+        ],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, 23]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                23,
+                0
+            ]
         },
         "canali_seguiti": [
             "$free"
         ],
-        "utenti_seguiti": [],
+        "utenti_seguiti": [
+            "fv"
+        ],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -122,23 +227,52 @@
         "bio": "Blue empire king"
     },
     {
+        "_id": "656df19ba26851db3720bd72",
         "img": "propic_nb2.png",
         "nome": "Giovanni Rosauomo",
         "username": "NomeBuffo2",
         "email": "NomeBuffo2@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 94,
             "s": 2000,
             "m": 7500
         },
-        "acquisti": [],
+        "acquisti": [
+            {
+                "timestamp": 1701705741738,
+                "quantita": 480
+            },
+            {
+                "timestamp": 1701708296985,
+                "quantita": 120
+            }
+        ],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, -100]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                -100,
+                0
+            ]
         },
-        "canali_seguiti": [],
-        "utenti_seguiti": [],
+        "canali_seguiti": [
+            "$gatti"
+        ],
+        "utenti_seguiti": [
+            "fv",
+            "fvPro"
+        ],
         "redazione_flag": false,
         "verificato_flag": false,
         "professional_flag": true,
@@ -148,20 +282,35 @@
         "bio": "At risk teen camp counselor - apprendista cuoco"
     },
     {
+        "_id": "656df19ba26851db3720bd73",
         "img": "propic_modteam.png",
         "nome": "MODTEAM",
         "username": "fvMod",
         "email": "fvMod@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 86,
             "s": 2000,
             "m": 7500
         },
         "acquisti": [],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, 23]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                23,
+                0
+            ]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -174,20 +323,44 @@
         "bio": ""
     },
     {
+        "_id": "656df19ba26851db3720bd74",
         "img": "propic_redazione.png",
         "nome": "Redazione Squeal",
         "username": "redazione",
         "email": "redazione@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 464,
             "s": 2000,
             "m": 7500
         },
-        "acquisti": [],
+        "acquisti": [
+            {
+                "timestamp": 1701706737981,
+                "quantita": 480
+            },
+            {
+                "timestamp": 1701708010071,
+                "quantita": 480
+            }
+        ],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, 23]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                23,
+                0
+            ]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -200,6 +373,7 @@
         "bio": "Account ufficiale redazione Squealer"
     },
     {
+        "_id": "656df19ba26851db3720bd75",
         "img": "propic_bot.png",
         "nome": "SquealBot",
         "username": "robosquealer",
@@ -212,8 +386,22 @@
         },
         "acquisti": [],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, 23]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                23,
+                0
+            ]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],
@@ -226,20 +414,35 @@
         "bio": "Beep boop"
     },
     {
+        "_id": "656df19ba26851db3720bd76",
         "img": "propic_bot.png",
         "nome": "GhigliottinaBot",
         "username": "ghigliottinabot",
         "email": "ghigliottinabot@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": 300,
+            "g": 159,
             "s": 2000,
             "m": 7500
         },
         "acquisti": [],
         "popolarita": {
-            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
-            "valori": [10, 5, 30, 15, 23]
+            "settimane": [
+                "23/10 - 29/10",
+                "30/10 - 5/11",
+                "6/11 - 12/11",
+                "13/11 - 19/11",
+                "20/11 - 26/11",
+                "27/11 - 03/12"
+            ],
+            "valori": [
+                10,
+                5,
+                30,
+                15,
+                23,
+                0
+            ]
         },
         "canali_seguiti": [],
         "utenti_seguiti": [],

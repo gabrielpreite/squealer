@@ -13,7 +13,52 @@
     "visualizzazioni": 10,
     "reazioni": {
       "positive": {
-        "concordo": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
+        "concordo": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
         "mi_piace": [],
         "adoro": []
       },
@@ -23,7 +68,7 @@
         "odio": []
       }
     },
-    "categoria": null,
+    "categoria": "popolare",
     "automatico": false
   },
   {
@@ -46,11 +91,56 @@
       },
       "negative": {
         "sono_contrario": [],
-        "mi_disgusta": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
+        "mi_disgusta": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
         "odio": []
       }
     },
-    "categoria": null,
+    "categoria": "impopolare",
     "automatico": false
   },
   {
@@ -59,25 +149,116 @@
     "corpo": "Grande Fede la tua ultima #recensione spacca",
     "contenuto": "testo",
     "destinatari": [
-      "$fedevara"
+      "$fedevara",
+      "$CONTROVERSO"
     ],
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1698681643605,
-    "visualizzazioni": 9,
+    "visualizzazioni": 127,
     "reazioni": {
       "positive": {
         "concordo": [],
-        "mi_piace": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
+        "mi_piace": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
         "adoro": []
       },
       "negative": {
         "sono_contrario": [],
-        "mi_disgusta": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
+        "mi_disgusta": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
         "odio": []
       }
     },
-    "categoria": null,
+    "categoria": "controverso",
     "automatico": false
   },
   {
@@ -89,11 +270,56 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1698681711527,
-    "visualizzazioni": 12,
+    "visualizzazioni": 41,
     "reazioni": {
       "positive": {
         "concordo": [],
-        "mi_piace": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
+        "mi_piace": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
         "adoro": []
       },
       "negative": {
@@ -102,7 +328,7 @@
         "odio": []
       }
     },
-    "categoria": null,
+    "categoria": "popolare",
     "automatico": false
   },
   {
@@ -116,7 +342,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1698681732101,
-    "visualizzazioni": 0,
+    "visualizzazioni": 14,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -141,7 +367,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1698681749146,
-    "visualizzazioni": 10,
+    "visualizzazioni": 39,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -168,7 +394,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1698681751530,
-    "visualizzazioni": 0,
+    "visualizzazioni": 14,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -195,7 +421,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1698681772702,
-    "visualizzazioni": 0,
+    "visualizzazioni": 14,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -249,7 +475,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo2",
     "timestamp": 1698681857226,
-    "visualizzazioni": 0,
+    "visualizzazioni": 14,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -276,7 +502,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo2",
     "timestamp": 1698681875530,
-    "visualizzazioni": 0,
+    "visualizzazioni": 14,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -303,7 +529,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo2",
     "timestamp": 1698681889719,
-    "visualizzazioni": 0,
+    "visualizzazioni": 14,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -328,7 +554,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1698681896044,
-    "visualizzazioni": 0,
+    "visualizzazioni": 61,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -374,7 +600,7 @@
   {
     "post_id": "653fd4a7ea3263dff6a3ccdb",
     "risponde_a": null,
-    "corpo": "Emergenza #piogge in Emilia Romagna, dilaga il pane",
+    "corpo": "Emergenza #piogge in Emilia Romagna, dilaga il panico",
     "contenuto": "testo",
     "destinatari": [
       "$EMERGENZA"
@@ -382,7 +608,7 @@
     "tipo_destinatari": "canali",
     "utente": "redazione",
     "timestamp": 1698682023047,
-    "visualizzazioni": 0,
+    "visualizzazioni": 118,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -406,7 +632,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1699379035019,
-    "visualizzazioni": 0,
+    "visualizzazioni": 61,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -422,5 +648,1861 @@
     "categoria": null,
     "automatico": false,
     "post_id": "654a775b95edb43a53c45e12"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Giochiamo insieme alla #ghigliottina",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701704167064,
+    "visualizzazioni": 61,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a"],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": ["a","a","a"],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df1e7a26851db3720bd99"
+  },
+  {
+    "risponde_a": "653fd395ea3263dff6a3ccd2",
+    "corpo": "Sembra buonissimo!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701704182027,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df1f6a26851db3720bd9a"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "1701704213098-Beach_at_Fort_Lauderdale.jpg",
+    "contenuto": "img",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701704213121,
+    "visualizzazioni": 61,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": ["a","a","a","a","a","a"],
+        "adoro": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df215a26851db3720bd9c"
+  },
+  {
+    "risponde_a": "656df215a26851db3720bd9c",
+    "corpo": "Saluti dalla Florida!!!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701704243464,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df233a26851db3720bd9d"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "1701704284791-Screenshot_1.png",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1701704284822,
+    "visualizzazioni": 14,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df25ca26851db3720bd9f"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Organizziamo una festa per il compleanno del nostro idolo! #teamvara",
+    "contenuto": "testo",
+    "destinatari": [
+      "$fedevara"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1701704323619,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df283a26851db3720bda0"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Wow, i prezzi di questo sito sono veramente ragionevoli! Ho dovuto saltare un paio di pasti, ma adesso posso continuare a rispondere ai miei amici virtuali! #squealerspacca",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701704382758,
+    "visualizzazioni": 61,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df2bea26851db3720bda1"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "La parola #1 è: Motorino",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "ghigliottinabot",
+    "timestamp": 1701704400017,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df2d0a26851db3720bda2"
+  },
+  {
+    "risponde_a": "656df215a26851db3720bd9c",
+    "corpo": "Non dimenticarti di mandarmi le foto dei kebab che trovi in giro!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701704525832,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df34da26851db3720bda4"
+  },
+  {
+    "risponde_a": "654a775b95edb43a53c45e12",
+    "corpo": "Ci siamo divertiti da matti! A breve recensione del kebabbino post-caffè",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701704588050,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df38ca26851db3720bda6"
+  },
+  {
+    "risponde_a": "653fd32bea3263dff6a3cccf",
+    "corpo": "Hai già un'ordinanza restrittiva nei miei confronti, la smetti di stalkerarmi?",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701704618605,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df3aaa26851db3720bda8"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "@fvSMM è un social media manager fantastico! Lo consiglio a chiunque voglia far crescere il proprio brand!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701704659870,
+    "visualizzazioni": 22,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": ["a","a","a"],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df3d3a26851db3720bdaa"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "La parola #2 è: Bella",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "ghigliottinabot",
+    "timestamp": 1701704700012,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df3fca26851db3720bdad"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "#ciao a tutti! Spero di potervi venire a trovare presto!",
+    "contenuto": "testo",
+    "destinatari": [
+      "$bologna"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fvPro",
+    "timestamp": 1701704925060,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a","a","a","a","a"],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_disgusta": [],
+        "odio": ["a","a","a","a","a","a","a","a","a","a","a","a","a"]
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df4dda26851db3720bdb6"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Terremoto 8.9 a Reggio Emilia, gli abitanti sono pregati di allontanarsi al più presto",
+    "contenuto": "testo",
+    "destinatari": [
+      "$EMERGENZA"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "redazione",
+    "timestamp": 1701704927284,
+    "visualizzazioni": 99,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df4dfa26851db3720bdb7"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Dev Log 1\r\nNuova feature appena sbarcata: adesso puoi giocare alla ghigliottina con i tuoi amici!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "redazione",
+    "timestamp": 1701704965604,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df505a26851db3720bdb8"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "La parola #3 è: Core",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "ghigliottinabot",
+    "timestamp": 1701705000014,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df528a26851db3720bdba"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "Ci provo: Archibugio",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701705003800,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df52ba26851db3720bdbc"
+  },
+  {
+    "risponde_a": "656df2bea26851db3720bda1",
+    "corpo": "E se fai dei post popolari guadagni un sacco di caratteri gratis!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701705044814,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df554a26851db3720bdbe"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Qual è la vostra razza di gatti preferita? La mia è Burmilla",
+    "contenuto": "testo",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "NomeBuffo2",
+    "timestamp": 1701705245371,
+    "visualizzazioni": 14,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df61da26851db3720bdc0"
+  },
+  {
+    "risponde_a": "656df61da26851db3720bdc0",
+    "corpo": "Giovanni cosa cavolo stai facendo, torna in cucina ORA",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701705291689,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"]
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df64ba26851db3720bdc1"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "La parola #4 è: Tutti",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "ghigliottinabot",
+    "timestamp": 1701705300016,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df654a26851db3720bdc3"
+  },
+  {
+    "risponde_a": "653fd384ea3263dff6a3ccd1",
+    "corpo": "Ma che occhioni!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701705387799,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df6aba26851db3720bdc5"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "Io dico Ciao",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701705457545,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df6f1a26851db3720bdc7"
+  },
+  {
+    "risponde_a": "656df61da26851db3720bdc0",
+    "corpo": "Scusi chef, pensavo fossimo in pausa :c",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701705582197,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df76ea26851db3720bdc9"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "La parola #5 è: Manu",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "ghigliottinabot",
+    "timestamp": 1701705600016,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df780a26851db3720bdcb"
+  },
+  {
+    "risponde_a": "656df283a26851db3720bda0",
+    "corpo": "Io vorrei venire ma devo farlo di nascosto, altrimenti @NomeBuffo1 si aggrega e poi arriva la polizia :c",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701705624524,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df798a26851db3720bdcd"
+  },
+  {
+    "risponde_a": "656df283a26851db3720bda0",
+    "corpo": "...perchè lo hai taggato?",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701705651972,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df7b3a26851db3720bdd0"
+  },
+  {
+    "risponde_a": "656df283a26851db3720bda0",
+    "corpo": "Non l'ho fatto apposta! Ho scoperto solo adesso che questo fantastico sito riconosce le menzioni e manda una notifica all'utente. Siamo nei guai, vero?",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701705744082,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df810a26851db3720bdd2"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "TEMPO SCADUTO! La soluzione è: ciao",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "ghigliottinabot",
+    "timestamp": 1701705900014,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df8aca26851db3720bdd4"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Squealer è ora quotato in borsa! Leggi la notizia sul Washington Post: https://shorturl.at/hlBUZ",
+    "contenuto": "testo",
+    "destinatari": [
+      "$NOTIZIE"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "redazione",
+    "timestamp": 1701705921262,
+    "visualizzazioni": 77,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df8c1a26851db3720bdd6"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Siamo felici di annunciare che Federico Varano sarà presente al KebaCon di Monteaspro Superiore il 25 dicembre! Ci aspettiamo piena partecipazione da parte dei nostri fan, che riceveranno un simpatico omaggio ;)",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701706083251,
+    "visualizzazioni": 18,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
+        "adoro": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df963a26851db3720bdd8"
+  },
+  {
+    "risponde_a": "656df963a26851db3720bdd8",
+    "corpo": "Ci tengo a ringraziare il mio SMM @fvSMM, il quale ha reso possibile questo evento anche grazie alla possibilità di postare dal mio account in autonomia senza compromettere la mia sicurezza o conoscere la mia password",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701706175150,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656df9bfa26851db3720bdd9"
+  },
+  {
+    "risponde_a": "656df963a26851db3720bdd8",
+    "corpo": "Per questo dovresti ringraziare chi lavora dietro le quinte di questo sito. Grazie al loro impeccabile lavoro chiunque abbia un account pro può entrare nelle impostazioni del profilo e concedere la gestione del proprio account ad un SMM in modo semplice e sicuro!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvSMM",
+    "timestamp": 1701706285445,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfa2da26851db3720bddc"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "NON CI CREDO HO INDOVINATO",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701706323143,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfa53a26851db3720bdde"
+  },
+  {
+    "risponde_a": "656df4dfa26851db3720bdb7",
+    "corpo": "Vorrei fare una donazione, chi posso contattare?",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701706353260,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfa71a26851db3720bde0"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "@fvPro aiuto, ho finito i caratteri, non posso più scriv",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701706499944,
+    "visualizzazioni": 22,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfb03a26851db3720bde2"
+  },
+  {
+    "risponde_a": "656dfb03a26851db3720bde2",
+    "corpo": "Nessun problema, puoi usare il pulsante a forma di carrellino in alto per acquistare caratteri aggiuntivi a prezzo popolare! Lo trovi in tutte le pagine del sito! #squealerspacca",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701706562293,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfb42a26851db3720bde4"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Assurdo che i miei post impopolari stiano mangiando tutta la mia quota!!! Io ho diritto di parola!!",
+    "contenuto": "testo",
+    "destinatari": [
+      "$free"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "NomeBuffo1",
+    "timestamp": 1701706644983,
+    "visualizzazioni": 42,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
+        "mi_disgusta": [
+          "fvPro"
+        ],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfb94a26851db3720bde6"
+  },
+  {
+    "risponde_a": "656dfb94a26851db3720bde6",
+    "corpo": "Sulla nostra piattaforma i contenuti positivi vengono premiati con caratteri aggiuntivi, mentre le persone negative possono diffondere la propria negatività di meno. Sarà ora di farsi un esame di coscienza?",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "redazione",
+    "timestamp": 1701706738721,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfbf2a26851db3720bde7"
+  },
+  {
+    "risponde_a": "653fd32bea3263dff6a3cccf",
+    "corpo": "Ma l'hai vista la recensione? Stava per affogarsi con la cipolla!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701706796400,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfc2ca26851db3720bde9"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Vendo cristalli curativi di ametista, scrivetemi in privato su Signal per info",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701706851184,
+    "visualizzazioni": 16,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [
+          "fvPro"
+        ],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfc63a26851db3720bdeb"
+  },
+  {
+    "risponde_a": "656dfb94a26851db3720bde6",
+    "corpo": "Comincia a comportarti meglio e vedrai che le cose miglioreranno. Altrimenti puoi sempre comprare caratteri, lo so che hai un sacco di soldi da parte.",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701707312125,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfe30c6d5024b744c21fc"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=26.290198610648957,-79.94092212243159&size=640x480&scale=2&maptype=hybrid&zoom=9&markers=26.129040672894916,-80.13318286461909&key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701707330292,
+    "visualizzazioni": 21,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfe42c6d5024b744c21fe"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=44.487360240072036,11.353507353306002&size=640x480&scale=2&maptype=hybrid&zoom=13&markers=44.48736024007202,11.353507353305991&key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701707335877,
+    "visualizzazioni": 9,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfe47c6d5024b744c21ff"
+  },
+  {
+    "risponde_a": "656dfe42c6d5024b744c21fe",
+    "corpo": "Ho appena scoperto che posso postare la mia posizione! Neanche Twitter ha questa funzione! #squealerspacca",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1701707369794,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfe69c6d5024b744c2200"
+  },
+  {
+    "risponde_a": "656dfe42c6d5024b744c21fe",
+    "corpo": "Pensa che gli account Pro (come il mio) possono mettere la posizione che vogliono in tutto il mondo. E senza nemmeno pagare!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701707481321,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dfed9c6d5024b744c2202"
+  },
+  {
+    "risponde_a": "656dfc63a26851db3720bdeb",
+    "corpo": "Il mio si è polverizzato dopo qualche giorno, dovresti migliorare la qualità",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701707546904,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dff1ac6d5024b744c2204"
+  },
+  {
+    "risponde_a": "656dfe47c6d5024b744c21ff",
+    "corpo": "a Bologna!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701707595924,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": ["a","a","a","a"],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dff4bc6d5024b744c2206"
+  },
+  {
+    "risponde_a": "656df4dda26851db3720bdb6",
+    "corpo": "chi è collegato?",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701707637296,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dff75c6d5024b744c2208"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Unpopular opinion: cani>>>>>gatti",
+    "contenuto": "testo",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "NomeBuffo1",
+    "timestamp": 1701707649105,
+    "visualizzazioni": 6,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a"],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_disgusta": ["a","a","a","a"],
+        "odio": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"]
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dff81c6d5024b744c220a"
+  },
+  {
+    "risponde_a": "656df8c1a26851db3720bdd6",
+    "corpo": "Wow, davvero maturo da parte vostra",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701707710347,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dffbec6d5024b744c220b"
+  },
+  {
+    "risponde_a": "656dfb94a26851db3720bde6",
+    "corpo": "Ma io non voglio comportarmi bene, voglio solo poter scrivere!!!!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701707735561,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656dffd7c6d5024b744c220d"
+  },
+  {
+    "risponde_a": "656dff81c6d5024b744c220a",
+    "corpo": "La scienza dice che i gatti sono superiori",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701707827978,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0033c6d5024b744c2210"
+  },
+  {
+    "risponde_a": "656df1e7a26851db3720bd99",
+    "corpo": "Cavolo, sarà per la prossima volta...",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701707856208,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0050c6d5024b744c2212"
+  },
+  {
+    "risponde_a": "656df215a26851db3720bd9c",
+    "corpo": "Wow! Divertiti!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701707875041,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0063c6d5024b744c2214"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Abbiamo notato che poche persone hanno giocato alla #ghigliottina.\r\nBasta aggiungere un nuovo post, selezionare l'opzione corrispondente e compilare i vari campi, il sito farà il resto con dei commenti temporizzati.\r\nSe qualcosa non vi è chiaro chiedete pure in dm, o guardate i post del nostro beta tester @fv",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "redazione",
+    "timestamp": 1701708011437,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": ["a","a","a"],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e00ebc6d5024b744c2217"
+  },
+  {
+    "risponde_a": "656dfb94a26851db3720bde6",
+    "corpo": "Abbiamo dovuto rimuovere un sacco dei tuoi post. Devi rispettare le regole del sito",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvMod",
+    "timestamp": 1701708087735,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0137c6d5024b744c2219"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Congratulazioni, questo canale è il più popolare del mese!\r\nConsigliamo di seguire anche gli altri sul podio, $fedevara e $bologna.",
+    "contenuto": "testo",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fvMod",
+    "timestamp": 1701708141564,
+    "visualizzazioni": 2,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": ["a","a","a","a"],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e016dc6d5024b744c221b"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Come sta la torre? Mando tante vibes positive :c",
+    "contenuto": "testo",
+    "destinatari": [
+      "$bologna"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "fv",
+    "timestamp": 1701708182202,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": ["a","a","a","a","a","a"],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": ["a","a","a","a","a","a","a","a","a","a","a","a","a"]
+      },
+      "negative": {
+        "sono_contrario": ["a","a","a"],
+        "mi_disgusta": ["a"],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0196c6d5024b744c221c"
+  },
+  {
+    "risponde_a": "656e0196c6d5024b744c221c",
+    "corpo": "Purtroppo non ci sono buone notizie, sto cercando di scrivere al sindaco per costruire un rinforzo di cristalli curativi ma non risponde :c",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo2",
+    "timestamp": 1701708298019,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e020ac6d5024b744c221d"
+  },
+  {
+    "risponde_a": "653fd413ea3263dff6a3ccd7",
+    "corpo": "Ma che bel micio!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701708345249,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0239c6d5024b744c221f"
+  },
+  {
+    "risponde_a": "656df2bea26851db3720bda1",
+    "corpo": "Vero, basta guardare le notifiche per vedere quanti caratteri ti vengono dati in più ogni giorno",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1701708408924,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e0278c6d5024b744c2221"
+  },
+  {
+    "risponde_a": "656df2bea26851db3720bda1",
+    "corpo": "I miei sono sempre negativi....",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "NomeBuffo1",
+    "timestamp": 1701708443274,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e029bc6d5024b744c2224"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Nuovo listino prezzi:\r\nSMM a 95€ al mese\r\n-oppure-\r\n5€ a post\r\n\r\nGarantisco un aumento dei follower del 123% in sole due settimane!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvSMM",
+    "timestamp": 1701708557496,
+    "visualizzazioni": 1,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a"],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e030dc6d5024b744c2226"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Fede il tuo ultimo pagamento è fallito, contattami al più presto per piacere",
+    "contenuto": "testo",
+    "destinatari": [
+      "fvPro"
+    ],
+    "tipo_destinatari": "utenti",
+    "utente": "fvSMM",
+    "timestamp": 1701708603242,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "656e033bc6d5024b744c2227"
   }
 ]

@@ -1,90 +1,148 @@
 [
     {
-        "img" : "cha_free.png",
-        "nome" : "$free",
-        "descrizione" : "tana libera tutti - canale di fvPro",
-        "ufficiale" : false,
-        "proprieta" : "fvPro",
-        "mod" : [],
-        "lettura" : ["*"],
-        "scrittura" : ["*"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd77",
+        "img": "cha_free.png",
+        "nome": "$free",
+        "descrizione": "tana libera tutti - canale di fvPro",
+        "ufficiale": false,
+        "proprieta": "fvPro",
+        "mod": [],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "*"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_bologna.png",
-        "nome" : "$bologna",
-        "descrizione" : "La grassa, la rossa, la dotta (e la rotta)",
-        "ufficiale" : false,
-        "proprieta" : "fvPro",
-        "mod" : [],
-        "lettura" : ["*"],
-        "scrittura" : ["*"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd78",
+        "img": "cha_bologna.png",
+        "nome": "$bologna",
+        "descrizione": "La grassa, la rossa, la dotta (e la rotta)",
+        "ufficiale": false,
+        "proprieta": "fvPro",
+        "mod": [],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "*"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_cats.png",
-        "nome" : "$gatti",
-        "descrizione" : "gatti che fan cose",
-        "ufficiale" : false,
-        "proprieta" : "fvSMM",
-        "mod" : ["fvPro", "NomeBuffo1"],
-        "lettura" : ["*"],
-        "scrittura" : ["*"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd79",
+        "img": "cha_cats.png",
+        "nome": "$gatti",
+        "descrizione": "gatti che fan cose",
+        "ufficiale": false,
+        "proprieta": "fvSMM",
+        "mod": [
+            "fvPro",
+            "NomeBuffo1"
+        ],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "*"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_fedevara.png",
-        "nome" : "$fedevara",
-        "descrizione" : "Canale privato - Federico Varano fanpage",
-        "ufficiale" : false,
-        "proprieta" : "fvPro",
-        "mod" : ["fvPro", "NomeBuffo1"],
-        "lettura" : ["*"],
-        "scrittura" : ["*"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd7a",
+        "img": "cha_fedevara.png",
+        "nome": "$fedevara",
+        "descrizione": "Canale privato - Federico Varano fanpage",
+        "ufficiale": false,
+        "proprieta": "fvPro",
+        "mod": [
+            "fvPro",
+            "NomeBuffo1"
+        ],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "*"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_controversial.png",
-        "nome" : "$CONTROVERSO",
-        "descrizione" : "Canale per quando hai voglia di arrabbiarti",
-        "ufficiale" : true,
-        "proprieta" : "redazione",
-        "mod" : ["", ""],
-        "lettura" : ["*"],
-        "scrittura" : ["redazione"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd7b",
+        "img": "cha_controversial.png",
+        "nome": "$CONTROVERSO",
+        "descrizione": "Canale per quando hai voglia di arrabbiarti",
+        "ufficiale": true,
+        "proprieta": "redazione",
+        "mod": [
+            "",
+            ""
+        ],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "redazione"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_news.png",
-        "nome" : "$NOTIZIE",
-        "descrizione" : "Notizie da tutto il mondo",
-        "ufficiale" : true,
-        "proprieta" : "redazione",
-        "mod" : ["fvPro"],
-        "lettura" : ["*"],
-        "scrittura" : ["redazione", "robosquealer"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd7c",
+        "img": "cha_news.png",
+        "nome": "$NOTIZIE",
+        "descrizione": "Notizie da tutto il mondo",
+        "ufficiale": true,
+        "proprieta": "redazione",
+        "mod": [
+            "fvPro"
+        ],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "redazione",
+            "robosquealer"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_emergency.png",
-        "nome" : "$EMERGENZA",
-        "descrizione" : "Comunicazioni di emergenza",
-        "ufficiale" : true,
-        "proprieta" : "redazione",
-        "mod" : ["fvMod"],
-        "lettura" : ["*"],
-        "scrittura" : ["redazione", "robosquealer"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd7d",
+        "img": "cha_emergency.png",
+        "nome": "$EMERGENZA",
+        "descrizione": "Comunicazioni di emergenza",
+        "ufficiale": true,
+        "proprieta": "redazione",
+        "mod": [
+            "fvMod"
+        ],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "redazione",
+            "robosquealer"
+        ],
+        "abilitato": true
     },
     {
-        "img" : "cha_meteo.jpg",
-        "nome" : "$METEO",
-        "descrizione" : "Com'è il tempo in Italia?",
-        "ufficiale" : true,
-        "proprieta" : "redazione",
-        "mod" : ["fvMod"],
-        "lettura" : ["*"],
-        "scrittura" : ["redazione", "robosquealer"],
-        "abilitato" : true
+        "_id": "656df19ba26851db3720bd7e",
+        "img": "cha_meteo.jpg",
+        "nome": "$METEO",
+        "descrizione": "Com'è il tempo in Italia?",
+        "ufficiale": true,
+        "proprieta": "redazione",
+        "mod": [
+            "fvMod"
+        ],
+        "lettura": [
+            "*"
+        ],
+        "scrittura": [
+            "redazione",
+            "robosquealer"
+        ],
+        "abilitato": true
     }
 ]
