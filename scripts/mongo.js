@@ -238,16 +238,18 @@ exports.weekly = async function (dry, credentials) {
 
 		//trovo intervallo settimanale
 		let curr_date = new Date();
+		let first_date = new Date(curr_date)
+		first_date.setDate(curr_date.getDate() - 7)
 		const options = {
 			day: '2-digit',
 			month: '2-digit',
 		};
-		let intervallo = curr_date.toLocaleDateString("it-IT", options);
+		let intervallo = first_date.toLocaleDateString("it-IT", options);
 		intervallo += " - "
 
-		let future_date = new Date(curr_date)
-		future_date.setDate(curr_date.getDate() + 6)
-		intervallo += future_date.toLocaleDateString("it-IT", options)
+		let second_date = new Date(curr_date)
+		second_date.setDate(curr_date.getDate() - 1)
+		intervallo += second_date.toLocaleDateString("it-IT", options)
 
 		console.log("[W2] intervallo settimanale: " + intervallo)
 

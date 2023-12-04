@@ -200,17 +200,17 @@ app.get('/db/chat', async function(req, res) {
 
 // dry daily run
 app.get('/db/dry_daily', async function(req, res) {
-	res.send(await mymongo.daily(true, mongoCredentials))
+	res.send(await mymongo.daily(false, mongoCredentials))
 });
 
 // dry weekly run
 app.get('/db/dry_weekly', async function(req, res) {
-	res.send(await mymongo.weekly(true, mongoCredentials))
+	res.send(await mymongo.weekly(false, mongoCredentials))
 });
 
 // dry monthly run
 app.get('/db/dry_monthly', async function(req, res) {
-	res.send(await mymongo.monthly(true, mongoCredentials))
+	res.send(await mymongo.monthly(false, mongoCredentials))
 });
 
 /* ========================== */
@@ -800,7 +800,8 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 "soluzione" : req.body.soluzione,
                 "counter": 5,
                 "ref_id": post_id,
-                "job": null
+                "job": null,
+                "mongoCredentials": mongoCredentials
             }
 
             ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
@@ -810,8 +811,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                     const nextElement = ghigliottina.parole[5-ghigliottina.counter];
                     console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
                     console.log("aggiungo commento a post "+ghigliottina.ref_id)
-                    }
-                    if (ghigliottina.counter === 0) {
+                    } else if (ghigliottina.counter === 0) {
                         console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
                         console.log("aggiungo commento a post "+ghigliottina.ref_id)
                         ghigliottina.job.cancel();
