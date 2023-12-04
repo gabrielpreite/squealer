@@ -200,17 +200,17 @@ app.get('/db/chat', async function(req, res) {
 
 // dry daily run
 app.get('/db/dry_daily', async function(req, res) {
-	res.send(await mymongo.daily(true, mongoCredentials))
+	res.send(await mymongo.daily(false, mongoCredentials))
 });
 
 // dry weekly run
 app.get('/db/dry_weekly', async function(req, res) {
-	res.send(await mymongo.weekly(true, mongoCredentials))
+	res.send(await mymongo.weekly(false, mongoCredentials))
 });
 
 // dry monthly run
 app.get('/db/dry_monthly', async function(req, res) {
-	res.send(await mymongo.monthly(true, mongoCredentials))
+	res.send(await mymongo.monthly(false, mongoCredentials))
 });
 
 /* ========================== */
