@@ -800,7 +800,8 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                 "soluzione" : req.body.soluzione,
                 "counter": 5,
                 "ref_id": post_id,
-                "job": null
+                "job": null,
+                "mongoCredentials": mongoCredentials
             }
 
             ghigliottina.job = schedule.scheduleJob(`*/1 * * * *`, () => {
