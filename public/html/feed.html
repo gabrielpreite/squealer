@@ -454,6 +454,7 @@
                }
 
                // Combinare parallelamente datiCommenti e corpoSqueals in risultatoParallelo
+               var risultatoParallelo = [];
                 for (let i = 0; i < Math.min(datiCommenti.length, corpoSqueals.length); i++) {
                     risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
                 }
