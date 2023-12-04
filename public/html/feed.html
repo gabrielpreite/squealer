@@ -427,7 +427,7 @@
           }
         });
 
-        var postData = [];
+               var postData = [];
                var datiCommenti = [];
                var idSqueals = [];
                var corpoSqueals = [];
@@ -453,18 +453,23 @@
                  }
                }
 
+               // Combinare parallelamente datiCommenti e corpoSqueals in risultatoParallelo
+                for (let i = 0; i < Math.min(datiCommenti.length, corpoSqueals.length); i++) {
+                    risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
+                }
+                risultatoParallelo = risultatoParallelo.slice(0, 5);
+                var commenti = risultatoParallelo.map(item => item.numCommenti);
+                var corpo = risultatoParallelo.map(item => item.corpoSqueal);
+                var id = risultatoParallelo.map(item => item.idSqueal);
 
         // COMMENTI
-        corpoSqueals = corpoSqueals.slice(0,5);
-        var corpoSquealsTagliati = corpoSqueals.map((frase) => {
+        var corpoSquealsTagliati = corpo.map((frase) => {
           if (frase.length > 7) {
             return frase.slice(0, 7) + '...';
           }
           return frase;
         });
 
-        datiCommenti = datiCommenti.slice(0, 5);
-        idSqueals = idSqueals.slice(0,5);
 
         // Ottieni il riferimento al canvas del grafico
         const canvasGraficoCommenti = document.getElementById("commentiChart");
@@ -477,7 +482,7 @@
             datasets: [
               {
                 label: "Numero di commenti ricevuti",
-                data: datiCommenti,
+                data: commenti,
                 backgroundColor: "rgba(0, 102, 255, 0.3)",
                 borderColor: "rgba(0, 102, 255, 1)",
                 borderWidth: 1,
@@ -514,7 +519,7 @@
                 const index = elements[0].index;
 
                 // Recupero l'ID del squeal corrispondente all'indice
-                const idSqueal = idSqueals[index];
+                const idSqueal = id[index];
 
                 // Reindirizzo alla pagina desiderata usando l'ID del squeal
                 ricerca_post(idSqueal);
