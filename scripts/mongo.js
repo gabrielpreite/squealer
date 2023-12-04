@@ -238,7 +238,8 @@ exports.weekly = async function (dry, credentials) {
 
 		//trovo intervallo settimanale
 		let curr_date = new Date();
-		let first_date = setDate(curr_date.getDate() - 7)
+		let first_date = new Date(curr_date)
+		first_date.setDate(curr_date.getDate() - 7)
 		const options = {
 			day: '2-digit',
 			month: '2-digit',
