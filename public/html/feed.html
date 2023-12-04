@@ -350,7 +350,7 @@
           $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
         })
 
-        $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><button type="button" class="dropdown-item logout-button" href="/logout">Logout</button>`)
+        $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><button type="button" class="dropdown-item logout-button" onclick="logout()">Logout</button>`)
 
         //se sto gestendo un account lo mostro nella barra
         let managed = get_cookie_by_name("managed")

@@ -50,6 +50,10 @@ function redirectToHome() {
     window.location.href = "/";
 }
 
+function logout() {
+    window.location.href = "/logout";
+}
+
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp);
     var year = a.getFullYear();
