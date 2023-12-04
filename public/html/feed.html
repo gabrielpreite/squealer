@@ -438,6 +438,7 @@
                  }
                  if (info.numRisposte) {
                    datiCommenti.push(info.numRisposte);
+                   console.log(info.numRisposte);
                  }
                  if (info.post_id) {
                    idSqueals.push(info.post_id);
@@ -455,7 +456,7 @@
 
                // Combinare parallelamente datiCommenti e corpoSqueals in risultatoParallelo
                var risultatoParallelo = [];
-                for (let i = 0; i < Math.min(datiCommenti.length, corpoSqueals.length); i++) {
+                for (let i = 0; i < corpoSqueals.length; i++) {
                     risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
                 }
                 risultatoParallelo = risultatoParallelo.slice(0, 5);
