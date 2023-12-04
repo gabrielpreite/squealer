@@ -224,5 +224,31 @@
         "manager_of": [],
         "managed_by": null,
         "bio": "Beep boop"
+    },
+    {
+        "img": "propic_bot.png",
+        "nome": "GhigliottinaBot",
+        "username": "ghigliottinabot",
+        "email": "ghigliottinabot@gmail.com",
+        "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
+        "quota": {
+            "g": 300,
+            "s": 2000,
+            "m": 7500
+        },
+        "acquisti": [],
+        "popolarita": {
+            "settimane": ["23/10 - 29/10", "30/10 - 5/11", "6/11 - 12/11", "13/11 - 19/11", "20/11 - 26/11"],
+            "valori": [10, 5, 30, 15, 23]
+        },
+        "canali_seguiti": [],
+        "utenti_seguiti": [],
+        "redazione_flag": true,
+        "verificato_flag": true,
+        "professional_flag": true,
+        "abilitato_flag": true,
+        "manager_of": [],
+        "managed_by": null,
+        "bio": "Non quella ghigliottina"
     }
 ]
