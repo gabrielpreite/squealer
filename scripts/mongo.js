@@ -2802,7 +2802,8 @@ exports.get_notifications = async function (user_id, credentials) {
 		await mongo.db(dbname)
 			.collection("notifica")
 			.find({
-				utente: user_id
+				utente: user_id,
+				letta: false
 			})
 			.forEach((r) => {
 				result.push(r)
