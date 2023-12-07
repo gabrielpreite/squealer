@@ -467,17 +467,15 @@ exports.create = async function (credentials) {
 exports.search_utente = async function (q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-	let debug = []
-	let data = { query: q.username, result: null }
 	try {
-		debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
+		//debug.push(`Trying to connect to MongoDB with user: '${credentials.user}' and site: '${credentials.site}' and a ${credentials.pwd.length}-character long password...`)
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		debug.push("... managed to connect to MongoDB.")
+		//debug.push("... managed to connect to MongoDB.")
 
 		let result = []
 		if (q.username === undefined) { //non passo argomenti nel get, ritorno tutta la tabella
-			debug.push("no args found")
+			//debug.push("no args found")
 			await mongo.db(dbname)
 				.collection("utente")
 				.find()
@@ -486,7 +484,7 @@ exports.search_utente = async function (q, credentials) {
 				});
 		}
 		else { //passo userid nel get, ritorno il record corretto
-			debug.push("found args")
+			//debug.push("found args")
 			await mongo.db(dbname)
 				.collection("utente")
 				.find({ username: q.username })
@@ -494,18 +492,18 @@ exports.search_utente = async function (q, credentials) {
 					result.push(r)
 				});
 		}
-		debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
+		//debug.push(`... managed to query MongoDB. Found ${result.length} results.`)
 
-		data.result = result
+		//data.result = result
 		await mongo.close();
-		debug.push("Managed to close connection to MongoDB.")
+		//debug.push("Managed to close connection to MongoDB.")
 
-		data.debug = debug
-		return data
+		//data.debug = debug
+		return result
 	} catch (e) {
-		data.debug = debug
-		data.error = e
-		return data
+		//data.debug = debug
+		//data.error = e
+		return e
 	}
 }
 

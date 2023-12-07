@@ -683,6 +683,24 @@
           }
         }
 
+        //ghigliottina
+        if(document.getElementById("switchToggle").checked){
+          formData.append("ghigliottina", "true")
+          
+          formData.append("timer", document.getElementById("intevallo").value)
+
+          parole = ""
+          for(let i=1; i<5; i++){
+            parole+=document.getElementById("parola"+i).value
+            parole+=+", "
+          }
+          parole+=document.getElementById("parola5")
+          formData.append("parole", parole)
+
+          formData.append("soluzione", document.getElementById("parolaDaIndovinare"))
+
+        }
+
         fetch("/squeal", {
           method: "POST",
           body: formData,
