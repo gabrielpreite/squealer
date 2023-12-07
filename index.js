@@ -273,7 +273,7 @@ app.post('/user/:user_id/follow', async function(req, res) {
         const user_id = req.params.user_id
         response = await mymongo.user_toggle_follow(user_id, req.body, mongoCredentials)
 
-        if(response["risultato"] == "successo"){
+        if(response["risultato"] == "added" || response["risultato"] == "removed"){
             res.status(200)
             res.send(response)
         } else if(response["risultato"] == "username/canale non trovato"){

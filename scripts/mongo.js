@@ -1280,7 +1280,7 @@ exports.user_toggle_follow = async function (user_id, q, credentials) {
 		await mongo.close();
 
 		if (result !== null) {
-			response["risultato"] = "successo"
+			response["risultato"] = result
 		} else {
 			response["risultato"] = "username/canale non trovato"
 		}
