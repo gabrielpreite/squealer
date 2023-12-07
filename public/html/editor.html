@@ -283,7 +283,38 @@
 
           <!-- Third Column -->
           <div class="col-md-3" id="col-dx">
-            <div id="vuoto" hidden="false">
+            <div id="vuoto">
+
+              <div class="container">
+                <div class="title-ghigliottina">
+                  <h2>Inizia ghigliottina</h2>
+                  <div class="switch-container">
+                      <label class="switch">
+                          <input type="checkbox" checked>
+                          <span class="slider"></span>
+                      </label>
+                  </div>
+                </div>
+           <div class="slider-container">
+               <label for="intervallo">Intervallo di tempo:</label>
+               <input type="range" id="intervallo" min="1" max="60" value="5">
+               <span id="intervallo-val">5 min</span>
+           </div>
+           <div class="parole-container">
+               <label for="parola1">Parola 1:</label>
+               <input type="text" id="parola1">
+               <label for="parola2">Parola 2:</label>
+               <input type="text" id="parola2">
+               <label for="parola3">Parola 3:</label>
+               <input type="text" id="parola3">
+               <label for="parola4">Parola 4:</label>
+               <input type="text" id="parola4">
+               <label for="parola5">Parola 5:</label>
+               <input type="text" id="parola5">
+               <label for="parolaDaIndovinare">Parola da indovinare:</label>
+               <input type="text" id="parolaDaIndovinare">
+           </div>
+       </div>
 
             </div>
             <div id="mostra-commenti" hidden="true">
