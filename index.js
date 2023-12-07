@@ -147,6 +147,14 @@ app.get('/login', function (req, res) {
 	} else {res.redirect("/")}
 })
 
+app.get('/mod', function (req, res) {
+	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
+		req.session.destroy()
+		res.redirect("/login")
+	} else {res.sendFile(global.rootDir+"/public/html/mod.html")}
+})
+
 app.get('/logout', function (req, res) {
 	req.session.destroy()
 	res.redirect("/login")
