@@ -244,6 +244,7 @@
               </div>
             </div>
         <form id="crea_post" enctype="multipart/form-data">
+
           <!-- Second Column -->
           <div class="col-md-6" id="col-cx">
             <div id="campo_scelta">
@@ -262,7 +263,7 @@
             </div>
 
           <div id="contenuto_testo">
-            <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..."></textarea>
+            <textarea class="form-input" id="Textarea" name="textarea" placeholder="Scrivi il tuo Squeal..." oninput="handleTextareaInput()"></textarea>
           </div>
           <div id="contenuto_immagine" hidden="true">
             <label for="img">Seleziona un'immagine</label>
@@ -716,6 +717,14 @@
     }
 
     function cambia_campo(opzione) {
+      var switchToggle = document.getElementById('switchToggle');
+      var textarea = document.getElementById('Textarea');
+
+      // Se lo switch ghigliottina è attivato, impedisci il cambio campo
+      if (switchToggle.checked) {
+          return;
+      }
+
       $("#contenuto_testo").attr("hidden", "true")
       $("#contenuto_immagine").attr("hidden", "true")
       $("#contenuto_posizione").attr("hidden", "true")
@@ -945,13 +954,23 @@
     function updateIntervalloVal() {
         var intervalloInput = document.getElementById('intervallo');
         var intervalloVal = document.getElementById('intervallo-val');
+        var textarea = document.getElementById('Textarea');
+
         intervalloVal.textContent = intervalloInput.value + " min";
+        if (intervalloInput.value == 1) {
+          textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
+        } else {
+          textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+        }
+
     }
 
-    
+
     function toggleCorpoGhigliottina() {
         var switchToggle = document.getElementById('switchToggle');
         var corpoGhigliottina = document.getElementById('corpoGhigliottina');
+        var textarea = document.getElementById('Textarea');
+        var intervalloInput = document.getElementById('intervallo');
 
         // Se lo switch è attivato, mostra il corpo-ghigliottina, altrimenti nascondilo
         if (switchToggle.checked) {
@@ -959,7 +978,17 @@
         } else {
             corpoGhigliottina.style.display = 'none';
         }
+
+        if (switchToggle.checked) {
+            textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+            textarea.readOnly = true;
+        } else {
+          textarea.value = '';
+          textarea.readOnly = false;
+        }
+
     }
+
   </script>
 </body>
 
