@@ -193,6 +193,7 @@
 .btn_hashtag {
   border: none;
   background-color: transparent;
+  padding: none;
 }
 
 .squeal {
@@ -512,6 +513,7 @@
 .btn_nomi {
   background:none;
   border:none;
+  padding: none;
 }
 
 
