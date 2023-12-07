@@ -97,7 +97,7 @@ exports.daily = async function (dry, credentials) {
 		result = []
 		await mongo.db(dbname)
 			.collection("messaggio")
-			.find()
+			.find({visualizzazioni: {$gt: 50}})
 			.project({ _id: 0 })
 			.forEach((r) => {
 				result.push(r)
