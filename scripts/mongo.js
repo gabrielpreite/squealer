@@ -132,7 +132,7 @@ exports.daily = async function (dry, credentials) {
 							{ post_id: squeal.post_id },
 							{ $set: { categoria: etichetta } }
 						)
-					if (etichetta === "controverso") { //aggiungo il post al canale $CONTROVERSO
+					if (etichetta === "controverso" && squeal.categoria !== "controverso") { //aggiungo il post al canale $CONTROVERSO
 						console.log("[D2] aggiungo post controverso al canale")
 						mongo.db(dbname)
 							.collection("messaggio")
