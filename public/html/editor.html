@@ -710,13 +710,13 @@
           parole = ""
           for(let i=1; i<5; i++){
             parole+=document.getElementById("parola"+i).value
-            parole+=+", "
+            parole+=", "
           }
           parole+=document.getElementById("parola5").value
           console.log(parole)
           formData.append("parole", parole)
 
-          formData.append("soluzione", document.getElementById("parolaDaIndovinare"))
+          formData.append("soluzione", document.getElementById("parolaDaIndovinare").value)
 
         }
 
