@@ -505,7 +505,6 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
 }
 
 .switch {
@@ -608,6 +607,23 @@ input[type="text"]:last-child {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Aggiunto per separare gli elementi alla massima larghezza possibile */
+    margin-bottom: 20px;
+}
+
+.input-parola {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.fa-trophy {
+  color: #DAA520;
+  padding-right: 5px;
+}
+
+input#parolaDaIndovinare {
+  width: 188px;
 }
 
 .title-ghigliottina h2 {
@@ -623,7 +639,6 @@ input[type="text"]:last-child {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 15px;
 }
 
 .switch-container {
@@ -719,4 +734,8 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 50%;
     background-color: #4CAF50;
     cursor: pointer;
+}
+
+#corpoGhigliottina {
+    display: none; /* Inizialmente nascosto */
 }
