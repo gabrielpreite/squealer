@@ -290,30 +290,47 @@
                   <h2>Inizia ghigliottina</h2>
                   <div class="switch-container">
                       <label class="switch">
-                          <input type="checkbox" checked>
+                          <input type="checkbox" id="switchToggle" onchange="toggleCorpoGhigliottina()">
                           <span class="slider"></span>
                       </label>
                   </div>
                 </div>
+          <div id="corpoGhigliottina">
            <div class="slider-container">
-               <label for="intervallo">Intervallo di tempo:</label>
-               <input type="range" id="intervallo" min="1" max="60" value="5">
-               <span id="intervallo-val">5 min</span>
+             <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
+               <label for="intervallo" hidden>Intervallo di tempo:</label>
+               <input type="range" id="intervallo" min="1" max="60" value="10" oninput="updateIntervalloVal()">
+               <span id="intervallo-val">10 min</span>
            </div>
            <div class="parole-container">
-               <label for="parola1">Parola 1:</label>
-               <input type="text" id="parola1">
-               <label for="parola2">Parola 2:</label>
-               <input type="text" id="parola2">
-               <label for="parola3">Parola 3:</label>
-               <input type="text" id="parola3">
-               <label for="parola4">Parola 4:</label>
-               <input type="text" id="parola4">
-               <label for="parola5">Parola 5:</label>
-               <input type="text" id="parola5">
-               <label for="parolaDaIndovinare">Parola da indovinare:</label>
-               <input type="text" id="parolaDaIndovinare">
+             <p>Inserisci di seguito cinque parole che fungeranno da indizi.
+               <br>Infine, fornisci una parola che i tuoi amici dovranno indovinare!</p>
+             <div class="input-parola">
+               <label for="parola1"><i class="fa-solid fa-1"></i></label>
+               <input type="text" id="parola1" placeholder="Prima parola">
+             </div>
+             <div class="input-parola">
+               <label for="parola2"><i class="fa-solid fa-2"></i></label>
+               <input type="text" id="parola2" placeholder="Seconda parola">
+             </div>
+             <div class="input-parola">
+               <label for="parola3"><i class="fa-solid fa-3"></i></label>
+               <input type="text" id="parola3" placeholder="Terza parola">
+             </div>
+             <div class="input-parola">
+               <label for="parola4"><i class="fa-solid fa-4"></i></label>
+               <input type="text" id="parola4" placeholder="Quarta parola">
+             </div>
+             <div class="input-parola">
+               <label for="parola5"><i class="fa-solid fa-5"></i></label>
+               <input type="text" id="parola5" placeholder="Quinta parola">
+             </div>
+             <div class="input-parola">
+               <label for="parolaDaIndovinare"><i class="fa-solid fa-trophy"></i></label>
+               <input type="text" id="parolaDaIndovinare" placeholder="Soluzione">
+             </div>
            </div>
+        </div>
        </div>
 
             </div>
@@ -922,6 +939,26 @@
           document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
         }
       }
+    }
+
+    //GHIGLIOTTINA
+    function updateIntervalloVal() {
+        var intervalloInput = document.getElementById('intervallo');
+        var intervalloVal = document.getElementById('intervallo-val');
+        intervalloVal.textContent = intervalloInput.value + " min";
+    }
+
+    
+    function toggleCorpoGhigliottina() {
+        var switchToggle = document.getElementById('switchToggle');
+        var corpoGhigliottina = document.getElementById('corpoGhigliottina');
+
+        // Se lo switch è attivato, mostra il corpo-ghigliottina, altrimenti nascondilo
+        if (switchToggle.checked) {
+            corpoGhigliottina.style.display = 'block';
+        } else {
+            corpoGhigliottina.style.display = 'none';
+        }
     }
   </script>
 </body>
