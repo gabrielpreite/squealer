@@ -701,6 +701,25 @@
           }
         }
 
+        //ghigliottina
+        if(document.getElementById("switchToggle").checked){
+          formData.append("ghigliottina", "true")
+          
+          formData.append("timer", document.getElementById("intervallo").value)
+
+          parole = ""
+          for(let i=1; i<5; i++){
+            parole+=document.getElementById("parola"+i).value
+            parole+=+", "
+          }
+          parole+=document.getElementById("parola5").value
+          console.log(parole)
+          formData.append("parole", parole)
+
+          formData.append("soluzione", document.getElementById("parolaDaIndovinare"))
+
+        }
+
         fetch("/squeal", {
           method: "POST",
           body: formData,
@@ -708,7 +727,7 @@
         .then((response) => {
           if (response.ok) {
             // The initial request was successful
-            window.location.replace("https://site212251.tw.cs.unibo.it");
+            //window.location.replace("https://site212251.tw.cs.unibo.it");
           } else {
             throw new Error("Network response was not ok.");
           }
