@@ -459,10 +459,10 @@
                 for (let i = 0; i < corpoSqueals.length; i++) {
                     risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
                 }
-                risultatoParallelo = risultatoParallelo.slice(0, 5);
-                var commenti = risultatoParallelo.map(item => item.numCommenti);
-                var corpo = risultatoParallelo.map(item => item.corpoSqueal);
-                var id = risultatoParallelo.map(item => item.idSqueal);
+                risultatoParallelo5 = risultatoParallelo.slice(0, 5);
+                var commenti = risultatoParallelo5.map(item => item.numCommenti);
+                var corpo = risultatoParallelo5.map(item => item.corpoSqueal);
+                var id = risultatoParallelo5.map(item => item.idSqueal);
 
         // COMMENTI
         var corpoSquealsTagliati = corpo.map((frase) => {
