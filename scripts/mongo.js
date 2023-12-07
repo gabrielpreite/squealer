@@ -997,7 +997,8 @@ exports.post_chat = async function (target, q, credentials) {
 			response["risultato"] = "successo"
 		}
 
-		// todo - notifica dm
+		// notifica chat
+		add_notifica(target, "privato", id, credentials, null, origin)
 
 		response["data"] = result[0]
 		await mongo.close();
@@ -1996,15 +1997,6 @@ exports.add_squeal = async function (q, credentials) {
 					autore_originale = el.utente
 				})
 			add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, q.user_id)
-		}
-
-		// notifica messaggio privato
-		if (tipo_destinatari == "utenti") {
-			q.destinatari.forEach((el) => {
-				add_notifica(el, "privato", String(newDocumentId), credentials, null, q.user_id)
-			})
-			// se il messaggio e' privato non consuma quota
-			quota_usata = 0
 		}
 
 		//aggiorno la quota
