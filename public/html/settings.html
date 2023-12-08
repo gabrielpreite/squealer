@@ -218,17 +218,26 @@
 
       <div id="smm" class="sezione"> <!-- ACCOUNT GESTITI/SMM -->
         <div class="container">
-        <h3>I tuoi account gestiti</h3>
-        <div id="div_account_gestiti"></div>
-
-        <form id="update_smm" enctype="multipart/form-data">
-          <label for="current_smm">SMM che gestisce il tuo account</label>
-          <input type="text" id="current_smm" name="current_smm" readonly>
-          <input type="submit" class="btn btn-danger" value="Rimuovi SMM">
-          <label for="new_smm">Aggiungi/cambia SMM</label>
-          <input type="text" id="new_smm" name="new_smm">
-          <input type="submit" value="Conferma">
-        </form>
+          <div class="ordine">
+            <div class="col1">
+              <h3>I tuoi account gestiti</h3>
+              <div id="div_account_gestiti"></div>
+            </div>
+            <div class="col2">
+                <form id="update_smm" enctype="multipart/form-data" class="smm-ordine">
+                  <div class="smm1">
+                    <label for="current_smm">SMM che gestisce il tuo account:</label>
+                    <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
+                    <input type="submit" class="btn btn-danger" value="  Rimuovi  ">
+                  </div>
+                  <div class="smm2">
+                    <label for="new_smm" hidden>Cambia SMM</label>
+                    <input type="text" id="new_smm" class="form-control" name="new_smm" placeholder="Cambia SMM">
+                    <input type="submit" class="btn btn-success" value="Conferma ">
+                  </div>
+                </form>
+            </div>
+          </div>
       </div>
       </div>
 

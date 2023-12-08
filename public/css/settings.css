@@ -282,6 +282,15 @@ margin-bottom: 20px;
   justify-content: space-between;
 }
 
+.smm-ordine {
+  display: flex;
+  flex-direction: column;
+}
+
+.smm2 {
+  text-align: right;
+}
+
 
 #newImg {
   margin-bottom: 10px; /* Aggiungi margine sotto l'immagine */
