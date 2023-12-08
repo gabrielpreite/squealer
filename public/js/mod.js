@@ -154,7 +154,7 @@ function seleziona_utente(username){
             document.getElementById("right_user").removeAttribute("hidden")
             document.getElementById("right_squeal").setAttribute("hidden", "")
             document.getElementById("right_canali").setAttribute("hidden", "")
-            console.log(user.abilitato_flag)
+            //console.log(user.abilitato_flag)
             document.getElementById("selected_user_username").innerHTML = user.username
             document.getElementById("abilitato_user_switch").checked = user.abilitato_flag
             document.getElementById("quota_g").value = user.quota.g
@@ -166,7 +166,7 @@ function seleziona_utente(username){
 
 function applica_utenti(){
     let username = document.getElementById("selected_user_username").innerHTML
-    console.log(username)
+    //console.log(username)
     let quota = {"g": document.getElementById("quota_g").value, "s": document.getElementById("quota_s").value, "m": document.getElementById("quota_m").value}
     $.ajax({
         type: 'POST',
@@ -176,7 +176,7 @@ function applica_utenti(){
         headers: { },
         data: { mod: true, q_g: quota.g, q_s: quota.s, q_m: quota.m},
         success: function (data, status, xhr) {
-            console.log("quota aggiornata")
+            //console.log("quota aggiornata")
         }
     });
 
@@ -188,7 +188,7 @@ function applica_utenti(){
         headers: { },
         data: {set_to: document.getElementById("abilitato_user_switch").checked},
         success: function (data, status, xhr) {
-            console.log("utente (dis)abilitato")
+            //console.log("utente (dis)abilitato")
         }
     });
 }
