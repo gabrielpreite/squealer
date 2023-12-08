@@ -79,6 +79,8 @@
 
 img, svg {
     border-radius: 100px;
+    width: 120px;
+margin-bottom: 20px;
 }
 
         section {
@@ -256,8 +258,8 @@ img, svg {
 .col1 {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aggiunto per posizionare gli elementi in colonna e allineati a sinistra */
-}
+  align-items: flex-start;
+  justify-content: center;
 
 .col2 {
   display: flex;
