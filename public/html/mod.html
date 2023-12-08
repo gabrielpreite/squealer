@@ -23,12 +23,40 @@
       </div>
       <div class="small-4 column small-padding-collapse">
         <div id="content_mid">
-            asd
+          <div id="mid_user" hidden> <!-- parte utente -->
+          <form id="form_filtro_user">
+            <select id="user_filtro_tipo" onchange="cambia_query_user()">
+              <option id="nome" selected value="nome">Nome</option>
+              <option id="tipo" value="tipo">Tipo</option>
+              <option id="popolarita" value="popolarita">Popolarita</option>
+            </select>
+            <div id="user_filtro_query">
+              <input type="text" id="user_query_nome"> <!-- caso filtro nome -->
+              <select id="user_query_tipo" hidden> <!-- caso filtro tipo -->
+                <option id="redazione" selected value="redazione">Redazione</option>
+                <option id="verificato" value="verificato">Verificato</option>
+                <option id="professional" value="professional">Professional</option>
+              </select>
+              <select id="user_query_popolarita" hidden> <!-- caso filtro popolarita -->
+                <option id="decrescente" selected value="decrescente">Decrescente</option>
+                <option id="crescente" value="crescente">Crescente</option>
+              </select>
+            </div>
+            <input type="submit" value="Filtra">
+          </form>
+            <div id="user_table_container">
+              <table id="user_table">
+              </table>
+            </div>
+          </div>
+          <div id="mid_squeal" hidden> <!-- parte squeal -->
+          </div>
+          <div id="mid_canali" hidden> <!-- parte canali -->
+          </div>
         </div>
       </div>
       <div class="small-6 column small-padding-collapse">
         <div id="content_right">
-            asd
         </div>
       </div>
     </div>
