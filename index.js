@@ -229,6 +229,25 @@ app.get('/db/dry_monthly', async function(req, res) {
 
 // ========================== USER
 
+// user disable
+//body set_to:true|false
+app.post('/user/:user_id/disable', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("quota")
+    try{
+        const user_id = req.params.user_id
+        response = await mymongo.user_disable(req.body, user_id, mongoCredentials)
+
+        if(response["risultato"] === "successo"){
+            res.status(200)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
 
 // get quota
 app.get('/user/:user_id/quota', async function(req, res) {

@@ -683,6 +683,40 @@ exports.search_canale = async function (q, credentials) {
 
 // ========================== USER
 
+// user disable
+exports.user_disable = async function (q, user_id, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = { "data": null, "risultato": null, "errore": null }
+
+	try {
+		let result = []
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.updateOne(
+				{username: user_id},
+				{ $set: {
+						abilitato_flag: !q.set_to
+					}
+				}
+			)
+
+		await mongo.close();
+
+		if (result.matchedCount == 1) {
+			response["risultato"] = "successo"
+		} else {
+			response["risultato"] = "username non trovato"
+		}
+
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
 // user info
 exports.user_info = async function (user_id, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
@@ -1117,6 +1151,22 @@ async function user_update_quota(user_id, q, credentials) {
 				.forEach((r) => {
 					result.push(r)
 				});
+		} else if (q.mod){
+			await mongo.db(dbname)
+				.collection("utente")
+				.updateOne(
+					{ username: user_id },
+					{
+						$set: {
+							"quota.g": q.q_g,
+							"quota.s": q.q_s,
+							"quota.m": q.q_m
+						}
+					}
+				)
+				.forEach((r) => {
+					result.push(r)
+				});
 		} else {
 			await mongo.db(dbname)
 				.collection("utente")
@@ -1129,7 +1179,7 @@ async function user_update_quota(user_id, q, credentials) {
 				.forEach((r) => {
 					result.push(r)
 				});
-		}
+		} 
 
 		await mongo.close();
 
