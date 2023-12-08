@@ -1,8 +1,3 @@
-body {
- margin: 0;
- padding: 0;
- font-family: Arial, sans-serif;
-}
 
 #main {
  margin-top: 50px;
@@ -13,6 +8,7 @@ body {
   position: fixed;
   top: 56px;
   left: 0;
+  width: 20%;
   height: 100%;
   overflow: auto;
   background-color: #f2f2f2;
@@ -24,30 +20,65 @@ body {
   margin-top: 20px;
 }
 
-#menu a {
+#menu button {
+  text-decoration: none;
+  border: none;
+  background-color: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#menu li {
   text-decoration: none;
   color: rgb(38, 45, 51);
-  font-weight: bold;
   padding: 15px 30px 15px 30px;
   display: block;
   transition: background-color 0.3s ease;
 }
 
-#menu a:hover {
+#menu li:hover {
   background-color: #e0e0e0;
 }
 
 
 #content {
- margin-left: 15%;
+ margin-left: 20%;
  padding: 30px;
- width: 100%;
+ width: 80%;
  background-color: #fefefe;
 }
 
 #notifiche:target, #post-popolari:target, #post-impopolari:target, #quota:target,
 #storico-acquisti:target, #cambia-account:target, #altro:target{
  scroll-margin-top: 70px;
+}
+
+.title-sezione {
+  font-size: 26px;
+}
+
+.form-control {
+      display: inline;
+      width: auto;
+      margin-bottom: 10px;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: .375rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+img, svg {
+    border-radius: 100px;
 }
 
         section {
@@ -65,9 +96,8 @@ body {
 
         form {
             display: flex;
-            flex-direction: column;
-            max-width: 400px;
             margin: auto;
+            justify-content: space-between;
         }
 
         label {
@@ -77,13 +107,11 @@ body {
 
         input {
             padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
 
-        button {
+        #content button {
             background-color: #1da1f2;
             color: #fff;
             padding: 10px;
@@ -92,14 +120,14 @@ body {
             cursor: pointer;
         }
 
-        button:hover {
+        #content button:hover {
             background-color: #0d8be0;
         }
 
         /* STORICO ACQUISTI*/
-        #acquisti {
+        .sezione {
             font-family: 'Arial', sans-serif;
-            margin: 0;
+            margin: 10px;
             padding: 0;
             background-color: #f4f4f4;
             border: 2px solid #ddd; /* Colore del bordo grigio chiaro */
@@ -107,9 +135,12 @@ body {
 
         }
 
+        #acquisti .container {
+          max-width: 800px;
+        }
+
         .container {
-            max-width: 800px;
-            padding: 20px;
+            padding: 20px 40px 40px 40px;
         }
 
         .acquisti {
@@ -216,6 +247,40 @@ body {
 
 
 .label-form {
-    font-size: 14x;
+    font-size: 14px;
     font-weight: bolder;
+  width: 100px; /* Imposta la larghezza desiderata per le etichette */
+  display: inline-block;
+}
+
+.col1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aggiunto per posizionare gli elementi in colonna e allineati a sinistra */
+}
+
+.col2 {
+  display: flex;
+  align-items: flex-start; /* Aggiunto per posizionare gli elementi in colonna e allineati a sinistra */
+}
+
+.form-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 150px;
+}
+
+#form_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#newImg {
+  margin-bottom: 10px; /* Aggiungi margine sotto l'immagine */
+}
+
+.btn-primary {
+  align-self: flex-end; /* Posiziona il pulsante in basso a destra */
 }
