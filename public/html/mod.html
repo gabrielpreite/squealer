@@ -57,6 +57,30 @@
       </div>
       <div class="small-6 column small-padding-collapse">
         <div id="content_right">
+          <div id="right_user" hidden> <!-- parte utente -->
+            <form id="modifica_user">
+              <div id="selected_user_username"></div>
+              Abilita/Disabilita utente:
+              <div class="switch">
+                <input class="switch-input" id="abilitato_user_switch" type="checkbox" name="abilitato_user_switch">
+                <label class="switch-paddle" for="abilitato_user_switch">
+                  <span class="show-for-sr">Abilita/Disabilita Utente</span>
+                </label>
+              </div>
+              Quota giornaliera:
+              <input type="text" id="quota_g">
+              Quota settimanale:
+              <input type="text" id="quota_s">
+              Quota mensile:
+              <input type="text" id="quota_m">
+            </div>
+          </form>
+          <div id="right_squeal" hidden> <!-- parte squeal -->
+            
+          </div>
+          <div id="right_canali" hidden> <!-- parte canali -->
+            
+          </div>
         </div>
       </div>
     </div>
@@ -66,6 +90,10 @@
       document.getElementById("form_filtro_user").addEventListener('submit', async event => {
         event.preventDefault();
         sort_utenti();
+      });
+      document.getElementById("modifica_user").addEventListener('submit', async event => {
+        event.preventDefault();
+        applica_utenti();
       });
     </script>
     <script>
