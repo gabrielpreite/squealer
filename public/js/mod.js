@@ -165,13 +165,14 @@ function seleziona_utente(username){
 }
 
 function applica_utenti(){
-    let username = document.getElementById("selected_user_username").value
+    let username = document.getElementById("selected_user_username").innerHTML
+    console.log(username)
     let quota = {"g": document.getElementById("quota_g").value, "s": document.getElementById("quota_s").value, "m": document.getElementById("quota_m").value}
     $.ajax({
         type: 'POST',
         dataType: "json",
         async: false,
-        url: `https://site212251.tw.cs.unibo.it/user/`+username+"/quota",
+        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/quota",
         headers: { },
         data: { mod: true, q_g: quota.g, q_s: quota.s, q_m: quota.m},
         success: function (data, status, xhr) {
@@ -183,9 +184,9 @@ function applica_utenti(){
         type: 'POST',
         dataType: "json",
         async: false,
-        url: `https://site212251.tw.cs.unibo.it/user/`+username+"/disable",
+        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/disable",
         headers: { },
-        data: {set_to: document.getElementById("abilitato_user_switch").checked},
+        data: {set_to: (document.getElementById("abilitato_user_switch").checked ? false : true)},
         success: function (data, status, xhr) {
             console.log("utente (dis)abilitato")
         }
