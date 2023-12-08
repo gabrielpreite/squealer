@@ -120,56 +120,59 @@
     <!-- MENU -->
     <div id="sidebar">
       <ul id="menu">
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('profilo')">Profilo</button></li>
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('account')">Account</button></li>
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('acquisti')">Storico Acquisti</button></li>
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('smm')">Gestione SMM</button></li>
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('follow')">Follow</button></li>
-        <li><button class="btn btn-outline-primary" onclick="switch_settings('popolarita')">Popolarità</button></li>
+        <li><button onclick="switch_settings('profilo')">Profilo</button></li>
+        <li><button onclick="switch_settings('account')">Account</button></li>
+        <li><button onclick="switch_settings('acquisti')">Storico Acquisti</button></li>
+        <li><button onclick="switch_settings('smm')">Gestione SMM</button></li>
+        <li><button onclick="switch_settings('follow')">Follow</button></li>
+        <li><button onclick="switch_settings('popolarita')">Popolarità</button></li>
       </ul>
     </div>
 
     <!-- CONTENUTO -->
     <div id="content">
-      <div id="profilo">
-        <h2 class="mb-4">Impostazioni Informazioni Personali</h2>
 
-        <form role="form" aria-label="Form impostazioni personali" id="form_info">
-          <div class="form-group">
-            <label for="newName" class="label-form">Nome: 
-              <p for="currentName" id="currentName">nome</p>
-            </label>
-            <input type="text" name="nome" class="form-control" id="newName" placeholder="Nuovo nome" aria-label="Nome">
-          </div>
+      <div id="profilo" class="sezione">
+        <div class="container">
+          <h2 class="mb-4 title-sezione">Impostazioni Informazioni Personali</h2>
+          <form role="form" aria-label="Form impostazioni personali" id="form_info">
+            <div class="col1">
+              <div class="form-group">
+                <label for="newName" class="label-form">Nome:</label>
+                <input type="text" name="nome" class="form-control" id="newName" placeholder="Modifica" aria-label="Nome">
+              </div>
 
-          <div class="form-group">
-            <label for="newSurname" class="label-form">Cognome: </label>
-            <p for="currentSurname" id="currentSurname">cognome</p>
-            <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Nuovo cognome" aria-label="Cognome">
-          </div>
+              <div class="form-group">
+                <label for="newSurname" class="label-form">Cognome: </label>
+                <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Modifica" aria-label="Cognome">
+              </div>
 
-          <div class="form-group">
-            <label for="newDesc" class="label-form">Descrizione: </label>
-            <p for="currentDesc" id="currentDesc">desc</p>
-            <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Nuova descrizione" aria-label="Descrizione">
-          </div>
+              <div class="form-group">
+                <label for="newDesc" class="label-form">Descrizione: </label>
+                <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Modifica" aria-label="Descrizione">
+              </div>
+            </div>
+            <div class="col2">
+              <div class="form-group form-img">
+                <label for="newImg" class="label-form" hidden>Immagine profilo: </label>
+                <img alt="immagine profilo attuale" id="currentImg"></img>
+                <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo" accept="image/*" aria-label="Immagine">
+              </div>
 
-          <div class="form-group">
-            <label for="newImg" class="label-form">Immagine profilo: </label>
-            <img alt="immagine profilo attuale" id="currentImg"></img>
-            <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo" accept="image/*" aria-label="Immagine">
-          </div>
-
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div id="account" >
-        <h2 class="mb-4">Impostazioni mail e password</h2>
+
+
+      <div id="account" class="sezione">
+        <div class="container">
+        <h2 class="mb-4 title-sezione">Impostazioni mail e password</h2>
 
         <form role="form" aria-label="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
           <div class="form-group">
             <label for="newEmail" class="label-form">Email: </label>
-            <p for="currentEmail" id="currentEmail">email</p>
             <input type="text" name="email" class="form-control" id="newEmail" placeholder="Nuova email" aria-label="Email">
           </div>
 
@@ -192,7 +195,10 @@
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>
-      <div id="acquisti">
+      </div>
+
+
+      <div id="acquisti" class="sezione">
         <div class="container">
                    <ul id="acquisti-list">
                        <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
@@ -200,7 +206,9 @@
                </div>
         </div>
 
-      <div id="smm" > <!-- ACCOUNT GESTITI/SMM -->
+
+      <div id="smm" class="sezione"> <!-- ACCOUNT GESTITI/SMM -->
+        <div class="container">
         <h3>I tuoi account gestiti</h3>
         <div id="div_account_gestiti"></div>
 
@@ -212,14 +220,24 @@
           <input type="text" id="new_smm" name="new_smm">
           <input type="submit" value="Conferma">
         </form>
-
       </div>
-      <div id="follow" >
+      </div>
+
+
+      <div id="follow" class="sezione">
+        <div class="container">
         TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
       </div>
-      <div id="popolarita" >
+      </div>
+
+
+      <div id="popolarita" class="sezione">
+        <div class="container">
         TODO - lista post pop/impop/contr + previsione andamento quota (+ grafico?)
       </div>
+      </div>
+
+
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -326,9 +344,6 @@
     // === PROFILO
     let NomeCognome = all_info.meta.info.nome;
     let ArrayCName = NomeCognome.split(' ');
-    document.getElementById("currentName").innerHTML = ArrayCName[0];
-    document.getElementById("currentSurname").innerHTML = ArrayCName[1];
-    document.getElementById("currentDesc").innerHTML = all_info.meta.info.bio;
     document.getElementById("currentImg").src = "https://site212251.tw.cs.unibo.it/uploads/" + all_info.meta.info.img;
 
     document.getElementById("newName").value = ArrayCName[0];
@@ -336,8 +351,6 @@
     document.getElementById("newDesc").value = all_info.meta.info.bio;
 
     // === ACCOUNT
-    document.getElementById("currentEmail").innerHTML = all_info.meta.info.email;
-
     document.getElementById("newEmail").value = all_info.meta.info.email;
 
     // === SMM
@@ -387,6 +400,17 @@
     } else {
       $("#current_smm").attr("value", result)
     }
+
+    function previewImage(input) {
+   var file = input.files[0];
+   if (file) {
+     var reader = new FileReader();
+     reader.onload = function(e) {
+       $('#currentImg').attr('src', e.target.result);
+     };
+     reader.readAsDataURL(file);
+   }
+ }
   </script>
 </body>
 
