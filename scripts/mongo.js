@@ -698,7 +698,7 @@ exports.user_abilitato = async function (q, user_id, credentials) {
 			.updateOne(
 				{username: user_id},
 				{ $set: {
-						abilitato_flag: q.set_to
+						abilitato_flag: (q.set_to === "true" ? true : false)
 					}
 				}
 			)
