@@ -259,6 +259,9 @@ margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+#profilo .col1{
   justify-content: center;
 }
 
@@ -274,7 +277,7 @@ margin-bottom: 20px;
   padding-right: 150px;
 }
 
-#form_info {
+.ordine {
   display: flex;
   justify-content: space-between;
 }
