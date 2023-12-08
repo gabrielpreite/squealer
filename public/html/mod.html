@@ -63,6 +63,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script>
+      document.getElementById("form_filtro_user").addEventListener('submit', async event => {
+        event.preventDefault();
+        sort_utenti();
+      });
+    </script>
+    <script>
         $(document).ready(function() {
             $(document).foundation();
         });

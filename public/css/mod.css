@@ -1,3 +1,7 @@
 .row{
     max-width: 100%
 }
+
+.hidden-text-input{
+    display: none
+}
