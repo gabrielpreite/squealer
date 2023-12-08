@@ -149,17 +149,17 @@ function seleziona_utente(username){
         url: `https://site212251.tw.cs.unibo.it/user/`+username,
         headers: { },
         success: function (data, status, xhr) {
-          user = data.data;
-          console.log(data)
-          document.getElementById("right_user").removeAttribute("hidden")
-          document.getElementById("right_squeal").setAttribute("hidden", "")
-          document.getElementById("right_canali").setAttribute("hidden", "")
-      
-          document.getElementById("selected_user_username").innerHTML = user.username
-          document.getElementById("abilitato_user_switch").checked = !user.abilitato_flag
-          document.getElementById("quota_g").value = user.quota.g
-          document.getElementById("quota_s").value = user.quota.s
-          document.getElementById("quota_m").value = user.quota.m
+            user = data.data;
+            console.log(data)
+            document.getElementById("right_user").removeAttribute("hidden")
+            document.getElementById("right_squeal").setAttribute("hidden", "")
+            document.getElementById("right_canali").setAttribute("hidden", "")
+            console.log(user.abilitato_flag)
+            document.getElementById("selected_user_username").innerHTML = user.username
+            document.getElementById("abilitato_user_switch").checked = user.abilitato_flag
+            document.getElementById("quota_g").value = user.quota.g
+            document.getElementById("quota_s").value = user.quota.s
+            document.getElementById("quota_m").value = user.quota.m
         }
     });
 }
@@ -186,7 +186,7 @@ function applica_utenti(){
         async: false,
         url: "https://site212251.tw.cs.unibo.it/user/"+username+"/disable",
         headers: { },
-        data: {set_to: (document.getElementById("abilitato_user_switch").checked ? false : true)},
+        data: {set_to: (!document.getElementById("abilitato_user_switch").checked)},
         success: function (data, status, xhr) {
             console.log("utente (dis)abilitato")
         }
