@@ -693,7 +693,7 @@ exports.user_disable = async function (q, user_id, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		await mongo.db(dbname)
+		result = await mongo.db(dbname)
 			.collection("utente")
 			.updateOne(
 				{username: user_id},
@@ -1139,7 +1139,7 @@ async function user_update_quota(user_id, q, credentials) {
 			acquisto["timestamp"] = date.getTime();
 			acquisto["quantita"] = parseInt(q.qnt)
 
-			await mongo.db(dbname)
+			result = await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
 					{ username: user_id },
@@ -1148,11 +1148,8 @@ async function user_update_quota(user_id, q, credentials) {
 						$push: { acquisti: acquisto }
 					}
 				)
-				.forEach((r) => {
-					result.push(r)
-				});
 		} else if (q.mod){
-			await mongo.db(dbname)
+			result = await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
 					{ username: user_id },
@@ -1164,11 +1161,8 @@ async function user_update_quota(user_id, q, credentials) {
 						}
 					}
 				)
-				.forEach((r) => {
-					result.push(r)
-				});
 		} else {
-			await mongo.db(dbname)
+			result = await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
 					{ username: user_id },
@@ -1176,15 +1170,12 @@ async function user_update_quota(user_id, q, credentials) {
 						$inc: { 'quota.g': parseInt(q.qnt) },
 					}
 				)
-				.forEach((r) => {
-					result.push(r)
-				});
 		} 
 
 		await mongo.close();
 
 		if (result.matchedCount == 1) {
-			response["data"] = result[0]
+			//response["data"] = result[0]
 			response["risultato"] = "successo"
 		} else {
 			response["risultato"] = "username non trovato"
