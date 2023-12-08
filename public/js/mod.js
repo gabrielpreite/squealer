@@ -184,9 +184,9 @@ function applica_utenti(){
         type: 'POST',
         dataType: "json",
         async: false,
-        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/disable",
+        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/abilitato",
         headers: { },
-        data: {set_to: (!document.getElementById("abilitato_user_switch").checked)},
+        data: {set_to: document.getElementById("abilitato_user_switch").checked},
         success: function (data, status, xhr) {
             console.log("utente (dis)abilitato")
         }

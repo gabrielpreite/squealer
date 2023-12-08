@@ -229,14 +229,14 @@ app.get('/db/dry_monthly', async function(req, res) {
 
 // ========================== USER
 
-// user disable
+// user abilitato
 //body set_to:true|false
-app.post('/user/:user_id/disable', async function(req, res) {
+app.post('/user/:user_id/abilitato', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("quota")
     try{
         const user_id = req.params.user_id
-        response = await mymongo.user_disable(req.body, user_id, mongoCredentials)
+        response = await mymongo.user_abilitato(req.body, user_id, mongoCredentials)
 
         if(response["risultato"] === "successo"){
             res.status(200)

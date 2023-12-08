@@ -684,7 +684,7 @@ exports.search_canale = async function (q, credentials) {
 // ========================== USER
 
 // user disable
-exports.user_disable = async function (q, user_id, credentials) {
+exports.user_abilitato = async function (q, user_id, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = { "data": null, "risultato": null, "errore": null }
 
@@ -698,7 +698,7 @@ exports.user_disable = async function (q, user_id, credentials) {
 			.updateOne(
 				{username: user_id},
 				{ $set: {
-						abilitato_flag: !q.set_to
+						abilitato_flag: q.set_to
 					}
 				}
 			)
