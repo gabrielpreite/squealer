@@ -77,7 +77,7 @@
 }
 
 
-img, svg {
+.sezione img, svg {
     border-radius: 100px;
     width: 120px;
 margin-bottom: 20px;
