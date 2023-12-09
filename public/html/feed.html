@@ -438,7 +438,6 @@
                  }
                  if (info.numRisposte) {
                    datiCommenti.push(info.numRisposte);
-                   console.log(info.numRisposte);
                  } else {
                    datiCommenti.push(0);
                  }
@@ -461,7 +460,7 @@
                 for (let i = 0; i < corpoSqueals.length; i++) {
                     risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
                 }
-                risultatoParallelo5 = risultatoParallelo.slice(0, 5);
+                risultatoParallelo5 = risultatoParallelo.slice(0, 6);
                 var commenti = risultatoParallelo5.map(item => item.numCommenti);
                 var corpo = risultatoParallelo5.map(item => item.corpoSqueal);
                 var id = risultatoParallelo5.map(item => item.idSqueal);
