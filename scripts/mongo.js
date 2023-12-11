@@ -565,7 +565,7 @@ exports.search_messaggio = async function (q, credentials) {
 
 		let result = []
 		console.log("replies = "+q.replies)
-		if (q.replies !== false) {
+		if (q.replies !== "false") {
 			debug.push("with replies")
 			await mongo.db(dbname)
 				.collection("messaggio")
