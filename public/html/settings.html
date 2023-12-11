@@ -453,7 +453,7 @@
            listItem.innerHTML = `
              <i class="fas fa-user"></i>
              <span>${utente}</span>
-             <button class="remove-btn" onclick="removeFollowing('${utente}')">
+             <button class="remove-btn" onclick="removeFollowing('${utente}', utente)">
                <i class="fa-solid fa-x"></i>
              </button>
            `;
@@ -466,13 +466,33 @@
                 listItem.innerHTML = `
                   <i class="fas fa-users"></i>
                   <span>${canale}</span>
-                  <button class="remove-btn" onclick="removeFollowing('${canale}')">
+                  <button class="remove-btn" onclick="removeFollowing('${canale}', canale)">
                     <i class="fa-solid fa-x"></i>
                   </button>
                 `;
                 document.querySelector(".follower-list").appendChild(listItem);
               });
 
+              function toggle_follow(target, tipo){
+                $.ajax({
+                  type: 'POST',
+                  dataType: "json",
+                  url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+                  headers: { },
+                  data: { target: target, tipo: tipo },
+                  success: function (data, status, xhr) {
+                    //console.log(data.risultato)
+                    // Rimuovi l'elemento dalla lista se la richiesta ha avuto successo
+                   if (data.risultato === 'successo') {
+                     // Identificatore unico dell'elemento da rimuovere (es. user_id)
+                     var elementoDaRimuovere = target;
+
+                     // Cerca e rimuovi l'elemento dalla lista
+                     var elemento = $(`.follower-list li[data-id='${elementoDaRimuovere}']`);
+                     elemento.remove();
+                   }
+                  }
+                });
 
 
 
