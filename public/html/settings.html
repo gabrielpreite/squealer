@@ -505,11 +505,11 @@
         let follow_utenti = follow.$utenti_seguiti
         let follow_canali = follow.$canali_seguiti
         console.log(follow_utenti);
-        popolaSeguiti();
+        popolaSeguiti(follow_utenti, follow_canali);
       }
     });
 
-    function popolaSeguiti() {
+    function popolaSeguiti(follow_utenti, follow_canali) {
     // Popola la lista degli utenti seguiti
          follow_utenti.forEach(function (utente) {
            var listItem = document.createElement("li");
