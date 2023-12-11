@@ -237,13 +237,17 @@
               <ul class="follower-list barra-scorrimento">
                 <!-- Lista dei follower -->
                 <li>
-                  <i class="fas fa-users"></i>
-                  <span>Nome Follower 1</span>
+                  <div>
+                    <i class="fas fa-users"></i>
+                    <span>Nome Follower 1</span>
+                  </div>
                   <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
                 </li>
                 <li>
-                  <i class="fas fa-user"></i>
-                  <span>Nome Follower 2</span>
+                  <div>
+                    <i class="fas fa-user"></i>
+                    <span>Nome Follower 2</span>
+                  </div>
                   <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
                 </li>
                 <!-- Aggiungi altri elementi se necessario -->
@@ -517,8 +521,10 @@
         var utente = follow_utenti[i];
         var listItem = document.createElement("li");
         listItem.innerHTML = `
-          <i class="fas fa-user"></i>
-          <span>${utente}</span>
+          <div>
+            <i class="fas fa-user"></i>
+            <span>${utente}</span>
+          </div>
           <button class="remove-btn" onclick="removeFollowing('${utente}', utente)">
             <i class="fa-solid fa-x"></i>
           </button>
@@ -530,8 +536,10 @@
         var canale = follow_canali[j];
         var listItemCanale = document.createElement("li");
         listItemCanale.innerHTML = `
-          <i class="fas fa-users"></i>
-          <span>${canale}</span>
+          <div>
+            <i class="fas fa-users"></i>
+            <span>${canale}</span>
+          </div>
           <button class="remove-btn" onclick="removeFollowing('${canale}', canale)">
             <i class="fa-solid fa-x"></i>
           </button>
