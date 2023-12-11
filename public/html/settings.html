@@ -229,10 +229,43 @@
 
       <div id="follow" class="sezione">
         <div class="container">
-        TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
-      </div>
-      </div>
+          <h2 class="mb-4 title-sezione">Lista Follower e Seguiti</h2>
 
+          <div class="ordine">
+            <div class="col1">
+              <h3>Follower</h3>
+              <ul class="follower-list barra-scorrimento">
+                <!-- Lista dei follower -->
+                <li>
+                  <span>Nome Follower 1</span>
+                  <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
+                </li>
+                <li>
+                  <span>Nome Follower 2</span>
+                  <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
+                </li>
+                <!-- Aggiungi altri elementi se necessario -->
+              </ul>
+            </div>
+
+            <div class="col2 smm-ordine">
+              <h3>Seguiti</h3>
+              <ul class="follower-list barra-scorrimento">
+                <!-- Lista dei seguiti -->
+                <li>
+                  <span>Nome Seguito 1</span>
+                  <button class="remove-btn" onclick="removeFollowing('following1')"><i class="fa-solid fa-x"></i></button>
+                </li>
+                <li>
+                  <span>Nome Seguito 2</span>
+                  <button class="remove-btn" onclick="removeFollowing('following2')"><i class="fa-solid fa-x"></i></button>
+                </li>
+                <!-- Aggiungi altri elementi se necessario -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div id="popolarita" class="sezione">
         <div class="container">
@@ -403,6 +436,17 @@
     } else {
       $("#current_smm").attr("value", result)
     }
+
+    //follower e follow
+    
+
+
+
+
+
+
+
+
 
     function previewImage(input) {
    var file = input.files[0];
