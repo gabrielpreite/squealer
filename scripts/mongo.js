@@ -67,7 +67,7 @@ exports.daily = async function (dry, credentials) {
 			});
 
 		result.forEach((user) => {
-			let new_quota = { "g": user.quota.g, "s": user.quota.s, "m": user.quota.m }
+			let new_quota = { "g": parseInt(user.quota.g), "s": parseInt(user.quota.s), "m": parseInt(user.quota.m) }
 			console.log("[D1] quota utente " + user.username + ": " + JSON.stringify(user.quota))
 			let differenza = DEF_G - user.quota.g //quota necessaria per tornare al valore di default
 			if (differenza > 0) { //la quota non e' gia' piena
