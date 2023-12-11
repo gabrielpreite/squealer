@@ -164,6 +164,10 @@ app.get('/test', function (req, res) { // DEBUG USE
 	res.sendFile(global.rootDir+"/public/html/test.html")
 })
 
+app.get('/app', function (req, res) {
+	res.sendFile(global.rootDir+"/public/html/app-feed.html")
+})
+
 /* ========================== */
 /*                            */
 /*           MONGODB          */
