@@ -223,39 +223,175 @@ function cat_squeal(){
         row.appendChild(cell_des);
 
         let cell_dat = document.createElement("td");
-        let d = new Date(squeal.timestamp * 1000)
+        let d = new Date(squeal.timestamp)
         let cellText_dat = document.createTextNode(d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
         cell_dat.appendChild(cellText_dat)
         row.appendChild(cell_dat);
 
         let cell_pre = document.createElement("td");
-        let cellText_pre = document.createTextNode(user.professional_flag ? "Y" : "N");
+        let cellText_pre = document.createTextNode(squeal.corpo.slice(0, 25)+"...");
         cell_pre.appendChild(cellText_pre)
         row.appendChild(cell_pre);
 
-        row.onclick = function() { seleziona_squeal(user.username); };
+        row.onclick = function() { seleziona_squeal(squeal.post_id); };
         tableBody.appendChild(row)
     })
-    document.getElementById("user_table").appendChild(tableBody)
-    document.getElementById("mid_user").removeAttribute("hidden")
-    document.getElementById("mid_squeal").setAttribute("hidden", "true")
+    document.getElementById("squeal_table").appendChild(tableBody)
+    document.getElementById("mid_user").setAttribute("hidden", "true")
+    document.getElementById("mid_squeal").removeAttribute("hidden")
     document.getElementById("mid_canali").setAttribute("hidden", "true")
 
 }
 
 function cambia_query_squeal(){
-    document.getElementById("squeal_query_mittente").setAttribute("hidden", "true")
     document.getElementById("squeal_query_mittente").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_data_inizio").setAttribute("hidden", "true")
-    document.getElementById("squeal_query_data_fine").setAttribute("hidden", "true")
-    document.getElementById("squeal_query_destinatario").setAttribute("hidden", "true")
+    document.getElementById("squeal_query_data_inizio").classList.add("hidden-text-input")
+    document.getElementById("squeal_query_data_fine").classList.add("hidden-text-input")
     document.getElementById("squeal_query_destinatario").classList.add("hidden-text-input")
 
     let scelta = document.getElementById("squeal_filtro_tipo").value
     if(scelta === "mittente" || scelta === "destinatario"){
         document.getElementById("squeal_query_"+scelta).classList.remove("hidden-text-input")
     } else {
-        document.getElementById("squeal_query_data_inizio").removeAttribute("hidden")
-        document.getElementById("squeal_query_data_fine").removeAttribute("hidden")
+        document.getElementById("squeal_query_data_inizio").classList.remove("hidden-text-input")
+        document.getElementById("squeal_query_data_fine").classList.remove("hidden-text-input")
     }
+}
+
+function seleziona_squeal(post_id){
+    let squeal
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/squeal/`+post_id,
+        headers: { },
+        success: function (data, status, xhr) {
+            squeal = data.data;
+            console.log(squeal)
+            document.getElementById("right_user").setAttribute("hidden", "")
+            document.getElementById("right_squeal").removeAttribute("hidden")
+            document.getElementById("right_canali").setAttribute("hidden", "")
+            
+            document.getElementById("selected_squeal_post_id").innerHTML = squeal.post_id
+            document.getElementById("mittente_squeal").innerHTML = squeal.utente
+            document.getElementById("destinatari_squeal").value = squeal.destinatari.toString()
+            let d = new Date(squeal.timestamp)
+            document.getElementById("data_squeal").innerHTML = d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' })
+            document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
+
+            document.getElementById("#_con").innerHTML = squeal.reazioni.positive.concordo.length
+            document.getElementById("list_con").value = squeal.reazioni.positive.concordo.toString()
+
+            document.getElementById("#_mip").innerHTML = squeal.reazioni.positive.mi_piace.length
+            document.getElementById("list_mip").value = squeal.reazioni.positive.mi_piace.toString()
+
+            document.getElementById("#_ado").innerHTML = squeal.reazioni.positive.adoro.length
+            document.getElementById("list_ado").value = squeal.reazioni.positive.adoro.toString()
+
+            document.getElementById("#_son").innerHTML = squeal.reazioni.negative.sono_contrario.length
+            document.getElementById("list_son").value = squeal.reazioni.negative.sono_contrario.toString()
+
+            document.getElementById("#_mid").innerHTML = squeal.reazioni.negative.mi_disgusta.length
+            document.getElementById("list_mid").value = squeal.reazioni.negative.mi_disgusta.toString()
+
+            document.getElementById("#_odi").innerHTML = squeal.reazioni.negative.odio.length
+            document.getElementById("list_odi").value = squeal.reazioni.negative.odio.toString()
+        }
+    });
+}
+
+function sort_squeal(){
+    let tipo = document.getElementById("squeal_filtro_tipo").value
+    let query
+    let new_squeals = []
+
+    if(tipo === "mittente"){ //solo quelli che matchano sul mittente
+        query = document.getElementById("squeal_query_mittente").value
+        squeals.forEach((el) => {
+            if(el.utente === query){
+                new_squeals.push(el)
+            }
+        })
+    } else if(tipo === "data") { //solo quelli che rientrano tra le due date
+        let inizio = new Date(document.getElementById("squeal_query_data_inizio").value).getTime()
+        let fine_date = new Date(document.getElementById("squeal_query_data_fine").value)
+        fine_date.setTime(fine_date.getTime() + (22 * 60 * 60 * 1000)) //+22 ore (fine giornata)
+        let fine = fine_date.getTime() 
+        squeals.forEach((el) => {
+            if(el.timestamp <= fine && el.timestamp >= inizio){
+                new_squeals.push(el)
+            }
+        })
+    } else if(tipo === "destinatario"){ //solo quelli che matchano sul destinatario
+        query = document.getElementById("squeal_query_destinatario").value
+        squeals.forEach((el) => {
+            if(el.destinatari.includes(query)){
+                new_squeals.push(el)
+            }
+        })
+    }
+
+    //console.log(new_squeals)
+
+    document.getElementById("squeal_table").innerHTML = ""
+    let tableBody = document.createElement("tbody");
+    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
+    new_squeals.forEach((squeal) => {
+        var row = document.createElement("tr");
+
+        let cell_mit = document.createElement("td");
+        let cellText_mit = document.createTextNode(squeal.utente);
+        cell_mit.appendChild(cellText_mit);
+        row.appendChild(cell_mit);
+
+        let cell_des = document.createElement("td");
+        let cellText_des = document.createTextNode(squeal.destinatari.toString());
+        cell_des.appendChild(cellText_des)
+        row.appendChild(cell_des);
+
+        let cell_dat = document.createElement("td");
+        let d = new Date(squeal.timestamp)
+        let cellText_dat = document.createTextNode(d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+        cell_dat.appendChild(cellText_dat)
+        row.appendChild(cell_dat);
+
+        let cell_pre = document.createElement("td");
+        let cellText_pre = document.createTextNode(squeal.corpo.slice(0, 25)+"...");
+        cell_pre.appendChild(cellText_pre)
+        row.appendChild(cell_pre);
+
+        row.onclick = function() { seleziona_squeal(squeal.post_id); };
+        tableBody.appendChild(row)
+    })
+    document.getElementById("squeal_table").appendChild(tableBody)
+}
+
+function applica_squeal(){
+    let post_id = document.getElementById("selected_squeal_post_id").innerHTML
+    //console.log(username)
+    /*let quota = {"g": document.getElementById("quota_g").value, "s": document.getElementById("quota_s").value, "m": document.getElementById("quota_m").value}
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/quota",
+        headers: { },
+        data: { mod: true, q_g: quota.g, q_s: quota.s, q_m: quota.m},
+        success: function (data, status, xhr) {
+            //console.log("quota aggiornata")
+        }
+    });
+
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/abilitato",
+        headers: { },
+        data: {set_to: document.getElementById("abilitato_user_switch").checked},
+        success: function (data, status, xhr) {
+            //console.log("utente (dis)abilitato")
+        }
+    });*/
 }

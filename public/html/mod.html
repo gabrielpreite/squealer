@@ -54,13 +54,13 @@
               <select id="squeal_filtro_tipo" onchange="cambia_query_squeal()">
                 <option id="mittente" selected value="mittente">Mittente</option>
                 <option id="data" value="data">Data</option>
-                <option id="destinatari" value="destinatari">Destinatari</option>
+                <option id="destinatario" value="destinatario">Destinatario</option>
               </select>
               <div id="squeal_filtro_query">
                 <input type="text" id="squeal_query_mittente"> <!-- caso filtro mittente -->
-                <input type="date" id="squeal_query_data_inizio"> <!-- caso filtro data -->
-                <input type="date" id="squeal_query_data_fine">
-                <input type="text" id="squeal_query_destinatario"> <!-- caso filtro destinatario -->
+                <input type="date" id="squeal_query_data_inizio" class="hidden-text-input"> <!-- caso filtro data -->
+                <input type="date" id="squeal_query_data_fine" class="hidden-text-input">
+                <input type="text" id="squeal_query_destinatario" class="hidden-text-input"> <!-- caso filtro destinatario -->
               </div>
               <input type="submit" value="Filtra">
             </form>
@@ -93,9 +93,54 @@
               <input type="text" id="quota_m">
               <input type="submit" value="Applica modifiche">
             </form>
-            </div>
+          </div>
           <div id="right_squeal" hidden> <!-- parte squeal -->
-            
+            <form id="modifica_squeal">
+              <div id="selected_squeal_post_id"></div>
+              Mittente <div id="mittente_squeal"></div><br>
+              Destinatari <input type="text" id="destinatari_squeal"><br>
+              Data <div id="data_squeal"></div><br>
+              Contenuto <div id="contenuto_squeal"></div><br>
+              Reazioni:<br>
+              <table id="reaction_table">
+                <tr>
+                  <th>Tipo</th>
+                  <th>#</th>
+                  <th>Utenti</th>
+                </tr>
+                <tr>
+                  <td>Concordo</td>
+                  <td id="#_con"></td>
+                  <td><input type="text" id="list_con"></td>
+                </tr>
+                <tr>
+                  <td>Mi piace</td>
+                  <td id="#_mip"></td>
+                  <td><input type="text" id="list_mip"></td>
+                </tr>
+                <tr>
+                  <td>Adoro</td>
+                  <td id="#_ado"></td>
+                  <td><input type="text" id="list_ado"></td>
+                </tr>
+                <tr>
+                  <td>Sono contrario</td>
+                  <td id="#_son"></td>
+                  <td><input type="text" id="list_son"></td>
+                </tr>
+                <tr>
+                  <td>Mi disgusta</td>
+                  <td id="#_mid"></td>
+                  <td><input type="text" id="list_mid"></td>
+                </tr>
+                <tr>
+                  <td>Odio</td>
+                  <td id="#_odi"></td>
+                  <td><input type="text" id="list_odi"></td>
+                </tr>
+              </table>
+              <input type="submit" value="Applica modifiche">
+            </form>
           </div>
           <div id="right_canali" hidden> <!-- parte canali -->
             
@@ -113,6 +158,14 @@
       document.getElementById("modifica_user").addEventListener('submit', async event => {
         event.preventDefault();
         applica_utenti();
+      });
+      document.getElementById("form_filtro_squeal").addEventListener('submit', async event => {
+        event.preventDefault();
+        sort_squeal();
+      });
+      document.getElementById("modifica_squeal").addEventListener('submit', async event => {
+        event.preventDefault();
+        //applica_squeal();
       });
     </script>
     <script>
