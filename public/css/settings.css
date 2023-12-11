@@ -325,7 +325,7 @@ margin-bottom: 20px;
   padding: 0px 100px;
 }
 
-.follower-list {
+.follower-list, .follow-list {
   max-height: 300px;
   margin: 0px;
   overflow-y: auto;
@@ -334,6 +334,7 @@ margin-bottom: 20px;
 
 #follow button {
   background-color: transparent;
+  margin-left: 10px;
 }
 
 #follow button:hover{
@@ -346,6 +347,9 @@ margin-bottom: 20px;
   padding: 2px 10px 2px 15px;
   border-radius: 20px;
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .fa-x {
