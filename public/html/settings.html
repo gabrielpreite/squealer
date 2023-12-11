@@ -510,32 +510,35 @@
     });
 
     function popolaSeguiti(follow_utenti, follow_canali) {
-    // Popola la lista degli utenti seguiti
-         follow_utenti.forEach(function (utente) {
-           var listItem = document.createElement("li");
-           listItem.innerHTML = `
-             <i class="fas fa-user"></i>
-             <span>${utente}</span>
-             <button class="remove-btn" onclick="removeFollowing('${utente}', utente)">
-               <i class="fa-solid fa-x"></i>
-             </button>
-           `;
-           document.querySelector(".follower-list").appendChild(listItem);
-         });
+      // Popola la lista degli utenti seguiti
+      var followerList = document.querySelector(".follower-list");
 
-         // Popola la lista dei canali seguiti
-              follow_canali.forEach(function (canale) {
-                var listItem = document.createElement("li");
-                listItem.innerHTML = `
-                  <i class="fas fa-users"></i>
-                  <span>${canale}</span>
-                  <button class="remove-btn" onclick="removeFollowing('${canale}', canale)">
-                    <i class="fa-solid fa-x"></i>
-                  </button>
-                `;
-                document.querySelector(".follower-list").appendChild(listItem);
-              });
-        }
+      for (var i = 0; i < follow_utenti.length; i++) {
+        var utente = follow_utenti[i];
+        var listItem = document.createElement("li");
+        listItem.innerHTML = `
+          <i class="fas fa-user"></i>
+          <span>${utente}</span>
+          <button class="remove-btn" onclick="removeFollowing('${utente}', utente)">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        `;
+        followerList.appendChild(listItem);
+      }
+
+      for (var j = 0; j < follow_canali.length; j++) {
+        var canale = follow_canali[j];
+        var listItemCanale = document.createElement("li");
+        listItemCanale.innerHTML = `
+          <i class="fas fa-users"></i>
+          <span>${canale}</span>
+          <button class="remove-btn" onclick="removeFollowing('${canale}', canale)">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        `;
+        followerList.appendChild(listItemCanale);
+      }
+    }
 
               function toggle_follow(target, tipo){
                 $.ajax({
