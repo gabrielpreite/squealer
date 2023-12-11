@@ -237,10 +237,12 @@
               <ul class="follower-list barra-scorrimento">
                 <!-- Lista dei follower -->
                 <li>
+                  <i class="fas fa-users"></i>
                   <span>Nome Follower 1</span>
                   <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
                 </li>
                 <li>
+                  <i class="fas fa-user"></i>
                   <span>Nome Follower 2</span>
                   <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
                 </li>
@@ -252,15 +254,6 @@
               <h3>Seguiti</h3>
               <ul class="follower-list barra-scorrimento">
                 <!-- Lista dei seguiti -->
-                <li>
-                  <span>Nome Seguito 1</span>
-                  <button class="remove-btn" onclick="removeFollowing('following1')"><i class="fa-solid fa-x"></i></button>
-                </li>
-                <li>
-                  <span>Nome Seguito 2</span>
-                  <button class="remove-btn" onclick="removeFollowing('following2')"><i class="fa-solid fa-x"></i></button>
-                </li>
-                <!-- Aggiungi altri elementi se necessario -->
               </ul>
             </div>
           </div>
@@ -438,9 +431,47 @@
     }
 
     //follower e follow
-    
+    let follow = []
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        follow = data["data"];
+      }
+    });
+    let follow_utenti = follow.$utenti_seguiti
+    let follow_canali = follow.$canali_seguiti
+    console.log(follow_utenti);
 
+    // Popola la lista degli utenti seguiti
+         follow_utenti.forEach(function (utente) {
+           var listItem = document.createElement("li");
+           listItem.innerHTML = `
+             <i class="fas fa-user"></i>
+             <span>${utente}</span>
+             <button class="remove-btn" onclick="removeFollowing('${utente}')">
+               <i class="fa-solid fa-x"></i>
+             </button>
+           `;
+           document.querySelector(".follower-list").appendChild(listItem);
+         });
 
+         // Popola la lista dei canali seguiti
+              follow_canali.forEach(function (canale) {
+                var listItem = document.createElement("li");
+                listItem.innerHTML = `
+                  <i class="fas fa-users"></i>
+                  <span>${canale}</span>
+                  <button class="remove-btn" onclick="removeFollowing('${canale}')">
+                    <i class="fa-solid fa-x"></i>
+                  </button>
+                `;
+                document.querySelector(".follower-list").appendChild(listItem);
+              });
 
 
 

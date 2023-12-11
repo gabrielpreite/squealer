@@ -334,6 +334,7 @@ margin-bottom: 20px;
 
 #follow button {
   background-color: transparent;
+  margin-left: 10px;
 }
 
 #follow button:hover{
