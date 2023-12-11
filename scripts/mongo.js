@@ -70,14 +70,14 @@ exports.daily = async function (dry, credentials) {
 			let new_quota = { "g": parseInt(user.quota.g), "s": parseInt(user.quota.s), "m": parseInt(user.quota.m) }
 			console.log("[D1] quota utente " + user.username + ": " + JSON.stringify(user.quota))
 			let differenza = DEF_G - user.quota.g //quota necessaria per tornare al valore di default
-			console.log("differenza = " + typeof differenza)
+			//console.log("differenza = " + typeof differenza)
 			if (differenza > 0) { //la quota non e' gia' piena
 				console.log("[D1] richiedo " + differenza + " quota")
 				differenza = Math.min(differenza, user.quota.s)
 				console.log("[D1] ottenuta " + differenza + " dalla quota settimanale")
 				new_quota.s -= differenza
 				new_quota.g += differenza
-				console.log("[D1] nuova quota utente " + user.username + ": " + new_quota)
+				console.log("[D1] nuova quota utente " + user.username + ": " + JSON.stringify(new_quota))
 
 				if (!dry) {
 					console.log("[D1] applico nuova quota")
@@ -209,7 +209,7 @@ exports.weekly = async function (dry, credentials) {
 			});
 
 		result.forEach((user) => {
-			let new_quota = { "g": user.quota.g, "s": user.quota.s, "m": user.quota.m }
+			let new_quota = { "g": parseInt(user.quota.g), "s": parseInt(user.quota.s), "m": parseInt(user.quota.m) }
 			console.log("[W1] quota utente " + user.username + ": " + JSON.stringify(user.quota))
 			let differenza = DEF_S - user.quota.s //quota necessaria per tornare al valore di default
 			if (differenza > 0) { //la quota non e' gia' piena
@@ -218,7 +218,7 @@ exports.weekly = async function (dry, credentials) {
 				console.log("[W1] ottenuta " + differenza + " dalla quota mensile")
 				new_quota.m -= differenza
 				new_quota.s += differenza
-				console.log("[W1] nuova quota utente " + user.username + ": " + new_quota)
+				console.log("[W1] nuova quota utente " + user.username + ": " + JSON.stringify(new_quota))
 
 				if (!dry) {
 					console.log("[W1] applico nuova quota")
