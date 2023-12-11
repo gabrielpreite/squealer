@@ -1,4 +1,5 @@
 var utenti = []
+var squeal = []
 
 function cat_utenti(){
     $.ajax({
@@ -191,4 +192,74 @@ function applica_utenti(){
             //console.log("utente (dis)abilitato")
         }
     });
+}
+
+function cat_squeal(){
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/db/squeal?replies=false`,
+        headers: { },
+        success: function (data, status, xhr) {
+          squeal = data;
+        }
+    });
+    
+    document.getElementById("user_table").innerHTML = ""
+    let tableBody = document.createElement("tbody");
+    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    utenti.forEach((user) => {
+        var row = document.createElement("tr");
+
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode(user.username);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+
+        let cell_red = document.createElement("td");
+        let cellText_red = document.createTextNode(user.redazione_flag ? "Y" : "N");
+        cell_red.appendChild(cellText_red)
+        row.appendChild(cell_red);
+
+        let cell_ver = document.createElement("td");
+        let cellText_ver = document.createTextNode(user.verificato_flag ? "Y" : "N");
+        cell_ver.appendChild(cellText_ver)
+        row.appendChild(cell_ver);
+
+        let cell_pro = document.createElement("td");
+        let cellText_pro = document.createTextNode(user.professional_flag ? "Y" : "N");
+        cell_pro.appendChild(cellText_pro)
+        row.appendChild(cell_pro);
+
+        let cell_pop = document.createElement("td");
+        let cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
+        cell_pop.appendChild(cellText_pop)
+        row.appendChild(cell_pop);
+
+        row.onclick = function() { seleziona_utente(user.username); };
+        tableBody.appendChild(row)
+    })
+    document.getElementById("user_table").appendChild(tableBody)
+    document.getElementById("mid_user").removeAttribute("hidden")
+    document.getElementById("mid_squeal").setAttribute("hidden", "true")
+    document.getElementById("mid_canali").setAttribute("hidden", "true")
+
+}
+
+function cambia_query_squeal(){
+    document.getElementById("squeal_query_mittente").setAttribute("hidden", "true")
+    document.getElementById("squeal_query_mittente").classList.add("hidden-text-input")
+    document.getElementById("squeal_query_data_inizio").setAttribute("hidden", "true")
+    document.getElementById("squeal_query_data_fine").setAttribute("hidden", "true")
+    document.getElementById("squeal_query_destinatario").setAttribute("hidden", "true")
+    document.getElementById("squeal_query_destinatario").classList.add("hidden-text-input")
+
+    let scelta = document.getElementById("squeal_filtro_tipo").value
+    if(scelta === "mittente" || scelta === "destinatario"){
+        document.getElementById("squeal_query_"+scelta).classList.remove("hidden-text-input")
+    } else {
+        document.getElementById("squeal_query_data_inizio").removeAttribute("hidden")
+        document.getElementById("squeal_query_data_fine").removeAttribute("hidden")
+    }
 }

@@ -50,6 +50,20 @@
             </div>
           </div>
           <div id="mid_squeal" hidden> <!-- parte squeal -->
+            <form id="form_filtro_squeal">
+              <select id="squeal_filtro_tipo" onchange="cambia_query_squeal()">
+                <option id="mittente" selected value="mittente">Mittente</option>
+                <option id="data" value="data">Data</option>
+                <option id="destinatari" value="destinatari">Destinatari</option>
+              </select>
+              <div id="squeal_filtro_query">
+                <input type="text" id="squeal_query_mittente"> <!-- caso filtro mittente -->
+                <input type="date" id="squeal_query_data_inizio"> <!-- caso filtro data -->
+                <input type="date" id="squeal_query_data_fine">
+                <input type="text" id="squeal_query_destinatario"> <!-- caso filtro destinatario -->
+              </div>
+              <input type="submit" value="Filtra">
+            </form>
           </div>
           <div id="mid_canali" hidden> <!-- parte canali -->
           </div>

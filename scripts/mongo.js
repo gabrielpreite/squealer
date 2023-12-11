@@ -564,8 +564,9 @@ exports.search_messaggio = async function (q, credentials) {
 		debug.push("... managed to connect to MongoDB.")
 
 		let result = []
-		if (q.messaggio_id === undefined) { //non passo argomenti nel get, ritorno tutta la tabella
-			debug.push("no args found")
+		console.log("replies = "+q.replies)
+		if (q.replies !== false) {
+			debug.push("with replies")
 			await mongo.db(dbname)
 				.collection("messaggio")
 				.find()
@@ -574,44 +575,11 @@ exports.search_messaggio = async function (q, credentials) {
 					result.push(r)
 				});
 		}
-		else { //passo userid nel get, ritorno il record corretto
-			debug.push("found args :" + q.messaggio_id)
-			await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
+		else {
+			await mongo.db(dbname)
 				.collection("messaggio")
-				.aggregate([
-					{ $match: { post_id: q.messaggio_id } },
-					{
-						$lookup: {
-							from: "utente", // nome seconda tabella
-							localField: "utente", // nome chiave in prima tabella (corrente)
-							foreignField: "username", // nome chiave in seconda tabella
-							as: "utenteData" // rename del record ottenuto (da seconda tabella)
-						}
-					},
-					{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
-					{
-						"$replaceRoot": { //ricrea la "root" della struttura ottenuta
-							"newRoot": {
-								"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
-									"$$ROOT", //campi originali in messaggio
-									{ nome: "$utenteData.nome" },
-									{ img: "$utenteData.img" }
-								]
-							}
-						}
-					},
-					{ $project: { utenteData: 0 } }, //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
-					{
-						$lookup: {
-							from: "messaggio",
-							localField: "post_id",
-							foreignField: "risponde_a",
-							as: "risposte"
-						}
-					},
-					{ $addFields: { numRisposte: { $size: "$risposte" } } },
-					{ $project: { risposte: 0 } }
-				])
+				.find({ risponde_a: null} )
+				.project({ _id: 0 })
 				.forEach((r) => {
 					result.push(r)
 				});
