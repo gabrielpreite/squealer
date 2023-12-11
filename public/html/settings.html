@@ -502,8 +502,8 @@
       success: function (data, status, xhr) {
         console.log('data: ', data);
         follow = data["data"];
-        let follow_utenti = follow.$utenti_seguiti
-        let follow_canali = follow.$canali_seguiti
+        let follow_utenti = follow.utenti_seguiti
+        let follow_canali = follow.canali_seguiti
         console.log(follow_utenti);
         popolaSeguiti(follow_utenti, follow_canali);
       }
