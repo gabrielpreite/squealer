@@ -252,7 +252,7 @@
 
             <div class="col2 smm-ordine">
               <h3>Seguiti</h3>
-              <ul class="follower-list barra-scorrimento">
+              <ul class="follow-list barra-scorrimento">
                 <!-- Lista dei seguiti -->
               </ul>
             </div>
@@ -511,7 +511,7 @@
 
     function popolaSeguiti(follow_utenti, follow_canali) {
       // Popola la lista degli utenti seguiti
-      var followerList = document.querySelector(".follower-list");
+      var followerList = document.querySelector(".follow-list");
 
       for (var i = 0; i < follow_utenti.length; i++) {
         var utente = follow_utenti[i];
@@ -540,7 +540,7 @@
       }
     }
 
-              function toggle_follow(target, tipo){
+              function removeFollowing(target, tipo){
                 $.ajax({
                   type: 'POST',
                   dataType: "json",

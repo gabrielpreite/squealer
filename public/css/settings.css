@@ -325,7 +325,7 @@ margin-bottom: 20px;
   padding: 0px 100px;
 }
 
-.follower-list {
+.follower-list, .follow-list {
   max-height: 300px;
   margin: 0px;
   overflow-y: auto;
