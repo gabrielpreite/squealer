@@ -397,7 +397,7 @@ margin-bottom: 20px;
   margin: 0;
 }
 
-.riquadro-popolarita {
+.riquadro_popolarita {
   background-color: #4caf50;
   color: #fff;
   border-radius: 8px;
@@ -406,7 +406,7 @@ margin-bottom: 20px;
   margin-right: 15px;
 }
 
-.riquadro-quota {
+.riquadro_quota {
   background-color: #42a5f5;
   color: #fff;
   border-radius: 8px;

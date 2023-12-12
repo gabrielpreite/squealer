@@ -302,18 +302,18 @@
           <h2 class="mb-4 title-sezione">Popolarità</h2>
           <div class="previsione">
             <p>Previsione andamento popolarità:
-              <div class="riquadro-popolarita">
+              <div class="riquadro_popolarita">
                   <span>+20</span>
               </div>
             </p>
             <i class="fa-solid fa-right-long"></i>
-            <div class="riquadro-quota">
+            <div class="riquadro_quota">
                 <span>+6</span><sub> caratteri al giorno</sub>
             </div>
           </div>
           <div class="ordine">
             <div class="colonna popolari">
-                <h3>Popolari  <span>n.3</span></h3>
+                <h3>Popolari  <span>n.0</span></h3>
                 <div class="squeal">
                   <div class="squeal-header">
                     <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
@@ -329,7 +329,7 @@
 
             </div>
             <div class="colonna impopolari">
-                <h3>Impopolari  <span>n.5</span></h3>
+                <h3>Impopolari  <span>n.0</span></h3>
                 <div class="squeal">
                   <div class="squeal-header">
                     <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
@@ -345,7 +345,7 @@
 
             </div>
             <div class="colonna controversi">
-                <h3>Controversi  <span>n.1</span></h3>
+                <h3>Controversi  <span>n.0</span></h3>
                 <div class="squeal">
                   <div class="squeal-header">
                     <img src="immagine-profilo.jpg" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
@@ -686,8 +686,12 @@
                 var container_popolare = document.querySelector(".popolari");
                 var container_impopolare = document.querySelector(".impopolari");
                 var container_controverso = document.querySelector(".controversi");
+                var num_popolari = 0;
+                var num_impopolari = 0;
+                var num_controversi = 0;
 
                 if (all_info[i].categoria == 'popolare') {
+                  num_popolari++;
                   var nuovoElemento = document.createElement("div");
                   nuovoElemento.classList.add("squeal");
                   var nuovoContenuto = `
@@ -715,6 +719,7 @@
                   container_popolare.appendChild(nuovoElemento);
 
                 } else if (all_info[i].categoria == 'impopolare') {
+                  num_impopolari++;
                   var nuovoElemento = document.createElement("div");
                   nuovoElemento.classList.add("squeal");
                   var nuovoContenuto = `
@@ -742,6 +747,7 @@
                   container_impopolare.appendChild(nuovoElemento);
 
                 }else if (all_info[i].categoria == 'controverso') {
+                  num_controversi++;
                   var nuovoElemento = document.createElement("div");
                   nuovoElemento.classList.add("squeal");
                   var nuovoContenuto = `
@@ -770,10 +776,40 @@
 
                 }
               }
+              // aggiunta numero effettivo squeal
+              var numero_popolari = document.querySelector('.colonna.popolari h3 span');
+              var numero_impopolari = document.querySelector('.colonna.impopolari h3 span');
+              var numero_controversi = document.querySelector('.colonna.controversi h3 span');
 
+              // Aggiorna il contenuto con il numero effettivo
+              numero_popolari.textContent = 'n.' + num_popolari;
+              numero_impopolari.textContent = 'n.' + num_impopolari;
+              numero_controversi.textContent = 'n.' + num_controversi;
 
+              //gestione popolarità e quota_
+              let pop = numero_popolari - numero_impopolari;
+              let bonus = (Math.floor(pop / 10) / 100) * 300 //1% +- per ogni 10 di popolarita
 
+              // Aggiorna il contenuto del riquadro popolarita
+              var riquadroPopolarita = document.querySelector('.riquadro_popolarita span');
+              if (pop >= 0) {
+                riquadro_popolarita.textContent = '+' + pop;
+                riquadro_popolarita.style.backgroundColor = '#4caf50';
+              } else {
+                riquadro_popolarita.textContent = pop;
+                riquadro_popolarita.style.backgroundColor = '#FF6347';
+              }
 
+              // Aggiorna il contenuto del riquadro quota
+              var riquadroQuota = document.querySelector('.riquadro_quota span');
+              if (bonus >= 0) {
+                riquadro_quota.textContent = '+' + bonus;
+                riquadro_quota.style.backgroundColor = '#42a5f5';
+              } else {
+                riquadro_quota.textContent = bonus;
+                riquadro_quota.style.backgroundColor = '#ffd966';
+                riquadro_quota.style.color = 'black';
+              }
 
     function previewImage(input) {
    var file = input.files[0];
