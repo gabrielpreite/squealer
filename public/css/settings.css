@@ -318,18 +318,31 @@ margin-bottom: 20px;
 }
 
 #follow h3{
-  font-size: 22px;
+  font-size: 18px;
+  align-self: center;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 #follow .col1, #follow .col2 {
-  padding: 0px 100px;
+  padding: 0px 25px;
 }
 
-.follower-list, .follow-list {
+.follower-list-utenti, .follower-list-canali, .follow-list-utenti, .follow-list-canali {
   max-height: 300px;
   margin: 0px;
   overflow-y: auto;
   list-style: none;
+}
+
+.follower-list-utenti, .follow-list-utenti {
+  margin-right: 15px;
+}
+
+#follow h4 {
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 #follow button {
@@ -352,6 +365,14 @@ margin-bottom: 20px;
   align-items: center;
 }
 
+#follow .ordine {
+  padding-top: 10px;
+}
+
 .fa-x {
   color: #c0392b;
+}
+
+.followers, .seguiti {
+  display: flex;
 }
