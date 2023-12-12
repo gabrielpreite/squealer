@@ -791,7 +791,7 @@
               let bonus = (Math.floor(pop / 10) / 100) * 300 //1% +- per ogni 10 di popolarita
 
               // Aggiorna il contenuto del riquadro popolarita
-              var riquadroPopolarita = document.querySelector('.riquadro_popolarita span');
+              var riquadro_popolarita = document.querySelector('.riquadro_popolarita span');
               if (pop >= 0) {
                 riquadro_popolarita.textContent = '+' + pop;
                 riquadro_popolarita.style.backgroundColor = '#4caf50';
@@ -801,7 +801,7 @@
               }
 
               // Aggiorna il contenuto del riquadro quota
-              var riquadroQuota = document.querySelector('.riquadro_quota span');
+              var riquadro_quota = document.querySelector('.riquadro_quota span');
               if (bonus >= 0) {
                 riquadro_quota.textContent = '+' + bonus;
                 riquadro_quota.style.backgroundColor = '#42a5f5';
