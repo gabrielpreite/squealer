@@ -432,6 +432,7 @@ margin-bottom: 20px;
             padding: 20px 20px 0px 20px;
             margin: 0 10px;
             max-height: 450px;
+              overflow-y: auto;
         }
 
         .squeal-header {
