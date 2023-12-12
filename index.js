@@ -703,6 +703,31 @@ app.get('/squeal/:squeal_id', async function(req, res) {
     }
 });
 
+// modify squeal by id
+//body: reac{}, destinatari[]
+app.post('/squeal/:squeal_id', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+
+    try{
+        const squeal_id = req.params.squeal_id
+
+        response = await mymongo.modify_squeal(req.body, squeal_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "squeal non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
 
 // cancella squeal
 //body: user_id

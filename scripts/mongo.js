@@ -2029,6 +2029,49 @@ exports.add_squeal = async function (q, credentials) {
 	}
 }
 
+// modifica squeal
+exports.modify_squeal = async function (q, squeal_id, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = { "data": null, "risultato": null, "errore": null }
+
+	try {
+		let result = true
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+		console.log(JSON.stringify(q.reac))
+		console.log(typeof q.reac)
+		console.log(q.reac)
+		console.log(q.reac.positive.concordo)
+		
+		let dest = q.destinatari.split(", ")
+		console.log(dest)
+
+		/*result = await mongo.db(dbname)
+			.collection("messaggio")
+			.updateOne(
+				{ post_id: squeal_id },
+				{
+					$set: {
+						destinatari: dest,
+						reazioni: q.reac
+					}
+				}
+			)
+		
+
+		if (result.matchedCount == 1) {
+			response["risultato"] = "successo"
+		} else {
+			response["risultato"] = "squeal non trovato"
+		}*/
+
+		await mongo.close();
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
 // cancella squeal
 exports.delete_squeal = async function (squeal_id, allowed_users, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
