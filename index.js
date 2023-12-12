@@ -703,32 +703,6 @@ app.get('/squeal/:squeal_id', async function(req, res) {
     }
 });
 
-// modify squeal by id
-//body: reac{}, destinatari[]
-app.post('/squeal/:squeal_id', async function(req, res) {
-    let response = {"data": null, "risultato": null, "errore": null}
-
-    try{
-        const squeal_id = req.params.squeal_id
-
-        response = await mymongo.modify_squeal(req.body, squeal_id, mongoCredentials)
-
-        if(response["risultato"] == "successo"){
-            res.status(200)
-            res.send(response)
-        } else if(response["risultato"] == "squeal non trovato"){
-            response["errore"] = "errore"
-            res.status(404)
-            res.send(response)
-        }
-    } catch (e){
-        //response["errore"] = e.toString()
-        res.status(500)
-        res.send(response)
-    }
-});
-
-
 // cancella squeal
 //body: user_id
 app.delete('/squeal/:squeal_id', async function(req, res) {
@@ -760,15 +734,14 @@ app.delete('/squeal/:squeal_id', async function(req, res) {
     }
 });
 
-
 // ricerca per utente
 //body
 app.post('/squeal/by_user', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    
     try{
         response = await mymongo.search_by_user(req.body, mongoCredentials)
-
+        
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -784,10 +757,10 @@ app.post('/squeal/by_user', async function(req, res) {
 //body
 app.post('/squeal/by_channel', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    
     try{
         response = await mymongo.search_by_channel(req.body, mongoCredentials)
-
+        
         if(response["risultato"] == "successo"){
             res.status(200)
             res.send(response)
@@ -807,7 +780,7 @@ app.post('/squeal/by_channel', async function(req, res) {
 //body
 app.post('/squeal/by_keyword', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-
+    
     try{
         response = await mymongo.search_by_keyword(req.body, mongoCredentials)
 
@@ -826,17 +799,42 @@ app.post('/squeal/by_keyword', async function(req, res) {
     }
 });
 
-// add post
-app.post('/squeal', upload.single("img"), async function(req, res) {
+// modify squeal by id
+//body: reac{}, destinatari[]
+app.post('/squeal/:squeal_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
+        const squeal_id = req.params.squeal_id
 
+        response = await mymongo.modify_squeal(req.body, squeal_id, mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        } else if(response["risultato"] == "squeal non trovato"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// add post
+app.post('/squeal', upload.single("img"), async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        
         if(req.body.contenuto == "img"){//caso immagine
             let path = req.file.path
             req.body["path"] = path.split("/").slice(-1)[0]
         }
-
+        
         req.body.destinatari = JSON.parse(req.body.destinatari)
 
         //timestamp

@@ -193,6 +193,7 @@
 
 
       <div id="acquisti" class="sezione">
+        <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
                    <ul id="acquisti-list">
                        <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
@@ -229,36 +230,69 @@
 
       <div id="follow" class="sezione">
         <div class="container">
-          <h2 class="mb-4 title-sezione">Lista Follower e Seguiti</h2>
+          <h2 class="mb-4 title-sezione">Lista Followers e Seguiti</h2>
 
           <div class="ordine">
             <div class="col1">
-              <h3>Follower</h3>
-              <ul class="follower-list barra-scorrimento">
-                <!-- Lista dei follower -->
-                <li>
-                  <div>
-                    <i class="fas fa-users"></i>
-                    <span>Nome Follower 1</span>
-                  </div>
-                  <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
-                </li>
-                <li>
-                  <div>
-                    <i class="fas fa-user"></i>
-                    <span>Nome Follower 2</span>
-                  </div>
-                  <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
-                </li>
-                <!-- Aggiungi altri elementi se necessario -->
-              </ul>
+              <h3>Followers</h3>
+              <div class="followers">
+                <ul class="follower-list-utenti barra-scorrimento">
+                  <h4>Utenti</h4>
+                  <!-- Lista dei follower -->
+                  <li>
+                    <div>
+                      <i class="fas fa-user"></i>
+                      <span>Nome Follower 2</span>
+                    </div>
+                    <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
+                  </li>
+                  <!-- Aggiungi altri elementi se necessario -->
+                </ul>
+
+                <ul class="follower-list-canali barra-scorrimento">
+                  <h4>Canali</h4>
+                  <!-- Lista dei follower -->
+                  <li>
+                    <div>
+                      <i class="fas fa-users"></i>
+                      <span>Nome Follower 1</span>
+                    </div>
+                    <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
+                  </li>
+                  <!-- Aggiungi altri elementi se necessario -->
+                </ul>
+              </div>
             </div>
 
             <div class="col2 smm-ordine">
               <h3>Seguiti</h3>
-              <ul class="follow-list barra-scorrimento">
-                <!-- Lista dei seguiti -->
-              </ul>
+              <div class="followers">
+                <ul class="follow-list-utenti barra-scorrimento">
+                  <h4>Utenti</h4>
+                  <!-- Lista dei follower -->
+                  <li>
+                    <div>
+                      <i class="fas fa-user"></i>
+                      <span>Nome Follower 2</span>
+                    </div>
+                    <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
+                  </li>
+                  <!-- Aggiungi altri elementi se necessario -->
+                </ul>
+
+                <ul class="follow-list-canali barra-scorrimento">
+                  <h4>Canali</h4>
+                  <!-- Lista dei follower -->
+                  <li>
+                    <div>
+                      <i class="fas fa-users"></i>
+                      <span>Nome Follower 1</span>
+                    </div>
+                    <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
+                  </li>
+                  <!-- Aggiungi altri elementi se necessario -->
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -515,7 +549,8 @@
 
     function popolaSeguiti(follow_utenti, follow_canali) {
       // Popola la lista degli utenti seguiti
-      var followerList = document.querySelector(".follow-list");
+      var followListUtenti = document.querySelector(".follow-list-utenti");
+      var followListCanali = document.querySelector(".follow-list-canali");
 
       for (var i = 0; i < follow_utenti.length; i++) {
         var utente = follow_utenti[i];
@@ -530,7 +565,7 @@
             <i class="fa-solid fa-x"></i>
           </button>
         `;
-        followerList.appendChild(listItem);
+        followListUtenti.appendChild(listItem);
       }
 
       for (var j = 0; j < follow_canali.length; j++) {
@@ -546,7 +581,7 @@
             <i class="fa-solid fa-x"></i>
           </button>
         `;
-        followerList.appendChild(listItemCanale);
+        followListCanali.appendChild(listItemCanale);
       }
     }
 

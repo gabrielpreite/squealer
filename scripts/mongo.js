@@ -564,8 +564,8 @@ exports.search_messaggio = async function (q, credentials) {
 		debug.push("... managed to connect to MongoDB.")
 
 		let result = []
-		console.log("replies = "+q.replies)
-		console.log(typeof q.replies)
+		//console.log("replies = "+q.replies)
+		//console.log(typeof q.replies)
 		if (q.replies !== "false") {
 			debug.push("with replies")
 			await mongo.db(dbname)
@@ -2038,17 +2038,17 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 		let result = true
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		console.log(JSON.stringify(q.reac))
-		console.log(q.destinatari)
 
-		/*result = await mongo.db(dbname)
+		let dest = q.destinatari.split(", ")
+
+		result = await mongo.db(dbname)
 			.collection("messaggio")
 			.updateOne(
 				{ post_id: squeal_id },
 				{
 					$set: {
-						destinatari: q.destinatari,
-						reazioni: q.reac
+						destinatari: dest,
+						reazioni: JSON.parse(q.reac)
 					}
 				}
 			)
@@ -2058,7 +2058,7 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 			response["risultato"] = "successo"
 		} else {
 			response["risultato"] = "squeal non trovato"
-		}*/
+		}
 
 		await mongo.close();
 		return response
@@ -2406,7 +2406,7 @@ exports.search_by_user = async function (q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
