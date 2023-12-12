@@ -229,10 +229,40 @@
 
       <div id="follow" class="sezione">
         <div class="container">
-        TODO - lista account/pagine seguite + tuoi followers (+ suggeriti?)
-      </div>
-      </div>
+          <h2 class="mb-4 title-sezione">Lista Follower e Seguiti</h2>
 
+          <div class="ordine">
+            <div class="col1">
+              <h3>Follower</h3>
+              <ul class="follower-list barra-scorrimento">
+                <!-- Lista dei follower -->
+                <li>
+                  <div>
+                    <i class="fas fa-users"></i>
+                    <span>Nome Follower 1</span>
+                  </div>
+                  <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
+                </li>
+                <li>
+                  <div>
+                    <i class="fas fa-user"></i>
+                    <span>Nome Follower 2</span>
+                  </div>
+                  <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
+                </li>
+                <!-- Aggiungi altri elementi se necessario -->
+              </ul>
+            </div>
+
+            <div class="col2 smm-ordine">
+              <h3>Seguiti</h3>
+              <ul class="follow-list barra-scorrimento">
+                <!-- Lista dei seguiti -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div id="popolarita" class="sezione">
         <div class="container">
@@ -403,6 +433,149 @@
     } else {
       $("#current_smm").attr("value", result)
     }
+
+    // STORICO ACQUISTI
+    document.addEventListener('DOMContentLoaded', function() {
+        // Effettua la chiamata API per ottenere le informazioni sull'utente
+        fetch(`/user/${CURRENT_USER}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.risultato === 'successo') {
+                    // L'utente è stato trovato, puoi accedere agli acquisti
+                    var acquisti = data.data.acquisti;
+                    popolaListaAcquisti(acquisti);
+                } else {
+                    // L'utente non è stato trovato o si è verificato un altro errore
+                    console.error('Errore nel recupero delle informazioni utente:', data.errore);
+                }
+            })
+            .catch(error => {
+                console.error('Si è verificato un errore nella richiesta:', error);
+            });
+    });
+
+    // Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
+    function popolaListaAcquisti(acquisti) {
+        var acquistiList = document.getElementById('acquisti-list');
+
+        // Popola la lista degli acquisti
+        acquisti.forEach(function(acquisto) {
+            var listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <div class="acquisto">
+                    <div class="info">
+                        <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                        <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                    </div>
+                    <div class="spesa">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
+                    </div>
+                </div>
+            `;
+            acquistiList.appendChild(listItem);
+        });
+    }
+
+    function calcolaAmmontare(quantita) {
+        if (quantita === 120) {
+            return '0,99';
+        } else if (quantita === 240) {
+            return '1,99';
+        } else if (quantita === 480) {
+            return '4,99';
+        } else {
+            return '';
+        }
+    }
+
+
+    //follower e follow
+    let follow = []
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        follow = data["data"];
+        let follow_utenti = follow.utenti_seguiti
+        let follow_canali = follow.canali_seguiti
+        console.log(follow_utenti);
+        popolaSeguiti(follow_utenti, follow_canali);
+      }
+    });
+
+    function popolaSeguiti(follow_utenti, follow_canali) {
+      // Popola la lista degli utenti seguiti
+      var followerList = document.querySelector(".follow-list");
+
+      for (var i = 0; i < follow_utenti.length; i++) {
+        var utente = follow_utenti[i];
+        var listItem = document.createElement("li");
+        listItem.setAttribute("data-id", utente);
+        listItem.innerHTML = `
+          <div>
+            <i class="fas fa-user"></i>
+            <span>${utente}</span>
+          </div>
+          <button class="remove-btn" onclick="removeFollowing(utente, 'utente')">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        `;
+        followerList.appendChild(listItem);
+      }
+
+      for (var j = 0; j < follow_canali.length; j++) {
+        var canale = follow_canali[j];
+        var listItemCanale = document.createElement("li");
+        listItem.setAttribute("data-id", canale);
+        listItemCanale.innerHTML = `
+          <div>
+            <i class="fas fa-users"></i>
+            <span>${canale}</span>
+          </div>
+          <button class="remove-btn" onclick="removeFollowing(canale, 'canale')">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        `;
+        followerList.appendChild(listItemCanale);
+      }
+    }
+
+              function removeFollowing(target, tipo){
+                $.ajax({
+                  type: 'POST',
+                  dataType: "json",
+                  url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+                  headers: { },
+                  data: { target: target, tipo: tipo },
+                  success: function (data, status, xhr) {
+                    //console.log(data.risultato)
+                    // Rimuovi l'elemento dalla lista se la richiesta ha avuto successo
+                   if (data.risultato === 'successo') {
+                     // Identificatore unico dell'elemento da rimuovere (es. user_id)
+                     var elementoDaRimuovere = target;
+
+                     // Cerca e rimuovi l'elemento dalla lista
+                     var elemento = $(`.follower-list li[data-id='${elementoDaRimuovere}']`);
+                     elemento.remove();
+                   }
+                  }
+                });
+              }
+
+
+
+
+
 
     function previewImage(input) {
    var file = input.files[0];
