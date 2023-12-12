@@ -461,7 +461,38 @@ function premibottone(button, reac, id) {
   });
 }
 
+function aggiungicommento(icon, azione, id) {
+  let id_commento = document.querySelector('.aggiungi-commento');
+  if (azione == "apri") {
+      aggiungicommento('', 'chiudi');
+      id_commento.id = id;
+      // Cambia il colore dell'icona del commento a nero
+      icon.style.color = 'black';
+      // Nascondi il div "barra destra"
+      document.getElementById("barra-destra").hidden = true;
+      document.getElementById("chat").hidden = true;
+      // Mostra il div "mostra-squeal"
+      document.getElementById("mostra-commenti").hidden = false;
+      //rimpiazza commenti
+      rimpiazza_commenti(id);
+  } else if (azione == "chiudi") {
+    const c_Group = document.getElementsByClassName("c");
+    const c_Array = Array.from(c_Group);
+    id_commento.id = "";
+    c_Array.forEach((c_btn) => {
+      c_btn.style.color = '#777';
+    });
+    document.getElementById("barra-destra").hidden = false;
+    document.getElementById("mostra-commenti").hidden = true;
+  } else {
+    window.location.replace(`https://site212251.tw.cs.unibo.it/editor?post_id=` + id);
+  }
+}
+
 function rimpiazza_commenti(id) {
+  //elimina tutto il contenuto del cont_commenti
+  document.getElementById("contenitore-commenti").innerHTML = '';
+
   //aggiungi nuovi commenti
   let contenitore_commenti = document.getElementById("contenitore-commenti");
   let lista_commenti;
