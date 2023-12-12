@@ -679,6 +679,28 @@ app.post('/squeal/:squeal_id/reaction', async function(req, res) {
     }
 });
 
+// feed non loggato
+app.get('/squeal/feed', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    
+    try{
+        response = await mymongo.feed_nolog(mongoCredentials)
+
+        if(response["risultato"] == "successo"){
+            res.status(200)
+            res.send(response)
+        }/* else if(response["risultato"] == "keyword non trovata"){
+            response["errore"] = "errore"
+            res.status(404)
+            res.send(response)
+        }*/
+    } catch (e){
+        //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
 // get squeal by id
 app.get('/squeal/:squeal_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
@@ -799,27 +821,6 @@ app.post('/squeal/by_keyword', async function(req, res) {
     }
 });
 
-// feed non loggato
-app.get('/squeal/feed', async function(req, res) {
-    let response = {"data": null, "risultato": null, "errore": null}
-    
-    try{
-        response = await mymongo.feed_nolog(mongoCredentials)
-
-        if(response["risultato"] == "successo"){
-            res.status(200)
-            res.send(response)
-        }/* else if(response["risultato"] == "keyword non trovata"){
-            response["errore"] = "errore"
-            res.status(404)
-            res.send(response)
-        }*/
-    } catch (e){
-        //response["errore"] = e.toString()
-        res.status(500)
-        res.send(response)
-    }
-});
 
 // modify squeal by id
 //body: reac{}, destinatari[]
