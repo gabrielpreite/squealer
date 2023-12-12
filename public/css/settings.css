@@ -330,7 +330,7 @@ margin-bottom: 20px;
   text-transform: uppercase;
 }
 
-#popolarita span {
+#popolarita h3 span {
   text-transform: lowercase;
 }
 
@@ -477,7 +477,7 @@ margin-bottom: 20px;
         }
 
         .squeal img {
-          width: 260px;
+          width: 100%;
           border-radius: 20px;
         }
 
