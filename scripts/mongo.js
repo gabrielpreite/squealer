@@ -2039,7 +2039,7 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		let dest = q.destinatari.split(", ")
+		let dest = q.destinatari.split(",")
 
 		result = await mongo.db(dbname)
 			.collection("messaggio")

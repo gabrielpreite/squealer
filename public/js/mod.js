@@ -387,54 +387,66 @@ function applica_squeal(){
         }
     });
 
-    let n_con = document.getElementById("#_con").value
-    let n_mip = document.getElementById("#_mip").value
-    let n_ado = document.getElementById("#_ado").value
-    let n_son = document.getElementById("#_son").value
-    let n_mid = document.getElementById("#_mid").value
-    let n_odi = document.getElementById("#_odi").value
+    let n_con = parseInt(document.getElementById("#_con").value)
+    let n_mip = parseInt(document.getElementById("#_mip").value)
+    let n_ado = parseInt(document.getElementById("#_ado").value)
+    let n_son = parseInt(document.getElementById("#_son").value)
+    let n_mid = parseInt(document.getElementById("#_mid").value)
+    let n_odi = parseInt(document.getElementById("#_odi").value)
 
     // concordo
-    if(n_con > squeal.reazioni.positive.concordo.length){ // aumento
+    if(n_con === 0){
+        reac.positive.concordo = Array(0)
+    } else if(n_con > squeal.reazioni.positive.concordo.length){ // aumento
         reac.positive.concordo = squeal.reazioni.positive.concordo
         reac.positive.concordo = reac.positive.concordo.concat(Array(n_con-squeal.reazioni.positive.concordo.length).fill("a"))
-    } else if(n_con < squeal.reazioni.positive.concordo.length){ // diminuisco
+    } else if(n_con <= squeal.reazioni.positive.concordo.length){ // diminuisco
         reac.positive.concordo = squeal.reazioni.positive.concordo.slice(0, n_con)
     }
     // mi_piace
-    if(n_mip > squeal.reazioni.positive.mi_piace.length){ // aumento
+    if(n_mip === 0){
+        reac.positive.mi_piace = Array(0)
+    } else if(n_mip > squeal.reazioni.positive.mi_piace.length){ // aumento
         reac.positive.mi_piace = squeal.reazioni.positive.mi_piace
         reac.positive.mi_piace = reac.positive.mi_piace.concat(Array(n_mip-squeal.reazioni.positive.mi_piace.length).fill("a"))
-    } else if(n_mip < squeal.reazioni.positive.concordo.length){ // diminuisco
+    } else if(n_mip <= squeal.reazioni.positive.concordo.length){ // diminuisco
         reac.positive.mi_piace = squeal.reazioni.positive.mi_piace.slice(0, n_mip)
     }
     // adoro
-    if(n_ado > squeal.reazioni.positive.adoro.length){ // aumento
+    if(n_ado === 0){
+        reac.positive.adoro = Array(0)
+    } else if(n_ado > squeal.reazioni.positive.adoro.length){ // aumento
         reac.positive.adoro = squeal.reazioni.positive.adoro
         reac.positive.adoro = reac.positive.adoro.concat(Array(n_ado-squeal.reazioni.positive.adoro.length).fill("a"))
-    } else if(n_ado < squeal.reazioni.positive.adoro.length){ // diminuisco
+    } else if(n_ado <= squeal.reazioni.positive.adoro.length){ // diminuisco
         reac.positive.adoro = squeal.reazioni.positive.adoro.slice(0, n_ado)
     }
 
     // sono_contrario
-    if(n_son > squeal.reazioni.negative.sono_contrario.length){ // aumento
+    if(n_son === 0){
+        reac.negative.sono_contrario = Array(0)
+    } else if(n_son > squeal.reazioni.negative.sono_contrario.length){ // aumento
         reac.negative.sono_contrario = squeal.reazioni.negative.sono_contrario
         reac.negative.sono_contrario = reac.negative.sono_contrario.concat(Array(n_son-squeal.reazioni.negative.sono_contrario.length).fill("a"))
-    } else if(n_son < squeal.reazioni.negative.sono_contrario.length){ // diminuisco
+    } else if(n_son <= squeal.reazioni.negative.sono_contrario.length){ // diminuisco
         reac.negative.sono_contrario = squeal.reazioni.negative.sono_contrario.slice(0, n_son)
     }
     // mi_disgusta
-    if(n_mid > squeal.reazioni.negative.mi_disgusta.length){ // aumento
+    if(n_mid === 0){
+        reac.negative.mi_disgusta = Array(0)
+    } else if(n_mid > squeal.reazioni.negative.mi_disgusta.length){ // aumento
         reac.negative.mi_disgusta = squeal.reazioni.negative.mi_disgusta
         reac.negative.mi_disgusta = reac.negative.mi_disgusta.concat(Array(n_mid-squeal.reazioni.negative.mi_disgusta.length).fill("a"))
-    } else if(n_mid < squeal.reazioni.negative.mi_disgusta.length){ // diminuisco
+    } else if(n_mid <= squeal.reazioni.negative.mi_disgusta.length){ // diminuisco
         reac.negative.mi_disgusta = squeal.reazioni.negative.mi_disgusta.slice(0, n_mid)
     }
     // odio
-    if(n_odi > squeal.reazioni.negative.odio.length){ // aumento
+    if(n_odi === 0){
+        reac.negative.odio = Array(0)
+    }else if(n_odi > squeal.reazioni.negative.odio.length){ // aumento
         reac.negative.odio = squeal.reazioni.negative.odio
         reac.negative.odio = reac.negative.odio.concat(Array(n_odi-squeal.reazioni.negative.odio.length).fill("a"))
-    } else if(n_odi < squeal.reazioni.negative.odio.length){ // diminuisco
+    } else if(n_odi <= squeal.reazioni.negative.odio.length){ // diminuisco
         reac.negative.odio = squeal.reazioni.negative.odio.slice(0, n_odi)
     }
     
@@ -444,9 +456,8 @@ function applica_squeal(){
         async: false,
         url: "https://site212251.tw.cs.unibo.it/squeal/"+post_id,
         headers: { },
-        data: { reac: reac, destinatari: dest},
+        data: { reac: JSON.stringify(reac), destinatari: dest},
         success: function (data, status, xhr) {
-            //console.log("squeal aggiornato")
         }
     });
 }
