@@ -280,22 +280,22 @@ function seleziona_squeal(post_id){
             document.getElementById("data_squeal").innerHTML = d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' })
             document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
 
-            document.getElementById("#_con").innerHTML = squeal.reazioni.positive.concordo.length
+            document.getElementById("#_con").value = squeal.reazioni.positive.concordo.length
             //document.getElementById("list_con").value = squeal.reazioni.positive.concordo.toString()
 
-            document.getElementById("#_mip").innerHTML = squeal.reazioni.positive.mi_piace.length
+            document.getElementById("#_mip").value = squeal.reazioni.positive.mi_piace.length
             //document.getElementById("list_mip").value = squeal.reazioni.positive.mi_piace.toString()
 
-            document.getElementById("#_ado").innerHTML = squeal.reazioni.positive.adoro.length
+            document.getElementById("#_ado").value = squeal.reazioni.positive.adoro.length
             //document.getElementById("list_ado").value = squeal.reazioni.positive.adoro.toString()
 
-            document.getElementById("#_son").innerHTML = squeal.reazioni.negative.sono_contrario.length
+            document.getElementById("#_son").value = squeal.reazioni.negative.sono_contrario.length
             //document.getElementById("list_son").value = squeal.reazioni.negative.sono_contrario.toString()
 
-            document.getElementById("#_mid").innerHTML = squeal.reazioni.negative.mi_disgusta.length
+            document.getElementById("#_mid").value = squeal.reazioni.negative.mi_disgusta.length
             //document.getElementById("list_mid").value = squeal.reazioni.negative.mi_disgusta.toString()
 
-            document.getElementById("#_odi").innerHTML = squeal.reazioni.negative.odio.length
+            document.getElementById("#_odi").value = squeal.reazioni.negative.odio.length
             //document.getElementById("list_odi").value = squeal.reazioni.negative.odio.toString()
         }
     });
@@ -375,31 +375,78 @@ function applica_squeal(){
     reac.positive = {}
     reac.negative = {}
 
-    document.getElementById("list_con")
-    reac.positive.concordo = 
-    //console.log(username)
-    /*let quota = {"g": document.getElementById("quota_g").value, "s": document.getElementById("quota_s").value, "m": document.getElementById("quota_m").value}
+    let squeal
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         dataType: "json",
         async: false,
-        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/quota",
+        url: `https://site212251.tw.cs.unibo.it/squeal/`+post_id,
         headers: { },
-        data: { mod: true, q_g: quota.g, q_s: quota.s, q_m: quota.m},
         success: function (data, status, xhr) {
-            //console.log("quota aggiornata")
+            squeal = data.data;
         }
     });
 
+    let n_con = document.getElementById("#_con").value
+    let n_mip = document.getElementById("#_mip").value
+    let n_ado = document.getElementById("#_ado").value
+    let n_son = document.getElementById("#_son").value
+    let n_mid = document.getElementById("#_mid").value
+    let n_odi = document.getElementById("#_odi").value
+
+    // concordo
+    if(n_con > squeal.reazioni.positive.concordo.length){ // aumento
+        reac.positive.concordo = squeal.reazioni.positive.concordo
+        reac.positive.concordo = reac.positive.concordo.concat(Array(n_con-squeal.reazioni.positive.concordo.length).fill("a"))
+    } else if(n_con < squeal.reazioni.positive.concordo.length){ // diminuisco
+        reac.positive.concordo = squeal.reazioni.positive.concordo.slice(0, n_con)
+    }
+    // mi_piace
+    if(n_mip > squeal.reazioni.positive.mi_piace.length){ // aumento
+        reac.positive.mi_piace = squeal.reazioni.positive.mi_piace
+        reac.positive.mi_piace = reac.positive.mi_piace.concat(Array(n_mip-squeal.reazioni.positive.mi_piace.length).fill("a"))
+    } else if(n_mip < squeal.reazioni.positive.concordo.length){ // diminuisco
+        reac.positive.mi_piace = squeal.reazioni.positive.mi_piace.slice(0, n_mip)
+    }
+    // adoro
+    if(n_ado > squeal.reazioni.positive.adoro.length){ // aumento
+        reac.positive.adoro = squeal.reazioni.positive.adoro
+        reac.positive.adoro = reac.positive.adoro.concat(Array(n_ado-squeal.reazioni.positive.adoro.length).fill("a"))
+    } else if(n_ado < squeal.reazioni.positive.adoro.length){ // diminuisco
+        reac.positive.adoro = squeal.reazioni.positive.adoro.slice(0, n_ado)
+    }
+
+    // sono_contrario
+    if(n_son > squeal.reazioni.negative.sono_contrario.length){ // aumento
+        reac.negative.sono_contrario = squeal.reazioni.negative.sono_contrario
+        reac.negative.sono_contrario = reac.negative.sono_contrario.concat(Array(n_son-squeal.reazioni.negative.sono_contrario.length).fill("a"))
+    } else if(n_son < squeal.reazioni.negative.sono_contrario.length){ // diminuisco
+        reac.negative.sono_contrario = squeal.reazioni.negative.sono_contrario.slice(0, n_son)
+    }
+    // mi_disgusta
+    if(n_mid > squeal.reazioni.negative.mi_disgusta.length){ // aumento
+        reac.negative.mi_disgusta = squeal.reazioni.negative.mi_disgusta
+        reac.negative.mi_disgusta = reac.negative.mi_disgusta.concat(Array(n_mid-squeal.reazioni.negative.mi_disgusta.length).fill("a"))
+    } else if(n_mid < squeal.reazioni.negative.mi_disgusta.length){ // diminuisco
+        reac.negative.mi_disgusta = squeal.reazioni.negative.mi_disgusta.slice(0, n_mid)
+    }
+    // odio
+    if(n_odi > squeal.reazioni.negative.odio.length){ // aumento
+        reac.negative.odio = squeal.reazioni.negative.odio
+        reac.negative.odio = reac.negative.odio.concat(Array(n_odi-squeal.reazioni.negative.odio.length).fill("a"))
+    } else if(n_odi < squeal.reazioni.negative.odio.length){ // diminuisco
+        reac.negative.odio = squeal.reazioni.negative.odio.slice(0, n_odi)
+    }
+    
     $.ajax({
         type: 'POST',
         dataType: "json",
         async: false,
-        url: "https://site212251.tw.cs.unibo.it/user/"+username+"/abilitato",
+        url: "https://site212251.tw.cs.unibo.it/squeal/"+post_id,
         headers: { },
-        data: {set_to: document.getElementById("abilitato_user_switch").checked},
+        data: { reac: reac, destinatari: dest},
         success: function (data, status, xhr) {
-            //console.log("utente (dis)abilitato")
+            //console.log("squeal aggiornato")
         }
-    });*/
+    });
 }

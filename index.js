@@ -734,7 +734,6 @@ app.delete('/squeal/:squeal_id', async function(req, res) {
     }
 });
 
-
 // ricerca per utente
 //body
 app.post('/squeal/by_user', async function(req, res) {
