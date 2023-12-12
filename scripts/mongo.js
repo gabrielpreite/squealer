@@ -2041,7 +2041,7 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 		console.log(JSON.stringify(q.reac))
 		console.log(q.destinatari)
 
-		result = await mongo.db(dbname)
+		/*result = await mongo.db(dbname)
 			.collection("messaggio")
 			.updateOne(
 				{ post_id: squeal_id },
@@ -2052,12 +2052,13 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 					}
 				}
 			)
+		
 
 		if (result.matchedCount == 1) {
 			response["risultato"] = "successo"
 		} else {
 			response["risultato"] = "squeal non trovato"
-		}
+		}*/
 
 		await mongo.close();
 		return response
