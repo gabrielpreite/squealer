@@ -281,22 +281,22 @@ function seleziona_squeal(post_id){
             document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
 
             document.getElementById("#_con").innerHTML = squeal.reazioni.positive.concordo.length
-            document.getElementById("list_con").value = squeal.reazioni.positive.concordo.toString()
+            //document.getElementById("list_con").value = squeal.reazioni.positive.concordo.toString()
 
             document.getElementById("#_mip").innerHTML = squeal.reazioni.positive.mi_piace.length
-            document.getElementById("list_mip").value = squeal.reazioni.positive.mi_piace.toString()
+            //document.getElementById("list_mip").value = squeal.reazioni.positive.mi_piace.toString()
 
             document.getElementById("#_ado").innerHTML = squeal.reazioni.positive.adoro.length
-            document.getElementById("list_ado").value = squeal.reazioni.positive.adoro.toString()
+            //document.getElementById("list_ado").value = squeal.reazioni.positive.adoro.toString()
 
             document.getElementById("#_son").innerHTML = squeal.reazioni.negative.sono_contrario.length
-            document.getElementById("list_son").value = squeal.reazioni.negative.sono_contrario.toString()
+            //document.getElementById("list_son").value = squeal.reazioni.negative.sono_contrario.toString()
 
             document.getElementById("#_mid").innerHTML = squeal.reazioni.negative.mi_disgusta.length
-            document.getElementById("list_mid").value = squeal.reazioni.negative.mi_disgusta.toString()
+            //document.getElementById("list_mid").value = squeal.reazioni.negative.mi_disgusta.toString()
 
             document.getElementById("#_odi").innerHTML = squeal.reazioni.negative.odio.length
-            document.getElementById("list_odi").value = squeal.reazioni.negative.odio.toString()
+            //document.getElementById("list_odi").value = squeal.reazioni.negative.odio.toString()
         }
     });
 }
@@ -369,6 +369,14 @@ function sort_squeal(){
 
 function applica_squeal(){
     let post_id = document.getElementById("selected_squeal_post_id").innerHTML
+    let dest = document.getElementById("destinatari_squeal").value
+    
+    let reac = {}
+    reac.positive = {}
+    reac.negative = {}
+
+    document.getElementById("list_con")
+    reac.positive.concordo = 
     //console.log(username)
     /*let quota = {"g": document.getElementById("quota_g").value, "s": document.getElementById("quota_s").value, "m": document.getElementById("quota_m").value}
     $.ajax({

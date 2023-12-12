@@ -2038,15 +2038,8 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 		let result = true
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-		//console.log(JSON.stringify(q.reac))
-		console.log(typeof JSON.parse(q.reac))
-		console.log(q.reac)
-		//console.log(q.reac.positive.concordo)
-		
-		console.log(typeof q.destinatari)
+
 		let dest = q.destinatari.split(", ")
-		console.log(typeof dest)
-		console.log(dest)
 
 		result = await mongo.db(dbname)
 			.collection("messaggio")
@@ -2413,7 +2406,7 @@ exports.search_by_user = async function (q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
