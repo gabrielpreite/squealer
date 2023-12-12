@@ -2107,6 +2107,111 @@ exports.delete_squeal = async function (squeal_id, allowed_users, credentials) {
 	}
 }
 
+//feed non loggato
+exports.feed_nolog = async function (credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = { "data": null, "risultato": null, "errore": null }
+
+	try {
+		let result = []
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		let canali_ufficiali = [] // ottengo la lista di canali ufficiali
+		await mongo.db(dbname)
+			.collection("canale")
+			.find({ ufficiale: true })
+			.forEach((el) => {
+				canali_ufficiali.push(el.nome)
+			})
+
+		await mongo.db(dbname) // feed da canali ufficiali
+			.collection("messaggio")
+			.aggregate([
+				{
+					$match: {
+						destinatari: { $in: canali_ufficiali },
+					}
+				},
+				{
+					$lookup: {
+						from: "utente", // nome seconda tabella
+						localField: "utente", // nome chiave in prima tabella (corrente)
+						foreignField: "username", // nome chiave in seconda tabella
+						as: "utenteData" // rename del record ottenuto (da seconda tabella)
+					}
+				},
+				{
+					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+				},
+				{
+					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
+						"newRoot": {
+							"$mergeObjects": [ //unisce i campi di messaggio al singolo campo utente.nome
+								"$$ROOT", //campi originali in messaggio
+								{ nome: "$utenteData.nome" },
+								{ img: "$utenteData.img" }
+							]
+						}
+					}
+				},
+				{
+					$project: { //rimuove la struttura contenente tutti i campi di utente (serve solo nome)
+						utenteData: 0
+					}
+				},
+				{
+					$lookup: {
+						from: "messaggio",
+						localField: "post_id",
+						foreignField: "risponde_a",
+						as: "risposte"
+					}
+				},
+				{
+					$addFields: {
+						numRisposte: { $size: "$risposte" }
+					}
+				},
+				{
+					$project: {
+						risposte: 0
+					}
+				},
+				{
+					$sort: {
+						timestamp: -1 // Sort by timestamp in descending order
+					}
+				},
+				{
+					$limit: 100 // Limit the result to 100 records
+				}
+			])
+			.forEach((r) => {
+				result.push(r)
+			});
+
+		// aumento le visual dei post ottenuti
+		var id_arr = []
+		result.forEach((el) => id_arr.push(el.post_id))
+		await mongo.db(dbname)
+			.collection("messaggio")
+			.updateMany(
+				{ post_id: { $in: id_arr } },
+				{ $inc: { visualizzazioni: 1 } }
+			)
+
+		await mongo.close();
+
+		response["data"] = result
+		response["risultato"] = "successo"
+
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
 // get squeal replies
 exports.get_squeal_replies = async function (squeal_id, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
