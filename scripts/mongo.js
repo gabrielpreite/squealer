@@ -2039,11 +2039,13 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		console.log(JSON.stringify(q.reac))
-		console.log(typeof q.reac)
+		console.log(typeof JSON.parse(q.reac))
 		console.log(q.reac)
 		console.log(q.reac.positive.concordo)
 		
+		console.log(typeof q.destinatari)
 		let dest = q.destinatari.split(", ")
+		console.log(typeof dest)
 		console.log(dest)
 
 		/*result = await mongo.db(dbname)
