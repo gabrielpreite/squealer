@@ -646,13 +646,14 @@
                 }
               });
 
+              var num_popolari = 0;
+              var num_impopolari = 0;
+              var num_controversi = 0;
+
               for (var i = 0; i < all_post.length; i++) {
                 var container_popolare = document.querySelector(".popolari");
                 var container_impopolare = document.querySelector(".impopolari");
                 var container_controverso = document.querySelector(".controversi");
-                var num_popolari = 0;
-                var num_impopolari = 0;
-                var num_controversi = 0;
 
                 if (all_post[i].categoria == 'popolare') {
                   num_popolari++;
