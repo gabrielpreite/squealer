@@ -2039,7 +2039,12 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 		console.log(JSON.stringify(q.reac))
-		console.log(q.destinatari)
+		console.log(typeof q.reac)
+		console.log(q.reac)
+		console.log(q.reac.positive.concordo)
+		
+		let dest = q.destinatari.split(", ")
+		console.log(dest)
 
 		/*result = await mongo.db(dbname)
 			.collection("messaggio")
@@ -2047,7 +2052,7 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 				{ post_id: squeal_id },
 				{
 					$set: {
-						destinatari: q.destinatari,
+						destinatari: dest,
 						reazioni: q.reac
 					}
 				}
