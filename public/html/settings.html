@@ -520,6 +520,7 @@
       for (var i = 0; i < follow_utenti.length; i++) {
         var utente = follow_utenti[i];
         var listItem = document.createElement("li");
+        listItem.setAttribute("data-id", utente);
         listItem.innerHTML = `
           <div>
             <i class="fas fa-user"></i>
@@ -535,6 +536,7 @@
       for (var j = 0; j < follow_canali.length; j++) {
         var canale = follow_canali[j];
         var listItemCanale = document.createElement("li");
+        listItem.setAttribute("data-id", canale);
         listItemCanale.innerHTML = `
           <div>
             <i class="fas fa-users"></i>
