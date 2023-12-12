@@ -669,7 +669,7 @@
 
 
               //Popolarita
-              let all_info;
+              let all_post;
               $.ajax({
                 type: 'POST',
                 dataType: "json",
@@ -678,11 +678,11 @@
                 headers: { },
                 data: { query: CURRENT_USER, target: CURRENT_USER },
                 success: function (data, status, xhr) {
-                  all_info = data.data.post;
+                  all_post = data.data.post;
                 }
               });
 
-              for (var i = 0; i < all_info.length; i++) {
+              for (var i = 0; i < all_post.length; i++) {
                 var container_popolare = document.querySelector(".popolari");
                 var container_impopolare = document.querySelector(".impopolari");
                 var container_controverso = document.querySelector(".controversi");
@@ -690,16 +690,16 @@
                 var num_impopolari = 0;
                 var num_controversi = 0;
 
-                if (all_info[i].categoria == 'popolare') {
+                if (all_post[i].categoria == 'popolare') {
                   num_popolari++;
                   var nuovoElemento = document.createElement("div");
                   nuovoElemento.classList.add("squeal");
                   var nuovoContenuto = `
                       <div class="squeal-header">
-                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_info[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
+                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                           <div class="squeal-info">
-                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_info[i].nome}</span>
-                              <span class="squeal-data" id="squeal-data">${timeConverter(all_info[i].timestamp)}</span>
+                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_post[i].nome}</span>
+                              <span class="squeal-data" id="squeal-data">${timeConverter(all_post[i].timestamp)}</span>
                           </div>
                       </div>
                       <div class="squeal-contenuto" id="squeal-contenuto">
@@ -707,10 +707,10 @@
                       </div>
                   `;
 
-                  if (all_info[i].contenuto == "testo") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_info[i].corpo);
-                  } else if (all_info[i].contenuto == "img") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_info[i].corpo}" alt="immagine_squeal">`);
+                  if (all_post[i].contenuto == "testo") {
+                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
+                  } else if (all_post[i].contenuto == "img") {
+                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
                   }
 
                   // Imposta il contenuto HTML della nuova div
@@ -718,16 +718,16 @@
                   // Aggiungi la nuova div all'elemento container
                   container_popolare.appendChild(nuovoElemento);
 
-                } else if (all_info[i].categoria == 'impopolare') {
+                } else if (all_post[i].categoria == 'impopolare') {
                   num_impopolari++;
                   var nuovoElemento = document.createElement("div");
                   nuovoElemento.classList.add("squeal");
                   var nuovoContenuto = `
                       <div class="squeal-header">
-                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_info[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
+                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                           <div class="squeal-info">
-                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_info[i].nome}</span>
-                              <span class="squeal-data" id="squeal-data">${timeConverter(all_info[i].timestamp)}</span>
+                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_post[i].nome}</span>
+                              <span class="squeal-data" id="squeal-data">${timeConverter(all_post[i].timestamp)}</span>
                           </div>
                       </div>
                       <div class="squeal-contenuto" id="squeal-contenuto">
@@ -735,10 +735,10 @@
                       </div>
                   `;
 
-                  if (all_info[i].contenuto == "testo") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_info[i].corpo);
-                  } else if (all_info[i].contenuto == "img") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_info[i].corpo}" alt="immagine_squeal">`);
+                  if (all_post[i].contenuto == "testo") {
+                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
+                  } else if (all_post[i].contenuto == "img") {
+                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
                   }
 
                   // Imposta il contenuto HTML della nuova div
@@ -746,16 +746,16 @@
                   // Aggiungi la nuova div all'elemento container
                   container_impopolare.appendChild(nuovoElemento);
 
-                }else if (all_info[i].categoria == 'controverso') {
+                }else if (all_post[i].categoria == 'controverso') {
                   num_controversi++;
                   var nuovoElemento = document.createElement("div");
                   nuovoElemento.classList.add("squeal");
                   var nuovoContenuto = `
                       <div class="squeal-header">
-                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_info[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
+                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                           <div class="squeal-info">
-                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_info[i].nome}</span>
-                              <span class="squeal-data" id="squeal-data">${timeConverter(all_info[i].timestamp)}</span>
+                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_post[i].nome}</span>
+                              <span class="squeal-data" id="squeal-data">${timeConverter(all_post[i].timestamp)}</span>
                           </div>
                       </div>
                       <div class="squeal-contenuto" id="squeal-contenuto">
@@ -763,10 +763,10 @@
                       </div>
                   `;
 
-                  if (all_info[i].contenuto == "testo") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_info[i].corpo);
-                  } else if (all_info[i].contenuto == "img") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_info[i].corpo}" alt="immagine_squeal">`);
+                  if (all_post[i].contenuto == "testo") {
+                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
+                  } else if (all_post[i].contenuto == "img") {
+                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
                   }
 
                   // Imposta il contenuto HTML della nuova div
