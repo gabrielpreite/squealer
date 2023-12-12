@@ -1,122 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Squealer</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo left">Logo</a>
 
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+      <i class="material-icons right">menu</i>
     </div>
   </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Starter Template</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br>
 
+  <form>
+    <div class="input-field">
+      <input id="search" type="search" required>
+      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+      <i class="material-icons">close</i>
     </div>
-  </div>
+  </form>
 
+  <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 
-  <div class="container">
-    <div class="section">
+  <main class="row">
+    <div class="card" id="' + squeals[i].post_id + '">
+      <div class="card-title">
+        <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="card-image profile-image" id="squeal_img_utente' + i + '">
+        <div class="info_utente">
+          <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
+          <button class="text-muted tag-username btn-flat" id="squeal_tag' + i + '" onclick="ricerca_squeal(this)">username</button>
+          <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span></div>
+          <div class="recipients-dropdown destinatari">
+            <button class="btn btn-destinatari dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="lista destinatari" id="btn-destinatari' + i + '"></button>
+            <div class="dropdown-menu" id="squeal_destinatari' + i + '">
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            </div>
+          </div>
+        </div>  
+        <div class="card-content">
+          <p id="squeal_testo' + i + '"></p>
+        </div>
+        <div class="card-action">
+          <div class="reazioni btn-group">
+            <button class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')">
+              <i class="fab fa-sketch reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>
+            </button>
+            <button class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')">
+              <i class="fas fa-heart reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_heart' + i + '">500</span>
+            </button>
+            <button class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')">
+              <i class="fas fa-thumbs-up reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_like' + i + '">500</span>
+            </button>
+            <button class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')">
+              <i class="fas fa-thumbs-down reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>
+            </button>
+            <button class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')">
+              <i class="fas fa-heart-crack reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>
+            </button>  
+            <button class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')">
+              <i class="fas fa-poo reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_poo' + i + '">500</span>
+            </button>
+            <button class="btn btn-reazioni c btn-group' + i + '"  onclick="aggiungicommento(this, apri, '+id+')">
+              <i class="fa-solid fa-comments reazioni-icone"></i>
+              <br>
+              <span class="n-reazioni" id="squeal_comment' + i + '">500</span>
+            </button>
+          </div>
+          <div class="info-post" id="squeal_info' + i + '">
+            <span class="visual" id="squeal_visual' + i + '">
+              <i class="fa-solid fa-eye icona-visual"></i>
+              500
+            </span>
           </div>
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
       </div>
-
-    </div>
-    <br><br>
-  </div>
-
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
-
+    
+  </main>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="../js/materialize.js"></script>
-  <script src="../js/init.js"></script>
+  <script src="../js/feed.js"></script>
+  <script src="../js/app-feed.js"></script>
 
-  </body>
+</body>
 </html>

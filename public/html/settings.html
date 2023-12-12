@@ -520,12 +520,13 @@
       for (var i = 0; i < follow_utenti.length; i++) {
         var utente = follow_utenti[i];
         var listItem = document.createElement("li");
+        listItem.setAttribute("data-id", utente);
         listItem.innerHTML = `
           <div>
             <i class="fas fa-user"></i>
             <span>${utente}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing('${utente}', utente)">
+          <button class="remove-btn" onclick="removeFollowing(utente, 'utente')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -535,12 +536,13 @@
       for (var j = 0; j < follow_canali.length; j++) {
         var canale = follow_canali[j];
         var listItemCanale = document.createElement("li");
+        listItem.setAttribute("data-id", canale);
         listItemCanale.innerHTML = `
           <div>
             <i class="fas fa-users"></i>
             <span>${canale}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing('${canale}', canale)">
+          <button class="remove-btn" onclick="removeFollowing(canale, 'canale')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
