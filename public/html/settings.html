@@ -312,17 +312,23 @@
             </div>
           </div>
           <div class="ordine">
-            <div class="colonna popolari barra-scorrimento">
+            <div class="colonna pop">
                 <h3>Popolari  <span>n.0</span></h3>
+                <div class="popolari barra-scorrimento">
 
+                </div>
             </div>
-            <div class="colonna impopolari barra-scorrimento">
+            <div class="colonna impop">
                 <h3>Impopolari  <span>n.0</span></h3>
+                <div class="impopolari barra-scorrimento">
 
+                </div>
             </div>
-            <div class="colonna controversi barra-scorrimento">
+            <div class="colonna controv">
                 <h3>Controversi  <span>n.0</span></h3>
+                <div class="controversi barra-scorrimento">
 
+                </div>
             </div>
           </div>
         </div>
@@ -742,9 +748,9 @@
                 }
               }
               // aggiunta numero effettivo squeal
-              var numero_popolari = document.querySelector('.colonna.popolari h3 span');
-              var numero_impopolari = document.querySelector('.colonna.impopolari h3 span');
-              var numero_controversi = document.querySelector('.colonna.controversi h3 span');
+              var numero_popolari = document.querySelector('.colonna.pop h3 span');
+              var numero_impopolari = document.querySelector('.colonna.impop h3 span');
+              var numero_controversi = document.querySelector('.colonna.controv h3 span');
 
               // Aggiorna il contenuto con il numero effettivo
               numero_popolari.textContent = 'n.' + num_popolari;
