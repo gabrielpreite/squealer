@@ -11,6 +11,8 @@
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <script type="text/javascript" src="../js/global.js"></script>
+
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 </head>
@@ -35,7 +37,7 @@
 
   <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 
-  <main class="row">
+  <main class="row" id="squeal_contenitore">
     <div class="card" id="' + squeals[i].post_id + '">
       <div class="card-content">
         <div class="card-info valign-wrapper">
@@ -219,13 +221,20 @@
       lista_notifiche.insertAdjacentHTML('beforeend', notifica);
     }
 
+    //URL NONLOGGATO
+    var url_user;
+    if (CURRENT_USER == undefined) {
+      url_user = `https://site212251.tw.cs.unibo.it/squeal/feed`;
+    } else {
+      url_user = `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/feed`;
+    }
     //RICHIESTA E COSTRUZIONE SQUEAL
     var squeals;
     $.ajax({
       type: 'POST',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/feed`,
+      url: url_user,
       headers: { },
       success: function (data, status, xhr) {
         console.log('data: ', data);
