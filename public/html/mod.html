@@ -74,7 +74,7 @@
               <table id="canali_table">
               </table>
             </div>
-            <button>Aggiungi nuovo canale</button>
+            <button onclick="seleziona_canale('new')">Aggiungi nuovo canale</button>
           </div>
         </div>
       </div>
@@ -142,9 +142,10 @@
           </div>
           <div id="right_canali" hidden> <!-- parte canali -->
             <form id="modifica_canale">
-              Nome:<div id="selected_canale_nome"></div>
+              Nome:<input type="text" id="selected_canale_nome">
               Descrizione:<input type="text" id="canale_descrizione">
               <input type="submit" value="Applica modifiche">
+              <button id="elimina_canale">Elimina Canale</button>
             </form>
           </div>
         </div>

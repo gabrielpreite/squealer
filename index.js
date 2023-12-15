@@ -1000,7 +1000,7 @@ app.post('/channel/:channel_id', async function(req, res) {
 
     try{
         const channel_id = req.params.channel_id
-        console.log(channel_id)
+        //console.log(channel_id)
 
         response = await mymongo.channel_update(channel_id, req.body, mongoCredentials)
 
@@ -1018,15 +1018,13 @@ app.post('/channel/:channel_id', async function(req, res) {
     }
 });
 
-// cancella canale --------------------------------------------TODO FIX
+// cancella canale 
 app.delete('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
-
-        // todo check se l'utente e' proprietario
-
-        response = await mymongo.channel_delete(user_id, mongoCredentials)
+        const channel_id = req.params.channel_id
+        response = await mymongo.channel_delete(channel_id, mongoCredentials)
 
         if(response["risultato"] == "successo"){
             res.status(200)
@@ -1044,7 +1042,7 @@ app.delete('/channel/:channel_id', async function(req, res) {
 });
 
 // crea nuovo canale
-//body: nome, userid
+//body: nome, userid, descrizione, ufficiale
 app.post('/channel', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
