@@ -2795,7 +2795,7 @@ exports.channel_create = async function (q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		//controllo l'esistenza della mail
+		//controllo l'esistenza del nome
 		await mongo.db(dbname)
 			.collection("canale")
 			.find({ nome: q.nome })
@@ -2814,8 +2814,8 @@ exports.channel_create = async function (q, credentials) {
 				{
 					img: "default_channelpic.png",
 					nome: q.nome,
-					descrizione: "",
-					ufficiale: false,
+					descrizione: q.descrizione,
+					ufficiale: q.ufficiale === "true" ? true : false,
 					proprieta: q.userid,
 					mod: [],
 					lettura: ["*"],
