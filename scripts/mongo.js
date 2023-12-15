@@ -2847,7 +2847,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		result = await mongo.db(dbname)
 			.collection("canale")
 			.updateOne(
-				{ nome: { $literal: channel_id } },
+				{ nome: channel_id },
 				{ $set: {
 					descrizione: q.descrizione
 				}}
@@ -2855,8 +2855,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 
 		await mongo.close();
 
-		if (result.length == 1) {
-			response["data"] = result[0]
+		if (result.matchedCount == 1) {
 			response["risultato"] = "successo"
 		} else {
 			response["risultato"] = "canale non trovato"
@@ -2864,7 +2863,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
