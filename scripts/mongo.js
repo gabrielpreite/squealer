@@ -2815,7 +2815,7 @@ exports.channel_create = async function (q, credentials) {
 					img: "default_channelpic.png",
 					nome: q.nome,
 					descrizione: q.descrizione,
-					ufficiale: q.ufficiale,
+					ufficiale: q.ufficiale === "true" ? true : false,
 					proprieta: q.userid,
 					mod: [],
 					lettura: ["*"],

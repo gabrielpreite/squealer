@@ -486,7 +486,7 @@ function cat_canali(){
           //console.log(data)
           canali = []
           data.forEach((el) => {
-            if(el.ufficiale === true)
+            if(el.ufficiale === true || el.ufficiale === "true")
                 canali.push(el)
           })
           //console.log(canali)
