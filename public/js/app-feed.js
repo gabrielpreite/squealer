@@ -51,12 +51,48 @@ function aggiungi_squeal(squeals) {
     document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
     let id_dislike = 'squeal_dislike' + i;
     document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
-    let id_comment = 'squeal_comment' + i;
-    document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
+
+    //commenti
+    //let id_comment = 'squeal_comment' + i;
+    //document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
 
     //aggiungi commenti
-    
+    if (squeals[i].numRisposte > 0) {
+      //let contenitore_commenti = document.getElementById("contenitore-commenti");
+      let id_post = squeals[i].post_id;
+      let id_comment = 'squeal_comment' + i;
+      let contenitore_commenti = document.getElementById(id_comment);
+      let lista_commenti;
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/squeal/${id_post}/reply`,
+        headers: { },
+        success: function (data, status, xhr) {
+          lista_commenti = data.data;
+          console.log(data);
+        }
+      });
+      let n_commenti = lista_commenti.length;
+      for (let c = 0; c < n_commenti; c++) {
+        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + c + '">  </div> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+        let c_img_utente = 'c_img_utente' + c;
+        document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
+        let id_tag = 'c_username' + c;
+        document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
+        let id_testo = 'c_text' + c;
+        if (lista_commenti[c].contenuto == "testo") {
+          document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
+        } else if(lista_commenti[c].contenuto == "img"){
+          document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine del commento">`
+        } else if(lista_commenti[c].contenuto == "map"){
+          document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa del commento">`;
+        }
+      }
+    } else {
 
+    }
 
     //etichette
     let id_visual = 'squeal_visual' + i;
