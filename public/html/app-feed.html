@@ -34,6 +34,7 @@
   </form>
 
   <main class="row" id="squeal_contenitore">
+    
     <div class="card" id="' + squeals[i].post_id + '">
       <div class="card-content">
         <div class="card-info valign-wrapper">
@@ -50,16 +51,16 @@
         </div>
         <p id="squeal_testo' + i + '">Questo è il testo dello squeal</p>
       </div>
-
+    
       <div class="card-tabs">
         <ul class="tabs tabs-fixed-width">
-          <li class="tab"><a class="active" href="#reazioni">Reazioni</a></li>
-          <li class="tab"><a href="#commenti">Commenti</a></li>
-          <li class="tab"><a href="#destinatari">Destinatari</a></li>
+          <li class="tab"><a class="active" href="#reazioni' + i + '">Reazioni</a></li>
+          <li class="tab"><a href="#commenti' + i + '">Commenti</a></li>
+          <li class="tab"><a href="#destinatari' + i + '">Destinatari</a></li>
         </ul>
       </div>
       <div class="card-content grey lighten-4">
-        <div id="reazioni">
+        <div id="reazioni' + i + '">
           <div class="reazioni btn-group">
             <a class="btn btn-reazioni btn-group' + i + '">
               <i class="fab fa-sketch reazioni-icone"></i>
@@ -93,17 +94,17 @@
             </span>
           </div>
         </div>
-        <div id="commenti">
-          
+        <div id="commenti' + i + '">
+          <div id="squeal_comment' + i + '">
+        
+          </div>
         </div>
-        <div id="destinatari">
+        <div id="destinatari' + i + '">
           <div id="squeal_destinatari' + i + '">
         
           </div>
         </div>
       </div>
-
-      
     </div>
     
   </main>
