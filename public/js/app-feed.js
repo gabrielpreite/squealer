@@ -23,51 +23,19 @@ function aggiungi_squeal(squeals) {
 
     //corpo squeal
     let id_testo = 'squeal_testo' + i;
-    if(squeals[i].contenuto == "testo"){
-      let testo_squeal = squeals[i].corpo;
-      //parole con @ all'inizio
-      const at = /(?:^|\s)@(\w+)/g;
-      let at_arr = squeals[i].corpo.match(at);
-      let ht_arr = squeals[i].corpo.match(/#\w+/g) //match su hashtag
-      //url in text
-      const url = /\b(?:https?|ftp):\/\/[-\w+&@#/%?=~|$!:,.;]*[\w\-]+(?:\.[a-z]{2,})+(?:\/\S*)?\b/g;
-      const url_arr = squeals[i].corpo.match(url);
-      if(ht_arr != null){
-        ht_arr.forEach(function(hashtag) {
-          testo_squeal = testo_squeal.replace(hashtag,'<button class="btn_hashtag" onclick="ricerca_squeal(this)">' + hashtag + '</button>');
-        });
-      }
-      if (at_arr != null) {
-        at_arr.forEach(function(nome) {
-          testo_squeal = testo_squeal.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
-        });
-      }
-      if (url_arr != null) {
-        url_arr.forEach(function(link) {
-          testo_squeal = testo_squeal.replace(link,'<a class="btn_link" href="' + link + '">' + link + '</a>');
-        });
-      }
-      document.getElementById(id_testo).innerHTML = testo_squeal;
+    if(squeals[i].contenuto == "testo"){      
+      document.getElementById(id_testo).innerHTML = squeals[i].corpo;
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine dello squeal">`
     } else if(squeals[i].contenuto == "map"){
       document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa dello squeal">`;
     }
-    //destinatari FIX
-    let id_destinatari = 'btn-destinatari' + i;
-    if (squeals[i].tipo_destinatari == "canali"){
-      let bottone_destinatari_canali = '<i class="fa-solid fa-users destinatari-icona"></i>'
-      //document.getElementById(id_destinatari).innerHTML = bottone_destinatari_canali;
-    } else if (squeals[i].tipo_destinatari == "utenti") {
-      let bottone_destinatari_utenti = '<i class="fa-solid fa-user destinatari-icona"></i>'
-      //document.getElementById(id_destinatari).innerHTML = bottone_destinatari_utenti;
-    } else {
-      document.getElementById(id_destinatari).hidden = true;
-    }
+
+    //destinatari
     let lista_destinatari = document.getElementById('squeal_destinatari' + i);
     let n_destinatari = squeals[i].destinatari.length;
     for (let j = 0; j < n_destinatari; j++) {
-      lista_destinatari.insertAdjacentHTML('beforeend', '<button class="dropdown-item" onclick="ricerca_squeal(this)">' + squeals[i].destinatari[j] + '</button>');
+      lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + squeals[i].destinatari[j] + '</div>');
     }
 
     //reazioni
@@ -86,9 +54,8 @@ function aggiungi_squeal(squeals) {
     let id_comment = 'squeal_comment' + i;
     document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
 
-
-    //console.log("fv");
-    //get_cookie_by_name("username")
+    //aggiungi commenti
+    
 
 
     //etichette
