@@ -994,6 +994,7 @@ app.get('/channel/:channel_id', async function(req, res) {
 });
 
 // modifica impostazioni canale
+//body: req.descrizione
 app.post('/channel/:channel_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 

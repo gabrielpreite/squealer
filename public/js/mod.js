@@ -477,12 +477,12 @@ function cat_canali(){
         url: `https://site212251.tw.cs.unibo.it/db/channel`,
         headers: { },
         success: function (data, status, xhr) {
-          console.log(data)
+          //console.log(data)
           data.forEach((el) => {
             if(el.ufficiale === true)
                 canali.push(el)
           })
-          console.log(canali)
+          //console.log(canali)
         }
     });
     
@@ -510,4 +510,42 @@ function cat_canali(){
     document.getElementById("mid_squeal").setAttribute("hidden", "true")
     document.getElementById("mid_canali").removeAttribute("hidden")
 
+}
+
+function seleziona_canale(nome){
+    let canale
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/channel/`+nome,
+        headers: { },
+        success: function (data, status, xhr) {
+            canale = data.data;
+            //console.log(canale)
+            document.getElementById("right_user").setAttribute("hidden", "")
+            document.getElementById("right_squeal").setAttribute("hidden", "")
+            document.getElementById("right_canali").removeAttribute("hidden")
+            
+            document.getElementById("selected_canale_nome").innerHTML = canale.nome
+            document.getElementById("canale_descrizione").value = canale.descrizione
+        }
+    });
+}
+
+function applica_canale(){
+    let nome = document.getElementById("selected_canale_nome").innerHTML
+    let descrizione = document.getElementById("canale_descrizione").value
+    
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: "https://site212251.tw.cs.unibo.it/channel/"+nome,
+        headers: { },
+        data: { descrizione: descrizione},
+        success: function (data, status, xhr) {
+            console.log("canale aggiornato")
+        }
+    });
 }
