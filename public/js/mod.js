@@ -1,5 +1,8 @@
 var utenti = []
 var squeals = []
+var canali = []
+
+// UTENTI
 
 function cat_utenti(){
     $.ajax({
@@ -193,6 +196,8 @@ function applica_utenti(){
         }
     });
 }
+
+// SQUEAL
 
 function cat_squeal(){
     $.ajax({
@@ -458,6 +463,89 @@ function applica_squeal(){
         headers: { },
         data: { reac: JSON.stringify(reac), destinatari: dest},
         success: function (data, status, xhr) {
+        }
+    });
+}
+
+// CANALI
+
+function cat_canali(){
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/db/channel`,
+        headers: { },
+        success: function (data, status, xhr) {
+          //console.log(data)
+          data.forEach((el) => {
+            if(el.ufficiale === true)
+                canali.push(el)
+          })
+          //console.log(canali)
+        }
+    });
+    
+    document.getElementById("canali_table").innerHTML = ""
+    let tableBody = document.createElement("tbody");
+    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Nome</th><th>Descrizione</th></tr>")
+    canali.forEach((canale) => {
+        var row = document.createElement("tr");
+
+        let cell_nom = document.createElement("td");
+        let cellText_nom = document.createTextNode(canale.nome);
+        cell_nom.appendChild(cellText_nom);
+        row.appendChild(cell_nom);
+
+        let cell_des = document.createElement("td");
+        let cellText_des = document.createTextNode(canale.descrizione);
+        cell_des.appendChild(cellText_des);
+        row.appendChild(cell_des);
+
+        row.onclick = function() { seleziona_canale(canale.nome); };
+        tableBody.appendChild(row)
+    })
+    document.getElementById("canali_table").appendChild(tableBody)
+    document.getElementById("mid_user").setAttribute("hidden", "true")
+    document.getElementById("mid_squeal").setAttribute("hidden", "true")
+    document.getElementById("mid_canali").removeAttribute("hidden")
+
+}
+
+function seleziona_canale(nome){
+    let canale
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/channel/`+nome,
+        headers: { },
+        success: function (data, status, xhr) {
+            canale = data.data;
+            //console.log(canale)
+            document.getElementById("right_user").setAttribute("hidden", "")
+            document.getElementById("right_squeal").setAttribute("hidden", "")
+            document.getElementById("right_canali").removeAttribute("hidden")
+            
+            document.getElementById("selected_canale_nome").innerHTML = canale.nome
+            document.getElementById("canale_descrizione").value = canale.descrizione
+        }
+    });
+}
+
+function applica_canale(){
+    let nome = document.getElementById("selected_canale_nome").innerHTML
+    let descrizione = document.getElementById("canale_descrizione").value
+    
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: "https://site212251.tw.cs.unibo.it/channel/"+nome,
+        headers: { },
+        data: { descrizione: descrizione},
+        success: function (data, status, xhr) {
+            console.log("canale aggiornato")
         }
     });
 }

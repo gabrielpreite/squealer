@@ -31,7 +31,7 @@ let fn_chat = "/public/data/chat.json"
 let fn_defaults = "/public/data/defaults.json"
 let dbname = "db"
 
-const { MongoClient, MongoCredentials } = require("mongodb");
+const { MongoClient, MongoCredentials, MongoDBNamespace } = require("mongodb");
 const fs = require('fs').promises;
 const template = require(global.rootDir + '/scripts/tpl.js');
 
@@ -637,7 +637,7 @@ exports.search_canale = async function (q, credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		return data
+		return result
 	} catch (e) {
 		data.debug = debug
 		data.error = e
@@ -2844,12 +2844,18 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		//todo
+		result = await mongo.db(dbname)
+			.collection("canale")
+			.updateOne(
+				{ nome: channel_id },
+				{ $set: {
+					descrizione: q.descrizione
+				}}
+			)
 
 		await mongo.close();
 
-		if (result.length == 1) {
-			response["data"] = result[0]
+		if (result.matchedCount == 1) {
 			response["risultato"] = "successo"
 		} else {
 			response["risultato"] = "canale non trovato"
@@ -2857,7 +2863,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
