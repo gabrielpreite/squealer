@@ -1000,7 +1000,7 @@ app.post('/channel/:channel_id', async function(req, res) {
 
     try{
         const channel_id = req.params.channel_id
-        //todo check if userid is proprietario
+        console.log(channel_id)
 
         response = await mymongo.channel_update(channel_id, req.body, mongoCredentials)
 

@@ -2847,7 +2847,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		result = await mongo.db(dbname)
 			.collection("canale")
 			.updateOne(
-				{ nome: channel_id },
+				{ nome: { $literal: channel_id } },
 				{ $set: {
 					descrizione: q.descrizione
 				}}
