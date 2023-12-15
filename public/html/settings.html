@@ -298,7 +298,7 @@
       </div>
 
       <div id="popolarita" class="sezione">
-        <div class="container">
+        <div class="container barra-scorrimento">
           <h2 class="mb-4 title-sezione">Popolarità</h2>
           <div class="previsione">
             <p>Previsione andamento popolarità:
@@ -312,17 +312,23 @@
             </div>
           </div>
           <div class="ordine">
-            <div class="colonna popolari">
+            <div class="colonna pop">
                 <h3>Popolari  <span>n.0</span></h3>
+                <div class="popolari barra-scorrimento">
 
+                </div>
             </div>
-            <div class="colonna impopolari">
+            <div class="colonna impop">
                 <h3>Impopolari  <span>n.0</span></h3>
+                <div class="impopolari barra-scorrimento">
 
+                </div>
             </div>
-            <div class="colonna controversi">
+            <div class="colonna controv">
                 <h3>Controversi  <span>n.0</span></h3>
+                <div class="controversi barra-scorrimento">
 
+                </div>
             </div>
           </div>
         </div>
@@ -646,13 +652,14 @@
                 }
               });
 
+              var num_popolari = 0;
+              var num_impopolari = 0;
+              var num_controversi = 0;
+
               for (var i = 0; i < all_post.length; i++) {
                 var container_popolare = document.querySelector(".popolari");
                 var container_impopolare = document.querySelector(".impopolari");
                 var container_controverso = document.querySelector(".controversi");
-                var num_popolari = 0;
-                var num_impopolari = 0;
-                var num_controversi = 0;
 
                 if (all_post[i].categoria == 'popolare') {
                   num_popolari++;
@@ -741,9 +748,9 @@
                 }
               }
               // aggiunta numero effettivo squeal
-              var numero_popolari = document.querySelector('.colonna.popolari h3 span');
-              var numero_impopolari = document.querySelector('.colonna.impopolari h3 span');
-              var numero_controversi = document.querySelector('.colonna.controversi h3 span');
+              var numero_popolari = document.querySelector('.colonna.pop h3 span');
+              var numero_impopolari = document.querySelector('.colonna.impop h3 span');
+              var numero_controversi = document.querySelector('.colonna.controv h3 span');
 
               // Aggiorna il contenuto con il numero effettivo
               numero_popolari.textContent = 'n.' + num_popolari;
@@ -751,26 +758,31 @@
               numero_controversi.textContent = 'n.' + num_controversi;
 
               //gestione popolarità e quota
-              let pop = numero_popolari - numero_impopolari;
+              let pop = num_popolari - num_impopolari;
               let bonus = (Math.floor(pop / 10) / 100) * 300 //1% +- per ogni 10 di popolarita
 
               // Aggiorna il contenuto del riquadro popolarita
-              var riquadro_popolarita = document.querySelector('.riquadro_popolarita span');
+              var val_popolarita = document.querySelector('.riquadro_popolarita span');
+              var riquadro_popolarita = document.querySelector('.riquadro_popolarita');
+
               if (pop >= 0) {
-                riquadro_popolarita.textContent = '+' + pop;
+                val_popolarita.textContent = '+' + pop;
                 riquadro_popolarita.style.backgroundColor = '#4caf50';
               } else {
-                riquadro_popolarita.textContent = pop;
+                val_popolarita.textContent = pop;
                 riquadro_popolarita.style.backgroundColor = '#FF6347';
+                riquadro_popolarita.style.color = 'black';
               }
 
               // Aggiorna il contenuto del riquadro quota
-              var riquadro_quota = document.querySelector('.riquadro_quota span');
+              var val_quota = document.querySelector('.riquadro_quota span');
+              var riquadro_quota = document.querySelector('.riquadro_quota');
+
               if (bonus >= 0) {
-                riquadro_quota.textContent = '+' + bonus;
+                val_quota.textContent = '+' + bonus;
                 riquadro_quota.style.backgroundColor = '#42a5f5';
               } else {
-                riquadro_quota.textContent = bonus;
+                val_quota.textContent = bonus;
                 riquadro_quota.style.backgroundColor = '#ffd966';
                 riquadro_quota.style.color = 'black';
               }

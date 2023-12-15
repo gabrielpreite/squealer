@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Squealer</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <script type="text/javascript" src="../js/global.js"></script>
+
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo left">Logo</a>
+
+
+
+      <i class="material-icons right">menu</i>
+    </div>
+  </nav>
+
+  <form>
+    <div class="input-field">
+      <input id="search" type="search" required>
+      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+      <i class="material-icons">close</i>
+    </div>
+  </form>
+
+  <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+  <main class="row" id="squeal_contenitore">
+    <div class="card" id="' + squeals[i].post_id + '">
+      <div class="card-content">
+        <div class="card-info valign-wrapper">
+          <div class="col s3 center-align">
+            <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="profile-image circle" id="squeal_img_utente' + i + '">
+          </div>
+          <div class="col s9">
+            <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
+            <br>
+            <a class="text-muted tag-username btn-flat" id="squeal_tag' + i + '" onclick="ricerca_squeal(this)">username</a>
+            <br>
+            <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>
+          </div>
+        </div>
+        <p id="squeal_testo' + i + '">Questo è il testo dello squeal</p>
+      </div>
+
+      <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width">
+          <li class="tab"><a class="active" href="#reazioni">Reazioni</a></li>
+          <li class="tab"><a href="#commenti">Commenti</a></li>
+          <li class="tab"><a href="#destinatari">Destinatari</a></li>
+        </ul>
+      </div>
+      <div class="card-content grey lighten-4">
+        <div id="reazioni">
+          <div class="reazioni btn-group">
+            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')">
+              <i class="fab fa-sketch reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>
+            </a>
+            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')">
+              <i class="fas fa-heart reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_heart' + i + '">500</span>
+            </a>
+            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')">
+              <i class="fas fa-thumbs-up reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_like' + i + '">500</span>
+            </a>
+            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')">
+              <i class="fas fa-thumbs-down reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>
+            </a>
+            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')">
+              <i class="fas fa-heart-crack reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>
+            </a>  
+            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')">
+              <i class="fas fa-poo reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_poo' + i + '">500</span>
+            </a>
+            <a class="btn btn-reazioni c btn-group' + i + '"  onclick="aggiungicommento(this, apri, '+id+')">
+              <i class="fa-solid fa-comments reazioni-icone"></i>
+              <span class="n-reazioni" id="squeal_comment' + i + '">500</span>
+            </a>
+          </div>
+          <div class="info-post" id="squeal_info' + i + '">
+            <span class="visual" id="squeal_visual' + i + '">
+              <i class="fa-solid fa-eye icona-visual"></i>
+              500
+            </span>
+          </div>
+        </div>
+        <div id="commenti">
+          
+        </div>
+        <div id="destinatari">
+          <div id="squeal_destinatari' + i + '">
+        
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+    
+  </main>
+
+  <!--  Scripts -->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/feed.js"></script>
+  <script src="../js/app-feed.js"></script>
+
+  <script>
+    // INIT
+    //tabs card squeal
+    document.addEventListener('DOMContentLoaded', function() {
+      var tabs = document.querySelectorAll('.tabs');
+      M.Tabs.init(tabs);
+    });
+
+    /*
+    //document.getElementById("dropdownMenuButton").innerHTML = get_cookie_by_name("username");
+    document.getElementById("chat_privata").addEventListener('submit', async event => {
+      event.preventDefault();
+      aggiungiMessaggio();
+    });
+    */
+
+    // controllo l'account corrente (gestione smm)
+    var CURRENT_USER = get_cookie_by_name("managed");
+    if (CURRENT_USER == undefined) {
+      CURRENT_USER = get_cookie_by_name("username");
+    }
+
+    // aggiorno la quota
+    refresh_quota()
+    let quota_giorno = get_cookie_by_name("quota_g");
+    let quota_settimana = get_cookie_by_name("quota_s");
+    let quota_mese = get_cookie_by_name("quota_m");
+
+    /*
+    // Aggiorna il contenuto delle span con i nuovi valori
+    document.getElementById("charCount_mese").textContent = quota_mese;
+    document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_giorno").textContent = quota_giorno;
+
+    document.getElementById("form_ricerca").addEventListener('submit', async event => {
+      event.preventDefault();
+      let result = ricerca_squeal(null);
+      squeals = result.post;
+      var info_ricerca = result.meta;
+    });
+    */
+
+    // INSERIMENTO PROPIC UTENTE
+    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+
+    // INSERIMENTO ACCOUNT GESTITI DA SMM
+    let account = []
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/manager_of`,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        account = data["data"];
+      }
+    });
+
+
+    account.forEach((el) => {
+      $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
+    })
+
+    $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><button type="button" class="dropdown-item logout-button" onclick="logout()">Logout</button>`)
+
+    //se sto gestendo un account lo mostro nella barra
+    let managed = get_cookie_by_name("managed")
+    if(!(managed === undefined)){
+      $("#managed-account-username").text(managed)
+      $("#managed-account-username").removeAttr("hidden")
+    }
+
+    var notifiche;
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/notification/${CURRENT_USER}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        notifiche = data.data;
+      }
+    });
+    var lista_notifiche = document.getElementById('notificationsDropdown');
+    var n_notifiche = notifiche.length;
+    for (var n = 0; n < n_notifiche; n++) {
+      //costruzione notifica
+      var not_tipo = 'type="button" ';
+      var not_id = 'id="' + notifiche[n].not_id + '" ';
+      var not_class = 'class="dropdown-item ';
+      if (notifiche[n].letta) {
+        not_class = not_class + 'letta ';
+      } else {
+        not_class = not_class + 'not_letta ';
+      }
+      not_class = not_class + notifiche[n].tipo + '" ';
+      var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
+
+      var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
+      lista_notifiche.insertAdjacentHTML('beforeend', notifica);
+    }
+
+    //URL NONLOGGATO
+    var url_user;
+    if (CURRENT_USER == undefined) {
+      url_user = `https://site212251.tw.cs.unibo.it/squeal/feed`;
+    } else {
+      url_user = `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/feed`;
+    }
+    //RICHIESTA E COSTRUZIONE SQUEAL
+    var squeals;
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      async: false,
+      url: url_user,
+      headers: { },
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        squeals = data["data"];
+      }
+    });
+
+    //setup
+    var adoro = "adoro";
+    var mi_disgusta = "mi_disgusta";
+    var mi_piace = "mi_piace";
+    var odio = "odio";
+    var concordo = "concordo";
+    var sono_contrario = "sono_contrario";
+    var apri = "apri";
+    aggiungi_squeal(squeals);
+
+    //grafici
+    let all_info;
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/squeal/by_user`,
+      headers: { },
+      data: { query: CURRENT_USER, target: CURRENT_USER },
+      success: function (data, status, xhr) {
+        all_info = data.data.post;
+      }
+    });
+
+           var postData = [];
+           var datiCommenti = [];
+           var idSqueals = [];
+           var corpoSqueals = [];
+
+           for (const info of all_info) {
+             if (info.timestamp) {
+               postData.push(convertiTimestampInData(info.timestamp));
+             }
+             if (info.numRisposte) {
+               datiCommenti.push(info.numRisposte);
+             } else {
+               datiCommenti.push(0);
+             }
+             if (info.post_id) {
+               idSqueals.push(info.post_id);
+             }
+             if (info.corpo) {
+               if (info.contenuto == 'testo') {
+                 corpoSqueals.push(info.corpo);
+               } else if (info.contenuto == 'img'){
+                 corpoSqueals.push('Immagine')
+               } else {
+                 corpoSqueals.push('Posizione')
+               }
+             }
+           }
+
+           // Combinare parallelamente datiCommenti e corpoSqueals in risultatoParallelo
+           var risultatoParallelo = [];
+            for (let i = 0; i < corpoSqueals.length; i++) {
+                risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
+            }
+            risultatoParallelo5 = risultatoParallelo.slice(0, 6);
+            var commenti = risultatoParallelo5.map(item => item.numCommenti);
+            var corpo = risultatoParallelo5.map(item => item.corpoSqueal);
+            var id = risultatoParallelo5.map(item => item.idSqueal);
+
+    // COMMENTI
+    var corpoSquealsTagliati = corpo.map((frase) => {
+      if (frase.length > 7) {
+        return frase.slice(0, 7) + '...';
+      }
+      return frase;
+    });
+
+
+    // Ottieni il riferimento al canvas del grafico
+    const canvasGraficoCommenti = document.getElementById("commentiChart");
+
+    // Crea il grafico utilizzando Chart.js
+    const graficoCommenti = new Chart(canvasGraficoCommenti, {
+      type: "bar",
+      data: {
+        labels: corpoSquealsTagliati,
+        datasets: [
+          {
+            label: "Numero di commenti ricevuti",
+            data: commenti,
+            backgroundColor: "rgba(0, 102, 255, 0.3)",
+            borderColor: "rgba(0, 102, 255, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+            },
+          },
+        },
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+            offset: 4,
+            labels: {
+              title: {
+                font: {
+                  weight: 'bold',
+                },
+              },
+            },
+          },
+        },
+        onClick: function (event, elements) {
+          // Controllo se è stato cliccato un elemento del grafico
+          if (elements.length > 0) {
+            // Recupero l'indice dell'elemento cliccato
+            const index = elements[0].index;
+
+            // Recupero l'ID del squeal corrispondente all'indice
+            const idSqueal = id[index];
+
+            // Reindirizzo alla pagina desiderata usando l'ID del squeal
+            ricerca_post(idSqueal);
+          }
+        },
+      },
+    });
+
+    // POPOLARITA
+    var datiPopolarita = [];
+    var settPopolarita = [];
+
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        datiPopolarita = data.data.popolarita.valori;
+        settPopolarita = data.data.popolarita.settimane;
+      }
+    });
+
+    // Ottieni il riferimento al canvas del grafico
+    const canvasGraficoPopolarita = document.getElementById("popolaritaChart");
+
+    // Crea il grafico a linea utilizzando Chart.js
+    const graficoPopolarita = new Chart(canvasGraficoPopolarita, {
+      type: "line", // Tipo di grafico (linea)
+      data: {
+        labels: settPopolarita,
+        datasets: [
+          {
+            label: "Popolarità",
+            data: datiPopolarita,
+            borderColor: "rgba(0, 128, 0, 0.8)", // Colore della linea
+            borderWidth: 2,
+            fill: false, // Non riempire l'area sottostante la linea
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+
+    //SQUEAL
+    function countPostsInWeek(postData, settPopolarita) {
+        const postFrequenza = [];
+
+        for (const settimana of settPopolarita) {
+            const [inizioStr, fineStr] = settimana.split(' - ');
+            const inizio_settimana = parseDate(inizioStr);
+            const fine_settimana = parseDate(fineStr);
+
+            const count = postData.filter(data => {
+                const dataDate = parseDate(data);
+                return dataDate >= inizio_settimana && dataDate <= fine_settimana;
+            }).length;
+
+            postFrequenza.push(count);
+        }
+
+        return postFrequenza;
+    }
+
+    // Funzione per analizzare la data nel formato "dd/mm"
+    function parseDate(dateString) {
+        const [giorno, mese] = dateString.split('/').map(Number);
+        return new Date(2023, mese - 1, giorno);
+    }
+
+    function trasformaFormatoData(arrayDate) {
+        return arrayDate.map(data => {
+            const [anno, mese, giorno] = data.split('-');
+            return `${giorno}/${mese}`;
+        });
+    }
+    postData = trasformaFormatoData(postData);
+    const postFrequenza = countPostsInWeek(postData, settPopolarita);
+    // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in settPopolarita
+
+    // Continua con la creazione del grafico come nel tuo codice originale
+    var canvas = document.getElementById('squealChart');
+    var ctx = canvas.getContext('2d');
+
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: settPopolarita,
+        datasets: [{
+          label: 'Numero di squeals postati',
+          data: postFrequenza, // Utilizza il nuovo array postFrequenza
+          borderColor: 'rgba(255, 139, 45, 1)',
+          borderWidth: 2,
+          fill: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            // Imposta il formato degli assi y come interi anziché con la virgola
+            ticks: {
+              callback: function(value) {
+                return value.toFixed(0);
+              }
+            }
+          }
+        }
+      }
+    });
+
+
+    // TRENDS
+    function trovaParoleFrequenti(arrayParole) {
+      // Trasforma tutte le parole in minuscolo
+      const arrayParoleMinuscolo = arrayParole.map(parola => parola.toLowerCase());
+
+      // Conta le occorrenze di ciascuna parola
+      const conteggioParole = {};
+      arrayParoleMinuscolo.forEach(parola => {
+        conteggioParole[parola] = (conteggioParole[parola] || 0) + 1;
+      });
+
+      // Trova le parole più frequenti
+      const paroleFrequenti = Object.keys(conteggioParole)
+        .sort((a, b) => conteggioParole[b] - conteggioParole[a])
+        .slice(0, 8);
+
+      return paroleFrequenti;
+    }
+
+    const pastelColors = [
+      '#FF8080', '#FFB380', '#FFD480', '#FFFF80', '#BFFF80',
+      '#80FF80', '#80FFBF', '#C0B3FF', '#CFAEFF'
+    ];
+
+    function getRandomPastelColor() {
+      const randomIndex = Math.floor(Math.random() * pastelColors.length);
+      return pastelColors[randomIndex];
+    }
+
+    // Crea le tessere del mosaico dinamicamente
+    let trends = []
+    function createMosaicTiles() {
+      const container = document.querySelector('.mosaic-container');
+      const tileSize = 30; // Dimensione della tessera
+
+      // Array dei trend
+      trends = trovaParoleFrequenti(arr_trend);
+      if (trends.length == 0) {
+        trends.push("nessun trend presente :(");
+      }
+
+      for (let i = 0; i < trends.length; i++) {
+        const tile = document.createElement('button');
+        tile.classList.add('mosaic-tile');
+        tile.style.backgroundColor = getRandomPastelColor();
+        tile.textContent = trends[i];
+        tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
+        tile.style.height = tileSize + 'px';
+        tile.onclick = () => search_trend(trends[i]) // chiamata per ricerca per keyword
+
+        container.appendChild(tile);
+      }
+    }
+    createMosaicTiles();
+
+    var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
+    var commentData = [10, 20, 15, 30, 25];
+
+  </script>
+
+</body>
+</html>
