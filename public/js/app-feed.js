@@ -75,12 +75,12 @@ function aggiungi_squeal(squeals) {
       let n_commenti = lista_commenti[i].length;
       for (let c = 0; c < n_commenti; c++) {
         let id_c = i + c;
-        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + c + '">  </div> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
-        let c_img_utente = 'c_img_utente' + c;
+        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div>');
+        let c_img_utente = 'c_img_utente' + id_c;
         document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].img}`
-        let id_tag = 'c_username' + c;
+        let id_tag = 'c_username' + id_c;
         document.getElementById(id_tag).innerHTML = lista_commenti[i][c].utente;
-        let id_testo = 'c_text' + c;
+        let id_testo = 'c_text' + id_c;
         if (lista_commenti[i][c].contenuto == "testo") {
           document.getElementById(id_testo).innerHTML = lista_commenti[i][c].corpo;
         } else if(lista_commenti[i][c].contenuto == "img"){
