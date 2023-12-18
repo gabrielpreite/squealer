@@ -148,6 +148,7 @@ async function run_auto_gatti() {
         console.log('API Response:', response.data);
 
         url = response.data.url
+        console.log(url)
         
     } catch (error) {
         console.error('Errore API gatti: ', error.message);
