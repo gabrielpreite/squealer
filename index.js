@@ -150,16 +150,16 @@ async function run_auto_gatti(dry) {
         });
 
         url = response.data[0].url
-        console.log(url)
+        //console.log(url)
 
         const fileName = url.split("images/")[1]
-        console.log("nome: "+fileName)
+        //console.log("nome: "+fileName)
 
         const response_img = await axios.get(url, { responseType: 'arraybuffer' });
         const directory = path.join(__dirname, '/public/media/uploads');
         const filePath = path.join(directory, fileName);
         fs.writeFileSync(filePath, Buffer.from(response_img.data));
-        console.log(`Image saved at: ${filePath}`);
+        //console.log(`Image saved at: ${filePath}`);
 
         body = {
             tipo_destinatari: "canali",
@@ -184,7 +184,7 @@ const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome'
    run_daily_meteo(false)
 });
 
-const auto_gatti = schedule.scheduleJob({ hour: 17, minute: 13, tz: 'Europe/Rome' }, () => {
+const auto_gatti = schedule.scheduleJob({ hour: 8, minute: 0, tz: 'Europe/Rome' }, () => {
     run_auto_gatti(false);
 });
 
