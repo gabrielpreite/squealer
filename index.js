@@ -106,18 +106,17 @@ async function run_daily_meteo(dry){
     try {
         const response = await axios.get("https://api.open-meteo.com/v1/forecast?latitude=44.4938&longitude=11.3387&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=Europe%2FBerlin&forecast_days=1");
 
-        console.log(response)
+        //console.log(response)
         const data = response.data
 
         let data_oggi = timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }).slice(0,5)
         let minima = data.daily.temperature_2m_min[0]
         let massima = data.daily.temperature_2m_max[0]
-        //let probabilita = data.daily.precipitation_probability_max[0]
-        let probabilita = 1
+        let probabilita = data.daily.precipitation_probability_max[0]
         let mm = data.daily.precipitation_sum[0]
         let corpo = `Oggi, ${data_oggi}, a Bologna la temperatura sarà di ${minima}°C minima e ${massima}°C massima, con ${probabilita}% di precipitazioni`+(probabilita !== 0 ? ` (${mm}mm).`: ".")
 
-        console.log(corpo);
+        //console.log(corpo);
 
         body = {
             tipo_destinatari: "canali",
@@ -138,7 +137,7 @@ async function run_daily_meteo(dry){
     }
 }
 
-const daily_meteo = schedule.scheduleJob({ hour: 16, minute: 22, tz: 'Europe/Rome' }, () => {
+const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome' }, () => {
    run_daily_meteo(false)
 });
 
