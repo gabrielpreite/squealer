@@ -112,7 +112,8 @@ async function run_daily_meteo(dry){
         let data_oggi = timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }).slice(0,5)
         let minima = data.daily.temperature_2m_min[0]
         let massima = data.daily.temperature_2m_max[0]
-        let probabilita = data.daily.precipitation_probability_max[0]
+        //let probabilita = data.daily.precipitation_probability_max[0]
+        let probabilita = 1
         let mm = data.daily.precipitation_sum[0]
         let corpo = `Oggi, ${data_oggi}, a Bologna la temperatura sarà di ${minima}°C minima e ${massima}°C massima, con ${probabilita}% di precipitazioni`+(probabilita !== 0 ? ` (${mm}mm).`: ".")
 
@@ -137,7 +138,7 @@ async function run_daily_meteo(dry){
     }
 }
 
-const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome' }, () => {
+const daily_meteo = schedule.scheduleJob({ hour: 16, minute: 14, tz: 'Europe/Rome' }, () => {
    run_daily_meteo(false)
 });
 
