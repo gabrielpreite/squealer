@@ -147,7 +147,7 @@ async function run_auto_gatti() {
 
         console.log('API Response:', response.data);
 
-        url = response.data.url
+        url = response.data[0].url
         console.log(url)
         
     } catch (error) {
@@ -159,7 +159,7 @@ const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome'
    run_daily_meteo(false)
 });
 
-const auto_gatti = schedule.scheduleJob('0 */4 * * *', function () {
+const auto_gatti = schedule.scheduleJob({ hour: 8, minute: 0, tz: 'Europe/Rome' }, () => {
     run_auto_gatti(false);
 });
 
