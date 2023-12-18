@@ -42,7 +42,7 @@ const { escapeExpression } = require('handlebars');
 const upload = require('./multer');
 const { Timestamp } = require('mongodb');
 const schedule = require('node-schedule');
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 /* ========================== */
 /*                            */
