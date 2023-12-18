@@ -21,7 +21,11 @@
 
 
 
-      <i class="material-icons right">menu</i>
+      <ul id="slide-out" class="side-nav">
+        <li><a href="#!">Login</a></li>
+        <li><a href="#!">Registrati</a></li>
+      </ul>
+      <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
@@ -109,23 +113,19 @@
 
   <script>
     // INIT
-    //tabs card squeal
     document.addEventListener('DOMContentLoaded', function() {
+      //tabs card squeal
       var tabs = document.querySelectorAll('.tabs');
       M.Tabs.init(tabs);
+
+      //sideNav
+      var sideNavOptions = { edge: 'right' }; // You can customize options here
+      var sideNav = document.querySelectorAll('.side-nav');
+      M.Sidenav.init(sideNav, sideNavOptions);
     });
 
-    /*
-    document.getElementById("form_ricerca").addEventListener('submit', async event => {
-      event.preventDefault();
-      let result = ricerca_squeal(null);
-      squeals = result.post;
-      var info_ricerca = result.meta;
-    });
-    */
+    //$(".button-collapse").sideNav();
 
-    // INSERIMENTO PROPIC UTENTE
-    //$("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
 
     //RICHIESTA E COSTRUZIONE SQUEAL NO LOG
     var squeals = [];
