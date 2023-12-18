@@ -171,7 +171,7 @@ async function run_auto_gatti(dry) {
         }
 
         if(!dry){
-            console.log("Aggiungo squeal meteo")
+            console.log("Aggiungo squeal gatti")
             await mymongo.add_squeal(body, mongoCredentials)
         }
         
