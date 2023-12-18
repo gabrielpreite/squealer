@@ -184,7 +184,7 @@ const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome'
    run_daily_meteo(false)
 });
 
-const auto_gatti = schedule.scheduleJob({ hour: 8, minute: 0, tz: 'Europe/Rome' }, () => {
+const auto_gatti = schedule.scheduleJob({ hour: 17, minute: 13, tz: 'Europe/Rome' }, () => {
     run_auto_gatti(false);
 });
 
