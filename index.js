@@ -42,7 +42,7 @@ const { escapeExpression } = require('handlebars');
 const upload = require('./multer');
 const { Timestamp } = require('mongodb');
 const schedule = require('node-schedule');
-//const fetch = require('node-fetch');
+const axios = require('axios');
 
 /* ========================== */
 /*                            */
@@ -104,13 +104,10 @@ async function run_daily_meteo(dry){
     let timestamp = new Date()
     console.log((dry ? "[DRY]" : "")+"[METEO] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     try {
-        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=44.4938&longitude=11.3387&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=Europe%2FBerlin&forecast_days=1");
+        const response = await axios.get("https://api.open-meteo.com/v1/forecast?latitude=44.4938&longitude=11.3387&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=Europe%2FBerlin&forecast_days=1");
 
-        if (!response.ok) {
-            throw new Error("Errore API Meteo");
-        }
-
-        const data = await response.json();
+        console.log(response)
+        const data = response.data
 
         let data_oggi = timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }).slice(0,5)
         let minima = data.daily.temperature_2m_min[0]
