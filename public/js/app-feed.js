@@ -8,7 +8,7 @@ function aggiungi_squeal(squeals) {
     let id = "squeals[" + i + "].post_id";
 
     //squeal
-    let htmlCode = '<div class="card" id="' + squeals[i].post_id + '">  <div class="card-content">    <div class="card-info valign-wrapper">      <div class="col s3 center-align">        <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="profile-image circle" id="squeal_img_utente' + i + '">      </div>      <div class="col s9">        <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>        <br>        <a class="text-muted tag-username btn-flat" id="squeal_tag' + i + '" onclick="ricerca_squeal(this)">username</a>        <br>        <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>      </div>    </div>    <p id="squeal_testo' + i + '">Questo è il testo dello squeal</p>  </div>  <div class="card-tabs">    <ul class="tabs tabs-fixed-width">      <li class="tab"><a class="active" href="#reazioni' + i + '">Reazioni</a></li>      <li class="tab"><a href="#commenti' + i + '">Commenti</a></li>      <li class="tab"><a href="#destinatari' + i + '">Destinatari</a></li>    </ul>  </div>  <div class="card-content grey lighten-4">    <div id="reazioni' + i + '">      <div class="reazioni btn-group">        <a class="btn btn-reazioni btn-group' + i + '">          <i class="fab fa-sketch reazioni-icone"></i>          <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '">          <i class="fas fa-heart reazioni-icone"></i>          <span class="n-reazioni" id="squeal_heart' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '">          <i class="fas fa-thumbs-up reazioni-icone"></i>          <span class="n-reazioni" id="squeal_like' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '">          <i class="fas fa-thumbs-down reazioni-icone"></i>          <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '">          <i class="fas fa-heart-crack reazioni-icone"></i>          <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>        </a>          <a class="btn btn-reazioni btn-group' + i + '">          <i class="fas fa-poo reazioni-icone"></i>          <span class="n-reazioni" id="squeal_poo' + i + '">500</span>        </a>      </div>      <div class="info-post" id="squeal_info' + i + '">        <span class="visual" id="squeal_visual' + i + '">          <i class="fa-solid fa-eye icona-visual"></i>          500        </span>      </div>    </div>    <div id="commenti' + i + '"><div id="squeal_comment' + i + '"> </div>          </div>    <div id="destinatari' + i + '">      <div id="squeal_destinatari' + i + '">          </div>    </div>  </div></div>';
+    let htmlCode = '<div class="card" id="' + squeals[i].post_id + '">  <div class="card-content">    <div class="card-info valign-wrapper">      <div class="col s3 center-align">        <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="profile-image circle" id="squeal_img_utente' + i + '">      </div>      <div class="col s9">        <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>        <br>        <a class="text-muted tag-username btn-flat disabled" id="squeal_tag' + i + '">username</a>        <br>        <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>      </div>    </div>    <p id="squeal_testo' + i + '">Questo è il testo dello squeal</p>  </div>  <div class="card-tabs">    <ul class="tabs tabs-fixed-width">      <li class="tab"><a class="active" href="#reazioni' + i + '">Reazioni</a></li>      <li class="tab"><a href="#commenti' + i + '">Commenti</a></li>      <li class="tab"><a href="#destinatari' + i + '">Destinatari</a></li>    </ul>  </div>  <div class="card-content grey lighten-4">    <div id="reazioni' + i + '">      <div class="reazioni btn-group">        <a class="btn btn-reazioni disabled btn-group' + i + '">          <i class="fab fa-sketch reazioni-icone"></i>          <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>        </a>        <a class="btn btn-reazioni disabled btn-group' + i + '">          <i class="fas fa-heart reazioni-icone"></i>          <span class="n-reazioni" id="squeal_heart' + i + '">500</span>        </a>        <a class="btn btn-reazioni disabled btn-group' + i + '">          <i class="fas fa-thumbs-up reazioni-icone"></i>          <span class="n-reazioni" id="squeal_like' + i + '">500</span>        </a>        <a class="btn btn-reazioni disabled btn-group' + i + '">          <i class="fas fa-thumbs-down reazioni-icone"></i>          <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>        </a>        <a class="btn btn-reazioni disabled btn-group' + i + '">          <i class="fas fa-heart-crack reazioni-icone"></i>          <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>        </a>          <a class="btn btn-reazioni disabled btn-group' + i + '">          <i class="fas fa-poo reazioni-icone"></i>          <span class="n-reazioni" id="squeal_poo' + i + '">500</span>        </a>      </div>      <div class="info-post" id="squeal_info' + i + '">        <span class="visual" id="squeal_visual' + i + '">          <i class="fa-solid fa-eye icona-visual"></i>          500        </span>      </div>    </div>    <div id="commenti' + i + '"><div id="squeal_comment' + i + '"> </div>          </div>    <div id="destinatari' + i + '">      <div id="squeal_destinatari' + i + '">          </div>    </div>  </div></div>';
     contenitore.insertAdjacentHTML('beforeend', htmlCode);
 
     //info utente
@@ -190,77 +190,6 @@ function ricarica() {
   location.reload();
 }
 
-//RICERCA SQUEAL...
-function ricerca_squeal(elem) {
-  let query;
-  let tipo;
-  if (elem === null) {
-    query = document.getElementById("query").value;
-    tipo = document.getElementById("tipo").value;
-
-    //check query vuota
-    if (query.length == 0) {
-      alert("Inserisci qualcosa da cercare");
-      return false;
-    }
-    //check varie cose
-    if (tipo == "user") {
-      if (query[0] == "@") {
-        let length = query.length;
-        query = query.slice(1,length);
-      }
-    } else if (tipo == "channel") {
-      if (query[0] != "$") {
-        query = "$" + query;
-      }
-    }
-  } else {
-    query = elem.innerHTML;
-    tipo = query[0];
-
-    if (tipo == " ") {
-      tipo = query[1];
-      query = query.substring(2);
-    }
-    if (tipo == "$") {
-      tipo = "channel";
-    }
-    if (tipo == "#") {
-      tipo = "keyword"
-    }
-    else {
-      if (query[0] == "@") {
-        let length = query.length;
-        query = query.slice(1,length);
-      }
-      tipo = "user";
-    }
-  }
-
-  let all_info;
-  $.ajax({
-    type: 'POST',
-    dataType: "json",
-    async: false,
-    url: `https://site212251.tw.cs.unibo.it/squeal/by_${tipo}`,
-    headers: { },
-    data: { query: query, target: CURRENT_USER },
-    success: function (data, status, xhr) {
-      console.log('data: ', data);
-      all_info = data.data;
-    }
-  });
-  if (all_info.post === undefined) {
-    return console.log("error");
-  }
-
-  rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
-  if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
-
-  squeals = all_info.post;
-  return all_info;
-}
-
 //Svuota il feed e info
 function svuota_pagina() {
   document.getElementById('squeal_contenitore').innerHTML = '';
@@ -339,7 +268,7 @@ function rimpiazza_commenti(id) {
   });
   let n_commenti = lista_commenti.length;
   for (let c = 0; c < n_commenti; c++) {
-    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <button class="comment-username" id="c_username' + c + '" onclick="ricerca_squeal(this)">  </button> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <button class="comment-username" id="c_username' + c + '">  </button> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
     let c_img_utente = 'c_img_utente' + c;
     document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
     let id_tag = 'c_username' + c;
@@ -351,7 +280,7 @@ function rimpiazza_commenti(id) {
       const at_arr = lista_commenti[c].corpo.match(at);
       if (at_arr != null) {
         at_arr.forEach(function(nome) {
-          lista_commenti[c].corpo = lista_commenti[c].corpo.replace(nome,'<button class="btn_nomi" onclick="ricerca_squeal(this)">' + nome + '</button>');
+          lista_commenti[c].corpo = lista_commenti[c].corpo.replace(nome,'<a class="btn_nomi disabled">' + nome + '</a>');
         });
       }
       document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
