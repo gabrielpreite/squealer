@@ -42,6 +42,9 @@ const { escapeExpression } = require('handlebars');
 const upload = require('./multer');
 const { Timestamp } = require('mongodb');
 const schedule = require('node-schedule');
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
 /* ========================== */
 /*                            */
@@ -97,6 +100,92 @@ const monthly = schedule.scheduleJob({ hour: 0, minute: 1, dayOfMonth: 1, tz: 'E
     let timestamp = new Date()
     console.log("[M] Starting monthly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     mymongo.weekly(false, mongoCredentials)
+});
+
+async function run_daily_meteo(dry){
+    let timestamp = new Date()
+    console.log((dry ? "[DRY]" : "")+"[METEO] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    try {
+        const response = await axios.get("https://api.open-meteo.com/v1/forecast?latitude=44.4938&longitude=11.3387&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=Europe%2FBerlin&forecast_days=1");
+
+        //console.log(response)
+        const data = response.data
+
+        let data_oggi = timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }).slice(0,5)
+        let minima = data.daily.temperature_2m_min[0]
+        let massima = data.daily.temperature_2m_max[0]
+        let probabilita = data.daily.precipitation_probability_max[0]
+        let mm = data.daily.precipitation_sum[0]
+        let corpo = `Oggi, ${data_oggi}, a Bologna la temperatura sarà di ${minima}°C minima e ${massima}°C massima, con ${probabilita}% di precipitazioni`+(probabilita !== 0 ? ` (${mm}mm).`: ".")
+
+        //console.log(corpo);
+
+        body = {
+            tipo_destinatari: "canali",
+            destinatari: ["$METEO"],
+            contenuto: "testo",
+            user_id: "robosquealer",
+            textarea: corpo,
+            timestamp: timestamp.getTime()
+        }
+
+        if(!dry){
+            console.log("Aggiungo squeal meteo")
+            await mymongo.add_squeal(body, mongoCredentials)
+        }
+        
+    } catch (error) {
+        console.error("Errore API Meteo: ", error.message);
+    }
+}
+
+async function run_auto_gatti(dry) {
+    let timestamp = new Date()
+    console.log((dry ? "[DRY]" : "")+"[GATTI] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    try {
+        const response = await axios.get("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&order=RANDOM&limit=1", {
+            headers: {
+                'x-api-key': "live_pAp9sRZcJpGjqi2SkplEVgjFfnXDdPQlpBwhW3cB5fTFQcCWgRc57B82onWEehZn",
+            },
+        });
+
+        url = response.data[0].url
+        console.log(url)
+
+        const fileName = url.split("images/")[1]
+        console.log("nome: "+fileName)
+
+        const response_img = await axios.get(url, { responseType: 'arraybuffer' });
+        const directory = path.join(__dirname, '/public/media/uploads');
+        const filePath = path.join(directory, fileName);
+        fs.writeFileSync(filePath, Buffer.from(response_img.data));
+        console.log(`Image saved at: ${filePath}`);
+
+        body = {
+            tipo_destinatari: "canali",
+            destinatari: ["$gatti"],
+            contenuto: "img",
+            user_id: "robosquealer",
+            path: fileName,
+            timestamp: timestamp.getTime()
+        }
+
+        if(!dry){
+            console.log("Aggiungo squeal meteo")
+            await mymongo.add_squeal(body, mongoCredentials)
+        }
+        
+    } catch (error) {
+        console.error('Errore API gatti: ', error.message);
+    }
+}
+
+const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome' }, () => {
+   run_daily_meteo(false)
+});
+
+const auto_gatti = schedule.scheduleJob({ hour: 8, minute: 0, tz: 'Europe/Rome' }, () => {
+    run_auto_gatti(false);
 });
 
 /* ========================== */
@@ -223,6 +312,18 @@ app.get('/db/dry_weekly', async function(req, res) {
 // dry monthly run
 app.get('/db/dry_monthly', async function(req, res) {
 	res.send(await mymongo.monthly(true, mongoCredentials))
+});
+
+// dry meteo run
+app.get('/db/dry_meteo', async function(req, res) {
+	run_daily_meteo(true)
+    res.send("ok")
+});
+
+// dry gatti run
+app.get('/db/dry_gatti', async function(req, res) {
+	run_auto_gatti(true)
+    res.send("ok")
 });
 
 /* ========================== */
