@@ -137,8 +137,29 @@ async function run_daily_meteo(dry){
     }
 }
 
+async function run_auto_gatti() {
+    try {
+        const response = await axios.get("https://api.thecatapi.com/v1/images/search?size=med&order=RANDOM&limit=1", {
+            headers: {
+                'x-api-key': "live_pAp9sRZcJpGjqi2SkplEVgjFfnXDdPQlpBwhW3cB5fTFQcCWgRc57B82onWEehZn",
+            },
+        });
+
+        console.log('API Response:', response.data);
+
+        url = response.data.url
+        
+    } catch (error) {
+        console.error('Errore API gatti: ', error.message);
+    }
+}
+
 const daily_meteo = schedule.scheduleJob({ hour: 9, minute: 0, tz: 'Europe/Rome' }, () => {
    run_daily_meteo(false)
+});
+
+const auto_gatti = schedule.scheduleJob('0 */4 * * *', function () {
+    run_auto_gatti(false);
 });
 
 /* ========================== */
@@ -270,6 +291,12 @@ app.get('/db/dry_monthly', async function(req, res) {
 // dry meteo run
 app.get('/db/dry_meteo', async function(req, res) {
 	run_daily_meteo(true)
+    res.send("ok")
+});
+
+// dry gatti run
+app.get('/db/dry_gatti', async function(req, res) {
+	run_auto_gatti(true)
     res.send("ok")
 });
 
