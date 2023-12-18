@@ -196,6 +196,7 @@ function applica_utenti(){
         data: {set_to: document.getElementById("abilitato_user_switch").checked},
         success: function (data, status, xhr) {
             //console.log("utente (dis)abilitato")
+            cat_utenti()
         }
     });
 }
@@ -469,6 +470,7 @@ function applica_squeal(){
         headers: { },
         data: { reac: JSON.stringify(reac), destinatari: dest},
         success: function (data, status, xhr) {
+            cat_squeal()
         }
     });
 }
@@ -486,7 +488,7 @@ function cat_canali(){
           //console.log(data)
           canali = []
           data.forEach((el) => {
-            if(el.ufficiale === true || el.ufficiale === "true")
+            if(el.ufficiale === true)
                 canali.push(el)
           })
           //console.log(canali)
@@ -565,7 +567,8 @@ function applica_canale(){
         headers: { },
         data: { descrizione: descrizione},
         success: function (data, status, xhr) {
-            console.log("canale aggiornato")
+            //console.log("canale aggiornato")
+            cat_canali()
         },
         error: function (xhr, status, error) {
             if (xhr.status === 404) {
@@ -576,7 +579,8 @@ function applica_canale(){
                     url: "https://site212251.tw.cs.unibo.it/channel",
                     data: { nome: nome, descrizione: descrizione, userid: "redazione", ufficiale: true },
                     success: function (data, status, xhr) {
-                        console.log("creato nuovo canale");
+                        //console.log("creato nuovo canale");
+                        cat_canali()
                     }
                 });
             }
@@ -591,10 +595,9 @@ function cancella_canale(nome){
         async: false,
         url: "https://site212251.tw.cs.unibo.it/channel/"+nome,
         headers: { },
-        data: { descrizione: descrizione},
         success: function (data, status, xhr) {
-            console.log("canale "+nome+" cancellato")
-            //cat_canali()
+            //console.log("canale "+nome+" cancellato")
+            cat_canali()
         }
     });
 }
