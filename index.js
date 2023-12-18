@@ -125,7 +125,7 @@ async function run_daily_meteo(dry){
             contenuto: "testo",
             user_id: "robosquealer",
             textarea: corpo,
-            timestamp: dt.getTime()
+            timestamp: timestamp.getTime()
         }
 
         if(!dry){
@@ -138,7 +138,7 @@ async function run_daily_meteo(dry){
     }
 }
 
-const daily_meteo = schedule.scheduleJob({ hour: 16, minute: 19, tz: 'Europe/Rome' }, () => {
+const daily_meteo = schedule.scheduleJob({ hour: 16, minute: 22, tz: 'Europe/Rome' }, () => {
    run_daily_meteo(false)
 });
 
