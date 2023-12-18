@@ -130,7 +130,7 @@ async function run_daily_meteo(dry){
 
         if(!dry){
             console.log("Aggiungo squeal meteo")
-            mymongo.add_squeal(body, mongoCredentials)
+            await mymongo.add_squeal(body, mongoCredentials)
         }
         
     } catch (error) {
@@ -138,7 +138,7 @@ async function run_daily_meteo(dry){
     }
 }
 
-const daily_meteo = schedule.scheduleJob({ hour: 16, minute: 14, tz: 'Europe/Rome' }, () => {
+const daily_meteo = schedule.scheduleJob({ hour: 16, minute: 19, tz: 'Europe/Rome' }, () => {
    run_daily_meteo(false)
 });
 
