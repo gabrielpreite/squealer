@@ -43,6 +43,8 @@ const upload = require('./multer');
 const { Timestamp } = require('mongodb');
 const schedule = require('node-schedule');
 const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
 /* ========================== */
 /*                            */
@@ -137,18 +139,41 @@ async function run_daily_meteo(dry){
     }
 }
 
-async function run_auto_gatti() {
+async function run_auto_gatti(dry) {
+    let timestamp = new Date()
+    console.log((dry ? "[DRY]" : "")+"[GATTI] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
     try {
-        const response = await axios.get("https://api.thecatapi.com/v1/images/search?size=med&order=RANDOM&limit=1", {
+        const response = await axios.get("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&order=RANDOM&limit=1", {
             headers: {
                 'x-api-key': "live_pAp9sRZcJpGjqi2SkplEVgjFfnXDdPQlpBwhW3cB5fTFQcCWgRc57B82onWEehZn",
             },
         });
 
-        console.log('API Response:', response.data);
-
         url = response.data[0].url
         console.log(url)
+
+        const fileName = url.split("images/")[1]
+        console.log("nome: "+fileName)
+
+        const response_img = await axios.get(url, { responseType: 'arraybuffer' });
+        const directory = path.join(__dirname, '/public/media/uploads');
+        const filePath = path.join(directory, fileName);
+        fs.writeFileSync(filePath, Buffer.from(response_img.data));
+        console.log(`Image saved at: ${filePath}`);
+
+        body = {
+            tipo_destinatari: "canali",
+            destinatari: ["$gatti"],
+            contenuto: "img",
+            user_id: "robosquealer",
+            path: fileName,
+            timestamp: timestamp.getTime()
+        }
+
+        if(!dry){
+            console.log("Aggiungo squeal meteo")
+            await mymongo.add_squeal(body, mongoCredentials)
+        }
         
     } catch (error) {
         console.error('Errore API gatti: ', error.message);
