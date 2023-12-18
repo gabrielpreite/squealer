@@ -42,6 +42,7 @@ const { escapeExpression } = require('handlebars');
 const upload = require('./multer');
 const { Timestamp } = require('mongodb');
 const schedule = require('node-schedule');
+const fetch = require('node-fetch');
 
 /* ========================== */
 /*                            */
@@ -272,6 +273,7 @@ app.get('/db/dry_monthly', async function(req, res) {
 // dry meteo run
 app.get('/db/dry_meteo', async function(req, res) {
 	run_daily_meteo(true)
+    res.send("ok")
 });
 
 /* ========================== */
