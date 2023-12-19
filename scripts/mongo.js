@@ -817,7 +817,7 @@ exports.user_register = async function (q, credentials) {
 		response["risultato"] == "successo"
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
