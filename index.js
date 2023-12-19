@@ -227,6 +227,15 @@ app.get('/register', function (req, res) {
 	} else {res.redirect("/")}
 })
 
+app.get('/app-register', function (req, res) {
+	if(!req.session || !req.session.userid || req.cookies.username == "null") {
+		res.sendFile(global.rootDir+"/public/html/app-register.html")
+	} else if(!req.cookies || !req.cookies.username) {
+		req.session.destroy()
+		res.sendFile(global.rootDir+"/public/html/app-register.html")
+	} else {res.redirect("/public/html/app-feed.html")}
+})
+
 app.get('/login', function (req, res) {
 	if(!req.session || !req.session.userid) {
 		res.sendFile(global.rootDir+"/public/html/login.html")
@@ -234,6 +243,15 @@ app.get('/login', function (req, res) {
 		req.session.destroy()
 		res.sendFile(global.rootDir+"/public/html/login.html")
 	} else {res.redirect("/")}
+})
+
+app.get('/app-login', function (req, res) {
+	if(!req.session || !req.session.userid) {
+		res.sendFile(global.rootDir+"/public/html/app-login.html")
+	} else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
+		req.session.destroy()
+		res.sendFile(global.rootDir+"/public/html/app-login.html")
+	} else {res.redirect("/public/html/app-feed.html")}
 })
 
 app.get('/mod', function (req, res) {
@@ -249,8 +267,9 @@ app.get('/logout', function (req, res) {
 	res.redirect("/login")
 })
 
-app.get('/test', function (req, res) { // DEBUG USE
-	res.sendFile(global.rootDir+"/public/html/test.html")
+app.get('/app-logout', function (req, res) {
+	req.session.destroy()
+	res.redirect("/app")
 })
 
 app.get('/app', function (req, res) {
