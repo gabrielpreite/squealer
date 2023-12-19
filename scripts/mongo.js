@@ -720,6 +720,34 @@ exports.user_info = async function (user_id, credentials) {
 	}
 }
 
+// get followers
+exports.user_get_followers = async function (user_id, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = { "data": null, "risultato": null, "errore": null }
+
+	try {
+		let result = []
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.find({ utenti_seguiti: { $in: [user_id] } })
+			.project({ username: 1, nome: 1, img: 1})
+			.forEach((r) => {
+				result.push(r)
+			});
+
+		await mongo.close();
+
+		response["data"] = result
+		response["risultato"] = "successo"
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
 // registra nuovo utente
 exports.user_register = async function (q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;

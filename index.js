@@ -338,7 +338,7 @@ app.get('/db/dry_gatti', async function(req, res) {
 //body set_to:true|false
 app.post('/user/:user_id/abilitato', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
-    console.log("quota")
+    console.log("abilitato")
     try{
         const user_id = req.params.user_id
         response = await mymongo.user_abilitato(req.body, user_id, mongoCredentials)
@@ -349,6 +349,25 @@ app.post('/user/:user_id/abilitato', async function(req, res) {
         }
     } catch (e){
         //response["errore"] = e.toString()
+        res.status(500)
+        res.send(response)
+    }
+});
+
+// get followers
+app.get('/user/:user_id/followers', async function(req, res) {
+    let response = {"data": null, "risultato": null, "errore": null}
+    console.log("followers")
+    try{
+        const user_id = req.params.user_id
+        response = await mymongo.user_get_followers(user_id, mongoCredentials)
+
+        if(response["risultato"] === "successo"){
+            res.status(200)
+            res.send(response)
+        }
+    } catch (e){
+        console.log(e)
         res.status(500)
         res.send(response)
     }
