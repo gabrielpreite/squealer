@@ -32,10 +32,14 @@ function register(){
             window.location.replace("https://site212251.tw.cs.unibo.it/login");
         },
         error: function (xhr, status, error) {
-            console.log(xhr)
+            let reason = xhr.responseJSON.risultato
+            console.log(reason)
             if (xhr.status === 400) {
                 console.log("registrazione fallita");
-                alert("username/password errati")
+                if(reason === "username esistente")
+                    alert("Lo username scelto non è disponibile")
+                else if(reason === "email esistente")
+                    alert("L'indirizzo email inserito è già in uso")
             }
         }
     });
