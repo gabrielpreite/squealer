@@ -18,3 +18,25 @@ function login(){
         }
     });
 }
+
+function register(){
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: "https://site212251.tw.cs.unibo.it/user",
+        headers: { },
+        data: { username: $("#username").val(), password: $("#password").val(), email: $("#email").val(), nome: $("#nome").val(), cognome: $("#cognome").val()},
+        success: function (data, status, xhr) {
+            console.log("successo registrazione")
+            window.location.replace("https://site212251.tw.cs.unibo.it/login");
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr)
+            if (xhr.status === 400) {
+                console.log("registrazione fallita");
+                alert("username/password errati")
+            }
+        }
+    });
+}
