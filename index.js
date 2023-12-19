@@ -730,7 +730,9 @@ app.post('/user/login', async function(req, res) {
             res.cookie('quota_s', response["data"]["quota"]["s"])
             res.cookie('quota_m', response["data"]["quota"]["m"])
             res.clearCookie('managed')
-            res.redirect("/")
+            //res.redirect("/")
+            res.status(200)
+            res.send(response)
         } else if(response["risultato"] == "username/password errati"){
             response["errore"] = "errore"
             res.status(401)

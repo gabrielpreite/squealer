@@ -10,6 +10,8 @@
             integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+        <!--JavaScript Scripts-->
+        <script type="text/javascript" src="../js/login.js"></script>
 
         <style>
             body {
@@ -79,7 +81,7 @@
                 <h1>Squealer</h1>
             </div>
             <div class="form">
-                <form method="POST" action="/user" onsubmit="return check_form()">
+                <form id="register-form">
                     <div class="row">
                         <div class="col form-group">
                             <label for="nome">Nome</label>
@@ -130,6 +132,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
         <script>
+            document.getElementById("register-form").addEventListener('submit', async event => {
+                event.preventDefault();
+                if(check_form())
+                    register()
+            });
+
             function check_form() {
                 //check nome, cognome e username vuoti
                 if (document.getElementById("nome").value.length == 0) { 
