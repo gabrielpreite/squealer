@@ -12,6 +12,8 @@
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <!--JavaScript Scripts-->
+        <script type="text/javascript" src="../js/login.js"></script>
 
         <style>
             body {
@@ -81,7 +83,7 @@
                 <h1>Squealer</h1>
             </div>
             <div class="form">
-                <form method="POST" action="/user" onsubmit="return check_form()">
+                <form id="register-form">
                     <div class="row">
                         <div class="col form-group">
                             <label for="nome">Nome</label>
@@ -135,6 +137,12 @@
         <script type="text/javascript" src="../js/global.js"></script>
 
         <script>
+            document.getElementById("register-form").addEventListener('submit', async event => {
+                event.preventDefault();
+                if(check_form())
+                    register_app()
+            });
+
             function check_form() {
                 //check nome, cognome e username vuoti
                 if (document.getElementById("nome").value.length == 0) { 

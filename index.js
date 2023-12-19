@@ -202,6 +202,14 @@ app.get('/', function (req, res) {
 	} else {res.sendFile(global.rootDir+"/public/html/feed.html")}
 })
 
+app.get('/app', function (req, res) {
+	if(!req.session || !req.session.userid) {res.sendFile(global.rootDir+"/public/html/app-feed.html")}
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
+		req.session.destroy()
+		res.sendFile(global.rootDir+"/public/html/app-feed.html")
+	} else {res.sendFile(global.rootDir+"/public/html/app-feed-log.html")}
+})
+
 app.get('/editor', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
@@ -233,7 +241,7 @@ app.get('/app-register', function (req, res) {
 	} else if(!req.cookies || !req.cookies.username) {
 		req.session.destroy()
 		res.sendFile(global.rootDir+"/public/html/app-register.html")
-	} else {res.redirect("/public/html/app-feed.html")}
+	} else {res.redirect("/app")}
 })
 
 app.get('/login', function (req, res) {
@@ -251,7 +259,7 @@ app.get('/app-login', function (req, res) {
 	} else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
 		res.sendFile(global.rootDir+"/public/html/app-login.html")
-	} else {res.redirect("/public/html/app-feed.html")}
+	} else {res.redirect("/app")}
 })
 
 app.get('/mod', function (req, res) {
