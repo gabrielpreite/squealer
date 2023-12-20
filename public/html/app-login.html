@@ -12,6 +12,8 @@
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--JavaScript Scripts-->
+    <script type="text/javascript" src="../js/login.js"></script>
 
     <style>
         body {
@@ -76,7 +78,7 @@
 <body>
     <div class="login-container" role="main">
         <h1>Squealer</h1>
-        <form method="POST" action="/user/login">
+        <form id="login-form">
             <div class="input-field col s12">
                 <input id="username" type="text" name="username" class="validate" required>
                 <label for="username">Username</label>
@@ -102,7 +104,12 @@
     <script src="../js/materialize.js"></script>
     <script src="../js/app-feed.js"></script>
     <script type="text/javascript" src="../js/global.js"></script>
-
+    <script>
+        document.getElementById("login-form").addEventListener('submit', async event => {
+            event.preventDefault();
+            login_app();
+        });
+    </script>
 </body>
 
 </html>

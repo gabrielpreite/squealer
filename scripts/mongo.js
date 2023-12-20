@@ -814,10 +814,10 @@ exports.user_register = async function (q, credentials) {
 
 		await mongo.close();
 
-		response["risultato"] == "successo"
+		response["risultato"] = "successo"
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
