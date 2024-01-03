@@ -341,6 +341,15 @@ margin-bottom: 20px;
   text-transform: uppercase;
 }
 
+.utenti, .canali {
+  display: flex;
+  flex-direction: column;
+}
+
+.follower-list-utenti li {
+    margin-top: 25px;
+}
+
 #popolarita h3 span {
   text-transform: lowercase;
 }
@@ -356,7 +365,7 @@ margin-bottom: 20px;
   list-style: none;
 }
 
-.follower-list-utenti, .follow-list-utenti {
+.follow-list-utenti {
   margin-right: 15px;
 }
 
