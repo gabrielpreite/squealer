@@ -75,50 +75,47 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="register-container">
-        <div class="title">
-            <h1>Squealer</h1>
-        </div>
-        <div class="form">
-            <form id="register-form">
-                <div class="input-field col s12">
-                    <input type="text" id="nome" name="nome" required>
-                    <label for="nome">Nome</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="text" id="cognome" name="cognome" required>
-                    <label for="cognome">Cognome</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="username" type="text" name="username" required>
-                    <label for="username">Username</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="email" id="email" name="email" class="validate" required>
-                    <label for="email" data-error="email non valida" data-success="email corretta">Email</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="password" id="password" name="password" required>
-                    <label for="password">Password</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="password" id="cpassword" name="cpassword" class="validate" required>
-                    <label for="cpassword">Conferma password</label>
-                </div>
+    <div class="register-container" role="main">
+        <h1>Squealer</h1>
+        <form id="register-form">
+            <div class="input-field col s12">
+                <input type="text" id="nome" name="nome" required>
+                <label for="nome">Nome</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" id="cognome" name="cognome" required>
+                <label for="cognome">Cognome</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="username" type="text" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="email" id="email" name="email" class="validate" required>
+                <label for="email" data-error="email non valida" data-success="email corretta">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="password" id="cpassword" name="cpassword" class="validate" required>
+                <label for="cpassword">Conferma password</label>
+            </div>
 
-                <div>
-                    <input type="submit" class="register-button mx-auto" value="Registrati">
-                </div>
+            <div>
+                <input type="submit" class="register-button mx-auto" value="Registrati">
+            </div>
 
-                <p class="text-center" style="font-size: 14px; color: #888;">
-                    Hai un account?
-                    <a href="/app-login" style="text-decoration: none; color: #1da1f2; font-weight: bold;">
-                        Accedi
-                    </a>
-                </p>
-            </form>
-        </div>
+            <p class="text-center" style="font-size: 14px; color: #888;">
+                Hai un account?
+                <a href="/app-login" style="text-decoration: none; color: #1da1f2; font-weight: bold;">
+                    Accedi
+                </a>
+            </p>
+        </form>
     </div>
     
     <!-- Scripts -->
