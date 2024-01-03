@@ -96,10 +96,10 @@ const weekly = schedule.scheduleJob({ hour: 0, minute: 3, dayOfWeek: 1, tz: 'Eur
     mymongo.weekly(false, mongoCredentials)
 });
 
-const monthly = schedule.scheduleJob({ hour: 0, minute: 1, dayOfMonth: 1, tz: 'Europe/Rome' }, () => {
+const monthly = schedule.scheduleJob({ hour: 0, minute: 1, date: 1, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
     console.log("[M] Starting monthly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
-    mymongo.weekly(false, mongoCredentials)
+    mymongo.monthly(false, mongoCredentials)
 });
 
 async function run_daily_meteo(dry){
