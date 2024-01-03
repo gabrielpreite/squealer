@@ -31,7 +31,7 @@ let fn_chat = "/public/data/chat.json"
 let fn_defaults = "/public/data/defaults.json"
 let dbname = "db"
 
-const { MongoClient, MongoCredentials } = require("mongodb");
+const { MongoClient, MongoCredentials, MongoDBNamespace } = require("mongodb");
 const fs = require('fs').promises;
 const template = require(global.rootDir + '/scripts/tpl.js');
 
@@ -637,7 +637,7 @@ exports.search_canale = async function (q, credentials) {
 		debug.push("Managed to close connection to MongoDB.")
 
 		data.debug = debug
-		return data
+		return result
 	} catch (e) {
 		data.debug = debug
 		data.error = e
@@ -720,6 +720,34 @@ exports.user_info = async function (user_id, credentials) {
 	}
 }
 
+// get followers
+exports.user_get_followers = async function (user_id, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
+	let response = { "data": null, "risultato": null, "errore": null }
+
+	try {
+		let result = []
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		await mongo.db(dbname)
+			.collection("utente")
+			.find({ utenti_seguiti: { $in: [user_id] } })
+			.project({ username: 1, nome: 1, img: 1})
+			.forEach((r) => {
+				result.push(r)
+			});
+
+		await mongo.close();
+
+		response["data"] = result
+		response["risultato"] = "successo"
+		return response
+	} catch (e) {
+		//response["errore"] = e.toString()
+	}
+}
+
 // registra nuovo utente
 exports.user_register = async function (q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
@@ -786,10 +814,10 @@ exports.user_register = async function (q, credentials) {
 
 		await mongo.close();
 
-		response["risultato"] == "successo"
+		response["risultato"] = "successo"
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
@@ -2795,7 +2823,7 @@ exports.channel_create = async function (q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		//controllo l'esistenza della mail
+		//controllo l'esistenza del nome
 		await mongo.db(dbname)
 			.collection("canale")
 			.find({ nome: q.nome })
@@ -2814,8 +2842,8 @@ exports.channel_create = async function (q, credentials) {
 				{
 					img: "default_channelpic.png",
 					nome: q.nome,
-					descrizione: "",
-					ufficiale: false,
+					descrizione: q.descrizione,
+					ufficiale: q.ufficiale === "true" ? true : false,
 					proprieta: q.userid,
 					mod: [],
 					lettura: ["*"],
@@ -2844,12 +2872,18 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		//todo
+		result = await mongo.db(dbname)
+			.collection("canale")
+			.updateOne(
+				{ nome: channel_id },
+				{ $set: {
+					descrizione: q.descrizione
+				}}
+			)
 
 		await mongo.close();
 
-		if (result.length == 1) {
-			response["data"] = result[0]
+		if (result.matchedCount == 1) {
 			response["risultato"] = "successo"
 		} else {
 			response["risultato"] = "canale non trovato"
@@ -2857,7 +2891,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 

@@ -70,6 +70,11 @@
             </div>
           </div>
           <div id="mid_canali" hidden> <!-- parte canali -->
+            <div id="canali_table_container">
+              <table id="canali_table">
+              </table>
+            </div>
+            <button onclick="seleziona_canale('new')">Aggiungi nuovo canale</button>
           </div>
         </div>
       </div>
@@ -136,7 +141,12 @@
             </form>
           </div>
           <div id="right_canali" hidden> <!-- parte canali -->
-            
+            <form id="modifica_canale">
+              Nome:<input type="text" id="selected_canale_nome">
+              Descrizione:<input type="text" id="canale_descrizione">
+              <input type="submit" value="Applica modifiche">
+            </form>
+            <button id="elimina_canale">Elimina Canale</button>
           </div>
         </div>
       </div>
@@ -159,6 +169,10 @@
       document.getElementById("modifica_squeal").addEventListener('submit', async event => {
         event.preventDefault();
         applica_squeal();
+      });
+      document.getElementById("modifica_canale").addEventListener('submit', async event => {
+        event.preventDefault();
+        applica_canale();
       });
     </script>
     <script>

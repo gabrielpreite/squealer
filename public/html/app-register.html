@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>Registrazione</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--JavaScript Scripts-->
+    <script type="text/javascript" src="../js/login.js"></script>
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/img/background.png');
+            background-size: 10%;
+            background-position: center center;
+        }
+
+        .register-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 30px 50px;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .register-container h1 {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            color: #1da1f2;
+            text-transform: uppercase;
+        }
+
+        .input-field.col label {
+            left: 0rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .register-button {
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 90%;
+            font-weight: bold;
+        }
+
+        .register-button:hover {
+            background-color: #0c87c1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container" role="main">
+        <h1>Squealer</h1>
+        <form id="register-form">
+            <div class="input-field col s12">
+                <input type="text" id="nome" name="nome" required>
+                <label for="nome">Nome</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" id="cognome" name="cognome" required>
+                <label for="cognome">Cognome</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="username" type="text" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="email" id="email" name="email" class="validate" required>
+                <label for="email" data-error="email non valida" data-success="email corretta">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="password" id="cpassword" name="cpassword" class="validate" required>
+                <label for="cpassword">Conferma password</label>
+            </div>
+
+            <div>
+                <input type="submit" class="register-button mx-auto" value="Registrati">
+            </div>
+
+            <p class="text-center" style="font-size: 14px; color: #888;">
+                Hai un account?
+                <a href="/app-login" style="text-decoration: none; color: #1da1f2; font-weight: bold;">
+                    Accedi
+                </a>
+            </p>
+        </form>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../js/materialize.js"></script>
+    <script src="../js/app-feed.js"></script>
+    <script type="text/javascript" src="../js/global.js"></script>
+
+    <script>
+        document.getElementById("register-form").addEventListener('submit', async event => {
+            event.preventDefault();
+            if(check_form())
+                register_app()
+        });
+
+        function check_form() {
+            //check nome, cognome e username vuoti
+            if (document.getElementById("nome").value.length == 0) { 
+                alert("Inserisci un nome");  	
+                return false; 
+            }
+            if (document.getElementById("cognome").value.length == 0) { 
+                alert("Inserisci un cognome");  	
+                return false; 
+            }
+            if (document.getElementById("username").value.length == 0) { 
+                alert("Inserisci un username");  	
+                return false; 
+            }
+
+            //check formato mail corretto (RFC 2822 standard email validation)
+            var mailformat = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+            if (!document.getElementById("email").value.match(mailformat)) {
+                alert("Inserisci una mail valida");
+                return false;
+            }
+
+            //check password uguali
+            if (document.getElementById("password").value != document.getElementById("cpassword").value) {
+                alert("Inserisci due password uguali");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

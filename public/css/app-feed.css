@@ -11,3 +11,43 @@
   font-size: 17px;
   margin-bottom: 8px;
 }
+
+.btn-reazioni {
+  font-size: 17px;
+  padding: 0.5em 2em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  background: dodgerblue;
+  color: white;
+  border-radius: 4px;
+  transition: none;
+}
+ 
+.btn-reazioni:hover {
+  background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+}
+ 
+.btn-reazioni:active {
+  transform: translate(0em, 0.2em);
+}
+
+.side-nav {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: #fff;
+  z-index: 999;
+  transform: translateX(105%);
+}
+
+.side-nav li>a {
+  color: rgba(0,0,0,0.87);
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  width: 130px;
+  line-height: 48px;
+  padding: 0 32px;
+}
