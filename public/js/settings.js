@@ -100,3 +100,25 @@ function form_psw() {
         }
     });
 }
+
+function seleziona_canale(nome){
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+        headers: { },
+        success: function (data, status, xhr) {
+            console.log('data: ', data);
+            $("#canale_selezionato").removeAttr("hidden")
+
+            $("#canale_selezionato_nome").innerHTML = nome
+            $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
+            $("#new_descrizione").value = data.data.descrizione
+        }
+    });
+}
+
+function update_channel(){
+
+}
