@@ -118,5 +118,19 @@
                 "user": "NomeBuffo2"
             }
         ]
+    },
+    {
+        "chat_id": "NomeBuffo1_ile_la_mora",
+        "users": [
+            "ile_la_mora",
+            "NomeBuffo1"
+        ],
+        "messaggi": [
+            {
+                "text": "ciao, trovo i tuoi commenti molto interessanti, di un certo spessore culturale. Ape al caffè dei musici?",
+                "user": "ile_la_mora",
+                "timestamp": 1703093054887
+            }
+        ]
     }
 ]
