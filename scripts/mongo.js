@@ -2775,7 +2775,7 @@ exports.search_by_keyword = async function (q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
