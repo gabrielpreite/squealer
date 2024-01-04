@@ -1445,7 +1445,7 @@ exports.user_feed = async function (user_id, credentials) {
 						],
 						$or: [
 							{tipo_destinatari: null},
-							{tipo_destinatari: "utente"}
+							{tipo_destinatari: "utenti"}
 						],
 						risponde_a: null
 					}
