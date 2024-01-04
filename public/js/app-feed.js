@@ -190,10 +190,9 @@ function ricarica() {
   location.reload();
 }
 
-//Svuota il feed e info
+//Svuota il feed
 function svuota_pagina() {
   document.getElementById('squeal_contenitore').innerHTML = '';
-  aggiungicommento('', 'chiudi');
 }
 
 //Ordina Squeal
@@ -214,80 +213,61 @@ function ordina_squeals(posts, filtro) {
 
 function rimpiazza_squeals(posts, filtro) {
   svuota_pagina();
-  rimuovi_info();
+  //rimuovi_info();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
 
   aggiungi_squeal(posts_ordinati);
 }
 
-function aggiungicommento(icon, azione, id) {
-  let id_commento = document.querySelector('.aggiungi-commento');
-  if (azione == "apri") {
-      aggiungicommento('', 'chiudi');
-      id_commento.id = id;
-      // Cambia il colore dell'icona del commento a nero
-      icon.style.color = 'black';
-      // Nascondi il div "barra destra"
-      document.getElementById("barra-destra").hidden = true;
-      document.getElementById("chat").hidden = true;
-      // Mostra il div "mostra-squeal"
-      document.getElementById("mostra-commenti").hidden = false;
-      //rimpiazza commenti
-      rimpiazza_commenti(id);
-  } else if (azione == "chiudi") {
-    const c_Group = document.getElementsByClassName("c");
-    const c_Array = Array.from(c_Group);
-    id_commento.id = "";
-    c_Array.forEach((c_btn) => {
-      c_btn.style.color = '#777';
-    });
-    document.getElementById("barra-destra").hidden = false;
-    document.getElementById("mostra-commenti").hidden = true;
+
+//bottoni
+function premibottone(button, reac, id) {
+  if (button.checked) {
+    button.style.color= "#FFFFFF";
+    button.checked = false;
+    var Nreaz = button.querySelector(".n-reazioni");
+    Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
   } else {
-    window.location.replace(`https://site212251.tw.cs.unibo.it/editor?post_id=` + id);
+    const buttonGroup = document.getElementsByClassName(button.className);
+    const buttonArray = Array.from(buttonGroup);
+    buttonArray.forEach((btnradio) => {
+      if (button==btnradio){
+        if (reac == "adoro"){
+          button.style.color= "#00AFFF";
+        } else if (reac == "mi_disgusta") {
+          button.style.color= "#8B4513";
+        } else if (reac == "mi_piace") {
+          button.style.color= "#FF0000";
+        } else if (reac == "odio") {
+          button.style.color= "#FF0000";
+        } else if (reac == "concordo") {
+          button.style.color= "#007FFF";
+        } else if (reac == "sono_contrario") {
+          button.style.color= "#007FFF";
+        }
+        button.checked = true;
+        let Nreaz = btnradio.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) + 1;
+      } else if (btnradio.checked) {
+        btnradio.style.color= "#FFFFFF";
+        btnradio.checked = false;
+        let Nreaz = btnradio.querySelector(".n-reazioni");
+        Nreaz.innerHTML = parseInt(Nreaz.innerHTML) - 1;
+      }
+    });
   }
-}
 
-function rimpiazza_commenti(id) {
-  //elimina tutto il contenuto del cont_commenti
-  document.getElementById("contenitore-commenti").innerHTML = '';
-
-  //aggiungi nuovi commenti
-  let contenitore_commenti = document.getElementById("contenitore-commenti");
-  let lista_commenti;
+  //chiamata update db
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     dataType: "json",
     async: false,
-    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
+    url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reaction`,
+    data: {reac: reac, userid: CURRENT_USER},
     headers: { },
     success: function (data, status, xhr) {
-      lista_commenti = data.data;
+      console.log('data: ', data);
     }
   });
-  let n_commenti = lista_commenti.length;
-  for (let c = 0; c < n_commenti; c++) {
-    contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <button class="comment-username" id="c_username' + c + '">  </button> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
-    let c_img_utente = 'c_img_utente' + c;
-    document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
-    let id_tag = 'c_username' + c;
-    document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
-    let id_testo = 'c_text' + c;
-    if (lista_commenti[c].contenuto == "testo") {
-      //parole con @ all'inizio
-      const at = /(?:^|\s)@(\w+)/g;
-      const at_arr = lista_commenti[c].corpo.match(at);
-      if (at_arr != null) {
-        at_arr.forEach(function(nome) {
-          lista_commenti[c].corpo = lista_commenti[c].corpo.replace(nome,'<a class="btn_nomi disabled">' + nome + '</a>');
-        });
-      }
-      document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
-    } else if(lista_commenti[c].contenuto == "img"){
-      document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine del commento">`
-    } else if(lista_commenti[c].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa del commento">`;
-    }
-  }
 }
