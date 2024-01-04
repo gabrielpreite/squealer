@@ -1352,7 +1352,6 @@ exports.user_feed = async function (user_id, credentials) {
 		canali_seguiti = canali_seguiti[0] //da fixare
 		utenti_seguiti = utenti_seguiti[0]
 
-
 		/*console.log("ottenuti canali seguiti da "+user_id)
 		canali_seguiti.forEach((element) => console.log(element))
 		console.log("ottenuti utenti seguiti da "+user_id)
@@ -1442,8 +1441,12 @@ exports.user_feed = async function (user_id, credentials) {
 					$match: {
 						$or: [
 							{ utente: { $in: utenti_seguiti } },
+							{ destinatari: {$in : [user_id]}}
 						],
-						tipo_destinatari: null,
+						$or: [
+							{tipo_destinatari: null},
+							{tipo_destinatari: "utente"}
+						],
 						risponde_a: null
 					}
 				},
