@@ -34,8 +34,12 @@ function aggiungi_squeal(squeals) {
     //destinatari
     let lista_destinatari = document.getElementById('squeal_destinatari' + i);
     let n_destinatari = squeals[i].destinatari.length;
-    for (let j = 0; j < n_destinatari; j++) {
-      lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + squeals[i].destinatari[j] + '</div>');
+    if (squeals[i].tipo_destinatari != "utenti" ) {
+      for (let j = 0; j < n_destinatari; j++) {
+        lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + squeals[i].destinatari[j] + '</div>');
+      }
+    } else {
+      lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + CURRENT_USER + '</div>');
     }
 
     //reazioni
@@ -86,16 +90,11 @@ function aggiungi_squeal(squeals) {
     }
 
 
-    //commenti
-    //let id_comment = 'squeal_comment' + i;
-    //document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
-
     //aggiungi commenti
     let id_post = squeals[i].post_id;
     let id_comment = 'squeal_comment' + i;
     let contenitore_commenti = document.getElementById(id_comment);
     if (squeals[i].numRisposte > 0) {
-      //let contenitore_commenti = document.getElementById("contenitore-commenti");
       $.ajax({
         type: 'GET',
         dataType: "json",
