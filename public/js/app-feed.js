@@ -74,7 +74,7 @@ function aggiungi_squeal(squeals) {
       });
       let n_commenti = lista_commenti[i].length;
       for (let c = 0; c < n_commenti; c++) {
-        let id_c = i + c;
+        let id_c = String(i) + String(c);
         contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div>');
         let c_img_utente = 'c_img_utente' + id_c;
         document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].img}`
