@@ -1,5 +1,5 @@
 function switch_settings(param){
-    let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita"]
+    let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita", "canali"]
 
     settings.forEach((el) =>{ //nascondo tutte le sezioni
         $("#"+el).attr("hidden", "true")

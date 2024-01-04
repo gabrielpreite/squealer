@@ -1755,7 +1755,7 @@ exports.user_my_channels = async function (user_id, credentials) {
 			.collection("canale")
 			.find({ proprieta: user_id })
 			.forEach((r) => {
-				result.push({ "canale": r.nome, "ruolo": "proprietario" })
+				result.push({ "canale": r.nome, "ruolo": "proprietario", "img": r.img, "descrizione": r.descrizione })
 			});
 
 		await mongo.db(dbname)
@@ -1764,7 +1764,7 @@ exports.user_my_channels = async function (user_id, credentials) {
 				{ mod: { $elemMatch: { $eq: user_id } } }
 			)
 			.forEach((r) => {
-				result.push({ "canale": r.nome, "ruolo": "mod" })
+				result.push({ "canale": r.nome, "ruolo": "mod", "img": r.img, "descrizione": r.descrizione })
 			});
 
 		await mongo.close();
