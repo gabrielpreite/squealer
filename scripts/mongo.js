@@ -1440,12 +1440,14 @@ exports.user_feed = async function (user_id, credentials) {
 				{
 					$match: {
 						$or: [
-							{ utente: { $in: utenti_seguiti } },
-							{ destinatari: {$in : [user_id]}}
-						],
-						$or: [
-							{tipo_destinatari: null},
-							{tipo_destinatari: "utente"}
+							{ 
+								utente: { $in: utenti_seguiti },
+								tipo_destinatari: null
+							},
+							{
+								destinatari: {$in : [user_id]},
+								tipo_destinatari: "utenti"
+							}
 						],
 						risponde_a: null
 					}
