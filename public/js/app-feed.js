@@ -41,7 +41,7 @@ function aggiungi_squeal(squeals) {
     } else if (squeals[i].tipo_destinatari == "canali" ) {
       lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + CURRENT_USER + '</div>');
     } else {
-      let tab = document.getElementById('tab' + i);
+      document.getElementById('tab' + i).remove();
     }
 
     //reazioni
