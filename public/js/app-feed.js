@@ -59,36 +59,38 @@ function aggiungi_squeal(squeals) {
     document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
 
     //aggiungo le reaction gia' inserite
-    if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
-      let nreazioni0 = document.getElementById(id_sketch);
-      let premuto0 = nreazioni0.parentNode;
-      premuto0.style.color= "#00AFFF";
-      premuto0.checked = true;
-    } else if (squeals[i].reazioni.negative.mi_disgusta.includes(CURRENT_USER)) {
-      let nreazioni1 = document.getElementById(id_poo);
-      let premuto1 = nreazioni1.parentNode;
-      premuto1.style.color= "#8B4513";
-      premuto1.checked = true;
-    } else if (squeals[i].reazioni.positive.mi_piace.includes(CURRENT_USER)) {
-      let nreazioni2 = document.getElementById(id_heart);
-      let premuto2 = nreazioni2.parentNode;
-      premuto2.style.color= "#FF0000";
-      premuto2.checked = true;
-    } else if (squeals[i].reazioni.negative.odio.includes(CURRENT_USER)) {
-      let nreazioni3 = document.getElementById(id_disheart);
-      let premuto3 = nreazioni3.parentNode;
-      premuto3.style.color= "#FF0000";
-      premuto3.checked = true;
-    } else if (squeals[i].reazioni.positive.concordo.includes(CURRENT_USER)) {
-      let nreazioni4 = document.getElementById(id_like);
-      let premuto4 = nreazioni4.parentNode;
-      premuto4.style.color= "#007FFF";
-      premuto4.checked = true;
-    } else if (squeals[i].reazioni.negative.sono_contrario.includes(CURRENT_USER)) {
-      let nreazioni5 = document.getElementById(id_dislike);
-      let premuto5 = nreazioni5.parentNode;
-      premuto5.style.color= "#007FFF";
-      premuto5.checked = true;
+    if (CURRENT_USER != undefined) {
+      if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
+        let nreazioni0 = document.getElementById(id_sketch);
+        let premuto0 = nreazioni0.parentNode;
+        premuto0.style.color= "#00AFFF";
+        premuto0.checked = true;
+      } else if (squeals[i].reazioni.negative.mi_disgusta.includes(CURRENT_USER)) {
+        let nreazioni1 = document.getElementById(id_poo);
+        let premuto1 = nreazioni1.parentNode;
+        premuto1.style.color= "#8B4513";
+        premuto1.checked = true;
+      } else if (squeals[i].reazioni.positive.mi_piace.includes(CURRENT_USER)) {
+        let nreazioni2 = document.getElementById(id_heart);
+        let premuto2 = nreazioni2.parentNode;
+        premuto2.style.color= "#FF0000";
+        premuto2.checked = true;
+      } else if (squeals[i].reazioni.negative.odio.includes(CURRENT_USER)) {
+        let nreazioni3 = document.getElementById(id_disheart);
+        let premuto3 = nreazioni3.parentNode;
+        premuto3.style.color= "#FF0000";
+        premuto3.checked = true;
+      } else if (squeals[i].reazioni.positive.concordo.includes(CURRENT_USER)) {
+        let nreazioni4 = document.getElementById(id_like);
+        let premuto4 = nreazioni4.parentNode;
+        premuto4.style.color= "#007FFF";
+        premuto4.checked = true;
+      } else if (squeals[i].reazioni.negative.sono_contrario.includes(CURRENT_USER)) {
+        let nreazioni5 = document.getElementById(id_dislike);
+        let premuto5 = nreazioni5.parentNode;
+        premuto5.style.color= "#007FFF";
+        premuto5.checked = true;
+      }
     }
 
 
