@@ -846,9 +846,9 @@
   });
   canali.forEach((el) => {
     if(el.ruolo === "proprietario"){
-      $("#canali_acquistati").append(`<div class="squeal"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><p>${el.canale}</p><p>Ruolo: ${el.ruolo}</p><button onclick="seleziona_canale('${el.canale}')">Modifica</button></div>`)
+      $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><p>${el.canale}</p><div class="ruolo-canale"><p>${el.ruolo}</p></div><button onclick="seleziona_canale('${el.canale}')">Modifica</button></div></div>`)
     } else if(el.ruolo === "mod"){
-      $("#canali_gestiti").append(`<div class="squeal"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><p>${el.canale}</p><p>Ruolo: ${el.ruolo}</p></div>`)
+      $("#canali_gestiti").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><p>${el.canale}</p><div class="ruolo-canale"><p>${el.ruolo}</p></div></div></div>`)
     }
   })
 

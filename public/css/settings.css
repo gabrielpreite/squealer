@@ -530,3 +530,23 @@ ul {
 #canale_selezionato form {
   flex-direction: column;
 }
+
+.card-canale {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-canale {
+  display: flex;;
+  flex-direction: column;
+}
+
+.ruolo-canale {
+  text-transform: uppercase;
+  font-weight: bold;
+}
