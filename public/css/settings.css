@@ -558,7 +558,7 @@ ul {
   font-size: 12px;
 }
 
-.nome-canale, .ruolo-canale {
+.nome-canale p, .ruolo-canale p {
   margin-bottom: 10px;
   margin-top: 0px;
 }
