@@ -134,7 +134,7 @@ function update_channel(){
         type: 'POST',
         dataType: "json",
         async: false,
-        url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+        url: `https://site212251.tw.cs.unibo.it/channel/${$("canale_selezionato_nome").text}`,
         headers: { },
         data: formData,
         processData: false,
