@@ -368,7 +368,7 @@ ul {
   flex-direction: column;
 }
 
-.follower-list-utenti li {
+.follower-list-utenti ul {
   margin-top: 25px;
 }
 
