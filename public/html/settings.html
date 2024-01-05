@@ -238,14 +238,6 @@
               <div class="followers">
                 <ul class="follower-list-utenti barra-scorrimento">
                   <!-- Lista dei follower -->
-                  <li>
-                    <div>
-                      <i class="fas fa-user"></i>
-                      <span>Nome Follower 2</span>
-                    </div>
-                    <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
-                  </li>
-                  <!-- Aggiungi altri elementi se necessario -->
                 </ul>
 
               </div>
@@ -258,30 +250,12 @@
                   <h4>Utenti</h4>
                   <ul class="follow-list-utenti barra-scorrimento">
                     <!-- Lista dei follower -->
-                    <li>
-                      <div>
-                        <i class="fas fa-user"></i>
-                        <span>Nome Follower 2</span>
-                      </div>
-                      <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
-                    </li>
-
-                    <!-- Aggiungi altri elementi se necessario -->
                   </ul>
                 </div>
                 <div class="canali">
                   <h4>Canali</h4>
                   <ul class="follow-list-canali barra-scorrimento">
                     <!-- Lista dei follower -->
-                    <li>
-                      <div>
-                        <i class="fas fa-user"></i>
-                        <span>Nome Follower 2</span>
-                      </div>
-                      <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
-                    </li>
-
-                    <!-- Aggiungi altri elementi se necessario -->
                   </ul>
                 </div>
               </div>
@@ -690,14 +664,8 @@
                   headers: { },
                   data: { target: target, tipo: tipo },
                   success: function (data, status, xhr) {
-                    console.log(data.risultato)
-                    // Rimuovi l'elemento dalla lista se la richiesta ha avuto successo
-                   if (data.risultato === 'successo') {
-                     // Identificatore unico dell'elemento da rimuovere (es. user_id)
-                     var elementoDaRimuovere = target;
-
-                     // Cerca e rimuovi l'elemento dalla lista
-                     var elemento = $(`.follower-list li[data-id="'${elementoDaRimuovere}'"]`);
+                     // Cerco e rimuovo l'elemento dalla lista
+                     var elemento = $(`.follower-list li[data-id="'${target}'"]`);
                      elemento.remove();
                    }
                   }
