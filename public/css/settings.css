@@ -555,6 +555,12 @@ ul {
 .ruolo-canale {
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 12px;
+}
+
+.nome-canale p, .ruolo-canale p {
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .ordine-canali {
