@@ -666,6 +666,7 @@
                   success: function (data, status, xhr) {
                      // Cerco e rimuovo l'elemento dalla lista
                      var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+                     elemento.detach();
                      elemento.remove();
                    }
                   
