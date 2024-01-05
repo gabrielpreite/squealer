@@ -689,14 +689,8 @@
                   headers: { },
                   data: { target: target, tipo: tipo },
                   success: function (data, status, xhr) {
-                    console.log(data.risultato)
-                    // Rimuovi l'elemento dalla lista se la richiesta ha avuto successo
-                   if (data.risultato === 'successo') {
-                     // Identificatore unico dell'elemento da rimuovere (es. user_id)
-                     var elementoDaRimuovere = target;
-
-                     // Cerca e rimuovi l'elemento dalla lista
-                     var elemento = $(`.follower-list li[data-id="'${elementoDaRimuovere}'"]`);
+                     // Cerco e rimuovo l'elemento dalla lista
+                     var elemento = $(`.follower-list li[data-id="'${target}'"]`);
                      elemento.remove();
                    }
                   }
