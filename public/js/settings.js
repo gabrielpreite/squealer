@@ -129,7 +129,7 @@ function update_channel(){
     const formData = new FormData(document.getElementById("form_modifica_canale"))
 
     let modlist = formData.get("modlist").split(", ")
-    formData.append("modlist", modlist)
+    formData.set("modlist", modlist)
 
     let nome = $("#canale_selezionato_nome").text()
     $.ajax({
