@@ -2877,26 +2877,28 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		console.log("typeof modlist: "+typeof q.modlist)
-		console.log(q.modlist)
+		//console.log("typeof modlist: "+typeof q.modlist)
+		//console.log(q.modlist)
 		let mods = q.modlist.split(", ")
-		console.log(mods)
+		if(mods[0] === "")
+			mods = []
+		//console.log(mods)
 
-		/*if (q.path) { //aggiorno anche immagine profilo
+		if (q.path) { //aggiorno anche immagine profilo
 			result = await mongo.db(dbname)
 				.collection("canale")
 				.updateOne(
 					{ nome: channel_id },
-					{ $set: { img: q.path, descrizione: q.descrizione, mod: q.modlist } }
+					{ $set: { img: q.path, descrizione: q.descrizione, mod: mods } }
 				)
 		} else {
 			result = await mongo.db(dbname)
 				.collection("canale")
 				.updateOne(
 					{ nome: channel_id },
-					{ $set: { descrizione: q.descrizione, mod: q.modlist } }
+					{ $set: { descrizione: q.descrizione, mod: mods } }
 				)
-		}*/
+		}
 
 		await mongo.close();
 
