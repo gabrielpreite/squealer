@@ -1,4 +1,4 @@
-function aggiungi_squeal(squeals) {
+function aggiungi_squeal(squeals, LOG = true) {
   let n_squeal = squeals.length;
 
   let contenitore = document.getElementById('squeal_contenitore');
@@ -59,7 +59,7 @@ function aggiungi_squeal(squeals) {
     document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
 
     //aggiungo le reaction gia' inserite
-    if (CURRENT_USER != undefined) {
+    if (LOG) {
       if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
         let nreazioni0 = document.getElementById(id_sketch);
         let premuto0 = nreazioni0.parentNode;
