@@ -2775,7 +2775,7 @@ exports.search_by_keyword = async function (q, credentials) {
 
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
@@ -2797,7 +2797,7 @@ exports.channel_info = async function (channel_id, credentials) {
 				nome: channel_id
 			})
 			.project(
-				{ img: 1, nome: 1, descrizione: 1 }
+				{ img: 1, nome: 1, descrizione: 1, mod: 1 }
 			)
 			.forEach((r) => {
 				result.push(r)
@@ -2877,14 +2877,26 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		result = await mongo.db(dbname)
-			.collection("canale")
-			.updateOne(
-				{ nome: channel_id },
-				{ $set: {
-					descrizione: q.descrizione
-				}}
-			)
+		console.log("typeof modlist: "+typeof q.modlist)
+		console.log(q.modlist)
+		let mods = q.modlist.split(", ")
+		console.log(mods)
+
+		/*if (q.path) { //aggiorno anche immagine profilo
+			result = await mongo.db(dbname)
+				.collection("canale")
+				.updateOne(
+					{ nome: channel_id },
+					{ $set: { img: q.path, descrizione: q.descrizione, mod: q.modlist } }
+				)
+		} else {
+			result = await mongo.db(dbname)
+				.collection("canale")
+				.updateOne(
+					{ nome: channel_id },
+					{ $set: { descrizione: q.descrizione, mod: q.modlist } }
+				)
+		}*/
 
 		await mongo.close();
 

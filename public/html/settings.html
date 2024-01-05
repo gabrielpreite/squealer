@@ -350,6 +350,7 @@
                     <img id="canale_selezionato_img">
                     <input type="file" id="new_img" name="img" accept="image/*">
                     <input type="textarea" id="new_descrizione">
+                    <input type="textarea" id="modlist">
                     <input type="submit" value="Applica">
                   </form>
                 </div>
@@ -614,7 +615,7 @@
       success: function (data, status, xhr) {
         console.log('data: ', data);
         follower = data["data"];
-        let followers = follower.username
+        let followers = follower
         popolaFollowers(followers);
       }
     });
@@ -624,7 +625,7 @@
       var followerlist = document.querySelector(".follower-list-utenti");
 
       for (var i = 0; i < followers.length; i++) {
-        var utente = followers[i];
+        var utente = followers[i].username;
         var listItem = document.createElement("li");
         listItem.setAttribute("data-id", utente);
         listItem.innerHTML = `
@@ -632,7 +633,7 @@
             <i class="fas fa-user"></i>
             <span>${utente}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(${utente}, 'utente')">
+          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -654,7 +655,7 @@
             <i class="fas fa-user"></i>
             <span>${utente}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(${utente}, 'utente')">
+          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -670,7 +671,7 @@
             <i class="fas fa-users"></i>
             <span>${canale}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(canale, 'canale')">
+          <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -679,6 +680,9 @@
     }
 
               function removeFollowing(target, tipo){
+                console.log(target);
+                console.log(tipo);
+
                 $.ajax({
                   type: 'POST',
                   dataType: "json",
@@ -686,14 +690,8 @@
                   headers: { },
                   data: { target: target, tipo: tipo },
                   success: function (data, status, xhr) {
-                    //console.log(data.risultato)
-                    // Rimuovi l'elemento dalla lista se la richiesta ha avuto successo
-                   if (data.risultato === 'successo') {
-                     // Identificatore unico dell'elemento da rimuovere (es. user_id)
-                     var elementoDaRimuovere = target;
-
-                     // Cerca e rimuovi l'elemento dalla lista
-                     var elemento = $(`.follower-list li[data-id='${elementoDaRimuovere}']`);
+                     // Cerco e rimuovo l'elemento dalla lista
+                     var elemento = $(`.follower-list li[data-id="'${target}'"]`);
                      elemento.remove();
                    }
                   }

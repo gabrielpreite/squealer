@@ -1143,13 +1143,16 @@ app.get('/channel/:channel_id', async function(req, res) {
 });
 
 // modifica impostazioni canale
-//body: req.descrizione
-app.post('/channel/:channel_id', async function(req, res) {
+//body: req.descrizione, req.file(->path), req.modlist
+app.post('/channel/:channel_id', upload.single("img"), async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
 
     try{
         const channel_id = req.params.channel_id
-        //console.log(channel_id)
+        if(req.file){ //sto cambiando anche immagine profilo
+            let path = req.file.path
+            req.body["path"] = path.split("/").slice(-1)[0]
+        }
 
         response = await mymongo.channel_update(channel_id, req.body, mongoCredentials)
 

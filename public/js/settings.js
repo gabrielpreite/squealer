@@ -112,9 +112,14 @@ function seleziona_canale(nome){
             console.log('data: ', data);
             $("#canale_selezionato").removeAttr("hidden")
 
-            $("#canale_selezionato_nome").innerHTML = nome
+            $("#canale_selezionato_nome").text(nome)
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
+            let mods = ""
+            data.data.mod.forEach((el) => mods+=el)
+            console.log(mods)
+            console.log(data.data.mod)
+            $("#modlist").val(mods)
         }
     });
 }
