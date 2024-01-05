@@ -355,7 +355,8 @@ ul {
 }
 
 #follow h3,
-#popolarita h3 {
+#popolarita h3,
+#canali h3 {
   font-size: 18px;
   align-self: center;
   font-weight: bold;
