@@ -11,8 +11,6 @@
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-  <script type="text/javascript" src="../js/global.js"></script>
-
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 </head>
@@ -21,9 +19,9 @@
     <div class="nav-wrapper container">
 
       <ul id="slide-out" class="side-nav">
-        <li><a href="/app-logout">Logout(nonancorafatto)</a></li>
+        <li><a href="/app-login">Login</a></li>
         <br>
-        <li><a href="#">Impostazioni(no)</a></li>
+        <li><a href="/app-register">Registrati</a></li>
       </ul>
       <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
 
@@ -61,27 +59,27 @@
       <div class="card-content grey lighten-4">
         <div id="reazioni">
           <div class="reazioni">
-            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')">
+            <a class="btn btn-reazioni disabled btn-group' + i + '">
               <i class="fab fa-sketch reazioni-icone"></i>
               <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>
             </a>
-            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')">
+            <a class="btn btn-reazioni disabled btn-group' + i + '">
               <i class="fas fa-heart reazioni-icone"></i>
               <span class="n-reazioni" id="squeal_heart' + i + '">500</span>
             </a>
-            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')">
+            <a class="btn btn-reazioni disabled btn-group' + i + '">
               <i class="fas fa-thumbs-up reazioni-icone"></i>
               <span class="n-reazioni" id="squeal_like' + i + '">500</span>
             </a>
-            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')">
+            <a class="btn btn-reazioni disabled btn-group' + i + '">
               <i class="fas fa-thumbs-down reazioni-icone"></i>
               <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>
             </a>
-            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')">
+            <a class="btn btn-reazioni disabled btn-group' + i + '">
               <i class="fas fa-heart-crack reazioni-icone"></i>
               <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>
             </a>  
-            <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')">
+            <a class="btn btn-reazioni disabled btn-group' + i + '">
               <i class="fas fa-poo reazioni-icone"></i>
               <span class="n-reazioni" id="squeal_poo' + i + '">500</span>
             </a>
@@ -108,29 +106,9 @@
     
   </main>
 
-  <!-- barra in basso -->
-  <div class="bottom-bar">
-    <a href="/app">
-      <i class="material-icons">home</i>
-    </a>
-    <a href="/app-search">
-      <i class="material-icons">search</i>
-    </a>
-    <a href="/app-editor">
-      <i class="material-icons">add_box</i>
-    </a>
-    <a href="/app-notify">
-      <i class="material-icons">notifications</i>
-    </a>
-    <a href="/app-settings">
-      <i class="material-icons">settings</i>
-    </a>
-  </div>
-
   <!--  Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="../js/materialize.js"></script>
-  <!-- <script src="../js/feed.js"></script> -->
   <script src="../js/app-feed.js"></script>
   <script type="text/javascript" src="../js/global.js"></script>
 
@@ -149,18 +127,15 @@
 
     //$(".button-collapse").sideNav();
 
-    //URLUTENTE
-    var CURRENT_USER = get_cookie_by_name("username");
-    CURRENT_USER = "fv";
 
-    //RICHIESTA E COSTRUZIONE SQUEAL
+    //RICHIESTA E COSTRUZIONE SQUEAL NO LOG
+    var squeals = [];
     let lista_commenti = [];
-    var squeals;
     $.ajax({
-      type: 'POST',
+      type: 'GET',
       dataType: "json",
       async: false,
-      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/feed`,
+      url: `https://site212251.tw.cs.unibo.it/squeal/feed`,
       headers: { },
       success: function (data, status, xhr) {
         console.log('data: ', data);
@@ -168,15 +143,6 @@
       }
     });
 
-    //setup
-    var adoro = "adoro";
-    var mi_disgusta = "mi_disgusta";
-    var mi_piace = "mi_piace";
-    var odio = "odio";
-    var concordo = "concordo";
-    var sono_contrario = "sono_contrario";
-    var apri = "apri";
-    squeals = ordina_squeals(squeals, "data");
     aggiungi_squeal(squeals);
 
 
