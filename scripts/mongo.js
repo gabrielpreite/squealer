@@ -2879,7 +2879,7 @@ exports.channel_update = async function (channel_id, q, credentials) {
 
 		console.log("typeof modlist: "+typeof q.modlist)
 		console.log(q.modlist)
-		let mods = q.modlist.split(", ")
+		let mods = q.modlist.split(",")
 		if(mods[0] === "")
 			mods = []
 		//console.log(mods)
