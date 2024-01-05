@@ -2878,7 +2878,9 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		await mongo.connect();
 
 		console.log("typeof modlist: "+typeof q.modlist)
-		console.log(modlist)
+		console.log(q.modlist)
+		let mods = q.modlist.split(", ")
+		console.log(mods)
 
 		/*if (q.path) { //aggiorno anche immagine profilo
 			result = await mongo.db(dbname)
