@@ -558,6 +558,11 @@ ul {
   font-size: 12px;
 }
 
+.nome-canale, .ruolo-canale {
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
 .ordine-canali {
   display: flex;
 }
