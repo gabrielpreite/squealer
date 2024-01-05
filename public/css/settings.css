@@ -355,7 +355,8 @@ ul {
 }
 
 #follow h3,
-#popolarita h3 {
+#popolarita h3,
+#canali h3 {
   font-size: 18px;
   align-self: center;
   font-weight: bold;
@@ -529,4 +530,37 @@ ul {
 
 #canale_selezionato form {
   flex-direction: column;
+}
+
+.card-canale {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-canale img {
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+.info-canale {
+  display: flex;;
+  flex-direction: column;
+}
+
+.ruolo-canale {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ordine-canali {
+  display: flex;
+}
+
+.gestiti, .acquistati {
+  margin-right: 150px;
 }

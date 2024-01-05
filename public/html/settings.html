@@ -304,14 +304,14 @@
       <div id="canali" class="sezione">
         <div class="container barra-scorrimento">
           <h2 class="mb-4 title-sezione">Canali</h2>
-          <div class="ordine">
-            <div class="colonna pop">
+          <div class="ordine-canali">
+            <div class="colonna gestiti">
                 <h3>Canali gestiti</h3>
                 <div id="canali_gestiti" class="popolari barra-scorrimento">
 
                 </div>
             </div>
-            <div class="colonna impop">
+            <div class="colonna acquistati">
                 <h3>Canali acquistati</h3>
                 <div id="canali_acquistati" class="impopolari barra-scorrimento">
 
@@ -849,9 +849,9 @@
   });
   canali.forEach((el) => {
     if(el.ruolo === "proprietario"){
-      $("#canali_acquistati").append(`<div class="squeal"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><p>${el.canale}</p><p>Ruolo: ${el.ruolo}</p><button onclick="seleziona_canale('${el.canale}')">Modifica</button></div>`)
+      $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><p>${el.canale}</p><div class="ruolo-canale"><p>${el.ruolo}</p></div><button onclick="seleziona_canale('${el.canale}')">Modifica</button></div></div>`)
     } else if(el.ruolo === "mod"){
-      $("#canali_gestiti").append(`<div class="squeal"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><p>${el.canale}</p><p>Ruolo: ${el.ruolo}</p></div>`)
+      $("#canali_gestiti").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><p>${el.canale}</p><div class="ruolo-canale"><p>${el.ruolo}</p></div></div></div>`)
     }
   })
 
