@@ -126,5 +126,22 @@ function seleziona_canale(nome){
 }
 
 function update_channel(){
+    const formData = new FormData(document.getElementById("form_modifica_canale"))
 
+    let modlist = formData.get("modlist").split(", ")
+    formData.append("modlist", modlist)
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/channel/${$("canale_selezionato_nome").text}`,
+        headers: { },
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data, status, xhr) {
+            console.log(data)
+            redirectToSettings();    
+        }
+    });
 }
