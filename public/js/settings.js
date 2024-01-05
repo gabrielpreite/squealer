@@ -115,7 +115,11 @@ function seleziona_canale(nome){
             $("#canale_selezionato_nome").text(nome)
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
+            let mods = ""
+            data.data.mod.forEach((el) => mods+=el)
+            console.log(mods)
             console.log(data.data.mod)
+            $("#modlist").val(mods)
         }
     });
 }
