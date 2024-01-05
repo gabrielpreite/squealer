@@ -128,7 +128,7 @@ function seleziona_canale(nome){
 function update_channel(){
     const formData = new FormData(document.getElementById("form_modifica_canale"))
 
-    let modlist = formData.get("modlist").split(", ")
+    let modlist = $("#modlist").val().split(", ")
     formData.set("modlist", modlist)
 
     let nome = $("#canale_selezionato_nome").text()
