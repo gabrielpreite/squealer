@@ -115,12 +115,14 @@ function seleziona_canale(nome){
             $("#canale_selezionato_nome").text(nome)
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
-            let mods = ""
-            data.data.mod.forEach((el) => mods+=(el+","))
-            mods = mods.slice(0, -1)
+
+            data.data.mod.forEach((el) => {
+                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}</li>`)
+            })
+            /*mods = mods.slice(0, -1)
             console.log(mods)
             console.log(data.data.mod)
-            $("#modlist").val(mods)
+            $("#modlist").val(mods)*/
         }
     });
 }
@@ -128,8 +130,13 @@ function seleziona_canale(nome){
 function update_channel(){
     const formData = new FormData(document.getElementById("form_modifica_canale"))
 
-    //let modlist = $("#modlist").val().split(",")
-    //formData.set("modlist", modlist)
+    let modlist = document.getElementById("modlist_ul").getElementsByTagName("li");
+    let modstring = ""
+    for(let i=0; i<modlist.length; i++){
+        modstring += modlist[i].innerHTML+","
+    }
+    modstring = modstring.slice(0, -1)
+    formData.set("modlist", modstring)
 
     let nome = $("#canale_selezionato_nome").text()
     $.ajax({
@@ -146,4 +153,29 @@ function update_channel(){
             redirectToSettings();    
         }
     });
+}
+
+function aggiungi_mod(){
+    let nome = $("#new_mod").val()
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/user/${nome}`,
+        headers: { },
+        success: function (data, status, xhr) {
+            $("#new_mod").val("")
+            $("#modlist_ul").append(`<li id="li_${nome}" onclick="rimuovi_mod('${nome}')">${nome}</li>`)
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 404) {
+                alert("L'utente inserito non esiste");
+            }
+        }
+    });
+}
+
+function rimuovi_mod(nome){
+    let el = "#li_"+nome
+    $(el).remove()
 }
