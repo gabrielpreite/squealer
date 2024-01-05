@@ -624,7 +624,7 @@
       var followerlist = document.querySelector(".follower-list-utenti");
 
       for (var i = 0; i < followers.length; i++) {
-        var utente = followers.username[i];
+        var utente = followers[i].username;
         var listItem = document.createElement("li");
         listItem.setAttribute("data-id", utente);
         listItem.innerHTML = `
