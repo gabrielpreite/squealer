@@ -324,7 +324,7 @@
                     <img id="canale_selezionato_img">
                     <input type="file" id="new_img" name="img" accept="image/*">
                     <input type="textarea" id="new_descrizione">
-                    <input type="textarea" id="modlist">
+                    <input type="textarea" id="modlist" name="modlist">
                     <input type="submit" value="Applica">
                   </form>
                 </div>
@@ -668,7 +668,7 @@
                      var elemento = $(`.follower-list li[data-id="'${target}'"]`);
                      elemento.remove();
                    }
-                  }
+
                 });
               }
 
