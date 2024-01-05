@@ -625,7 +625,7 @@
       var followerlist = document.querySelector(".follower-list-utenti");
 
       for (var i = 0; i < followers.length; i++) {
-        var utente = followers.username[i];
+        var utente = followers[i].username;
         var listItem = document.createElement("li");
         listItem.setAttribute("data-id", utente);
         listItem.innerHTML = `
@@ -633,7 +633,7 @@
             <i class="fas fa-user"></i>
             <span>${utente}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(${utente}, 'utente')">
+          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -655,7 +655,7 @@
             <i class="fas fa-user"></i>
             <span>${utente}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(${utente}, 'utente')">
+          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -671,7 +671,7 @@
             <i class="fas fa-users"></i>
             <span>${canale}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(canale, 'canale')">
+          <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
