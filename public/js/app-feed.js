@@ -378,3 +378,52 @@ function premibottone(button, reac, id) {
     }
   });
 }
+
+//NOTIFICHE
+function ricerca_notifica(notifica) {
+  if (notifica.tipo == "follow") {
+    let elem_notifica = document.createElement('div');
+    elem_notifica.innerHTML = notifica.ref_id;
+    ricerca_squeal(elem_notifica);
+  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita" || notifica.tipo == "privato") {
+    let post_notifica;
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/squeal/${notifica.ref_id}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        post_notifica = data.data;
+      }
+    });
+    if (notifica.tipo == "risposta") {
+      if (post_notifica.risponde_a != null) {
+        $.ajax({
+          type: 'GET',
+          dataType: "json",
+          async: false,
+          url: `https://site212251.tw.cs.unibo.it/squeal/${post_notifica.risponde_a}`,
+          headers: { },
+          success: function (data, status, xhr) {
+            post_notifica = data.data;
+          }
+        });
+      }
+    }
+    rimpiazza_squeals([post_notifica], "filtro");
+    squeals = [post_notifica];
+    //let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
+    //aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
+  }
+
+  //leggi notifica
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/notification/${notifica.not_id}`,
+    headers: { },
+    success: function (data, status, xhr) {}
+  });
+}
