@@ -83,7 +83,7 @@
 
 .sezione img,
 svg {
-  border-radius: 100px;
+  border-radius: 100%;
   width: 120px;
   margin-bottom: 20px;
 }
@@ -569,4 +569,29 @@ ul {
 
 .gestiti, .acquistati {
   margin-right: 150px;
+}
+
+#canale_selezionato {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#canale_selezionato_nome {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#canale_selezionato form {
+  display: flex;
+  flex-direction: column;
+}
+
+.canale_img {
+  display: flex;
+  flex-direction: row;
 }

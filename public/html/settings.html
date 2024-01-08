@@ -320,10 +320,14 @@
             <div>
                 <div id="canale_selezionato" hidden="true">
                   <form id="form_modifica_canale">
-                    Nome canale:<div id="canale_selezionato_nome"></div>
-                    <img id="canale_selezionato_img">
-                    Cambia immagine:<input type="file" id="new_img" name="img" accept="image/*">
-                    Descrizione:<input type="textarea" id="new_descrizione" name="descrizione">
+                    <div id="canale_selezionato_nome"></div>
+                    <div class="canale_img">
+                      Cambia immagine:<input type="file" id="new_img" name="img" accept="image/*">
+                      <img id="canale_selezionato_img">
+                    </div>
+                    <div class="canale_descrizione">
+                      Descrizione:<input type="textarea" id="new_descrizione" name="descrizione">
+                    </div>
                     Mod: <ul id="modlist_ul"></ul>
                     Aggiungi moderatori: <input type="text" id="new_mod">
                     <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
