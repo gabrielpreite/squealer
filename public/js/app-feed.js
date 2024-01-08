@@ -155,6 +155,76 @@ function aggiungi_squeal(squeals, LOG = true) {
   //FINE SQUEAL
 }
 
+//RICERCA SQUEAL...
+function ricerca_squeal(elem) {
+  let query;
+  let tipo;
+  if (elem === null) {
+    query = document.getElementById("query").value;
+    tipo = document.getElementById("tipo").value;
+
+    //check query vuota
+    if (query.length == 0) {
+      alert("Inserisci qualcosa da cercare");
+      return false;
+    }
+    //check varie cose
+    if (tipo == "user") {
+      if (query[0] == "@") {
+        let length = query.length;
+        query = query.slice(1,length);
+      }
+    } else if (tipo == "channel") {
+      if (query[0] != "$") {
+        query = "$" + query;
+      }
+    }
+  } else {
+    query = elem.innerHTML;
+    tipo = query[0];
+
+    if (tipo == " ") {
+      tipo = query[1];
+      query = query.substring(2);
+    }
+    if (tipo == "$") {
+      tipo = "channel";
+    }
+    if (tipo == "#") {
+      tipo = "keyword"
+    }
+    else {
+      if (query[0] == "@") {
+        let length = query.length;
+        query = query.slice(1,length);
+      }
+      tipo = "user";
+    }
+  }
+
+  let all_info;
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/squeal/by_${tipo}`,
+    headers: { },
+    data: { query: query, target: CURRENT_USER },
+    success: function (data, status, xhr) {
+      console.log('data: ', data);
+      all_info = data.data;
+    }
+  });
+  if (all_info.post === undefined) {
+    return console.log("error");
+  }
+
+  rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
+  //if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
+
+  return all_info;
+}
+
 function aggiungi_info(meta){
   let container = $("#barra-destra")
   container.empty()

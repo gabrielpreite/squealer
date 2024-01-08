@@ -15,38 +15,7 @@
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 
   <style>
-  .register-container {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      padding: 30px 50px;
-      width: auto;
-      margin: 0 auto;
-  }
-
-  .register-container h1 {
-      text-align: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 36px;
-      margin-bottom: 20px;
-      margin-top: 10px;
-      color: #1da1f2;
-      text-transform: uppercase;
-  }
-
-  .input-field.col label {
-      left: 0rem;
-  }
-
-  input[type="text"],
-  input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-  }
-
-  .register-button {
+  .submit-button {
       background-color: #1da1f2;
       color: white;
       border: none;
@@ -57,7 +26,7 @@
       font-weight: bold;
   }
 
-  .register-button:hover {
+  .submit-button:hover {
       background-color: #0c87c1;
   }
   </style>
@@ -102,7 +71,7 @@
       </div>
 
       <div class="col s3">
-        <button class="btn waves-effect waves-light" type="submit" name="action">
+        <button class="btn waves-effect waves-light submit-button" type="submit" name="action">
           <i class="material-icons">search</i>
         </button>
       </div>
@@ -155,16 +124,26 @@
       var instances = M.FormSelect.init(elems);
     });
 
+    //searchbar
+    document.getElementById("form_ricerca").addEventListener('submit', async event => {
+      event.preventDefault();
+      let result = ricerca_squeal(null);
+      squeals = result.post;
+      var info_ricerca = result.meta;
+      //tabs card squeal init
+      var tabs = document.querySelectorAll('.tabs');
+      M.Tabs.init(tabs);  
+    });
+
     //$(".button-collapse").sideNav();
 
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
     CURRENT_USER = "fv";
 
-    //let lista_commenti = [];
-    //var squeals;
-    
     //setup
+    let lista_commenti = [];
+    var squeals;
     var adoro = "adoro";
     var mi_disgusta = "mi_disgusta";
     var mi_piace = "mi_piace";
