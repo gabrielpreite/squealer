@@ -595,3 +595,8 @@ ul {
   display: flex;
   flex-direction: row;
 }
+
+.modifica_canale_img {
+  display: flex;
+  flex-direction: column;
+}
