@@ -13,16 +13,59 @@
 
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+
+  <style>
+  .register-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 30px 50px;
+      width: auto;
+      margin: 0 auto;
+  }
+
+  .register-container h1 {
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      color: #1da1f2;
+      text-transform: uppercase;
+  }
+
+  .input-field.col label {
+      left: 0rem;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+
+  .register-button {
+      background-color: #1da1f2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 90%;
+      font-weight: bold;
+  }
+
+  .register-button:hover {
+      background-color: #0c87c1;
+  }
+  </style>
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
 
-      <ul id="slide-out" class="side-nav">
-        <li><a href="/app-login">Login</a></li>
-        <br>
-        <li><a href="/app-register">Registrati</a></li>
-      </ul>
       <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
 
       <a id="logo-container" href="#" class="brand-logo right">Squealer</a>
@@ -30,81 +73,64 @@
     </div>
   </nav>
 
-  <main class="row" id="squeal_contenitore">
+  <div class="searchbar row" aria-label="Barra di ricerca">
+    <form id="form_ricerca" role="search" aria-label="Form della ricerca">
+      <div class="input-field col s3">
+        <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
+          <option selected value="user" id="utente">
+            @</option>
+          <option value="channel" id="canale">
+            $</option>
+          <option value="keyword" id="keyword">
+            #</option>
+        </select>
+      </div>
 
-    <div class="card" id="' + squeals[i].post_id + '">
-      <div class="card-content">
-        <div class="card-info valign-wrapper">
-          <div class="col s3 center-align">
-            <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="profile-image circle" id="squeal_img_utente' + i + '">
-          </div>
-          <div class="col s9">
-            <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>
-            <br>
-            <a class="text-muted tag-username btn-flat" id="squeal_tag' + i + '" disabled>username</a>
-            <br>
-            <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>
-          </div>
-        </div>
-        <p id="squeal_testo' + i + '">Questo è il testo dello squeal</p>
+      <div class="input-field col s3">
+        <input id="query" name="query" placeholder="Cerca" type="text" class="validate" aria-label="Testo da ricercare">
       </div>
-    
-      <div class="card-tabs">
-        <ul class="tabs tabs-fixed-width">
-          <li class="tab"><a class="active" href="#reazioni">Reazioni</a></li>
-          <li class="tab"><a href="#commenti">Commenti</a></li>
-          <li class="tab"><a href="#destinatari">Destinatari</a></li>
-        </ul>
+
+      <div class="input-field col s3">
+        <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca">
+          <option selected value="data" id="data">
+            Data</option>
+          <option value="visual" id="visual">
+            Numero di visualizzazioni</option>
+          <option value="impression" id="impression">
+            Impression</option>
+        </select>
       </div>
-      <div class="card-content grey lighten-4">
-        <div id="reazioni">
-          <div class="reazioni">
-            <a class="btn btn-reazioni disabled btn-group' + i + '">
-              <i class="fab fa-sketch reazioni-icone"></i>
-              <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>
-            </a>
-            <a class="btn btn-reazioni disabled btn-group' + i + '">
-              <i class="fas fa-heart reazioni-icone"></i>
-              <span class="n-reazioni" id="squeal_heart' + i + '">500</span>
-            </a>
-            <a class="btn btn-reazioni disabled btn-group' + i + '">
-              <i class="fas fa-thumbs-up reazioni-icone"></i>
-              <span class="n-reazioni" id="squeal_like' + i + '">500</span>
-            </a>
-            <a class="btn btn-reazioni disabled btn-group' + i + '">
-              <i class="fas fa-thumbs-down reazioni-icone"></i>
-              <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>
-            </a>
-            <a class="btn btn-reazioni disabled btn-group' + i + '">
-              <i class="fas fa-heart-crack reazioni-icone"></i>
-              <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>
-            </a>  
-            <a class="btn btn-reazioni disabled btn-group' + i + '">
-              <i class="fas fa-poo reazioni-icone"></i>
-              <span class="n-reazioni" id="squeal_poo' + i + '">500</span>
-            </a>
-          </div>
-          <div class="info-post" id="squeal_info' + i + '">
-            <span class="visual" id="squeal_visual' + i + '">
-              <i class="fa-solid fa-eye icona-visual"></i>
-              500
-            </span>
-          </div>
-        </div>
-        <div id="commenti">
-          <div id="squeal_comment' + i + '">
-            
-          </div>
-        </div>
-        <div id="destinatari">
-          <div id="squeal_destinatari' + i + '">
-        
-          </div>
-        </div>
+
+      <div class="col s3">
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+          <i class="material-icons">search</i>
+        </button>
       </div>
-    </div>
+    </form>
+  </div>
+
+  <main class="row" id="squeal_contenitore">
     
   </main>
+
+  <!-- barra in basso -->
+  <div class="bottom-bar">
+    <a href="/app">
+      <i class="material-icons">home</i>
+    </a>
+    <a href="/app-search">
+      <i class="material-icons">search</i>
+    </a>
+    <a href="/app-editor">
+      <i class="material-icons">add_box</i>
+    </a>
+    <a href="/app-notify">
+      <i class="material-icons">notifications</i>
+    </a>
+    <a href="/app-settings">
+      <i class="material-icons">settings</i>
+    </a>
+  </div>
 
   <!--  Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -123,27 +149,29 @@
       var sideNavOptions = { edge: 'right' }; // You can customize options here
       var sideNav = document.querySelectorAll('.side-nav');
       M.Sidenav.init(sideNav, sideNavOptions);
+
+      //searchbar
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
     });
 
     //$(".button-collapse").sideNav();
 
+    //URLUTENTE
+    var CURRENT_USER = get_cookie_by_name("username");
+    CURRENT_USER = "fv";
 
-    //RICHIESTA E COSTRUZIONE SQUEAL NO LOG
-    var squeals = [];
-    let lista_commenti = [];
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/squeal/feed`,
-      headers: { },
-      success: function (data, status, xhr) {
-        console.log('data: ', data);
-        squeals = data["data"];
-      }
-    });
-
-    aggiungi_squeal(squeals);
+    //let lista_commenti = [];
+    //var squeals;
+    
+    //setup
+    var adoro = "adoro";
+    var mi_disgusta = "mi_disgusta";
+    var mi_piace = "mi_piace";
+    var odio = "odio";
+    var concordo = "concordo";
+    var sono_contrario = "sono_contrario";
+    var apri = "apri";
 
 
 
