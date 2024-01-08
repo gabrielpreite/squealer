@@ -601,7 +601,7 @@ ul {
   flex-direction: column;
 }
 
-input#newImg {
+input#new_img {
     white-space: pre-line;
     overflow: hidden;
     width: 150px;
@@ -624,11 +624,7 @@ input#newImg {
   font-weight: bold;
 }
 
-#new_mod {
+.modifica_mod {
   display: inline-block;
-}
-
-#new_mod,
-#new_mod + input[type="button"] {
   vertical-align: middle;
 }
