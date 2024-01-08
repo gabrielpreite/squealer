@@ -102,6 +102,9 @@ function form_psw() {
 }
 
 function seleziona_canale(nome){
+  if (nome == 'nuovo_canale') {
+    // INSERIRE CODICE PER EDITOR NUOVO CANALE
+  } else {
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -125,6 +128,7 @@ function seleziona_canale(nome){
             $("#modlist").val(mods)*/
         }
     });
+  }
 }
 
 function update_channel(){
@@ -150,7 +154,7 @@ function update_channel(){
         contentType: false,
         success: function (data, status, xhr) {
             console.log(data)
-            redirectToSettings();    
+            redirectToSettings();
         }
     });
 }
