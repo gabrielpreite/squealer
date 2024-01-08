@@ -600,3 +600,35 @@ ul {
   display: flex;
   flex-direction: column;
 }
+
+input#newImg {
+    white-space: pre-line;
+    overflow: hidden;
+    width: 150px;
+    height: 70px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+
+.canale_descrizione {
+    display: grid;
+    margin-bottom: 25px;
+}
+
+.canale_moderatori {
+  display: flex;
+  flex-direction: row;
+}
+
+#modlist_ul li {
+  font-weight: bold;
+}
+
+#new_mod {
+  display: inline-block;
+}
+
+#new_mod,
+#new_mod + input[type="button"] {
+  vertical-align: middle;
+}
