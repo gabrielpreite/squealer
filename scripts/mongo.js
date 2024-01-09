@@ -41,56 +41,12 @@ const template = require(global.rootDir + '/scripts/tpl.js');
 /*                            */
 /* ========================== */
 
-exports.daily = async function (dry, credentials) {
+exports.pop = async function (dry, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
 	try {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
-
-		/* [1] RESET QUOTA */
-
-		console.log("[D1] Inizio reset quota")
-		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
-		let def_json = JSON.parse(def_file)
-		const DEF_G = def_json.quota_default.g
-		const DEF_S = def_json.quota_default.s
-		const DEF_M = def_json.quota_default.m
-
-		let result = []
-		await mongo.db(dbname)
-			.collection("utente")
-			.find()
-			.project({ _id: 0 })
-			.forEach((r) => {
-				result.push(r)
-			});
-
-		result.forEach((user) => {
-			let new_quota = { "g": parseInt(user.quota.g), "s": parseInt(user.quota.s), "m": parseInt(user.quota.m) }
-			console.log("[D1] quota utente " + user.username + ": " + JSON.stringify(user.quota))
-			let differenza = DEF_G - user.quota.g //quota necessaria per tornare al valore di default
-			//console.log("differenza = " + typeof differenza)
-			if (differenza > 0) { //la quota non e' gia' piena
-				console.log("[D1] richiedo " + differenza + " quota")
-				differenza = Math.min(differenza, user.quota.s)
-				console.log("[D1] ottenuta " + differenza + " dalla quota settimanale")
-				new_quota.s -= differenza
-				new_quota.g += differenza
-				console.log("[D1] nuova quota utente " + user.username + ": " + JSON.stringify(new_quota))
-
-				if (!dry) {
-					console.log("[D1] applico nuova quota")
-					mongo.db(dbname)
-						.collection("utente")
-						.updateOne(
-							{ username: user.username },
-							{ $set: { quota: new_quota } }
-						)
-				}
-			}
-		})
-		console.log("[D1] Fine reset quota")
 
 		/* [2] CALCOLO SQUEAL POP/IMPOP/CONTR */
 
@@ -98,7 +54,7 @@ exports.daily = async function (dry, credentials) {
 		result = []
 		await mongo.db(dbname)
 			.collection("messaggio")
-			.find({visualizzazioni: {$gt: 50}})
+			.find({ visualizzazioni: { $gt: 10 } })
 			.project({ _id: 0 })
 			.forEach((r) => {
 				result.push(r)
@@ -152,10 +108,66 @@ exports.daily = async function (dry, credentials) {
 			}
 		})
 		console.log("[D2] Fine calcolo etichette")
+		return "ok"
+	} catch (e) {
+		console.log(e)
+	}
+}
 
-		/* [3] RICALCOLO QUOTA PER POPOLARITA' */
+exports.daily = async function (dry, credentials) {
+	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 
-		console.log("[D3] Inizio ricalcolo quota popolarita")
+	try {
+		const mongo = new MongoClient(mongouri);
+		await mongo.connect();
+
+		/* [1] RESET QUOTA */
+
+		console.log("[D1] Inizio reset quota")
+		let def_file = await fs.readFile(rootDir + fn_defaults, 'utf8')
+		let def_json = JSON.parse(def_file)
+		const DEF_G = def_json.quota_default.g
+		const DEF_S = def_json.quota_default.s
+		const DEF_M = def_json.quota_default.m
+
+		let result = []
+		await mongo.db(dbname)
+			.collection("utente")
+			.find()
+			.project({ _id: 0 })
+			.forEach((r) => {
+				result.push(r)
+			});
+
+		result.forEach((user) => {
+			let new_quota = { "g": parseInt(user.quota.g), "s": parseInt(user.quota.s), "m": parseInt(user.quota.m) }
+			console.log("[D1] quota utente " + user.username + ": " + JSON.stringify(user.quota))
+			let differenza = DEF_G - user.quota.g //quota necessaria per tornare al valore di default
+			//console.log("differenza = " + typeof differenza)
+			if (differenza > 0) { //la quota non e' gia' piena
+				console.log("[D1] richiedo " + differenza + " quota")
+				differenza = Math.min(differenza, user.quota.s)
+				console.log("[D1] ottenuta " + differenza + " dalla quota settimanale")
+				new_quota.s -= differenza
+				new_quota.g += differenza
+				console.log("[D1] nuova quota utente " + user.username + ": " + JSON.stringify(new_quota))
+
+				if (!dry) {
+					console.log("[D1] applico nuova quota")
+					mongo.db(dbname)
+						.collection("utente")
+						.updateOne(
+							{ username: user.username },
+							{ $set: { quota: new_quota } }
+						)
+				}
+			}
+		})
+		console.log("[D1] Fine reset quota")
+
+		/* [2] RICALCOLO QUOTA PER POPOLARITA' */
+
+		console.log("[D2] Inizio ricalcolo quota popolarita")
 		result = []
 		await mongo.db(dbname)
 			.collection("utente")
@@ -168,11 +180,11 @@ exports.daily = async function (dry, credentials) {
 		result.forEach((user) => {
 			let pop = user.popolarita.valori[user.popolarita.valori.length - 1]
 			let bonus = (Math.floor(pop / 10) / 100) * DEF_G //1% +- per ogni 10 di popolarita
-			console.log("[D3] utente " + user.username + ", popolarita " + pop + ", caratteri bonus/malus " + bonus)
+			console.log("[D2] utente " + user.username + ", popolarita " + pop + ", caratteri bonus/malus " + bonus)
 			if (!dry && bonus != 0) {
-				console.log("[D3] aggiorno quota")
+				console.log("[D2] aggiorno quota")
 				user_update_quota(user.username, { qnt: bonus, acquisto: false }, credentials)
-				console.log("[D3] invio notifica")
+				console.log("[D2] invio notifica")
 				add_notifica(user.username, "quota", null, credentials, bonus, null)
 			}
 		})
@@ -266,7 +278,7 @@ exports.weekly = async function (dry, credentials) {
 						.find({ utente: user.username })
 						.project({ _id: 0 })
 						.forEach((r) => {
-							console.log("[W2] post_id " +r.post_id +" di " +user.username +" con categoria " +r.categoria);
+							console.log("[W2] post_id " + r.post_id + " di " + user.username + " con categoria " + r.categoria);
 							if (r.categoria === "popolare") {
 								pop += 1;
 							}
@@ -579,7 +591,7 @@ exports.search_messaggio = async function (q, credentials) {
 		else {
 			await mongo.db(dbname)
 				.collection("messaggio")
-				.find({ risponde_a: null} )
+				.find({ risponde_a: null })
 				.project({ _id: 0 })
 				.forEach((r) => {
 					result.push(r)
@@ -666,8 +678,9 @@ exports.user_abilitato = async function (q, user_id, credentials) {
 		result = await mongo.db(dbname)
 			.collection("utente")
 			.updateOne(
-				{username: user_id},
-				{ $set: {
+				{ username: user_id },
+				{
+					$set: {
 						abilitato_flag: (q.set_to === "true" ? true : false)
 					}
 				}
@@ -700,7 +713,7 @@ exports.user_info = async function (user_id, credentials) {
 		await mongo.db(dbname)
 			.collection("utente")
 			.find({ username: user_id })
-			.project({ img: 1, username: 1, nome: 1, popolarita: 1, acquisti: 1, quota: 1, abilitato_flag: 1, canali_seguiti: 1, utenti_seguiti: 1})
+			.project({ img: 1, username: 1, nome: 1, popolarita: 1, acquisti: 1, quota: 1, abilitato_flag: 1, canali_seguiti: 1, utenti_seguiti: 1 })
 			.forEach((r) => {
 				result.push(r)
 			});
@@ -733,7 +746,7 @@ exports.user_get_followers = async function (user_id, credentials) {
 		await mongo.db(dbname)
 			.collection("utente")
 			.find({ utenti_seguiti: { $in: [user_id] } })
-			.project({ username: 1, nome: 1, img: 1})
+			.project({ username: 1, nome: 1, img: 1 })
 			.forEach((r) => {
 				result.push(r)
 			});
@@ -1146,7 +1159,7 @@ async function user_update_quota(user_id, q, credentials) {
 						$push: { acquisti: acquisto }
 					}
 				)
-		} else if (q.mod){
+		} else if (q.mod) {
 			result = await mongo.db(dbname)
 				.collection("utente")
 				.updateOne(
@@ -1168,7 +1181,7 @@ async function user_update_quota(user_id, q, credentials) {
 						$inc: { 'quota.g': parseInt(q.qnt) },
 					}
 				)
-		} 
+		}
 
 		await mongo.close();
 
@@ -1440,12 +1453,12 @@ exports.user_feed = async function (user_id, credentials) {
 				{
 					$match: {
 						$or: [
-							{ 
+							{
 								utente: { $in: utenti_seguiti },
 								tipo_destinatari: null
 							},
 							{
-								destinatari: {$in : [user_id]},
+								destinatari: { $in: [user_id] },
 								tipo_destinatari: "utenti"
 							}
 						],
@@ -2085,7 +2098,7 @@ exports.modify_squeal = async function (q, squeal_id, credentials) {
 					}
 				}
 			)
-		
+
 
 		if (result.matchedCount == 1) {
 			response["risultato"] = "successo"
@@ -2877,10 +2890,10 @@ exports.channel_update = async function (channel_id, q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		console.log("typeof modlist: "+typeof q.modlist)
+		console.log("typeof modlist: " + typeof q.modlist)
 		console.log(q.modlist)
 		let mods = q.modlist.split(",")
-		if(mods[0] === "")
+		if (mods[0] === "")
 			mods = []
 		//console.log(mods)
 
