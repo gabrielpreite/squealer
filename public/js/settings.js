@@ -101,9 +101,24 @@ function form_psw() {
     });
 }
 
-function seleziona_canale(nome){
-  if (nome == 'nuovo_canale') {
-    // INSERIRE CODICE PER EDITOR NUOVO CANALE
+function seleziona_canale(tipo, nome){
+  if (tipo === 'nuovo') {
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/channel`,
+        headers: { },
+        data: {nome: nome, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
+        success: function (data, status, xhr) {
+          redirectToSettings();
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 403) {
+                alert("Nome del canale già esistente");
+            }
+        }
+    });
   } else {
     $.ajax({
         type: 'GET',
