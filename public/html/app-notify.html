@@ -31,9 +31,13 @@
     </div>
   </nav>
 
-  <div class="title-n"> Notifiche </div>
+  <div class="title-n"> Notifiche <div id="filtro" hidden aria-hidden="true"> data </div></div>
 
   <main class="collection" id="notifiche_contenitore">
+    
+  </main>
+
+  <main class="row" id="squeal_contenitore" hidden>
     
   </main>
 
@@ -97,11 +101,23 @@
         not_class = not_class + 'active ';
       }
       not_class = not_class + notifiche[n].tipo + '" ';
-      var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
+      var on_click = 'href="#" onclick="ricerca_notifica(notifiche[' + n + '])" ' + notifiche[n].not_id + ' '; //onclick="ricerca_notifica(notifiche[' + n + '])"
 
       var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
       lista_notifiche.insertAdjacentHTML('beforeend', notifica);
     }
+
+    //setup
+    let lista_commenti = [];
+    var squeals;
+    var adoro = "adoro";
+    var mi_disgusta = "mi_disgusta";
+    var mi_piace = "mi_piace";
+    var odio = "odio";
+    var concordo = "concordo";
+    var sono_contrario = "sono_contrario";
+    var apri = "apri";
+
 
 
   </script>

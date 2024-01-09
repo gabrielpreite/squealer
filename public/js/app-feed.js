@@ -413,8 +413,6 @@ function ricerca_notifica(notifica) {
     }
     rimpiazza_squeals([post_notifica], "filtro");
     squeals = [post_notifica];
-    //let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
-    //aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
   }
 
   //leggi notifica
@@ -426,4 +424,10 @@ function ricerca_notifica(notifica) {
     headers: { },
     success: function (data, status, xhr) {}
   });
+
+  //tabs card squeal init
+  var tabs = document.querySelectorAll('.tabs');
+  M.Tabs.init(tabs);
+  document.getElementById("squeal_contenitore").hidden = false;
+  document.getElementById("notifiche_contenitore").hidden = true;
 }
