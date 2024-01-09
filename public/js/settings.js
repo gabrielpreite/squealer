@@ -174,6 +174,24 @@ function update_channel(){
     });
 }
 
+function cancella_canale(nome) {
+  $.ajax({
+      type: 'DELETE',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        redirectToSettings();
+      },
+      error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+              alert("Canale già non esistente");
+          }
+      }
+  });
+}
+
 function aggiungi_mod(){
     let nome = $("#new_mod").val()
     $.ajax({
