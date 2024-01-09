@@ -220,13 +220,13 @@ function ricerca_squeal(elem) {
   }
 
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
-  //if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
+  if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
 
   return all_info;
 }
 
 function aggiungi_info(meta){
-  let container = $("#barra-destra")
+  let container = $("#info_contenitore")
   container.empty()
   container.removeAttr("hidden")
 
@@ -291,6 +291,31 @@ function aggiungi_info(meta){
 
 
   }
+}
+
+function toggle_follow(target, tipo){
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+    headers: { },
+    data: { target: target, tipo: tipo },
+    success: function (data, status, xhr) {
+      let num_foll = parseInt($("#num_follower").text().split(" ")[0])
+      //console.log(data.risultato)
+      if (data.risultato == "added"){
+        $("#pulsante-segui").text("Unfollow")
+        $("#pulsante-segui").removeClass("btn-primary")
+        $("#pulsante-segui").addClass("btn-outline-primary")
+        $("#num_follower").text(String(num_foll+1)+" follower(s)")
+      } else if (data.risultato == "removed") {
+        $("#pulsante-segui").text("Follow")
+        $("#pulsante-segui").removeClass("btn-outline-primary")
+        $("#pulsante-segui").addClass("btn-primary")
+        $("#num_follower").text(String(num_foll-1)+" follower(s)")
+      }
+    }
+  });
 }
 
 function ricarica() {
@@ -429,5 +454,6 @@ function ricerca_notifica(notifica) {
   var tabs = document.querySelectorAll('.tabs');
   M.Tabs.init(tabs);
   document.getElementById("squeal_contenitore").hidden = false;
+  document.getElementById("info_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
 }
