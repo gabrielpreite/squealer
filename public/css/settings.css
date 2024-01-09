@@ -628,3 +628,7 @@ input#new_img {
   display: inline-block;
   vertical-align: middle;
 }
+
+#nomeCanaleInput {
+  margin-bottom: 10px;
+}
