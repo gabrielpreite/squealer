@@ -135,7 +135,7 @@ function seleziona_canale(tipo, nome){
             $("#new_descrizione").val(data.data.descrizione)
 
             data.data.mod.forEach((el) => {
-                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}</li>`)
+                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
             })
             /*mods = mods.slice(0, -1)
             console.log(mods)
