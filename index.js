@@ -102,6 +102,12 @@ const monthly = schedule.scheduleJob({ hour: 0, minute: 1, date: 1, tz: 'Europe/
     mymongo.monthly(false, mongoCredentials)
 });
 
+const pop = schedule.scheduleJob('*/5 * * * *', function(){
+    let timestamp = new Date()
+    console.log('Popolarita at'+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    mymongo.pop(true, mongoCredentials)
+});
+
 async function run_daily_meteo(dry){
     let timestamp = new Date()
     console.log((dry ? "[DRY]" : "")+"[METEO] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));

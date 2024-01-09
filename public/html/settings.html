@@ -856,12 +856,37 @@
   });
   canali.forEach((el) => {
     if(el.ruolo === "proprietario"){
-      $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>proprietario</p></div><button onclick="seleziona_canale('${el.canale}')">Modifica</button></div></div>`)
+      $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>proprietario</p></div><button onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button></div></div>`)
     } else if(el.ruolo === "mod"){
       $("#canali_gestiti").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>moderatore</p></div></div></div>`)
     }
   })
-    $("#canali_acquistati").append(`<div class="nuovo-canale"><button onclick="seleziona_canale('nuovo_canale')">Nuovo Canale <i class="fas fa-plus"></i> </button></div>`)
+    $("#canali_acquistati").append(`  <div class="card-canale">
+        <img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/default_channelpic.png" alt="immagine canale">
+        <div class="info-canale">
+          <div class="nome-canale">
+            <input type="text" id="nomeCanaleInput" v-model="nuovoCanale" placeholder="Nome del nuovo canale">
+          </div>
+          <div class="ruolo-canale">
+            <p>proprietario</p>
+          </div>
+          <div class="nuovo-canale">
+            <button @click="selezionaCanale">Crea Canale <i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        </div>`)
+
+    new Vue({
+      el: '#canali_acquistati',
+      data: {
+        nuovoCanale: 'nuovo_canale'
+      },
+      methods: {
+        selezionaCanale: function () {
+          seleziona_canale('nuovo',this.nuovoCanale);
+        },
+      }
+    });
 
   </script>
 </body>
