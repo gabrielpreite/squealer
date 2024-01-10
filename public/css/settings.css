@@ -633,6 +633,10 @@ input#new_img {
   vertical-align: middle;
 }
 
+.gestiti {
+  padding-right: 50px;
+}
+
 #nomeCanaleInput {
   margin-bottom: 10px;
   width: 130px;
