@@ -1166,9 +1166,9 @@ async function user_update_quota(user_id, q, credentials) {
 					{ username: user_id },
 					{
 						$set: {
-							"quota.g": q.q_g,
-							"quota.s": q.q_s,
-							"quota.m": q.q_m
+							"quota.g": parseInt(q.q_g),
+							"quota.s": parseInt(q.q_s),
+							"quota.m": parseInt(q.q_m)
 						}
 					}
 				)

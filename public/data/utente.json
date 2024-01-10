@@ -7,9 +7,9 @@
         "email": "fv@gmail.com",
         "password": "228ad7d4b3c353672f34cf5cb7cf9c6736efc9a1360c36516919b907fbcc830648e27bb1521819e54735628378afdfdb4e20e9096678afec90ec2799b2c0e4d2",
         "quota": {
-            "g": "450",
-            "s": "2000",
-            "m": "6750"
+            "g": 450,
+            "s": 2000,
+            "m": 6750
         },
         "acquisti": [
             {
