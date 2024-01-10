@@ -102,10 +102,10 @@ const monthly = schedule.scheduleJob({ hour: 0, minute: 1, date: 1, tz: 'Europe/
     mymongo.monthly(false, mongoCredentials)
 });
 
-const pop = schedule.scheduleJob('*/5 * * * *', function(){
+const pop = schedule.scheduleJob('*/15 * * * *', function(){
     let timestamp = new Date()
     console.log('Popolarita at'+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
-    mymongo.pop(true, mongoCredentials)
+    mymongo.pop(false, mongoCredentials)
 });
 
 async function run_daily_meteo(dry){

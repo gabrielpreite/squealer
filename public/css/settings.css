@@ -620,6 +620,10 @@ input#new_img {
   flex-direction: row;
 }
 
+.followers #follow li {
+  padding: 5px 15px;
+}
+
 #modlist_ul li {
   font-weight: bold;
 }
@@ -631,4 +635,5 @@ input#new_img {
 
 #nomeCanaleInput {
   margin-bottom: 10px;
+  width: 130px;
 }

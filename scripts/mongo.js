@@ -48,9 +48,9 @@ exports.pop = async function (dry, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		/* [2] CALCOLO SQUEAL POP/IMPOP/CONTR */
+		/* CALCOLO SQUEAL POP/IMPOP/CONTR */
 
-		console.log("[D2] Inizio calcolo etichette")
+		//console.log("Inizio calcolo etichette")
 		result = []
 		await mongo.db(dbname)
 			.collection("messaggio")
@@ -65,24 +65,24 @@ exports.pop = async function (dry, credentials) {
 			let reac_pos = squeal.reazioni.positive.concordo.length + squeal.reazioni.positive.mi_piace.length + squeal.reazioni.positive.adoro.length
 			let reac_neg = squeal.reazioni.negative.sono_contrario.length + squeal.reazioni.negative.mi_disgusta.length + squeal.reazioni.negative.odio.length
 			let mc = 0.25 * visual
-			console.log("[D2] squeal " + squeal.post_id + ", visual " + visual + ", positive " + reac_pos + ", negative " + reac_neg + ", massa critica " + mc)
+			//console.log("squeal " + squeal.post_id + ", visual " + visual + ", positive " + reac_pos + ", negative " + reac_neg + ", massa critica " + mc)
 
 			let etichetta = null
 			if (reac_pos > mc && reac_neg > mc) {
-				console.log("[D2] squeal controverso")
+				//console.log("squeal controverso")
 				etichetta = "controverso"
 			} else if (reac_pos > mc) {
-				console.log("[D2] squeal popolare")
+				//console.log("squeal popolare")
 				etichetta = "popolare"
 			} else if (reac_neg > mc) {
-				console.log("[D2] squeal impopolare")
+				//console.log("squeal impopolare")
 				etichetta = "impopolare"
 			}
 
 			if (!dry) {//applico modifiche
-				console.log("[D2] applico modifiche")
+				//console.log("applico modifiche")
 				if (etichetta !== null) {
-					console.log("[D2] setto categoria " + etichetta)
+					//console.log("setto categoria " + etichetta)
 					mongo.db(dbname)
 						.collection("messaggio")
 						.updateOne(
@@ -90,7 +90,7 @@ exports.pop = async function (dry, credentials) {
 							{ $set: { categoria: etichetta } }
 						)
 					if (etichetta === "controverso" && squeal.categoria !== "controverso") { //aggiungo il post al canale $CONTROVERSO
-						console.log("[D2] aggiungo post controverso al canale")
+						//console.log("aggiungo post controverso al canale")
 						mongo.db(dbname)
 							.collection("messaggio")
 							.updateOne(
@@ -101,13 +101,13 @@ exports.pop = async function (dry, credentials) {
 
 					//notifico l'utente del cambiamento di categoria
 					if (etichetta !== squeal.categoria) { // solo se la categoria e' cambiata
-						console.log("[D2] invio notifica ad utente")
+						//console.log("invio notifica ad utente")
 						add_notifica(squeal.utente, "popolarita", squeal.post_id, credentials, etichetta, null)
 					}
 				}
 			}
 		})
-		console.log("[D2] Fine calcolo etichette")
+		//console.log("Fine calcolo etichette")
 		return "ok"
 	} catch (e) {
 		console.log(e)

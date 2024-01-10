@@ -135,7 +135,7 @@ function seleziona_canale(tipo, nome){
             $("#new_descrizione").val(data.data.descrizione)
 
             data.data.mod.forEach((el) => {
-                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}</li>`)
+                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
             })
             /*mods = mods.slice(0, -1)
             console.log(mods)
@@ -172,6 +172,24 @@ function update_channel(){
             redirectToSettings();
         }
     });
+}
+
+function cancella_canale(nome) {
+  $.ajax({
+      type: 'DELETE',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        redirectToSettings();
+      },
+      error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+              alert("Canale già non esistente");
+          }
+      }
+  });
 }
 
 function aggiungi_mod(){
