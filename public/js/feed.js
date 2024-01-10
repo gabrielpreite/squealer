@@ -313,7 +313,7 @@ function ricerca_squeal(elem) {
       tipo = "user";
     }
   }
-  console.log("tipo search: "+tipo)
+  //console.log("tipo search: "+tipo)
 
   let all_info;
   $.ajax({

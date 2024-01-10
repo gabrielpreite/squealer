@@ -4541,7 +4541,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 1/1/2, a Bologna la temperatura sarà di 6.1°C minima e 12.7°C massima, con 61% di precipitazioni (0mm).",
+    "corpo": "Oggi, 01/01, a Bologna la temperatura sarà di 6.1°C minima e 12.7°C massima, con 61% di precipitazioni (0mm).",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4595,7 +4595,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 2/1/2, a Bologna la temperatura sarà di 3.5°C minima e 8.1°C massima, con 23% di precipitazioni (0mm).",
+    "corpo": "Oggi, 02/01, a Bologna la temperatura sarà di 3.5°C minima e 8.1°C massima, con 23% di precipitazioni (0mm).",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4649,7 +4649,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 3/1/2, a Bologna la temperatura sarà di 4.1°C minima e 11.2°C massima, con 0% di precipitazioni.",
+    "corpo": "Oggi, 03/01, a Bologna la temperatura sarà di 4.1°C minima e 11.2°C massima, con 0% di precipitazioni.",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4703,7 +4703,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 4/1/2, a Bologna la temperatura sarà di 4.7°C minima e 14.3°C massima, con 0% di precipitazioni.",
+    "corpo": "Oggi, 04/01, a Bologna la temperatura sarà di 4.7°C minima e 14.3°C massima, con 0% di precipitazioni.",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4785,7 +4785,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 5/1/2, a Bologna la temperatura sarà di 3°C minima e 9.9°C massima, con 87% di precipitazioni (1.3mm).",
+    "corpo": "Oggi, 05/01, a Bologna la temperatura sarà di 3°C minima e 9.9°C massima, con 87% di precipitazioni (1.3mm).",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4839,7 +4839,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 6/1/2, a Bologna la temperatura sarà di 6.3°C minima e 7.6°C massima, con 100% di precipitazioni (17.2mm).",
+    "corpo": "Oggi, 06/01, a Bologna la temperatura sarà di 6.3°C minima e 7.6°C massima, con 100% di precipitazioni (17.2mm).",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4893,7 +4893,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 7/1/2, a Bologna la temperatura sarà di 6.6°C minima e 7.8°C massima, con 100% di precipitazioni (38.3mm).",
+    "corpo": "Oggi, 07/01, a Bologna la temperatura sarà di 6.6°C minima e 7.8°C massima, con 100% di precipitazioni (38.3mm).",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -4947,7 +4947,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 8/1/2, a Bologna la temperatura sarà di 3.7°C minima e 9.2°C massima, con 81% di precipitazioni (1mm).",
+    "corpo": "Oggi, 08/01, a Bologna la temperatura sarà di 3.7°C minima e 9.2°C massima, con 81% di precipitazioni (1mm).",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -5001,7 +5001,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 9/1/2, a Bologna la temperatura sarà di 2.3°C minima e 7.2°C massima, con 0% di precipitazioni.",
+    "corpo": "Oggi, 09/01, a Bologna la temperatura sarà di 2.3°C minima e 7.2°C massima, con 0% di precipitazioni.",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
@@ -5185,7 +5185,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "Oggi, 10/1/, a Bologna la temperatura sarà di 0.7°C minima e 4.7°C massima, con 0% di precipitazioni.",
+    "corpo": "Oggi, 10/01, a Bologna la temperatura sarà di 0.7°C minima e 4.7°C massima, con 0% di precipitazioni.",
     "contenuto": "testo",
     "destinatari": [
       "$METEO"
