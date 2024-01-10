@@ -3015,6 +3015,11 @@ exports.get_notifications = async function (user_id, credentials) {
 				utente: user_id,
 				letta: false
 			})
+			.sort(
+				{
+					timestamp: -1
+				}
+			)
 			.forEach((r) => {
 				result.push(r)
 			});
