@@ -704,3 +704,9 @@ function search_trend(keyword){
   rimpiazza_squeals(all_info.post, "data");
   squeals = all_info.post;
 }
+
+function short(tipo){
+  $("#tipo").val("channel")
+  $("query").val(tipo)
+  ricerca_squeal(null)
+}
