@@ -707,6 +707,6 @@ function search_trend(keyword){
 
 function short(tipo){
   $("#tipo").val("channel")
-  $("query").val(tipo)
+  $("#query").val(tipo)
   ricerca_squeal(null)
 }
