@@ -120,6 +120,15 @@ function seleziona_canale(tipo, nome){
         }
     });
   } else {
+    var deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "btn btn-danger";
+    deleteButton.onclick = function() {
+      cancella_canale(nomeCanale);
+    };
+    var trashIcon = document.createElement("i");
+    trashIcon.className = "fa-solid fa-trash-can";
+    deleteButton.appendChild(trashIcon);
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -130,7 +139,8 @@ function seleziona_canale(tipo, nome){
             console.log('data: ', data);
             $("#canale_selezionato").removeAttr("hidden")
 
-            $("#canale_selezionato_nome").text(nome)
+            document.getElementById("canale_selezionato_nome").appendChild(deleteButton);
+            document.getElementById("canale_selezionato_nome").appendChild(nome);
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
 

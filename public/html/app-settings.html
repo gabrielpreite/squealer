@@ -13,91 +13,31 @@
 </head>
 
 <body>
-  <header>
-    <div class="navbar fixed-top">
-      <div id="profile">
-        <img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic">
-        <div class="dropdown" id="username">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <strong>
-              <script>
-                document.write(get_cookie_by_name("username"))
-              </script>
-            </strong>
-          </button>
-          <div disabled class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
-            <h6 class="dropdown-header">Gestisci altri account</h6>
-          </div>
-        </div>
-        <div id="managed-account-username" class="btn btn-primary" hidden="true"></div>
-      </div>
-      <div id="quota" aria-label="Sezione quota">
-        <div class="char-count-item" aria-label="Caratteri rimanenti questo mese">
-          <span class="count" id="charCount_mese" aria-live="polite"></span>
-          <span class="label">Mese</span>
-        </div>
-        <div class="char-count-item" aria-label="Caratteri rimanenti questa settimana">
-          <span class="count" id="charCount_sett" aria-live="polite"></span>
-          <span class="label">Settimana</span>
-        </div>
-        <div class="char-count-item" aria-label="Caratteri rimanenti oggi">
-          <span class="count" id="charCount_giorno" aria-live="polite"></span>
-          <span class="label">Giorno</span>
-        </div>
-        <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal" data-bs-target="#shop-quota" aria-haspopup="true" title="compra più quota">
-          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="lateral-buttons" aria-label="Bottoni laterali">
-        <div id="home">
-          <button type="button" class="btn btn-unstyled" id="homeButton" title="Home" onclick="redirectToHome()">
-            <i class="fas fa-home"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
 
-  <!-- Modal -->
-  <div class="modal fade" id="shop-quota" tabindex="-1" role="dialog" aria-labelledby="shop-quota" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document"> <!-- Modal size changed to large (modal-lg) -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-title">Acquista Quota</div>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span> <!-- Changed to the "x" icon symbol -->
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-4">
-              <div class="text-center"> <!-- Centered image and button -->
-                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99" class="img-fluid">
-                <button onclick="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button> <!-- Added margin top -->
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="text-center">
-                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 240 caratteri per 1.99" class="img-fluid">
-                <button onclick="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="text-center">
-                <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 480 caratteri per 4.99" class="img-fluid">
-                <button onclick="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ul id="slide-out" class="side-nav">
+        <li><a href="/app-logout">Logout(nonancorafatto)</a></li>
+        <br>
+        <li><a href="#">Impostazioni(no)</a></li>
+      </ul>
+      <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+
+      <a id="logo-container" href="#" class="brand-logo right">Squealer</a>
+
     </div>
-  </div>
+  </nav>
 
   <div id="main">
     <!-- MENU -->
-    <div id="sidebar">
+    <div id="bar">
+      <ul class="collection with-header">
+        <li class="collection-header"><h4>First Names</h4></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      </ul>
       <ul id="menu">
         <li><button onclick="switch_settings('profilo')">Profilo</button></li>
         <li><button onclick="switch_settings('account')">Account</button></li>
@@ -111,7 +51,7 @@
     <!-- CONTENUTO -->
     <div id="content">
 
-      <div id="profilo" class="sezione">
+      <div id="profilo" class="sezione" hidden>
         <div class="container">
           <h3 class="mb-4 title-sezione">Impostazioni Informazioni Personali</h3>
           <form role="form" aria-label="Form impostazioni personali" id="form_info" class="ordine">
@@ -147,7 +87,7 @@
       </div>
 
 
-      <div id="account" class="sezione">
+      <div id="account" class="sezione" hidden>
         <div class="container">
         <h3 class="mb-4 title-sezione">Impostazioni mail e password</h3>
             <form role="form" aria-label="Form cambio mail o password" id="form_psw" class="ordine" onsubmit="return check_form()">
@@ -186,7 +126,7 @@
       </div>
 
 
-      <div id="acquisti" class="sezione">
+      <div id="acquisti" class="sezione" hidden>
         <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
                    <ul id="acquisti-list">
@@ -196,7 +136,7 @@
         </div>
 
 
-      <div id="smm" class="sezione"> <!-- ACCOUNT GESTITI/SMM -->
+      <div id="smm" class="sezione" hidden> <!-- ACCOUNT GESTITI/SMM -->
         <div class="container">
           <div class="ordine">
             <div class="col1">
@@ -222,7 +162,7 @@
       </div>
 
 
-      <div id="follow" class="sezione">
+      <div id="follow" class="sezione" hidden>
         <div class="container">
           <h2 class="mb-4 title-sezione">Lista Followers e Seguiti</h2>
 
@@ -292,7 +232,7 @@
         </div>
       </div>
 
-      <div id="popolarita" class="sezione">
+      <div id="popolarita" class="sezione" hidden>
         <div class="container barra-scorrimento">
           <h2 class="mb-4 title-sezione">Popolarità</h2>
           <div class="previsione">
@@ -357,7 +297,7 @@
   <script src="../js/materialize.js"></script>
   <script src="../js/app-feed.js"></script>
   <script type="text/javascript" src="../js/global.js"></script>
-  <script type="text/javascript" src="/js/app-settings.js"></script>
+  <script type="text/javascript" src="../js/app-settings.js"></script>
 
   <script>
     
@@ -408,11 +348,6 @@
     let quota_giorno = get_cookie_by_name("quota_g");
     let quota_settimana = get_cookie_by_name("quota_s");
     let quota_mese = get_cookie_by_name("quota_m");
-
-    // Aggiorna il contenuto delle span con i nuovi valori
-    document.getElementById("charCount_mese").textContent = quota_mese;
-    document.getElementById("charCount_sett").textContent = quota_settimana;
-    document.getElementById("charCount_giorno").textContent = quota_giorno;
 
     function compra_quota(qnt) {
       let data = { "target": CURRENT_USER, "qnt": qnt, "acquisto": true }
