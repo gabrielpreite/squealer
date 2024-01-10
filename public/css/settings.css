@@ -580,10 +580,18 @@ ul {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+.btn-danger {
+  background-color: #c62831 !important;
+  width: 40px;
+  height: 40px;
+}
+
 #canale_selezionato_nome {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #canale_selezionato form {
@@ -629,8 +637,16 @@ input#new_img {
 }
 
 .modifica_mod {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
+}
+
+.invia-modifiche {
+  margin-top: 20px;
+}
+
+.gestito {
+  padding-right: 50px;
 }
 
 #nomeCanaleInput {
