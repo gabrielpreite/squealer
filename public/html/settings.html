@@ -866,7 +866,7 @@
       $("#canali_gestiti").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>moderatore</p></div></div></div>`)
     }
   })
-    $("#canali_acquistati").append(`  <div class="card-canale">
+    $("#canali_acquistati").append(`  <div id="aggiungi-canale" class="card-canale">
         <img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/default_channelpic.png" alt="immagine canale">
         <div class="info-canale">
           <div class="nome-canale">
@@ -893,15 +893,15 @@
               selezionaCanale() {
                 seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
               },
-            },
+            }/*,
             template: `
               <div id="canali_acquistati">
                 <!-- ... Altri elementi del tuo componente ... -->
                 <input type="text" v-model="nuovoCanale" placeholder="Nome del nuovo canale">
                 <button @click="selezionaCanale">Crea Canale <i class="fas fa-plus"></i></button>
               </div>
-            `
-          }).mount('#canali_acquistati')
+            `*/
+          }).mount('#canali_acquistati') //aggiungi-canale e aggiungi tutta card nel template
 
   </script>
 </body>
