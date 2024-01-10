@@ -893,15 +893,8 @@
               selezionaCanale() {
                 seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
               },
-            }/*,
-            template: `
-              <div id="canali_acquistati">
-                <!-- ... Altri elementi del tuo componente ... -->
-                <input type="text" v-model="nuovoCanale" placeholder="Nome del nuovo canale">
-                <button @click="selezionaCanale">Crea Canale <i class="fas fa-plus"></i></button>
-              </div>
-            `*/
-          }).mount('#canali_acquistati') //aggiungi-canale e aggiungi tutta card nel template
+            }
+          }).mount('body')
 
   </script>
 </body>
