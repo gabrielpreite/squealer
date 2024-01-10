@@ -361,9 +361,16 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
   </script>
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
 
   <script>
-  import Vue from 'vue'
 
     // override funzione form update_smm
     document.getElementById("update_smm").addEventListener('submit', async event => {
