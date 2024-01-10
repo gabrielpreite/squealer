@@ -139,8 +139,8 @@ function seleziona_canale(tipo, nome){
             console.log('data: ', data);
             $("#canale_selezionato").removeAttr("hidden")
 
+            $("#canale_selezionato_nome").text(nome)
             document.getElementById("canale_selezionato_nome").appendChild(deleteButton);
-            document.getElementById("canale_selezionato_nome").appendChild(nome);
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
 
