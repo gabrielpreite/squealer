@@ -372,21 +372,25 @@
         });
         var lista_notifiche = document.getElementById('notificationsDropdown');
         var n_notifiche = notifiche.length;
+        var counter = 10
         for (var n = 0; n < n_notifiche; n++) {
           //costruzione notifica
-          var not_tipo = 'type="button" ';
-          var not_id = 'id="' + notifiche[n].not_id + '" ';
-          var not_class = 'class="dropdown-item ';
-          if (notifiche[n].letta) {
-            not_class = not_class + 'letta ';
-          } else {
-            not_class = not_class + 'not_letta ';
+          if(counter >= 0 || notifiche[n].letta){
+            var not_tipo = 'type="button" ';
+            var not_id = 'id="' + notifiche[n].not_id + '" ';
+            var not_class = 'class="dropdown-item ';
+            if (notifiche[n].letta) {
+              not_class = not_class + 'letta ';
+            } else {
+              not_class = not_class + 'not_letta ';
+            }
+            not_class = not_class + notifiche[n].tipo + '" ';
+            var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
+  
+            var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
+            lista_notifiche.insertAdjacentHTML('beforeend', notifica);
+            counter--
           }
-          not_class = not_class + notifiche[n].tipo + '" ';
-          var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
-
-          var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
-          lista_notifiche.insertAdjacentHTML('beforeend', notifica);
         }
 
         //RICHIESTA E COSTRUZIONE SQUEAL
