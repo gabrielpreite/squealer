@@ -1892,7 +1892,7 @@ exports.add_squeal = async function (q, credentials) {
 		let quota_usata
 
 		//console.log(q.tipo)
-		if (q.contenuto == "testo") {//caso testo
+		if (q.contenuto === "testo") {//caso testo
 			quota_usata = q.textarea.length
 			await mongo.db(dbname)
 				.collection("messaggio")
@@ -1955,7 +1955,7 @@ exports.add_squeal = async function (q, credentials) {
 					}
 				}
 			}
-		} else if (q.contenuto == "img") {//caso immagine
+		} else if (q.contenuto === "img") {//caso immagine
 			quota_usata = 120
 			await mongo.db(dbname)
 				.collection("messaggio")
@@ -1998,7 +1998,7 @@ exports.add_squeal = async function (q, credentials) {
 					console.error("Error:", error);
 				});
 
-		} else if (q.contenuto == "map") {//caso mappa
+		} else if (q.contenuto === "map") {//caso mappa
 			quota_usata = 120
 			await mongo.db(dbname)
 				.collection("messaggio")
@@ -2044,7 +2044,7 @@ exports.add_squeal = async function (q, credentials) {
 		}
 
 		// notifica commento all'autore del post
-		if (!(risposta == null)) {
+		if (!(risposta === null)) {
 			let autore_originale
 			await mongo.db(dbname)
 				.collection("messaggio")
@@ -2053,7 +2053,8 @@ exports.add_squeal = async function (q, credentials) {
 				.forEach((el) => {
 					autore_originale = el.utente
 				})
-			add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, q.user_id)
+			if(autore_originale !== q.user_id)
+				add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, q.user_id)
 		}
 
 		//aggiorno la quota
@@ -2068,10 +2069,10 @@ exports.add_squeal = async function (q, credentials) {
 
 		response["data"] = String(newDocumentId)
 		response["risultato"] = "successo"
-
+		console.log(JSON.stringify(response))
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
