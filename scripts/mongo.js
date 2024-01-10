@@ -2057,9 +2057,9 @@ exports.add_squeal = async function (q, credentials) {
 				add_notifica(autore_originale, "risposta", String(newDocumentId), credentials, null, q.user_id)
 		}
 
-		console.log(JSON.stringify(response))
+		/*console.log(JSON.stringify(response))
 		console.log(quota_usata)
-		console.log(q.textarea)
+		console.log(q.textarea)*/
 		//aggiorno la quota
 		await mongo.db(dbname)
 			.collection("utente")
