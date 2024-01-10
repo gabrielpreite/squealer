@@ -86,38 +86,38 @@ app.enable('trust proxy');
 
 const daily = schedule.scheduleJob({ hour: 0, minute: 5, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[D] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    console.log("[D] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
     mymongo.daily(false, mongoCredentials)
 });
 
 const weekly = schedule.scheduleJob({ hour: 0, minute: 3, dayOfWeek: 1, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[W] Starting weekly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    console.log("[W] Starting weekly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
     mymongo.weekly(false, mongoCredentials)
 });
 
 const monthly = schedule.scheduleJob({ hour: 0, minute: 1, date: 1, tz: 'Europe/Rome' }, () => {
     let timestamp = new Date()
-    console.log("[M] Starting monthly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    console.log("[M] Starting monthly job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
     mymongo.monthly(false, mongoCredentials)
 });
 
 const pop = schedule.scheduleJob('*/15 * * * *', function(){
     let timestamp = new Date()
-    console.log('Popolarita at'+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    console.log('Popolarita at'+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
     mymongo.pop(false, mongoCredentials)
 });
 
 async function run_daily_meteo(dry){
     let timestamp = new Date()
-    console.log((dry ? "[DRY]" : "")+"[METEO] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    console.log((dry ? "[DRY]" : "")+"[METEO] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
     try {
         const response = await axios.get("https://api.open-meteo.com/v1/forecast?latitude=44.4938&longitude=11.3387&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=Europe%2FBerlin&forecast_days=1");
 
         //console.log(response)
         const data = response.data
 
-        let data_oggi = timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }).slice(0,5)
+        let data_oggi = timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}).slice(0,5)
         let minima = data.daily.temperature_2m_min[0]
         let massima = data.daily.temperature_2m_max[0]
         let probabilita = data.daily.precipitation_probability_max[0]
@@ -147,7 +147,7 @@ async function run_daily_meteo(dry){
 
 async function run_auto_gatti(dry) {
     let timestamp = new Date()
-    console.log((dry ? "[DRY]" : "")+"[GATTI] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+    console.log((dry ? "[DRY]" : "")+"[GATTI] Starting daily job at "+timestamp.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
     try {
         const response = await axios.get("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&order=RANDOM&limit=1", {
             headers: {
@@ -1074,7 +1074,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                     let dt = new Date()
                     if (ghigliottina.counter > 0) {
                         const nextElement = ghigliottina.parole[5-ghigliottina.counter];
-                        //console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
+                        //console.log(nextElement+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}));
                         //console.log("aggiungo commento a post "+ghigliottina.ref_id)
                         
                         body = {
@@ -1090,7 +1090,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
                         mymongo.add_squeal(body, ghigliottina.mongoCredentials)
 
                     } else if (ghigliottina.counter === 0) {
-                        //console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }))
+                        //console.log("fine partita, la soluzione e "+ghigliottina.soluzione+" time: "+dt.toLocaleString('it-IT', { timeZone: 'Europe/Rome' , month: "2-digit", day: "2-digit",}))
                         //console.log("aggiungo commento a post "+ghigliottina.ref_id)
 
                         body = {
