@@ -578,6 +578,14 @@ ul {
   padding: 10px;
   margin: 10px 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-danger {
+  background-color: #c62831;
+  width: 40px;
+  height: 40px;
 }
 
 #canale_selezionato_nome {
