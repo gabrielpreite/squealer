@@ -620,8 +620,8 @@ input#new_img {
   flex-direction: row;
 }
 
-.followers li {
-  padding: 5px 15px;
+.follower-list-utenti li {
+    padding: 5px 15px !important;
 }
 
 #modlist_ul li {

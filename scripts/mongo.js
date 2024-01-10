@@ -3012,9 +3012,14 @@ exports.get_notifications = async function (user_id, credentials) {
 		await mongo.db(dbname)
 			.collection("notifica")
 			.find({
-				utente: user_id,
-				letta: false
+				utente: user_id
+				//letta: false
 			})
+			.sort(
+				{
+					timestamp: -1
+				}
+			)
 			.forEach((r) => {
 				result.push(r)
 			});
