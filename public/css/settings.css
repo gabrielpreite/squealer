@@ -620,7 +620,7 @@ input#new_img {
   flex-direction: row;
 }
 
-.followers #follow li {
+.followers li {
   padding: 5px 15px;
 }
 
