@@ -295,14 +295,14 @@ function ricerca_squeal(elem) {
     query = elem.innerHTML;
     tipo = query[0];
 
-    if (tipo == " ") {
+    if (tipo === " ") {
       tipo = query[1];
       query = query.substring(2);
     }
-    if (tipo == "$") {
+    else if (tipo === "$") {
       tipo = "channel";
     }
-    if (tipo == "#") {
+    else if (tipo === "#") {
       tipo = "keyword"
     }
     else {
@@ -313,6 +313,7 @@ function ricerca_squeal(elem) {
       tipo = "user";
     }
   }
+  //console.log("tipo search: "+tipo)
 
   let all_info;
   $.ajax({
