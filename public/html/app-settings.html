@@ -3,17 +3,12 @@
 
 <head>
   <title>Impostazioni - Squealer</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../css/app-settings.css">
-  <link rel="stylesheet" href="../css/navbar.css">
-
-  <!--JavaScript Scripts-->
-  <script type="text/javascript" src="/js/global.js"></script>
-  <script type="text/javascript" src="/js/app-settings.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 </head>
 
@@ -337,13 +332,39 @@
 
     </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous">
-  </script>
+
+  <!-- barra in basso -->
+  <div class="bottom-bar">
+    <a href="/app">
+      <i class="material-icons">home</i>
+    </a>
+    <a href="/app-search">
+      <i class="material-icons">search</i>
+    </a>
+    <a href="/app-editor">
+      <i class="material-icons">add_box</i>
+    </a>
+    <a href="/app-notify">
+      <i class="material-icons">notifications</i>
+    </a>
+    <a href="/app-settings">
+      <i class="material-icons">settings</i>
+    </a>
+  </div>
+
+  <!--  Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/app-feed.js"></script>
+  <script type="text/javascript" src="../js/global.js"></script>
+  <script type="text/javascript" src="/js/app-settings.js"></script>
 
   <script>
+    
+    //URLUTENTE
+    var CURRENT_USER = get_cookie_by_name("username");
+    CURRENT_USER = "fv";
+
     // override funzione form update_smm
     document.getElementById("update_smm").addEventListener('submit', async event => {
       event.preventDefault();
@@ -352,13 +373,7 @@
 
 
     // INSERIMENTO PROPIC UTENTE
-    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
-
-    // controllo l'account corrente (gestione smm)
-    var CURRENT_USER = get_cookie_by_name("managed");
-    if (CURRENT_USER == undefined) {
-      CURRENT_USER = get_cookie_by_name("username");
-    }
+    //$("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
 
     //azione post form info utente
     //$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
