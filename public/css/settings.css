@@ -637,8 +637,12 @@ input#new_img {
 }
 
 .modifica_mod {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
+}
+
+.invia-modifiche {
+  margin-top: 20px;
 }
 
 .gestito {
