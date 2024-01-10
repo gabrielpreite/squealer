@@ -269,7 +269,7 @@
       </div>
 
       <div id="popolarita" class="sezione" hidden="true">
-        <div class="container barra-scorrimento">
+        <div class="container">
           <h2 class="mb-4 title-sezione">Popolarità</h2>
           <div class="previsione">
             <p>Previsione andamento popolarità:
@@ -283,19 +283,19 @@
             </div>
           </div>
           <div class="ordine">
-            <div class="colonna pop">
+            <div class="colonna pop barra-scorrimento">
                 <h3>Popolari  <span>n.0</span></h3>
                 <div class="popolari barra-scorrimento">
 
                 </div>
             </div>
-            <div class="colonna impop">
+            <div class="colonna impop barra-scorrimento">
                 <h3>Impopolari  <span>n.0</span></h3>
                 <div class="impopolari barra-scorrimento">
 
                 </div>
             </div>
-            <div class="colonna controv">
+            <div class="colonna controv barra-scorrimento">
                 <h3>Controversi  <span>n.0</span></h3>
                 <div class="controversi barra-scorrimento">
 
@@ -361,8 +361,17 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
   </script>
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
 
   <script>
+
     // override funzione form update_smm
     document.getElementById("update_smm").addEventListener('submit', async event => {
       event.preventDefault();
