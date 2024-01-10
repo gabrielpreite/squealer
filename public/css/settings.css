@@ -582,8 +582,9 @@ ul {
   justify-content: space-between;
 }
 
+
 .btn-danger {
-  background-color: #c62831;
+  background-color: #c62831 !important;
   width: 40px;
   height: 40px;
 }
@@ -641,7 +642,7 @@ input#new_img {
   vertical-align: middle;
 }
 
-.gestiti {
+.gestito {
   padding-right: 50px;
 }
 
