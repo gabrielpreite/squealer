@@ -137,6 +137,9 @@
 
   <script>
     // INIT
+    var lista_destinatari = [];
+    var chip_arr;
+    var chip_n = 0;
     document.addEventListener('DOMContentLoaded', function() {
       //sideNav
       var sideNavOptions = { edge: 'right' }; // You can customize options here
@@ -148,13 +151,15 @@
 
       //chips dest
       var chipOptions = {
+        data: lista_destinatari,
         placeholder: "Inserisci un destinatario",
         secondaryPlaceholder: "+ destinatario",
-        onChipAdd: check_destinatari(),
-        //onChipDelete: rimuovi_destinatario()
+        onChipAdd: function (chip) {
+          check_destinatari(chip[0].M_Chips.chipsData[chip_n].tag);
+        }
       };
-      var chip = document.querySelectorAll('.chips');
-      var inst = M.Chips.init(chip, chipOptions);
+      var all_chip = document.querySelectorAll('.chips');
+      chip_arr = M.Chips.init(all_chip, chipOptions);
     });
 
     //URLUTENTE

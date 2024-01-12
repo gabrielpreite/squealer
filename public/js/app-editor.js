@@ -61,15 +61,28 @@ function mostraCampo(tipo) {
     }
 }
 
-function check_destinatari() {
-
+function check_destinatari(chip_txt) {
+    if (document.getElementById("icona-canali").classList.length == 2) {
+        if (check_destinatari_canali(chip_txt)) {
+            chip_n = chip_n + 1;
+        } else {
+            chip_arr[0].deleteChip(chip_n);
+        }
+    } else {
+        if (check_destinatari_utenti(chip_txt)) {
+            chip_n = chip_n + 1;
+        } else {
+            chip_arr[0].deleteChip(chip_n);
+        }
+    }
 }
 
-function check_destinatari_canali() {
-    var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
+function check_destinatari_canali(a) {
+    //nome destinatario da cercare (per ora gestisco solo canali) = a
     if (!a.startsWith('$')) {
       a = "$".concat(a)
     }
+    var ret;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -77,41 +90,25 @@ function check_destinatari_canali() {
       headers: {
       },
       success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-
-        //rimuovo $ iniziale per visualizzazione in lista
-        a = a.substring(1)
-        if (!array_dest_canali.includes(a)) {
-            // Aggiungi il destinatario al riquadro dei destinatari inseriti
-            $("#destinatari-inseriti").append(`
-              <div class="inserito-item name-${a}">
-              <div class="left-content">
-                <i class="fas fa-users"></i>
-                <p>${a}</p>
-              </div>
-              <div class="right-content">
-                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
-              </div>
-              </div>
-            `);
-            document.getElementById("lista_destinatari").hidden = false;
-            array_dest_canali.push(a); // Aggiungi all'array
-            $("#cerca_destinatari_canali").val(""); // Resetta il campo
-          }
+        ret = true;
       },
       error: function (xhr, status, e){
-        alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
+        alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura");
+        ret = false;
       }
     });
+    return ret;
 }
 
-function check_destinatari_utenti() {
-    var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
+function check_destinatari_utenti(a) {
+    //nome utente da cercare = a
     if (a.startsWith('@')) {
       a = a.substring(1)
     } else if (a == get_cookie_by_name("username")) {
       alert("Non è possibile inserire il proprio username tra i destinatari");
       return;
     }
+    var ret;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -119,49 +116,18 @@ function check_destinatari_utenti() {
       headers: {
       },
       success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-        if (!array_dest_utenti.includes(a)) {
-          // Aggiungi il destinatario al riquadro dei destinatari inseriti
-          $("#destinatari-inseriti").append(`
-            <div class="inserito-item name-${a}">
-            <div class="left-content">
-              <i class="fas fa-users"></i>
-              <p>${a}</p>
-            </div>
-            <div class="right-content">
-              <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
-              </div>
-            </div>
-          `);
-          document.getElementById("lista_destinatari").hidden = false;
-          array_dest_utenti.push(a); // Aggiungi all'array
-          $("#cerca_destinatari_utenti").val(""); // Resetta il campo
-        }
+        ret = true;
       },
       error: function (xhr, status, e){
-        alert("L'utente selezionato non esiste")
+        alert("L'utente selezionato non esiste");
+        ret = false;
       }
     });
+    return ret;
 }
 
-function rimuovi_destinatario(nome, array_dest) {
-    $(`#destinatari-inseriti .name-${nome}`).remove();
-
-    // Rimuovi il destinatario dall'array
-    const index = array_dest.indexOf(nome);
-    if (index !== -1) {
-      array_dest.splice(index, 1);
-    }
-    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
-    var listaDestinatariDiv = document.getElementById("lista_destinatari");
-
-    // Verifica se il div "destinatari-inseriti" è vuoto
-    if (destinatariInseritiDiv.innerHTML.trim() == "") {
-      // Imposta "hidden" su true per "lista_destinatari"
-      listaDestinatariDiv.hidden = true;
-    } else {
-      // Altrimenti, imposta "hidden" su false per "lista_destinatari"
-      listaDestinatariDiv.hidden = false;
-    }
+function rimuovi_destinatario(chip_rem) {
+    console.log(chip_rem);
 }
 
 function check_post() {
