@@ -60,7 +60,7 @@ app.use('/docs', express.static(global.rootDir +'/public/html'));
 app.use('/media' , express.static(global.rootDir +'/public/media'));
 app.use('/img' , express.static(global.rootDir +'/public/media/img'));
 app.use('/uploads', express.static(global.rootDir +'/public/media/uploads'));
-app.use(express.json()); //?
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
@@ -69,7 +69,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized:true,
-    cookie: { maxAge: oneDay },
+    cookie: { maxAge: (oneDay * 30) },
     resave: false
 }));
 
