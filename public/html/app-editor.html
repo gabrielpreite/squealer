@@ -12,6 +12,8 @@
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -82,15 +84,15 @@
       <div class="row">
         <div id="campo_scelta" class="col s12">
           <label>
-            <input type="radio" hidden>
-            <a class="material-icons attiva" onclick="cambia_campo('Testo')">email</a>
+            <input type="radio" name="group1" hidden>
+            <i class="material-icons attiva" onclick="cambia_campo('Testo')">email</i>
           </label>
           <label>
-            <input type="radio" hidden>
+            <input type="radio" name="group1" hidden>
             <i class="material-icons" onclick="cambia_campo('Immagine')">panorama</i>
           </label>
           <label>
-            <input type="radio" hidden>
+            <input type="radio" name="group1" hidden>
             <i class="material-icons" onclick="cambia_campo('Posizione')">edit_location</i>
           </label>
         </div>
@@ -167,6 +169,11 @@
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
     CURRENT_USER = "fv";
+
+    //SETUP
+    let array_dest_canali=[]
+    let array_dest_utenti=[]
+    let imageFileURL = null;
 
 
   </script>
