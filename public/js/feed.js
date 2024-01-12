@@ -710,3 +710,52 @@ function short(tipo){
   $("#query").val(tipo)
   ricerca_squeal(null)
 }
+
+function refresh_notifiche(){
+  let notifiche;
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    async: false,
+    url: `https://site212251.tw.cs.unibo.it/notification/${CURRENT_USER}`,
+    headers: { },
+    success: function (data, status, xhr) {
+      notifiche = data.data;
+    }
+  });
+
+  console.log("refresh notifications")
+
+  if(notifiche[0].timestamp > last_notifica_id){
+    console.log("found new")
+    let lista_notifiche = document.getElementById('notificationsDropdown');
+
+    var nots = notificationsDropdown.getElementsByTagName("a");
+    for (var i = nots.length - 1; i >= 0; i--) {
+      nots[i].parentNode.removeChild(nots[i]);
+    }
+
+    let n_notifiche = notifiche.length;
+    let counter = 10
+    for (var n = 0; n < n_notifiche; n++) {
+      //costruzione notifica
+      if(counter >= 0 || notifiche[n].letta){
+        let not_tipo = 'type="button" ';
+        let not_id = 'id="' + notifiche[n].not_id + '" ';
+        let not_class = 'class="dropdown-item ';
+        if (notifiche[n].letta) {
+          not_class = not_class + 'letta ';
+        } else {
+          not_class = not_class + 'not_letta ';
+        }
+        not_class = not_class + notifiche[n].tipo + '" ';
+        let on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
+  
+        let notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
+        lista_notifiche.insertAdjacentHTML('beforeend', notifica);
+        counter--
+      }
+    }
+    last_notifica_id = notifiche[0].timestamp
+  }
+}
