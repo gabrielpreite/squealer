@@ -537,6 +537,11 @@ function rimpiazza_commenti(id) {
 
 //NOTIFICHE
 function ricerca_notifica(notifica) {
+  if(document.getElementById(notifica.ref_id).classList.contains("not_letta")){ //segno come letta (classe)
+    document.getElementById(notifica.ref_id).classList.remove("not_letta")
+    document.getElementById(notifica.ref_id).classList.add("letta")
+  }
+
   if (notifica.tipo == "follow") {
     let elem_notifica = document.createElement('div');
     elem_notifica.innerHTML = notifica.ref_id;
@@ -729,6 +734,8 @@ function refresh_notifiche(){
 
   if(notifiche[0].timestamp > last_notifica_id){
     console.log("FOUND NEW")
+    let audio = new Audio('https://site212251.tw.cs.unibo.it/media/sounds/notification.mp3');
+    audio.play();
     let lista_notifiche = document.getElementById('notificationsDropdown');
 
     var nots = notificationsDropdown.getElementsByTagName("a");
