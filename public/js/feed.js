@@ -725,9 +725,10 @@ function refresh_notifiche(){
   });
 
   console.log("refresh notifications")
+  console.log("old last "+last_notifica_id)
 
   if(notifiche[0].timestamp > last_notifica_id){
-    console.log("found new")
+    console.log("FOUND NEW")
     let lista_notifiche = document.getElementById('notificationsDropdown');
 
     var nots = notificationsDropdown.getElementsByTagName("a");
@@ -739,7 +740,7 @@ function refresh_notifiche(){
     let counter = 10
     for (var n = 0; n < n_notifiche; n++) {
       //costruzione notifica
-      if(counter >= 0 || notifiche[n].letta){
+      if(counter >= 0 || !notifiche[n].letta){
         let not_tipo = 'type="button" ';
         let not_id = 'id="' + notifiche[n].not_id + '" ';
         let not_class = 'class="dropdown-item ';
@@ -757,5 +758,6 @@ function refresh_notifiche(){
       }
     }
     last_notifica_id = notifiche[0].timestamp
+    console.log("new last "+last_notifica_id)
   }
 }

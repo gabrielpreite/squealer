@@ -375,7 +375,7 @@
         var counter = 10
         for (var n = 0; n < n_notifiche; n++) {
           //costruzione notifica
-          if(counter >= 0 || notifiche[n].letta){
+          if(counter >= 0 || !notifiche[n].letta){
             var not_tipo = 'type="button" ';
             var not_id = 'id="' + notifiche[n].not_id + '" ';
             var not_class = 'class="dropdown-item ';
@@ -393,7 +393,7 @@
           }
         }
         var last_notifica_id = notifiche[0].timestamp
-        setInterval(refresh_notifiche(), 1000 * 60)
+        setInterval(refresh_notifiche, 1000 * 60)
 
         //RICHIESTA E COSTRUZIONE SQUEAL
         var squeals;
