@@ -35,10 +35,8 @@ function cambia_campo(opzione) {
 function mostraCampo(tipo) {
     var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
 
-    // Nascondi tutti i campi inizialmente
-    document.getElementById("campo-canali").hidden = true;
-    document.getElementById("campo-utenti").hidden = true;
-    document.getElementById("lista_destinatari").hidden = false;
+    //tutto invisibile
+    document.getElementById("campo-dest").hidden = true;
     document.getElementById("campo-bacheca").hidden = true;
 
     // Rimuovi la classe 'attiva' da tutte le icone
@@ -49,32 +47,25 @@ function mostraCampo(tipo) {
 
     // Mostra il campo corrispondente al tipo selezionato
     if (tipo === "canali") {
-      document.getElementById("campo-canali").hidden = false;
-      document.getElementById("lista_destinatari").hidden = true;
-      destinatariInseritiDiv.innerHTML = "";
-      array_dest_utenti = [];
+      document.getElementById("campo-dest").hidden = false;
       document.getElementById("icona-canali").classList.add("attiva");
 
     } else if (tipo === "utenti") {
-      document.getElementById("campo-utenti").hidden = false;
-      document.getElementById("lista_destinatari").hidden = true;
-      destinatariInseritiDiv.innerHTML = "";
-      array_dest_canali = [];
+      document.getElementById("campo-dest").hidden = false;
       document.getElementById("icona-utenti").classList.add("attiva");
 
     } else if (tipo === "bacheca") {
-      document.getElementById("lista_destinatari").hidden = true;
       document.getElementById("campo-bacheca").hidden = false;
-      destinatariInseritiDiv.innerHTML = "";
-      array_dest_utenti = [];
-      array_dest_canali = [];
       document.getElementById("icona-bacheca").classList.add("attiva");
 
     }
-  }
+}
 
+function check_destinatari() {
 
-  function check_destinatari_canali() {
+}
+
+function check_destinatari_canali() {
     var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
     if (!a.startsWith('$')) {
       a = "$".concat(a)
@@ -111,9 +102,9 @@ function mostraCampo(tipo) {
         alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
       }
     });
-  }
+}
 
-  function check_destinatari_utenti() {
+function check_destinatari_utenti() {
     var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
     if (a.startsWith('@')) {
       a = a.substring(1)
@@ -150,9 +141,9 @@ function mostraCampo(tipo) {
         alert("L'utente selezionato non esiste")
       }
     });
-  }
+}
 
-  function rimuovi_destinatario(nome, array_dest) {
+function rimuovi_destinatario(nome, array_dest) {
     $(`#destinatari-inseriti .name-${nome}`).remove();
 
     // Rimuovi il destinatario dall'array
@@ -171,9 +162,9 @@ function mostraCampo(tipo) {
       // Altrimenti, imposta "hidden" su false per "lista_destinatari"
       listaDestinatariDiv.hidden = false;
     }
-  }
+}
 
-  function check_post() {
+function check_post() {
     // Verifica se ci sono destinatari selezionati
     let arr = window.location.href.split('?');
     if (!((arr.length > 1 && arr[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
@@ -201,4 +192,4 @@ function mostraCampo(tipo) {
     }
     // Altri controlli se necessari, come il testo, immagini o posizione
     return true;
-  }
+}

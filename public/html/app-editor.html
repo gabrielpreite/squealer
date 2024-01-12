@@ -22,7 +22,8 @@
   </nav>
 
   <div class="row" id="post-dest">
-    <div id="selezione-destinatari">
+    <div id="selezione-destinatari" class="col s12">
+
       <div id="tipo-messaggio">
         <div class="title-bar">
           <div class="title-line"></div>
@@ -45,35 +46,15 @@
         </div>
       </div>
 
-      <div id="campo-canali" hidden="true">
+      <div id="campo-dest" hidden>
         <div class="search-container">
-          <input type="text" id="cerca_destinatari_canali" name="cerca_destinatari_canali" placeholder="Cerca canali">
-          <button class="search-button" onclick="check_destinatari_canali()">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-        <ul class="list-group" name="lista_destinatari_canali" id="lista_destinatari_canali"></ul>
-      </div>
-
-      <div id="campo-utenti" hidden="true">
-        <div class="search-container">
-          <input type="text" id="cerca_destinatari_utenti" name="cerca_destinatari_utenti" placeholder="Cerca utenti">
-          <button class="search-button" onclick="check_destinatari_utenti()">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-        <ul class="list-group" name="lista_destinatari_utenti" id="lista_destinatari_utenti"></ul>
-      </div>
-
-      <div id="lista_destinatari" hidden="false">
-        <div id="destinatari-inseriti-container">
-          <div id="destinatari-inseriti">
-            <!-- Qui verranno visualizzati i destinatari inseriti -->
+          <div class="chips input-field">
+            <input class="input placeholder-chip" id="destinatari">
           </div>
         </div>
       </div>
 
-      <div id="campo-bacheca" hidden="true">
+      <div id="campo-bacheca" hidden>
         <!-- Da riempire se si vuole fare visualizzare qualcosa -->
       </div>
     </div>
@@ -164,6 +145,16 @@
 
       //textarea
       $('input#input_text, textarea#textarea2').characterCounter();
+
+      //chips dest
+      var chipOptions = {
+        placeholder: "Inserisci un destinatario",
+        secondaryPlaceholder: "+ destinatario",
+        onChipAdd: check_destinatari(),
+        //onChipDelete: rimuovi_destinatario()
+      };
+      var chip = document.querySelectorAll('.chips');
+      var inst = M.Chips.init(chip, chipOptions);
     });
 
     //URLUTENTE
@@ -171,8 +162,6 @@
     CURRENT_USER = "fv";
 
     //SETUP
-    let array_dest_canali=[]
-    let array_dest_utenti=[]
     let imageFileURL = null;
 
 
