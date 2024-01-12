@@ -537,9 +537,9 @@ function rimpiazza_commenti(id) {
 
 //NOTIFICHE
 function ricerca_notifica(notifica) {
-  if(document.getElementById(notifica.ref_id).classList.contains("not_letta")){ //segno come letta (classe)
-    document.getElementById(notifica.ref_id).classList.remove("not_letta")
-    document.getElementById(notifica.ref_id).classList.add("letta")
+  if(document.getElementById(notifica.not_id).classList.contains("not_letta")){ //segno come letta (classe)
+    document.getElementById(notifica.not_id).classList.remove("not_letta")
+    document.getElementById(notifica.not_id).classList.add("letta")
   }
 
   if (notifica.tipo == "follow") {
@@ -729,11 +729,11 @@ function refresh_notifiche(){
     }
   });
 
-  console.log("refresh notifications")
-  console.log("old last "+last_notifica_id)
+  //console.log("refresh notifications")
+  //console.log("old last "+last_notifica_id)
 
   if(notifiche[0].timestamp > last_notifica_id){
-    console.log("FOUND NEW")
+    //console.log("FOUND NEW")
     let audio = new Audio('https://site212251.tw.cs.unibo.it/media/sounds/notification.mp3');
     audio.play();
     let lista_notifiche = document.getElementById('notificationsDropdown');
@@ -765,6 +765,6 @@ function refresh_notifiche(){
       }
     }
     last_notifica_id = notifiche[0].timestamp
-    console.log("new last "+last_notifica_id)
+    //console.log("new last "+last_notifica_id)
   }
 }
