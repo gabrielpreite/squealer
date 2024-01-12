@@ -93,23 +93,19 @@
         <div id="managed-account-username" class="btn btn-primary" hidden="true"></div>
       </div>
       <div id="quota">
-        <div class="char-count-item">
-          <span class="count" id="charCount_mese">
-
-          </span>
+        <div id="nav_quota_m" class="char-count-item collapse multi-collapse" aria-label="Caratteri rimanenti questo mese">
+          <span class="count" id="charCount_mese" aria-live="polite"></span>
           <span class="label">Mese</span>
         </div>
-        <div class="char-count-item">
-          <span class="count" id="charCount_sett">
-
-          </span>
+        <div id="nav_quota_s" style="padding-right: 30px;" class="char-count-item collapse multi-collapse" aria-label="Caratteri rimanenti questa settimana">
+          <span class="count" id="charCount_sett" aria-live="polite"></span>
           <span class="label">Settimana</span>
         </div>
-        <div class="char-count-item">
-          <span class="count" id="charCount_giorno">
-
-          </span>
-          <span class="label">Giorno</span>
+        <!-- collapse -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="nav_quota_m nav_quota_s"><i class="fa-solid fa-angles-left"></i></button>
+        <div id="nav_quota_g" class="char-count-item" style="padding-left: 30px;" aria-label="Caratteri rimanenti oggi">
+          <span class="count" id="charCount_giorno" aria-live="polite"></span>
+          <span class="label">Quota Giornaliera</span>
         </div>
     <button type="button" class="btn btn-unstyled" id="shopButton" data-bs-toggle="modal" data-bs-target="#shop-quota">
       <i class="fas fa-shopping-cart"></i>
