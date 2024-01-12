@@ -454,42 +454,6 @@
         })
     }
 
-    var notifiche;
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/notification/${CURRENT_USER}`,
-      headers: {},
-      success: function (data, status, xhr) {
-        notifiche = data.data;
-      }
-    });
-    var lista_notifiche = document.getElementById('notificationsDropdown');
-    var n_notifiche = notifiche.length;
-    var counter = 10
-    for (var n = 0; n < n_notifiche; n++) {
-      //costruzione notifica
-      if (counter >= 0 || !notifiche[n].letta) {
-        var not_tipo = 'type="button" ';
-        var not_id = 'id="' + notifiche[n].not_id + '" ';
-        var not_class = 'class="dropdown-item ';
-        if (notifiche[n].letta) {
-          not_class = not_class + 'letta ';
-        } else {
-          not_class = not_class + 'not_letta ';
-        }
-        not_class = not_class + notifiche[n].tipo + '" ';
-        var on_click = 'onclick="ricerca_notifica(notifiche[' + n + '])"';
-
-        var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
-        lista_notifiche.insertAdjacentHTML('beforeend', notifica);
-        counter--
-      }
-    }
-    var last_notifica_id = notifiche[0].timestamp
-    setInterval(refresh_notifiche, 1000 * 60)
-
     // ================= SEZIONI
     let all_info;
     $.ajax({
