@@ -1370,7 +1370,7 @@ exports.user_feed = async function (user_id, credentials) {
 		console.log("ottenuti utenti seguiti da "+user_id)
 		utenti_seguiti.forEach((element) => console.log(element))*/
 
-		//canali_seguiti.push("@"+user_id) //l'utente non vede i propri post
+		utenti_seguiti.push(user_id)
 		//console.log("aggiunto utente")
 
 		//debug
