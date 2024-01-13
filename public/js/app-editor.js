@@ -61,32 +61,32 @@ function mostraCampo(tipo) {
     }
 }
 
-function check_destinatari(chip_txt) {
+async function check_destinatari(chip_txt) {
     if (document.getElementById("icona-canali").classList.length == 2) {
         console.log("canali");
         console.log(chip_txt);
-        let ret = check_destinatari_canali(chip_txt);
+        let ret = await check_destinatari_canali(chip_txt);
         console.log(ret);
         if (ret) {
             chip_n = chip_n + 1;
         } else {
-            //chip_arr[0].deleteChip(chip_n);
+            chip_arr[0].deleteChip(chip_n);
         }
     } else {
         console.log("utenti");
         console.log(chip_txt);
-        let ret = check_destinatari_utenti(chip_txt);
+        let ret = await check_destinatari_utenti(chip_txt);
         console.log(ret);
         if (ret) {
             chip_n = chip_n + 1;
         } else {
-            //chip_arr[0].deleteChip(chip_n);
+            chip_arr[0].deleteChip(chip_n);
         }
     }
     console.log(chip_n);
 }
 
-function check_destinatari_canali(a) {
+async function check_destinatari_canali(a) {
     //nome destinatario da cercare (per ora gestisco solo canali) = a
     if (!a.startsWith('$')) {
       a = "$".concat(a)
@@ -94,7 +94,6 @@ function check_destinatari_canali(a) {
     $.ajax({
         type: 'GET',
         dataType: "json",
-        async: false,
         url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
         headers: {
         },
@@ -108,7 +107,7 @@ function check_destinatari_canali(a) {
     });
 }
 
-function check_destinatari_utenti(a) {
+async function check_destinatari_utenti(a) {
     //nome utente da cercare = a
     if (a.startsWith('@')) {
       a = a.substring(1)
@@ -119,7 +118,6 @@ function check_destinatari_utenti(a) {
     $.ajax({
         type: 'GET',
         dataType: "json",
-        async: false,
         url: `${window.location.origin}/user/${a}`,
         headers: {
         },
