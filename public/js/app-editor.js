@@ -114,7 +114,6 @@ async function check_destinatari(a) {
             }
         });
     }
-    console.log(chip_n);
 }
 
 function check_destinatari_canali(a) {
