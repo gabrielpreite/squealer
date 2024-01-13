@@ -72,7 +72,7 @@ async function check_destinatari(a) {
         $.ajax({
             type: 'GET',
             dataType: "json",
-            url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
+            url: `https://site212251.tw.cs.unibo.it/channel/${a}/auth?userid=${CURRENT_USER}`,
             headers: {
             },
             success: function (data, status, xhr) {//canale esiste e utente ha i permessi
@@ -99,7 +99,7 @@ async function check_destinatari(a) {
         $.ajax({
             type: 'GET',
             dataType: "json",
-            url: `${window.location.origin}/user/${a}`,
+            url: `https://site212251.tw.cs.unibo.it/user/${a}`,
             headers: {
             },
             success: function (data, status, xhr) {//canale esiste e utente ha i permessi
