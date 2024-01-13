@@ -216,14 +216,14 @@ function add_post(){
                 array_dest[x] = chip_arr[0].chipsData[x].tag; 
                 x = x + 1;
             });
-            if(!$("#icona-canali").attr("hidden")){//caso canali
+            if(document.getElementById("icona-canali").classList.length == 2){//caso canali
                 //aggiungo $ prima di ogni canale
                 array_dest.forEach(function(nome, index, array) {
                     array[index] = "$" + nome;
                 });
                 formData.append("destinatari", JSON.stringify(array_dest))
                 formData.append("tipo_destinatari", "canali")
-            }else if(!$("#icona-utenti").attr("hidden")){//caso utenti
+            }else if(document.getElementById("icona-utenti").classList.length == 2){//caso utenti
                 formData.append("destinatari", JSON.stringify(array_dest))
                 formData.append("tipo_destinatari", "utenti")
             }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
