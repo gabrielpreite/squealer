@@ -75,6 +75,7 @@ function check_destinatari(chip_txt) {
             chip_arr[0].deleteChip(chip_n);
         }
     }
+    console.log(chip_n);
 }
 
 function check_destinatari_canali(a) {
@@ -126,14 +127,11 @@ function check_destinatari_utenti(a) {
     return ret;
 }
 
-function rimuovi_destinatario(chip_rem) {
-    console.log(chip_rem);
-}
-
+//CREAZIONE NUOVI POST
 function check_post() {
     // Verifica se ci sono destinatari selezionati
-    let arr = window.location.href.split('?');
-    if (!((arr.length > 1 && arr[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
+    //let arr = window.location.href.split('?');
+    if (!((chip_arr[0].chipsData.length > 1 && chip_arr[0].chipsData[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
       if ($("#destinatari-inseriti").children().length == 0) {
         alert("Nessun destinatario selezionato");
         return false;
@@ -159,3 +157,62 @@ function check_post() {
     // Altri controlli se necessari, come il testo, immagini o posizione
     return true;
 }
+
+function add_post(){
+    if(check_post() == true){
+        const formData = new FormData(document.getElementById("crea_post"))
+
+        formData.append("user_id", CURRENT_USER)
+
+        if (!$("#contenuto_testo").attr("hidden")) {//caso testo
+            formData.append("contenuto", "testo")
+        } else if (!$("#contenuto_immagine").attr("hidden")) {//caso img
+            formData.append("contenuto", "img")
+        } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
+            formData.append("contenuto", "map")
+        }
+
+        let arr = window.location.href.split('?');
+        if (arr.length > 1 && arr[1] !== '') { //caso risposta, nessun destinatario
+            formData.append("post_id", arr[1].split("=")[1]);
+            formData.append("destinatari", JSON.stringify([]))
+        } else { //caso post originali, destinatari dipendono dalla scelta utente
+            let array_dest = [];
+            let x = 0;
+            chip_arr[0].chipsData.forEach(function (){
+                array_dest[x] = chip_arr[0].chipsData[n].tag; 
+                x = x + 1;
+            });
+            if(!$("#campo-canali").attr("hidden")){//caso canali
+            //aggiungo $ prima di ogni canale
+            array_dest.forEach(function(nome, index, array) {
+                array[index] = "$" + nome;
+            });
+            formData.append("destinatari", JSON.stringify(array_dest))
+            formData.append("tipo_destinatari", "canali")
+            }else if(!$("#campo-utenti").attr("hidden")){//caso utenti
+            formData.append("destinatari", JSON.stringify(array_dest))
+            formData.append("tipo_destinatari", "utenti")
+            }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
+            formData.append("destinatari", JSON.stringify([]))
+            }
+        }
+
+        //ghigliottina (ORA TOLTA)
+        
+
+        fetch("/squeal", {
+            method: "POST",
+            body: formData,
+        })
+        .then((response) => {
+            if (response.ok) {
+            // The initial request was successful
+            window.location.replace("https://site212251.tw.cs.unibo.it");
+            } else {
+            throw new Error("Network response was not ok.");
+            }
+        })
+    }
+}
+
