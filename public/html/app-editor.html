@@ -154,6 +154,9 @@
         secondaryPlaceholder: "+ destinatario",
         onChipAdd: function (chip) {
           check_destinatari(chip[0].M_Chips.chipsData[chip_n].tag);
+        },
+        onChipDelete: function () {
+          chip_n = chip_arr[0].chipsData.length;
         }
       };
       var all_chip = document.querySelectorAll('.chips');

@@ -45,17 +45,21 @@ function mostraCampo(tipo) {
 
     // Mostra il campo corrispondente al tipo selezionato
     if (tipo === "canali") {
-      document.getElementById("campo-dest").hidden = false;
-      document.getElementById("icona-canali").classList.add("attiva");
+        document.getElementById("campo-dest").hidden = false;
+        document.getElementById("icona-canali").classList.add("attiva");
 
     } else if (tipo === "utenti") {
-      document.getElementById("campo-dest").hidden = false;
-      document.getElementById("icona-utenti").classList.add("attiva");
+        document.getElementById("campo-dest").hidden = false;
+        document.getElementById("icona-utenti").classList.add("attiva");
 
     } else if (tipo === "bacheca") {
-      document.getElementById("campo-bacheca").hidden = false;
-      document.getElementById("icona-bacheca").classList.add("attiva");
+        document.getElementById("campo-bacheca").hidden = false;
+        document.getElementById("icona-bacheca").classList.add("attiva");
 
+    }
+    chip_n = 0;
+    while (chip_arr[0].chipsData.length != 0) {
+        chip_arr[0].deleteChip(0);
     }
 }
 
