@@ -61,32 +61,63 @@ function mostraCampo(tipo) {
     }
 }
 
-async function check_destinatari(chip_txt) {
+async function check_destinatari(a) {
     if (document.getElementById("icona-canali").classList.length == 2) {
         console.log("canali");
         console.log(chip_txt);
-        let ret = await check_destinatari_canali(chip_txt);
-        console.log(ret);
-        if (ret) {
-            chip_n = chip_n + 1;
-        } else {
-            chip_arr[0].deleteChip(chip_n);
+        //nome destinatario da cercare (per ora gestisco solo canali) = a
+        if (!a.startsWith('$')) {
+            a = "$".concat(a)
         }
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
+            headers: {
+            },
+            success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+                chip_n = chip_n + 1;
+                console.log(true);
+                return true;
+            },
+            error: function (xhr, status, e){
+                chip_arr[0].deleteChip(chip_n);
+                alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura");
+                return false;
+            }
+        });
     } else {
         console.log("utenti");
         console.log(chip_txt);
-        let ret = await check_destinatari_utenti(chip_txt);
-        console.log(ret);
-        if (ret) {
-            chip_n = chip_n + 1;
-        } else {
-            chip_arr[0].deleteChip(chip_n);
+        //nome utente da cercare = a
+        if (a.startsWith('@')) {
+            a = a.substring(1)
+        } else if (a == get_cookie_by_name("username")) {
+            alert("Non è possibile inserire il proprio username tra i destinatari");
+            return;
         }
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: `${window.location.origin}/user/${a}`,
+            headers: {
+            },
+            success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+                chip_n = chip_n + 1;
+                console.log(true);
+                return true;
+            },
+            error: function (xhr, status, e){
+                chip_arr[0].deleteChip(chip_n);
+                alert("L'utente selezionato non esiste");
+                return false;
+            }
+        });
     }
     console.log(chip_n);
 }
 
-async function check_destinatari_canali(a) {
+function check_destinatari_canali(a) {
     //nome destinatario da cercare (per ora gestisco solo canali) = a
     if (!a.startsWith('$')) {
       a = "$".concat(a)
@@ -107,7 +138,7 @@ async function check_destinatari_canali(a) {
     });
 }
 
-async function check_destinatari_utenti(a) {
+function check_destinatari_utenti(a) {
     //nome utente da cercare = a
     if (a.startsWith('@')) {
       a = a.substring(1)
