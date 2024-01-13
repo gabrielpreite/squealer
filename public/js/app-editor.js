@@ -70,7 +70,7 @@ function check_destinatari(chip_txt) {
         if (ret) {
             chip_n = chip_n + 1;
         } else {
-            chip_arr[0].deleteChip(chip_n);
+            //chip_arr[0].deleteChip(chip_n);
         }
     } else {
         console.log("utenti");
@@ -80,7 +80,7 @@ function check_destinatari(chip_txt) {
         if (ret) {
             chip_n = chip_n + 1;
         } else {
-            chip_arr[0].deleteChip(chip_n);
+            //chip_arr[0].deleteChip(chip_n);
         }
     }
     console.log(chip_n);
@@ -94,6 +94,7 @@ function check_destinatari_canali(a) {
     $.ajax({
         type: 'GET',
         dataType: "json",
+        async: false,
         url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
         headers: {
         },
@@ -118,6 +119,7 @@ function check_destinatari_utenti(a) {
     $.ajax({
         type: 'GET',
         dataType: "json",
+        async: false,
         url: `${window.location.origin}/user/${a}`,
         headers: {
         },
