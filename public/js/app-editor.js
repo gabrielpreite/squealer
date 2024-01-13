@@ -63,12 +63,18 @@ function mostraCampo(tipo) {
 
 function check_destinatari(chip_txt) {
     if (document.getElementById("icona-canali").classList.length == 2) {
+        console.log("canali");
+        console.log(chip_txt);
+        console.log(check_destinatari_canali(chip_txt));
         if (check_destinatari_canali(chip_txt)) {
             chip_n = chip_n + 1;
         } else {
             chip_arr[0].deleteChip(chip_n);
         }
     } else {
+        console.log("utenti");
+        console.log(chip_txt);
+        console.log(check_destinatari_utenti(chip_txt));
         if (check_destinatari_utenti(chip_txt)) {
             chip_n = chip_n + 1;
         } else {
@@ -207,10 +213,10 @@ function add_post(){
         })
         .then((response) => {
             if (response.ok) {
-            // The initial request was successful
-            window.location.replace("https://site212251.tw.cs.unibo.it");
+                // The initial request was successful
+                window.location.replace("https://site212251.tw.cs.unibo.it");
             } else {
-            throw new Error("Network response was not ok.");
+                throw new Error("Network response was not ok.");
             }
         })
     }
