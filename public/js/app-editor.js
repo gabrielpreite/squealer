@@ -33,8 +33,6 @@ function cambia_campo(opzione) {
 
 //DESTINATARI
 function mostraCampo(tipo) {
-    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
-
     //tutto invisibile
     document.getElementById("campo-dest").hidden = true;
     document.getElementById("campo-bacheca").hidden = true;
@@ -93,6 +91,7 @@ async function check_destinatari(a) {
         if (a.startsWith('@')) {
             a = a.substring(1)
         } else if (a == get_cookie_by_name("username")) {
+            chip_arr[0].deleteChip(chip_n);
             alert("Non è possibile inserire il proprio username tra i destinatari");
             return;
         }
@@ -165,11 +164,9 @@ function check_destinatari_utenti(a) {
 function check_post() {
     // Verifica se ci sono destinatari selezionati
     //let arr = window.location.href.split('?');
-    if (!((chip_arr[0].chipsData.length > 1 && chip_arr[0].chipsData[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
-      if ($("#destinatari-inseriti").children().length == 0) {
+    if (chip_arr[0].chipsData.length > 0 || (!document.getElementById("campo-bacheca").hidden)) { //caso risposta o bacheca, no destinatari
         alert("Nessun destinatario selezionato");
         return false;
-      }
     }
     if(!$("#contenuto_testo").attr("hidden")) {//caso testo
       if (document.getElementById("Textarea").value == '') {
