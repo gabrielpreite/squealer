@@ -1,6 +1,6 @@
 function cambia_campo(opzione) {
     var switchToggle = document.getElementById('switchToggle');
-    var textarea = document.getElementById('Textarea');
+    var textarea = document.getElementById('textarea2');
 
     $("#contenuto_testo").attr("hidden", "true")
     $("#contenuto_immagine").attr("hidden", "true")
@@ -138,7 +138,7 @@ function check_post() {
       }
     }
     if(!$("#contenuto_testo").attr("hidden")) {//caso testo
-      if (document.getElementById("Textarea").value == '') {
+      if (document.getElementById("textarea2").value == '') {
         alert("Nessun testo inserito");
         return false;
       }
