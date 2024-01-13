@@ -79,7 +79,7 @@
         </div>
 
         <div id="contenuto_testo" class="input-field col s12">
-          <textarea id="Textarea" class="form-input materialize-textarea" data-length="120" oninput="handleTextareaInput()"></textarea>
+          <textarea id="Textarea" name="textarea" class="form-input materialize-textarea" data-length="120" oninput="handleTextareaInput()"></textarea>
           <label for="Textarea">Scrivi il tuo Squeal...</label>
         </div>
 
@@ -137,7 +137,6 @@
 
   <script>
     // INIT
-    var lista_destinatari = [];
     var chip_arr;
     var chip_n = 0;
     document.addEventListener('DOMContentLoaded', function() {
@@ -151,7 +150,6 @@
 
       //chips dest
       var chipOptions = {
-        data: lista_destinatari,
         placeholder: "Inserisci un destinatario",
         secondaryPlaceholder: "+ destinatario",
         onChipAdd: function (chip) {
