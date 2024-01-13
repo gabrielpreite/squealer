@@ -211,7 +211,7 @@ function add_post(){
             let array_dest = [];
             let x = 0;
             chip_arr[0].chipsData.forEach(function (){
-                array_dest[x] = chip_arr[0].chipsData[n].tag; 
+                array_dest[x] = chip_arr[0].chipsData[x].tag; 
                 x = x + 1;
             });
             if(!$("#campo-canali").attr("hidden")){//caso canali
