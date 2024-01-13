@@ -164,7 +164,7 @@ function check_destinatari_utenti(a) {
 function check_post() {
     // Verifica se ci sono destinatari selezionati
     //let arr = window.location.href.split('?');
-    if (!(chip_arr[0].chipsData.length > 0) || (!document.getElementById("campo-bacheca").hidden)) { //caso risposta o bacheca, no destinatari
+    if (!(chip_arr[0].chipsData.length > 0) || document.getElementById("campo-bacheca").hidden) { //caso risposta o bacheca, no destinatari
         alert("Nessun destinatario selezionato");
         return false;
     }
@@ -239,7 +239,7 @@ function add_post(){
         .then((response) => {
             if (response.ok) {
                 // The initial request was successful
-                window.location.replace("https://site212251.tw.cs.unibo.it");
+                window.location.replace("https://site212251.tw.cs.unibo.it/app");
             } else {
                 throw new Error("Network response was not ok.");
             }
