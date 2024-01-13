@@ -64,7 +64,7 @@ function mostraCampo(tipo) {
 async function check_destinatari(a) {
     if (document.getElementById("icona-canali").classList.length == 2) {
         console.log("canali");
-        console.log(chip_txt);
+        console.log(a);
         //nome destinatario da cercare (per ora gestisco solo canali) = a
         if (!a.startsWith('$')) {
             a = "$".concat(a)
@@ -88,7 +88,7 @@ async function check_destinatari(a) {
         });
     } else {
         console.log("utenti");
-        console.log(chip_txt);
+        console.log(a);
         //nome utente da cercare = a
         if (a.startsWith('@')) {
             a = a.substring(1)
