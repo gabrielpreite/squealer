@@ -91,6 +91,7 @@ function check_destinatari_canali(a) {
     }
     $.ajax({
       type: 'GET',
+      async: false,
       dataType: "json",
       url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
       headers: {
@@ -114,18 +115,19 @@ function check_destinatari_utenti(a) {
       return;
     }
     $.ajax({
-      type: 'GET',
-      dataType: "json",
-      url: `${window.location.origin}/user/${a}`,
-      headers: {
-      },
-      success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-        return true;
-      },
-      error: function (xhr, status, e){
-        alert("L'utente selezionato non esiste");
-        return false;
-      }
+        type: 'GET',
+        async: false,
+        dataType: "json",
+        url: `${window.location.origin}/user/${a}`,
+        headers: {
+        },
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+            return true;
+        },
+        error: function (xhr, status, e){
+            alert("L'utente selezionato non esiste");
+            return false;
+        }
     });
 }
 
