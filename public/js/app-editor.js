@@ -164,9 +164,11 @@ function check_destinatari_utenti(a) {
 function check_post() {
     // Verifica se ci sono destinatari selezionati
     //let arr = window.location.href.split('?');
-    if (!(chip_arr[0].chipsData.length > 0) || document.getElementById("campo-bacheca").hidden) { //caso risposta o bacheca, no destinatari
-        alert("Nessun destinatario selezionato");
-        return false;
+    if (document.getElementById("campo-bacheca").hidden) { //caso bacheca  
+        if (!(chip_arr[0].chipsData.length > 0)) { //caso risposta o no destinatari
+            alert("Nessun destinatario selezionato");
+            return false;
+        }
     }
     if(!$("#contenuto_testo").attr("hidden")) {//caso testo
       if (document.getElementById("Textarea").value == '') {
