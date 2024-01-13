@@ -89,7 +89,6 @@ function check_destinatari_canali(a) {
     if (!a.startsWith('$')) {
       a = "$".concat(a)
     }
-    var ret;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -97,14 +96,13 @@ function check_destinatari_canali(a) {
       headers: {
       },
       success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-        ret = true;
+        return true;
       },
       error: function (xhr, status, e){
         alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura");
-        ret = false;
+        return false;
       }
     });
-    return ret;
 }
 
 function check_destinatari_utenti(a) {
@@ -115,7 +113,6 @@ function check_destinatari_utenti(a) {
       alert("Non è possibile inserire il proprio username tra i destinatari");
       return;
     }
-    var ret;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -123,14 +120,13 @@ function check_destinatari_utenti(a) {
       headers: {
       },
       success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-        ret = true;
+        return true;
       },
       error: function (xhr, status, e){
         alert("L'utente selezionato non esiste");
-        ret = false;
+        return false;
       }
     });
-    return ret;
 }
 
 //CREAZIONE NUOVI POST
