@@ -33,8 +33,6 @@ function cambia_campo(opzione) {
 
 //DESTINATARI
 function mostraCampo(tipo) {
-    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
-
     //tutto invisibile
     document.getElementById("campo-dest").hidden = true;
     document.getElementById("campo-bacheca").hidden = true;
@@ -61,51 +59,85 @@ function mostraCampo(tipo) {
     }
 }
 
-function check_destinatari() {
-
+async function check_destinatari(a) {
+    if (document.getElementById("icona-canali").classList.length == 2) {
+        console.log("canali");
+        console.log(a);
+        //nome destinatario da cercare (per ora gestisco solo canali) = a
+        if (!a.startsWith('$')) {
+            a = "$".concat(a)
+        }
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: `https://site212251.tw.cs.unibo.it/channel/${a}/auth?userid=${CURRENT_USER}`,
+            headers: {
+            },
+            success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+                chip_n = chip_n + 1;
+                console.log(true);
+                return true;
+            },
+            error: function (xhr, status, e){
+                chip_arr[0].deleteChip(chip_n);
+                alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura");
+                return false;
+            }
+        });
+    } else {
+        console.log("utenti");
+        console.log(a);
+        //nome utente da cercare = a
+        if (a.startsWith('@')) {
+            a = a.substring(1)
+        } else if (a == get_cookie_by_name("username")) {
+            chip_arr[0].deleteChip(chip_n);
+            alert("Non è possibile inserire il proprio username tra i destinatari");
+            return;
+        }
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: `https://site212251.tw.cs.unibo.it/user/${a}`,
+            headers: {
+            },
+            success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+                chip_n = chip_n + 1;
+                console.log(true);
+                return true;
+            },
+            error: function (xhr, status, e){
+                chip_arr[0].deleteChip(chip_n);
+                alert("L'utente selezionato non esiste");
+                return false;
+            }
+        });
+    }
 }
 
-function check_destinatari_canali() {
-    var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
+function check_destinatari_canali(a) {
+    //nome destinatario da cercare (per ora gestisco solo canali) = a
     if (!a.startsWith('$')) {
       a = "$".concat(a)
     }
     $.ajax({
-      type: 'GET',
-      dataType: "json",
-      url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
-      headers: {
-      },
-      success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-
-        //rimuovo $ iniziale per visualizzazione in lista
-        a = a.substring(1)
-        if (!array_dest_canali.includes(a)) {
-            // Aggiungi il destinatario al riquadro dei destinatari inseriti
-            $("#destinatari-inseriti").append(`
-              <div class="inserito-item name-${a}">
-              <div class="left-content">
-                <i class="fas fa-users"></i>
-                <p>${a}</p>
-              </div>
-              <div class="right-content">
-                <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_canali)"><i class="fas fa-times"></i></p>
-              </div>
-              </div>
-            `);
-            document.getElementById("lista_destinatari").hidden = false;
-            array_dest_canali.push(a); // Aggiungi all'array
-            $("#cerca_destinatari_canali").val(""); // Resetta il campo
-          }
-      },
-      error: function (xhr, status, e){
-        alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura")
-      }
+        type: 'GET',
+        dataType: "json",
+        url: `${window.location.origin}/channel/${a}/auth?userid=${CURRENT_USER}`,
+        headers: {
+        },
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+            return true;
+        },
+        error: function (xhr, status, e){
+            alert("Il canale selezionato non esiste o l'utente non ha permessi di scrittura");
+            return false;
+        }
     });
 }
 
-function check_destinatari_utenti() {
-    var a = $("#cerca_destinatari_utenti").val();//nome utente da cercare
+function check_destinatari_utenti(a) {
+    //nome utente da cercare = a
     if (a.startsWith('@')) {
       a = a.substring(1)
     } else if (a == get_cookie_by_name("username")) {
@@ -113,65 +145,30 @@ function check_destinatari_utenti() {
       return;
     }
     $.ajax({
-      type: 'GET',
-      dataType: "json",
-      url: `${window.location.origin}/user/${a}`,
-      headers: {
-      },
-      success: function (data, status, xhr) {//canale esiste e utente ha i permessi
-        if (!array_dest_utenti.includes(a)) {
-          // Aggiungi il destinatario al riquadro dei destinatari inseriti
-          $("#destinatari-inseriti").append(`
-            <div class="inserito-item name-${a}">
-            <div class="left-content">
-              <i class="fas fa-users"></i>
-              <p>${a}</p>
-            </div>
-            <div class="right-content">
-              <p class="rimuovi" onclick="rimuovi_destinatario('${a}', array_dest_utenti)"><i class="fas fa-times"></i></p>
-              </div>
-            </div>
-          `);
-          document.getElementById("lista_destinatari").hidden = false;
-          array_dest_utenti.push(a); // Aggiungi all'array
-          $("#cerca_destinatari_utenti").val(""); // Resetta il campo
+        type: 'GET',
+        dataType: "json",
+        url: `${window.location.origin}/user/${a}`,
+        headers: {
+        },
+        success: function (data, status, xhr) {//canale esiste e utente ha i permessi
+            return true;
+        },
+        error: function (xhr, status, e){
+            alert("L'utente selezionato non esiste");
+            return false;
         }
-      },
-      error: function (xhr, status, e){
-        alert("L'utente selezionato non esiste")
-      }
     });
 }
 
-function rimuovi_destinatario(nome, array_dest) {
-    $(`#destinatari-inseriti .name-${nome}`).remove();
-
-    // Rimuovi il destinatario dall'array
-    const index = array_dest.indexOf(nome);
-    if (index !== -1) {
-      array_dest.splice(index, 1);
-    }
-    var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
-    var listaDestinatariDiv = document.getElementById("lista_destinatari");
-
-    // Verifica se il div "destinatari-inseriti" è vuoto
-    if (destinatariInseritiDiv.innerHTML.trim() == "") {
-      // Imposta "hidden" su true per "lista_destinatari"
-      listaDestinatariDiv.hidden = true;
-    } else {
-      // Altrimenti, imposta "hidden" su false per "lista_destinatari"
-      listaDestinatariDiv.hidden = false;
-    }
-}
-
+//CREAZIONE NUOVI POST
 function check_post() {
     // Verifica se ci sono destinatari selezionati
-    let arr = window.location.href.split('?');
-    if (!((arr.length > 1 && arr[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
-      if ($("#destinatari-inseriti").children().length == 0) {
-        alert("Nessun destinatario selezionato");
-        return false;
-      }
+    //let arr = window.location.href.split('?');
+    if (document.getElementById("campo-bacheca").hidden) { //caso bacheca  
+        if (!(chip_arr[0].chipsData.length > 0)) { //caso risposta o no destinatari
+            alert("Nessun destinatario selezionato");
+            return false;
+        }
     }
     if(!$("#contenuto_testo").attr("hidden")) {//caso testo
       if (document.getElementById("Textarea").value == '') {
@@ -193,3 +190,62 @@ function check_post() {
     // Altri controlli se necessari, come il testo, immagini o posizione
     return true;
 }
+
+function add_post(){
+    if(check_post() == true){
+        const formData = new FormData(document.getElementById("crea_post"))
+
+        formData.append("user_id", CURRENT_USER)
+
+        if (!$("#contenuto_testo").attr("hidden")) {//caso testo
+            formData.append("contenuto", "testo")
+        } else if (!$("#contenuto_immagine").attr("hidden")) {//caso img
+            formData.append("contenuto", "img")
+        } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
+            formData.append("contenuto", "map")
+        }
+
+        let arr = window.location.href.split('?');
+        if (arr.length > 1 && arr[1] !== '') { //caso risposta, nessun destinatario
+            formData.append("post_id", arr[1].split("=")[1]);
+            formData.append("destinatari", JSON.stringify([]))
+        } else { //caso post originali, destinatari dipendono dalla scelta utente
+            let array_dest = [];
+            let x = 0;
+            chip_arr[0].chipsData.forEach(function (){
+                array_dest[x] = chip_arr[0].chipsData[x].tag; 
+                x = x + 1;
+            });
+            if(document.getElementById("icona-canali").classList.length == 2){//caso canali
+                //aggiungo $ prima di ogni canale
+                array_dest.forEach(function(nome, index, array) {
+                    array[index] = "$" + nome;
+                });
+                formData.append("destinatari", JSON.stringify(array_dest))
+                formData.append("tipo_destinatari", "canali")
+            }else if(document.getElementById("icona-utenti").classList.length == 2){//caso utenti
+                formData.append("destinatari", JSON.stringify(array_dest))
+                formData.append("tipo_destinatari", "utenti")
+            }else if(!$("#campo-bacheca").attr("hidden")){//caso bacheca
+                formData.append("destinatari", JSON.stringify([]))
+            }
+        }
+
+        //ghigliottina (ORA TOLTA)
+        
+
+        fetch("/squeal", {
+            method: "POST",
+            body: formData,
+        })
+        .then((response) => {
+            if (response.ok) {
+                // The initial request was successful
+                window.location.replace("https://site212251.tw.cs.unibo.it/app");
+            } else {
+                throw new Error("Network response was not ok.");
+            }
+        })
+    }
+}
+

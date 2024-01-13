@@ -36,8 +36,8 @@
   font-size: 24px;
 }
 
-/* CHIP */
+/* CHIP (non funziona rimane lo standard di libreria) */
 .placeholder-chip {
-  width: auto;
+  width: auto !important;
 }
 

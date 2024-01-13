@@ -79,8 +79,8 @@
         </div>
 
         <div id="contenuto_testo" class="input-field col s12">
-          <textarea id="textarea2" class="form-input materialize-textarea" data-length="120" oninput="handleTextareaInput()"></textarea>
-          <label for="textarea2">Scrivi il tuo Squeal...</label>
+          <textarea id="Textarea" name="textarea" class="form-input materialize-textarea" data-length="120" oninput="handleTextareaInput()"></textarea>
+          <label for="Textarea">Scrivi il tuo Squeal...</label>
         </div>
 
         <div id="contenuto_immagine" class="file-field input-field col s12" hidden>
@@ -137,6 +137,8 @@
 
   <script>
     // INIT
+    var chip_arr;
+    var chip_n = 0;
     document.addEventListener('DOMContentLoaded', function() {
       //sideNav
       var sideNavOptions = { edge: 'right' }; // You can customize options here
@@ -144,17 +146,18 @@
       M.Sidenav.init(sideNav, sideNavOptions);
 
       //textarea
-      $('input#input_text, textarea#textarea2').characterCounter();
+      $('input#input_text, textarea#Textarea').characterCounter();
 
       //chips dest
       var chipOptions = {
         placeholder: "Inserisci un destinatario",
         secondaryPlaceholder: "+ destinatario",
-        onChipAdd: check_destinatari(),
-        //onChipDelete: rimuovi_destinatario()
+        onChipAdd: function (chip) {
+          check_destinatari(chip[0].M_Chips.chipsData[chip_n].tag);
+        }
       };
-      var chip = document.querySelectorAll('.chips');
-      var inst = M.Chips.init(chip, chipOptions);
+      var all_chip = document.querySelectorAll('.chips');
+      chip_arr = M.Chips.init(all_chip, chipOptions);
     });
 
     //URLUTENTE
@@ -164,7 +167,13 @@
     //SETUP
     let imageFileURL = null;
 
+    //btn conferma
+    document.getElementById("crea_post").addEventListener('submit', async event => {
+      event.preventDefault();
+      add_post();
+    });
 
+    
   </script>
 </body>
 
