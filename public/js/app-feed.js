@@ -93,7 +93,6 @@ function aggiungi_squeal(squeals, LOG = true) {
       }
     }
 
-
     //aggiungi commenti
     let id_post = squeals[i].post_id;
     let id_comment = 'squeal_comment' + i;
@@ -129,6 +128,7 @@ function aggiungi_squeal(squeals, LOG = true) {
     } else {
       contenitore_commenti.innerHTML = "Nessuno ha ancora commentato";
     }
+    contenitore_commenti.insertAdjacentHTML('beforeend', `<a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
 
     //etichette
     let id_visual = 'squeal_visual' + i;
@@ -456,4 +456,9 @@ function ricerca_notifica(notifica) {
   document.getElementById("squeal_contenitore").hidden = false;
   document.getElementById("info_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
+}
+
+//COMMENTI
+function commenta(id) {
+  window.location.replace(`https://site212251.tw.cs.unibo.it/app-editor?post_id=` + id);
 }

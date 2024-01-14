@@ -176,6 +176,12 @@
       add_post();
     });
 
+    //CASO RISPOSTA
+    let ris = window.location.href.split('?');
+    if (ris.length > 1 && ris[1] !== '') { //risposta
+      interfaccia_risposta(ris[1].split("=")[1]);
+    }
+
     
   </script>
 </body>
