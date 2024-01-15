@@ -2,49 +2,34 @@
 <html lang="it">
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Impostazioni - Squealer</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/app-settings.css">
+  <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-settings.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-
-      <ul id="slide-out" class="side-nav">
-        <li><a href="/app-logout">Logout(nonancorafatto)</a></li>
-        <br>
-        <li><a href="#">Impostazioni(no)</a></li>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
-
-      <a id="logo-container" href="#" class="brand-logo right">Squealer</a>
-
-    </div>
+    
   </nav>
 
   <div id="main">
     <!-- MENU -->
-    <div id="bar">
-      <ul class="collection with-header">
-        <li class="collection-header"><h4>First Names</h4></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-      </ul>
-      <ul id="menu">
-        <li><button onclick="switch_settings('profilo')">Profilo</button></li>
-        <li><button onclick="switch_settings('account')">Account</button></li>
-        <li><button onclick="switch_settings('acquisti')">Storico Acquisti</button></li>
-        <li><button onclick="switch_settings('smm')">Social Media Manager</button></li>
-        <li><button onclick="switch_settings('follow')">Follow</button></li>
-        <li><button onclick="switch_settings('popolarita')">Popolarità</button></li>
+    <div id="sidebar">
+      <ul id="menu" class="collection">
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('profilo')">Profilo</a></li>
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('account')">Account</a></li>
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('acquisti')">Storico Acquisti</a></li>
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('smm')">Social Media Manager</a></li>
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('follow')">Follow</a></li>
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('popolarita')">Popolarità</a></li>
+        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('canali')">Canali</a></li>
       </ul>
     </div>
 
@@ -59,17 +44,20 @@
             <div class="col1">
               <div class="form-group">
                 <label for="newName" class="label-form">Nome:</label>
-                <input type="text" name="nome" class="form-control" id="newName" placeholder="Modifica" aria-label="Nome">
+                <input type="text" name="nome" class="form-control" id="newName" placeholder="Modifica"
+                  aria-label="Nome">
               </div>
 
               <div class="form-group">
                 <label for="newSurname" class="label-form">Cognome: </label>
-                <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Modifica" aria-label="Cognome">
+                <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Modifica"
+                  aria-label="Cognome">
               </div>
 
               <div class="form-group">
                 <label for="newDesc" class="label-form">Descrizione: </label>
-                <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Modifica" aria-label="Descrizione">
+                <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Modifica"
+                  aria-label="Descrizione">
               </div>
             </div>
 
@@ -77,7 +65,8 @@
               <div class="form-group form-img">
                 <label for="newImg" class="label-form" hidden>Immagine profilo: </label>
                 <img alt="immagine profilo attuale" id="currentImg"></img>
-                <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo" accept="image/*" aria-label="Immagine">
+                <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo"
+                  accept="image/*" aria-label="Immagine">
               </div>
 
               <button type="submit" class="btn btn-primary">Salva</button>
@@ -89,37 +78,42 @@
 
       <div id="account" class="sezione" hidden>
         <div class="container">
-        <h3 class="mb-4 title-sezione">Impostazioni mail e password</h3>
-            <form role="form" aria-label="Form cambio mail o password" id="form_psw" class="ordine" onsubmit="return check_form()">
-              <div class="col1">
+          <h3 class="mb-4 title-sezione">Impostazioni mail e password</h3>
+          <form role="form" aria-label="Form cambio mail o password" id="form_psw" class="ordine"
+            onsubmit="return check_form()">
+            <div class="col1">
               <div class="form-group">
                 <label for="newEmail" class="label-form">Email: </label>
-                <input type="text" name="email" class="form-control" id="newEmail" placeholder="Nuova email" aria-label="Email">
+                <input type="text" name="email" class="form-control" id="newEmail" placeholder="Nuova email"
+                  aria-label="Email">
               </div>
-          </div>
-          <div class="col2">
-            <div class="form-img">
-              <div class="form-group">
-                <label for="oldPassword" class="label-form">Password: </label>
-                <input type="text" name="old_password" class="form-control" id="oldPassword" placeholder="Password" aria-label="Password attuale" required>
-                <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
+            </div>
+            <div class="col2">
+              <div class="form-img">
+                <div class="form-group">
+                  <label for="oldPassword" class="label-form">Password: </label>
+                  <input type="text" name="old_password" class="form-control" id="oldPassword" placeholder="Password"
+                    aria-label="Password attuale" required>
+                  <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
+                </div>
+
+                <div class="form-group">
+                  <label for="newPassword" class="label-form">Nuova password: </label>
+                  <input type="text" name="password" class="form-control" id="newPassword" placeholder="Nuova password"
+                    aria-label="Nuova password">
+                </div>
+
+                <div class="form-group">
+                  <label for="newCPassword" class="label-form">Conferma password: </label>
+                  <input type="text" name="c_password" class="form-control" id="newCPassword"
+                    placeholder="Conferma nuova password" aria-label="Conferma nuova password">
+                </div>
+
               </div>
 
-              <div class="form-group">
-                <label for="newPassword" class="label-form">Nuova password: </label>
-                <input type="text" name="password" class="form-control" id="newPassword" placeholder="Nuova password" aria-label="Nuova password">
-              </div>
-
-              <div class="form-group">
-                <label for="newCPassword" class="label-form">Conferma password: </label>
-                <input type="text" name="c_password" class="form-control" id="newCPassword" placeholder="Conferma nuova password" aria-label="Conferma nuova password">
-              </div>
+              <button type="submit" class="btn btn-primary">Salva</button>
 
             </div>
-
-            <button type="submit" class="btn btn-primary">Salva</button>
-
-          </div>
 
         </div>
         </form>
@@ -129,11 +123,11 @@
       <div id="acquisti" class="sezione" hidden>
         <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
-                   <ul id="acquisti-list">
-                       <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
-                   </ul>
-               </div>
+          <ul id="acquisti-list">
+            <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
+          </ul>
         </div>
+      </div>
 
 
       <div id="smm" class="sezione" hidden> <!-- ACCOUNT GESTITI/SMM -->
@@ -144,21 +138,21 @@
               <div id="div_account_gestiti"></div>
             </div>
             <div class="col2">
-                <form id="update_smm" enctype="multipart/form-data" class="smm-ordine">
-                  <div class="smm1">
-                    <label for="current_smm">SMM che gestisce il tuo account:</label>
-                    <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
-                    <input type="submit" class="btn btn-danger" value="  Rimuovi  ">
-                  </div>
-                  <div class="smm2">
-                    <label for="new_smm" hidden>Cambia SMM</label>
-                    <input type="text" id="new_smm" class="form-control" name="new_smm" placeholder="Cambia SMM">
-                    <input type="submit" class="btn btn-success" value="Conferma ">
-                  </div>
-                </form>
+              <form id="update_smm" enctype="multipart/form-data" class="smm-ordine">
+                <div class="smm1">
+                  <label for="current_smm">SMM che gestisce il tuo account:</label>
+                  <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
+                  <input type="submit" class="btn btn-danger" value="  Rimuovi  ">
+                </div>
+                <div class="smm2">
+                  <label for="new_smm" hidden>Cambia SMM</label>
+                  <input type="text" id="new_smm" class="form-control" name="new_smm" placeholder="Cambia SMM">
+                  <input type="submit" class="btn btn-success" value="Conferma ">
+                </div>
+              </form>
             </div>
           </div>
-      </div>
+        </div>
       </div>
 
 
@@ -171,61 +165,27 @@
               <h3>Followers</h3>
               <div class="followers">
                 <ul class="follower-list-utenti barra-scorrimento">
-                  <h4>Utenti</h4>
                   <!-- Lista dei follower -->
-                  <li>
-                    <div>
-                      <i class="fas fa-user"></i>
-                      <span>Nome Follower 2</span>
-                    </div>
-                    <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
-                  </li>
-                  <!-- Aggiungi altri elementi se necessario -->
                 </ul>
 
-                <ul class="follower-list-canali barra-scorrimento">
-                  <h4>Canali</h4>
-                  <!-- Lista dei follower -->
-                  <li>
-                    <div>
-                      <i class="fas fa-users"></i>
-                      <span>Nome Follower 1</span>
-                    </div>
-                    <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
-                  </li>
-                  <!-- Aggiungi altri elementi se necessario -->
-                </ul>
               </div>
             </div>
 
             <div class="col2 smm-ordine">
               <h3>Seguiti</h3>
               <div class="followers">
-                <ul class="follow-list-utenti barra-scorrimento">
+                <div class="utenti">
                   <h4>Utenti</h4>
-                  <!-- Lista dei follower -->
-                  <li>
-                    <div>
-                      <i class="fas fa-user"></i>
-                      <span>Nome Follower 2</span>
-                    </div>
-                    <button class="remove-btn" onclick="removeFollower('follower2')"><i class="fa-solid fa-x"></i></button>
-                  </li>
-                  <!-- Aggiungi altri elementi se necessario -->
-                </ul>
-
-                <ul class="follow-list-canali barra-scorrimento">
+                  <ul class="follow-list-utenti barra-scorrimento">
+                    <!-- Lista dei follower -->
+                  </ul>
+                </div>
+                <div class="canali">
                   <h4>Canali</h4>
-                  <!-- Lista dei follower -->
-                  <li>
-                    <div>
-                      <i class="fas fa-users"></i>
-                      <span>Nome Follower 1</span>
-                    </div>
-                    <button class="remove-btn" onclick="removeFollower('follower1')"><i class="fa-solid fa-x"></i></button>
-                  </li>
-                  <!-- Aggiungi altri elementi se necessario -->
-                </ul>
+                  <ul class="follow-list-canali barra-scorrimento">
+                    <!-- Lista dei follower -->
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -233,42 +193,87 @@
       </div>
 
       <div id="popolarita" class="sezione" hidden>
-        <div class="container barra-scorrimento">
+        <div class="container">
           <h2 class="mb-4 title-sezione">Popolarità</h2>
           <div class="previsione">
             <p>Previsione andamento popolarità:
-              <div class="riquadro_popolarita">
-                  <span>+20</span>
-              </div>
+            <div class="riquadro_popolarita">
+              <span>+20</span>
+            </div>
             </p>
             <i class="fa-solid fa-right-long"></i>
             <div class="riquadro_quota">
-                <span>+6</span><sub> caratteri al giorno</sub>
+              <span>+6</span><sub> caratteri al giorno</sub>
             </div>
           </div>
           <div class="ordine">
-            <div class="colonna pop">
-                <h3>Popolari  <span>n.0</span></h3>
-                <div class="popolari barra-scorrimento">
+            <div class="colonna pop barra-scorrimento">
+              <h3>Popolari <span>n.0</span></h3>
+              <div class="popolari barra-scorrimento">
 
-                </div>
+              </div>
             </div>
-            <div class="colonna impop">
-                <h3>Impopolari  <span>n.0</span></h3>
-                <div class="impopolari barra-scorrimento">
+            <div class="colonna impop barra-scorrimento">
+              <h3>Impopolari <span>n.0</span></h3>
+              <div class="impopolari barra-scorrimento">
 
-                </div>
+              </div>
             </div>
-            <div class="colonna controv">
-                <h3>Controversi  <span>n.0</span></h3>
-                <div class="controversi barra-scorrimento">
+            <div class="colonna controv barra-scorrimento">
+              <h3>Controversi <span>n.0</span></h3>
+              <div class="controversi barra-scorrimento">
 
-                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      <div id="canali" class="sezione" hidden>
+        <div class="container barra-scorrimento">
+          <h2 class="mb-4 title-sezione">Canali</h2>
+          <div class="ordine-canali">
+            <div class="colonna gestiti">
+              <h3>Canali gestiti</h3>
+              <div id="canali_gestiti" class="popolari barra-scorrimento">
+
+              </div>
+            </div>
+            <div class="colonna acquistati">
+              <h3>Canali acquistati</h3>
+              <div id="canali_acquistati" class="impopolari barra-scorrimento">
+
+              </div>
+            </div>
+            <div>
+              <div id="canale_selezionato" hidden="true">
+                <form id="form_modifica_canale">
+                  <div id="canale_selezionato_nome">
+                  </div>
+                  <div class="canale_img">
+                    <div class="modifica_canale_img">
+                      Cambia immagine:<input type="file" id="new_img" name="img" accept="image/*">
+                    </div>
+                    <img id="canale_selezionato_img">
+                  </div>
+                  <div class="canale_descrizione">
+                    Descrizione:<input type="textarea" id="new_descrizione" name="descrizione">
+                  </div>
+                  <div class="canale_moderatori">
+                    Mod: <ul id="modlist_ul"></ul>
+                  </div>
+                  Aggiungi moderatori:
+                  <div class="modifica_mod">
+                    <input type="text" id="new_mod">
+                    <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
+                  </div>
+                  <input class="invia-modifiche" type="submit" value="Applica modifiche">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -295,15 +300,14 @@
   <!--  Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="../js/materialize.js"></script>
-  <script src="../js/app-feed.js"></script>
+  <script src="../js/app-settings.js"></script>
   <script type="text/javascript" src="../js/global.js"></script>
-  <script type="text/javascript" src="../js/app-settings.js"></script>
 
   <script>
-    
-    //URLUTENTE
-    var CURRENT_USER = get_cookie_by_name("username");
-    CURRENT_USER = "fv";
+    // INIT
+    document.addEventListener('DOMContentLoaded', function() {
+      M.AutoInit();
+    });
 
     // override funzione form update_smm
     document.getElementById("update_smm").addEventListener('submit', async event => {
@@ -311,9 +315,11 @@
       update_smm();
     });
 
-
-    // INSERIMENTO PROPIC UTENTE
-    //$("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
+    // override funzione form modifica canale
+    document.getElementById("form_modifica_canale").addEventListener('submit', async event => {
+      event.preventDefault();
+      update_channel();
+    });
 
     //azione post form info utente
     //$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
@@ -329,46 +335,9 @@
       form_psw();
     });
 
-    //password show/hide
-    /*
-    const togglePassword = document.querySelector('#togglePassword');
-    const password = document.querySelector('#oldPassword');
-
-    togglePassword.addEventListener('click', function (e) {
-      // toggle the type attribute
-      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-      password.setAttribute('type', type);
-      // toggle the eye slash icon
-      this.classList.toggle('fa-eye-slash');
-    });
-    */
-
-    // aggiorno la quota
-    refresh_quota()
-    let quota_giorno = get_cookie_by_name("quota_g");
-    let quota_settimana = get_cookie_by_name("quota_s");
-    let quota_mese = get_cookie_by_name("quota_m");
-
-    function compra_quota(qnt) {
-      let data = { "target": CURRENT_USER, "qnt": qnt, "acquisto": true }
-
-      fetch("/user/" + CURRENT_USER + "/quota", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then((response) => {
-          //chiudo modal
-          $("#shop-quota").modal("toggle")
-          let new_quota = parseInt(get_cookie_by_name("quota_g")) + qnt
-          //aggiorno il cookie quota
-          set_cookie("quota_g", new_quota)
-          //aggiorno navbar
-          $("#charCount_giorno").text(new_quota)
-        })
-    }
+    //URLUTENTE
+    var CURRENT_USER = get_cookie_by_name("username");
+    CURRENT_USER = "fv";
 
     // ================= SEZIONI
     let all_info;
@@ -377,7 +346,7 @@
       dataType: "json",
       async: false,
       url: `https://site212251.tw.cs.unibo.it/squeal/by_user`,
-      headers: { },
+      headers: {},
       data: { query: CURRENT_USER, target: CURRENT_USER },
       success: function (data, status, xhr) {
         console.log('data: ', data);
@@ -409,14 +378,14 @@
       dataType: "json",
       async: false,
       url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/manager_of`,
-      headers: { },
+      headers: {},
       success: function (data, status, xhr) {
         console.log('data: ', data);
         account = data["data"];
       }
     });
 
-    if(account.length > 0){
+    if (account.length > 0) {
       let tmp = "<ul id='lista_account_gestiti'>"
       account.forEach((el) => {
         tmp += `<li>${el}</li>`
@@ -435,52 +404,52 @@
       dataType: "json",
       async: false,
       url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/managed_by`,
-      headers: { },
+      headers: {},
       success: function (data, status, xhr) {
         console.log('data: ', data);
         result = data["data"];
       }
     });
 
-    if(result == null){
+    if (result == null) {
       $("#current_smm").attr("value", "Non ci sono SMM che gestiscono il tuo account")
     } else {
       $("#current_smm").attr("value", result)
     }
 
     // STORICO ACQUISTI
-    document.addEventListener('DOMContentLoaded', function() {
-        // Effettua la chiamata API per ottenere le informazioni sull'utente
-        fetch(`/user/${CURRENT_USER}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.risultato === 'successo') {
-                    // L'utente è stato trovato, puoi accedere agli acquisti
-                    var acquisti = data.data.acquisti;
-                    popolaListaAcquisti(acquisti);
-                } else {
-                    // L'utente non è stato trovato o si è verificato un altro errore
-                    console.error('Errore nel recupero delle informazioni utente:', data.errore);
-                }
-            })
-            .catch(error => {
-                console.error('Si è verificato un errore nella richiesta:', error);
-            });
+    document.addEventListener('DOMContentLoaded', function () {
+      // Effettua la chiamata API per ottenere le informazioni sull'utente
+      fetch(`/user/${CURRENT_USER}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.risultato === 'successo') {
+            // L'utente è stato trovato, puoi accedere agli acquisti
+            var acquisti = data.data.acquisti;
+            popolaListaAcquisti(acquisti);
+          } else {
+            // L'utente non è stato trovato o si è verificato un altro errore
+            console.error('Errore nel recupero delle informazioni utente:', data.errore);
+          }
+        })
+        .catch(error => {
+          console.error('Si è verificato un errore nella richiesta:', error);
+        });
     });
 
     // Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
     function popolaListaAcquisti(acquisti) {
-        var acquistiList = document.getElementById('acquisti-list');
+      var acquistiList = document.getElementById('acquisti-list');
 
-        // Popola la lista degli acquisti
-        acquisti.forEach(function(acquisto) {
-            var listItem = document.createElement('li');
-            listItem.innerHTML = `
+      // Popola la lista degli acquisti
+      acquisti.forEach(function (acquisto) {
+        var listItem = document.createElement('li');
+        listItem.innerHTML = `
                 <div class="acquisto">
                     <div class="info">
                         <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
@@ -492,20 +461,20 @@
                     </div>
                 </div>
             `;
-            acquistiList.appendChild(listItem);
-        });
+        acquistiList.appendChild(listItem);
+      });
     }
 
     function calcolaAmmontare(quantita) {
-        if (quantita === 120) {
-            return '0,99';
-        } else if (quantita === 240) {
-            return '1,99';
-        } else if (quantita === 480) {
-            return '4,99';
-        } else {
-            return '';
-        }
+      if (quantita === 120) {
+        return '0,99';
+      } else if (quantita === 240) {
+        return '1,99';
+      } else if (quantita === 480) {
+        return '4,99';
+      } else {
+        return '';
+      }
     }
 
 
@@ -516,7 +485,7 @@
       dataType: "json",
       async: false,
       url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
-      headers: { },
+      headers: {},
       success: function (data, status, xhr) {
         console.log('data: ', data);
         follow = data["data"];
@@ -526,6 +495,38 @@
         popolaSeguiti(follow_utenti, follow_canali);
       }
     });
+
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/followers`,
+      headers: {},
+      success: function (data, status, xhr) {
+        console.log('data: ', data);
+        follower = data["data"];
+        let followers = follower
+        popolaFollowers(followers);
+      }
+    });
+
+
+    function popolaFollowers(followers) {
+      var followerlist = document.querySelector(".follower-list-utenti");
+
+      for (var i = 0; i < followers.length; i++) {
+        var utente = followers[i].username;
+        var listItem = document.createElement("li");
+        listItem.setAttribute("data-id", utente);
+        listItem.innerHTML = `
+          <div>
+            <i class="fas fa-user"></i>
+            <span>${utente}</span>
+          </div>
+        `;
+        followerlist.appendChild(listItem);
+      }
+    }
 
     function popolaSeguiti(follow_utenti, follow_canali) {
       // Popola la lista degli utenti seguiti
@@ -541,7 +542,7 @@
             <i class="fas fa-user"></i>
             <span>${utente}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(utente, 'utente')">
+          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -557,7 +558,7 @@
             <i class="fas fa-users"></i>
             <span>${canale}</span>
           </div>
-          <button class="remove-btn" onclick="removeFollowing(canale, 'canale')">
+          <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
             <i class="fa-solid fa-x"></i>
           </button>
         `;
@@ -565,57 +566,54 @@
       }
     }
 
-              function removeFollowing(target, tipo){
-                $.ajax({
-                  type: 'POST',
-                  dataType: "json",
-                  url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
-                  headers: { },
-                  data: { target: target, tipo: tipo },
-                  success: function (data, status, xhr) {
-                    //console.log(data.risultato)
-                    // Rimuovi l'elemento dalla lista se la richiesta ha avuto successo
-                   if (data.risultato === 'successo') {
-                     // Identificatore unico dell'elemento da rimuovere (es. user_id)
-                     var elementoDaRimuovere = target;
+    function removeFollowing(target, tipo) {
+      console.log(target);
+      console.log(tipo);
 
-                     // Cerca e rimuovi l'elemento dalla lista
-                     var elemento = $(`.follower-list li[data-id='${elementoDaRimuovere}']`);
-                     elemento.remove();
-                   }
-                  }
-                });
-              }
+      $.ajax({
+        type: 'POST',
+        dataType: "json",
+        url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+        headers: {},
+        data: { target: target, tipo: tipo },
+        success: function (data, status, xhr) {
+          // Cerco e rimuovo l'elemento dalla lista
+          var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+          elemento.remove();
+        }
+
+      });
+    }
 
 
-              //Popolarita
-              let all_post;
-              $.ajax({
-                type: 'POST',
-                dataType: "json",
-                async: false,
-                url: `https://site212251.tw.cs.unibo.it/squeal/by_user`,
-                headers: { },
-                data: { query: CURRENT_USER, target: CURRENT_USER },
-                success: function (data, status, xhr) {
-                  all_post = data.data.post;
-                }
-              });
+    //Popolarita
+    let all_post;
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/squeal/by_user`,
+      headers: {},
+      data: { query: CURRENT_USER, target: CURRENT_USER },
+      success: function (data, status, xhr) {
+        all_post = data.data.post;
+      }
+    });
 
-              var num_popolari = 0;
-              var num_impopolari = 0;
-              var num_controversi = 0;
+    var num_popolari = 0;
+    var num_impopolari = 0;
+    var num_controversi = 0;
 
-              for (var i = 0; i < all_post.length; i++) {
-                var container_popolare = document.querySelector(".popolari");
-                var container_impopolare = document.querySelector(".impopolari");
-                var container_controverso = document.querySelector(".controversi");
+    for (var i = 0; i < all_post.length; i++) {
+      var container_popolare = document.querySelector(".popolari");
+      var container_impopolare = document.querySelector(".impopolari");
+      var container_controverso = document.querySelector(".controversi");
 
-                if (all_post[i].categoria == 'popolare') {
-                  num_popolari++;
-                  var nuovoElemento = document.createElement("div");
-                  nuovoElemento.classList.add("squeal");
-                  var nuovoContenuto = `
+      if (all_post[i].categoria == 'popolare') {
+        num_popolari++;
+        var nuovoElemento = document.createElement("div");
+        nuovoElemento.classList.add("squeal");
+        var nuovoContenuto = `
                       <div class="squeal-header">
                           <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                           <div class="squeal-info">
@@ -628,22 +626,22 @@
                       </div>
                   `;
 
-                  if (all_post[i].contenuto == "testo") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
-                  } else if (all_post[i].contenuto == "img") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
-                  }
+        if (all_post[i].contenuto == "testo") {
+          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
+        } else if (all_post[i].contenuto == "img") {
+          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
+        }
 
-                  // Imposta il contenuto HTML della nuova div
-                  nuovoElemento.innerHTML = nuovoContenuto;
-                  // Aggiungi la nuova div all'elemento container
-                  container_popolare.appendChild(nuovoElemento);
+        // Imposta il contenuto HTML della nuova div
+        nuovoElemento.innerHTML = nuovoContenuto;
+        // Aggiungi la nuova div all'elemento container
+        container_popolare.appendChild(nuovoElemento);
 
-                } else if (all_post[i].categoria == 'impopolare') {
-                  num_impopolari++;
-                  var nuovoElemento = document.createElement("div");
-                  nuovoElemento.classList.add("squeal");
-                  var nuovoContenuto = `
+      } else if (all_post[i].categoria == 'impopolare') {
+        num_impopolari++;
+        var nuovoElemento = document.createElement("div");
+        nuovoElemento.classList.add("squeal");
+        var nuovoContenuto = `
                       <div class="squeal-header">
                           <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                           <div class="squeal-info">
@@ -656,22 +654,22 @@
                       </div>
                   `;
 
-                  if (all_post[i].contenuto == "testo") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
-                  } else if (all_post[i].contenuto == "img") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
-                  }
+        if (all_post[i].contenuto == "testo") {
+          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
+        } else if (all_post[i].contenuto == "img") {
+          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
+        }
 
-                  // Imposta il contenuto HTML della nuova div
-                  nuovoElemento.innerHTML = nuovoContenuto;
-                  // Aggiungi la nuova div all'elemento container
-                  container_impopolare.appendChild(nuovoElemento);
+        // Imposta il contenuto HTML della nuova div
+        nuovoElemento.innerHTML = nuovoContenuto;
+        // Aggiungi la nuova div all'elemento container
+        container_impopolare.appendChild(nuovoElemento);
 
-                }else if (all_post[i].categoria == 'controverso') {
-                  num_controversi++;
-                  var nuovoElemento = document.createElement("div");
-                  nuovoElemento.classList.add("squeal");
-                  var nuovoContenuto = `
+      } else if (all_post[i].categoria == 'controverso') {
+        num_controversi++;
+        var nuovoElemento = document.createElement("div");
+        nuovoElemento.classList.add("squeal");
+        var nuovoContenuto = `
                       <div class="squeal-header">
                           <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
                           <div class="squeal-info">
@@ -684,70 +682,104 @@
                       </div>
                   `;
 
-                  if (all_post[i].contenuto == "testo") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
-                  } else if (all_post[i].contenuto == "img") {
-                      nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
-                  }
+        if (all_post[i].contenuto == "testo") {
+          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
+        } else if (all_post[i].contenuto == "img") {
+          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
+        }
 
-                  // Imposta il contenuto HTML della nuova div
-                  nuovoElemento.innerHTML = nuovoContenuto;
-                  // Aggiungi la nuova div all'elemento container
-                  container_controverso.appendChild(nuovoElemento);
+        // Imposta il contenuto HTML della nuova div
+        nuovoElemento.innerHTML = nuovoContenuto;
+        // Aggiungi la nuova div all'elemento container
+        container_controverso.appendChild(nuovoElemento);
 
-                }
-              }
-              // aggiunta numero effettivo squeal
-              var numero_popolari = document.querySelector('.colonna.pop h3 span');
-              var numero_impopolari = document.querySelector('.colonna.impop h3 span');
-              var numero_controversi = document.querySelector('.colonna.controv h3 span');
+      }
+    }
+    // aggiunta numero effettivo squeal
+    var numero_popolari = document.querySelector('.colonna.pop h3 span');
+    var numero_impopolari = document.querySelector('.colonna.impop h3 span');
+    var numero_controversi = document.querySelector('.colonna.controv h3 span');
 
-              // Aggiorna il contenuto con il numero effettivo
-              numero_popolari.textContent = 'n.' + num_popolari;
-              numero_impopolari.textContent = 'n.' + num_impopolari;
-              numero_controversi.textContent = 'n.' + num_controversi;
+    // Aggiorna il contenuto con il numero effettivo
+    numero_popolari.textContent = 'n.' + num_popolari;
+    numero_impopolari.textContent = 'n.' + num_impopolari;
+    numero_controversi.textContent = 'n.' + num_controversi;
 
-              //gestione popolarità e quota
-              let pop = num_popolari - num_impopolari;
-              let bonus = (Math.floor(pop / 10) / 100) * 300 //1% +- per ogni 10 di popolarita
+    //gestione popolarità e quota
+    let pop = num_popolari - num_impopolari;
+    let bonus = (Math.floor(pop / 10) / 100) * 300 //1% +- per ogni 10 di popolarita
 
-              // Aggiorna il contenuto del riquadro popolarita
-              var val_popolarita = document.querySelector('.riquadro_popolarita span');
-              var riquadro_popolarita = document.querySelector('.riquadro_popolarita');
+    // Aggiorna il contenuto del riquadro popolarita
+    var val_popolarita = document.querySelector('.riquadro_popolarita span');
+    var riquadro_popolarita = document.querySelector('.riquadro_popolarita');
 
-              if (pop >= 0) {
-                val_popolarita.textContent = '+' + pop;
-                riquadro_popolarita.style.backgroundColor = '#4caf50';
-              } else {
-                val_popolarita.textContent = pop;
-                riquadro_popolarita.style.backgroundColor = '#FF6347';
-                riquadro_popolarita.style.color = 'black';
-              }
+    if (pop >= 0) {
+      val_popolarita.textContent = '+' + pop;
+      riquadro_popolarita.style.backgroundColor = '#4caf50';
+    } else {
+      val_popolarita.textContent = pop;
+      riquadro_popolarita.style.backgroundColor = '#FF6347';
+      riquadro_popolarita.style.color = 'black';
+    }
 
-              // Aggiorna il contenuto del riquadro quota
-              var val_quota = document.querySelector('.riquadro_quota span');
-              var riquadro_quota = document.querySelector('.riquadro_quota');
+    // Aggiorna il contenuto del riquadro quota
+    var val_quota = document.querySelector('.riquadro_quota span');
+    var riquadro_quota = document.querySelector('.riquadro_quota');
 
-              if (bonus >= 0) {
-                val_quota.textContent = '+' + bonus;
-                riquadro_quota.style.backgroundColor = '#42a5f5';
-              } else {
-                val_quota.textContent = bonus;
-                riquadro_quota.style.backgroundColor = '#ffd966';
-                riquadro_quota.style.color = 'black';
-              }
+    if (bonus >= 0) {
+      val_quota.textContent = '+' + bonus;
+      riquadro_quota.style.backgroundColor = '#42a5f5';
+    } else {
+      val_quota.textContent = bonus;
+      riquadro_quota.style.backgroundColor = '#ffd966';
+      riquadro_quota.style.color = 'black';
+    }
 
     function previewImage(input) {
-   var file = input.files[0];
-   if (file) {
-     var reader = new FileReader();
-     reader.onload = function(e) {
-       $('#currentImg').attr('src', e.target.result);
-     };
-     reader.readAsDataURL(file);
-   }
- }
-  </script>
-</body>
+      var file = input.files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#currentImg').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
 
+    let canali = []
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/my_channels`,
+      headers: {},
+      success: function (data, status, xhr) {
+        canali = data.data;
+      }
+    });
+    canali.forEach((el) => {
+      if (el.ruolo === "proprietario") {
+        $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>proprietario</p></div><button onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button></div></div>`)
+      } else if (el.ruolo === "mod") {
+        $("#canali_gestiti").append(`<div class="card-canale gestito"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>moderatore</p></div></div></div>`)
+      }
+    })
+    $("#canali_acquistati").append(`  <div id="aggiungi-canale" class="card-canale">
+        <img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/default_channelpic.png" alt="immagine canale">
+        <div class="info-canale">
+          <div class="nome-canale">
+            <input type="text" id="nomeCanaleInput" v-model="nuovoCanale" placeholder="Nuovo canale">
+          </div>
+          <div class="ruolo-canale">
+            <p>proprietario</p>
+          </div>
+          <div class="nuovo-canale">
+            <button @click="selezionaCanale">Crea Canale <i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        </div>`)
+    
+  </script>
+
+</body>
 </html>

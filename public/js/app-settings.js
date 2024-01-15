@@ -101,10 +101,34 @@ function form_psw() {
     });
 }
 
-function seleziona_canale(nome){
-  if (nome == 'nuovo_canale') {
-    // INSERIRE CODICE PER EDITOR NUOVO CANALE
+function seleziona_canale(tipo, nome){
+  if (tipo === 'nuovo') {
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: `https://site212251.tw.cs.unibo.it/channel`,
+        headers: { },
+        data: {nome: nome, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
+        success: function (data, status, xhr) {
+          redirectToSettings();
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 403) {
+                alert("Nome del canale già esistente");
+            }
+        }
+    });
   } else {
+    var deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "btn btn-danger";
+    deleteButton.onclick = function() {
+      cancella_canale(nomeCanale);
+    };
+    var trashIcon = document.createElement("i");
+    trashIcon.className = "fa-solid fa-trash-can";
+    deleteButton.appendChild(trashIcon);
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -116,11 +140,12 @@ function seleziona_canale(nome){
             $("#canale_selezionato").removeAttr("hidden")
 
             $("#canale_selezionato_nome").text(nome)
+            document.getElementById("canale_selezionato_nome").appendChild(deleteButton);
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
 
             data.data.mod.forEach((el) => {
-                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}</li>`)
+                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
             })
             /*mods = mods.slice(0, -1)
             console.log(mods)
@@ -157,6 +182,24 @@ function update_channel(){
             redirectToSettings();
         }
     });
+}
+
+function cancella_canale(nome) {
+  $.ajax({
+      type: 'DELETE',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+      headers: { },
+      success: function (data, status, xhr) {
+        redirectToSettings();
+      },
+      error: function (xhr, status, error) {
+          if (xhr.status === 404) {
+              alert("Canale già non esistente");
+          }
+      }
+  });
 }
 
 function aggiungi_mod(){
