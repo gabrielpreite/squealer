@@ -85,9 +85,9 @@ font-size: 16px;
   padding-left: 10px;
 }
 
-.nascondi_quota {
-  background-color: transparent;
-  border: none;
+.nascondi_quota, .nascondi_quota:hover {
+  background-color: transparent !important;
+  border: none !important;
 }
 
 .char-count-item {

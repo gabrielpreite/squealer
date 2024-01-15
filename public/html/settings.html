@@ -906,8 +906,8 @@
             },
             methods: {
               selezionaCanale() {
-                if (!nuovoCanale.startsWith("$")) {
-                  nuovoCanale = "$" + nuovoCanale;
+                if (!this.nuovoCanale.startsWith("$")) {
+                  this.nuovoCanale = "$" + this.nuovoCanale;
                 }
                 seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
               },
