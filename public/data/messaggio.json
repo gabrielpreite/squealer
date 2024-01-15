@@ -2671,7 +2671,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=26.290198610648957,-79.94092212243159&size=640x480&scale=2&maptype=hybrid&zoom=9&markers=26.129040672894916,-80.13318286461909&key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M",
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=26.290198610648957,-79.94092212243159&size=640x480&scale=2&maptype=hybrid&zoom=9&markers=26.129040672894916,-80.13318286461909&key=AIzaSyAulEsBqi-PwsblsFthyiuZFn0F_7eEFww",
     "contenuto": "map",
     "destinatari": [],
     "tipo_destinatari": null,
@@ -2696,7 +2696,7 @@
   },
   {
     "risponde_a": null,
-    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=44.487360240072036,11.353507353306002&size=640x480&scale=2&maptype=hybrid&zoom=13&markers=44.48736024007202,11.353507353305991&key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M",
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=44.487360240072036,11.353507353306002&size=640x480&scale=2&maptype=hybrid&zoom=13&markers=44.48736024007202,11.353507353305991&key=AIzaSyAulEsBqi-PwsblsFthyiuZFn0F_7eEFww",
     "contenuto": "map",
     "destinatari": [],
     "tipo_destinatari": null,
@@ -3847,7 +3847,7 @@
   },
   {
     "risponde_a": "65814d80b1923ae1bccced02",
-    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=35.848822000000006,14.495424999999988&size=640x480&scale=2&maptype=hybrid&zoom=12&markers=35.848822,14.495425&key=AIzaSyDemM4ObQrGKeMYa4mD8__Xm5ZUlwJNL5M",
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=35.848822000000006,14.495424999999988&size=640x480&scale=2&maptype=hybrid&zoom=12&markers=35.848822,14.495425&key=AIzaSyAulEsBqi-PwsblsFthyiuZFn0F_7eEFww",
     "contenuto": "map",
     "destinatari": [],
     "tipo_destinatari": null,
