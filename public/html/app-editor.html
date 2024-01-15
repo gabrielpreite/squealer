@@ -60,6 +60,39 @@
     </div>
   </div>
 
+  <div class="row" id="mostra-squeal" hidden>
+    <div class="card" id="' + squeals[i].post_id + '">
+      <div class="card-content">
+        <div class="card-info valign-wrapper">
+          <div class="col s3 center-align">
+            <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="profile-image circle" id="squeal-immagine-profilo">
+          </div>
+          <div class="col s9">
+            <span class="nome_utente" id="squeal-nome-utente">Nome Utente</span>
+            <br>
+            <a class="text-muted tag-username btn-flat" id="squeal-username">username</a>
+            <br>
+            <span class="text-muted timestamp" id="squeal-data">10 minuti fa</span>
+          </div>
+        </div>
+        <p id="squeal-contenuto">Questo è il testo dello squeal</p>
+      </div>
+    
+      <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width">
+          <li class="tab"><a class="active" href="#commenti">Commenti</a></li>
+        </ul>
+      </div>
+      <div class="card-content grey lighten-4">
+        <div id="commenti">
+          <div id="contenitore-commenti">
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row post-form">
     <form class="col s12" id="crea_post" enctype="multipart/form-data">
       <div class="row">
@@ -182,7 +215,8 @@
       interfaccia_risposta(ris[1].split("=")[1]);
     }
 
-    
+
+  
   </script>
 </body>
 

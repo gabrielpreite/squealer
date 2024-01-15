@@ -41,3 +41,7 @@
   width: auto !important;
 }
 
+/* LARGHEZZA COMMENTI */
+.chip {
+  width: -moz-available;
+}
