@@ -898,18 +898,21 @@
 
     const { createApp, ref } = Vue
 
-    createApp({
-      data() {
-        return {
-          nuovoCanale: ''
-        }
-      },
-      methods: {
-        selezionaCanale() {
-          seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
-        },
-      }
-    }).mount('body')
+          createApp({
+            data() {
+              return {
+                nuovoCanale: ''
+              }
+            },
+            methods: {
+              selezionaCanale() {
+                if (!nuovoCanale.startsWith("$")) {
+                  nuovoCanale = "$" + nuovoCanale;
+                }
+                seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
+              },
+            }
+          }).mount('body')
 
   </script>
 </body>
