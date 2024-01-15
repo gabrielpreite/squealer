@@ -26,6 +26,11 @@
   .submit-button:hover {
       background-color: #0c87c1;
   }
+
+  .searchbar {
+        padding: 40px;
+  }
+
   </style>
 </head>
 <body>
@@ -39,7 +44,7 @@
     </div>
   </nav>
 
-  <div class="searchbar row" aria-label="Barra di ricerca">
+  <div class="searchbar" aria-label="Barra di ricerca">
     <form id="form_ricerca" role="search" aria-label="Form della ricerca">
       <div class="input-field col s3">
         <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
@@ -76,11 +81,11 @@
   </div>
 
   <div class="row" id="info_contenitore">
-    
+
   </div>
 
   <div class="row" id="squeal_contenitore">
-    
+
   </div>
 
   <!-- barra in basso -->
@@ -129,7 +134,7 @@
       var info_ricerca = result.meta;
       //tabs card squeal init
       var tabs = document.querySelectorAll('.tabs');
-      M.Tabs.init(tabs);  
+      M.Tabs.init(tabs);
     });
 
     //$(".button-collapse").sideNav();
