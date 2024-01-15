@@ -1,33 +1,41 @@
 function cambia_campo(opzione) {
-    var switchToggle = document.getElementById('switchToggle');
-    var textarea = document.getElementById('Textarea');
-
-    $("#contenuto_testo").attr("hidden", "true")
-    $("#contenuto_immagine").attr("hidden", "true")
-    $("#contenuto_posizione").attr("hidden", "true")
+    $("#contenuto_testo").attr("hidden", "true");
+    $("#contenuto_immagine").attr("hidden", "true");
+    $("#contenuto_posizione").attr("hidden", "true");
+    $("#contenuto_ghigliottina").attr("hidden", "true");
     $(".icona-scelta").removeClass("attiva");
 
     if (opzione == "Testo") {
         //resetQuota()
-        $("#contenuto_testo").attr("hidden", false)
+        $("#contenuto_testo").attr("hidden", false);
         $(".icona-scelta.fas.fa-font").addClass("attiva");
         if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
             aggiornaQuota("Testo");
         }
+        toggleCorpoGhigliottina();
     } else if (opzione == "Immagine") {
         //resetQuota()
-        $("#contenuto_immagine").attr("hidden", false)
+        $("#contenuto_immagine").attr("hidden", false);
         $(".icona-scelta.fas.fa-image").addClass("attiva");
         if ($(".icona-scelta.fas.fa-image").hasClass("attiva")&& inputImage.files && inputImage.files[0]) {
             aggiornaQuota("Immagine");
         }
     } else if (opzione == "Posizione") {
         //resetQuota()
-        $("#contenuto_posizione").attr("hidden", false)
+        $("#contenuto_posizione").attr("hidden", false);
         $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
         if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
             aggiornaQuota("Posizione");
         }
+    } else if (opzione == "Ghigliottina") {
+        //resetQuota()
+        $("#contenuto_testo").attr("hidden", false);
+        $("#contenuto_ghigliottina").attr("hidden", false);
+        $(".icona-scelta.fas.fa-star").addClass("attiva");
+        if ($(".icona-scelta.fas.fa-star").hasClass("attiva")) {
+            aggiornaQuota("Ghigliottina");
+        }
+        toggleCorpoGhigliottina();
     }
 }
 
@@ -235,8 +243,23 @@ function add_post(){
             }
         }
 
-        //ghigliottina (ORA TOLTA)
-        
+        //ghigliottina
+        if (!$("#contenuto_ghigliottina").attr("hidden")){
+            formData.append("ghigliottina", "true")
+  
+            formData.append("timer", document.getElementById("intervallo").value)
+  
+            parole = ""
+            for(let i=1; i<5; i++){
+              parole+=document.getElementById("parola"+i).value
+              parole+=", "
+            }
+            parole+=document.getElementById("parola5").value
+            //console.log(parole)
+            formData.append("parole", parole)
+  
+            formData.append("soluzione", document.getElementById("parolaDaIndovinare").value)
+        }
 
         fetch("/squeal", {
             method: "POST",
@@ -328,3 +351,29 @@ function aggiungisqueal(post, id) {
     }
 }
 
+//GHIGLIOTTINA
+function updateIntervalloVal() {
+    var intervalloInput = document.getElementById('intervallo');
+    var intervalloVal = document.getElementById('intervallo-val');
+    var textarea = document.getElementById('Textarea');
+
+    intervalloVal.textContent = intervalloInput.value + " min";
+    if (intervalloInput.value == 1) {
+      textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
+    } else {
+      textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+    }
+}
+
+function toggleCorpoGhigliottina() {
+    var textarea = document.getElementById('Textarea');
+    var intervalloInput = document.getElementById('intervallo');
+
+    if (!$("#contenuto_ghigliottina").attr("hidden")) {
+        textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+        textarea.readOnly = true;
+    } else {
+      textarea.value = '';
+      textarea.readOnly = false;
+    }
+}

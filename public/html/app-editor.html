@@ -109,6 +109,10 @@
             <input type="radio" name="group1" hidden>
             <i class="material-icons" onclick="cambia_campo('Posizione')">edit_location</i>
           </label>
+          <label>
+            <input type="radio" name="group1" hidden>
+            <i class="material-icons" onclick="cambia_campo('Ghigliottina')">star</i>
+          </label>
         </div>
 
         <div id="contenuto_testo" class="input-field col s12">
@@ -129,6 +133,48 @@
 
         <div id="contenuto_posizione" class="input-field col s12" hidden>
           <div id="map" style="height: 60vh;">
+          </div>
+        </div>
+
+        <div id="contenuto_ghigliottina" class="input-field col s12" hidden>
+          <div class="title-ghigliottina">
+            <h2>Inizia ghigliottina</h2>
+          </div>
+          <div id="corpoGhigliottina">
+            <div class="slider-container">
+              <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
+                <label for="intervallo" hidden>Intervallo di tempo:</label>
+                <input type="range" id="intervallo" min="1" max="60" value="10" oninput="updateIntervalloVal()">
+                <span id="intervallo-val">10 min</span>
+            </div>
+            <div class="parole-container">
+              <p>Inserisci di seguito cinque parole che fungeranno da indizi.
+                <br>Infine, fornisci una parola che i tuoi amici dovranno indovinare!</p>
+              <div class="input-parola">
+                <label for="parola1"><i class="fa-solid fa-1"></i></label>
+                <input type="text" id="parola1" placeholder="Prima parola">
+              </div>
+              <div class="input-parola">
+                <label for="parola2"><i class="fa-solid fa-2"></i></label>
+                <input type="text" id="parola2" placeholder="Seconda parola">
+              </div>
+              <div class="input-parola">
+                <label for="parola3"><i class="fa-solid fa-3"></i></label>
+                <input type="text" id="parola3" placeholder="Terza parola">
+              </div>
+              <div class="input-parola">
+                <label for="parola4"><i class="fa-solid fa-4"></i></label>
+                <input type="text" id="parola4" placeholder="Quarta parola">
+              </div>
+              <div class="input-parola">
+                <label for="parola5"><i class="fa-solid fa-5"></i></label>
+                <input type="text" id="parola5" placeholder="Quinta parola">
+              </div>
+              <div class="input-parola">
+                <label for="parolaDaIndovinare"><i class="fa-solid fa-trophy"></i></label>
+                <input type="text" id="parolaDaIndovinare" placeholder="Soluzione">
+              </div>
+            </div>
           </div>
         </div>
 
