@@ -11,14 +11,14 @@
   height: 10%;
 }
 
-@media (max-height: 300px) { 
+@media (max-height: 300px) {
   /* based on font size below */
   .bottom-bar {
     height: 30px;
   }
 }
 
-@media (min-height: 500px) { 
+@media (min-height: 500px) {
   /* based on font size below */
   .bottom-bar {
     height: 50px;
@@ -30,6 +30,32 @@
   flex-direction: column;
   align-items: center;
   color: #333;
+}
+
+#tipo-icona-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#campo_scelta {
+  display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+
+.tipo-icona p {
+  margin: 0;
+}
+
+.tipo-icona {
+  color: #9e9e9e;
+}
+
+.attiva {
+  color: black;
 }
 
 .bottom-bar i {

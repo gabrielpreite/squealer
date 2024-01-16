@@ -15,18 +15,18 @@
 .btn-reazioni {
   font-size: 17px;
   padding: 0.5em 2em;
-  border: transparent;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-  background: dodgerblue;
-  color: white;
-  border-radius: 4px;
+  border: none;
+  color: #777;
+  background-color: inherit;
+  box-shadow: none;
+  margin-bottom: 10px;
   transition: none;
 }
- 
-.btn-reazioni:hover {
-  background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+
+.info-post {
+      margin-top: 10px;
 }
- 
+
 .btn-reazioni:active {
   transform: translate(0em, 0.2em);
 }
@@ -70,18 +70,41 @@
   height: 10%;
 }
 
-@media (max-height: 300px) { 
+@media (max-height: 300px) {
   /* based on font size below */
   .bottom-bar {
     height: 30px;
   }
 }
 
-@media (min-height: 500px) { 
+@media (min-height: 500px) {
   /* based on font size below */
   .bottom-bar {
     height: 50px;
   }
+}
+
+.img_squeal {
+  width: -webkit-fill-available;
+}
+
+.tag-username, .comment-username {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding: 0px;
+}
+
+.timestamp {
+  color: #6c757d!important;
+  font-size: smaller;
+}
+
+.info_utente {
+  display: flex;
+  flex-direction: column;
 }
 
 .bottom-bar a {
