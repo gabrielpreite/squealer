@@ -18,7 +18,7 @@
 
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-   
+
   </nav>
 
   <div class="row" id="post-dest">
@@ -77,7 +77,7 @@
         </div>
         <p id="squeal-contenuto">Questo è il testo dello squeal</p>
       </div>
-    
+
       <div class="card-tabs">
         <ul class="tabs tabs-fixed-width">
           <li class="tab"><a class="active" href="#commenti">Commenti</a></li>
@@ -86,7 +86,7 @@
       <div class="card-content grey lighten-4">
         <div id="commenti">
           <div id="contenitore-commenti">
-        
+
           </div>
         </div>
       </div>
@@ -116,8 +116,7 @@
         </div>
 
         <div id="contenuto_testo" class="input-field col s12">
-          <textarea id="Textarea" name="textarea" class="form-input materialize-textarea" data-length="120" oninput="handleTextareaInput()"></textarea>
-          <label for="Textarea">Scrivi il tuo Squeal...</label>
+          <textarea id="Textarea" name="textarea" class="form-input materialize-textarea" placeholder="Scrivi il tuo squeal..." data-length="120" oninput="handleTextareaInput()"></textarea>
         </div>
 
         <div id="contenuto_immagine" class="file-field input-field col s12" hidden>
@@ -141,9 +140,9 @@
             <h2>Inizia ghigliottina</h2>
           </div>
           <div id="corpoGhigliottina">
+            <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
+              <label for="intervallo" hidden>Intervallo di tempo:</label>
             <div class="slider-container">
-              <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
-                <label for="intervallo" hidden>Intervallo di tempo:</label>
                 <input type="range" id="intervallo" min="1" max="60" value="10" oninput="updateIntervalloVal()">
                 <span id="intervallo-val">10 min</span>
             </div>
@@ -182,7 +181,7 @@
           <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
         </div>
       </div>
-      
+
     </form>
   </div>
 
@@ -262,7 +261,7 @@
     }
 
 
-  
+
   </script>
 </body>
 

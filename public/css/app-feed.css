@@ -14,13 +14,14 @@
 
 .btn-reazioni {
   font-size: 17px;
-  padding: 0.5em 1em;
+  padding: 0.2em 1em;
   border: none;
   color: #777;
   background-color: inherit;
   box-shadow: none;
   margin-bottom: 10px;
   transition: none;
+  height: auto;
 }
 
 .btn-reazioni:hover {

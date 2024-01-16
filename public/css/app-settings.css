@@ -11,14 +11,18 @@
   height: 10%;
 }
 
-@media (max-height: 300px) { 
+.title-sezione {
+    font-size: x-large;
+}
+
+@media (max-height: 300px) {
   /* based on font size below */
   .bottom-bar {
     height: 30px;
   }
 }
 
-@media (min-height: 500px) { 
+@media (min-height: 500px) {
   /* based on font size below */
   .bottom-bar {
     height: 50px;
@@ -35,4 +39,3 @@
 .bottom-bar i {
   font-size: 24px;
 }
-

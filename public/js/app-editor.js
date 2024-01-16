@@ -176,7 +176,7 @@ function check_destinatari_utenti(a) {
 function check_post() {
     // Verifica se ci sono destinatari selezionati
     //let arr = window.location.href.split('?');
-    if (document.getElementById("campo-bacheca").hidden) { //caso bacheca  
+    if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
         if (!(chip_arr[0].chipsData.length > 0)) { //caso risposta o no destinatari
             alert("Nessun destinatario selezionato");
             return false;
@@ -225,7 +225,7 @@ function add_post(){
             let array_dest = [];
             let x = 0;
             chip_arr[0].chipsData.forEach(function (){
-                array_dest[x] = chip_arr[0].chipsData[x].tag; 
+                array_dest[x] = chip_arr[0].chipsData[x].tag;
                 x = x + 1;
             });
             if(document.getElementById("icona-canali").classList.length == 2){//caso canali
@@ -246,9 +246,9 @@ function add_post(){
         //ghigliottina
         if (!$("#contenuto_ghigliottina").attr("hidden")){
             formData.append("ghigliottina", "true")
-  
+
             formData.append("timer", document.getElementById("intervallo").value)
-  
+
             parole = ""
             for(let i=1; i<5; i++){
               parole+=document.getElementById("parola"+i).value
@@ -257,7 +257,7 @@ function add_post(){
             parole+=document.getElementById("parola5").value
             //console.log(parole)
             formData.append("parole", parole)
-  
+
             formData.append("soluzione", document.getElementById("parolaDaIndovinare").value)
         }
 
@@ -308,7 +308,7 @@ function aggiungisqueal(post, id) {
     document.getElementById("squeal-immagine-profilo").src = `https://site212251.tw.cs.unibo.it/uploads/${post.img}`
 
     //corpo squeal
-    if(post.contenuto == "testo"){      
+    if(post.contenuto == "testo"){
     document.getElementById("squeal-contenuto").innerHTML = post.corpo;
     } else if(squeals[i].contenuto == "img"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post.corpo}" alt="immagine dello squeal">`
@@ -359,9 +359,9 @@ function updateIntervalloVal() {
 
     intervalloVal.textContent = intervalloInput.value + " min";
     if (intervalloInput.value == 1) {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
+      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
     } else {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
 }
 
