@@ -2,27 +2,29 @@
 <html class="no-js" lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mod Dashboard</title>
     <link rel="stylesheet" href="../css/mod.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" src="../js/global.js"></script>
     <script type="text/javascript" src="../js/mod.js"></script>
   </head>
   <body>
-    <div class="row collapse">
-      <div class="small-2 column small-padding-collapse">
-        <div id="content_left">
-            <h1>Categorie</h1>
+    <div class="container flex h-screen">
+      
+        <div id="content_left" class="w-1/5 p-4 mr-4 bg-blue-700">
+            <h1 class="text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Categorie</h1>
             <ul>
-            <li><button onclick="cat_utenti()">Utenti</button></li>
-            <li><button onclick="cat_squeal()">Squeal</button></li>
-            <li><button onclick="cat_canali()">Canali Ufficiali</button></li>
+            <li><button onclick="cat_utenti()" class="text-xl text-white pt-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Utenti</button></li>
+            <li><button onclick="cat_squeal()" class="text-xl text-white pt-5 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Squeal</button></li>
+            <li><button onclick="cat_canali()" class="text-xl text-white pt-5 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Canali Ufficiali</button></li>
             </ul>
         </div>
-      </div>
-      <div class="small-4 column small-padding-collapse">
-        <div id="content_mid">
+      
+        <div id="content_mid" class="w-2/5 p-4 mr-4 border-r">
+          <div id="mid_default">Seleziona una categoria per cominciare</div>
           <div id="mid_user" hidden> <!-- parte utente -->
           <form id="form_filtro_user">
             <select id="user_filtro_tipo" onchange="cambia_query_user()">
@@ -45,7 +47,7 @@
             <input type="submit" value="Filtra">
           </form>
             <div id="user_table_container">
-              <table id="user_table">
+              <table id="user_table" class="min-w-full bg-white border border-gray-300 shadow">
               </table>
             </div>
           </div>
@@ -77,9 +79,8 @@
             <button onclick="seleziona_canale('new')">Aggiungi nuovo canale</button>
           </div>
         </div>
-      </div>
-      <div class="small-6 column small-padding-collapse">
-        <div id="content_right">
+      
+        <div id="content_right" class="w-2/5 p-4 mr-4">
           <div id="right_user" hidden> <!-- parte utente -->
             <form id="modifica_user">
               <div id="selected_user_username"></div>
@@ -149,7 +150,7 @@
             <button id="elimina_canale">Elimina Canale</button>
           </div>
         </div>
-      </div>
+      
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

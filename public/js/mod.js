@@ -25,21 +25,28 @@ function cat_utenti(){
         let cell = document.createElement("td");
         let cellText = document.createTextNode(user.username);
         cell.appendChild(cellText);
+        cell.classList.add("border-r")
         row.appendChild(cell);
 
         let cell_red = document.createElement("td");
-        let cellText_red = document.createTextNode(user.redazione_flag ? "Y" : "N");
+        let cellText_red = document.createElement("i")
+        cellText_red.classList.add("fa-solid", (user.redazione_flag ? "fa-check": "fa-x"))
         cell_red.appendChild(cellText_red)
+        cell_red.classList.add("border-r")
         row.appendChild(cell_red);
 
         let cell_ver = document.createElement("td");
-        let cellText_ver = document.createTextNode(user.verificato_flag ? "Y" : "N");
+        let cellText_ver = document.createElement("i")
+        cellText_ver.classList.add("fa-solid", (user.verificato_flag ? "fa-check": "fa-x"))
         cell_ver.appendChild(cellText_ver)
+        cell_ver.classList.add("border-r")
         row.appendChild(cell_ver);
 
         let cell_pro = document.createElement("td");
-        let cellText_pro = document.createTextNode(user.professional_flag ? "Y" : "N");
+        let cellText_pro = document.createElement("i")
+        cellText_pro.classList.add("fa-solid", (user.professional_flag ? "fa-check": "fa-x"))
         cell_pro.appendChild(cellText_pro)
+        cell_pro.classList.add("border-r")
         row.appendChild(cell_pro);
 
         let cell_pop = document.createElement("td");
@@ -48,9 +55,11 @@ function cat_utenti(){
         row.appendChild(cell_pop);
 
         row.onclick = function() { seleziona_utente(user.username); };
+        row.classList.add("py-2", "px-4", "border-b")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
+    document.getElementById("mid_default").setAttribute("hidden", "true")
     document.getElementById("mid_user").removeAttribute("hidden")
     document.getElementById("mid_squeal").setAttribute("hidden", "true")
     document.getElementById("mid_canali").setAttribute("hidden", "true")
@@ -246,6 +255,7 @@ function cat_squeal(){
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
+    document.getElementById("mid_default").setAttribute("hidden", "true")
     document.getElementById("mid_user").setAttribute("hidden", "true")
     document.getElementById("mid_squeal").removeAttribute("hidden")
     document.getElementById("mid_canali").setAttribute("hidden", "true")
@@ -515,6 +525,7 @@ function cat_canali(){
         tableBody.appendChild(row)
     })
     document.getElementById("canali_table").appendChild(tableBody)
+    document.getElementById("mid_default").setAttribute("hidden", "true")
     document.getElementById("mid_user").setAttribute("hidden", "true")
     document.getElementById("mid_squeal").setAttribute("hidden", "true")
     document.getElementById("mid_canali").removeAttribute("hidden")
