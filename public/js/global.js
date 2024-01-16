@@ -1,4 +1,5 @@
 //funzioni globali
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 function get_cookie_by_name(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));

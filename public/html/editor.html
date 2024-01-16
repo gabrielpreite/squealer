@@ -273,7 +273,9 @@
             </div>
           </div>
           <div class="text-end">
-            <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+            <div :class="{ shake: buttonValue === 'Compra quota' }">
+             <input type="submit" :value="buttonValue" class="btn btn-unstyled btn-confirm" id="btn-conferma" @click="handleButtonClick">
+           </div>
           </div>
         </div>
 
@@ -819,12 +821,12 @@
       const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
       if (remainingChars.some((count) => count < 0)) {
         button.classList.add('button-disabled');
-        button.value = "Compra quota"
+        this.$data.buttonValue = "Compra quota";
         shopButton.classList.remove("btn-unstyled")
         shopButton.classList.add("btn-danger")
       } else {
         button.classList.remove('button-disabled');
-        button.value = "Conferma"
+        this.$data.buttonValue = "Conferma";
         shopButton.classList.remove("btn-danger")
         shopButton.classList.add("btn-unstyled")
       }
@@ -1002,6 +1004,31 @@
         }
 
     }
+
+    const { createApp, ref } = Vue
+
+          createApp({
+            data() {
+              return {
+                isDisabled: false,
+                buttonValue: "Conferma",
+              }
+            },
+            methods: {
+              handleButtonClick() {
+              if (this.buttonValue === "Compra quota") {
+                this.warnDisabled();
+              }
+            },
+            warnDisabled() {
+              this.isDisabled = true;
+              setTimeout(() => {
+                this.isDisabled = false;
+              }, 1500);
+            },
+            }
+          }).mount('body')
+
 
   </script>
 </body>
