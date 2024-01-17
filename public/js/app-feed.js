@@ -189,12 +189,13 @@ function ricerca_squeal(elem) {
     }
     if (tipo == "$") {
       tipo = "channel";
-      query = query.substring(2);
     } else if (tipo == "#") {
       tipo = "keyword"
-    } else if (tipo == "@") {
-      let length = query.length;
-      query = query.slice(1,length);
+    } else {
+      if (tipo == "@") {
+        let length = query.length;
+        query = query.slice(1,length);
+      }
       tipo = "user";
     }
   }
