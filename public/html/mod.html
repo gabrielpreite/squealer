@@ -25,7 +25,7 @@
       
         <div id="content_mid" class="w-3/6 p-4 mr-4 border-r">
           <div id="mid_default">Seleziona una categoria per cominciare</div>
-          <div id="mid_user" hidden> <!-- parte utente -->
+          <div id="mid_user" class="hidden"> <!-- parte utente -->
           <form id="form_filtro_user">
             <label for="user_filtro_tipo" class="block text-sm font-medium text-gray-700">Filtra per </label>
             <select id="user_filtro_tipo" autocomplete="off" name="user_filtro_tipo" onchange="cambia_query_user()" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
@@ -52,7 +52,7 @@
               </table>
             </div>
           </div>
-          <div id="mid_squeal" hidden> <!-- parte squeal -->
+          <div id="mid_squeal" class="hidden"> <!-- parte squeal -->
             <form id="form_filtro_squeal">
               <label for="squeal_filtro_tipo" class="block text-sm font-medium text-gray-700">Filtra per </label>
               <select id="squeal_filtro_tipo" autocomplete="off" name="squeal_filtro_tipo" onchange="cambia_query_squeal()" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
@@ -73,7 +73,7 @@
               </table>
             </div>
           </div>
-          <div id="mid_canali" hidden> <!-- parte canali -->
+          <div id="mid_canali" class="hidden"> <!-- parte canali -->
             <div id="canali_table_container">
               <table id="canali_table">
               </table>
@@ -83,11 +83,11 @@
         </div>
       
         <div id="content_right" class="w-2/6 p-4 mr-4">
-          <div id="right_user" hidden class="bg-white p-4 rounded shadow">
+          <div id="right_user" class="hidden bg-white p-4 rounded shadow">
             <form id="modifica_user">
               <div class="mb-4">
                 <label for="selected_user_username" class="block text-sm font-medium text-gray-700">Username:</label>
-                <div id="selected_user_username" class="font-semibold">JohnDoe123</div>
+                <div id="selected_user_username" class="font-semibold"></div>
               </div>
           
               <div class="mb-4">
@@ -115,48 +115,67 @@
             </form>
           </div>
           
-          <div id="right_squeal" hidden> <!-- parte squeal -->
+          <div id="right_squeal" class="hidden bg-white p-4 rounded shadow max-h-[90vh] overflow-y-auto mt-5"> <!-- parte squeal -->
             <form id="modifica_squeal">
-              <div id="selected_squeal_post_id"></div>
-              Mittente <div id="mittente_squeal"></div><br>
-              Destinatari <input type="text" id="destinatari_squeal"><br>
-              Data <div id="data_squeal"></div><br>
-              Contenuto <div id="contenuto_squeal"></div><br>
-              Reazioni:<br>
-              <table id="reaction_table">
-                <tr>
-                  <th>Tipo</th>
-                  <th>#</th>
-                </tr>
-                <tr>
-                  <td>Concordo</td>
-                  <td><input type="text" id="#_con"></td>
-                </tr>
-                <tr>
-                  <td>Mi piace</td>
-                  <td><input type="text" id="#_mip"></td>
-                </tr>
-                <tr>
-                  <td>Adoro</td>
-                  <td><input type="text" id="#_ado"></td>
-                </tr>
-                <tr>
-                  <td>Sono contrario</td>
-                  <td><input type="text" id="#_son"></td>
-                </tr>
-                <tr>
-                  <td>Mi disgusta</td>
-                  <td><input type="text" id="#_mid"></td>
-                </tr>
-                <tr>
-                  <td>Odio</td>
-                  <td><input type="text" id="#_odi"></td>
-                </tr>
-              </table>
-              <input type="submit" value="Applica modifiche">
+              <label class="block mb-2">
+                ID:<div id="selected_squeal_post_id" class="font-semibold"></div>
+              </label>
+              <label class="block mb-2">
+                Mittente:<div id="mittente_squeal" class="font-semibold"></div>
+              </label>
+              <label class="block mb-2">
+                Destinatari:<input type="text" id="destinatari_squeal" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
+              </label>
+              <label class="block mb-2">
+                Data:<div id="data_squeal" class="font-semibold"></div>
+              </label>
+              <label class="block mb-2">
+                Contenuto:<div id="contenuto_squeal" class="font-semibold"></div>
+              </label>
+          
+              <label class="block mb-2">
+                Reazioni:
+                <table id="reaction_table" class="mt-2 w-full border-collapse">
+                  <thead>
+                    <tr>
+                      <th class="border py-2 px-4">Tipo</th>
+                      <th class="border py-2 px-4">#</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border py-2 px-4">Concordo</td>
+                      <td class="border py-2 px-4"><input type="text" id="#_con" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"></td>
+                    </tr>
+                    <tr>
+                      <td class="border py-2 px-4">Mi piace</td>
+                      <td class="border py-2 px-4"><input type="text" id="#_mip" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"></td>
+                    </tr>
+                    <tr>
+                      <td class="border py-2 px-4">Adoro</td>
+                      <td class="border py-2 px-4"><input type="text" id="#_ado" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"></td>
+                    </tr>
+                    <tr>
+                      <td class="border py-2 px-4">Sono contrario</td>
+                      <td class="border py-2 px-4"><input type="text" id="#_son" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"></td>
+                    </tr>
+                    <tr>
+                      <td class="border py-2 px-4">Mi disgusta</td>
+                      <td class="border py-2 px-4"><input type="text" id="#_mid" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"></td>
+                    </tr>
+                    <tr>
+                      <td class="border py-2 px-4">Odio</td>
+                      <td class="border py-2 px-4"><input type="text" id="#_odi" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </label>
+          
+              <input type="submit" value="Applica modifiche" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
             </form>
           </div>
-          <div id="right_canali" hidden> <!-- parte canali -->
+          
+          <div id="right_canali" class="hidden"> <!-- parte canali -->
             <form id="modifica_canale">
               Nome:<input type="text" id="selected_canale_nome">
               Descrizione:<input type="text" id="canale_descrizione">

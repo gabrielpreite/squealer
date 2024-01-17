@@ -64,14 +64,14 @@ function cat_utenti(){
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
-    document.getElementById("mid_default").setAttribute("hidden", "true")
-    document.getElementById("mid_user").removeAttribute("hidden")
-    document.getElementById("mid_squeal").setAttribute("hidden", "true")
-    document.getElementById("mid_canali").setAttribute("hidden", "true")
+    document.getElementById("mid_default").classList.add("hidden")
+    document.getElementById("mid_user").classList.remove("hidden")
+    document.getElementById("mid_squeal").classList.add("hidden")
+    document.getElementById("mid_canali").classList.add("hidden")
 
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").setAttribute("hidden", "")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.add("hidden")
 }
 
 function compare_utenti(a, b){
@@ -181,9 +181,9 @@ function seleziona_utente(username){
         success: function (data, status, xhr) {
             user = data.data;
             console.log(data)
-            document.getElementById("right_user").removeAttribute("hidden")
-            document.getElementById("right_squeal").setAttribute("hidden", "")
-            document.getElementById("right_canali").setAttribute("hidden", "")
+            document.getElementById("right_user").classList.remove("hidden")
+            document.getElementById("right_squeal").classList.add("hidden")
+            document.getElementById("right_canali").classList.add("hidden")
             //console.log(user.abilitato_flag)
             document.getElementById("selected_user_username").innerHTML = user.username
             document.getElementById("abilitato_user_switch").checked = user.abilitato_flag
@@ -274,14 +274,14 @@ function cat_squeal(){
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
-    document.getElementById("mid_default").setAttribute("hidden", "true")
-    document.getElementById("mid_user").setAttribute("hidden", "true")
-    document.getElementById("mid_squeal").removeAttribute("hidden")
-    document.getElementById("mid_canali").setAttribute("hidden", "true")
+    document.getElementById("mid_default").classList.add("hidden")
+    document.getElementById("mid_user").classList.add("hidden")
+    document.getElementById("mid_squeal").classList.remove("hidden")
+    document.getElementById("mid_canali").classList.add("hidden")
 
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").setAttribute("hidden", "")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.add("hidden")
 }
 
 function cambia_query_squeal(){
@@ -310,16 +310,22 @@ function seleziona_squeal(post_id){
         success: function (data, status, xhr) {
             squeal = data.data;
             //console.log(squeal)
-            document.getElementById("right_user").setAttribute("hidden", "")
-            document.getElementById("right_squeal").removeAttribute("hidden")
-            document.getElementById("right_canali").setAttribute("hidden", "")
+            document.getElementById("right_user").classList.add("hidden")
+            document.getElementById("right_squeal").classList.remove("hidden")
+            document.getElementById("right_canali").classList.add("hidden")
             
             document.getElementById("selected_squeal_post_id").innerHTML = squeal.post_id
             document.getElementById("mittente_squeal").innerHTML = squeal.utente
             document.getElementById("destinatari_squeal").value = squeal.destinatari.toString()
             let d = new Date(squeal.timestamp)
             document.getElementById("data_squeal").innerHTML = d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' })
-            document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
+            if(squeal.contenuto === "testo"){
+                document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
+            } else if(squeal.contenuto === "img"){
+                document.getElementById("contenuto_squeal").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeal.corpo}" alt="immagine dello squeal">`
+            } else if(squeal.contenuto === "map"){
+                document.getElementById("contenuto_squeal").innerHTML = `<img src="${squeal.corpo}" alt="mappa dello squeal">`;
+            }
 
             document.getElementById("#_con").value = squeal.reazioni.positive.concordo.length
             //document.getElementById("list_con").value = squeal.reazioni.positive.concordo.toString()
@@ -550,20 +556,20 @@ function cat_canali(){
         tableBody.appendChild(row)
     })
     document.getElementById("canali_table").appendChild(tableBody)
-    document.getElementById("mid_default").setAttribute("hidden", "true")
-    document.getElementById("mid_user").setAttribute("hidden", "true")
-    document.getElementById("mid_squeal").setAttribute("hidden", "true")
-    document.getElementById("mid_canali").removeAttribute("hidden")
+    document.getElementById("mid_default").classList.add("hidden")
+    document.getElementById("mid_user").classList.add("hidden")
+    document.getElementById("mid_squeal").classList.add("hidden")
+    document.getElementById("mid_canali").classList.remove("hidden")
 
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").setAttribute("hidden", "")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.add("hidden")
 }
 
 function seleziona_canale(nome){
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").removeAttribute("hidden")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.remove("hidden")
 
     if(nome !== "new"){
         let canale
@@ -579,7 +585,7 @@ function seleziona_canale(nome){
                 document.getElementById("selected_canale_nome").value = canale.nome
                 document.getElementById("selected_canale_nome").setAttribute("readonly", true)
                 document.getElementById("canale_descrizione").value = canale.descrizione
-                document.getElementById("elimina_canale").removeAttribute("hidden")
+                document.getElementById("elimina_canale").classList.remove("hidden")
                 document.getElementById("elimina_canale").onclick = function() { cancella_canale(canale.nome); };
             }
         });
@@ -587,7 +593,7 @@ function seleziona_canale(nome){
         document.getElementById("selected_canale_nome").value = "Inserisci nome qui"
         document.getElementById("selected_canale_nome").removeAttribute("readonly")
         document.getElementById("canale_descrizione").value = "Inserisci descrizione qui"
-        document.getElementById("elimina_canale").setAttribute("hidden", true)
+        document.getElementById("elimina_canale").classList.add("hidden")
     }
 }
 
