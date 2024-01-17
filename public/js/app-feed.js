@@ -28,7 +28,7 @@ function aggiungi_squeal(squeals, LOG = true) {
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine dello squeal">`
     } else if(squeals[i].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa dello squeal">`;
+      document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="${squeals[i].corpo}" alt="mappa dello squeal">`;
     }
 
     //destinatari
