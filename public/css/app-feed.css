@@ -9,7 +9,7 @@
 
 .card-info {
   font-size: 17px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 .btn-reazioni {
@@ -22,6 +22,7 @@
   margin-bottom: 10px;
   transition: none;
   height: auto;
+  width: 32%;
 }
 
 .btn-reazioni:hover {
@@ -102,7 +103,7 @@
 }
 
 .img_squeal {
-  width: -webkit-fill-available;
+  width: -moz-available;
 }
 
 .tag-username, .comment-username {
