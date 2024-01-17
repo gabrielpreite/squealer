@@ -18,7 +18,7 @@ function cat_utenti(){
     
     document.getElementById("user_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
     utenti.forEach((user) => {
         var row = document.createElement("tr");
 
@@ -26,6 +26,7 @@ function cat_utenti(){
         let cellText = document.createTextNode(user.username);
         cell.appendChild(cellText);
         cell.classList.add("border-r")
+        cell.classList.add("text-center")
         row.appendChild(cell);
 
         let cell_red = document.createElement("td");
@@ -33,6 +34,7 @@ function cat_utenti(){
         cellText_red.classList.add("fa-solid", (user.redazione_flag ? "fa-check": "fa-x"))
         cell_red.appendChild(cellText_red)
         cell_red.classList.add("border-r")
+        cell_red.classList.add("text-center")
         row.appendChild(cell_red);
 
         let cell_ver = document.createElement("td");
@@ -40,6 +42,7 @@ function cat_utenti(){
         cellText_ver.classList.add("fa-solid", (user.verificato_flag ? "fa-check": "fa-x"))
         cell_ver.appendChild(cellText_ver)
         cell_ver.classList.add("border-r")
+        cell_ver.classList.add("text-center")
         row.appendChild(cell_ver);
 
         let cell_pro = document.createElement("td");
@@ -47,15 +50,17 @@ function cat_utenti(){
         cellText_pro.classList.add("fa-solid", (user.professional_flag ? "fa-check": "fa-x"))
         cell_pro.appendChild(cellText_pro)
         cell_pro.classList.add("border-r")
+        cell_pro.classList.add("text-center")
         row.appendChild(cell_pro);
 
         let cell_pop = document.createElement("td");
         let cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
         cell_pop.appendChild(cellText_pop)
+        cell_pop.classList.add("text-center")
         row.appendChild(cell_pop);
 
         row.onclick = function() { seleziona_utente(user.username); };
-        row.classList.add("py-2", "px-4", "border-b")
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
@@ -108,52 +113,61 @@ function sort_utenti(){
 
     document.getElementById("user_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
     new_utenti.forEach((user) => {
         var row = document.createElement("tr");
 
         let cell = document.createElement("td");
         let cellText = document.createTextNode(user.username);
         cell.appendChild(cellText);
+        cell.classList.add("border-r")
+        cell.classList.add("text-center")
         row.appendChild(cell);
 
         let cell_red = document.createElement("td");
-        let cellText_red = document.createTextNode(user.redazione_flag ? "Y" : "N");
+        let cellText_red = document.createElement("i")
+        cellText_red.classList.add("fa-solid", (user.redazione_flag ? "fa-check": "fa-x"))
         cell_red.appendChild(cellText_red)
+        cell_red.classList.add("border-r")
+        cell_red.classList.add("text-center")
         row.appendChild(cell_red);
 
         let cell_ver = document.createElement("td");
-        let cellText_ver = document.createTextNode(user.verificato_flag ? "Y" : "N");
+        let cellText_ver = document.createElement("i")
+        cellText_ver.classList.add("fa-solid", (user.verificato_flag ? "fa-check": "fa-x"))
         cell_ver.appendChild(cellText_ver)
+        cell_ver.classList.add("border-r")
+        cell_ver.classList.add("text-center")
         row.appendChild(cell_ver);
 
         let cell_pro = document.createElement("td");
-        let cellText_pro = document.createTextNode(user.professional_flag ? "Y" : "N");
+        let cellText_pro = document.createElement("i")
+        cellText_pro.classList.add("fa-solid", (user.professional_flag ? "fa-check": "fa-x"))
         cell_pro.appendChild(cellText_pro)
+        cell_pro.classList.add("border-r")
+        cell_pro.classList.add("text-center")
         row.appendChild(cell_pro);
-        
+
         let cell_pop = document.createElement("td");
         let cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
         cell_pop.appendChild(cellText_pop)
+        cell_pop.classList.add("text-center")
         row.appendChild(cell_pop);
-        
+
         row.onclick = function() { seleziona_utente(user.username); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
 }
 
 function cambia_query_user(){
-    document.getElementById("user_query_nome").setAttribute("hidden", "true")
-    document.getElementById("user_query_nome").classList.add("hidden-text-input")
-    document.getElementById("user_query_tipo").setAttribute("hidden", "true")
-    document.getElementById("user_query_popolarita").setAttribute("hidden", "true")
+    document.getElementById("user_query_nome").classList.add("hidden")
+    document.getElementById("user_query_tipo").classList.add("hidden")
+    document.getElementById("user_query_popolarita").classList.add("hidden")
 
     let scelta = document.getElementById("user_filtro_tipo").value
-    document.getElementById("user_query_"+scelta).removeAttribute("hidden")
-    if(scelta === "nome"){
-        document.getElementById("user_query_nome").classList.remove("hidden-text-input")
-    }
+    document.getElementById("user_query_"+scelta).classList.remove("hidden")
 }
 
 function seleziona_utente(username){

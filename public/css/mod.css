@@ -5,3 +5,11 @@
 .hidden-text-input{
     display: none
 }
+
+#abilitato_user_switch:checked ~ #abilitato_text::after {
+    content: 'Account abilitato';
+}
+  
+#abilitato_user_switch:not(:checked) ~ #abilitato_text::after {
+    content: 'Account disabilitato';
+}

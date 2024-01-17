@@ -27,27 +27,28 @@
           <div id="mid_default">Seleziona una categoria per cominciare</div>
           <div id="mid_user" hidden> <!-- parte utente -->
           <form id="form_filtro_user">
-            <select id="user_filtro_tipo" onchange="cambia_query_user()">
+            <label for="user_filtro_tipo" class="block text-sm font-medium text-gray-700">Filtra per </label>
+            <select id="user_filtro_tipo" autocomplete="off" name="user_filtro_tipo" onchange="cambia_query_user()" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
               <option id="nome" selected value="nome">Nome</option>
               <option id="tipo" value="tipo">Tipo</option>
               <option id="popolarita" value="popolarita">Popolarita</option>
             </select>
             <div id="user_filtro_query">
-              <input type="text" id="user_query_nome"> <!-- caso filtro nome -->
-              <select id="user_query_tipo" hidden> <!-- caso filtro tipo -->
+              <input type="text" id="user_query_nome" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro nome -->
+              <select id="user_query_tipo" autocomplete="off" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 hidden"> <!-- caso filtro tipo -->
                 <option id="redazione" selected value="redazione">Redazione</option>
                 <option id="verificato" value="verificato">Verificato</option>
                 <option id="professional" value="professional">Professional</option>
               </select>
-              <select id="user_query_popolarita" hidden> <!-- caso filtro popolarita -->
+              <select id="user_query_popolarita" autocomplete="off" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 hidden"> <!-- caso filtro popolarita -->
                 <option id="decrescente" selected value="decrescente">Decrescente</option>
                 <option id="crescente" value="crescente">Crescente</option>
               </select>
             </div>
-            <input type="submit" value="Filtra">
+            <input type="submit" value="Filtra" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
           </form>
             <div id="user_table_container">
-              <table id="user_table" class="min-w-full bg-white border border-gray-300 shadow">
+              <table id="user_table" class="min-w-full bg-white border border-gray-300 shadow mt-5">
               </table>
             </div>
           </div>
@@ -81,25 +82,38 @@
         </div>
       
         <div id="content_right" class="w-2/5 p-4 mr-4">
-          <div id="right_user" hidden> <!-- parte utente -->
+          <div id="right_user" hidden class="bg-white p-4 rounded shadow">
             <form id="modifica_user">
-              <div id="selected_user_username"></div>
-              Abilita/Disabilita utente:
-              <div class="switch">
-                <input class="switch-input" id="abilitato_user_switch" type="checkbox" name="abilitato_user_switch">
-                <label class="switch-paddle" for="abilitato_user_switch">
-                  <span class="show-for-sr">Abilita/Disabilita Utente</span>
+              <div class="mb-4">
+                <label for="selected_user_username" class="block text-sm font-medium text-gray-700">Username:</label>
+                <div id="selected_user_username" class="font-semibold">JohnDoe123</div>
+              </div>
+          
+              <div class="mb-4">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" value="" class="sr-only peer" id="abilitato_user_switch" name="abilitato_user_switch">
+                  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                  <span class="ms-3 text-sm font-medium text-gray-900" id="abilitato_text"></span>
                 </label>
               </div>
-              Quota giornaliera:
-              <input type="text" id="quota_g">
-              Quota settimanale:
-              <input type="text" id="quota_s">
-              Quota mensile:
-              <input type="text" id="quota_m">
-              <input type="submit" value="Applica modifiche">
+          
+              <div class="mb-4">
+                <label for="quota_g" class="block text-sm font-medium text-gray-700">Quota giornaliera:</label>
+                <input type="text" id="quota_g" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
+              </div>
+              <div class="mb-4">
+                <label for="quota_s" class="block text-sm font-medium text-gray-700">Quota settimanale:</label>
+                <input type="text" id="quota_s" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
+              </div>
+              <div class="mb-4">
+                <label for="quota_m" class="block text-sm font-medium text-gray-700">Quota mensile:</label>
+                <input type="text" id="quota_m" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
+              </div>
+          
+              <input type="submit" value="Applica modifiche" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
             </form>
           </div>
+          
           <div id="right_squeal" hidden> <!-- parte squeal -->
             <form id="modifica_squeal">
               <div id="selected_squeal_post_id"></div>
