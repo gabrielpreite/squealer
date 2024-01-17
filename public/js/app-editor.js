@@ -310,9 +310,9 @@ function aggiungisqueal(post, id) {
     //corpo squeal
     if(post.contenuto == "testo"){
     document.getElementById("squeal-contenuto").innerHTML = post.corpo;
-    } else if(squeals[i].contenuto == "img"){
+    } else if(post.contenuto == "img"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post.corpo}" alt="immagine dello squeal">`
-    } else if(squeals[i].contenuto == "map"){
+    } else if(post.contenuto == "map"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="${post.corpo}" alt="mappa dello squeal">`;
     }
 
