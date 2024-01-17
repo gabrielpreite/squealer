@@ -18,7 +18,7 @@ function cat_utenti(){
     
     document.getElementById("user_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
     utenti.forEach((user) => {
         var row = document.createElement("tr");
 
@@ -113,7 +113,7 @@ function sort_utenti(){
 
     document.getElementById("user_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
     new_utenti.forEach((user) => {
         var row = document.createElement("tr");
 
@@ -234,38 +234,43 @@ function cat_squeal(){
         url: `https://site212251.tw.cs.unibo.it/db/squeal?replies=false`,
         headers: { },
         success: function (data, status, xhr) {
-          squeals = data;
+          squeals = data.reverse();
         }
     });
     
     document.getElementById("squeal_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
     squeals.forEach((squeal) => {
         var row = document.createElement("tr");
 
         let cell_mit = document.createElement("td");
         let cellText_mit = document.createTextNode(squeal.utente);
         cell_mit.appendChild(cellText_mit);
+        cell_mit.classList.add("border-r", "text-center")
         row.appendChild(cell_mit);
 
         let cell_des = document.createElement("td");
-        let cellText_des = document.createTextNode(squeal.destinatari.toString());
+        let cellText_des = document.createTextNode(squeal.destinatari.toString().split(",").join(", "));
         cell_des.appendChild(cellText_des)
+        cell_des.classList.add("border-r", "text-center")
         row.appendChild(cell_des);
 
         let cell_dat = document.createElement("td");
         let d = new Date(squeal.timestamp)
         let cellText_dat = document.createTextNode(d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
         cell_dat.appendChild(cellText_dat)
+        cell_dat.classList.add("border-r", "text-center")
         row.appendChild(cell_dat);
 
         let cell_pre = document.createElement("td");
         let cellText_pre = document.createTextNode(squeal.corpo.slice(0, 25)+"...");
         cell_pre.appendChild(cellText_pre)
+        cell_pre.classList.add("border-r", "text-center")
         row.appendChild(cell_pre);
 
         row.onclick = function() { seleziona_squeal(squeal.post_id); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
@@ -280,17 +285,17 @@ function cat_squeal(){
 }
 
 function cambia_query_squeal(){
-    document.getElementById("squeal_query_mittente").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_data_inizio").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_data_fine").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_destinatario").classList.add("hidden-text-input")
+    document.getElementById("squeal_query_mittente").classList.add("hidden")
+    document.getElementById("squeal_query_data_inizio").classList.add("hidden")
+    document.getElementById("squeal_query_data_fine").classList.add("hidden")
+    document.getElementById("squeal_query_destinatario").classList.add("hidden")
 
     let scelta = document.getElementById("squeal_filtro_tipo").value
     if(scelta === "mittente" || scelta === "destinatario"){
-        document.getElementById("squeal_query_"+scelta).classList.remove("hidden-text-input")
+        document.getElementById("squeal_query_"+scelta).classList.remove("hidden")
     } else {
-        document.getElementById("squeal_query_data_inizio").classList.remove("hidden-text-input")
-        document.getElementById("squeal_query_data_fine").classList.remove("hidden-text-input")
+        document.getElementById("squeal_query_data_inizio").classList.remove("hidden")
+        document.getElementById("squeal_query_data_fine").classList.remove("hidden")
     }
 }
 
@@ -359,6 +364,7 @@ function sort_squeal(){
                 new_squeals.push(el)
             }
         })
+        new_squeals = new_squeals.reverse()
     } else if(tipo === "destinatario"){ //solo quelli che matchano sul destinatario
         query = document.getElementById("squeal_query_destinatario").value
         squeals.forEach((el) => {
@@ -372,32 +378,37 @@ function sort_squeal(){
 
     document.getElementById("squeal_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
     new_squeals.forEach((squeal) => {
         var row = document.createElement("tr");
 
         let cell_mit = document.createElement("td");
         let cellText_mit = document.createTextNode(squeal.utente);
         cell_mit.appendChild(cellText_mit);
+        cell_mit.classList.add("border-r", "text-center")
         row.appendChild(cell_mit);
 
         let cell_des = document.createElement("td");
-        let cellText_des = document.createTextNode(squeal.destinatari.toString());
+        let cellText_des = document.createTextNode(squeal.destinatari.toString().split(",").join(", "));
         cell_des.appendChild(cellText_des)
+        cell_des.classList.add("border-r", "text-center")
         row.appendChild(cell_des);
 
         let cell_dat = document.createElement("td");
         let d = new Date(squeal.timestamp)
         let cellText_dat = document.createTextNode(d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
         cell_dat.appendChild(cellText_dat)
+        cell_dat.classList.add("border-r", "text-center")
         row.appendChild(cell_dat);
 
         let cell_pre = document.createElement("td");
         let cellText_pre = document.createTextNode(squeal.corpo.slice(0, 25)+"...");
         cell_pre.appendChild(cellText_pre)
+        cell_pre.classList.add("border-r", "text-center")
         row.appendChild(cell_pre);
 
         row.onclick = function() { seleziona_squeal(squeal.post_id); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
