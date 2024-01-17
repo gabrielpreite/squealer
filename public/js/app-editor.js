@@ -12,7 +12,6 @@ function cambia_campo(opzione) {
         if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
             aggiornaQuota("Testo");
         }
-        toggleCorpoGhigliottina();
     } else if (opzione == "Immagine") {
         //resetQuota()
         $("#contenuto_immagine").attr("hidden", false);
@@ -29,7 +28,6 @@ function cambia_campo(opzione) {
         }
     } else if (opzione == "Ghigliottina") {
         //resetQuota()
-        $("#contenuto_testo").attr("hidden", false);
         $("#contenuto_ghigliottina").attr("hidden", false);
         $(".icona-scelta.fas.fa-star").addClass("attiva");
         if ($(".icona-scelta.fas.fa-star").hasClass("attiva")) {
@@ -369,14 +367,9 @@ function updateIntervalloVal() {
 }
 
 function toggleCorpoGhigliottina() {
-    var textarea = document.getElementById('Textarea');
+    var textarea = document.getElementById('Textarea-g');
     var intervalloInput = document.getElementById('intervallo');
 
-    if (!$("#contenuto_ghigliottina").attr("hidden")) {
-        textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
-        textarea.readOnly = true;
-    } else {
-      textarea.value = '';
-      textarea.readOnly = false;
-    }
+    textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+    textarea.readOnly = true;
 }

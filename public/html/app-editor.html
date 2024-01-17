@@ -139,6 +139,7 @@
           <div class="title-ghigliottina">
             <h2>Inizia ghigliottina</h2>
           </div>
+          <textarea id="Textarea-g" name="textarea" class="form-input materialize-textarea"></textarea>
           <div id="corpoGhigliottina">
             <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
               <label for="intervallo" hidden>Intervallo di tempo:</label>
@@ -225,6 +226,8 @@
 
       //textarea
       $('input#input_text, textarea#Textarea').characterCounter();
+      M.textareaAutoResize($('#Textarea-g'));
+      M.textareaAutoResize($('#Textarea'));
 
       //chips dest
       var chipOptions = {
