@@ -278,13 +278,16 @@ function add_post(){
 
 //RISPOSTA
 function interfaccia_risposta(post_id){
-    // Nascondi il div destinatari
+    //Nascondi il div destinatari
     document.getElementById("post-dest").hidden = true;
 
-    // Mostra il div risposta
+    //Nascondi ghigliottina
+    document.getElementById("id-ghigliottina").hidden = true;
+
+    //Mostra il div risposta
     document.getElementById("mostra-squeal").hidden = false;
 
-    // prendo il post originale
+    //prendo il post originale
     var post_originale
     $.ajax({
       type: 'GET',
