@@ -11,6 +11,18 @@
   height: 10%;
 }
 
+.title-bar {
+    margin-top: 10px;
+}
+
+.title-text {
+    font-size: medium;
+}
+
+.title-ghigliottina h2 {
+    font-size: x-large;
+}
+
 @media (max-height: 300px) {
   /* based on font size below */
   .bottom-bar {

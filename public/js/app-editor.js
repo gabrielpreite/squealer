@@ -12,7 +12,6 @@ function cambia_campo(opzione) {
         if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
             aggiornaQuota("Testo");
         }
-        toggleCorpoGhigliottina();
     } else if (opzione == "Immagine") {
         //resetQuota()
         $("#contenuto_immagine").attr("hidden", false);
@@ -29,7 +28,6 @@ function cambia_campo(opzione) {
         }
     } else if (opzione == "Ghigliottina") {
         //resetQuota()
-        $("#contenuto_testo").attr("hidden", false);
         $("#contenuto_ghigliottina").attr("hidden", false);
         $(".icona-scelta.fas.fa-star").addClass("attiva");
         if ($(".icona-scelta.fas.fa-star").hasClass("attiva")) {
@@ -176,7 +174,7 @@ function check_destinatari_utenti(a) {
 function check_post() {
     // Verifica se ci sono destinatari selezionati
     //let arr = window.location.href.split('?');
-    if (document.getElementById("campo-bacheca").hidden) { //caso bacheca  
+    if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
         if (!(chip_arr[0].chipsData.length > 0)) { //caso risposta o no destinatari
             alert("Nessun destinatario selezionato");
             return false;
@@ -225,7 +223,7 @@ function add_post(){
             let array_dest = [];
             let x = 0;
             chip_arr[0].chipsData.forEach(function (){
-                array_dest[x] = chip_arr[0].chipsData[x].tag; 
+                array_dest[x] = chip_arr[0].chipsData[x].tag;
                 x = x + 1;
             });
             if(document.getElementById("icona-canali").classList.length == 2){//caso canali
@@ -246,9 +244,9 @@ function add_post(){
         //ghigliottina
         if (!$("#contenuto_ghigliottina").attr("hidden")){
             formData.append("ghigliottina", "true")
-  
+
             formData.append("timer", document.getElementById("intervallo").value)
-  
+
             parole = ""
             for(let i=1; i<5; i++){
               parole+=document.getElementById("parola"+i).value
@@ -257,7 +255,7 @@ function add_post(){
             parole+=document.getElementById("parola5").value
             //console.log(parole)
             formData.append("parole", parole)
-  
+
             formData.append("soluzione", document.getElementById("parolaDaIndovinare").value)
         }
 
@@ -278,13 +276,16 @@ function add_post(){
 
 //RISPOSTA
 function interfaccia_risposta(post_id){
-    // Nascondi il div destinatari
+    //Nascondi il div destinatari
     document.getElementById("post-dest").hidden = true;
 
-    // Mostra il div risposta
+    //Nascondi ghigliottina
+    document.getElementById("id-ghigliottina").hidden = true;
+
+    //Mostra il div risposta
     document.getElementById("mostra-squeal").hidden = false;
 
-    // prendo il post originale
+    //prendo il post originale
     var post_originale
     $.ajax({
       type: 'GET',
@@ -308,11 +309,11 @@ function aggiungisqueal(post, id) {
     document.getElementById("squeal-immagine-profilo").src = `https://site212251.tw.cs.unibo.it/uploads/${post.img}`
 
     //corpo squeal
-    if(post.contenuto == "testo"){      
+    if(post.contenuto == "testo"){
     document.getElementById("squeal-contenuto").innerHTML = post.corpo;
-    } else if(squeals[i].contenuto == "img"){
+    } else if(post.contenuto == "img"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post.corpo}" alt="immagine dello squeal">`
-    } else if(squeals[i].contenuto == "map"){
+    } else if(post.contenuto == "map"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="${post.corpo}" alt="mappa dello squeal">`;
     }
 
@@ -359,21 +360,16 @@ function updateIntervalloVal() {
 
     intervalloVal.textContent = intervalloInput.value + " min";
     if (intervalloInput.value == 1) {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
+      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
     } else {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
 }
 
 function toggleCorpoGhigliottina() {
-    var textarea = document.getElementById('Textarea');
+    var textarea = document.getElementById('Textarea-g');
     var intervalloInput = document.getElementById('intervallo');
 
-    if (!$("#contenuto_ghigliottina").attr("hidden")) {
-        textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
-        textarea.readOnly = true;
-    } else {
-      textarea.value = '';
-      textarea.readOnly = false;
-    }
+    textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+    textarea.readOnly = true;
 }

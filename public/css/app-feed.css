@@ -14,13 +14,30 @@
 
 .btn-reazioni {
   font-size: 17px;
-  padding: 0.5em 2em;
+  padding: 0.2em 1em;
   border: none;
   color: #777;
   background-color: inherit;
   box-shadow: none;
   margin-bottom: 10px;
   transition: none;
+  height: auto;
+}
+
+.btn-reazioni:hover {
+    background-color: initial;
+    border: none;
+    box-shadow: none;
+}
+
+.positive, .negative {
+  display: flex;
+  flex-direction: row;
+}
+
+.reazioni {
+  display: flex;
+  flex-direction: column;
 }
 
 .info-post {
@@ -95,6 +112,7 @@
   border: none;
   text-align: left;
   padding: 0px;
+  text-transform: lowercase;
 }
 
 .timestamp {
@@ -103,8 +121,7 @@
 }
 
 .info_utente {
-  display: flex;
-  flex-direction: column;
+
 }
 
 .bottom-bar a {
