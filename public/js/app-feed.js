@@ -154,9 +154,6 @@ function aggiungi_squeal(squeals, LOG = true) {
   }
 
   //tabs card squeal init
-  var tabs = document.querySelectorAll('.tabs');
-  M.Tabs.init(tabs);
-
   M.AutoInit();
 
   //FINE SQUEAL
