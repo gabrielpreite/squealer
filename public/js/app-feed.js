@@ -228,9 +228,9 @@ function ricerca_squeal(elem) {
 }
 
 function aggiungi_info(meta){
-  let container = $("#info_contenitore");
-  container.empty();
-  container.removeAttr("hidden");
+  let container = getElementById("info_contenitore");
+  container.innerHTML = '';
+  container.hidden = false;
   let htmlInfo = `<div class="card" id="info_utente">
                     <div class="card-content">
                       <div class="card-info valign-wrapper">
