@@ -1,3 +1,6 @@
+//Aggiungo propric utente
+$("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+
 function aggiungi_squeal(squeals, LOG = true) {
   let n_squeal = squeals.length;
 
@@ -242,13 +245,13 @@ function aggiungi_info(meta){
 
                         </div>
                         <div class="col s4 right-align" id="info_btn">
-                          
+
                         </div>
                       </div>
                       <p id="info_descrizione"></p>
-                    </div> 
+                    </div>
                   </div>`;
-  
+
   container.insertAdjacentHTML('beforeend', htmlInfo);
 
   if (meta["tipo"] == "utente") { // caso ricerca utente
@@ -267,7 +270,7 @@ function aggiungi_info(meta){
     }
   } else if (meta["tipo"] == "canale") { //caso ricerca canale
     document.getElementById("info_descrizione").innerHTML = meta["info"]["descrizione"];
-    
+
     if(meta["info"]["is_follower"]){
       document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
