@@ -228,7 +228,7 @@ function ricerca_squeal(elem) {
 }
 
 function aggiungi_info(meta){
-  let container = getElementById("info_contenitore");
+  let container = document.getElementById("info_contenitore");
   container.innerHTML = '';
   container.hidden = false;
   let htmlInfo = `<div class="card" id="info_utente">
