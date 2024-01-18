@@ -103,7 +103,12 @@
 }
 
 .img_squeal {
-  width: -moz-available;
+  width: -webkit-fill-available;
+  max-width: fit-content;
+}
+
+.card-content img {
+    max-width: -webkit-fill-available;
 }
 
 .tag-username, .comment-username {
