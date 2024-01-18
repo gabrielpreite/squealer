@@ -1,1 +1,20 @@
 /* NAVBAR */
+nav.navbar {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+}
+
+.accesso {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+}
+
+.accesso.right::after:hover {
+  text-decoration: underline;
+}
+
+.accesso .material-icons {
+  padding-right: 5px;
+}
