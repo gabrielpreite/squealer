@@ -106,10 +106,6 @@
   width: -moz-available;
 }
 
-.card-content img {
-  max-width: -moz-available;
-}
-
 .tag-username, .comment-username {
   cursor: pointer;
   font-weight: bold;
