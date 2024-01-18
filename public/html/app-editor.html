@@ -219,11 +219,6 @@
     var chip_arr;
     var chip_n = 0;
     document.addEventListener('DOMContentLoaded', function() {
-      //sideNav
-      var sideNavOptions = { edge: 'right' }; // You can customize options here
-      var sideNav = document.querySelectorAll('.side-nav');
-      M.Sidenav.init(sideNav, sideNavOptions);
-
       //textarea
       $('input#input_text, textarea#Textarea').characterCounter();
       M.textareaAutoResize($('#Textarea-g'));

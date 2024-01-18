@@ -54,7 +54,7 @@ main#squeal_contenitore {
 }
 
 .info-post {
-      margin-top: 10px;
+  margin-top: 10px;
 }
 
 .btn-reazioni:active {
@@ -115,12 +115,7 @@ main#squeal_contenitore {
 }
 
 .img_squeal {
-  width: -webkit-fill-available;
-  max-width: fit-content;
-}
-
-.card-content img {
-    max-width: -webkit-fill-available;
+  width: -moz-available;
 }
 
 .tag-username, .comment-username {
