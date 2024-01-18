@@ -228,70 +228,51 @@ function ricerca_squeal(elem) {
 }
 
 function aggiungi_info(meta){
-  let container = $("#info_contenitore")
-  container.empty()
-  container.removeAttr("hidden")
+  let container = $("#info_contenitore");
+  container.empty();
+  container.removeAttr("hidden");
+  container.innerHTML =`<div class="card" id="info_utente">
+                          <div class="card-content">
+                            <div class="card-info valign-wrapper">
+                              <div class="col s3 center-align">
+                                <img src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}" alt="Foto profilo" class="profile-image circle" id="info_img">
+                              </div>
+                              <div class="col s6" id="info_info">
+                                <span class="nome_utente" id="info_nome">${meta["info"]["nome"]}</span>
 
-  let riga0 = `<div class="row" id="riga0"><button class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></button></div>`
-  container.append(riga0)
+                              </div>
+                              <div class="col s3 right-align" id="info_btn">
+                                
+                              </div>
+                            </div>
+                            <p id="info_descrizione"></p>
+                          </div> 
+                        </div>`;
 
-  if(meta["tipo"] == "utente") { // caso ricerca utente
-    let riga1 = `<div class="row" id="riga1"></div>`
-    container.append(riga1)
-    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
+  
 
-    let riga2 = `<div class="row" id="riga2"></div>`
-    let riga4 = `<div class="row" id="riga4"></div>`
+  if (meta["tipo"] == "utente") { // caso ricerca utente
+    document.getElementById("info_info").insertAdjacentHTML('beforeend', `<br> <a class="text-muted tag-username btn-flat" id="info_username">@${meta["info"]["username"]}</a>`);
 
-    let info = `<div class="info"><b>${meta["info"]["nome"]}</b><br>@${meta["info"]["username"]}</div>`
+    document.getElementById("info_descrizione").innerHTML = meta["info"]["bio"];
 
-    let follow
-    if(meta["info"]["is_follower"]){
-      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+    if (meta["info"]["is_follower"]) {
+      document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
-    container.append(riga2)
-    $("#riga2").append(info)
-
-    let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["bio"]}</div></div>`
-    container.append(riga3)
-
-    container.append(riga4)
-    $("#riga4").append(follow)
 
     if (meta["info"]["username"] !== CURRENT_USER) {
-      let riga5 = `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`;
-      container.append(riga5);
+      document.getElementById("info_btn").insertAdjacentHTML ('beforeend', `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`);
     }
-
-  } else if(meta["tipo"] == "canale") { //caso ricerca canale
-    let riga1 = `<div class="row" id="riga1"></div>`
-    container.append(riga1)
-    $("#riga1").append(`<img class="img-rounded" id="bd_img" src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}">`)
-
-    let riga2 = `<div class="row" id="riga2"></div>`
-
-    let info = `<div class="info"><h3>${meta["info"]["nome"]}</h3></div>`
-
-    let follow
+  } else if (meta["tipo"] == "canale") { //caso ricerca canale
+    document.getElementById("info_descrizione").innerHTML = meta["info"]["descrizione"];
+    
     if(meta["info"]["is_follower"]){
-      follow = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     } else {
-      follow = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["nome"]}', 'canale')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
     }
-
-    container.append(riga2)
-    $("#riga2").append(info)
-
-    let riga3 = `<div class="row" id="riga3"><div class="card" id="search-bio">${meta["info"]["descrizione"]}</div></div>`
-    container.append(riga3)
-
-    let riga4 = `<div class="row" id="riga4"></div>`
-    container.append(riga4)
-    $("#riga4").append(follow)
-
-
   }
 }
 
