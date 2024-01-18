@@ -42,7 +42,7 @@
 }
 
 .info-post {
-      margin-top: 10px;
+  margin-top: 10px;
 }
 
 .btn-reazioni:active {
@@ -103,12 +103,11 @@
 }
 
 .img_squeal {
-  width: -webkit-fill-available;
-  max-width: fit-content;
+  width: -moz-available;
 }
 
 .card-content img {
-    max-width: -webkit-fill-available;
+  max-width: -moz-available;
 }
 
 .tag-username, .comment-username {
