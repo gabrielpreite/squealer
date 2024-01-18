@@ -2,6 +2,18 @@
   width: 90%;
 }
 
+main#squeal_contenitore {
+    top: 56px;
+    position: relative;
+}
+
+#logo-container img {
+  height: 44px;
+  top: 6px;
+  bottom: 6px;
+  position: relative;
+}
+
 .profile-image{
   width: 48px;
   height: 48px;
