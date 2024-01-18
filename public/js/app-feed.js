@@ -234,14 +234,14 @@ function aggiungi_info(meta){
   let htmlInfo = `<div class="card" id="info_utente">
                     <div class="card-content">
                       <div class="card-info valign-wrapper">
-                        <div class="col s3 center-align">
+                        <div class="col s2 center-align">
                           <img src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}" alt="Foto profilo" class="profile-image circle" id="info_img">
                         </div>
                         <div class="col s6" id="info_info">
                           <span class="nome_utente" id="info_nome">${meta["info"]["nome"]}</span>
 
                         </div>
-                        <div class="col s3 right-align" id="info_btn">
+                        <div class="col s4 right-align" id="info_btn">
                           
                         </div>
                       </div>
