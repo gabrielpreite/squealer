@@ -18,7 +18,7 @@ function cat_utenti(){
     
     document.getElementById("user_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
     utenti.forEach((user) => {
         var row = document.createElement("tr");
 
@@ -26,6 +26,7 @@ function cat_utenti(){
         let cellText = document.createTextNode(user.username);
         cell.appendChild(cellText);
         cell.classList.add("border-r")
+        cell.classList.add("text-center")
         row.appendChild(cell);
 
         let cell_red = document.createElement("td");
@@ -33,6 +34,7 @@ function cat_utenti(){
         cellText_red.classList.add("fa-solid", (user.redazione_flag ? "fa-check": "fa-x"))
         cell_red.appendChild(cellText_red)
         cell_red.classList.add("border-r")
+        cell_red.classList.add("text-center")
         row.appendChild(cell_red);
 
         let cell_ver = document.createElement("td");
@@ -40,6 +42,7 @@ function cat_utenti(){
         cellText_ver.classList.add("fa-solid", (user.verificato_flag ? "fa-check": "fa-x"))
         cell_ver.appendChild(cellText_ver)
         cell_ver.classList.add("border-r")
+        cell_ver.classList.add("text-center")
         row.appendChild(cell_ver);
 
         let cell_pro = document.createElement("td");
@@ -47,26 +50,28 @@ function cat_utenti(){
         cellText_pro.classList.add("fa-solid", (user.professional_flag ? "fa-check": "fa-x"))
         cell_pro.appendChild(cellText_pro)
         cell_pro.classList.add("border-r")
+        cell_pro.classList.add("text-center")
         row.appendChild(cell_pro);
 
         let cell_pop = document.createElement("td");
         let cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
         cell_pop.appendChild(cellText_pop)
+        cell_pop.classList.add("text-center")
         row.appendChild(cell_pop);
 
         row.onclick = function() { seleziona_utente(user.username); };
-        row.classList.add("py-2", "px-4", "border-b")
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
-    document.getElementById("mid_default").setAttribute("hidden", "true")
-    document.getElementById("mid_user").removeAttribute("hidden")
-    document.getElementById("mid_squeal").setAttribute("hidden", "true")
-    document.getElementById("mid_canali").setAttribute("hidden", "true")
+    document.getElementById("mid_default").classList.add("hidden")
+    document.getElementById("mid_user").classList.remove("hidden")
+    document.getElementById("mid_squeal").classList.add("hidden")
+    document.getElementById("mid_canali").classList.add("hidden")
 
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").setAttribute("hidden", "")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.add("hidden")
 }
 
 function compare_utenti(a, b){
@@ -108,52 +113,61 @@ function sort_utenti(){
 
     document.getElementById("user_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Username</th><th>Redazione</th><th>Verificato</th><th>Professional</th><th>Popolarita</th></tr>")
     new_utenti.forEach((user) => {
         var row = document.createElement("tr");
 
         let cell = document.createElement("td");
         let cellText = document.createTextNode(user.username);
         cell.appendChild(cellText);
+        cell.classList.add("border-r")
+        cell.classList.add("text-center")
         row.appendChild(cell);
 
         let cell_red = document.createElement("td");
-        let cellText_red = document.createTextNode(user.redazione_flag ? "Y" : "N");
+        let cellText_red = document.createElement("i")
+        cellText_red.classList.add("fa-solid", (user.redazione_flag ? "fa-check": "fa-x"))
         cell_red.appendChild(cellText_red)
+        cell_red.classList.add("border-r")
+        cell_red.classList.add("text-center")
         row.appendChild(cell_red);
 
         let cell_ver = document.createElement("td");
-        let cellText_ver = document.createTextNode(user.verificato_flag ? "Y" : "N");
+        let cellText_ver = document.createElement("i")
+        cellText_ver.classList.add("fa-solid", (user.verificato_flag ? "fa-check": "fa-x"))
         cell_ver.appendChild(cellText_ver)
+        cell_ver.classList.add("border-r")
+        cell_ver.classList.add("text-center")
         row.appendChild(cell_ver);
 
         let cell_pro = document.createElement("td");
-        let cellText_pro = document.createTextNode(user.professional_flag ? "Y" : "N");
+        let cellText_pro = document.createElement("i")
+        cellText_pro.classList.add("fa-solid", (user.professional_flag ? "fa-check": "fa-x"))
         cell_pro.appendChild(cellText_pro)
+        cell_pro.classList.add("border-r")
+        cell_pro.classList.add("text-center")
         row.appendChild(cell_pro);
-        
+
         let cell_pop = document.createElement("td");
         let cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
         cell_pop.appendChild(cellText_pop)
+        cell_pop.classList.add("text-center")
         row.appendChild(cell_pop);
-        
+
         row.onclick = function() { seleziona_utente(user.username); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
 }
 
 function cambia_query_user(){
-    document.getElementById("user_query_nome").setAttribute("hidden", "true")
-    document.getElementById("user_query_nome").classList.add("hidden-text-input")
-    document.getElementById("user_query_tipo").setAttribute("hidden", "true")
-    document.getElementById("user_query_popolarita").setAttribute("hidden", "true")
+    document.getElementById("user_query_nome").classList.add("hidden")
+    document.getElementById("user_query_tipo").classList.add("hidden")
+    document.getElementById("user_query_popolarita").classList.add("hidden")
 
     let scelta = document.getElementById("user_filtro_tipo").value
-    document.getElementById("user_query_"+scelta).removeAttribute("hidden")
-    if(scelta === "nome"){
-        document.getElementById("user_query_nome").classList.remove("hidden-text-input")
-    }
+    document.getElementById("user_query_"+scelta).classList.remove("hidden")
 }
 
 function seleziona_utente(username){
@@ -167,9 +181,9 @@ function seleziona_utente(username){
         success: function (data, status, xhr) {
             user = data.data;
             console.log(data)
-            document.getElementById("right_user").removeAttribute("hidden")
-            document.getElementById("right_squeal").setAttribute("hidden", "")
-            document.getElementById("right_canali").setAttribute("hidden", "")
+            document.getElementById("right_user").classList.remove("hidden")
+            document.getElementById("right_squeal").classList.add("hidden")
+            document.getElementById("right_canali").classList.add("hidden")
             //console.log(user.abilitato_flag)
             document.getElementById("selected_user_username").innerHTML = user.username
             document.getElementById("abilitato_user_switch").checked = user.abilitato_flag
@@ -220,63 +234,68 @@ function cat_squeal(){
         url: `https://site212251.tw.cs.unibo.it/db/squeal?replies=false`,
         headers: { },
         success: function (data, status, xhr) {
-          squeals = data;
+          squeals = data.reverse();
         }
     });
     
     document.getElementById("squeal_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
     squeals.forEach((squeal) => {
         var row = document.createElement("tr");
 
         let cell_mit = document.createElement("td");
         let cellText_mit = document.createTextNode(squeal.utente);
         cell_mit.appendChild(cellText_mit);
+        cell_mit.classList.add("border-r", "text-center")
         row.appendChild(cell_mit);
 
         let cell_des = document.createElement("td");
-        let cellText_des = document.createTextNode(squeal.destinatari.toString());
+        let cellText_des = document.createTextNode(squeal.destinatari.toString().split(",").join(", "));
         cell_des.appendChild(cellText_des)
+        cell_des.classList.add("border-r", "text-center")
         row.appendChild(cell_des);
 
         let cell_dat = document.createElement("td");
         let d = new Date(squeal.timestamp)
         let cellText_dat = document.createTextNode(d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
         cell_dat.appendChild(cellText_dat)
+        cell_dat.classList.add("border-r", "text-center")
         row.appendChild(cell_dat);
 
         let cell_pre = document.createElement("td");
         let cellText_pre = document.createTextNode(squeal.corpo.slice(0, 25)+"...");
         cell_pre.appendChild(cellText_pre)
+        cell_pre.classList.add("border-r", "text-center")
         row.appendChild(cell_pre);
 
         row.onclick = function() { seleziona_squeal(squeal.post_id); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
-    document.getElementById("mid_default").setAttribute("hidden", "true")
-    document.getElementById("mid_user").setAttribute("hidden", "true")
-    document.getElementById("mid_squeal").removeAttribute("hidden")
-    document.getElementById("mid_canali").setAttribute("hidden", "true")
+    document.getElementById("mid_default").classList.add("hidden")
+    document.getElementById("mid_user").classList.add("hidden")
+    document.getElementById("mid_squeal").classList.remove("hidden")
+    document.getElementById("mid_canali").classList.add("hidden")
 
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").setAttribute("hidden", "")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.add("hidden")
 }
 
 function cambia_query_squeal(){
-    document.getElementById("squeal_query_mittente").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_data_inizio").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_data_fine").classList.add("hidden-text-input")
-    document.getElementById("squeal_query_destinatario").classList.add("hidden-text-input")
+    document.getElementById("squeal_query_mittente").classList.add("hidden")
+    document.getElementById("squeal_query_data_inizio").classList.add("hidden")
+    document.getElementById("squeal_query_data_fine").classList.add("hidden")
+    document.getElementById("squeal_query_destinatario").classList.add("hidden")
 
     let scelta = document.getElementById("squeal_filtro_tipo").value
     if(scelta === "mittente" || scelta === "destinatario"){
-        document.getElementById("squeal_query_"+scelta).classList.remove("hidden-text-input")
+        document.getElementById("squeal_query_"+scelta).classList.remove("hidden")
     } else {
-        document.getElementById("squeal_query_data_inizio").classList.remove("hidden-text-input")
-        document.getElementById("squeal_query_data_fine").classList.remove("hidden-text-input")
+        document.getElementById("squeal_query_data_inizio").classList.remove("hidden")
+        document.getElementById("squeal_query_data_fine").classList.remove("hidden")
     }
 }
 
@@ -291,16 +310,22 @@ function seleziona_squeal(post_id){
         success: function (data, status, xhr) {
             squeal = data.data;
             //console.log(squeal)
-            document.getElementById("right_user").setAttribute("hidden", "")
-            document.getElementById("right_squeal").removeAttribute("hidden")
-            document.getElementById("right_canali").setAttribute("hidden", "")
+            document.getElementById("right_user").classList.add("hidden")
+            document.getElementById("right_squeal").classList.remove("hidden")
+            document.getElementById("right_canali").classList.add("hidden")
             
             document.getElementById("selected_squeal_post_id").innerHTML = squeal.post_id
             document.getElementById("mittente_squeal").innerHTML = squeal.utente
             document.getElementById("destinatari_squeal").value = squeal.destinatari.toString()
             let d = new Date(squeal.timestamp)
             document.getElementById("data_squeal").innerHTML = d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' })
-            document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
+            if(squeal.contenuto === "testo"){
+                document.getElementById("contenuto_squeal").innerHTML = squeal.corpo
+            } else if(squeal.contenuto === "img"){
+                document.getElementById("contenuto_squeal").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${squeal.corpo}" alt="immagine dello squeal">`
+            } else if(squeal.contenuto === "map"){
+                document.getElementById("contenuto_squeal").innerHTML = `<img src="${squeal.corpo}" alt="mappa dello squeal">`;
+            }
 
             document.getElementById("#_con").value = squeal.reazioni.positive.concordo.length
             //document.getElementById("list_con").value = squeal.reazioni.positive.concordo.toString()
@@ -345,6 +370,7 @@ function sort_squeal(){
                 new_squeals.push(el)
             }
         })
+        new_squeals = new_squeals.reverse()
     } else if(tipo === "destinatario"){ //solo quelli che matchano sul destinatario
         query = document.getElementById("squeal_query_destinatario").value
         squeals.forEach((el) => {
@@ -358,32 +384,37 @@ function sort_squeal(){
 
     document.getElementById("squeal_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Mittente</th><th>Destinatari</th><th>Data</th><th>Anteprima</th></tr>")
     new_squeals.forEach((squeal) => {
         var row = document.createElement("tr");
 
         let cell_mit = document.createElement("td");
         let cellText_mit = document.createTextNode(squeal.utente);
         cell_mit.appendChild(cellText_mit);
+        cell_mit.classList.add("border-r", "text-center")
         row.appendChild(cell_mit);
 
         let cell_des = document.createElement("td");
-        let cellText_des = document.createTextNode(squeal.destinatari.toString());
+        let cellText_des = document.createTextNode(squeal.destinatari.toString().split(",").join(", "));
         cell_des.appendChild(cellText_des)
+        cell_des.classList.add("border-r", "text-center")
         row.appendChild(cell_des);
 
         let cell_dat = document.createElement("td");
         let d = new Date(squeal.timestamp)
         let cellText_dat = document.createTextNode(d.toLocaleString('it-IT', { timeZone: 'Europe/Rome' }));
         cell_dat.appendChild(cellText_dat)
+        cell_dat.classList.add("border-r", "text-center")
         row.appendChild(cell_dat);
 
         let cell_pre = document.createElement("td");
         let cellText_pre = document.createTextNode(squeal.corpo.slice(0, 25)+"...");
         cell_pre.appendChild(cellText_pre)
+        cell_pre.classList.add("border-r", "text-center")
         row.appendChild(cell_pre);
 
         row.onclick = function() { seleziona_squeal(squeal.post_id); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
@@ -525,20 +556,20 @@ function cat_canali(){
         tableBody.appendChild(row)
     })
     document.getElementById("canali_table").appendChild(tableBody)
-    document.getElementById("mid_default").setAttribute("hidden", "true")
-    document.getElementById("mid_user").setAttribute("hidden", "true")
-    document.getElementById("mid_squeal").setAttribute("hidden", "true")
-    document.getElementById("mid_canali").removeAttribute("hidden")
+    document.getElementById("mid_default").classList.add("hidden")
+    document.getElementById("mid_user").classList.add("hidden")
+    document.getElementById("mid_squeal").classList.add("hidden")
+    document.getElementById("mid_canali").classList.remove("hidden")
 
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").setAttribute("hidden", "")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.add("hidden")
 }
 
 function seleziona_canale(nome){
-    document.getElementById("right_user").setAttribute("hidden", "")
-    document.getElementById("right_squeal").setAttribute("hidden", "")
-    document.getElementById("right_canali").removeAttribute("hidden")
+    document.getElementById("right_user").classList.add("hidden")
+    document.getElementById("right_squeal").classList.add("hidden")
+    document.getElementById("right_canali").classList.remove("hidden")
 
     if(nome !== "new"){
         let canale
@@ -554,7 +585,7 @@ function seleziona_canale(nome){
                 document.getElementById("selected_canale_nome").value = canale.nome
                 document.getElementById("selected_canale_nome").setAttribute("readonly", true)
                 document.getElementById("canale_descrizione").value = canale.descrizione
-                document.getElementById("elimina_canale").removeAttribute("hidden")
+                document.getElementById("elimina_canale").classList.remove("hidden")
                 document.getElementById("elimina_canale").onclick = function() { cancella_canale(canale.nome); };
             }
         });
@@ -562,7 +593,7 @@ function seleziona_canale(nome){
         document.getElementById("selected_canale_nome").value = "Inserisci nome qui"
         document.getElementById("selected_canale_nome").removeAttribute("readonly")
         document.getElementById("canale_descrizione").value = "Inserisci descrizione qui"
-        document.getElementById("elimina_canale").setAttribute("hidden", true)
+        document.getElementById("elimina_canale").classList.add("hidden")
     }
 }
 

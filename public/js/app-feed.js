@@ -28,7 +28,7 @@ function aggiungi_squeal(squeals, LOG = true) {
     } else if(squeals[i].contenuto == "img"){
       document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine dello squeal">`
     } else if(squeals[i].contenuto == "map"){
-      document.getElementById(id_testo).innerHTML = `<img src="${squeals[i].corpo}" alt="mappa dello squeal">`;
+      document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="${squeals[i].corpo}" alt="mappa dello squeal">`;
     }
 
     //destinatari
@@ -36,10 +36,10 @@ function aggiungi_squeal(squeals, LOG = true) {
     let n_destinatari = squeals[i].destinatari.length;
     if (squeals[i].tipo_destinatari == "canali" ) {
       for (let j = 0; j < n_destinatari; j++) {
-        lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + squeals[i].destinatari[j] + '</div>');
+        lista_destinatari.insertAdjacentHTML('beforeend', '<div onclick="ricerca_squeal(this)">' + squeals[i].destinatari[j] + '</div>');
       }
-    } else if (squeals[i].tipo_destinatari == "canali" ) {
-      lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + CURRENT_USER + '</div>');
+    } else if (squeals[i].tipo_destinatari == "utenti" ) {
+      lista_destinatari.insertAdjacentHTML('beforeend', '<div onclick="ricerca_squeal(this)">' + CURRENT_USER + '</div>');
     } else {
       document.getElementById('tab' + i).remove();
     }
@@ -111,7 +111,7 @@ function aggiungi_squeal(squeals, LOG = true) {
       let n_commenti = lista_commenti[i].length;
       for (let c = 0; c < n_commenti; c++) {
         let id_c = String(i) + String(c);
-        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div>');
+        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '" onclick="ricerca_squeal(this)">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div>');
         let c_img_utente = 'c_img_utente' + id_c;
         document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].img}`
         let id_tag = 'c_username' + id_c;
@@ -126,7 +126,7 @@ function aggiungi_squeal(squeals, LOG = true) {
         }
       }
     } else {
-      contenitore_commenti.innerHTML = "Nessuno ha ancora commentato";
+      contenitore_commenti.innerHTML = "<div> Nessuno ha ancora commentato </div>";
     }
     contenitore_commenti.insertAdjacentHTML('beforeend', `<a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
 
@@ -189,12 +189,10 @@ function ricerca_squeal(elem) {
     }
     if (tipo == "$") {
       tipo = "channel";
-    }
-    if (tipo == "#") {
+    } else if (tipo == "#") {
       tipo = "keyword"
-    }
-    else {
-      if (query[0] == "@") {
+    } else {
+      if (tipo == "@") {
         let length = query.length;
         query = query.slice(1,length);
       }
@@ -221,6 +219,10 @@ function ricerca_squeal(elem) {
 
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
+
+  //tabs card squeal init
+  var tabs = document.querySelectorAll('.tabs');
+  M.Tabs.init(tabs);
 
   return all_info;
 }

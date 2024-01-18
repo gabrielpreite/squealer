@@ -12,7 +12,6 @@ function cambia_campo(opzione) {
         if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
             aggiornaQuota("Testo");
         }
-        toggleCorpoGhigliottina();
     } else if (opzione == "Immagine") {
         //resetQuota()
         $("#contenuto_immagine").attr("hidden", false);
@@ -29,7 +28,6 @@ function cambia_campo(opzione) {
         }
     } else if (opzione == "Ghigliottina") {
         //resetQuota()
-        $("#contenuto_testo").attr("hidden", false);
         $("#contenuto_ghigliottina").attr("hidden", false);
         $(".icona-scelta.fas.fa-star").addClass("attiva");
         if ($(".icona-scelta.fas.fa-star").hasClass("attiva")) {
@@ -278,13 +276,16 @@ function add_post(){
 
 //RISPOSTA
 function interfaccia_risposta(post_id){
-    // Nascondi il div destinatari
+    //Nascondi il div destinatari
     document.getElementById("post-dest").hidden = true;
 
-    // Mostra il div risposta
+    //Nascondi ghigliottina
+    document.getElementById("id-ghigliottina").hidden = true;
+
+    //Mostra il div risposta
     document.getElementById("mostra-squeal").hidden = false;
 
-    // prendo il post originale
+    //prendo il post originale
     var post_originale
     $.ajax({
       type: 'GET',
@@ -310,9 +311,9 @@ function aggiungisqueal(post, id) {
     //corpo squeal
     if(post.contenuto == "testo"){
     document.getElementById("squeal-contenuto").innerHTML = post.corpo;
-    } else if(squeals[i].contenuto == "img"){
+    } else if(post.contenuto == "img"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post.corpo}" alt="immagine dello squeal">`
-    } else if(squeals[i].contenuto == "map"){
+    } else if(post.contenuto == "map"){
     document.getElementById("squeal-contenuto").innerHTML = `<img src="${post.corpo}" alt="mappa dello squeal">`;
     }
 
@@ -366,14 +367,9 @@ function updateIntervalloVal() {
 }
 
 function toggleCorpoGhigliottina() {
-    var textarea = document.getElementById('Textarea');
+    var textarea = document.getElementById('Textarea-g');
     var intervalloInput = document.getElementById('intervallo');
 
-    if (!$("#contenuto_ghigliottina").attr("hidden")) {
-        textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
-        textarea.readOnly = true;
-    } else {
-      textarea.value = '';
-      textarea.readOnly = false;
-    }
+    textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+    textarea.readOnly = true;
 }
