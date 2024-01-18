@@ -157,6 +157,8 @@ function aggiungi_squeal(squeals, LOG = true) {
   var tabs = document.querySelectorAll('.tabs');
   M.Tabs.init(tabs);
 
+  M.AutoInit();
+
   //FINE SQUEAL
 }
 
