@@ -152,6 +152,11 @@ function aggiungi_squeal(squeals, LOG = true) {
       Et_consigliato.insertAdjacentHTML('beforeend', '<span class="label-squeal consigliato"> Consigliato </span>');
     }
   }
+
+  //tabs card squeal init
+  var tabs = document.querySelectorAll('.tabs');
+  M.Tabs.init(tabs);
+  
   //FINE SQUEAL
 }
 
@@ -219,10 +224,6 @@ function ricerca_squeal(elem) {
 
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
-
-  //tabs card squeal init
-  var tabs = document.querySelectorAll('.tabs');
-  M.Tabs.init(tabs);
 
   return all_info;
 }
