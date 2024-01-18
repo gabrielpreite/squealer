@@ -156,7 +156,7 @@ function aggiungi_squeal(squeals, LOG = true) {
   //tabs card squeal init
   var tabs = document.querySelectorAll('.tabs');
   M.Tabs.init(tabs);
-  
+
   //FINE SQUEAL
 }
 
@@ -434,9 +434,6 @@ function ricerca_notifica(notifica) {
     success: function (data, status, xhr) {}
   });
 
-  //tabs card squeal init
-  var tabs = document.querySelectorAll('.tabs');
-  M.Tabs.init(tabs);
   document.getElementById("squeal_contenitore").hidden = false;
   document.getElementById("info_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
