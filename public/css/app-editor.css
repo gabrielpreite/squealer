@@ -83,3 +83,14 @@ justify-content: space-around;
 .chip {
   width: -moz-available;
 }
+
+/* IMG PROFILO */
+.profile-image {
+  width: 48px;
+  height: 48px;
+}
+
+/* IMG POST */
+.img_squeal {
+  width: -moz-available;
+}

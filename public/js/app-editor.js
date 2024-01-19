@@ -44,7 +44,7 @@ function mostraCampo(tipo) {
     document.getElementById("campo-bacheca").hidden = true;
 
     // Rimuovi la classe 'attiva' da tutte le icone
-    var icone = document.querySelectorAll(".tipo-icona");
+    let icone = document.querySelectorAll(".tipo-icona");
     icone.forEach(function (icona) {
       icona.classList.remove("attiva");
     });
@@ -175,7 +175,9 @@ function check_post() {
     // Verifica se ci sono destinatari selezionati
     //let arr = window.location.href.split('?');
     if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
-        if (!(chip_arr[0].chipsData.length > 0)) { //caso risposta o no destinatari
+        if (document.getElementById("mostra-squeal").hidden == false) { //caso risposta
+            return true;
+        } else if (!(chip_arr[0].chipsData.length > 0)) { //caso no destinatari
             alert("Nessun destinatario selezionato");
             return false;
         }
@@ -286,7 +288,7 @@ function interfaccia_risposta(post_id){
     document.getElementById("mostra-squeal").hidden = false;
 
     //prendo il post originale
-    var post_originale
+    let post_originale;
     $.ajax({
       type: 'GET',
       dataType: "json",
@@ -312,13 +314,13 @@ function aggiungisqueal(post, id) {
     if(post.contenuto == "testo"){
     document.getElementById("squeal-contenuto").innerHTML = post.corpo;
     } else if(post.contenuto == "img"){
-    document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post.corpo}" alt="immagine dello squeal">`
+    document.getElementById("squeal-contenuto").innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${post.corpo}" alt="immagine dello squeal">`
     } else if(post.contenuto == "map"){
-    document.getElementById("squeal-contenuto").innerHTML = `<img src="${post.corpo}" alt="mappa dello squeal">`;
+    document.getElementById("squeal-contenuto").innerHTML = `<img class="img_squeal" src="${post.corpo}" alt="mappa dello squeal">`;
     }
 
     //aggiungi commenti
-    var lista_commenti;
+    let lista_commenti;
     let contenitore_commenti = document.getElementById("contenitore-commenti");
     if (post.numRisposte > 0) {
         $.ajax({
@@ -342,9 +344,9 @@ function aggiungisqueal(post, id) {
             if (lista_commenti[c].contenuto == "testo") {
             document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
             } else if(lista_commenti[c].contenuto == "img"){
-            document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine del commento">`
+            document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine del commento">`
             } else if(lista_commenti[c].contenuto == "map"){
-            document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa del commento">`;
+            document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="${lista_commenti[c].corpo}" alt="mappa del commento">`;
             }
         }
     } else {
@@ -354,9 +356,9 @@ function aggiungisqueal(post, id) {
 
 //GHIGLIOTTINA
 function updateIntervalloVal() {
-    var intervalloInput = document.getElementById('intervallo');
-    var intervalloVal = document.getElementById('intervallo-val');
-    var textarea = document.getElementById('Textarea');
+    let intervalloInput = document.getElementById('intervallo');
+    let intervalloVal = document.getElementById('intervallo-val');
+    let textarea = document.getElementById('Textarea');
 
     intervalloVal.textContent = intervalloInput.value + " min";
     if (intervalloInput.value == 1) {
@@ -367,8 +369,8 @@ function updateIntervalloVal() {
 }
 
 function toggleCorpoGhigliottina() {
-    var textarea = document.getElementById('Textarea-g');
-    var intervalloInput = document.getElementById('intervallo');
+    let textarea = document.getElementById('Textarea-g');
+    let intervalloInput = document.getElementById('intervallo');
 
     textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     textarea.readOnly = true;
