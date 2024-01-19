@@ -11,6 +11,9 @@
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
+
   <style>
   .submit-button {
       background-color: #1da1f2;
@@ -123,11 +126,6 @@
   <script>
     // INIT
     document.addEventListener('DOMContentLoaded', function() {
-      //sideNav
-      var sideNavOptions = { edge: 'right' }; // You can customize options here
-      var sideNav = document.querySelectorAll('.side-nav');
-      M.Sidenav.init(sideNav, sideNavOptions);
-
       //searchbar
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems);

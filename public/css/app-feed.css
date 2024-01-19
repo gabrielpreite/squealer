@@ -2,6 +2,11 @@
   width: 90%;
 }
 
+main#squeal_contenitore {
+    top: 56px;
+    position: relative;
+}
+
 .profile-image{
   width: 48px;
   height: 48px;
@@ -42,7 +47,7 @@
 }
 
 .info-post {
-      margin-top: 10px;
+  margin-top: 10px;
 }
 
 .btn-reazioni:active {
