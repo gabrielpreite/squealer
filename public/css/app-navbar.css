@@ -28,7 +28,7 @@ nav.navbar {
   left: 5px;
 }
 
-.propic#propic {
+img#propic {
   width: 40px;
   height: 40px;
   top: 8px;
@@ -38,20 +38,24 @@ nav.navbar {
 }
 
 .char-count-item {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  width: 100%;
 }
 
 .char-count-item .count {
-font-size: 14px;
+font-size: 18px;
 font-weight: bold;
+    margin-top: -10px;
 }
 
 .char-count-item .label {
-font-size: 8px;
+font-size: 10px;
 text-transform: uppercase;
 color: #000;
+margin-top: -32px;
 }
 
 .negative {
