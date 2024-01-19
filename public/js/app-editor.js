@@ -6,28 +6,28 @@ function cambia_campo(opzione) {
     $(".icona-scelta").removeClass("attiva");
 
     if (opzione == "Testo") {
-        //resetQuota()
+        resetQuota()
         $("#contenuto_testo").attr("hidden", false);
         $(".icona-scelta.fas.fa-font").addClass("attiva");
         if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
             aggiornaQuota("Testo");
         }
     } else if (opzione == "Immagine") {
-        //resetQuota()
+        resetQuota()
         $("#contenuto_immagine").attr("hidden", false);
         $(".icona-scelta.fas.fa-image").addClass("attiva");
         if ($(".icona-scelta.fas.fa-image").hasClass("attiva")&& inputImage.files && inputImage.files[0]) {
             aggiornaQuota("Immagine");
         }
     } else if (opzione == "Posizione") {
-        //resetQuota()
+        resetQuota()
         $("#contenuto_posizione").attr("hidden", false);
         $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
         if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
             aggiornaQuota("Posizione");
         }
     } else if (opzione == "Ghigliottina") {
-        //resetQuota()
+        resetQuota()
         $("#contenuto_ghigliottina").attr("hidden", false);
         $(".icona-scelta.fas.fa-star").addClass("attiva");
         if ($(".icona-scelta.fas.fa-star").hasClass("attiva")) {
@@ -483,9 +483,65 @@ function mapeado(map, marker) {
   return staticMapUrl;
 }
 
-
-
-
-
-
 //QUOTA
+function resetQuota() {
+    charCount_g.textContent = initialQuota_g;
+    //charCount_s.textContent = initialQuota_s;
+    //charCount_m.textContent = initialQuota_m;
+
+    charCount_g.classList.remove('negative');
+    //charCount_s.classList.remove('negative');
+    //charCount_m.classList.remove('negative');
+
+    //button.classList.remove('button-disabled');
+}
+
+function aggiornaQuota(opzione) {
+    if(opzione == "Testo") {
+        const charLength = textarea.value.length;
+        remainingChars_g = initialQuota_g - charLength;
+        remainingChars_s = initialQuota_s// - charLength;
+        remainingChars_m = initialQuota_m// - charLength;
+    } else if (opzione == "Immagine") {
+        remainingChars_g = initialQuota_g - 120;
+        remainingChars_s = initialQuota_s// - 120;
+        remainingChars_m = initialQuota_m// - 120;
+    } else if (opzione == "Posizione") {
+        remainingChars_g = initialQuota_g - 120;
+        remainingChars_s = initialQuota_s// - 120;
+        remainingChars_m = initialQuota_m// - 120;
+    }
+
+    charCount_g.textContent = remainingChars_g;
+    charCount_s.textContent = remainingChars_s;
+    charCount_m.textContent = remainingChars_m;
+
+    if (remainingChars_g < 0) {
+      charCount_g.classList.add('negative');
+    } else {
+      charCount_g.classList.remove('negative');
+    }
+    if (remainingChars_s < 0) {
+      charCount_s.classList.add('negative');
+    } else {
+      charCount_s.classList.remove('negative');
+    }
+    if (remainingChars_m < 0) {
+      charCount_m.classList.add('negative');
+    } else {
+      charCount_m.classList.remove('negative');
+    }
+
+    const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
+    if (remainingChars.some((count) => count < 0)) {
+      button.classList.add('button-disabled');
+      this.$data.buttonValue = "Compra quota";
+      shopButton.classList.remove("btn-unstyled")
+      shopButton.classList.add("btn-danger")
+    } else {
+      button.classList.remove('button-disabled');
+      this.$data.buttonValue = "Conferma";
+      shopButton.classList.remove("btn-danger")
+      shopButton.classList.add("btn-unstyled")
+    }
+}

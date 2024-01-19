@@ -18,6 +18,10 @@
 
 <body>
   <nav class="light-blue lighten-1" role="navigation">
+    <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
+      <span class="count" id="charCount_giorno" aria-live="polite">500</span>
+      <span class="label">Quota Giornaliera</span>
+    </div>
 
   </nav>
 
@@ -179,7 +183,7 @@
         </div>
 
         <div class="text-end col s12">
-          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+          <input type="submit" value="Conferma" class="btn" id="btn-conferma">
         </div>
       </div>
 
@@ -259,6 +263,53 @@
       interfaccia_risposta(ris[1].split("=")[1]);
     }
 
+    //GESTIONE QUOTA
+    // aggiorno la quota
+    refresh_quota()
+    let quota_giorno = get_cookie_by_name("quota_g");
+    let quota_settimana = get_cookie_by_name("quota_s");
+    let quota_mese = get_cookie_by_name("quota_m");
+
+    // Aggiorna il contenuto delle span con i nuovi valori
+    //document.getElementById("charCount_mese").textContent = quota_mese;
+    //document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_giorno").textContent = quota_giorno;
+
+    const textarea = document.getElementById('Textarea');
+    const charCount_g = document.getElementById('charCount_giorno');
+    //const charCount_s = document.getElementById('charCount_sett');
+    //const charCount_m = document.getElementById('charCount_mese');
+    const button = document.getElementById('btn-conferma');
+    const inputImage = document.getElementById('img');
+
+    let initialQuota_g = parseInt(charCount_g.textContent);
+    //let initialQuota_s = parseInt(charCount_s.textContent);
+    //let initialQuota_m = parseInt(charCount_m.textContent);
+
+    textarea.addEventListener('input', function() {
+      aggiornaQuota("Testo");
+    });
+
+    document.getElementById('img').addEventListener('change', function(event) {
+      aggiornaQuota("Immagine");
+      var file = event.target.files[0]; // Ottieni il file selezionato
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var preview = document.getElementById('preview');
+        preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+
+        var img = document.createElement('img');
+        img.src = e.target.result; // Imposta l'URL dell'immagine
+        img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+
+        preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+        imageFileURL = e.target.result;
+      };
+
+      reader.readAsDataURL(file); // Leggi il file come URL dati
+    });
+
     //MAPPA
     // Initialize and add the map
     let map, infoWindow, marker;
@@ -266,7 +317,6 @@
     
     // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
     google.maps.event.addDomListener(window, "load", initMap());
-
 
   </script>
 </body>
