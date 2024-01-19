@@ -19,7 +19,7 @@
 <body>
   <nav class="navbar light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo left"><img src="..\media\img\logo_white.png" alt=""></a>
+      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt=""></a>
 
       <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
         <span class="count" id="charCount_giorno" aria-live="polite">500</span>
@@ -30,6 +30,34 @@
 
     </div>
   </nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="..\media\img\back.jpg">
+      </div>
+      <a href="#user"><img id="propic" class="circle" src="https://via.placeholder.com/60x60"></a>
+      <a href="#name"><span id="nome_cognome" class="white-text name">John Doe</span></a>
+      <a href="#email"><span id="username_side" class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a class="subheader">Quota rimanente</a></li>
+    <li>
+       <div class="quota-container">
+         <div class="quota_side">
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Settimana:</span><span id="charCount_settimana" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Mese:</span><span id="charCount_giorno" class="quota-value">500</span>
+         </div>
+       </div>
+     </li>    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">person</i>Profilo</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>Impostazioni</a></li>
+  </ul>
 
   <div id="filtro" value="data" hidden aria-hidden></div>
 
@@ -74,6 +102,24 @@
     // INIT
     document.addEventListener('DOMContentLoaded', function() {
       M.AutoInit();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var options = {
+        edge: 'right',
+      }
+      var instances = M.Sidenav.init(elems, options);
+    });
+
+    // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+    var collapsibleElem = document.querySelector('.collapsible');
+    var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+    // Or with jQuery
+
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
     });
 
     //URLUTENTE

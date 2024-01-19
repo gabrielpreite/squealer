@@ -109,6 +109,7 @@ main#squeal_contenitore {
 
 .img_squeal {
   width: -moz-available;
+  width: 312px;
 }
 
 .tag-username, .comment-username {
