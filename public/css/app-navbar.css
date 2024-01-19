@@ -9,6 +9,7 @@ nav.navbar {
   display: flex;
   flex-direction: row;
   font-weight: bold;
+      margin-right: 10px;
 }
 
 .accesso .material-icons {
@@ -46,16 +47,17 @@ img#propic {
 }
 
 .char-count-item .count {
-font-size: 18px;
-font-weight: bold;
-    margin-top: -10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: -10px;
+  height: 20px;
 }
 
 .char-count-item .label {
-font-size: 10px;
-text-transform: uppercase;
-color: #000;
-margin-top: -32px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #000;
+  height: 28px;
 }
 
 .negative {
@@ -68,4 +70,38 @@ color: white;
 border: 2px solid white;
 border-radius: 20px;
 padding: 5px 13px;
+}
+
+.background img {
+  width: 100%;
+}
+
+.quota_side {
+    padding-left: 40px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.quota-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.quota_side span {
+  margin-right: 5px;
+      font-variant: small-caps;
+      font-size: 16px;
+}
+
+span#quota_text {
+    display: inline-block;
+    width: 120px;
+    font-weight: 500;
+}
+
+.quota-value {
+  font-weight: normal;
+  color: #333; /* Colore del testo per i valori della quota */
 }

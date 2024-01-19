@@ -780,6 +780,7 @@ app.post('/user/login', async function(req, res) {
             res.cookie('username', session.userid)
             res.cookie('nome', response["data"]["nome"])
             res.cookie('img', response["data"]["img"])
+            res.cookie('tipo', (response["data"]["professional_flag"] === true ? "pro": "base"))
             res.cookie('login_result', "success")
             res.cookie('quota_g', response["data"]["quota"]["g"])
             res.cookie('quota_s', response["data"]["quota"]["s"])
