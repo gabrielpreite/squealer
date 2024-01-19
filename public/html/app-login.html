@@ -15,6 +15,7 @@
     <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <!--JavaScript Scripts-->
     <script type="text/javascript" src="../js/login.js"></script>
+    <script type="text/javascript" src="../js/global.js"></script>
 
     <style>
         body {
@@ -78,7 +79,7 @@
 
 <body>
     <div class="login-container" role="main">
-        <h1>Squealer</h1>
+        <h1>Squealer App</h1>
         <form id="login-form">
             <div class="input-field col s12">
                 <input id="username" type="text" name="username" class="validate" required>
@@ -95,6 +96,18 @@
                 Non hai un account?
                 <a href="/app-register" style="text-decoration: none; color: #1da1f2; font-weight: bold;">
                     Registrati
+                </a>
+            </p>
+            <p class="text-center" style="font-size: 14px; color: #888;">
+                Vuoi usare la SMM Dashboard?
+                <a href="/login" style="text-decoration: none; color: #1da1f2; font-weight: bold;">
+                    Login SMM
+                </a>
+            </p>
+            <p class="text-center" style="font-size: 14px; color: #888;">
+                Vuoi usare la Moderator Dashboard?
+                <a href="/mod-login" style="text-decoration: none; color: #1da1f2; font-weight: bold;">
+                    Login Mod
                 </a>
             </p>
         </form>

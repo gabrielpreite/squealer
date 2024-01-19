@@ -60,7 +60,7 @@ function cat_utenti(){
         row.appendChild(cell_pop);
 
         row.onclick = function() { seleziona_utente(user.username); };
-        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100", "cursor-pointer")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
@@ -155,7 +155,7 @@ function sort_utenti(){
         row.appendChild(cell_pop);
 
         row.onclick = function() { seleziona_utente(user.username); };
-        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100", "cursor-pointer")
         tableBody.appendChild(row)
     })
     document.getElementById("user_table").appendChild(tableBody)
@@ -270,7 +270,7 @@ function cat_squeal(){
         row.appendChild(cell_pre);
 
         row.onclick = function() { seleziona_squeal(squeal.post_id); };
-        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100", "cursor-pointer")
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
@@ -414,7 +414,7 @@ function sort_squeal(){
         row.appendChild(cell_pre);
 
         row.onclick = function() { seleziona_squeal(squeal.post_id); };
-        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100")
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100", "cursor-pointer")
         tableBody.appendChild(row)
     })
     document.getElementById("squeal_table").appendChild(tableBody)
@@ -538,21 +538,24 @@ function cat_canali(){
     
     document.getElementById("canali_table").innerHTML = ""
     let tableBody = document.createElement("tbody");
-    tableBody.insertAdjacentHTML("afterbegin", "<tr><th>Nome</th><th>Descrizione</th></tr>")
+    tableBody.insertAdjacentHTML("afterbegin", "<tr class='border-b bg-white sticky top-0 shadow'><th>Nome</th><th>Descrizione</th></tr>")
     canali.forEach((canale) => {
         var row = document.createElement("tr");
 
         let cell_nom = document.createElement("td");
         let cellText_nom = document.createTextNode(canale.nome);
         cell_nom.appendChild(cellText_nom);
+        cell_nom.classList.add("border-r", "text-center")
         row.appendChild(cell_nom);
 
         let cell_des = document.createElement("td");
         let cellText_des = document.createTextNode(canale.descrizione);
         cell_des.appendChild(cellText_des);
+        cell_des.classList.add("border-r", "text-center")
         row.appendChild(cell_des);
 
         row.onclick = function() { seleziona_canale(canale.nome); };
+        row.classList.add("py-2", "px-4", "border-b", "hover:bg-blue-100", "cursor-pointer")
         tableBody.appendChild(row)
     })
     document.getElementById("canali_table").appendChild(tableBody)
