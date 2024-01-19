@@ -375,3 +375,117 @@ function toggleCorpoGhigliottina() {
     textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     textarea.readOnly = true;
 }
+
+//MAPPA
+function initMap() {
+    infoWindow = new google.maps.InfoWindow();
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 41.9028, lng: 12.4964 }, // Coordinate di Roma
+      zoom: 5, // Livello di zoom 5
+    });
+
+    const locationButton = document.createElement("button");
+
+    locationButton.type = "button";
+    locationButton.textContent = "Trova la mia posizione";
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
+
+    marker = new google.maps.Marker({
+      map,
+      animation: google.maps.Animation.DROP,
+    });
+
+    // Aggiungi il listener di eventi per il clic sulla mappa
+    map.addListener("click", (event) => {
+      placeMarker(event.latLng);
+    });
+
+    locationButton.addEventListener("click", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+
+            map.panTo(pos);
+            map.setZoom(13);
+            marker.setPosition(pos); // Imposta la posizione del marker
+
+            infoWindow.close(); // Chiudi la finestra informativa se era aperta
+          },
+          () => {
+            handleLocationError(true, infoWindow, map.getCenter());
+          }
+        );
+      } else {
+        // Il browser non supporta la geolocalizzazione
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+      return false;
+    });
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Errore: il servizio di geolocalizzazione ha fallito."
+      : "Errore: il tuo browser non supporta la geolocalizzazione."
+  );
+  infoWindow.open(map);
+}
+
+function placeMarker(location) {
+  // Rimuovi il marker esistente, se presente
+  if (marker) {
+    marker.setMap(null);
+  }
+
+  // Crea un nuovo marker
+  marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    animation: google.maps.Animation.DROP,
+  });
+
+  // Puoi fare altro con il marker qui se necessario
+  // Ad esempio, salvare le coordinate in una variabile o inviarle al server
+  infoWindow.close(); // Chiudi la finestra informativa se era aperta
+}
+
+function mapeado(map, marker) {
+  let staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap";
+
+  //Set the Google Map Center.
+  staticMapUrl += "?center=" + map.getCenter().lat() + "," + map.getCenter().lng();
+
+  //Set the Google Map Size.
+  staticMapUrl += "&size=640x480&scale=2";
+
+  //Set the Google Map Type. roadmap/satellite/hybrid/terrain
+  staticMapUrl += "&maptype=hybrid";
+
+  //Set the Google Map Zoom.
+  staticMapUrl += "&zoom=" + map.zoom;
+
+  //Loop and add Markers.
+  staticMapUrl += "&markers=" + marker.position.lat() + "," + marker.position.lng();
+
+  //Key
+  staticMapUrl += "&key=" + "AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog";
+
+  //Display the Image of Google Map.
+  document.getElementById("Textarea").value = staticMapUrl;
+
+  return staticMapUrl;
+}
+
+
+
+
+
+
+//QUOTA
