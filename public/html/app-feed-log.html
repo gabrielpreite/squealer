@@ -10,22 +10,23 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="navbar light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo left"><img src="..\media\img\logo_white.png" alt=""></a>
 
-      <ul id="slide-out" class="side-nav">
-        <li><a href="/app-logout">Logout(nonancorafatto)</a></li>
-        <br>
-        <li><a href="#">Impostazioni(no)</a></li>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+      <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
+        <span class="count" id="charCount_giorno" aria-live="polite">500</span>
+        <span class="label">Quota Giornaliera</span>
+      </div>
 
-      <a id="logo-container" href="#" class="brand-logo right">Squealer</a>
+      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic"></a>
 
     </div>
   </nav>
@@ -34,14 +35,14 @@
 
   <div class="row" id="info_contenitore">
 
-    
+
 
   </div>
 
   <main class="row" id="squeal_contenitore">
 
-    
-    
+
+
   </main>
 
   <!-- barra in basso -->
