@@ -5,7 +5,7 @@ function login(){
         async: false,
         url: "https://site212251.tw.cs.unibo.it/user/login",
         headers: { },
-        data: { username: $("#username").val(), password: $("#password").val()},
+        data: { username: $("#username").val(), password: $("#password").val(), dst: "smm"},
         success: function (data, status, xhr) {
             console.log("successo login")
             window.location.replace("https://site212251.tw.cs.unibo.it/");
@@ -14,6 +14,8 @@ function login(){
             if (xhr.status === 401) {
                 console.log("login fallito");
                 alert("username/password errati")
+            } else if(xhr.status === 403){
+                alert("Il tuo account e' stato disabilitato")
             }
         }
     });
@@ -26,7 +28,7 @@ function login_app(){
         async: false,
         url: "https://site212251.tw.cs.unibo.it/user/login",
         headers: { },
-        data: { username: $("#username").val(), password: $("#password").val()},
+        data: { username: $("#username").val(), password: $("#password").val(), dst: "app"},
         success: function (data, status, xhr) {
             console.log("successo login")
             window.location.replace("https://site212251.tw.cs.unibo.it/app");
@@ -35,6 +37,31 @@ function login_app(){
             if (xhr.status === 401) {
                 console.log("login fallito");
                 alert("username/password errati")
+            } else if(xhr.status === 403){
+                alert("Il tuo account e' stato disabilitato")
+            }
+        }
+    });
+}
+
+function login_mod(){
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        url: "https://site212251.tw.cs.unibo.it/user/login",
+        headers: { },
+        data: { username: $("#username").val(), password: $("#password").val(), dst: "mod"},
+        success: function (data, status, xhr) {
+            console.log("successo login")
+            window.location.replace("https://site212251.tw.cs.unibo.it/mod");
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                console.log("login fallito");
+                alert("username/password errati")
+            } else if(xhr.status === 403){
+                alert("Area riservata a moderator")
             }
         }
     });

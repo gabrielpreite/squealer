@@ -17,9 +17,9 @@
         <div id="content_left" class="w-1/6 p-4 mr-4 bg-blue-700">
             <h1 class="text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Categorie</h1>
             <ul>
-            <li><button onclick="cat_utenti()" class="text-xl text-white pt-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Utenti</button></li>
-            <li><button onclick="cat_squeal()" class="text-xl text-white pt-5 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Squeal</button></li>
-            <li><button onclick="cat_canali()" class="text-xl text-white pt-5 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Canali Ufficiali</button></li>
+            <li><button onclick="cat_utenti()" class="text-xl text-white pt-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:underline">Utenti</button></li>
+            <li><button onclick="cat_squeal()" class="text-xl text-white pt-5 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:underline">Squeal</button></li>
+            <li><button onclick="cat_canali()" class="text-xl text-white pt-5 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:underline">Canali Ufficiali</button></li>
             </ul>
         </div>
       
@@ -34,7 +34,7 @@
               <option id="popolarita" value="popolarita">Popolarita</option>
             </select>
             <div id="user_filtro_query">
-              <input type="text" id="user_query_nome" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro nome -->
+              <input type="text" id="user_query_nome" autocomplete="off" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro nome -->
               <select id="user_query_tipo" autocomplete="off" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 hidden"> <!-- caso filtro tipo -->
                 <option id="redazione" selected value="redazione">Redazione</option>
                 <option id="verificato" value="verificato">Verificato</option>
@@ -45,7 +45,7 @@
                 <option id="crescente" value="crescente">Crescente</option>
               </select>
             </div>
-            <input type="submit" value="Filtra" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
+            <input type="submit" value="Filtra" class="cursor-pointer mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
           </form>
             <div id="user_table_container" class="max-h-[70vh] overflow-y-auto mt-5">
               <table id="user_table" class="min-w-full bg-white border border-gray-300 shadow mt-5">
@@ -61,12 +61,12 @@
                 <option id="destinatario" value="destinatario">Destinatario</option>
               </select>
               <div id="squeal_filtro_query">
-                <input type="text" id="squeal_query_mittente" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro mittente -->
-                <input type="date" id="squeal_query_data_inizio" class="hidden border rounded p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200""> <!-- caso filtro data -->
-                <input type="date" id="squeal_query_data_fine" class="hidden border rounded p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"" >
-                <input type="text" id="squeal_query_destinatario" class="hidden mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro destinatario -->
+                <input type="text" id="squeal_query_mittente" autocomplete="off" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro mittente -->
+                <input type="date" id="squeal_query_data_inizio" autocomplete="off" class="hidden border rounded p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200""> <!-- caso filtro data -->
+                <input type="date" id="squeal_query_data_fine" autocomplete="off" class="hidden border rounded p-2 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"" >
+                <input type="text" id="squeal_query_destinatario" autocomplete="off" class="hidden mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"> <!-- caso filtro destinatario -->
               </div>
-              <input type="submit" value="Filtra"  class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
+              <input type="submit" value="Filtra" class="cursor-pointer mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
             </form>
             <div id="squeal_table_container" class="max-h-[70vh] overflow-y-auto mt-5">
               <table id="squeal_table" class="min-w-full bg-white border border-gray-300 shadow">
@@ -74,11 +74,11 @@
             </div>
           </div>
           <div id="mid_canali" class="hidden"> <!-- parte canali -->
-            <div id="canali_table_container">
-              <table id="canali_table">
+            <div id="canali_table_container" class="max-h-[70vh] overflow-y-auto mt-5">
+              <table id="canali_table" class="min-w-full bg-white border border-gray-300 shadow">
               </table>
             </div>
-            <button onclick="seleziona_canale('new')">Aggiungi nuovo canale</button>
+            <button onclick="seleziona_canale('new')" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">Aggiungi nuovo canale</button>
           </div>
         </div>
       
@@ -175,14 +175,23 @@
             </form>
           </div>
           
-          <div id="right_canali" class="hidden"> <!-- parte canali -->
+          <div id="right_canali" class="hidden bg-white p-4 rounded shadow">
             <form id="modifica_canale">
-              Nome:<input type="text" id="selected_canale_nome">
-              Descrizione:<input type="text" id="canale_descrizione">
-              <input type="submit" value="Applica modifiche">
+              <div class="mb-4">
+                <label for="selected_canale_nome" class="block text-sm font-medium text-gray-700">Nome:</label>
+                <input type="text" id="selected_canale_nome" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
+              </div>
+              <div class="mb-4">
+                <label for="canale_descrizione" class="block text-sm font-medium text-gray-700">Descrizione:</label>
+                <input type="text" id="canale_descrizione" class="border rounded p-2 w-full focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
+              </div>
+              <input type="submit" value="Applica modifiche" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
             </form>
-            <button id="elimina_canale">Elimina Canale</button>
+            <button id="elimina_canale" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-red mt-4">
+              Elimina Canale
+            </button>
           </div>
+          
         </div>
       
     </div>

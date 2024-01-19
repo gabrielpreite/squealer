@@ -284,6 +284,15 @@ app.get('/app-login', function (req, res) {
 	} else {res.redirect("/app")}
 })
 
+app.get('/mod-login', function (req, res) {
+	if(!req.session || !req.session.userid) {
+		res.sendFile(global.rootDir+"/public/html/mod-login.html")
+	} else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
+		req.session.destroy()
+		res.sendFile(global.rootDir+"/public/html/mod-login.html")
+	} else {res.redirect("/mod")}
+})
+
 app.get('/mod', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
@@ -764,7 +773,7 @@ app.post('/user/login', async function(req, res) {
     try{
         response = await mymongo.user_login(req.body, mongoCredentials)
 
-        if(response["risultato"] == "successo"){
+        if(response["risultato"] === "successo"){
             session=req.session; //login riuscito
             session.userid=req.body.username;
             console.log(req.session)
@@ -779,9 +788,13 @@ app.post('/user/login', async function(req, res) {
             //res.redirect("/")
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "username/password errati"){
+        } else if(response["risultato"] === "username/password errati"){
             response["errore"] = "errore"
             res.status(401)
+            res.send(response)
+        } else if(response["risultato"] === "unauthorized"){
+            response["errore"] = "errore"
+            res.status(403)
             res.send(response)
         }
     } catch (e){

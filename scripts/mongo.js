@@ -1076,16 +1076,20 @@ exports.user_login = async function (q, credentials) {
 						{ username: q.username },
 						{ password: "" + psw }
 					]
-			}, {
-				password: 0
-			}
-			)
+				}, { password: 0 })
 			.forEach((r) => {
 				result.push(r)
 			});
 
 		if (result.length == 1) {
-			response["risultato"] = "successo"
+			if(result[0].abilitato_flag === false)
+				response["risultato"] = "unauthorized"
+			else if(q.dst === "smm" && result[0].professional_flag === false)
+				response["risultato"] = "unauthorized"
+			else if(q.dst === "mod" && result[0].redazione_flag === false)
+				response["risultato"] = "unauthorized"
+			else
+				response["risultato"] = "successo"
 			//console.log("successo")
 		} else {
 			response["risultato"] = "username/password errati"
