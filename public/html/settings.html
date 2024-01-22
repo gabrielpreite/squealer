@@ -868,7 +868,7 @@
             headers: {},
             success: function (data, status, xhr) {
               data.data.acquisti.forEach((acquisto) => {
-                array_acquisti.push(
+                this.array_acquisti.push(
                   `<div class="acquisto">
                           <div class="info">
                               <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
