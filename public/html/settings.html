@@ -216,7 +216,7 @@
         <div class="container">
           <ul id="acquisti-list">
             <li v-for="acquisto in array_acquisti">
-              {{item}}
+              {{acquisto}}
             </li>
           </ul>
         </div>
@@ -860,8 +860,9 @@
           seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
         },
         load_acquisti(){
-          console.log(this.array_acquisti.length)
+          //console.log(this.array_acquisti.length)
           let prezzo = {120: "0,99", 240: "1,99", 480: "4,99"}
+          lista_acquisti = null
           $.ajax({
             type: 'GET',
             dataType: "json",
@@ -869,23 +870,24 @@
             url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
             headers: {},
             success: function (data, status, xhr) {
-              data.data.acquisti.forEach((acquisto) => {
-                this.array_acquisti.push(
-                  `<div class="acquisto">
-                          <div class="info">
-                              <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
-                              <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
-                          </div>
-                          <div class="spesa">
-                              <i class="fas fa-shopping-cart"></i>
-                              <div class="ammontare">${prezzo[acquisto.quantita]} €</div>
-                          </div>
-                      </div>`
-                )
-              })
-              
+              lista_acquisti = data.data.acquisti
             }
           });
+          lista_acquisti.forEach((acquisto) => {
+            this.array_acquisti.push(
+              `<div class="acquisto">
+                      <div class="info">
+                          <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                          <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                      </div>
+                      <div class="spesa">
+                          <i class="fas fa-shopping-cart"></i>
+                          <div class="ammontare">${prezzo[acquisto.quantita]} €</div>
+                      </div>
+                  </div>`
+            )
+          })
+          console.log(this.array_acquisti)
         }
       },
       beforeMount(){
