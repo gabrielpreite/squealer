@@ -532,12 +532,12 @@ function aggiornaQuota(opzione) {
     const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
     if (remainingChars.some((count) => count < 0)) {
       button.classList.add('button-disabled');
-      this.$data.buttonValue = "Compra quota";
+      button.value = "Compra quota";
       shopButton.classList.remove("btn-unstyled")
       shopButton.classList.add("btn-danger")
     } else {
       button.classList.remove('button-disabled');
-      this.$data.buttonValue = "Conferma";
+      button.value = "Conferma";
       shopButton.classList.remove("btn-danger")
       shopButton.classList.add("btn-unstyled")
     }
