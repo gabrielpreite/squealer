@@ -483,42 +483,42 @@ function mapeado(map, marker) {
 //QUOTA
 function resetQuota() {
     charCount_g.textContent = initialQuota_g;
-    //charCount_s.textContent = initialQuota_s;
-    //charCount_m.textContent = initialQuota_m;
+    charCount_s.textContent = initialQuota_s;
+    charCount_m.textContent = initialQuota_m;
 
     charCount_g.classList.remove('negative');
-    //charCount_s.classList.remove('negative');
-    //charCount_m.classList.remove('negative');
+    charCount_s.classList.remove('negative');
+    charCount_m.classList.remove('negative');
 
-    //button.classList.remove('button-disabled');
+    button.classList.remove('button-disabled');
 }
 
 function aggiornaQuota(opzione) {
     if(opzione == "Testo") {
         const charLength = textarea.value.length;
         remainingChars_g = initialQuota_g - charLength;
-        //remainingChars_s = initialQuota_s// - charLength;
-        //remainingChars_m = initialQuota_m// - charLength;
+        remainingChars_s = initialQuota_s// - charLength;
+        remainingChars_m = initialQuota_m// - charLength;
     } else if (opzione == "Immagine") {
         remainingChars_g = initialQuota_g - 120;
-        //remainingChars_s = initialQuota_s// - 120;
-        //remainingChars_m = initialQuota_m// - 120;
+        remainingChars_s = initialQuota_s// - 120;
+        remainingChars_m = initialQuota_m// - 120;
     } else if (opzione == "Posizione") {
         remainingChars_g = initialQuota_g - 120;
-        //remainingChars_s = initialQuota_s// - 120;
-        //remainingChars_m = initialQuota_m// - 120;
+        remainingChars_s = initialQuota_s// - 120;
+        remainingChars_m = initialQuota_m// - 120;
     }
 
     charCount_g.textContent = remainingChars_g;
-    //charCount_s.textContent = remainingChars_s;
-    //charCount_m.textContent = remainingChars_m;
+    charCount_s.textContent = remainingChars_s;
+    charCount_m.textContent = remainingChars_m;
 
     if (remainingChars_g < 0) {
       charCount_g.classList.add('negative');
     } else {
       charCount_g.classList.remove('negative');
     }
-    /* if (remainingChars_s < 0) {
+    if (remainingChars_s < 0) {
       charCount_s.classList.add('negative');
     } else {
       charCount_s.classList.remove('negative');
@@ -540,5 +540,5 @@ function aggiornaQuota(opzione) {
       this.$data.buttonValue = "Conferma";
       shopButton.classList.remove("btn-danger")
       shopButton.classList.add("btn-unstyled")
-    }*/
+    }
 }

@@ -283,9 +283,9 @@
     CURRENT_USER = "fv";
 
     //Aggiungo propric utente
-    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"));
-    $("#nome_cognome").textContent = get_cookie_by_name("nome");
-    $("#username_side").textContent = CURRENT_USER;
+    document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
+    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome");
+    document.getElementById("username_side").textContent = "@" + CURRENT_USER;
 
     //SETUP
     let imageFileURL = null;
@@ -310,20 +310,21 @@
     let quota_mese = get_cookie_by_name("quota_m");
 
     // Aggiorna il contenuto delle span con i nuovi valori
-    //document.getElementById("charCount_mese").textContent = quota_mese;
-    //document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_mese").textContent = quota_mese;
+    document.getElementById("charCount_sett").textContent = quota_settimana;
     document.getElementById("charCount_giorno").textContent = quota_giorno;
+    document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
 
     const textarea = document.getElementById('Textarea');
     const charCount_g = document.getElementById('charCount_giorno');
-    //const charCount_s = document.getElementById('charCount_sett');
-    //const charCount_m = document.getElementById('charCount_mese');
+    const charCount_s = document.getElementById('charCount_sett');
+    const charCount_m = document.getElementById('charCount_mese');
     const button = document.getElementById('btn-conferma');
     const inputImage = document.getElementById('img');
 
     let initialQuota_g = parseInt(charCount_g.textContent);
-    //let initialQuota_s = parseInt(charCount_s.textContent);
-    //let initialQuota_m = parseInt(charCount_m.textContent);
+    let initialQuota_s = parseInt(charCount_s.textContent);
+    let initialQuota_m = parseInt(charCount_m.textContent);
 
     textarea.addEventListener('input', function() {
       aggiornaQuota("Testo");
