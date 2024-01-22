@@ -136,3 +136,34 @@ main#squeal_contenitore {
 .bottom-bar i {
   font-size: 24px;
 }
+
+.label-squeal {
+  color: black;
+  border-radius: 8px;
+  padding: 5px;
+  float: right;
+  margin-left: 10px;
+}
+.visual-icona {
+    margin-right:  5px;
+}
+
+.popolare {
+  background-color: #b2d8b2;
+}
+
+.impopolare {
+  background-color: #ff9999;
+}
+
+.controverso {
+  background-color: #d9a6e0;
+}
+
+.auto {
+  background-color:  #ffb07c;
+}
+
+.consigliato {
+  background-color: #87CEEB;
+}
