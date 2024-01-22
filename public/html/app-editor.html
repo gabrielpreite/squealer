@@ -36,7 +36,7 @@
       <div class="background">
         <img src="..\media\img\back.jpg" alt="Immagine profilo">
       </div>
-      <img id="propic" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
+      <img id="propic_side" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
       <span id="nome_cognome" class="white-text name">John Doe</span>
       <span id="username_side" class="white-text email">@johndoe</span>
     </div></li>
@@ -291,7 +291,8 @@
 
     //Aggiungo propric utente
     document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
-    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome");
+    document.getElementById("propic_side").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
+    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome").split("%20").join(" ");
     document.getElementById("username_side").textContent = "@" + CURRENT_USER;
 
     //SETUP

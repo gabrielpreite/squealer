@@ -215,6 +215,9 @@
         <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
           <ul id="acquisti-list">
+            <li v-for="acquisto in array_acquisti">
+              {{item}}
+            </li>
           </ul>
         </div>
       </div>
@@ -534,51 +537,8 @@
     }
 
     // STORICO ACQUISTI
-    let acquisti = null
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
-      headers: {},
-      success: function (data, status, xhr) {
-        acquisti = data.data.acquisti;
-      }
-    });
-    
-    function popolaListaAcquisti(acquisti) {
-      var acquistiList = document.getElementById('acquisti-list');
-
-      // Popola la lista degli acquisti
-      acquisti.forEach(function (acquisto) {
-        var listItem = document.createElement('li');
-        listItem.innerHTML = `
-                <div class="acquisto">
-                    <div class="info">
-                        <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
-                        <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
-                    </div>
-                    <div class="spesa">
-                        <i class="fas fa-shopping-cart"></i>
-                        <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
-                    </div>
-                </div>
-            `;
-        acquistiList.appendChild(listItem);
-      });
-    }
-
-    function calcolaAmmontare(quantita) {
-      if (quantita === 120) {
-        return '0,99';
-      } else if (quantita === 240) {
-        return '1,99';
-      } else if (quantita === 480) {
-        return '4,99';
-      } else {
-        return '';
-      }
-    }
+  
+    // migrata su vue
 
 
     //follower e follow
@@ -888,7 +848,8 @@
       data() {
         return {
           nuovoCanale: '',
-          sezione_scelta: "profilo"
+          sezione_scelta: "profilo",
+          array_acquisti: new Array()
         }
       },
       methods: {
@@ -898,12 +859,47 @@
           }
           seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
         },
-        test(){
-          console.log("before mount")
+        load_acquisti(){
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+            headers: {},
+            success: function (data, status, xhr) {
+              data.data.acquisti.forEach((acquisto) => {
+                this.array_acquisti.push(
+                  `<div class="acquisto">
+                          <div class="info">
+                              <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                              <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                          </div>
+                          <div class="spesa">
+                              <i class="fas fa-shopping-cart"></i>
+                              <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
+                          </div>
+                      </div>`
+                )
+              })
+              
+            }
+          });
+
+          function calcolaAmmontare(quantita) {
+            if (quantita === 120) {
+              return '0,99';
+            } else if (quantita === 240) {
+              return '1,99';
+            } else if (quantita === 480) {
+              return '4,99';
+            } else {
+              return '';
+            }
+          }
         }
       },
       beforeMount(){
-        this.test()
+        this.load_acquisti()
       }
     }).mount('body')
 
