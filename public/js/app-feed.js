@@ -128,7 +128,7 @@ function aggiungi_squeal(squeals, LOG = true) {
     } else {
       contenitore_commenti.innerHTML = "<div> Nessuno ha ancora commentato </div>";
     }
-    contenitore_commenti.insertAdjacentHTML('beforeend', `<a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
+    contenitore_commenti.insertAdjacentHTML('beforeend', `<br><a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
 
     //etichette
     let id_visual = 'squeal_visual' + i;
@@ -450,5 +450,5 @@ function mio_profilo() {
 
 //PULSANTE COMPRA QUOTA
 function btn_acquista_quota() {
-  
+
 }
