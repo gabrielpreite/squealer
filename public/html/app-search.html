@@ -162,6 +162,13 @@
       //searchbar
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems);
+
+      //SIDE BAR
+      var elems = document.querySelectorAll('.sidenav');
+      var options = {
+        edge: 'right',
+      }
+      var instances = M.Sidenav.init(elems, options);
     });
 
     //searchbar
