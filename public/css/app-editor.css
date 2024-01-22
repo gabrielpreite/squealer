@@ -76,7 +76,7 @@
 
 /* LARGHEZZA COMMENTI */
 .chip {
-  width: -moz-available;
+  width: 100%;
 }
 
 /* IMG PROFILO */
@@ -87,5 +87,5 @@
 
 /* IMG POST */
 .img_squeal {
-  width: -moz-available;
+  width: 100%;
 }
