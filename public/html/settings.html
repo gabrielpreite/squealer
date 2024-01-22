@@ -216,7 +216,7 @@
         <div class="container">
           <ul id="acquisti-list">
             <li v-for="acquisto in array_acquisti">
-              {{item}}
+              {{acquisto}}
             </li>
           </ul>
         </div>
@@ -887,6 +887,7 @@
                   </div>`
             )
           })
+          console.log(this.array_acquisti)
         }
       },
       beforeMount(){
