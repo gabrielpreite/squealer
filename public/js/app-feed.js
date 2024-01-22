@@ -435,6 +435,7 @@ function ricerca_notifica(notifica) {
 
   document.getElementById("squeal_contenitore").hidden = false;
   document.getElementById("info_contenitore").hidden = false;
+  document.getElementById("title_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
 }
 
