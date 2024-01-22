@@ -23,9 +23,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 150vh;
+            height: 75vh;
             background-image: url('/img/background.png');
-            background-size: 10%;
+            background-size: 25%;
             background-position: center center;
         }
 
@@ -71,6 +71,10 @@
             font-weight: bold;
         }
 
+        .login-area {
+          text-align: center;
+        }
+
         .login-button:hover {
             background-color: #0c87c1;
         }
@@ -89,7 +93,7 @@
                 <input id="password" type="password" name="password" class="validate" required>
                 <label for="password">Password</label>
             </div>
-            <div>
+            <div class="login-area">
                 <input type="submit" class="login-button mx-auto" value="Login">
             </div>
             <p class="text-center" style="font-size: 14px; color: #888;">
