@@ -849,7 +849,7 @@
         return {
           nuovoCanale: '',
           sezione_scelta: "profilo",
-          array_acquisti: new Array()
+          array_acquisti: []
         }
       },
       methods: {
@@ -860,6 +860,7 @@
           seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
         },
         load_acquisti(){
+          console.log(this.array_acquisti.length)
           let prezzo = {120: "0,99", 240: "1,99", 480: "4,99"}
           $.ajax({
             type: 'GET',
