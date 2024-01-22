@@ -16,13 +16,31 @@
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 
   <style>
-    .title-n {
-      font-size: 32px;
-    }
+  .title-n {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+}
+
+.content {
+  top: 56px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.collection a.collection-item {
+  color: #29b6f6;
+}
+
+.collection .collection-item.active {
+  color: white;
+  background-color: #29b6f6;
+}
   </style>
 </head>
 <body>
-  <nav class="navbar light-blue lighten-1" role="navigation">
+  <nav class="navbar lighten-1" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
@@ -64,19 +82,21 @@
     <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
   </ul>
 
+<div class="content">
   <div class="title-n"> Notifiche <div id="filtro" hidden aria-hidden="true"> data </div></div>
 
   <div class="collection" id="notifiche_contenitore">
-    
+
   </div>
 
   <div class="row" id="info_contenitore" hidden>
-    
+
   </div>
 
   <div class="row" id="squeal_contenitore" hidden>
-    
+
   </div>
+</div>
 
   <!-- barra in basso -->
   <div class="bottom-bar">
@@ -119,7 +139,7 @@
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
     CURRENT_USER = "fv";
-    
+
     //Aggiungo propric utente
     document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
     document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome");
