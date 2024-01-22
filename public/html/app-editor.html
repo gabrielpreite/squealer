@@ -17,9 +17,47 @@
 </head>
 
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="navbar light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
+      <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
+        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="label">Quota Giornaliera</span>
+      </div>
+
+      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto profilo" id="propic"></a>
+
+    </div>
   </nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="..\media\img\back.jpg" alt="Immagine profilo">
+      </div>
+      <img id="propic" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
+      <span id="nome_cognome" class="white-text name">John Doe</span>
+      <span id="username_side" class="white-text email">@johndoe</span>
+    </div></li>
+    <li><a class="subheader">Quota rimanente</a></li>
+    <li>
+       <div class="quota-container">
+         <div class="quota_side">
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">500</span>
+         </div>
+       </div>
+     </li>    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
+    <li><a class="waves-effect" href="javascript:btn_acquista_quota()"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+    <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
+  </ul>
 
   <div class="row" id="post-dest">
     <div id="selezione-destinatari" class="col s12">
@@ -99,19 +137,19 @@
         <div id="campo_scelta" class="col s12">
           <label>
             <input type="radio" name="group1" hidden>
-            <i class="material-icons attiva" onclick="cambia_campo('Testo')">email</i>
+            <i class="material-icons post-tipo attiva" onclick="cambia_campo('Testo')">email</i>
           </label>
           <label>
             <input type="radio" name="group1" hidden>
-            <i class="material-icons" onclick="cambia_campo('Immagine')">panorama</i>
+            <i class="material-icons post-tipo" onclick="cambia_campo('Immagine')">panorama</i>
           </label>
           <label>
             <input type="radio" name="group1" hidden>
-            <i class="material-icons" onclick="cambia_campo('Posizione')">edit_location</i>
+            <i class="material-icons post-tipo" onclick="cambia_campo('Posizione')">edit_location</i>
           </label>
           <label id="id-ghigliottina">
             <input type="radio" name="group1" hidden>
-            <i class="material-icons" onclick="cambia_campo('Ghigliottina')">star</i>
+            <i class="material-icons post-tipo" onclick="cambia_campo('Ghigliottina')">star</i>
           </label>
         </div>
 
@@ -179,7 +217,7 @@
         </div>
 
         <div class="text-end col s12">
-          <input type="submit" value="Conferma" class="btn btn-unstyled btn-confirm" id="btn-conferma">
+          <input type="submit" value="Conferma" class="btn" id="btn-conferma">
         </div>
       </div>
 
@@ -238,11 +276,23 @@
       };
       var all_chip = document.querySelectorAll('.chips');
       chip_arr = M.Chips.init(all_chip, chipOptions);
+
+      //SIDE BAR
+      var elems = document.querySelectorAll('.sidenav');
+      var options = {
+        edge: 'right',
+      }
+      var instances = M.Sidenav.init(elems, options);
     });
 
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
     CURRENT_USER = "fv";
+
+    //Aggiungo propric utente
+    document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
+    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome");
+    document.getElementById("username_side").textContent = "@" + CURRENT_USER;
 
     //SETUP
     let imageFileURL = null;
@@ -259,6 +309,54 @@
       interfaccia_risposta(ris[1].split("=")[1]);
     }
 
+    //GESTIONE QUOTA
+    // aggiorno la quota
+    refresh_quota()
+    let quota_giorno = get_cookie_by_name("quota_g");
+    let quota_settimana = get_cookie_by_name("quota_s");
+    let quota_mese = get_cookie_by_name("quota_m");
+
+    // Aggiorna il contenuto delle span con i nuovi valori
+    document.getElementById("charCount_mese").textContent = quota_mese;
+    document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_giorno").textContent = quota_giorno;
+    document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
+
+    const textarea = document.getElementById('Textarea');
+    const charCount_g = document.getElementById('charCount_giorno');
+    const charCount_s = document.getElementById('charCount_sett');
+    const charCount_m = document.getElementById('charCount_mese');
+    const button = document.getElementById('btn-conferma');
+    const inputImage = document.getElementById('img');
+
+    let initialQuota_g = parseInt(charCount_g.textContent);
+    let initialQuota_s = parseInt(charCount_s.textContent);
+    let initialQuota_m = parseInt(charCount_m.textContent);
+
+    textarea.addEventListener('input', function() {
+      aggiornaQuota("Testo");
+    });
+
+    document.getElementById('img').addEventListener('change', function(event) {
+      aggiornaQuota("Immagine");
+      var file = event.target.files[0]; // Ottieni il file selezionato
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var preview = document.getElementById('preview');
+        preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+
+        var img = document.createElement('img');
+        img.src = e.target.result; // Imposta l'URL dell'immagine
+        img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+
+        preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+        imageFileURL = e.target.result;
+      };
+
+      reader.readAsDataURL(file); // Leggi il file come URL dati
+    });
+
     //MAPPA
     // Initialize and add the map
     let map, infoWindow, marker;
@@ -266,7 +364,6 @@
     
     // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
     google.maps.event.addDomListener(window, "load", initMap());
-
 
   </script>
 </body>

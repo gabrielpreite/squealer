@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
@@ -52,15 +53,47 @@
   </style>
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="navbar light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
+      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
-      <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+      <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
+        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="label">Quota Giornaliera</span>
+      </div>
 
-      <a id="logo-container" href="#" class="brand-logo right">Squealer</a>
+      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto profilo" id="propic"></a>
 
     </div>
   </nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="..\media\img\back.jpg" alt="Immagine profilo">
+      </div>
+      <img id="propic" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
+      <span id="nome_cognome" class="white-text name">John Doe</span>
+      <span id="username_side" class="white-text email">@johndoe</span>
+    </div></li>
+    <li><a class="subheader">Quota rimanente</a></li>
+    <li>
+       <div class="quota-container">
+         <div class="quota_side">
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">500</span>
+         </div>
+       </div>
+     </li>    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
+    <li><a class="waves-effect" href="javascript:btn_acquista_quota()"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+    <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
+  </ul>
 
   <div class="searchbar" aria-label="Barra di ricerca">
     <form id="form_ricerca" role="search" aria-label="Form della ricerca">
@@ -136,6 +169,13 @@
       //searchbar
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems);
+
+      //SIDE BAR
+      var elems = document.querySelectorAll('.sidenav');
+      var options = {
+        edge: 'right',
+      }
+      var instances = M.Sidenav.init(elems, options);
     });
 
     //searchbar
@@ -149,11 +189,26 @@
       M.Tabs.init(tabs);
     });
 
-    //$(".button-collapse").sideNav();
-
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
     CURRENT_USER = "fv";
+
+    //Aggiungo propric utente
+    document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
+    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome");
+    document.getElementById("username_side").textContent = "@" + CURRENT_USER;
+
+    //QUOTA
+    refresh_quota()
+    let quota_giorno = get_cookie_by_name("quota_g");
+    let quota_settimana = get_cookie_by_name("quota_s");
+    let quota_mese = get_cookie_by_name("quota_m");
+
+    // Aggiorna il contenuto delle span con i nuovi valori
+    document.getElementById("charCount_mese").textContent = quota_mese;
+    document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_giorno").textContent = quota_giorno;
+    document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
 
     //setup
     let lista_commenti = [];
@@ -166,7 +221,12 @@
     var sono_contrario = "sono_contrario";
     var apri = "apri";
 
-
+    //CASO UTENTE
+    let ris = window.location.href.split('?');
+    if (ris.length > 1 && ris[1] !== '') {
+      document.getElementById("query").value = CURRENT_USER;
+      document.getElementsByName("action")[0].click();
+    }
 
   </script>
 

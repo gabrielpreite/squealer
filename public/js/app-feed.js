@@ -1,9 +1,3 @@
-//Aggiungo propric utente
-$("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-$("$nome_cognome").textContent = get_cookie_by_name("nome")
-$("$username_side").textContent = CURRENT_USER
-
-
 function aggiungi_squeal(squeals, LOG = true) {
   let n_squeal = squeals.length;
 
@@ -447,4 +441,14 @@ function ricerca_notifica(notifica) {
 //COMMENTI
 function commenta(id) {
   window.location.replace(`https://site212251.tw.cs.unibo.it/app-editor?post_id=` + id);
+}
+
+//PULSANTE MIO PROFILO NAVBAR
+function mio_profilo() {
+  window.location.replace(`https://site212251.tw.cs.unibo.it/app-search?user`);
+}
+
+//PULSANTE COMPRA QUOTA
+function btn_acquista_quota() {
+  
 }

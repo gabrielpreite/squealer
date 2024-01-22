@@ -54,8 +54,8 @@
 
 #campo_scelta {
   display: flex;
-flex-direction: row;
-justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .tipo-icona p {
