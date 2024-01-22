@@ -3,36 +3,33 @@ function cambia_campo(opzione) {
     $("#contenuto_immagine").attr("hidden", "true");
     $("#contenuto_posizione").attr("hidden", "true");
     $("#contenuto_ghigliottina").attr("hidden", "true");
-    $(".icona-scelta").removeClass("attiva");
+
+    // Rimuovi la classe 'attiva' da tutte le icone
+    let icone = document.querySelectorAll(".post-tipo");
+    icone.forEach(function (icona) {
+      icona.classList.remove("attiva");
+    });
 
     if (opzione == "Testo") {
         resetQuota()
         $("#contenuto_testo").attr("hidden", false);
-        $(".icona-scelta.fas.fa-font").addClass("attiva");
-        if ($(".icona-scelta.fas.fa-font").hasClass("attiva")) {
-            aggiornaQuota("Testo");
-        }
+        icone[0].classList.add("attiva");
+        aggiornaQuota("Testo");
     } else if (opzione == "Immagine") {
         resetQuota()
         $("#contenuto_immagine").attr("hidden", false);
-        $(".icona-scelta.fas.fa-image").addClass("attiva");
-        if ($(".icona-scelta.fas.fa-image").hasClass("attiva")&& inputImage.files && inputImage.files[0]) {
-            aggiornaQuota("Immagine");
-        }
+        icone[1].classList.add("attiva");
+        aggiornaQuota("Immagine");
     } else if (opzione == "Posizione") {
         resetQuota()
         $("#contenuto_posizione").attr("hidden", false);
-        $(".icona-scelta.fas.fa-map-marker-alt").addClass("attiva");
-        if ($(".icona-scelta.fas.fa-map-marker-alt").hasClass("attiva")) {
-            aggiornaQuota("Posizione");
-        }
+        icone[2].classList.add("attiva");
+        aggiornaQuota("Posizione");
     } else if (opzione == "Ghigliottina") {
         resetQuota()
         $("#contenuto_ghigliottina").attr("hidden", false);
-        $(".icona-scelta.fas.fa-star").addClass("attiva");
-        if ($(".icona-scelta.fas.fa-star").hasClass("attiva")) {
-            aggiornaQuota("Ghigliottina");
-        }
+        icone[3].classList.add("attiva");
+        aggiornaQuota("Ghigliottina");        
         toggleCorpoGhigliottina();
     }
 }
@@ -500,28 +497,28 @@ function aggiornaQuota(opzione) {
     if(opzione == "Testo") {
         const charLength = textarea.value.length;
         remainingChars_g = initialQuota_g - charLength;
-        remainingChars_s = initialQuota_s// - charLength;
-        remainingChars_m = initialQuota_m// - charLength;
+        //remainingChars_s = initialQuota_s// - charLength;
+        //remainingChars_m = initialQuota_m// - charLength;
     } else if (opzione == "Immagine") {
         remainingChars_g = initialQuota_g - 120;
-        remainingChars_s = initialQuota_s// - 120;
-        remainingChars_m = initialQuota_m// - 120;
+        //remainingChars_s = initialQuota_s// - 120;
+        //remainingChars_m = initialQuota_m// - 120;
     } else if (opzione == "Posizione") {
         remainingChars_g = initialQuota_g - 120;
-        remainingChars_s = initialQuota_s// - 120;
-        remainingChars_m = initialQuota_m// - 120;
+        //remainingChars_s = initialQuota_s// - 120;
+        //remainingChars_m = initialQuota_m// - 120;
     }
 
     charCount_g.textContent = remainingChars_g;
-    charCount_s.textContent = remainingChars_s;
-    charCount_m.textContent = remainingChars_m;
+    //charCount_s.textContent = remainingChars_s;
+    //charCount_m.textContent = remainingChars_m;
 
     if (remainingChars_g < 0) {
       charCount_g.classList.add('negative');
     } else {
       charCount_g.classList.remove('negative');
     }
-    if (remainingChars_s < 0) {
+    /* if (remainingChars_s < 0) {
       charCount_s.classList.add('negative');
     } else {
       charCount_s.classList.remove('negative');
@@ -543,5 +540,5 @@ function aggiornaQuota(opzione) {
       this.$data.buttonValue = "Conferma";
       shopButton.classList.remove("btn-danger")
       shopButton.classList.add("btn-unstyled")
-    }
+    }*/
 }
