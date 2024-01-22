@@ -860,6 +860,7 @@
           seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
         },
         load_acquisti(){
+          let prezzo = {120: "0,99", 240: "1,99", 480: "4,99"}
           $.ajax({
             type: 'GET',
             dataType: "json",
@@ -876,7 +877,7 @@
                           </div>
                           <div class="spesa">
                               <i class="fas fa-shopping-cart"></i>
-                              <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
+                              <div class="ammontare">${prezzo[acquisto.quantita]} €</div>
                           </div>
                       </div>`
                 )
@@ -884,18 +885,6 @@
               
             }
           });
-
-          function calcolaAmmontare(quantita) {
-            if (quantita === 120) {
-              return '0,99';
-            } else if (quantita === 240) {
-              return '1,99';
-            } else if (quantita === 480) {
-              return '4,99';
-            } else {
-              return '';
-            }
-          }
         }
       },
       beforeMount(){
