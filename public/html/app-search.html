@@ -7,6 +7,7 @@
   <title>Squealer</title>
 
   <!-- CSS  -->
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,7 +23,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      width: 90%;
+      width: 100%;
       font-weight: bold;
   }
 
@@ -32,6 +33,7 @@
 
   #form_ricerca {
     text-align: center;
+    align-items: baseline;
 }
 
   .submit-button:hover {
@@ -39,8 +41,14 @@
   }
 
   .searchbar {
-        padding: 40px;
+        padding: 20px;
   }
+
+  .fields {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
 
   </style>
 </head>
@@ -89,33 +97,32 @@
 
   <div class="searchbar" aria-label="Barra di ricerca">
     <form id="form_ricerca" role="search" aria-label="Form della ricerca">
-      <div class="input-field col s3">
-        <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
-          <option selected value="user" id="utente">
-            @</option>
-          <option value="channel" id="canale">
-            $</option>
-          <option value="keyword" id="keyword">
-            #</option>
-        </select>
+
+      <div class="row fields">
+
+        <div class="input-field col s2">
+          <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
+            <option selected value="user" id="utente">@</option>
+            <option value="channel" id="canale">$</option>
+            <option value="keyword" id="keyword">#</option>
+          </select>
+        </div>
+
+        <div class="input-field col s8">
+          <input id="query" name="query" placeholder="Cerca" type="text" class="validate" aria-label="Testo da ricercare">
+        </div>
+
+        <div class="input-field col s2">
+          <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca">
+            <option selected value="data" id="data">Data</option>
+            <option value="visual" id="visual">Visual</option>
+            <option value="impression" id="impression">Impression</option>
+          </select>
+        </div>
+
       </div>
 
-      <div class="input-field col s3">
-        <input id="query" name="query" placeholder="Cerca" type="text" class="validate" aria-label="Testo da ricercare">
-      </div>
-
-      <div class="input-field col s3">
-        <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca">
-          <option selected value="data" id="data">
-            Data</option>
-          <option value="visual" id="visual">
-            Numero di visualizzazioni</option>
-          <option value="impression" id="impression">
-            Impression</option>
-        </select>
-      </div>
-
-      <div class="col s3">
+      <div class="row">
         <button class="btn waves-effect waves-light submit-button" type="submit" name="action">
           <i class="material-icons">search</i>
         </button>

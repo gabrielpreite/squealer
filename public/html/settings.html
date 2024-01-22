@@ -215,7 +215,6 @@
         <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
           <ul id="acquisti-list">
-            <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
           </ul>
         </div>
       </div>
@@ -535,31 +534,18 @@
     }
 
     // STORICO ACQUISTI
-    document.addEventListener('DOMContentLoaded', function () {
-      // Effettua la chiamata API per ottenere le informazioni sull'utente
-      fetch(`/user/${CURRENT_USER}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.risultato === 'successo') {
-            // L'utente è stato trovato, puoi accedere agli acquisti
-            var acquisti = data.data.acquisti;
-            popolaListaAcquisti(acquisti);
-          } else {
-            // L'utente non è stato trovato o si è verificato un altro errore
-            console.error('Errore nel recupero delle informazioni utente:', data.errore);
-          }
-        })
-        .catch(error => {
-          console.error('Si è verificato un errore nella richiesta:', error);
-        });
+    let acquisti = null
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+      headers: {},
+      success: function (data, status, xhr) {
+        acquisti = data.data.acquisti;
+      }
     });
-
-    // Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
+    
     function popolaListaAcquisti(acquisti) {
       var acquistiList = document.getElementById('acquisti-list');
 
@@ -912,6 +898,12 @@
           }
           seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
         },
+        test(){
+          console.log("before mount")
+        }
+      },
+      beforeMount(){
+        this.test()
       }
     }).mount('body')
 
