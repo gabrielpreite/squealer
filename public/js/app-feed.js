@@ -442,3 +442,13 @@ function ricerca_notifica(notifica) {
 function commenta(id) {
   window.location.replace(`https://site212251.tw.cs.unibo.it/app-editor?post_id=` + id);
 }
+
+//PULSANTE MIO PROFILO NAVBAR
+function mio_profilo() {
+  window.location.replace(`https://site212251.tw.cs.unibo.it/app-search?user`);
+}
+
+//PULSANTE COMPRA QUOTA
+function btn_acquista_quota() {
+  
+}

@@ -21,15 +21,47 @@
   </style>
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="navbar light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
+      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
-      <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+      <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
+        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="label">Quota Giornaliera</span>
+      </div>
 
-      <a id="logo-container" href="#" class="brand-logo right">Squealer</a>
+      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto profilo" id="propic"></a>
 
     </div>
   </nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="..\media\img\back.jpg" alt="Immagine profilo">
+      </div>
+      <img id="propic" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
+      <span id="nome_cognome" class="white-text name">John Doe</span>
+      <span id="username_side" class="white-text email">@johndoe</span>
+    </div></li>
+    <li><a class="subheader">Quota rimanente</a></li>
+    <li>
+       <div class="quota-container">
+         <div class="quota_side">
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
+         </div>
+         <div class="quota_side">
+           <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">500</span>
+         </div>
+       </div>
+     </li>    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
+    <li><a class="waves-effect" href="javascript:btn_acquista_quota()"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+    <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
+  </ul>
 
   <div class="title-n"> Notifiche <div id="filtro" hidden aria-hidden="true"> data </div></div>
 

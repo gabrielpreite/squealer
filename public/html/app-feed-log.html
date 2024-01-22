@@ -18,14 +18,14 @@
 <body>
   <nav class="navbar light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt=""></a>
+      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
       <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
-        <span class="count" id="charCount_giorno" aria-live="polite">500</span>
+        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
         <span class="label">Quota Giornaliera</span>
       </div>
 
-      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic"></a>
+      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto profilo" id="propic"></a>
 
     </div>
   </nav>
@@ -33,11 +33,11 @@
   <ul id="slide-out" class="sidenav">
     <li><div class="user-view">
       <div class="background">
-        <img src="..\media\img\back.jpg">
+        <img src="..\media\img\back.jpg" alt="Immagine profilo">
       </div>
-      <a href="#user"><img id="propic" class="circle" src="https://via.placeholder.com/60x60"></a>
-      <a href="#name"><span id="nome_cognome" class="white-text name">John Doe</span></a>
-      <a href="#email"><span id="username_side" class="white-text email">jdandturk@gmail.com</span></a>
+      <img id="propic" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
+      <span id="nome_cognome" class="white-text name">John Doe</span>
+      <span id="username_side" class="white-text email">@johndoe</span>
     </div></li>
     <li><a class="subheader">Quota rimanente</a></li>
     <li>
@@ -46,16 +46,16 @@
            <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
          </div>
          <div class="quota_side">
-           <span id="quota_text">Settimana:</span><span id="charCount_settimana" class="quota-value">500</span>
+           <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
          </div>
          <div class="quota_side">
-           <span id="quota_text">Mese:</span><span id="charCount_giorno" class="quota-value">500</span>
+           <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">500</span>
          </div>
        </div>
      </li>    <li><div class="divider"></div></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">person</i>Profilo</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>Impostazioni</a></li>
+    <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
+    <li><a class="waves-effect" href="javascript:btn_acquista_quota()"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+    <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
   </ul>
 
   <div id="filtro" value="data" hidden aria-hidden></div>
@@ -101,24 +101,13 @@
     // INIT
     document.addEventListener('DOMContentLoaded', function() {
       M.AutoInit();
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.sidenav');
       var options = {
         edge: 'right',
       }
       var instances = M.Sidenav.init(elems, options);
-    });
-
-    // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-    var collapsibleElem = document.querySelector('.collapsible');
-    var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-    // Or with jQuery
-
-    $(document).ready(function(){
-      $('.sidenav').sidenav();
+      //var collapsibleElem = document.querySelector('.collapsible');
+      //var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
     });
 
     //URLUTENTE
@@ -126,10 +115,22 @@
     CURRENT_USER = "fv";
 
     //Aggiungo propric utente
-    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-    $("#nome_cognome").textContent = get_cookie_by_name("nome")
-    $("#username_side").textContent = CURRENT_USER
+    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"));
+    $("#nome_cognome").textContent = get_cookie_by_name("nome");
+    $("#username_side").textContent = CURRENT_USER;
 
+    //QUOTA
+    refresh_quota()
+    let quota_giorno = get_cookie_by_name("quota_g");
+    let quota_settimana = get_cookie_by_name("quota_s");
+    let quota_mese = get_cookie_by_name("quota_m");
+
+    // Aggiorna il contenuto delle span con i nuovi valori
+    document.getElementById("charCount_mese").textContent = quota_mese;
+    document.getElementById("charCount_sett").textContent = quota_settimana;
+    document.getElementById("charCount_giorno").textContent = quota_giorno;
+    document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
+    
     //RICHIESTA E COSTRUZIONE SQUEAL
     let lista_commenti = [];
     var squeals;
