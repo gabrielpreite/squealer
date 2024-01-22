@@ -215,8 +215,7 @@
         <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
           <ul id="acquisti-list">
-            <li v-for="acquisto in array_acquisti">
-              {{acquisto}}
+            <li v-for="acquisto in array_acquisti" v-html="acquisto">
             </li>
           </ul>
         </div>
@@ -887,7 +886,7 @@
                   </div>`
             )
           })
-          console.log(this.array_acquisti)
+          //console.log(this.array_acquisti)
         }
       },
       beforeMount(){
