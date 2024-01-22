@@ -3,6 +3,7 @@ nav.navbar {
     position: fixed;
     z-index: 10;
     top: 0;
+    background-color: #1da1f2;
 }
 
 .accesso {
