@@ -120,15 +120,15 @@ function aggiungi_squeal(squeals, LOG = true) {
         if (lista_commenti[i][c].contenuto == "testo") {
           document.getElementById(id_testo).innerHTML = lista_commenti[i][c].corpo;
         } else if(lista_commenti[i][c].contenuto == "img"){
-          document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].corpo}" alt="immagine del commento">`
+          document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].corpo}" alt="immagine del commento">`
         } else if(lista_commenti[i][c].contenuto == "map"){
-          document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[i][c].corpo}" alt="mappa del commento">`;
+          document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="${lista_commenti[i][c].corpo}" alt="mappa del commento">`;
         }
       }
     } else {
       contenitore_commenti.innerHTML = "<div> Nessuno ha ancora commentato </div>";
     }
-    contenitore_commenti.insertAdjacentHTML('beforeend', `<a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
+    contenitore_commenti.insertAdjacentHTML('beforeend', `<br><a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
 
     //etichette
     let id_visual = 'squeal_visual' + i;
