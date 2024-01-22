@@ -1,4 +1,4 @@
-function switch_settings(param){
+function switch_settings(param){ //  DEPRECATA
     let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita", "canali"]
 
     settings.forEach((el) =>{ //nascondo tutte le sezioni
