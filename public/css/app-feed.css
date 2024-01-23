@@ -137,6 +137,12 @@ main#squeal_contenitore {
   font-size: 24px;
 }
 
+.content {
+  top: 56px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
 .label-squeal {
   color: black;
   border-radius: 8px;

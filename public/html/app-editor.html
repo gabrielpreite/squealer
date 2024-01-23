@@ -59,13 +59,14 @@
     <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
   </ul>
 
+<div class="content">
   <div class="row" id="post-dest">
     <div id="selezione-destinatari" class="col s12">
 
       <div id="tipo-messaggio">
         <div class="title-bar">
           <div class="title-line"></div>
-          <label class="title-text">Scegli il destinatario</label>
+          <label class="title-text">Destinatari</label>
           <div class="title-line"></div>
         </div>
         <div id="tipo-icona-container">
@@ -91,6 +92,8 @@
           </div>
         </div>
       </div>
+      <div class="divider"></div>
+
 
       <div id="campo-bacheca" hidden>
         <!-- Da riempire se si vuole fare visualizzare qualcosa -->
@@ -134,6 +137,11 @@
   <div class="row post-form">
     <form class="col s12" id="crea_post" enctype="multipart/form-data">
       <div class="row">
+        <div class="title-bar tipo">
+          <div class="title-line"></div>
+          <label class="title-text">Tipo messaggio</label>
+          <div class="title-line"></div>
+        </div>
         <div id="campo_scelta" class="col s12">
           <label>
             <input type="radio" name="group1" hidden>
@@ -223,6 +231,7 @@
 
     </form>
   </div>
+</div>
 
 
 
