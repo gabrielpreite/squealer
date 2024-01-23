@@ -37,6 +37,14 @@
     height: auto;
   }
 
+  .tipo_s {
+    margin-left: 0px !important;
+  }
+
+  .campo_s {
+    padding: 0px !important;
+  }
+
   #form_ricerca {
     text-align: center;
     align-items: baseline;
@@ -108,7 +116,7 @@
 
       <div class="row fields">
 
-        <div class="input-field col s2">
+        <div class="input-field col s2 tipo_s">
           <select class="form-select" id="tipo" name="tipo" aria-label="Tipo di ricerca">
             <option selected value="user" id="utente">@</option>
             <option value="channel" id="canale">$</option>
@@ -116,11 +124,11 @@
           </select>
         </div>
 
-        <div class="input-field col s8">
+        <div class="input-field col s5 campo_s">
           <input id="query" name="query" placeholder="Cerca" type="text" class="validate" aria-label="Testo da ricercare">
         </div>
 
-        <div class="input-field col s2">
+        <div class="input-field col s4">
           <select class="form-select" id="filtro" name="filtro" aria-label="Cambia ordinamento ricerca">
             <option selected value="data" id="data">Data</option>
             <option value="visual" id="visual">Visual</option>
