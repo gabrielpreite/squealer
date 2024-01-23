@@ -142,6 +142,10 @@ main#squeal_contenitore {
   position: relative;
 }
 
+.modal-body img {
+  width: auto;
+}
+
 .logout {
   color: #dc3545 !important;
     font-weight: bold !important;
