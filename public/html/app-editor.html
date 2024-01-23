@@ -22,7 +22,7 @@
       <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
       <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
-        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="count" id="charCount_giorno" aria-live="polite">500</span>
         <span class="label">Quota Giornaliera</span>
       </div>
 
@@ -44,7 +44,7 @@
     <li>
        <div class="quota-container">
          <div class="quota_side">
-           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno_vis" class="quota-value">500</span>
          </div>
          <div class="quota_side">
            <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
@@ -177,7 +177,7 @@
           <div class="title-ghigliottina">
             <h2>Inizia ghigliottina</h2>
           </div>
-          <textarea id="Textarea-g" name="textarea" class="form-input materialize-textarea"></textarea>
+          <textarea id="Textarea-g" name="textarea" class="form-input materialize-textarea" disabled></textarea>
           <div id="corpoGhigliottina">
             <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
               <label for="intervallo" hidden>Intervallo di tempo:</label>

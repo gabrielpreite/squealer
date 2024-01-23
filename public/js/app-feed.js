@@ -111,7 +111,7 @@ function aggiungi_squeal(squeals, LOG = true) {
       let n_commenti = lista_commenti[i].length;
       for (let c = 0; c < n_commenti; c++) {
         let id_c = String(i) + String(c);
-        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '" onclick="ricerca_squeal(this)">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div>');
+        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '" onclick="ricerca_squeal(this)">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div> <br><br>');
         let c_img_utente = 'c_img_utente' + id_c;
         document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].img}`
         let id_tag = 'c_username' + id_c;
@@ -126,9 +126,9 @@ function aggiungi_squeal(squeals, LOG = true) {
         }
       }
     } else {
-      contenitore_commenti.innerHTML = "<div> Nessuno ha ancora commentato </div>";
+      contenitore_commenti.innerHTML = "<div> Nessuno ha ancora commentato </div> <br>";
     }
-    contenitore_commenti.insertAdjacentHTML('beforeend', `<br><a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
+    contenitore_commenti.insertAdjacentHTML('beforeend', `<a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
 
     //etichette
     let id_visual = 'squeal_visual' + i;
