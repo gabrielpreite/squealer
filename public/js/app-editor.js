@@ -542,12 +542,12 @@ function aggiornaQuota(opzione) {
     if (remainingChars.some((count) => count < 0)) {
       button.classList.add('button-disabled');
       button.value = "Compra quota";
-      //shopButton.classList.remove("btn-unstyled")
-      //shopButton.classList.add("btn-danger")
+      shopButton.classList.remove("btn-unstyled")
+      shopButton.classList.add("btn-danger")
     } else {
       button.classList.remove('button-disabled');
       button.value = "Conferma";
-      //shopButton.classList.remove("btn-danger")
-      //shopButton.classList.add("btn-unstyled")
+      shopButton.classList.remove("btn-danger")
+      shopButton.classList.add("btn-unstyled")
     }
 }
