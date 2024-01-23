@@ -226,3 +226,124 @@ function rimuovi_mod(nome){
     let el = "#li_"+nome
     $(el).remove()
 }
+
+// Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
+function popolaListaAcquisti(acquisti) {
+var acquistiList = document.getElementById('acquisti-list');
+
+// Popola la lista degli acquisti
+acquisti.forEach(function (acquisto) {
+    var listItem = document.createElement('li');
+    listItem.innerHTML = `
+            <div class="acquisto">
+                <div class="info">
+                    <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                    <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                </div>
+                <div class="spesa">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
+                </div>
+            </div>
+        `;
+    acquistiList.appendChild(listItem);
+});
+}
+
+function calcolaAmmontare(quantita) {
+if (quantita === 120) {
+    return '0,99';
+} else if (quantita === 240) {
+    return '1,99';
+} else if (quantita === 480) {
+    return '4,99';
+} else {
+    return '';
+}
+}
+
+function popolaFollowers(followers) {
+    var followerlist = document.querySelector(".follower-list-utenti");
+
+    for (var i = 0; i < followers.length; i++) {
+      var utente = followers[i].username;
+      var listItem = document.createElement("li");
+      listItem.setAttribute("data-id", utente);
+      listItem.innerHTML = `
+        <div>
+          <i class="fas fa-user"></i>
+          <span>${utente}</span>
+        </div>
+      `;
+      followerlist.appendChild(listItem);
+    }
+  }
+
+  function popolaSeguiti(follow_utenti, follow_canali) {
+    // Popola la lista degli utenti seguiti
+    var followListUtenti = document.querySelector(".follow-list-utenti");
+    var followListCanali = document.querySelector(".follow-list-canali");
+
+    for (var i = 0; i < follow_utenti.length; i++) {
+      var utente = follow_utenti[i];
+      var listItem = document.createElement("li");
+      listItem.setAttribute("data-id", utente);
+      listItem.innerHTML = `
+        <div>
+          <i class="fas fa-user"></i>
+          <span>${utente}</span>
+        </div>
+        <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
+          <i class="fa-solid fa-x"></i>
+        </button>
+      `;
+      followListUtenti.appendChild(listItem);
+    }
+
+    for (var j = 0; j < follow_canali.length; j++) {
+      var canale = follow_canali[j];
+      var listItemCanale = document.createElement("li");
+      listItem.setAttribute("data-id", canale);
+      listItemCanale.innerHTML = `
+        <div>
+          <i class="fas fa-users"></i>
+          <span>${canale}</span>
+        </div>
+        <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
+          <i class="fa-solid fa-x"></i>
+        </button>
+      `;
+      followListCanali.appendChild(listItemCanale);
+    }
+  }
+
+  function removeFollowing(target, tipo) {
+    console.log(target);
+    console.log(tipo);
+
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+      headers: {},
+      data: { target: target, tipo: tipo },
+      success: function (data, status, xhr) {
+        // Cerco e rimuovo l'elemento dalla lista
+        var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+        elemento.remove();
+      }
+
+    });
+  }
+
+  function previewImage(input) {
+    var file = input.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#currentImg').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+

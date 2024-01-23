@@ -257,7 +257,8 @@
               <h3>Followers</h3>
               <div class="followers">
                 <ul class="follower-list-utenti barra-scorrimento">
-                  <!-- Lista dei follower -->
+                  <li v-for="el in array_follower" v-html="el">
+                  </li>
                 </ul>
 
               </div>
@@ -269,13 +270,15 @@
                 <div class="utenti">
                   <h4>Utenti</h4>
                   <ul class="follow-list-utenti barra-scorrimento">
-                    <!-- Lista dei follower -->
+                    <li v-for="el in array_follow_utenti" v-html="el">
+                    </li>
                   </ul>
                 </div>
                 <div class="canali">
                   <h4>Canali</h4>
                   <ul class="follow-list-canali barra-scorrimento">
-                    <!-- Lista dei follower -->
+                    <li v-for="el in array_follow_canali" v-html="el">
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -540,93 +543,7 @@
     // migrata su vue
 
 
-    //follower e follow
-    let follow = []
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
-      headers: {},
-      success: function (data, status, xhr) {
-        console.log('data: ', data);
-        follow = data["data"];
-        let follow_utenti = follow.utenti_seguiti
-        let follow_canali = follow.canali_seguiti
-        console.log(follow_utenti);
-        popolaSeguiti(follow_utenti, follow_canali);
-      }
-    });
-
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/followers`,
-      headers: {},
-      success: function (data, status, xhr) {
-        console.log('data: ', data);
-        follower = data["data"];
-        let followers = follower
-        popolaFollowers(followers);
-      }
-    });
-
-
-    function popolaFollowers(followers) {
-      var followerlist = document.querySelector(".follower-list-utenti");
-
-      for (var i = 0; i < followers.length; i++) {
-        var utente = followers[i].username;
-        var listItem = document.createElement("li");
-        listItem.setAttribute("data-id", utente);
-        listItem.innerHTML = `
-          <div>
-            <i class="fas fa-user"></i>
-            <span>${utente}</span>
-          </div>
-        `;
-        followerlist.appendChild(listItem);
-      }
-    }
-
-    function popolaSeguiti(follow_utenti, follow_canali) {
-      // Popola la lista degli utenti seguiti
-      var followListUtenti = document.querySelector(".follow-list-utenti");
-      var followListCanali = document.querySelector(".follow-list-canali");
-
-      for (var i = 0; i < follow_utenti.length; i++) {
-        var utente = follow_utenti[i];
-        var listItem = document.createElement("li");
-        listItem.setAttribute("data-id", utente);
-        listItem.innerHTML = `
-          <div>
-            <i class="fas fa-user"></i>
-            <span>${utente}</span>
-          </div>
-          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
-            <i class="fa-solid fa-x"></i>
-          </button>
-        `;
-        followListUtenti.appendChild(listItem);
-      }
-
-      for (var j = 0; j < follow_canali.length; j++) {
-        var canale = follow_canali[j];
-        var listItemCanale = document.createElement("li");
-        listItem.setAttribute("data-id", canale);
-        listItemCanale.innerHTML = `
-          <div>
-            <i class="fas fa-users"></i>
-            <span>${canale}</span>
-          </div>
-          <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
-            <i class="fa-solid fa-x"></i>
-          </button>
-        `;
-        followListCanali.appendChild(listItemCanale);
-      }
-    }
+    // FOLLOWER E FOLLOW
 
     function removeFollowing(target, tipo) {
       console.log(target);
@@ -647,8 +564,10 @@
       });
     }
 
+    // popola migrata su vue
 
-    //Popolarita
+
+    // POPOLARITA
     let all_post;
     $.ajax({
       type: 'POST',
@@ -848,7 +767,10 @@
         return {
           nuovoCanale: '',
           sezione_scelta: "profilo",
-          array_acquisti: []
+          array_acquisti: [],
+          array_follower: [],
+          array_follow_utenti: [],
+          array_follow_canali: []
         }
       },
       methods: {
@@ -887,10 +809,68 @@
             )
           })
           //console.log(this.array_acquisti)
+        },
+        load_follow(){
+          let follow = []
+          let follower = []
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+            headers: {},
+            success: function (data, status, xhr) {
+              console.log('data: ', data);
+              follow = data["data"];
+            }
+          });
+          follow.utenti_seguiti.forEach((el) => {
+            this.array_follow_utenti.push(
+              `<div>
+                <i class="fas fa-user"></i>
+                <span>${el}</span>
+              </div>
+              <button class="remove-btn" onclick="removeFollowing('${el}', 'utente')">
+                <i class="fa-solid fa-x"></i>
+              </button>`
+            )
+          })
+          follow.canali_seguiti.forEach((el) => {
+            this.array_follow_canali.push(
+              `<div>
+                <i class="fas fa-users"></i>
+                <span>${el}</span>
+              </div>
+              <button class="remove-btn" onclick="removeFollowing('${el}', 'canale')">
+                <i class="fa-solid fa-x"></i>
+              </button>`
+            )
+          })
+
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/followers`,
+            headers: {},
+            success: function (data, status, xhr) {
+              console.log('data: ', data);
+              follower = data["data"];
+            }
+          });
+          follower.forEach((el) => {
+            this.array_follower.push(
+              `<div>
+                <i class="fas fa-user"></i>
+                <span>${el.username}</span>
+              </div>`
+            )
+          })
         }
       },
       beforeMount(){
         this.load_acquisti()
+        this.load_follow()
       }
     }).mount('body')
 

@@ -76,43 +76,32 @@
     <!-- CONTENUTO -->
     <div id="content">
 
-      <div id="profilo" class="sezione" hidden>
-        <div class="container">
-          <h3 class="title-sezione">Impostazioni Informazioni Personali</h3>
-          <form role="form" aria-label="Form impostazioni personali" id="form_info" class="ordine">
+      <div id="profilo" class="row">
+        <h3>Impostazioni Informazioni Personali</h3>
+        <form aria-label="Form impostazioni personali" id="form_info">
+          <div class="input-field col s12">
+            <label for="newImg" hidden>Immagine profilo: </label>
+            <img alt="immagine profilo attuale" id="currentImg"></img>
+            <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo" accept="image/*" aria-label="Immagine">
+          </div>
 
-            <div class="col1">
-              <div class="form-group">
-                <label for="newName" class="label-form">Nome:</label>
-                <input type="text" name="nome" class="form-control" id="newName" placeholder="Modifica"
-                  aria-label="Nome">
-              </div>
+          <div class="input-field col s12">
+            <input type="text" id="newName" name="nome" placeholder="Modifica" aria-label="Nome">
+            <label for="newName">Nome:</label>
+          </div>
 
-              <div class="form-group">
-                <label for="newSurname" class="label-form">Cognome: </label>
-                <input type="text" name="cognome" class="form-control" id="newSurname" placeholder="Modifica"
-                  aria-label="Cognome">
-              </div>
+          <div class="input-field col s12">
+            <input type="text" name="cognome" id="newSurname" placeholder="Modifica" aria-label="Cognome">
+            <label for="newSurname">Cognome: </label>
+          </div>
 
-              <div class="form-group">
-                <label for="newDesc" class="label-form">Descrizione: </label>
-                <input type="text" name="bio" class="form-control" id="newDesc" placeholder="Modifica"
-                  aria-label="Descrizione">
-              </div>
-            </div>
+          <div class="input-field col s12">
+            <input type="text" name="bio" id="newDesc" placeholder="Modifica" aria-label="Descrizione">
+            <label for="newDesc">Descrizione: </label>
+          </div>
 
-            <div class="col2">
-              <div class="form-group form-img">
-                <label for="newImg" class="label-form" hidden>Immagine profilo: </label>
-                <img alt="immagine profilo attuale" id="currentImg"></img>
-                <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo"
-                  accept="image/*" aria-label="Immagine">
-              </div>
-
-              <button type="submit" class="btn btn-primary">Salva</button>
-            </div>
-          </form>
-        </div>
+          <button type="submit" class="btn">Salva</button>
+        </form>
       </div>
 
 
@@ -507,42 +496,6 @@
         });
     });
 
-    // Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
-    function popolaListaAcquisti(acquisti) {
-      var acquistiList = document.getElementById('acquisti-list');
-
-      // Popola la lista degli acquisti
-      acquisti.forEach(function (acquisto) {
-        var listItem = document.createElement('li');
-        listItem.innerHTML = `
-                <div class="acquisto">
-                    <div class="info">
-                        <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
-                        <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
-                    </div>
-                    <div class="spesa">
-                        <i class="fas fa-shopping-cart"></i>
-                        <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
-                    </div>
-                </div>
-            `;
-        acquistiList.appendChild(listItem);
-      });
-    }
-
-    function calcolaAmmontare(quantita) {
-      if (quantita === 120) {
-        return '0,99';
-      } else if (quantita === 240) {
-        return '1,99';
-      } else if (quantita === 480) {
-        return '4,99';
-      } else {
-        return '';
-      }
-    }
-
-
     //follower e follow
     let follow = []
     $.ajax({
@@ -574,82 +527,6 @@
         popolaFollowers(followers);
       }
     });
-
-
-    function popolaFollowers(followers) {
-      var followerlist = document.querySelector(".follower-list-utenti");
-
-      for (var i = 0; i < followers.length; i++) {
-        var utente = followers[i].username;
-        var listItem = document.createElement("li");
-        listItem.setAttribute("data-id", utente);
-        listItem.innerHTML = `
-          <div>
-            <i class="fas fa-user"></i>
-            <span>${utente}</span>
-          </div>
-        `;
-        followerlist.appendChild(listItem);
-      }
-    }
-
-    function popolaSeguiti(follow_utenti, follow_canali) {
-      // Popola la lista degli utenti seguiti
-      var followListUtenti = document.querySelector(".follow-list-utenti");
-      var followListCanali = document.querySelector(".follow-list-canali");
-
-      for (var i = 0; i < follow_utenti.length; i++) {
-        var utente = follow_utenti[i];
-        var listItem = document.createElement("li");
-        listItem.setAttribute("data-id", utente);
-        listItem.innerHTML = `
-          <div>
-            <i class="fas fa-user"></i>
-            <span>${utente}</span>
-          </div>
-          <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
-            <i class="fa-solid fa-x"></i>
-          </button>
-        `;
-        followListUtenti.appendChild(listItem);
-      }
-
-      for (var j = 0; j < follow_canali.length; j++) {
-        var canale = follow_canali[j];
-        var listItemCanale = document.createElement("li");
-        listItem.setAttribute("data-id", canale);
-        listItemCanale.innerHTML = `
-          <div>
-            <i class="fas fa-users"></i>
-            <span>${canale}</span>
-          </div>
-          <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
-            <i class="fa-solid fa-x"></i>
-          </button>
-        `;
-        followListCanali.appendChild(listItemCanale);
-      }
-    }
-
-    function removeFollowing(target, tipo) {
-      console.log(target);
-      console.log(tipo);
-
-      $.ajax({
-        type: 'POST',
-        dataType: "json",
-        url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
-        headers: {},
-        data: { target: target, tipo: tipo },
-        success: function (data, status, xhr) {
-          // Cerco e rimuovo l'elemento dalla lista
-          var elemento = $(`.follower-list li[data-id="'${target}'"]`);
-          elemento.remove();
-        }
-
-      });
-    }
-
 
     //Popolarita
     let all_post;
@@ -800,16 +677,6 @@
       riquadro_quota.style.color = 'black';
     }
 
-    function previewImage(input) {
-      var file = input.files[0];
-      if (file) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#currentImg').attr('src', e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
 
     let canali = []
     $.ajax({
