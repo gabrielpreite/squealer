@@ -257,7 +257,8 @@
               <h3>Followers</h3>
               <div class="followers">
                 <ul class="follower-list-utenti barra-scorrimento">
-                  
+                  <li v-for="el in array_follower" v-html="el">
+                  </li>
                 </ul>
 
               </div>
@@ -269,13 +270,15 @@
                 <div class="utenti">
                   <h4>Utenti</h4>
                   <ul class="follow-list-utenti barra-scorrimento">
-                    
+                    <li v-for="el in array_follow_utenti" v-html="el">
+                    </li>
                   </ul>
                 </div>
                 <div class="canali">
                   <h4>Canali</h4>
                   <ul class="follow-list-canali barra-scorrimento">
-                    
+                    <li v-for="el in array_follow_canali" v-html="el">
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -541,22 +544,6 @@
 
 
     // FOLLOWER E FOLLOW
-    
-
-
-    function popolaFollowers(followers) {
-      var followerlist = document.querySelector(".follower-list-utenti");
-
-      for (var i = 0; i < followers.length; i++) {
-        var utente = followers[i].username;
-        var listItem = document.createElement("li");
-        listItem.setAttribute("data-id", utente);
-        listItem.innerHTML = `
-          
-        `;
-        followerlist.appendChild(listItem);
-      }
-    }
 
     function removeFollowing(target, tipo) {
       console.log(target);
@@ -576,6 +563,8 @@
 
       });
     }
+
+    // popola migrata su vue
 
 
     // POPOLARITA
