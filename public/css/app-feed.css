@@ -137,6 +137,16 @@ main#squeal_contenitore {
   font-size: 24px;
 }
 
+.content {
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.logout {
+  color: #dc3545 !important;
+    font-weight: bold !important;
+}
+
 .label-squeal {
   color: black;
   border-radius: 8px;

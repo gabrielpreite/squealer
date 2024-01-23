@@ -22,7 +22,7 @@
       <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
       <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
-        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="count" id="charCount_giorno" aria-live="polite">500</span>
         <span class="label">Quota Giornaliera</span>
       </div>
 
@@ -44,7 +44,7 @@
     <li>
        <div class="quota-container">
          <div class="quota_side">
-           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno_vis" class="quota-value">500</span>
          </div>
          <div class="quota_side">
            <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
@@ -57,15 +57,17 @@
     <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
     <li><a class="waves-effect" href="javascript:btn_acquista_quota()"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
     <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
+    <li><a class="logout right" href="/app-logout">Logout</a></li>
   </ul>
 
+<div class="content">
   <div class="row" id="post-dest">
     <div id="selezione-destinatari" class="col s12">
 
       <div id="tipo-messaggio">
         <div class="title-bar">
           <div class="title-line"></div>
-          <label class="title-text">Scegli il destinatario</label>
+          <label class="title-text">Destinatari</label>
           <div class="title-line"></div>
         </div>
         <div id="tipo-icona-container">
@@ -91,6 +93,8 @@
           </div>
         </div>
       </div>
+      <div class="divider"></div>
+
 
       <div id="campo-bacheca" hidden>
         <!-- Da riempire se si vuole fare visualizzare qualcosa -->
@@ -134,6 +138,11 @@
   <div class="row post-form">
     <form class="col s12" id="crea_post" enctype="multipart/form-data">
       <div class="row">
+        <div class="title-bar tipo">
+          <div class="title-line"></div>
+          <label class="title-text">Tipo messaggio</label>
+          <div class="title-line"></div>
+        </div>
         <div id="campo_scelta" class="col s12">
           <label>
             <input type="radio" name="group1" hidden>
@@ -160,7 +169,7 @@
         <div id="contenuto_immagine" class="file-field input-field col s12" hidden>
           <div class="btn">
             <span>File</span>
-            <input type="file" id="img" accept="image/*">
+            <input type="file" id="img" name="img" accept="image/*">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" placeholder="Seleziona un'immagine">
@@ -177,7 +186,7 @@
           <div class="title-ghigliottina">
             <h2>Inizia ghigliottina</h2>
           </div>
-          <textarea id="Textarea-g" name="textarea" class="form-input materialize-textarea"></textarea>
+          <textarea id="Textarea-g" name="textarea" class="form-input materialize-textarea" disabled></textarea>
           <div id="corpoGhigliottina">
             <p>Definisci l'intervallo di tempo desiderato tra la pubblicazione di ciascuna parola.</p>
               <label for="intervallo" hidden>Intervallo di tempo:</label>
@@ -223,6 +232,7 @@
 
     </form>
   </div>
+</div>
 
 
 
@@ -259,7 +269,6 @@
     var chip_n = 0;
     document.addEventListener('DOMContentLoaded', function() {
       //textarea
-      $('input#input_text, textarea#Textarea').characterCounter();
       M.textareaAutoResize($('#Textarea-g'));
       M.textareaAutoResize($('#Textarea'));
 

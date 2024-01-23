@@ -13,6 +13,8 @@ function cambia_campo(opzione) {
     if (opzione == "Testo") {
         resetQuota()
         $("#contenuto_testo").attr("hidden", false);
+        $("#Textarea").attr("disabled", false);
+        $("#Textarea-g").attr("disabled", true);
         icone[0].classList.add("attiva");
         aggiornaQuota("Testo");
     } else if (opzione == "Immagine") {
@@ -28,6 +30,8 @@ function cambia_campo(opzione) {
     } else if (opzione == "Ghigliottina") {
         resetQuota()
         $("#contenuto_ghigliottina").attr("hidden", false);
+        $("#Textarea-g").attr("disabled", false);
+        $("#Textarea").attr("disabled", true);
         icone[3].classList.add("attiva");
         aggiornaQuota("Ghigliottina");        
         toggleCorpoGhigliottina();
@@ -173,7 +177,7 @@ function check_post() {
     //let arr = window.location.href.split('?');
     if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
         if (document.getElementById("mostra-squeal").hidden == false) { //caso risposta
-            return true;
+            
         } else if (!(chip_arr[0].chipsData.length > 0)) { //caso no destinatari
             alert("Nessun destinatario selezionato");
             return false;
@@ -332,7 +336,7 @@ function aggiungisqueal(post, id) {
         });
         let n_commenti = lista_commenti.length;
         for (let c = 0; c < n_commenti; c++) {
-            contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + c + '">  </div> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+            contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + c + '">  </div> <p class="comment-text" id="c_text' + c + '">  </p> </div></div> <br><br>');
             let c_img_utente = 'c_img_utente' + c;
             document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
             let id_tag = 'c_username' + c;
@@ -507,6 +511,11 @@ function aggiornaQuota(opzione) {
         remainingChars_g = initialQuota_g - 120;
         remainingChars_s = initialQuota_s// - 120;
         remainingChars_m = initialQuota_m// - 120;
+    } else if(opzione == "Ghigliottina") {
+      const charLength = document.getElementById("Textarea-g").value.length;
+      remainingChars_g = initialQuota_g - charLength;
+      remainingChars_s = initialQuota_s// - charLength;
+      remainingChars_m = initialQuota_m// - charLength;
     }
 
     charCount_g.textContent = remainingChars_g;

@@ -11,12 +11,34 @@
   height: 10%;
 }
 
+.content {
+  top: 56px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+div#post-dest {
+    margin-bottom: 10px;
+}
+
+div#contenuto_testo, div#contenuto_immagine, div#contenuto_posizione, div#contenuto_ghigliottina {
+    padding: 0px 30px;
+}
+
 .title-bar {
     margin-top: 10px;
+    text-align: center;
+font-variant: small-caps;
+}
+
+.tipo {
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
 .title-text {
     font-size: medium;
+    color: #555;
 }
 
 .title-ghigliottina h2 {
@@ -49,7 +71,8 @@
   flex-direction: row;
   justify-content: space-around;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 #campo_scelta {
