@@ -177,7 +177,7 @@ function check_post() {
     //let arr = window.location.href.split('?');
     if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
         if (document.getElementById("mostra-squeal").hidden == false) { //caso risposta
-            return true;
+            
         } else if (!(chip_arr[0].chipsData.length > 0)) { //caso no destinatari
             alert("Nessun destinatario selezionato");
             return false;
@@ -269,7 +269,7 @@ function add_post(){
         .then((response) => {
             if (response.ok) {
                 // The initial request was successful
-                //window.location.replace("https://site212251.tw.cs.unibo.it/app");
+                window.location.replace("https://site212251.tw.cs.unibo.it/app");
             } else {
                 throw new Error("Network response was not ok.");
             }
@@ -511,7 +511,7 @@ function aggiornaQuota(opzione) {
         remainingChars_g = initialQuota_g - 120;
         remainingChars_s = initialQuota_s// - 120;
         remainingChars_m = initialQuota_m// - 120;
-    } else if(opzione == "Testo") {
+    } else if(opzione == "Ghigliottina") {
       const charLength = document.getElementById("Textarea-g").value.length;
       remainingChars_g = initialQuota_g - charLength;
       remainingChars_s = initialQuota_s// - charLength;
