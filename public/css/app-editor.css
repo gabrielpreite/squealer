@@ -21,7 +21,7 @@ div#post-dest {
     margin-bottom: 10px;
 }
 
-div#contenuto_testo {
+div#contenuto_testo, div#contenuto_immagine, div#contenuto_posizione, div#contenuto_ghigliottina {
     padding: 0px 30px;
 }
 
