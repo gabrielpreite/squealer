@@ -269,7 +269,7 @@ function add_post(){
         .then((response) => {
             if (response.ok) {
                 // The initial request was successful
-                window.location.replace("https://site212251.tw.cs.unibo.it/app");
+                //window.location.replace("https://site212251.tw.cs.unibo.it/app");
             } else {
                 throw new Error("Network response was not ok.");
             }
