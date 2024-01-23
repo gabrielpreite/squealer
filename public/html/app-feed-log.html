@@ -54,11 +54,30 @@
        </div>
      </li>    <li><div class="divider"></div></li>
     <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
-    <li><a class="waves-effect" href="javascript:btn_acquista_quota()"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+    <li><a class="waves-effect modal-trigger" href="#acquista_quota"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
     <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
     <li><a class="logout right" href="/app-logout">Logout</a></li>
 
   </ul>
+
+  <div id="acquista_quota" class="modal">
+      <div class="modal-content">
+        <div class="carousel carousel-slider center">
+    <div class="carousel-fixed-item center">
+      <a class="btn waves-effect light-blue white-text">Acquista</a>
+    </div>
+    <div class="carousel-item" href="#one!">
+      <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99€" class="img-fluid" role="img">
+    </div>
+    <div class="carousel-item" href="#one!">
+      <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 120 caratteri per 0.99€" class="img-fluid" role="img">
+    </div>
+    <div class="carousel-item" href="#one!">
+      <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 120 caratteri per 0.99€" class="img-fluid" role="img">
+    </div>
+  </div>
+      </div>
+  </div>
 
   <div id="filtro" value="data" hidden aria-hidden></div>
 <div class="content">
@@ -113,6 +132,15 @@
       }
       var instances = M.Sidenav.init(elems, options);
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.carousel');
+        var instance = M.Carousel.init({
+          fullWidth: true,
+          indicators: true
+        });
+      });
+
 
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");

@@ -13,6 +13,10 @@ nav.navbar {
       margin-right: 10px;
 }
 
+.carousel-item {
+  background-color: #fafafa !important;
+}
+
 .accesso .material-icons {
   padding-left: 5px;
 }
