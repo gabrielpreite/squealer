@@ -256,10 +256,12 @@ function aggiungi_info(meta){
 
     document.getElementById("info_descrizione").innerHTML = meta["info"]["bio"];
 
-    if (meta["info"]["is_follower"]) {
-      document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
-    } else {
-      document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+    if (meta["info"]["username"] != CURRENT_USER) { 
+      if (meta["info"]["is_follower"]) {
+        document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      } else {
+        document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
+      }
     }
 
     if (meta["info"]["username"] !== CURRENT_USER) {
