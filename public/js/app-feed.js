@@ -437,6 +437,13 @@ function ricerca_notifica(notifica) {
   document.getElementById("info_contenitore").hidden = false;
   document.getElementById("title_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
+
+  //SIDE BAR
+  var elems = document.querySelectorAll('.sidenav');
+  var options = {
+    edge: 'right',
+  }
+  var instances = M.Sidenav.init(elems, options);
 }
 
 //COMMENTI
