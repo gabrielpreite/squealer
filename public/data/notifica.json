@@ -1042,5 +1042,491 @@
         "timestamp": 1704323100233,
         "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
         "not_id": "6595e81cf1feccb150809e32"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65a80113f073694b7787bc94",
+        "letta": false,
+        "timestamp": 1705509139191,
+        "testo": "fv ha commentato un tuo post!",
+        "not_id": "65a80113f073694b7787bc95"
+    },
+    {
+        "utente": "fv",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705532700120,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65a85d1cf073694b7787bc96"
+    },
+    {
+        "utente": "fvPro",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705532700122,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65a85d1cf073694b7787bc97"
+    },
+    {
+        "utente": "fvSMM",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705532700123,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65a85d1cf073694b7787bc98"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705532700127,
+        "testo": "Sei impopolare... Oggi avrai -18 caratteri in meno :(",
+        "not_id": "65a85d1cf073694b7787bc99"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705532700127,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65a85d1cf073694b7787bc9a"
+    },
+    {
+        "utente": "redazione",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705532700134,
+        "testo": "Sei popolare! Oggi avrai 3 caratteri bonus :)",
+        "not_id": "65a85d1cf073694b7787bc9b"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65a8cc71f073694b7787bc9c",
+        "letta": false,
+        "timestamp": 1705561201854,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65a8cc71f073694b7787bc9d"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65a8da80f073694b7787bc9e",
+        "letta": false,
+        "timestamp": 1705564800207,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65a8da80f073694b7787bc9f"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "popolarita",
+        "ref_id": "656df61da26851db3720bdc0",
+        "letta": false,
+        "timestamp": 1705590000069,
+        "testo": "Un tuo post e' diventato impopolare",
+        "not_id": "65a93cf0d1f352ee6fe3cd7d"
+    },
+    {
+        "utente": "robosquealer",
+        "tipo": "follow",
+        "ref_id": "fv",
+        "letta": false,
+        "timestamp": 1705591697640,
+        "testo": "fv ha iniziato a seguirti!",
+        "not_id": "65a94391781f56b325be09bb"
+    },
+    {
+        "utente": "fv",
+        "tipo": "follow",
+        "ref_id": "fv",
+        "letta": true,
+        "timestamp": 1705591716411,
+        "testo": "fv ha iniziato a seguirti!",
+        "not_id": "65a943a4781f56b325be09bc"
+    },
+    {
+        "utente": "fv",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705619100119,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65a9ae9c0ca5924f66e20f1c"
+    },
+    {
+        "utente": "fvSMM",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705619100126,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65a9ae9c0ca5924f66e20f1d"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705619100126,
+        "testo": "Sei impopolare... Oggi avrai -18 caratteri in meno :(",
+        "not_id": "65a9ae9c0ca5924f66e20f1e"
+    },
+    {
+        "utente": "fvPro",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705619100127,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65a9ae9c0ca5924f66e20f1f"
+    },
+    {
+        "utente": "redazione",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705619100129,
+        "testo": "Sei popolare! Oggi avrai 3 caratteri bonus :)",
+        "not_id": "65a9ae9c0ca5924f66e20f20"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705619100131,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65a9ae9c0ca5924f66e20f21"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65aa1df20ca5924f66e20f22",
+        "letta": false,
+        "timestamp": 1705647602121,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65aa1df20ca5924f66e20f23"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65aa2c000ca5924f66e20f24",
+        "letta": false,
+        "timestamp": 1705651200215,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65aa2c000ca5924f66e20f25"
+    },
+    {
+        "utente": "fv",
+        "tipo": "risposta",
+        "ref_id": "65aaac447117fa4f4ba5af38",
+        "letta": false,
+        "timestamp": 1705684036079,
+        "testo": "fvPro ha commentato un tuo post!",
+        "not_id": "65aaac447117fa4f4ba5af39"
+    },
+    {
+        "utente": "fv",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705705500116,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65ab001c7117fa4f4ba5af3a"
+    },
+    {
+        "utente": "fvPro",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705705500118,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65ab001c7117fa4f4ba5af3b"
+    },
+    {
+        "utente": "fvSMM",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705705500120,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65ab001c7117fa4f4ba5af3c"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705705500121,
+        "testo": "Sei impopolare... Oggi avrai -18 caratteri in meno :(",
+        "not_id": "65ab001c7117fa4f4ba5af3d"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705705500127,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65ab001c7117fa4f4ba5af3e"
+    },
+    {
+        "utente": "redazione",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705705500138,
+        "testo": "Sei popolare! Oggi avrai 3 caratteri bonus :)",
+        "not_id": "65ab001c7117fa4f4ba5af3f"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65ab6f727117fa4f4ba5af40",
+        "letta": false,
+        "timestamp": 1705734002264,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65ab6f727117fa4f4ba5af41"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65ab7d807117fa4f4ba5af42",
+        "letta": false,
+        "timestamp": 1705737600234,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65ab7d807117fa4f4ba5af43"
+    },
+    {
+        "utente": "fv",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": true,
+        "timestamp": 1705791900105,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65ac519c7117fa4f4ba5af44"
+    },
+    {
+        "utente": "fvPro",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705791900109,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65ac519c7117fa4f4ba5af45"
+    },
+    {
+        "utente": "fvSMM",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705791900125,
+        "testo": "Sei popolare! Oggi avrai 12 caratteri bonus :)",
+        "not_id": "65ac519c7117fa4f4ba5af46"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705791900128,
+        "testo": "Sei impopolare... Oggi avrai -18 caratteri in meno :(",
+        "not_id": "65ac519c7117fa4f4ba5af47"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705791900128,
+        "testo": "Sei popolare! Oggi avrai 6 caratteri bonus :)",
+        "not_id": "65ac519c7117fa4f4ba5af48"
+    },
+    {
+        "utente": "redazione",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705791900133,
+        "testo": "Sei popolare! Oggi avrai 3 caratteri bonus :)",
+        "not_id": "65ac519c7117fa4f4ba5af49"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65acc0f17117fa4f4ba5af4a",
+        "letta": false,
+        "timestamp": 1705820401144,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65acc0f17117fa4f4ba5af4b"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65accf007117fa4f4ba5af4c",
+        "letta": false,
+        "timestamp": 1705824000248,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65accf007117fa4f4ba5af4d"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705878300070,
+        "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
+        "not_id": "65ada31c7117fa4f4ba5af4e"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705878300073,
+        "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
+        "not_id": "65ada31c7117fa4f4ba5af4f"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65ae12727117fa4f4ba5af50",
+        "letta": false,
+        "timestamp": 1705906802805,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65ae12727117fa4f4ba5af51"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65ae20807117fa4f4ba5af52",
+        "letta": false,
+        "timestamp": 1705910400212,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65ae20807117fa4f4ba5af53"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705964700106,
+        "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
+        "not_id": "65aef49c3ce5e9cdf342e022"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1705964700110,
+        "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
+        "not_id": "65aef49c3ce5e9cdf342e023"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65af63f23ce5e9cdf342e024",
+        "letta": false,
+        "timestamp": 1705993202317,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65af63f23ce5e9cdf342e025"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65af72003ce5e9cdf342e026",
+        "letta": false,
+        "timestamp": 1705996800276,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65af72003ce5e9cdf342e027"
+    },
+    {
+        "utente": "robosquealer",
+        "tipo": "risposta",
+        "ref_id": "65afd02d2125e50e494618da",
+        "letta": false,
+        "timestamp": 1706020909668,
+        "testo": "fv ha commentato un tuo post!",
+        "not_id": "65afd02d2125e50e494618db"
+    },
+    {
+        "utente": "robosquealer",
+        "tipo": "risposta",
+        "ref_id": "65afd2212125e50e494618dc",
+        "letta": false,
+        "timestamp": 1706021409050,
+        "testo": "fv ha commentato un tuo post!",
+        "not_id": "65afd2212125e50e494618dd"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65afd2fb2125e50e494618de",
+        "letta": false,
+        "timestamp": 1706021627304,
+        "testo": "fv ha commentato un tuo post!",
+        "not_id": "65afd2fb2125e50e494618df"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65afd6bde43473733eb8d46b",
+        "letta": false,
+        "timestamp": 1706022589327,
+        "testo": "fvSMM ha commentato un tuo post!",
+        "not_id": "65afd6bde43473733eb8d46c"
+    },
+    {
+        "utente": "fvSMM",
+        "tipo": "risposta",
+        "ref_id": "65afd78fe43473733eb8d46e",
+        "letta": false,
+        "timestamp": 1706022799809,
+        "testo": "fvPro ha commentato un tuo post!",
+        "not_id": "65afd78fe43473733eb8d46f"
+    },
+    {
+        "utente": "NomeBuffo1",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1706051100113,
+        "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
+        "not_id": "65b0461cba18e9b846570136"
+    },
+    {
+        "utente": "NomeBuffo2",
+        "tipo": "quota",
+        "ref_id": null,
+        "letta": false,
+        "timestamp": 1706051100119,
+        "testo": "Sei impopolare... Oggi avrai -3 caratteri in meno :(",
+        "not_id": "65b0461cba18e9b846570137"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65b0b571ba18e9b846570138",
+        "letta": false,
+        "timestamp": 1706079602019,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65b0b572ba18e9b846570139"
+    },
+    {
+        "utente": null,
+        "tipo": "risposta",
+        "ref_id": "65b0c380ba18e9b84657013a",
+        "letta": false,
+        "timestamp": 1706083200205,
+        "testo": "robosquealer ha commentato un tuo post!",
+        "not_id": "65b0c380ba18e9b84657013b"
     }
 ]
