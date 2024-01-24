@@ -270,14 +270,14 @@
                 <div class="utenti">
                   <h4>Utenti</h4>
                   <ul class="follow-list-utenti barra-scorrimento">
-                    <li v-for="el in array_follow_utenti" v-html="el">
+                    <li v-for="el in array_follow_utenti" :key="el[1]" :id="el[1]"  v-html="el[0]">
                     </li>
                   </ul>
                 </div>
                 <div class="canali">
                   <h4>Canali</h4>
                   <ul class="follow-list-canali barra-scorrimento">
-                    <li v-for="el in array_follow_canali" v-html="el">
+                    <li v-for="el in array_follow_canali" :key="el[1]" :id="el[1]"  v-html="el[0]">
                     </li>
                   </ul>
                 </div>
@@ -780,25 +780,27 @@
             }
           });
           follow.utenti_seguiti.forEach((el) => {
-            this.array_follow_utenti.push(
+            this.array_follow_utenti.push([
               `<div>
                 <i class="fas fa-user"></i>
                 <span>${el}</span>
               </div>
               <button class="remove-btn" onclick="removeFollowing('${el}', 'utente')">
                 <i class="fa-solid fa-x"></i>
-              </button>`
+              </button>`,
+              el]
             )
           })
           follow.canali_seguiti.forEach((el) => {
-            this.array_follow_canali.push(
+            this.array_follow_canali.push([
               `<div>
                 <i class="fas fa-users"></i>
                 <span>${el}</span>
               </div>
               <button class="remove-btn" onclick="removeFollowing('${el}', 'canale')">
                 <i class="fa-solid fa-x"></i>
-              </button>`
+              </button>`,
+              el]
             )
           })
 
