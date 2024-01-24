@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-chat.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <title>Chat Messenger</title>
+</head>
+<body>
+  <nav class="navbar lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
+
+      <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
+        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="label">Quota Giornaliera</span>
+      </div>
+
+      <a href="#" data-target="slide-out" class="propic sidenav-trigger right"><img src="https://via.placeholder.com/60x60" alt="Foto profilo" id="propic"></a>
+
+    </div>
+</nav>
+
+<ul id="slide-out" class="sidenav">
+  <li><div class="user-view">
+    <div class="background">
+      <img src="..\media\img\back.jpg" alt="Immagine profilo">
+    </div>
+    <img id="propic_side" class="circle" src="https://via.placeholder.com/60x60" alt="Immagine profilo">
+    <span id="nome_cognome" class="white-text name">John Doe</span>
+    <span id="username_side" class="white-text email">@johndoe</span>
+  </div></li>
+  <li><a class="subheader">Quota rimanente</a></li>
+  <li>
+     <div class="quota-container">
+       <div class="quota_side">
+         <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+       </div>
+       <div class="quota_side">
+         <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
+       </div>
+       <div class="quota_side">
+         <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">500</span>
+       </div>
+     </div>
+   </li>    <li><div class="divider"></div></li>
+  <li><a class="waves-effect" href="javascript:mio_profilo()"><i class="material-icons">person</i>Profilo</a></li>
+  <li><a class="waves-effect modal-trigger" href="#acquista_quota"><i class="material-icons">add_shopping_cart</i>Acquista quota</a></li>
+  <li><a class="waves-effect" href="/app-settings"><i class="material-icons">settings</i>Impostazioni</a></li>
+  <li><a class="logout right" href="/app-logout">Logout</a></li>
+
+</ul>
+
+<div id="acquista_quota" class="modal">
+    <div class="modal-content">
+      <div class="carousel carousel-slider center">
+  <div class="carousel-item responsive-img" href="#one!">
+    <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99€" class="img-fluid" role="img">
+  </div>
+  <div class="carousel-item responsive-img" href="#one!">
+    <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 120 caratteri per 0.99€" class="img-fluid" role="img">
+  </div>
+  <div class="carousel-item responsive-img" href="#one!">
+    <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 120 caratteri per 0.99€" class="img-fluid" role="img">
+  </div>
+</div>
+<div class="carousel-fixed-item center">
+  <a class="acquista btn waves-effect light-blue white-text">Acquista</a>
+</div>
+    </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4">
+      <!-- Elenco degli utenti con immagini -->
+      <div class="user-list-container">
+        <div class="user-list">
+          <!-- Esempio di utente -->
+          <div class="user-list-item" onclick="mostraChat(1)">
+            <img src="https://via.placeholder.com/40" alt="" class="circle">
+            <span class="title">John Doe</span>
+          </div>
+          <!-- Aggiungi altri utenti qui -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Schermata intera della chat -->
+    <div class="col s12 m8">
+      <div class="chat-container" id="chatContainer">
+        <div class="chat-title" id="chatTitle">Seleziona un utente per iniziare la chat</div>
+        <div class="message-container" id="messageContainer">
+          <!-- Area per i messaggi -->
+        </div>
+        <div class="input-container">
+          <input type="text" id="messageInput" placeholder="Scrivi un messaggio">
+          <button class="btn" onclick="inviaMessaggio()">Invia</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Esempio di utenti (puoi caricare dinamicamente da un backend)
+    const users = [
+      { id: 1, name: 'John Doe' },
+      { id: 2, name: 'Jane Doe' },
+      // Aggiungi altri utenti qui
+    ];
+
+    // Inizializza la lista degli utenti con immagini
+    const userList = document.querySelector('.user-list');
+    users.forEach(user => {
+      const userListItem = document.createElement('div');
+      userListItem.classList.add('user-list-item');
+      userListItem.setAttribute('data-userid', user.id);
+      userListItem.innerHTML = `
+        <img src="https://via.placeholder.com/40" alt="" class="circle">
+        <span class="title">${user.name}</span>
+      `;
+      userList.appendChild(userListItem);
+    });
+    // Aggiungi un gestore di eventi per il clic sugli utenti
+userList.addEventListener('click', function(event) {
+  const target = event.target.closest('.user-list-item');
+  if (target) {
+    const userId = target.getAttribute('data-userid');
+    mostraChat(userId);
+  }
+});
+
+// Funzione per mostrare la chat di un utente
+function mostraChat(userId) {
+  const userListContainer = document.querySelector('.user-list-container');
+  const chatContainer = document.getElementById('chatContainer');
+  const chatTitle = document.getElementById('chatTitle');
+  const messageContainer = document.getElementById('messageContainer');
+  const user = users.find(user => user.id == userId);
+
+  // Nascondi la lista degli utenti
+  userListContainer.style.display = 'none';
+
+  // Aggiorna il titolo della chat
+  chatTitle.textContent = `Chat con ${user.name}`;
+
+  // Pulisci l'area dei messaggi
+  messageContainer.innerHTML = '';
+
+  // Simula i messaggi (puoi caricare dinamicamente da un backend)
+  const messages = [
+    { sender: 'John Doe', text: 'Ciao, come stai?' },
+    { sender: 'Tu', text: 'Bene, grazie! E tu?' },
+    // Aggiungi altri messaggi qui
+  ];
+
+  // Aggiungi i messaggi all'area dei messaggi
+  messages.forEach(message => {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.innerHTML = `
+      <span class="message-sender">${message.sender}</span>
+      <span class="message-text">${message.text}</span>
+    `;
+    messageContainer.appendChild(messageElement);
+  });
+
+  // Visualizza la schermata intera della chat
+  chatContainer.style.display = 'block';
+  // Puoi aggiungere animazioni o effetti desiderati qui
+}
+
+// Funzione per inviare un messaggio (puoi implementare la logica di invio effettiva)
+window.inviaMessaggio = function() {
+  const messageInput = document.getElementById('messageInput');
+  const messageContainer = document.getElementById('messageContainer');
+
+  const messageText = messageInput.value.trim();
+  if (messageText !== '') {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.innerHTML = `
+      <span class="message-sender">Tu</span>
+      <span class="message-text">${messageText}</span>
+    `;
+    messageContainer.appendChild(messageElement);
+
+    // Pulisci l'input dopo l'invio
+    messageInput.value = '';
+  }
+};
+});
+</script>
+
+</body>
+</html>
