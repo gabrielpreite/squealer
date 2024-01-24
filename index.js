@@ -297,7 +297,7 @@ app.get('/mod', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
-		res.redirect("/login")
+		res.redirect("/mod-login")
 	} else {res.sendFile(global.rootDir+"/public/html/mod.html")}
 })
 
