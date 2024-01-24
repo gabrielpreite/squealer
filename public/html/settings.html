@@ -947,7 +947,7 @@
           let modlist = document.getElementById("modlist_ul").getElementsByTagName("li");
           let modstring = ""
           for(let i=0; i<modlist.length; i++){
-              modstring += modlist[i].innerHTML+","
+              modstring += modlist[i].id.slice(3)+","
           }
           modstring = modstring.slice(0, -1)
           formData.set("modlist", modstring)
