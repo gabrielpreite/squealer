@@ -359,22 +359,22 @@ function aggiungisqueal(post, id) {
 function updateIntervalloVal() {
     let intervalloInput = document.getElementById('intervallo');
     let intervalloVal = document.getElementById('intervallo-val');
-    let textarea = document.getElementById('Textarea');
+    let textarea_g = document.getElementById('Textarea-g');
 
     intervalloVal.textContent = intervalloInput.value + " min";
     if (intervalloInput.value == 1) {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
+      textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
     } else {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+      textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
 }
 
 function toggleCorpoGhigliottina() {
-    let textarea = document.getElementById('Textarea-g');
+    let textarea_g = document.getElementById('Textarea-g');
     let intervalloInput = document.getElementById('intervallo');
 
-    textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
-    textarea.readOnly = true;
+    textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+    textarea_g.readOnly = true;
 }
 
 //MAPPA
@@ -540,14 +540,12 @@ function aggiornaQuota(opzione) {
 
     const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
     if (remainingChars.some((count) => count < 0)) {
-      button.classList.add('button-disabled');
+      button.classList.add('disabled');
+      button.classList.add("red")
       button.value = "Compra quota";
-      shopButton.classList.remove("btn-unstyled")
-      shopButton.classList.add("btn-danger")
     } else {
-      button.classList.remove('button-disabled');
+      button.classList.remove('disabled');
+      button.classList.remove("red");
       button.value = "Conferma";
-      shopButton.classList.remove("btn-danger")
-      shopButton.classList.add("btn-unstyled")
     }
 }
