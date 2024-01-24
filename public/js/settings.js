@@ -145,7 +145,7 @@ function seleziona_canale(tipo, nome){
             $("#new_descrizione").val(data.data.descrizione)
 
             data.data.mod.forEach((el) => {
-                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
+                $("#modlist_ul").append(`<li id="li_${el}" @click="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
             })
             /*mods = mods.slice(0, -1)
             console.log(mods)
@@ -200,9 +200,4 @@ function cancella_canale(nome) {
           }
       }
   });
-}
-
-function rimuovi_mod(nome){
-    let el = "#li_"+nome
-    $(el).remove()
 }

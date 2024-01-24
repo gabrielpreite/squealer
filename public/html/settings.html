@@ -877,7 +877,7 @@
               headers: { },
               success: function (data, status, xhr) {
                   $("#new_mod").val("")
-                  $("#modlist_ul").append(`<li id="li_${nome}" onclick="rimuovi_mod('${nome}')">${nome}</li>`)
+                  $("#modlist_ul").append(`<li id="li_${nome}" @click="rimuovi_mod('${nome}')">${nome}</li>`)
               },
               error: function (xhr, status, error) {
                   if (xhr.status === 404) {
@@ -885,7 +885,11 @@
                   }
               }
           });
-      }
+        },
+        rimuovi_mod(nome){
+          let el = "#li_"+nome
+          $(el).remove()
+        }
       },
       beforeMount(){
         this.load_acquisti()
