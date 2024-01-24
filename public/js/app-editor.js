@@ -540,14 +540,12 @@ function aggiornaQuota(opzione) {
 
     const remainingChars = [remainingChars_g, remainingChars_s, remainingChars_m];
     if (remainingChars.some((count) => count < 0)) {
-      button.classList.add('button-disabled');
+      button.classList.add('disabled');
+      button.classList.add("red")
       button.value = "Compra quota";
-      shopButton.classList.remove("btn-unstyled")
-      shopButton.classList.add("btn-danger")
     } else {
-      button.classList.remove('button-disabled');
+      button.classList.remove('disabled');
+      button.classList.remove("red");
       button.value = "Conferma";
-      shopButton.classList.remove("btn-danger")
-      shopButton.classList.add("btn-unstyled")
     }
 }
