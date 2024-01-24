@@ -111,6 +111,7 @@ function update_channel(){
     }
     modstring = modstring.slice(0, -1)
     formData.set("modlist", modstring)
+    console.log(modstring)
 
     let nome = $("#canale_selezionato_nome").text()
     $.ajax({
@@ -124,7 +125,7 @@ function update_channel(){
         contentType: false,
         success: function (data, status, xhr) {
             console.log(data)
-            redirectToSettings();
+            //redirectToSettings();
         }
     });
 }
