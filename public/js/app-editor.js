@@ -359,22 +359,22 @@ function aggiungisqueal(post, id) {
 function updateIntervalloVal() {
     let intervalloInput = document.getElementById('intervallo');
     let intervalloVal = document.getElementById('intervallo-val');
-    let textarea = document.getElementById('Textarea');
+    let textarea_g = document.getElementById('Textarea-g');
 
     intervalloVal.textContent = intervalloInput.value + " min";
     if (intervalloInput.value == 1) {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
+      textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuto.';
     } else {
-      textarea.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+      textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
 }
 
 function toggleCorpoGhigliottina() {
-    let textarea = document.getElementById('Textarea-g');
+    let textarea_g = document.getElementById('Textarea-g');
     let intervalloInput = document.getElementById('intervallo');
 
-    textarea.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
-    textarea.readOnly = true;
+    textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
+    textarea_g.readOnly = true;
 }
 
 //MAPPA
