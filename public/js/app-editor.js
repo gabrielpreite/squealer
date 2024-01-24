@@ -216,6 +216,8 @@ function add_post(){
             formData.append("contenuto", "img")
         } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
             formData.append("contenuto", "map")
+        } else if (!$("#contenuto_ghigliottina").attr("hidden")) {//caso map
+          formData.append("contenuto", "testo")
         }
 
         let arr = window.location.href.split('?');
