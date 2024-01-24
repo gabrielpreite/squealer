@@ -135,7 +135,8 @@ function removeFollowing(target, tipo) {
       headers: {},
       data: { target: target, tipo: tipo },
       success: function (data, status, xhr) {
-        var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+        //var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+        var elemento = $("#li_follow_"+target)
         elemento.remove();
       }
 
