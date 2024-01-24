@@ -161,7 +161,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1698681643605,
-    "visualizzazioni": 883,
+    "visualizzazioni": 1259,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -278,7 +278,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1698681711527,
-    "visualizzazioni": 434,
+    "visualizzazioni": 718,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -375,7 +375,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1698681749146,
-    "visualizzazioni": 432,
+    "visualizzazioni": 716,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -562,7 +562,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1698681896044,
-    "visualizzazioni": 323,
+    "visualizzazioni": 595,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -616,7 +616,7 @@
     "tipo_destinatari": "canali",
     "utente": "redazione",
     "timestamp": 1698682023047,
-    "visualizzazioni": 874,
+    "visualizzazioni": 1250,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -640,7 +640,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1699379035019,
-    "visualizzazioni": 323,
+    "visualizzazioni": 595,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -667,7 +667,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1701704167064,
-    "visualizzazioni": 323,
+    "visualizzazioni": 595,
     "reazioni": {
       "positive": {
         "concordo": [
@@ -769,7 +769,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1701704213121,
-    "visualizzazioni": 323,
+    "visualizzazioni": 595,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -986,7 +986,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1701704382758,
-    "visualizzazioni": 323,
+    "visualizzazioni": 595,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -1170,7 +1170,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1701704659870,
-    "visualizzazioni": 415,
+    "visualizzazioni": 699,
     "reazioni": {
       "positive": {
         "concordo": [
@@ -1401,7 +1401,7 @@
     "tipo_destinatari": "canali",
     "utente": "redazione",
     "timestamp": 1701704927284,
-    "visualizzazioni": 855,
+    "visualizzazioni": 1231,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -1428,7 +1428,7 @@
     "tipo_destinatari": null,
     "utente": "redazione",
     "timestamp": 1701704965604,
-    "visualizzazioni": 5,
+    "visualizzazioni": 9,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -1617,7 +1617,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo2",
     "timestamp": 1701705245371,
-    "visualizzazioni": 280,
+    "visualizzazioni": 656,
     "reazioni": {
       "positive": {
         "concordo": [
@@ -1786,7 +1786,7 @@
         "odio": []
       }
     },
-    "categoria": "controverso",
+    "categoria": "impopolare",
     "automatico": false,
     "post_id": "656df61da26851db3720bdc0"
   },
@@ -2166,7 +2166,7 @@
     "tipo_destinatari": "canali",
     "utente": "redazione",
     "timestamp": 1701705921262,
-    "visualizzazioni": 833,
+    "visualizzazioni": 1209,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2236,7 +2236,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1701706083251,
-    "visualizzazioni": 411,
+    "visualizzazioni": 695,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2451,7 +2451,7 @@
     "tipo_destinatari": null,
     "utente": "NomeBuffo2",
     "timestamp": 1701706499944,
-    "visualizzazioni": 425,
+    "visualizzazioni": 697,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2503,7 +2503,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1701706644983,
-    "visualizzazioni": 598,
+    "visualizzazioni": 882,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2625,7 +2625,7 @@
     "tipo_destinatari": null,
     "utente": "NomeBuffo2",
     "timestamp": 1701706851184,
-    "visualizzazioni": 419,
+    "visualizzazioni": 691,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2677,7 +2677,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1701707330292,
-    "visualizzazioni": 283,
+    "visualizzazioni": 555,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2702,7 +2702,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1701707335877,
-    "visualizzazioni": 402,
+    "visualizzazioni": 686,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -2895,7 +2895,7 @@
     "tipo_destinatari": "canali",
     "utente": "NomeBuffo1",
     "timestamp": 1701707649105,
-    "visualizzazioni": 272,
+    "visualizzazioni": 648,
     "reazioni": {
       "positive": {
         "concordo": [
@@ -3108,7 +3108,7 @@
     "tipo_destinatari": null,
     "utente": "redazione",
     "timestamp": 1701708011437,
-    "visualizzazioni": 5,
+    "visualizzazioni": 9,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3416,7 +3416,7 @@
     "tipo_destinatari": null,
     "utente": "fvSMM",
     "timestamp": 1701708557496,
-    "visualizzazioni": 182,
+    "visualizzazioni": 241,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3462,7 +3462,7 @@
     "tipo_destinatari": "utenti",
     "utente": "fvSMM",
     "timestamp": 1701708603242,
-    "visualizzazioni": 107,
+    "visualizzazioni": 154,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3487,7 +3487,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1702085731456,
-    "visualizzazioni": 393,
+    "visualizzazioni": 677,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3566,7 +3566,7 @@
     "tipo_destinatari": "canali",
     "utente": "fvPro",
     "timestamp": 1702086342164,
-    "visualizzazioni": 539,
+    "visualizzazioni": 823,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3643,7 +3643,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1702912920042,
-    "visualizzazioni": 559,
+    "visualizzazioni": 935,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3697,7 +3697,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1702972800043,
-    "visualizzazioni": 528,
+    "visualizzazioni": 904,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3751,7 +3751,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703059200043,
-    "visualizzazioni": 499,
+    "visualizzazioni": 875,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -3982,7 +3982,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703145600032,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4036,7 +4036,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703232000031,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4090,7 +4090,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703318400022,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4144,7 +4144,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703404800030,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4198,7 +4198,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703491200024,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4252,7 +4252,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703577600028,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4306,7 +4306,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703664000029,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4333,7 +4333,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703750400029,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4387,7 +4387,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703836800027,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4441,7 +4441,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1703923200026,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4495,7 +4495,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704009600034,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4549,7 +4549,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704096000022,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4603,7 +4603,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704182400026,
-    "visualizzazioni": 484,
+    "visualizzazioni": 860,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4657,7 +4657,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704268800021,
-    "visualizzazioni": 482,
+    "visualizzazioni": 858,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4711,7 +4711,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704355200039,
-    "visualizzazioni": 457,
+    "visualizzazioni": 833,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4739,7 +4739,7 @@
     "tipo_destinatari": "utenti",
     "utente": "fvPro",
     "timestamp": 1704387167926,
-    "visualizzazioni": 275,
+    "visualizzazioni": 500,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4793,7 +4793,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704441600033,
-    "visualizzazioni": 415,
+    "visualizzazioni": 791,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4847,7 +4847,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704528000040,
-    "visualizzazioni": 319,
+    "visualizzazioni": 695,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4901,7 +4901,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704614400035,
-    "visualizzazioni": 319,
+    "visualizzazioni": 695,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -4955,7 +4955,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704700800036,
-    "visualizzazioni": 319,
+    "visualizzazioni": 695,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5009,7 +5009,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704787200039,
-    "visualizzazioni": 282,
+    "visualizzazioni": 658,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5038,7 +5038,7 @@
     "tipo_destinatari": null,
     "utente": "fvPro",
     "timestamp": 1704817574329,
-    "visualizzazioni": 198,
+    "visualizzazioni": 482,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5193,7 +5193,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704873600058,
-    "visualizzazioni": 233,
+    "visualizzazioni": 609,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5322,7 +5322,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1704960000044,
-    "visualizzazioni": 218,
+    "visualizzazioni": 594,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5376,7 +5376,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1705046400045,
-    "visualizzazioni": 218,
+    "visualizzazioni": 594,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5480,7 +5480,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1705132800053,
-    "visualizzazioni": 175,
+    "visualizzazioni": 551,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5690,7 +5690,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1705144358659,
-    "visualizzazioni": 96,
+    "visualizzazioni": 368,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5744,7 +5744,7 @@
     "tipo_destinatari": "utenti",
     "utente": "fv",
     "timestamp": 1705144396695,
-    "visualizzazioni": 17,
+    "visualizzazioni": 64,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5798,7 +5798,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1705219200049,
-    "visualizzazioni": 106,
+    "visualizzazioni": 482,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5852,7 +5852,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1705305600038,
-    "visualizzazioni": 96,
+    "visualizzazioni": 472,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -5904,7 +5904,7 @@
     "tipo_destinatari": null,
     "utente": "fv",
     "timestamp": 1705331559472,
-    "visualizzazioni": 72,
+    "visualizzazioni": 344,
     "reazioni": {
       "positive": {
         "concordo": [
@@ -5989,7 +5989,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1705392000042,
-    "visualizzazioni": 59,
+    "visualizzazioni": 435,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -6045,7 +6045,7 @@
     "tipo_destinatari": "canali",
     "utente": "robosquealer",
     "timestamp": 1705478400047,
-    "visualizzazioni": 36,
+    "visualizzazioni": 412,
     "reazioni": {
       "positive": {
         "concordo": [],
@@ -6061,5 +6061,766 @@
     "categoria": null,
     "automatico": false,
     "post_id": "65a78900804958fb45e48c5a"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=44.4831806,11.327043200000002&size=640x480&scale=2&maptype=hybrid&zoom=13&markers=44.4831806,11.3270432&key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1705509139167,
+    "visualizzazioni": 270,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": [
+          "fv"
+        ]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65a80113f073694b7787bc94"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "cj7.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705561200054,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65a8cc71f073694b7787bc9c"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 18/01, a Bologna la temperatura sarà di 2.8°C minima e 9.3°C massima, con 100% di precipitazioni (0.1mm).",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705564800043,
+    "visualizzazioni": 367,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65a8da80f073694b7787bc9e"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "d65.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705647600036,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65aa1df20ca5924f66e20f22"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 19/01, a Bologna la temperatura sarà di 3.5°C minima e 6.8°C massima, con 100% di precipitazioni (5mm).",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705651200037,
+    "visualizzazioni": 295,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [
+          "fv"
+        ],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65aa2c000ca5924f66e20f24"
+  },
+  {
+    "risponde_a": "65a80113f073694b7787bc94",
+    "corpo": "Bella questa mappa!",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1705684036031,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65aaac447117fa4f4ba5af38"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "tZYP8bcem.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705734000042,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65ab6f727117fa4f4ba5af40"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 20/01, a Bologna la temperatura sarà di -0.3°C minima e 5.6°C massima, con 26% di precipitazioni (0mm).",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705737600038,
+    "visualizzazioni": 232,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65ab7d807117fa4f4ba5af42"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "bib.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705820400043,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65acc0f17117fa4f4ba5af4a"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 21/01, a Bologna la temperatura sarà di -1.3°C minima e 6.1°C massima, con 0% di precipitazioni.",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705824000033,
+    "visualizzazioni": 232,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65accf007117fa4f4ba5af4c"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "dkr.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705906800057,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65ae12727117fa4f4ba5af50"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 22/01, a Bologna la temperatura sarà di -1.4°C minima e 5.3°C massima, con 0% di precipitazioni.",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705910400043,
+    "visualizzazioni": 232,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65ae20807117fa4f4ba5af52"
+  },
+  {
+    "risponde_a": "65ae20807117fa4f4ba5af52",
+    "corpo": "Che freddo",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1705944492718,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65aea5ac2490de9797cddbf4"
+  },
+  {
+    "risponde_a": "65a78900804958fb45e48c5a",
+    "corpo": "Brrrr",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1705944758878,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65aea6b63ce5e9cdf342e01f"
+  },
+  {
+    "risponde_a": "65accf007117fa4f4ba5af4c",
+    "corpo": "bello sto post",
+    "contenuto": "testo",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1705944776571,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65aea6c83ce5e9cdf342e021"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "bpp.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705993200047,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65af63f23ce5e9cdf342e024"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 23/01, a Bologna la temperatura sarà di 2.3°C minima e 11°C massima, con 0% di precipitazioni.",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1705996800036,
+    "visualizzazioni": 113,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": [
+          "fv"
+        ]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65af72003ce5e9cdf342e026"
+  },
+  {
+    "risponde_a": "65af72003ce5e9cdf342e026",
+    "corpo": "",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706021409028,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd2212125e50e494618dc"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=41.9028,12.4964&size=640x480&scale=2&maptype=hybrid&zoom=5&markers=43.744621825949594,11.573548437500012&key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706021627279,
+    "visualizzazioni": 66,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd2fb2125e50e494618de"
+  },
+  {
+    "risponde_a": "65afd2fb2125e50e494618de",
+    "corpo": "",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706021649865,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd3112125e50e494618e0"
+  },
+  {
+    "risponde_a": "65afd2fb2125e50e494618de",
+    "corpo": "1706021913385-Ginger_european_cat.jpg",
+    "contenuto": "img",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706021913395,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd419e43473733eb8d468"
+  },
+  {
+    "risponde_a": "65afd2fb2125e50e494618de",
+    "corpo": "",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706021958935,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd446e43473733eb8d469"
+  },
+  {
+    "risponde_a": "65afd2fb2125e50e494618de",
+    "corpo": "",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706022052189,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd4a4e43473733eb8d46a"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=42.68456724294838,11.936097265625012&size=640x480&scale=2&maptype=hybrid&zoom=6&markers=42.47585669632446,13.177552343750012&key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvSMM",
+    "timestamp": 1706022589306,
+    "visualizzazioni": 19,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd6bde43473733eb8d46b"
+  },
+  {
+    "risponde_a": "65afd2fb2125e50e494618de",
+    "corpo": "",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706022715567,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd73be43473733eb8d46d"
+  },
+  {
+    "risponde_a": "65afd6bde43473733eb8d46b",
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=44.518878895781086,12.302894156364447&size=640x480&scale=2&maptype=hybrid&zoom=7&markers=44.52044554396578,11.380042593864447&key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fvPro",
+    "timestamp": 1706022799789,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd78fe43473733eb8d46e"
+  },
+  {
+    "risponde_a": "65afd2fb2125e50e494618de",
+    "corpo": "https://maps.googleapis.com/maps/api/staticmap?center=41.9028,12.4964&size=640x480&scale=2&maptype=hybrid&zoom=5&markers=42.67810619006942,12.232728125000012&key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog",
+    "contenuto": "map",
+    "destinatari": [],
+    "tipo_destinatari": null,
+    "utente": "fv",
+    "timestamp": 1706023194450,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65afd91aed69e145e8c3e06d"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "bks.jpg",
+    "contenuto": "img",
+    "destinatari": [
+      "$gatti"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1706079600043,
+    "visualizzazioni": 0,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": []
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65b0b571ba18e9b846570138"
+  },
+  {
+    "risponde_a": null,
+    "corpo": "Oggi, 24/01, a Bologna la temperatura sarà di 2.4°C minima e 8.9°C massima, con 0% di precipitazioni.",
+    "contenuto": "testo",
+    "destinatari": [
+      "$METEO"
+    ],
+    "tipo_destinatari": "canali",
+    "utente": "robosquealer",
+    "timestamp": 1706083200040,
+    "visualizzazioni": 33,
+    "reazioni": {
+      "positive": {
+        "concordo": [],
+        "mi_piace": [],
+        "adoro": [
+          "fv"
+        ]
+      },
+      "negative": {
+        "sono_contrario": [],
+        "mi_disgusta": [],
+        "odio": []
+      }
+    },
+    "categoria": null,
+    "automatico": false,
+    "post_id": "65b0c380ba18e9b84657013a"
   }
 ]

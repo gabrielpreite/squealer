@@ -22,7 +22,10 @@
         "descrizione": "La grassa, la rossa, la dotta (e la rotta)",
         "ufficiale": false,
         "proprieta": "fvPro",
-        "mod": [],
+        "mod": [
+            "fv",
+            "NomeBuffo1"
+        ],
         "lettura": [
             "*"
         ],
@@ -58,8 +61,7 @@
         "ufficiale": false,
         "proprieta": "fvPro",
         "mod": [
-            "fvPro",
-            "NomeBuffo1"
+            "fvPro"
         ],
         "lettura": [
             "*"
@@ -77,8 +79,6 @@
         "ufficiale": true,
         "proprieta": "redazione",
         "mod": [
-            "",
-            ""
         ],
         "lettura": [
             "*"
