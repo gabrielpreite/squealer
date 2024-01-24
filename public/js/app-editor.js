@@ -367,7 +367,7 @@ function updateIntervalloVal() {
     } else {
       textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
-    textarea_g.trigger('autoresize');
+    document.getElementById('Textarea-g').trigger('autoresize');
 }
 
 function toggleCorpoGhigliottina() {
@@ -376,7 +376,7 @@ function toggleCorpoGhigliottina() {
 
     textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     textarea_g.readOnly = true;
-    textarea_g.trigger('autoresize');
+    //textarea_g.trigger('autoresize');
 }
 
 //MAPPA
