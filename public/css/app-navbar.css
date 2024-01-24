@@ -110,3 +110,8 @@ span#quota_text {
   font-weight: normal;
   color: #333; /* Colore del testo per i valori della quota */
 }
+
+.logout {
+  color: #dc3545 !important;
+    font-weight: bold !important;
+}
