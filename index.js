@@ -232,6 +232,14 @@ app.get('/app-editor', function (req, res) {
 	} else {res.sendFile(global.rootDir+"/public/html/app-editor.html")}
 })
 
+app.get('/app-chat', function (req, res) {
+	if(!req.session || !req.session.userid) {res.redirect("/app-login")}
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
+		req.session.destroy()
+		res.redirect("/app-login")
+	} else {res.sendFile(global.rootDir+"/public/html/app-chat.html")}
+})
+
 app.get('/settings', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
@@ -1064,6 +1072,7 @@ app.post('/squeal', upload.single("img"), async function(req, res) {
         //timestamp
         let date = new Date()
         req.body.timestamp = date.getTime();
+        console.log(JSON.stringify(req.body))
 
         response = await mymongo.add_squeal(req.body, mongoCredentials)
 

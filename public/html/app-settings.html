@@ -93,11 +93,11 @@
     </div>
 
     <!-- CONTENUTO -->
-    <div id="content">
+    <div id="content" class="row">
 
       <div id="profilo" class="col s12">
-        <h3>Impostazioni Informazioni Personali</h3>
-        <form aria-label="Form impostazioni personali" id="form_info">
+        <h3 class="title-sezione">Impostazioni Informazioni Personali</h3>
+        <form role="form" aria-label="Form impostazioni personali" id="form_info">
           <div class="input-field col s12">
             <label for="newImg" hidden>Immagine profilo: </label>
             <img alt="immagine profilo attuale" id="currentImg"></img>
@@ -124,52 +124,38 @@
       </div>
 
 
-      <div id="account" class="sezione" hidden>
+      <div id="account" class="col s12" hidden>
         <div class="container">
-          <h3 class="mb-4 title-sezione">Impostazioni mail e password</h3>
-          <form role="form" aria-label="Form cambio mail o password" id="form_psw" class="ordine"
-            onsubmit="return check_form()">
-            <div class="col1">
-              <div class="form-group">
-                <label for="newEmail" class="label-form">Email: </label>
-                <input type="text" name="email" class="form-control" id="newEmail" placeholder="Nuova email"
-                  aria-label="Email">
-              </div>
-            </div>
-            <div class="col2">
-              <div class="form-img">
-                <div class="form-group">
-                  <label for="oldPassword" class="label-form">Password: </label>
-                  <input type="text" name="old_password" class="form-control" id="oldPassword" placeholder="Password"
-                    aria-label="Password attuale" required>
-                  <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
-                </div>
-
-                <div class="form-group">
-                  <label for="newPassword" class="label-form">Nuova password: </label>
-                  <input type="text" name="password" class="form-control" id="newPassword" placeholder="Nuova password"
-                    aria-label="Nuova password">
-                </div>
-
-                <div class="form-group">
-                  <label for="newCPassword" class="label-form">Conferma password: </label>
-                  <input type="text" name="c_password" class="form-control" id="newCPassword"
-                    placeholder="Conferma nuova password" aria-label="Conferma nuova password">
-                </div>
-
-              </div>
-
-              <button type="submit" class="btn btn-primary">Salva</button>
-
+          <h3 class="title-sezione">Impostazioni mail e password</h3>
+          <form role="form" aria-label="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
+            <div class="input-field col s12">
+              <input type="text" name="email" id="newEmail" placeholder="Nuova email" aria-label="Email">
+              <label for="newEmail">Email: </label>
             </div>
 
+            <div class="input-field col s12">
+              <input type="text" name="old_password" id="oldPassword" placeholder="Password" aria-label="Password attuale" required>
+              <label for="oldPassword">Password: </label>
+            </div>
+
+            <div class="input-field col s12">
+              <input type="text" name="password" id="newPassword" placeholder="Nuova password" aria-label="Nuova password">
+              <label for="newPassword">Nuova password: </label>
+            </div>
+
+            <div class="input-field col s12">
+              <input type="text" name="c_password" id="newCPassword" placeholder="Conferma nuova password" aria-label="Conferma nuova password">
+              <label for="newCPassword">Conferma password: </label>
+            </div>
+
+            <button type="submit" class="btn">Salva</button>
+          </form>
         </div>
-        </form>
       </div>
 
 
-      <div id="acquisti" class="sezione" hidden>
-        <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
+      <div id="acquisti" class="col s12" hidden>
+        <h2 class="title-sezione">Storico Acquisti</h2>
         <div class="container">
           <ul id="acquisti-list">
             <!-- Gli acquisti saranno aggiunti dinamicamente qui tramite JavaScript -->
@@ -178,71 +164,62 @@
       </div>
 
 
-      <div id="smm" class="sezione" hidden> <!-- ACCOUNT GESTITI/SMM -->
+      <div id="smm" class="col s12" hidden> <!-- ACCOUNT GESTITI/SMM -->
         <div class="container">
           <div class="ordine">
-            <div class="col1">
-              <h3>I tuoi account gestiti</h3>
-              <div id="div_account_gestiti"></div>
-            </div>
-            <div class="col2">
-              <form id="update_smm" enctype="multipart/form-data" class="smm-ordine">
-                <div class="smm1">
-                  <label for="current_smm">SMM che gestisce il tuo account:</label>
-                  <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
-                  <input type="submit" class="btn btn-danger" value="  Rimuovi  ">
-                </div>
-                <div class="smm2">
-                  <label for="new_smm" hidden>Cambia SMM</label>
-                  <input type="text" id="new_smm" class="form-control" name="new_smm" placeholder="Cambia SMM">
-                  <input type="submit" class="btn btn-success" value="Conferma ">
-                </div>
-              </form>
-            </div>
+            <h3>I tuoi account gestiti</h3>
+            <div id="div_account_gestiti"></div>
+            <form id="update_smm" enctype="multipart/form-data" class="smm-ordine">
+              <div class="smm1">
+                <label for="current_smm">SMM che gestisce il tuo account:</label>
+                <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
+                <input type="submit" class="btn red" value="  Rimuovi  ">
+              </div>
+              <div class="smm2">
+                <label for="new_smm" hidden>Cambia SMM</label>
+                <input type="text" id="new_smm" class="form-control" name="new_smm" placeholder="Cambia SMM">
+                <input type="submit" class="btn green" value="Conferma ">
+              </div>
+            </form>
           </div>
         </div>
       </div>
 
 
-      <div id="follow" class="sezione" hidden>
+      <div id="follow" class="col s12" hidden>
         <div class="container">
-          <h2 class="mb-4 title-sezione">Lista Followers e Seguiti</h2>
+          <h2 class="title-sezione">Lista Followers e Seguiti</h2>
 
           <div class="ordine">
-            <div class="col1">
-              <h3>Followers</h3>
-              <div class="followers">
-                <ul class="follower-list-utenti barra-scorrimento">
+            <h3>Followers</h3>
+            <div class="followers">
+              <ul class="follower-list-utenti barra-scorrimento">
+                <!-- Lista dei follower -->
+              </ul>
+            </div>
+
+            <h3>Seguiti</h3>
+            <div class="followers">
+              <div class="utenti">
+                <h4>Utenti</h4>
+                <ul class="follow-list-utenti barra-scorrimento">
                   <!-- Lista dei follower -->
                 </ul>
-
               </div>
-            </div>
-
-            <div class="col2 smm-ordine">
-              <h3>Seguiti</h3>
-              <div class="followers">
-                <div class="utenti">
-                  <h4>Utenti</h4>
-                  <ul class="follow-list-utenti barra-scorrimento">
-                    <!-- Lista dei follower -->
-                  </ul>
-                </div>
-                <div class="canali">
-                  <h4>Canali</h4>
-                  <ul class="follow-list-canali barra-scorrimento">
-                    <!-- Lista dei follower -->
-                  </ul>
-                </div>
+              <div class="canali">
+                <h4>Canali</h4>
+                <ul class="follow-list-canali barra-scorrimento">
+                  <!-- Lista dei follower -->
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="popolarita" class="sezione" hidden>
+      <div id="popolarita" class="col s12" hidden>
         <div class="container">
-          <h2 class="mb-4 title-sezione">Popolarità</h2>
+          <h2 class="title-sezione">Popolarità</h2>
           <div class="previsione">
             <p>Previsione andamento popolarità:
             <div class="riquadro_popolarita">
@@ -277,9 +254,9 @@
         </div>
       </div>
 
-      <div id="canali" class="sezione" hidden>
+      <div id="canali" class="col s12" hidden>
         <div class="container barra-scorrimento">
-          <h2 class="mb-4 title-sezione">Canali</h2>
+          <h2 class="title-sezione">Canali</h2>
           <div class="ordine-canali">
             <div class="colonna gestiti">
               <h3>Canali gestiti</h3>
