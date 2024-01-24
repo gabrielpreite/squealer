@@ -31,3 +31,18 @@ color: #666;
   display: flex;
   align-items: baseline;
 }
+
+#chat_title {
+    text-align: center;
+    flex: 1;
+}
+
+#chat-container {
+    height: 70vh;
+    overflow-y: auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 20px;
+    border-radius: 20px;
+}

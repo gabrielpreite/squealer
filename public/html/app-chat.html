@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -89,9 +90,10 @@
   </div>
 
   <div id="chat" class="modal bottom-sheet">
-      <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+    <p id="chat_title">robosquealer</p>
+      <div class="modal-content" id="chat-container">
+          <div id="messaggi_chat" class="chat" aria-label="Messaggi della chat">
+          </div>
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -100,6 +102,8 @@
 
 
 </div>
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>

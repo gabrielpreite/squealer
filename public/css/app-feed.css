@@ -112,7 +112,11 @@ main#squeal_contenitore {
 }
 
 .sq_testo {
-  width: 100%;
+  overflow: hidden;
+}
+
+.comment-text {
+  overflow: hidden;
 }
 
 .tag-username, .comment-username {
@@ -180,4 +184,9 @@ main#squeal_contenitore {
 
 .consigliato {
   background-color: #87CEEB;
+}
+
+div#info_contenitore {
+    margin-top: 66px;
+    margin-bottom: -50px;
 }
