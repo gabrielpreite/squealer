@@ -118,3 +118,8 @@ function cancella_canale(nome) {
       }
   });
 }
+
+function rimuovi_mod(nome){
+    let el = "#li_"+nome
+    $(el).remove()
+}
