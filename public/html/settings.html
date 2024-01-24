@@ -86,7 +86,7 @@
               <div class="text-center"> <!-- Centered image and button -->
                 <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png"
                   alt="compra 120 caratteri per 0.99" class="img-fluid">
-                <button onclick="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button>
+                <button @click="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button>
                 <!-- Added margin top -->
               </div>
             </div>
@@ -94,14 +94,14 @@
               <div class="text-center">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png"
                   alt="compra 240 caratteri per 1.99" class="img-fluid">
-                <button onclick="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
+                <button @click="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png"
                   alt="compra 480 caratteri per 4.99" class="img-fluid">
-                <button onclick="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
+                <button @click="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
           </div>
@@ -439,26 +439,6 @@
     document.getElementById("charCount_sett").textContent = quota_settimana;
     document.getElementById("charCount_giorno").textContent = quota_giorno;
 
-    function compra_quota(qnt) {
-      let data = { "target": CURRENT_USER, "qnt": qnt, "acquisto": true }
-
-      fetch("/user/" + CURRENT_USER + "/quota", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then((response) => {
-          //chiudo modal
-          $("#shop-quota").modal("toggle")
-          let new_quota = parseInt(get_cookie_by_name("quota_g")) + qnt
-          //aggiorno il cookie quota
-          set_cookie("quota_g", new_quota)
-          //aggiorno navbar
-          $("#charCount_giorno").text(new_quota)
-        })
-    }
 
     // ================= SEZIONI
     let all_info;
@@ -865,6 +845,28 @@
                 <span>${el.username}</span>
               </div>`
             )
+          })
+        },
+        compra_quota(qnt) {
+          console.log("compra quota vue")
+          let data = { "target": CURRENT_USER, "qnt": qnt, "acquisto": true }
+
+          fetch("/user/" + CURRENT_USER + "/quota", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then((response) => {
+            console.log("compra quota then vue")
+            //chiudo modal
+            $("#shop-quota").modal("toggle")
+            let new_quota = parseInt(get_cookie_by_name("quota_g")) + qnt
+            //aggiorno il cookie quota
+            set_cookie("quota_g", new_quota)
+            //aggiorno navbar
+            $("#charCount_giorno").text(new_quota)
           })
         }
       },
