@@ -9,30 +9,6 @@ function switch_settings(param){ //  DEPRECATA
     $("#"+param).removeAttr("hidden")
 }
 
-function update_smm(){
-    const formData = new FormData(document.getElementById("update_smm"))
-
-    if(formData.get("current_smm") === "Non ci sono SMM che gestiscono il tuo account")
-        formData.set("current_smm", "null")
-    if(formData.get("new_smm") === "")
-        formData.set("new_smm", "null")
-
-    //console.log(formData)
-
-    fetch(`/user/${CURRENT_USER}/managed_by`, {
-        method: "POST",
-        body: formData,
-    })
-    .then((response) => {
-        if (response.ok) {
-        // The initial request was successful
-        window.location.replace("https://site212251.tw.cs.unibo.it/settings");
-        } else {
-        throw new Error("Network response was not ok.");
-        }
-    })
-}
-
 function check_form() {
     if (document.getElementById("newEmail").value != '') {
         //check formato mail corretto (RFC 2822 standard email validation)
@@ -135,7 +111,8 @@ function removeFollowing(target, tipo) {
       headers: {},
       data: { target: target, tipo: tipo },
       success: function (data, status, xhr) {
-        var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+        //var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+        var elemento = $("#li_follow_"+target)
         elemento.remove();
       }
 
