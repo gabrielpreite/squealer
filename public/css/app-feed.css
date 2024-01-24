@@ -177,3 +177,8 @@ main#squeal_contenitore {
 .consigliato {
   background-color: #87CEEB;
 }
+
+div#info_contenitore {
+    margin-top: 66px;
+    margin-bottom: -50px;
+}
