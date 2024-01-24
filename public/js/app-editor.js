@@ -367,7 +367,8 @@ function updateIntervalloVal() {
     } else {
       textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
-    document.getElementById('Textarea-g').trigger('autoresize');
+    //textarea_g.trigger('autoresize');
+    Materialize.updateTextFields();
 }
 
 function toggleCorpoGhigliottina() {
