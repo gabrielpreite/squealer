@@ -481,12 +481,13 @@ function compra_quota() {
     body: JSON.stringify(data)
   })
   .then((response) => {
-    //chiudo modal
-    $("#shop-quota").modal("toggle")
+    alert("Acquisto avvenuto con successo")
+    //chiudo elem non fatto
+
     let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
     //aggiorno il cookie quota
     set_cookie("quota_g", new_quota)
     //aggiorno navbar
-    $("#charCount_giorno").text(new_quota)
+    $("#charCount_giorno_vis").text(new_quota)
   })
 }
