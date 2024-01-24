@@ -54,7 +54,12 @@ function cat_utenti(){
         row.appendChild(cell_pro);
 
         let cell_pop = document.createElement("td");
-        let cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
+        let cellText_pop
+        if(user.popolarita.valori){
+            cellText_pop = document.createTextNode(user.popolarita.valori[user.popolarita.valori.length-1]);
+        } else {
+            cellText_pop = document.createTextNode("0")
+        }
         cell_pop.appendChild(cellText_pop)
         cell_pop.classList.add("text-center")
         row.appendChild(cell_pop);

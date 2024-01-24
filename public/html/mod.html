@@ -16,8 +16,8 @@
       
         <div id="content_left" class="w-1/6 p-4 mr-4 bg-blue-700">
             <img alt="propic" id="propic" class="w-16 h-16 rounded-full mb-2">
-            <p class="text-xl text-white pt-5" id="username"></p>
-            <a href="/logout" class="text-xl text-white pt-5 hover:underline">Logout</a>
+            <p class="text-xl text-white pt-5 pb-6" id="username"></p>
+            <a href="/logout" class="text-xl text-white py-2 px-4 bg-blue-500 hover:bg-blue-700 rounded">Logout</a>
             <div class="border-b my-4 pb-5"></div>
             <h1 class="text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Categorie</h1>
             <ul>
@@ -203,7 +203,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script>
       $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-      $("#propic").text(get_cookie_by_name("username"))
+      $("#username").text(get_cookie_by_name("username"))
       document.getElementById("form_filtro_user").addEventListener('submit', async event => {
         event.preventDefault();
         sort_utenti();

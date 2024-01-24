@@ -232,6 +232,14 @@ app.get('/app-editor', function (req, res) {
 	} else {res.sendFile(global.rootDir+"/public/html/app-editor.html")}
 })
 
+app.get('/app-chat', function (req, res) {
+	if(!req.session || !req.session.userid) {res.redirect("/app-login")}
+	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
+		req.session.destroy()
+		res.redirect("/app-login")
+	} else {res.sendFile(global.rootDir+"/public/html/app-chat.html")}
+})
+
 app.get('/settings', function (req, res) {
 	if(!req.session || !req.session.userid) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
@@ -294,10 +302,10 @@ app.get('/mod-login', function (req, res) {
 })
 
 app.get('/mod', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/mod-login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
-		res.redirect("/login")
+		res.redirect("/mod-login")
 	} else {res.sendFile(global.rootDir+"/public/html/mod.html")}
 })
 

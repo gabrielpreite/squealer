@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -75,131 +76,42 @@
 </div>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col s12 m4">
-      <!-- Elenco degli utenti con immagini -->
-      <div class="user-list-container">
-        <div class="user-list">
-          <!-- Esempio di utente -->
-          <div class="user-list-item" onclick="mostraChat(1)">
-            <img src="https://via.placeholder.com/40" alt="" class="circle">
-            <span class="title">John Doe</span>
-          </div>
-          <!-- Aggiungi altri utenti qui -->
-        </div>
-      </div>
-    </div>
+<div class="content">
+  <div class="title-n" id="title_contenitore"> Chat </div>
 
-    <!-- Schermata intera della chat -->
-    <div class="col s12 m8">
-      <div class="chat-container" id="chatContainer">
-        <div class="chat-title" id="chatTitle">Seleziona un utente per iniziare la chat</div>
-        <div class="message-container" id="messageContainer">
-          <!-- Area per i messaggi -->
-        </div>
-        <div class="input-container">
-          <input type="text" id="messageInput" placeholder="Scrivi un messaggio">
-          <button class="btn" onclick="inviaMessaggio()">Invia</button>
-        </div>
-      </div>
-    </div>
+  <div class="row cerca">
+       <div class="input-field col s10 cerca-utenti">
+         <input type="text" id="search" placeholder="Cerca utenti...">
+       </div>
+       <div class="input-field col s2 avvia-chat">
+         <a class="waves-effect waves-light btn light-blue avvia-btn modal-trigger" href="#chat" id="avviaChatBtn"><i class="fa-regular fa-message"></i></a>
+       </div>
   </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <div id="chat" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+  </div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
+  // Inizializza i componenti di Materialize
   document.addEventListener('DOMContentLoaded', function() {
-    // Esempio di utenti (puoi caricare dinamicamente da un backend)
-    const users = [
-      { id: 1, name: 'John Doe' },
-      { id: 2, name: 'Jane Doe' },
-      // Aggiungi altri utenti qui
-    ];
-
-    // Inizializza la lista degli utenti con immagini
-    const userList = document.querySelector('.user-list');
-    users.forEach(user => {
-      const userListItem = document.createElement('div');
-      userListItem.classList.add('user-list-item');
-      userListItem.setAttribute('data-userid', user.id);
-      userListItem.innerHTML = `
-        <img src="https://via.placeholder.com/40" alt="" class="circle">
-        <span class="title">${user.name}</span>
-      `;
-      userList.appendChild(userListItem);
-    });
-    // Aggiungi un gestore di eventi per il clic sugli utenti
-userList.addEventListener('click', function(event) {
-  const target = event.target.closest('.user-list-item');
-  if (target) {
-    const userId = target.getAttribute('data-userid');
-    mostraChat(userId);
-  }
-});
-
-// Funzione per mostrare la chat di un utente
-function mostraChat(userId) {
-  const userListContainer = document.querySelector('.user-list-container');
-  const chatContainer = document.getElementById('chatContainer');
-  const chatTitle = document.getElementById('chatTitle');
-  const messageContainer = document.getElementById('messageContainer');
-  const user = users.find(user => user.id == userId);
-
-  // Nascondi la lista degli utenti
-  userListContainer.style.display = 'none';
-
-  // Aggiorna il titolo della chat
-  chatTitle.textContent = `Chat con ${user.name}`;
-
-  // Pulisci l'area dei messaggi
-  messageContainer.innerHTML = '';
-
-  // Simula i messaggi (puoi caricare dinamicamente da un backend)
-  const messages = [
-    { sender: 'John Doe', text: 'Ciao, come stai?' },
-    { sender: 'Tu', text: 'Bene, grazie! E tu?' },
-    // Aggiungi altri messaggi qui
-  ];
-
-  // Aggiungi i messaggi all'area dei messaggi
-  messages.forEach(message => {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    messageElement.innerHTML = `
-      <span class="message-sender">${message.sender}</span>
-      <span class="message-text">${message.text}</span>
-    `;
-    messageContainer.appendChild(messageElement);
+    M.AutoInit();
   });
 
-  // Visualizza la schermata intera della chat
-  chatContainer.style.display = 'block';
-  // Puoi aggiungere animazioni o effetti desiderati qui
-}
-
-// Funzione per inviare un messaggio (puoi implementare la logica di invio effettiva)
-window.inviaMessaggio = function() {
-  const messageInput = document.getElementById('messageInput');
-  const messageContainer = document.getElementById('messageContainer');
-
-  const messageText = messageInput.value.trim();
-  if (messageText !== '') {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    messageElement.innerHTML = `
-      <span class="message-sender">Tu</span>
-      <span class="message-text">${messageText}</span>
-    `;
-    messageContainer.appendChild(messageElement);
-
-    // Pulisci l'input dopo l'invio
-    messageInput.value = '';
-  }
-};
+  document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
 });
 </script>
-
 </body>
 </html>

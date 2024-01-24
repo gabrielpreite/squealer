@@ -1,76 +1,33 @@
 body {
-      background-color: #e9ebee;
-    }
+  background-color: #f5f8fa;
+}
 
-    .container {
-      margin-top: 20px;
-    }
+.content {
+  top: 56px;
+  margin-bottom: 100px;
+  position: relative;
+}
 
-    .user-list-container {
-      background-color: #ffffff;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
+.title-n {
+font-size: 18px;
+text-align: center;
+margin-top: 10px;
+color: #666;
+}
 
-    .user-list {
-      overflow-y: auto;
-      max-height: 400px;
-    }
+.cerca-utenti {
+  padding: 0px 30px !important;
+}
 
-    .user-list-item {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-      border-bottom: 1px solid #e1e8ed;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
+.avvia-chat {
+  padding-left: 0px !important;
+}
 
-    .user-list-item:hover {
-      background-color: #f5f8fa;
-    }
+.avvia-btn {
+  border-radius: 20px;
+}
 
-    .user-list-item img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 15px;
-    }
-
-    .chat-container {
-      background-color: #ffffff;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-      display: none;
-    }
-
-    .chat-title {
-      background-color: #4a90e2;
-      color: #ffffff;
-      padding: 15px;
-      font-weight: bold;
-      font-size: 18px;
-      margin: 0;
-    }
-
-    .message-container {
-      overflow-y: auto;
-      max-height: 300px;
-      padding: 15px;
-    }
-
-    .message {
-      background-color: #ffffff;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .input-container {
-      padding: 15px;
-      background-color: #ffffff;
-      border-top: 1px solid #e1e8ed;
-    }
+.cerca {
+  display: flex;
+  align-items: baseline;
+}
