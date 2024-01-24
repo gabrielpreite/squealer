@@ -101,35 +101,6 @@ function form_psw() {
     });
 }
 
-function update_channel(){
-    const formData = new FormData(document.getElementById("form_modifica_canale"))
-
-    let modlist = document.getElementById("modlist_ul").getElementsByTagName("li");
-    let modstring = ""
-    for(let i=0; i<modlist.length; i++){
-        modstring += modlist[i].innerHTML+","
-    }
-    modstring = modstring.slice(0, -1)
-    formData.set("modlist", modstring)
-    console.log(modstring)
-
-    let nome = $("#canale_selezionato_nome").text()
-    $.ajax({
-        type: 'POST',
-        dataType: "json",
-        async: false,
-        url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
-        headers: { },
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (data, status, xhr) {
-            console.log(data)
-            //redirectToSettings();
-        }
-    });
-}
-
 function cancella_canale(nome) {
   $.ajax({
       type: 'DELETE',
@@ -146,4 +117,9 @@ function cancella_canale(nome) {
           }
       }
   });
+}
+
+function rimuovi_mod(nome){
+    let el = "#li_"+nome
+    $(el).remove()
 }
