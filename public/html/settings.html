@@ -130,7 +130,7 @@
       <div id="profilo" class="sezione" v-if="sezione_scelta==='profilo'">
         <div class="container">
           <h3 class="mb-4 title-sezione">Impostazioni Informazioni Personali</h3>
-          <form role="form" aria-label="Form impostazioni personali" id="form_info" class="ordine">
+          <form role="form" aria-label="Form impostazioni personali" @submit.prevent="form_info" id="form_info" class="ordine">
 
             <div class="col1">
               <div class="form-group">
@@ -170,7 +170,7 @@
       <div id="account" class="sezione" v-if="sezione_scelta==='account'">
         <div class="container">
           <h3 class="mb-4 title-sezione">Impostazioni mail e password</h3>
-          <form role="form" aria-label="Form cambio mail o password" id="form_psw" class="ordine"
+          <form role="form" aria-label="Form cambio mail o password" id="form_psw" @submit.prevent="form_psw" class="ordine"
             onsubmit="return check_form()">
             <div class="col1">
               <div class="form-group">
@@ -183,20 +183,20 @@
               <div class="form-img">
                 <div class="form-group">
                   <label for="oldPassword" class="label-form">Password: </label>
-                  <input type="text" name="old_password" class="form-control" id="oldPassword" placeholder="Password"
+                  <input type="password" name="old_password" class="form-control" id="oldPassword" placeholder="Password"
                     aria-label="Password attuale" required>
                   <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
                 </div>
 
                 <div class="form-group">
                   <label for="newPassword" class="label-form">Nuova password: </label>
-                  <input type="text" name="password" class="form-control" id="newPassword" placeholder="Nuova password"
+                  <input type="password" name="password" class="form-control" id="newPassword" placeholder="Nuova password"
                     aria-label="Nuova password">
                 </div>
 
                 <div class="form-group">
                   <label for="newCPassword" class="label-form">Conferma password: </label>
-                  <input type="text" name="c_password" class="form-control" id="newCPassword"
+                  <input type="password" name="c_password" class="form-control" id="newCPassword"
                     placeholder="Conferma nuova password" aria-label="Conferma nuova password">
                 </div>
 
@@ -401,18 +401,18 @@
     }
 
     //azione post form info utente
-    //$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
+    /*//$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
     document.getElementById("form_info").addEventListener('submit', async event => {
       event.preventDefault();
       form_info();
-    });
+    });*/
 
     //azione post form psw utente
-    //$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
+    /*//$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
     document.getElementById("form_psw").addEventListener('submit', async event => {
       event.preventDefault();
       form_psw();
-    });
+    });*/
 
     //password show/hide
     /*
@@ -972,6 +972,53 @@
               throw new Error("Network response was not ok.");
               }
           })
+        },
+        form_info() {
+          const formData = new FormData(document.getElementById("form_info"))
+
+          $.ajax({
+              type: 'POST',
+              dataType: "json",
+              async: false,
+              url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/settings`,
+              headers: { },
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function (data, status, xhr) {
+                  console.log('data: ', data);
+                  redirectToSettings();
+                  alert("Modifiche salvate");
+              },
+              error: function (xhr, status, error) {
+                  if (xhr.status === 404) {
+                      alert("Errore username");
+                  }
+              }
+          });
+        },
+        form_psw() {
+            const formData = new FormData(document.getElementById("form_psw"))
+
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                async: false,
+                url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/settings`,
+                headers: { },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data, status, xhr) {
+                    console.log('data: ', data);
+                    redirectToSettings();
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status === 401) {
+                        alert("La password inserita non è corretta");
+                    }
+                }
+            });
         }
       },
       beforeMount(){
