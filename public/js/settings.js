@@ -202,26 +202,6 @@ function cancella_canale(nome) {
   });
 }
 
-function aggiungi_mod(){
-    let nome = $("#new_mod").val()
-    $.ajax({
-        type: 'GET',
-        dataType: "json",
-        async: false,
-        url: `https://site212251.tw.cs.unibo.it/user/${nome}`,
-        headers: { },
-        success: function (data, status, xhr) {
-            $("#new_mod").val("")
-            $("#modlist_ul").append(`<li id="li_${nome}" onclick="rimuovi_mod('${nome}')">${nome}</li>`)
-        },
-        error: function (xhr, status, error) {
-            if (xhr.status === 404) {
-                alert("L'utente inserito non esiste");
-            }
-        }
-    });
-}
-
 function rimuovi_mod(nome){
     let el = "#li_"+nome
     $(el).remove()
