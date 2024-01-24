@@ -525,26 +525,7 @@
 
     // FOLLOWER E FOLLOW
 
-    function removeFollowing(target, tipo) {
-      console.log(target);
-      console.log(tipo);
-
-      $.ajax({
-        type: 'POST',
-        dataType: "json",
-        url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
-        headers: {},
-        data: { target: target, tipo: tipo },
-        success: function (data, status, xhr) {
-          // Cerco e rimuovo l'elemento dalla lista
-          var elemento = $(`.follower-list li[data-id="'${target}'"]`);
-          elemento.remove();
-        }
-
-      });
-    }
-
-    // popola migrata su vue
+    // migrata su vue
 
 
     // POPOLARITA
@@ -804,7 +785,7 @@
                 <i class="fas fa-user"></i>
                 <span>${el}</span>
               </div>
-              <button class="remove-btn" onclick="removeFollowing('${el}', 'utente')">
+              <button class="remove-btn" @click="removeFollowing('${el}', 'utente')">
                 <i class="fa-solid fa-x"></i>
               </button>`
             )
@@ -815,7 +796,7 @@
                 <i class="fas fa-users"></i>
                 <span>${el}</span>
               </div>
-              <button class="remove-btn" onclick="removeFollowing('${el}', 'canale')">
+              <button class="remove-btn" @click="removeFollowing('${el}', 'canale')">
                 <i class="fa-solid fa-x"></i>
               </button>`
             )
@@ -911,7 +892,7 @@
             deleteButton.type = "button";
             deleteButton.className = "btn btn-danger";
             deleteButton.onclick = function() {
-              cancella_canale(nomeCanale);
+              cancella_canale(nome);
             };
             var trashIcon = document.createElement("i");
             trashIcon.className = "fa-solid fa-trash-can";
@@ -941,6 +922,23 @@
                 }
             });
           }
+        },
+        removeFollowing(target, tipo) {
+          console.log(target);
+          console.log(tipo);
+
+          $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+            headers: {},
+            data: { target: target, tipo: tipo },
+            success: function (data, status, xhr) {
+              var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+              elemento.remove();
+            }
+
+          });
         }
       },
       beforeMount(){
