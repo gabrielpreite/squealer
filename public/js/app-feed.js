@@ -262,9 +262,7 @@ function aggiungi_info(meta){
       } else {
         document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
       }
-    }
 
-    if (meta["info"]["username"] !== CURRENT_USER) {
       document.getElementById("info_btn").insertAdjacentHTML ('beforeend', `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`);
     }
   } else if (meta["tipo"] == "canale") { //caso ricerca canale
