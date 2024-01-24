@@ -123,3 +123,21 @@ function rimuovi_mod(nome){
     let el = "#li_"+nome
     $(el).remove()
 }
+
+function removeFollowing(target, tipo) {
+    console.log(target);
+    console.log(tipo);
+
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
+      headers: {},
+      data: { target: target, tipo: tipo },
+      success: function (data, status, xhr) {
+        var elemento = $(`.follower-list li[data-id="'${target}'"]`);
+        elemento.remove();
+      }
+
+    });
+}

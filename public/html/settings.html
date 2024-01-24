@@ -785,7 +785,7 @@
                 <i class="fas fa-user"></i>
                 <span>${el}</span>
               </div>
-              <button class="remove-btn" @click="removeFollowing('${el}', 'utente')">
+              <button class="remove-btn" onclick="removeFollowing('${el}', 'utente')">
                 <i class="fa-solid fa-x"></i>
               </button>`
             )
@@ -796,7 +796,7 @@
                 <i class="fas fa-users"></i>
                 <span>${el}</span>
               </div>
-              <button class="remove-btn" @click="removeFollowing('${el}', 'canale')">
+              <button class="remove-btn" onclick="removeFollowing('${el}', 'canale')">
                 <i class="fa-solid fa-x"></i>
               </button>`
             )
@@ -920,23 +920,6 @@
             });
           }
         },
-        removeFollowing(target, tipo) {
-          console.log(target);
-          console.log(tipo);
-
-          $.ajax({
-            type: 'POST',
-            dataType: "json",
-            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/follow`,
-            headers: {},
-            data: { target: target, tipo: tipo },
-            success: function (data, status, xhr) {
-              var elemento = $(`.follower-list li[data-id="'${target}'"]`);
-              elemento.remove();
-            }
-
-          });
-        },
         update_channel(){
           const formData = new FormData(document.getElementById("form_modifica_canale"))
 
@@ -947,7 +930,7 @@
           }
           modstring = modstring.slice(0, -1)
           formData.set("modlist", modstring)
-          console.log(modstring)
+          //console.log(modstring)
 
           let nome = $("#canale_selezionato_nome").text()
           $.ajax({
@@ -961,7 +944,7 @@
               contentType: false,
               success: function (data, status, xhr) {
                   console.log(data)
-                  //redirectToSettings();
+                  redirectToSettings();
               }
           });
         }
