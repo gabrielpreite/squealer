@@ -115,6 +115,10 @@ main#squeal_contenitore {
   overflow: hidden;
 }
 
+.comment-text {
+  overflow: hidden;
+}
+
 .tag-username, .comment-username {
   cursor: pointer;
   font-weight: bold;

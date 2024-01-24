@@ -114,5 +114,9 @@ font-variant: small-caps;
 }
 
 .sq_testo {
-  width: 100%;
+  overflow: hidden;
+}
+
+.comment-text {
+  overflow: hidden;
 }
