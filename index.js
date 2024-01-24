@@ -294,7 +294,7 @@ app.get('/mod-login', function (req, res) {
 })
 
 app.get('/mod', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	if(!req.session || !req.session.userid) {res.redirect("/mod-login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
 		res.redirect("/mod-login")
