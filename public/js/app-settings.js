@@ -229,37 +229,37 @@ function rimuovi_mod(nome){
 
 // Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
 function popolaListaAcquisti(acquisti) {
-var acquistiList = document.getElementById('acquisti-list');
+    var acquistiList = document.getElementById('acquisti-list');
 
-// Popola la lista degli acquisti
-acquisti.forEach(function (acquisto) {
-    var listItem = document.createElement('li');
-    listItem.innerHTML = `
-            <div class="acquisto">
-                <div class="info">
-                    <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
-                    <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+    // Popola la lista degli acquisti
+    acquisti.forEach(function (acquisto) {
+        var listItem = document.createElement('li');
+        listItem.innerHTML = `
+                <div class="acquisto">
+                    <div class="info">
+                        <div class="quantita">Quota aggiunta: <span class="numero">${acquisto.quantita}</span> <span class="caratteri">caratteri</span></div>
+                        <div class="timestamp"><i class="fas fa-calendar"></i> ${timeConverter(acquisto.timestamp)}</div>
+                    </div>
+                    <div class="spesa">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
+                    </div>
                 </div>
-                <div class="spesa">
-                    <i class="fas fa-shopping-cart"></i>
-                    <div class="ammontare">${calcolaAmmontare(acquisto.quantita)} €</div>
-                </div>
-            </div>
-        `;
-    acquistiList.appendChild(listItem);
-});
+            `;
+        acquistiList.appendChild(listItem);
+    });
 }
 
 function calcolaAmmontare(quantita) {
-if (quantita === 120) {
-    return '0,99';
-} else if (quantita === 240) {
-    return '1,99';
-} else if (quantita === 480) {
-    return '4,99';
-} else {
-    return '';
-}
+    if (quantita === 120) {
+        return '0,99';
+    } else if (quantita === 240) {
+        return '1,99';
+    } else if (quantita === 480) {
+        return '4,99';
+    } else {
+        return '';
+    }
 }
 
 function popolaFollowers(followers) {

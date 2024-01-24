@@ -111,6 +111,10 @@ main#squeal_contenitore {
   width: 100%;
 }
 
+.sq_testo {
+  width: 100%;
+}
+
 .tag-username, .comment-username {
   cursor: pointer;
   font-weight: bold;
