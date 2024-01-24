@@ -342,7 +342,7 @@
             </div>
             <div>
               <div id="canale_selezionato" hidden="true">
-                <form id="form_modifica_canale">
+                <form @submit.prevent="update_channel" id="form_modifica_canale">
                   <div id="canale_selezionato_nome">
                   </div>
                   <div class="canale_img">
@@ -385,11 +385,11 @@
       update_smm();
     });
 
-    // override funzione form modifica canale
+    /*// override funzione form modifica canale
     document.getElementById("form_modifica_canale").addEventListener('submit', async event => {
       event.preventDefault();
       update_channel();
-    });
+    });*/
 
     // INSERIMENTO PROPIC UTENTE
     $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
@@ -938,6 +938,34 @@
               elemento.remove();
             }
 
+          });
+        },
+        update_channel(){
+          const formData = new FormData(document.getElementById("form_modifica_canale"))
+
+          let modlist = document.getElementById("modlist_ul").getElementsByTagName("li");
+          let modstring = ""
+          for(let i=0; i<modlist.length; i++){
+              modstring += modlist[i].innerHTML+","
+          }
+          modstring = modstring.slice(0, -1)
+          formData.set("modlist", modstring)
+          console.log(modstring)
+
+          let nome = $("#canale_selezionato_nome").text()
+          $.ajax({
+              type: 'POST',
+              dataType: "json",
+              async: false,
+              url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+              headers: { },
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function (data, status, xhr) {
+                  console.log(data)
+                  //redirectToSettings();
+              }
           });
         }
       },
