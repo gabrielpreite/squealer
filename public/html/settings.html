@@ -720,7 +720,7 @@
     });
     canali.forEach((el) => {
       if (el.ruolo === "proprietario") {
-        $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>proprietario</p></div><button onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button></div></div>`)
+        $("#canali_acquistati").append(`<div class="card-canale"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>proprietario</p></div><button @click="seleziona_canale('esistente','${el.canale}')">Modifica</button></div></div>`)
       } else if (el.ruolo === "mod") {
         $("#canali_gestiti").append(`<div class="card-canale gestito"><img style="width: 60px; height: 60px" src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale"><div class="info-canale"><div class="nome-canale"><p>${el.canale}</p></div><div class="ruolo-canale"><p>moderatore</p></div></div></div>`)
       }
@@ -735,7 +735,7 @@
             <p>proprietario</p>
           </div>
           <div class="nuovo-canale">
-            <button @click="selezionaCanale">Crea Canale <i class="fas fa-plus"></i></button>
+            <button @click="seleziona_canale('nuovo')">Crea Canale <i class="fas fa-plus"></i></button>
           </div>
         </div>
         </div>`)
@@ -754,12 +754,6 @@
         }
       },
       methods: {
-        selezionaCanale() {
-          if (!this.nuovoCanale.startsWith("$")) {
-            this.nuovoCanale = "$" + this.nuovoCanale;
-          }
-          seleziona_canale('nuovo', this.nuovoCanale.toLowerCase())
-        },
         load_acquisti(){
           //console.log(this.array_acquisti.length)
           let prezzo = {120: "0,99", 240: "1,99", 480: "4,99"}
@@ -889,6 +883,64 @@
         rimuovi_mod(nome){
           let el = "#li_"+nome
           $(el).remove()
+        },
+        seleziona_canale(tipo, nome){
+          if (tipo === 'nuovo') {
+            if (!this.nuovoCanale.startsWith("$")) {
+              this.nuovoCanale = "$" + this.nuovoCanale
+            }
+            this.nuovoCanale = this.nuovoCanale.toLowerCase();
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                async: false,
+                url: `https://site212251.tw.cs.unibo.it/channel`,
+                headers: { },
+                data: {nome: this.nuovoCanale, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
+                success: function (data, status, xhr) {
+                  redirectToSettings();
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status === 403) {
+                        alert("Nome del canale già esistente");
+                    }
+                }
+            });
+          } else {
+            var deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "btn btn-danger";
+            deleteButton.onclick = function() {
+              cancella_canale(nomeCanale);
+            };
+            var trashIcon = document.createElement("i");
+            trashIcon.className = "fa-solid fa-trash-can";
+            deleteButton.appendChild(trashIcon);
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
+                headers: { },
+                success: function (data, status, xhr) {
+                    console.log('data: ', data);
+                    $("#canale_selezionato").removeAttr("hidden")
+
+                    $("#canale_selezionato_nome").text(nome)
+                    document.getElementById("canale_selezionato_nome").appendChild(deleteButton);
+                    $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
+                    $("#new_descrizione").val(data.data.descrizione)
+
+                    data.data.mod.forEach((el) => {
+                        $("#modlist_ul").append(`<li id="li_${el}" @click="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
+                    })
+                    /*mods = mods.slice(0, -1)
+                    console.log(mods)
+                    console.log(data.data.mod)
+                    $("#modlist").val(mods)*/
+                }
+            });
+          }
         }
       },
       beforeMount(){
