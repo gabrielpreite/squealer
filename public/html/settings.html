@@ -360,7 +360,7 @@
                   Aggiungi moderatori:
                   <div class="modifica_mod">
                     <input type="text" id="new_mod">
-                    <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
+                    <input type="button" value="Aggiungi" @click="aggiungi_mod">
                   </div>
                   <input class="invia-modifiche" type="submit" value="Applica modifiche">
                 </form>
@@ -848,7 +848,6 @@
           })
         },
         compra_quota(qnt) {
-          console.log("compra quota vue")
           let data = { "target": CURRENT_USER, "qnt": qnt, "acquisto": true }
 
           fetch("/user/" + CURRENT_USER + "/quota", {
@@ -859,7 +858,6 @@
             body: JSON.stringify(data)
           })
           .then((response) => {
-            console.log("compra quota then vue")
             //chiudo modal
             $("#shop-quota").modal("toggle")
             let new_quota = parseInt(get_cookie_by_name("quota_g")) + qnt
@@ -868,7 +866,26 @@
             //aggiorno navbar
             $("#charCount_giorno").text(new_quota)
           })
-        }
+        },
+        aggiungi_mod(){
+          let nome = $("#new_mod").val()
+          $.ajax({
+              type: 'GET',
+              dataType: "json",
+              async: false,
+              url: `https://site212251.tw.cs.unibo.it/user/${nome}`,
+              headers: { },
+              success: function (data, status, xhr) {
+                  $("#new_mod").val("")
+                  $("#modlist_ul").append(`<li id="li_${nome}" onclick="rimuovi_mod('${nome}')">${nome}</li>`)
+              },
+              error: function (xhr, status, error) {
+                  if (xhr.status === 404) {
+                      alert("L'utente inserito non esiste");
+                  }
+              }
+          });
+      }
       },
       beforeMount(){
         this.load_acquisti()
