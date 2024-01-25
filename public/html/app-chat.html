@@ -95,19 +95,6 @@
     <p id="chat_title">robosquealer</p>
       <div class="modal-content barra-scorrimento" id="chat-container">
           <div id="messaggi_chat" class="chat" aria-label="Messaggi della chat">
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message sent"><div class="message-content"><p>tutto bene, tu?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
-            <div class="message received"><div class="message-content"><p>ciaooo, come stai?</p></div></div>
 
           </div>
       </div>
@@ -116,7 +103,7 @@
             <input type="text" id="messageInput" placeholder="Scrivi un messaggio...">
         </div>
         <div class="invia">
-          <a href="#!" class="waves-effect light-blue btn invia-butt" id="sendMessageBtn"><i class="fa-regular fa-paper-plane"></i></a>
+          <a href="#!" class="waves-effect light-blue btn invia-butt" id="sendMessageBtn" onclick="aggiungiMessaggio()"><i class="fa-regular fa-paper-plane"></i></a>
         </div>
         </div>
   </div>
@@ -240,6 +227,27 @@
         }
       });
   }
+
+  function aggiungiMessaggio(){
+    let target = document.getElementById("chat_title").innerHTML
+    let contenuto =  document.getElementById("messageInput").value
+
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      url: `https://site212251.tw.cs.unibo.it/user/chat/${target}`,
+      headers: { },
+      data: { current_user: CURRENT_USER, text: contenuto},
+      success: function (data, status, xhr) {
+        document.getElementById("messaggi_chat").innerHTML = ""
+        inizia_chat(target)
+      },
+      error: function(xhr, status, error) {
+          console.error("Error:", error);
+      }
+    });
+  }
+
 </script>
 </body>
 </html>
