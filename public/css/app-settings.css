@@ -39,3 +39,11 @@
 .bottom-bar i {
   font-size: 24px;
 }
+
+.inattivo {
+  color: #333333;
+}
+
+.attivo {
+  color: black;
+}

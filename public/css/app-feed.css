@@ -186,3 +186,11 @@ div#info_contenitore {
     margin-top: 66px;
     margin-bottom: -50px;
 }
+
+.inattivo {
+  color: #333333;
+}
+
+.attivo {
+  color: black;
+}

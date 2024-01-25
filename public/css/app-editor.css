@@ -116,3 +116,11 @@ font-variant: small-caps;
 .sq_testo {
   width: 100%;
 }
+
+.inattivo {
+  color: #333333;
+}
+
+.attivo {
+  color: black;
+}
