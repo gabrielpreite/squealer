@@ -195,6 +195,7 @@
 
   function inizia_chat() {
       var username = document.getElementById("search").value;
+      document.getElementById("messaggi_chat").innerHTML = ""
       document.getElementById("chat_title").innerHTML = username;
       if (username === CURRENT_USER) {
         username = "";
@@ -231,7 +232,7 @@
   function aggiungiMessaggio(){
     let target = document.getElementById("chat_title").innerHTML
     let contenuto =  document.getElementById("messageInput").value
-
+    document.getElementById("messageInput").value = ''
     $.ajax({
       type: 'POST',
       dataType: "json",
@@ -239,8 +240,8 @@
       headers: { },
       data: { current_user: CURRENT_USER, text: contenuto},
       success: function (data, status, xhr) {
-        document.getElementById("messaggi_chat").innerHTML = ""
-        inizia_chat(target)
+        $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
+        scrollChatToBottom();
       },
       error: function(xhr, status, error) {
           console.error("Error:", error);
