@@ -210,16 +210,17 @@
           var modalElement = document.getElementById("chat");
           var modalInstance = M.Modal.init(modalElement);
           modalInstance.open();
-
-          let messaggi = data["data"]["messaggi"]
-          messaggi.forEach((el) => {
-            if(el.user === CURRENT_USER){ //messaggio inviato
-              $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
-            } else { // messaggio ricevuto
-              $("#messaggi_chat").append(`<div class="message received"><div class="message-content"><p>${el.text}</p></div></div>`)
-            }
-          })
-          scrollChatToBottom();
+          while (modalInstance.isOpen()) {
+            let messaggi = data["data"]["messaggi"]
+            messaggi.forEach((el) => {
+              if(el.user === CURRENT_USER){ //messaggio inviato
+                $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
+              } else { // messaggio ricevuto
+                $("#messaggi_chat").append(`<div class="message received"><div class="message-content"><p>${el.text}</p></div></div>`)
+              }
+            })
+            scrollChatToBottom();
+          }
         },
         error: function (xhr, status, error) {
             if (xhr.status === 404) {
@@ -240,8 +241,7 @@
       headers: { },
       data: { current_user: CURRENT_USER, text: contenuto},
       success: function (data, status, xhr) {
-        $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
-        scrollChatToBottom();
+        
       },
       error: function(xhr, status, error) {
           console.error("Error:", error);
