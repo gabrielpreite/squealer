@@ -192,7 +192,13 @@
   document.getElementById("charCount_giorno").textContent = quota_giorno;
   document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
 
-  function scrollChatToBottom() {
+  //CASO PULSANTE CHAT
+  let ris = window.location.href.split('?');
+  if (ris.length > 1 && ris[1] !== '') {
+    //apri_chat(ris[1].split("=")[1]);
+  }
+
+    function scrollChatToBottom() {
       var chatContainer = document.getElementById('chat-container');
       chatContainer.scrollTop = chatContainer.scrollHeight;
   }
