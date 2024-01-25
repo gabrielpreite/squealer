@@ -148,12 +148,12 @@
     }
 
     //URLUTENTE
-    var CURRENT_USER = get_cookie_by_name("username");
+    var CURRENT_USER = "fv"//get_cookie_by_name("username");
 
     //Aggiungo propric utente
     document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
     document.getElementById("propic_side").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
-    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome").split("%20").join(" ");
+    document.getElementById("nome_cognome").textContent = "fv"//get_cookie_by_name("nome").split("%20").join(" ");
     document.getElementById("username_side").textContent = "@" + CURRENT_USER;
 
     //QUOTA
@@ -195,6 +195,17 @@
     var squeal_10 = squeals.slice(0,10);
     aggiungi_squeal(squeal_10);
 
+    $(window).scroll(function() { //scroll alla fine della pagina
+      if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        let scrollLastPost = scrollY;
+        let n_sq = squeal_10.length + 10;
+        if (squeals.length >= n_sq) {
+          squeal_10 = squeals.slice(0,n_sq);
+        }
+        rimpiazza_squeals(squeal_10, "data");
+        window.scrollTo(0, scrollLastPost);
+      }
+    });
 
 
   </script>
