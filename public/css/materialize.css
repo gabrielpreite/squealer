@@ -6668,7 +6668,7 @@ textarea {
 
 textarea.materialize-textarea {
   line-height: normal;
-  overflow-y: hidden;
+  overflow-y: auto;
   /* prevents scroll bar flash */
   padding: .8rem 0 .8rem 0;
   /* prevents text jump on Enter keypress */
