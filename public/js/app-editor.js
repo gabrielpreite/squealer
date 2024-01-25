@@ -582,6 +582,9 @@ function compra_quota() {
     set_cookie("quota_g", new_quota)
     //aggiorno navbar
     $("#charCount_giorno").text(new_quota)
+    $("#charCount_giorno_vis").text(new_quota)
+    //aggiorno initialQ
+    initialQuota_g = new_quota;
     //aggiornaquota
     if(!$("#contenuto_testo").attr("hidden")) {//caso testo
       aggiornaQuota("Testo");
