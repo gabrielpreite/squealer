@@ -112,7 +112,11 @@ main#squeal_contenitore {
 }
 
 .sq_testo {
-  width: 100%;
+  overflow: hidden;
+}
+
+.comment-text {
+  overflow: hidden;
 }
 
 .tag-username, .comment-username {
