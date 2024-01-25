@@ -80,17 +80,28 @@
 
   <div id="main">
     <!-- MENU -->
-    <div id="sidebar">
-      <ul id="menu" class="collection">
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('profilo')">Profilo</a></li>
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('account')">Account</a></li>
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('acquisti')">Storico Acquisti</a></li>
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('smm')">Social Media Manager</a></li>
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('follow')">Follow</a></li>
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('popolarita')">Popolarità</a></li>
-        <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('canali')">Canali</a></li>
-      </ul>
-    </div>
+      <div id="menu" class="collection">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i class="material-icons">dehaze</i></a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('profilo')">Profilo</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('account')">Account</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('acquisti')">Storico Acquisti</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('smm')">Social Media Manager</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('follow')">Follow</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('popolarita')">Popolarità</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a type="button" href="#!" class="collection-item" onclick="switch_settings('canali')">Canali</a></li>
+        </ul>
+      </div>
+
 
     <!-- CONTENUTO -->
     <div id="content" class="row">
@@ -379,6 +390,11 @@
     document.getElementById("form_psw").addEventListener('submit', async event => {
       event.preventDefault();
       form_psw();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.dropdown-trigger');
+      var instances = M.Dropdown.init(elems);
     });
 
     //URLUTENTE
