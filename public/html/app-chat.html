@@ -122,55 +122,115 @@
 
 </div>
 
+  <!-- barra in basso -->
+  <div class="bottom-bar">
+    <a href="/app">
+      <i class="material-icons inattivo">home</i>
+    </a>
+    <a href="/app-search">
+      <i class="material-icons inattivo">search</i>
+    </a>
+    <a href="/app-editor">
+      <i class="material-icons inattivo">add_box</i>
+    </a>
+    <a href="/app-notify">
+      <i class="material-icons inattivo">notifications</i>
+    </a>
+    <a href="/app-chat">
+      <i class="material-icons attivo">chat</i>
+    </a>
+  </div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
-  // Inizializza i componenti di Materialize
+  // INIT
   document.addEventListener('DOMContentLoaded', function() {
     M.AutoInit();
+
+    //SIDE BAR
+    var elems = document.querySelectorAll('.sidenav');
+    var options = {
+      edge: 'right',
+    }
+    var instances = M.Sidenav.init(elems, options);
   });
 
-function scrollChatToBottom() {
-    var chatContainer = document.getElementById('chat-container');
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-
-function inizia_chat() {
-    var username = document.getElementById("search").value;
-    document.getElementById("chat_title").innerHTML = username;
-    if (username === CURRENT_USER) {
-      username = "";
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options = {
+      endingTop: '4%',
+      'onOpenEnd': initCarouselModal
     }
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      url: `https://site212251.tw.cs.unibo.it/user/chat/${username}`,
-      headers: { },
-      data: { current_user: CURRENT_USER,},
-      success: function (data, status, xhr) {
-        var modalElement = document.getElementById("chat");
-        var modalInstance = M.Modal.init(modalElement);
-        modalInstance.open();
+    var instances = M.Modal.init(elems, options);
+  });
 
-        let messaggi = data["data"]["messaggi"]
-        messaggi.forEach((el) => {
-          if(el.user === CURRENT_USER){ //messaggio inviato
-            $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
-          } else { // messaggio ricevuto
-            $("#messaggi_chat").append(`<div class="message received"><div class="message-content"><p>${el.text}</p></div></div>`)
-          }
-        })
-        scrollChatToBottom();
-      },
-      error: function (xhr, status, error) {
-          if (xhr.status === 404) {
-            alert('Utente non trovato')
-          }
+  function initCarouselModal() {
+      var elems = document.querySelectorAll('.carousel');
+      var instances = M.Carousel.init(elems, {'fullWidth': true, 'indicators': true});
+  }
+
+  //URLUTENTE
+  var CURRENT_USER = get_cookie_by_name("username");
+
+  //Aggiungo propric utente
+  document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
+  document.getElementById("propic_side").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
+  document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome").split("%20").join(" ");
+  document.getElementById("username_side").textContent = "@" + CURRENT_USER;
+
+  //QUOTA
+  refresh_quota()
+  let quota_giorno = get_cookie_by_name("quota_g");
+  let quota_settimana = get_cookie_by_name("quota_s");
+  let quota_mese = get_cookie_by_name("quota_m");
+
+  // Aggiorna il contenuto delle span con i nuovi valori
+  document.getElementById("charCount_mese").textContent = quota_mese;
+  document.getElementById("charCount_sett").textContent = quota_settimana;
+  document.getElementById("charCount_giorno").textContent = quota_giorno;
+  document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
+
+  function scrollChatToBottom() {
+      var chatContainer = document.getElementById('chat-container');
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+
+  function inizia_chat() {
+      var username = document.getElementById("search").value;
+      document.getElementById("chat_title").innerHTML = username;
+      if (username === CURRENT_USER) {
+        username = "";
       }
-    });
-}
+      $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: `https://site212251.tw.cs.unibo.it/user/chat/${username}`,
+        headers: { },
+        data: { current_user: CURRENT_USER,},
+        success: function (data, status, xhr) {
+          var modalElement = document.getElementById("chat");
+          var modalInstance = M.Modal.init(modalElement);
+          modalInstance.open();
 
+          let messaggi = data["data"]["messaggi"]
+          messaggi.forEach((el) => {
+            if(el.user === CURRENT_USER){ //messaggio inviato
+              $("#messaggi_chat").append(`<div class="message sent"><div class="message-content"><p>${el.text}</p></div></div>`)
+            } else { // messaggio ricevuto
+              $("#messaggi_chat").append(`<div class="message received"><div class="message-content"><p>${el.text}</p></div></div>`)
+            }
+          })
+          scrollChatToBottom();
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 404) {
+              alert('Utente non trovato')
+            }
+        }
+      });
+  }
 </script>
 </body>
 </html>
