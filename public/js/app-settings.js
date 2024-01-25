@@ -378,3 +378,166 @@ function compra_quota() {
       $("#charCount_giorno_vis").text(new_quota)
     })
   }
+
+//PULSANTE MIO PROFILO NAVBAR
+function mio_profilo() {
+  window.location.replace(`https://site212251.tw.cs.unibo.it/app-search?user`);
+}
+
+//SINGOLO SQUEAL POPOLARITA'
+function aggiungi_squeal_singolo(squeals, cont, i) {
+  //let contenitore = document.getElementById('');
+  let contenitore = cont;
+
+  //setup
+  let id = "squeals[" + i + "].post_id";
+
+  //squeal
+  let htmlCode = '<div class="card" id="' + squeals[i].post_id + '">  <div class="card-content">    <div class="card-info valign-wrapper">      <div class="col s3 center-align">        <img src="https://via.placeholder.com/60x60" alt="Foto profilo di chi ha creato lo squeal" class="profile-image circle" id="squeal_img_utente' + i + '">      </div>      <div class="col s9 info_utente">        <span class="nome_utente" id="squeal_nome' + i + '">Nome Utente</span>        <br>        <a class="text-muted tag-username btn-flat" id="squeal_tag' + i + '">username</a>        <br>        <span class="text-muted timestamp" id="squeal_timestamp' + i + '">10 minuti fa</span>      </div>    </div>    <p id="squeal_testo' + i + '" class="sq_testo">Questo è il testo dello squeal</p>  </div>  <div class="card-tabs">    <ul class="tabs tabs-fixed-width">      <li class="tab"><a class="active" href="#reazioni' + i + '">Reazioni</a></li>      <li class="tab"><a href="#commenti' + i + '">Commenti</a></li>      <li class="tab" id="tab' + i + '"><a href="#destinatari' + i + '">Destinatari</a></li>    </ul>  </div>  <div class="card-content grey lighten-4">    <div id="reazioni' + i + '">      <div class="reazioni btn-group">  <div class="positive">     <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, adoro, ' + id + ')">          <i class="fab fa-sketch reazioni-icone"></i>          <span class="n-reazioni" id="squeal_sketch' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_piace, ' + id + ')">          <i class="fas fa-heart reazioni-icone"></i>          <span class="n-reazioni" id="squeal_heart' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, concordo, ' + id + ')">          <i class="fas fa-thumbs-up reazioni-icone"></i>          <span class="n-reazioni" id="squeal_like' + i + '">500</span>        </a>    </div> <div class="negative">    <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, sono_contrario, ' + id + ')">          <i class="fas fa-thumbs-down reazioni-icone"></i>          <span class="n-reazioni" id="squeal_dislike' + i + '">500</span>        </a>        <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, odio, ' + id + ')">          <i class="fas fa-heart-crack reazioni-icone"></i>          <span class="n-reazioni" id="squeal_disheart' + i + '">500</span>        </a>          <a class="btn btn-reazioni btn-group' + i + '" onclick="premibottone(this, mi_disgusta, ' + id + ')">          <i class="fas fa-poo reazioni-icone"></i>          <span class="n-reazioni" id="squeal_poo' + i + '">500</span>        </a>  </div>    </div>      <div class="info-post" id="squeal_info' + i + '">        <span class="visual" id="squeal_visual' + i + '">          <i class="fa-solid fa-eye icona-visual"></i>          500        </span>      </div>    </div>    <div id="commenti' + i + '">      <div id="squeal_comment' + i + '">          </div>    </div>    <div id="destinatari' + i + '">      <div id="squeal_destinatari' + i + '">          </div>    </div>  </div></div>';
+  contenitore.insertAdjacentHTML('beforeend', htmlCode);
+
+  //info utente
+  let id_nome = 'squeal_nome' + i;
+  let id_tag = 'squeal_tag' + i;
+  let id_timestamp = 'squeal_timestamp' + i;
+  let id_squeal_img_utente = 'squeal_img_utente' + i;
+  document.getElementById(id_nome).innerHTML = squeals[i].nome;
+  document.getElementById(id_tag).innerHTML = squeals[i].utente;
+  document.getElementById(id_timestamp).innerHTML = timeConverter(squeals[i].timestamp);
+  document.getElementById(id_squeal_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${squeals[i].img}`
+
+  //corpo squeal
+  let id_testo = 'squeal_testo' + i;
+  if(squeals[i].contenuto == "testo"){
+    document.getElementById(id_testo).innerHTML = squeals[i].corpo;
+  } else if(squeals[i].contenuto == "img"){
+    document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${squeals[i].corpo}" alt="immagine dello squeal">`
+  } else if(squeals[i].contenuto == "map"){
+    document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="${squeals[i].corpo}" alt="mappa dello squeal">`;
+  }
+
+  //destinatari
+  let lista_destinatari = document.getElementById('squeal_destinatari' + i);
+  let n_destinatari = squeals[i].destinatari.length;
+  if (squeals[i].tipo_destinatari == "canali" ) {
+    for (let j = 0; j < n_destinatari; j++) {
+      lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + squeals[i].destinatari[j] + '</div>');
+    }
+  } else if (squeals[i].tipo_destinatari == "utenti" ) {
+    lista_destinatari.insertAdjacentHTML('beforeend', '<div>' + CURRENT_USER + '</div>');
+  } else {
+    document.getElementById('tab' + i).remove();
+  }
+
+  //reazioni
+  let id_sketch = 'squeal_sketch' + i;
+  document.getElementById(id_sketch).innerHTML = squeals[i].reazioni.positive.adoro.length;
+  let id_poo = 'squeal_poo' + i;
+  document.getElementById(id_poo).innerHTML = squeals[i].reazioni.negative.mi_disgusta.length;
+  let id_heart = 'squeal_heart' + i;
+  document.getElementById(id_heart).innerHTML = squeals[i].reazioni.positive.mi_piace.length;
+  let id_disheart = 'squeal_disheart' + i;
+  document.getElementById(id_disheart).innerHTML = squeals[i].reazioni.negative.odio.length;
+  let id_like = 'squeal_like' + i;
+  document.getElementById(id_like).innerHTML = squeals[i].reazioni.positive.concordo.length;
+  let id_dislike = 'squeal_dislike' + i;
+  document.getElementById(id_dislike).innerHTML = squeals[i].reazioni.negative.sono_contrario.length;
+
+  //aggiungo le reaction gia' inserite
+  if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
+    let nreazioni0 = document.getElementById(id_sketch);
+    let premuto0 = nreazioni0.parentNode;
+    premuto0.style.color= "#00AFFF";
+    premuto0.checked = true;
+  } else if (squeals[i].reazioni.negative.mi_disgusta.includes(CURRENT_USER)) {
+    let nreazioni1 = document.getElementById(id_poo);
+    let premuto1 = nreazioni1.parentNode;
+    premuto1.style.color= "#8B4513";
+    premuto1.checked = true;
+  } else if (squeals[i].reazioni.positive.mi_piace.includes(CURRENT_USER)) {
+    let nreazioni2 = document.getElementById(id_heart);
+    let premuto2 = nreazioni2.parentNode;
+    premuto2.style.color= "#FF0000";
+    premuto2.checked = true;
+  } else if (squeals[i].reazioni.negative.odio.includes(CURRENT_USER)) {
+    let nreazioni3 = document.getElementById(id_disheart);
+    let premuto3 = nreazioni3.parentNode;
+    premuto3.style.color= "#FF0000";
+    premuto3.checked = true;
+  } else if (squeals[i].reazioni.positive.concordo.includes(CURRENT_USER)) {
+    let nreazioni4 = document.getElementById(id_like);
+    let premuto4 = nreazioni4.parentNode;
+    premuto4.style.color= "#007FFF";
+    premuto4.checked = true;
+  } else if (squeals[i].reazioni.negative.sono_contrario.includes(CURRENT_USER)) {
+    let nreazioni5 = document.getElementById(id_dislike);
+    let premuto5 = nreazioni5.parentNode;
+    premuto5.style.color= "#007FFF";
+    premuto5.checked = true;
+  }
+
+  //aggiungi commenti
+  let lista_commenti = [];
+  let id_post = squeals[i].post_id;
+  let id_comment = 'squeal_comment' + i;
+  let contenitore_commenti = document.getElementById(id_comment);
+  if (squeals[i].numRisposte > 0) {
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      async: false,
+      url: `https://site212251.tw.cs.unibo.it/squeal/${id_post}/reply`,
+      headers: { },
+      success: function (data, status, xhr) {
+        lista_commenti[i] = data.data;
+      }
+    });
+    let n_commenti = lista_commenti[i].length;
+    for (let c = 0; c < n_commenti; c++) {
+      let id_c = String(i) + String(c);
+      contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="chip comment"><img src="https://via.placeholder.com/48x48" alt="Foto profilo del creatore del commento" class="comment-profile-image" id="c_img_utente' + id_c + '"> <div class="comment-content"> <div class="comment-username" id="c_username' + id_c + '">  </div> <p class="comment-text" id="c_text' + id_c + '">  </p> </div></div> <br><br>');
+      let c_img_utente = 'c_img_utente' + id_c;
+      document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].img}`
+      let id_tag = 'c_username' + id_c;
+      document.getElementById(id_tag).innerHTML = lista_commenti[i][c].utente;
+      let id_testo = 'c_text' + id_c;
+      if (lista_commenti[i][c].contenuto == "testo") {
+        document.getElementById(id_testo).innerHTML = lista_commenti[i][c].corpo;
+      } else if(lista_commenti[i][c].contenuto == "img"){
+        document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[i][c].corpo}" alt="immagine del commento">`
+      } else if(lista_commenti[i][c].contenuto == "map"){
+        document.getElementById(id_testo).innerHTML = `<img class="img_squeal" src="${lista_commenti[i][c].corpo}" alt="mappa del commento">`;
+      }
+    }
+  } else {
+    contenitore_commenti.innerHTML = "<div> Nessuno ha ancora commentato </div> <br>";
+  }
+  contenitore_commenti.insertAdjacentHTML('beforeend', `<a class="btn" type="button" onclick="commenta('` + squeals[i].post_id + `')" title="Aggiungi commento"> Commenta </a>`);
+
+  //etichette
+  let id_visual = 'squeal_visual' + i;
+  document.getElementById(id_visual).innerHTML = '<i class="fa-solid fa-eye visual-icona"></i>' + squeals[i].visualizzazioni;
+  if (squeals[i].categoria == "popolare"){
+    let Et_popolarita = document.getElementById('squeal_info' + i);
+    Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal popolare"> Popolare </span>');
+  } else if (squeals[i].categoria == "impopolare"){
+    let Et_popolarita = document.getElementById('squeal_info' + i);
+    Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal impopolare"> Impopolare </span>');
+  } else if (squeals[i].categoria == "controverso"){
+    let Et_popolarita = document.getElementById('squeal_info' + i);
+    Et_popolarita.insertAdjacentHTML('beforeend', '<span class="label-squeal controverso"> Controverso </span>');
+  }
+  if (squeals[i].automatico){
+    let Et_auto = document.getElementById('squeal_info' + i);
+    Et_auto.insertAdjacentHTML('beforeend', '<span class="label-squeal auto"> Auto </span>');
+  }
+  if (squeals[i].suggerito){
+    let Et_consigliato = document.getElementById('squeal_info' + i);
+    Et_consigliato.insertAdjacentHTML('beforeend', '<span class="label-squeal consigliato"> Consigliato </span>');
+  }
+
+  //tabs card squeal init
+  M.AutoInit();
+
+  //FINE SQUEAL
+}
