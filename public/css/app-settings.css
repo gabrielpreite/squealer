@@ -12,7 +12,9 @@
 }
 
 .title-sezione {
-    font-size: x-large;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-left: 10px;
 }
 
 @media (max-height: 300px) {
@@ -81,4 +83,158 @@ a.collection-item {
 
 .dropdown-trigger.btn:active {
   box-shadow: none !important;
+}
+
+img#currentImg {
+    border-radius: 100%;
+    width: 100px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+div#contenuto_immagine {
+    display: block;
+}
+
+.btn.image-btn {
+    background-color: #1da1f2;
+    border-radius: 20px;
+}
+
+button.btn.salva-btn {
+    background-color: #1da1f2;
+    border-radius: 20px;
+    float: inline-end;
+    margin-right: 20px;
+}
+
+#acquisti .acquisto {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #ddd;
+  /* Colore del bordo grigio chiaro */
+  border-radius: 30px;
+  /* Border radius di 10px */
+
+}
+
+#acquisti .timestamp i {
+  margin-right: 3px;
+}
+
+#acquisti .info {
+  flex-grow: 1;
+}
+
+#acquisti .timestamp {
+  color: #777;
+  font-size: 0.9em;
+}
+
+#acquisti .quantita {
+  color: #555;
+  font-weight: normal;
+  /* Rimuovo il grassetto */
+  font-size: 1.2em;
+}
+
+#acquisti .quantita .numero {
+  color: #333;
+  /* Cambiato il colore del numero a un grigio più scuro */
+  font-size: 1.2em;
+  font-weight: bold;
+  /* Metto in grassetto solo il numero */
+}
+
+#acquisti .caratteri {
+  text-transform: uppercase;
+  color: #777;
+  font-size: 0.7em;
+}
+
+#acquisti .container {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-bottom: 0px !important;
+  margin-bottom: 40px;
+}
+
+
+#acquisti .spesa {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  /* Colore del bordo grigio chiaro */
+  border-radius: 30px;
+  /* Border radius di 10px */
+}
+
+#acquisti .spesa i {
+  font-size: 22px;
+  margin-right: 10px;
+  color: #3498db;
+  /* Colore per l'icona del carrello */
+}
+
+#acquisti .ammontare {
+  color: #3498db;
+  /* Colore per l'importo della spesa */
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+div#div_account_gestiti {
+    margin-left: 10px;
+}
+
+.smm1 {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.cambia_smm {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+input#current_smm {
+    font-size: 12px;
+}
+
+input.btn.red {
+    margin: 0px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    border-radius: 20px;
+}
+
+.smm2 {
+    display: flex;
+    margin: 20px 10px;
+}
+
+div#div_account_gestiti {
+    margin-bottom: 30px;
+}
+
+input.btn.green {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-radius: 20px;
 }

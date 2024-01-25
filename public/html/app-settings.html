@@ -108,12 +108,22 @@
     <div id="content" class="row">
 
       <div id="profilo" class="col s12">
-        <h3 class="title-sezione">Impostazioni Informazioni Personali</h3>
+        <h3 class="title-sezione">Informazioni Personali</h3>
         <form role="form" aria-label="Form impostazioni personali" id="form_info">
           <div class="input-field col s12">
             <label for="newImg" hidden>Immagine profilo: </label>
             <img alt="immagine profilo attuale" id="currentImg"></img>
-            <input type="file" name="img" class="form-control" id="newImg" placeholder="Nuova immagine di profilo" accept="image/*" aria-label="Immagine">
+
+            <div id="contenuto_immagine" class="file-field input-field col s12">
+          <div class="btn image-btn">
+            <span><i class="material-icons">image</i></span>
+            <input type="file" id="img" name="img" accept="image/*">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Seleziona un'immagine">
+          </div>
+          <div id="preview"></div>
+        </div>
           </div>
 
           <div class="input-field col s12">
@@ -131,14 +141,14 @@
             <label for="newDesc">Descrizione: </label>
           </div>
 
-          <button type="submit" class="btn">Salva</button>
+          <button type="submit" class="btn salva-btn">Salva</button>
         </form>
       </div>
 
 
       <div id="account" class="col s12" hidden>
         <div class="container">
-          <h3 class="title-sezione">Impostazioni mail e password</h3>
+          <h3 class="title-sezione">Email e password</h3>
           <form role="form" aria-label="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
             <div class="input-field col s12">
               <input type="text" name="email" id="newEmail" placeholder="Nuova email" aria-label="Email">
@@ -160,7 +170,7 @@
               <label for="newCPassword">Conferma password: </label>
             </div>
 
-            <button type="submit" class="btn">Salva</button>
+            <button type="submit" class="btn salva-btn">Salva</button>
           </form>
         </div>
       </div>
@@ -179,13 +189,15 @@
       <div id="smm" class="col s12" hidden> <!-- ACCOUNT GESTITI/SMM -->
         <div class="container">
           <div class="ordine">
-            <h3>I tuoi account gestiti</h3>
+            <h3 class="title-sezione">I tuoi account gestiti</h3>
             <div id="div_account_gestiti"></div>
             <form id="update_smm" enctype="multipart/form-data" class="smm-ordine">
               <div class="smm1">
                 <label for="current_smm">SMM che gestisce il tuo account:</label>
-                <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
-                <input type="submit" class="btn red" value="  Rimuovi  ">
+                <div class="cambia_smm">
+                  <input type="text" class="form-control" id="current_smm" name="current_smm" readonly>
+                  <input type="submit" class="btn red" value="  Rimuovi  ">
+                </div>
               </div>
               <div class="smm2">
                 <label for="new_smm" hidden>Cambia SMM</label>
@@ -502,7 +514,7 @@
     });
 
     if (result == null) {
-      $("#current_smm").attr("value", "Non ci sono SMM che gestiscono il tuo account")
+      $("#current_smm").attr("value", "Nessun SMM gestisce il tuo account")
     } else {
       $("#current_smm").attr("value", result)
     }

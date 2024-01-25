@@ -129,7 +129,7 @@
 
       <div id="profilo" class="sezione" v-if="sezione_scelta==='profilo'">
         <div class="container">
-          <h3 class="mb-4 title-sezione">Impostazioni Informazioni Personali</h3>
+          <h3 class="mb-4 title-sezione">Informazioni Personali</h3>
           <form role="form" aria-label="Form impostazioni personali" @submit.prevent="form_info" id="form_info" class="ordine">
 
             <div class="col1">
@@ -169,7 +169,7 @@
 
       <div id="account" class="sezione" v-if="sezione_scelta==='account'">
         <div class="container">
-          <h3 class="mb-4 title-sezione">Impostazioni mail e password</h3>
+          <h3 class="mb-4 title-sezione">Email e password</h3>
           <form role="form" aria-label="Form cambio mail o password" id="form_psw" @submit.prevent="form_psw" class="ordine"
             onsubmit="return check_form()">
             <div class="col1">
@@ -519,7 +519,7 @@
     }
 
     // STORICO ACQUISTI
-  
+
     // migrata su vue
 
 
