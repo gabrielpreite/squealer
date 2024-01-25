@@ -445,6 +445,9 @@ function ricerca_notifica(notifica) {
     edge: 'right',
   }
   var instances = M.Sidenav.init(elems, options);
+  
+  //tabs card squeal init
+  M.AutoInit();
 }
 
 //COMMENTI

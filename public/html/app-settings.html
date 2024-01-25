@@ -11,6 +11,7 @@
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-settings.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/app-feed.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
@@ -326,6 +327,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="../js/materialize.js"></script>
   <script src="../js/app-settings.js"></script>
+  <script src="../js/app-feed.js"></script>
   <script type="text/javascript" src="../js/global.js"></script>
 
   <script>
@@ -402,6 +404,14 @@
     document.getElementById("charCount_sett").textContent = quota_settimana;
     document.getElementById("charCount_giorno").textContent = quota_giorno;
     document.getElementById("charCount_giorno_vis").textContent = quota_giorno;
+
+    var adoro = "adoro";
+    var mi_disgusta = "mi_disgusta";
+    var mi_piace = "mi_piace";
+    var odio = "odio";
+    var concordo = "concordo";
+    var sono_contrario = "sono_contrario";
+    var apri = "apri";
 
     // ================= SEZIONI
     let all_info;
@@ -540,6 +550,7 @@
 
     //Popolarita
     let all_post;
+    let squeals;
     $.ajax({
       type: 'POST',
       dataType: "json",
@@ -549,6 +560,7 @@
       data: { query: CURRENT_USER, target: CURRENT_USER },
       success: function (data, status, xhr) {
         all_post = data.data.post;
+        squeals = data.data.post;
       }
     });
 
@@ -563,88 +575,13 @@
 
       if (all_post[i].categoria == 'popolare') {
         num_popolari++;
-        var nuovoElemento = document.createElement("div");
-        nuovoElemento.classList.add("squeal");
-        var nuovoContenuto = `
-                      <div class="squeal-header">
-                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
-                          <div class="squeal-info">
-                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_post[i].nome}</span>
-                              <span class="squeal-data" id="squeal-data">${timeConverter(all_post[i].timestamp)}</span>
-                          </div>
-                      </div>
-                      <div class="squeal-contenuto" id="squeal-contenuto">
-                          {{contenuto}}
-                      </div>
-                  `;
-
-        if (all_post[i].contenuto == "testo") {
-          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
-        } else if (all_post[i].contenuto == "img") {
-          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
-        }
-
-        // Imposta il contenuto HTML della nuova div
-        nuovoElemento.innerHTML = nuovoContenuto;
-        // Aggiungi la nuova div all'elemento container
-        container_popolare.appendChild(nuovoElemento);
-
+        aggiungi_squeal_singolo(all_post, container_popolare, i);
       } else if (all_post[i].categoria == 'impopolare') {
         num_impopolari++;
-        var nuovoElemento = document.createElement("div");
-        nuovoElemento.classList.add("squeal");
-        var nuovoContenuto = `
-                      <div class="squeal-header">
-                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
-                          <div class="squeal-info">
-                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_post[i].nome}</span>
-                              <span class="squeal-data" id="squeal-data">${timeConverter(all_post[i].timestamp)}</span>
-                          </div>
-                      </div>
-                      <div class="squeal-contenuto" id="squeal-contenuto">
-                          {{contenuto}}
-                      </div>
-                  `;
-
-        if (all_post[i].contenuto == "testo") {
-          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
-        } else if (all_post[i].contenuto == "img") {
-          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
-        }
-
-        // Imposta il contenuto HTML della nuova div
-        nuovoElemento.innerHTML = nuovoContenuto;
-        // Aggiungi la nuova div all'elemento container
-        container_impopolare.appendChild(nuovoElemento);
-
+        aggiungi_squeal_singolo(all_post, container_impopolare, i);
       } else if (all_post[i].categoria == 'controverso') {
         num_controversi++;
-        var nuovoElemento = document.createElement("div");
-        nuovoElemento.classList.add("squeal");
-        var nuovoContenuto = `
-                      <div class="squeal-header">
-                          <img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].img}" alt="Immagine Profilo" class="squeal-immagine-profilo" id="squeal-immagine-profilo">
-                          <div class="squeal-info">
-                              <span class="squeal-nome-utente" id="squeal-nome-utente">${all_post[i].nome}</span>
-                              <span class="squeal-data" id="squeal-data">${timeConverter(all_post[i].timestamp)}</span>
-                          </div>
-                      </div>
-                      <div class="squeal-contenuto" id="squeal-contenuto">
-                          {{contenuto}}
-                      </div>
-                  `;
-
-        if (all_post[i].contenuto == "testo") {
-          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", all_post[i].corpo);
-        } else if (all_post[i].contenuto == "img") {
-          nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
-        }
-
-        // Imposta il contenuto HTML della nuova div
-        nuovoElemento.innerHTML = nuovoContenuto;
-        // Aggiungi la nuova div all'elemento container
-        container_controverso.appendChild(nuovoElemento);
-
+        aggiungi_squeal_singolo(all_post, container_controverso, i);
       }
     }
     // aggiunta numero effettivo squeal
