@@ -594,3 +594,8 @@ function compra_quota() {
     }
   })
 }
+
+//PULSANTE MIO PROFILO NAVBAR
+function mio_profilo() {
+  window.location.replace(`https://site212251.tw.cs.unibo.it/app-search?user`);
+}
