@@ -210,7 +210,7 @@
           var modalElement = document.getElementById("chat");
           var modalInstance = M.Modal.init(modalElement);
           modalInstance.open();
-          while (modalInstance.isOpen()) {
+          while (modalInstance.isOpen) {
             let messaggi = data["data"]["messaggi"]
             messaggi.forEach((el) => {
               if(el.user === CURRENT_USER){ //messaggio inviato
@@ -241,7 +241,7 @@
       headers: { },
       data: { current_user: CURRENT_USER, text: contenuto},
       success: function (data, status, xhr) {
-        
+
       },
       error: function(xhr, status, error) {
           console.error("Error:", error);
