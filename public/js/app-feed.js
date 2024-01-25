@@ -326,13 +326,13 @@ function ordina_squeals(posts, filtro) {
   return posts;
 }
 
-function rimpiazza_squeals(posts, filtro) {
+function rimpiazza_squeals(posts, filtro, LOG = true) {
   svuota_pagina();
   //rimuovi_info();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
 
-  aggiungi_squeal(posts_ordinati);
+  aggiungi_squeal(posts_ordinati, LOG);
 }
 
 
