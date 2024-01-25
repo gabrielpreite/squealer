@@ -263,7 +263,7 @@ function aggiungi_info(meta){
         document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
       }
 
-      document.getElementById("info_btn").insertAdjacentHTML ('beforeend', `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="inizia_chat('${meta["info"]["username"]}', apri)"><i class="fa-regular fa-message"></i> Chat</button></div></div>`);
+      document.getElementById("info_btn").insertAdjacentHTML ('beforeend', `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="apri_chat('${meta["info"]["username"]}')"><i class="fa-regular fa-message"></i> Chat</button></div></div>`);
     }
   } else if (meta["tipo"] == "canale") { //caso ricerca canale
     document.getElementById("info_descrizione").innerHTML = meta["info"]["descrizione"];
@@ -449,6 +449,11 @@ function ricerca_notifica(notifica) {
 //COMMENTI
 function commenta(id) {
   window.location.replace(`https://site212251.tw.cs.unibo.it/app-editor?post_id=` + id);
+}
+
+//APRI CHAT
+function apri_chat(nome) {
+  window.location.replace(`https://site212251.tw.cs.unibo.it/app-chat?nome=` + nome);
 }
 
 //PULSANTE MIO PROFILO NAVBAR

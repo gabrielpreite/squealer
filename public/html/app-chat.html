@@ -197,7 +197,8 @@
   //CASO PULSANTE CHAT
   let ris = window.location.href.split('?');
   if (ris.length > 1 && ris[1] !== '') {
-    //apri_chat(ris[1].split("=")[1]);
+    document.getElementById("search").value = ris[1].split("=")[1];
+    document.getElementById("avviaChatBtn").click();
   }
 
     function scrollChatToBottom() {
