@@ -224,6 +224,7 @@ function ricerca_squeal(elem) {
   rimpiazza_squeals(all_info.post, document.getElementById("filtro").value);
   if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
 
+  window.scrollTo(0, 0);
   return all_info;
 }
 
