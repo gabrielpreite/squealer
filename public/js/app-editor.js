@@ -582,5 +582,15 @@ function compra_quota() {
     set_cookie("quota_g", new_quota)
     //aggiorno navbar
     $("#charCount_giorno").text(new_quota)
+    //aggiornaquota
+    if(!$("#contenuto_testo").attr("hidden")) {//caso testo
+      aggiornaQuota("Testo");
+    } else if (!$("#contenuto_immagine").attr("hidden")) {//caso img
+      aggiornaQuota("Immagine");
+    } else if (!$("#contenuto_posizione").attr("hidden")) {//caso map
+      aggiornaQuota("Posizione");
+    } else if (!$("#contenuto_ghigliottina").attr("hidden")) {//caso ghigliottina
+      aggiornaQuota("Ghigliottina");
+    }
   })
 }
