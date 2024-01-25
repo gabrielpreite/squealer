@@ -58,10 +58,21 @@
       }
     });
 
+    squeals = ordina_squeals(squeals, "data");
     var squeal_10 = squeals.slice(0,10);
-    aggiungi_squeal(squeal_10, false);
+    aggiungi_squeal(squeal_10);
 
-
+    $(window).scroll(function() { //scroll alla fine della pagina
+      if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        let scrollLastPost = scrollY;
+        let n_sq = squeal_10.length + 10;
+        if (squeals.length >= n_sq) {
+          squeal_10 = squeals.slice(0,n_sq);
+        }
+        rimpiazza_squeals(squeal_10, "data");
+        window.scrollTo(0, scrollLastPost);
+      }
+    });
 
   </script>
 
