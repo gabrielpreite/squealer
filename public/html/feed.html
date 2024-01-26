@@ -711,16 +711,21 @@
 
         const { createApp, ref } = Vue
 
-        createApp({
+        const app = createApp({
           data() {
             return {
             }
           },
           methods: {
+            test(a){
+              alert(a)
+            }
           },
           beforeMount(){
+            this.test("beforemount")
           }
         }).mount('body')
+        app.$options.methods.test("html")
     </script>
   </body>
 </html>
