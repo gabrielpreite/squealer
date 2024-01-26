@@ -26,7 +26,7 @@ function update_smm(){
     .then((response) => {
         if (response.ok) {
         // The initial request was successful
-        window.location.replace("https://site212251.tw.cs.unibo.it/settings");
+        window.location.replace("https://site212251.tw.cs.unibo.it/app-settings");
         } else {
         throw new Error("Network response was not ok.");
         }
@@ -66,7 +66,7 @@ function form_info() {
         contentType: false,
         success: function (data, status, xhr) {
             console.log('data: ', data);
-            redirectToSettings();
+            redirectToSettings_app();
             alert("Modifiche salvate");
         },
         error: function (xhr, status, error) {
@@ -91,7 +91,7 @@ function form_psw() {
         contentType: false,
         success: function (data, status, xhr) {
             console.log('data: ', data);
-            redirectToSettings();
+            redirectToSettings_app();
         },
         error: function (xhr, status, error) {
             if (xhr.status === 401) {
@@ -111,7 +111,7 @@ function seleziona_canale(tipo, nome){
         headers: { },
         data: {nome: nome, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
         success: function (data, status, xhr) {
-          redirectToSettings();
+          redirectToSettings_app();
         },
         error: function (xhr, status, error) {
             if (xhr.status === 403) {
@@ -179,7 +179,7 @@ function update_channel(){
         contentType: false,
         success: function (data, status, xhr) {
             console.log(data)
-            redirectToSettings();
+            redirectToSettings_app();
         }
     });
 }
@@ -192,7 +192,7 @@ function cancella_canale(nome) {
       url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
       headers: { },
       success: function (data, status, xhr) {
-        redirectToSettings();
+        redirectToSettings_app();
       },
       error: function (xhr, status, error) {
           if (xhr.status === 404) {
