@@ -594,27 +594,6 @@ function ricerca_post(id_post) {
   aggiungicommento(pulsante[0], 'apri', squeals.post_id);
 }
 
-function compra_quota(qnt){
-  let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
-
-  fetch("/user/" + CURRENT_USER + "/quota", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then((response) => {
-    //chiudo modal
-    $("#shop-quota").modal("toggle")
-    let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
-    //aggiorno il cookie quota
-    set_cookie("quota_g", new_quota)
-    //aggiorno navbar
-    $("#charCount_giorno").text(new_quota)
-  })
-}
-
 function scrollChatToBottom() {
     var chatContainer = document.getElementById('chat-container');
     chatContainer.scrollTop = chatContainer.scrollHeight;
