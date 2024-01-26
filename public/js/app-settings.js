@@ -33,6 +33,20 @@ function update_smm(){
     })
 }
 
+function check_info() {
+  if (document.getElementById("newName").value == '') {
+    alert("Inserisci un nome");
+    return false;
+  }
+
+  if (document.getElementById("newSurname").value == '') {
+    alert("Inserisci un cognome");
+    return false;
+  }
+
+  return true;
+}
+
 function check_form() {
     if (document.getElementById("newEmail").value != '') {
         //check formato mail corretto (RFC 2822 standard email validation)
