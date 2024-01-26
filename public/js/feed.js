@@ -392,25 +392,6 @@ function switch_account(username){
   ricarica()
 }
 
-function switch_to_smm(){
-  delete_cookie("managed")
-  $.ajax({
-    type: 'GET',
-    dataType: "json",
-    async: false,
-    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
-    headers: { },
-    success: function (data, status, xhr) {
-      set_cookie("quota_g", data["data"]["quota"]["g"])
-      set_cookie("quota_s", data["data"]["quota"]["s"])
-      set_cookie("quota_m", data["data"]["quota"]["m"])
-    }
-  });
-  ricarica()
-}
-
-
-
 //bottoni
 function premibottone(button, reac, id) {
   //console.log(button.querySelector(".n-reazioni"));
@@ -613,27 +594,6 @@ function ricerca_post(id_post) {
   aggiungicommento(pulsante[0], 'apri', squeals.post_id);
 }
 
-function compra_quota(qnt){
-  let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
-
-  fetch("/user/" + CURRENT_USER + "/quota", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then((response) => {
-    //chiudo modal
-    $("#shop-quota").modal("toggle")
-    let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
-    //aggiorno il cookie quota
-    set_cookie("quota_g", new_quota)
-    //aggiorno navbar
-    $("#charCount_giorno").text(new_quota)
-  })
-}
-
 function scrollChatToBottom() {
     var chatContainer = document.getElementById('chat-container');
     chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -712,12 +672,6 @@ function search_trend(keyword){
 
   rimpiazza_squeals(all_info.post, "data");
   squeals = all_info.post;
-}
-
-function short(tipo){
-  $("#tipo").val("channel")
-  $("#query").val(tipo)
-  ricerca_squeal(null)
 }
 
 function refresh_notifiche(){

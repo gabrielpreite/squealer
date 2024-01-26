@@ -87,7 +87,7 @@
          <input type="text" id="search" placeholder="Cerca utenti...">
        </div>
        <div class="input-field col s2 avvia-chat">
-         <a class="waves-effect waves-light btn light-blue avvia-btn" onclick="inizia_chat()" id="avviaChatBtn"><i class="fa-regular fa-message"></i></a>
+         <a class="waves-effect waves-light btn light-blue avvia-btn" onclick="inizia_chat('apri')" id="avviaChatBtn"><i class="fa-regular fa-message"></i></a>
        </div>
   </div>
 
@@ -193,7 +193,7 @@
       chatContainer.scrollTop = chatContainer.scrollHeight;
   }
 
-  function inizia_chat() {
+  function inizia_chat(azione) {
       var username = document.getElementById("search").value;
       document.getElementById("messaggi_chat").innerHTML = ""
       document.getElementById("chat_title").innerHTML = username;
@@ -207,9 +207,11 @@
         headers: { },
         data: { current_user: CURRENT_USER,},
         success: function (data, status, xhr) {
-          var modalElement = document.getElementById("chat");
-          var modalInstance = M.Modal.init(modalElement);
-          modalInstance.open();
+          if (azione === 'apri') {
+            var modalElement = document.getElementById("chat");
+            var modalInstance = M.Modal.init(modalElement);
+            modalInstance.open();
+          }
             let messaggi = data["data"]["messaggi"]
             messaggi.forEach((el) => {
               if(el.user === CURRENT_USER){ //messaggio inviato
@@ -239,7 +241,7 @@
       headers: { },
       data: { current_user: CURRENT_USER, text: contenuto},
       success: function (data, status, xhr) {
-        inizia_chat(target)
+        inizia_chat('aggiorna')
       },
       error: function(xhr, status, error) {
           console.error("Error:", error);
