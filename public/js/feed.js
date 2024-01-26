@@ -534,8 +534,6 @@ function rimpiazza_commenti(id) {
   }
 }
 
-
-
 //NOTIFICHE
 function ricerca_notifica(notifica) {
   if(document.getElementById(notifica.not_id).classList.contains("not_letta")){ //segno come letta (classe)
