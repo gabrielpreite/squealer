@@ -60,7 +60,7 @@
             </div>
           </h1>
           </div>
-          <button type="button" id="managed-account-username" class="btn btn-primary" title="Torna all'account SMM" onclick="switch_to_smm()" hidden="true"></button>
+          <button type="button" id="managed-account-username" class="btn btn-primary" title="Torna all'account SMM" @click="switch_to_smm()" hidden="true"></button>
         </div>
         <div id="quota" aria-label="Sezione quota">
           <div id="nav_quota_m" class="char-count-item collapse multi-collapse" aria-label="Caratteri rimanenti questo mese">
@@ -326,6 +326,22 @@
               document.getElementById("charCount_mese").textContent = quota_mese;
               document.getElementById("charCount_sett").textContent = quota_settimana;
               document.getElementById("charCount_giorno").textContent = quota_giorno;
+            },
+            switch_to_smm(){
+              delete_cookie("managed")
+              $.ajax({
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
+                headers: { },
+                success: function (data, status, xhr) {
+                  set_cookie("quota_g", data["data"]["quota"]["g"])
+                  set_cookie("quota_s", data["data"]["quota"]["s"])
+                  set_cookie("quota_m", data["data"]["quota"]["m"])
+                }
+              });
+              ricarica()
             },
             smm(){
               let account = []
