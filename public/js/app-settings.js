@@ -5,8 +5,15 @@ function switch_settings(param){
         $("#"+el).attr("hidden", "true")
     })
 
-    //visualizzo solo quella richiesta
-    $("#"+param).removeAttr("hidden")
+    if (param == "smm" || param == "canali") {
+      if (get_cookie_by_name("tipo") == "base") {
+        //visualizzo funz non disponibile
+        $("#funz").removeAttr("hidden");
+      }
+    } else {
+      //visualizzo solo quella richiesta
+      $("#"+param).removeAttr("hidden");
+    }
 }
 
 function update_smm(){
