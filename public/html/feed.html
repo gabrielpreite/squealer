@@ -302,29 +302,78 @@
         crossorigin="anonymous"></script>
 
       <script>
+        // controllo l'account corrente (gestione smm)
+        var CURRENT_USER = get_cookie_by_name("managed");
+        if (CURRENT_USER == undefined) {
+          CURRENT_USER = get_cookie_by_name("username");
+        }
+            
+        const { createApp, ref } = Vue
+
+        app = createApp({
+          data() {
+            return {
+            }
+          },
+          methods: {
+            init(){
+              // aggiorno la quota
+              refresh_quota()
+              let quota_giorno = get_cookie_by_name("quota_g");
+              let quota_settimana = get_cookie_by_name("quota_s");
+              let quota_mese = get_cookie_by_name("quota_m");
+
+              document.getElementById("charCount_mese").textContent = quota_mese;
+              document.getElementById("charCount_sett").textContent = quota_settimana;
+              document.getElementById("charCount_giorno").textContent = quota_giorno;
+            },
+            smm(){
+              let account = []
+              $.ajax({
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/manager_of`,
+                headers: { },
+                success: function (data, status, xhr) {
+                  console.log('data: ', data);
+                  account = data["data"];
+                }
+              });
+
+
+              account.forEach((el) => {
+                $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
+              })
+
+              $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><button type="button" class="dropdown-item logout-button" onclick="logout()">Logout</button>`)
+
+              //se sto gestendo un account lo mostro nella barra
+              let managed = get_cookie_by_name("managed")
+              if(!(managed === undefined)){
+                $("#managed-account-username").text(managed)
+                $("#managed-account-username").removeAttr("hidden")
+              }
+              // INSERIMENTO PROPIC UTENTE
+              $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+            }
+          },
+          beforeMount(){
+          },
+          mounted(){
+            this.init()
+            this.smm()
+          }
+        }).mount('body')
+        //app.$options.methods.test("html")
+
+        
         // INIT
         //document.getElementById("dropdownMenuButton").innerHTML = get_cookie_by_name("username");
         document.getElementById("chat_privata").addEventListener('submit', async event => {
           event.preventDefault();
           aggiungiMessaggio();
         });
-
-        // controllo l'account corrente (gestione smm)
-        var CURRENT_USER = get_cookie_by_name("managed");
-        if (CURRENT_USER == undefined) {
-          CURRENT_USER = get_cookie_by_name("username");
-        }
-
-        // aggiorno la quota
-        refresh_quota()
-        let quota_giorno = get_cookie_by_name("quota_g");
-        let quota_settimana = get_cookie_by_name("quota_s");
-        let quota_mese = get_cookie_by_name("quota_m");
-
-        // Aggiorna il contenuto delle span con i nuovi valori
-        document.getElementById("charCount_mese").textContent = quota_mese;
-        document.getElementById("charCount_sett").textContent = quota_settimana;
-        document.getElementById("charCount_giorno").textContent = quota_giorno;
 
         document.getElementById("form_ricerca").addEventListener('submit', async event => {
           event.preventDefault();
@@ -333,36 +382,9 @@
           var info_ricerca = result.meta;
         });
 
-        // INSERIMENTO PROPIC UTENTE
-        $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-
+        
         // INSERIMENTO ACCOUNT GESTITI DA SMM
-        let account = []
-        $.ajax({
-          type: 'GET',
-          dataType: "json",
-          async: false,
-          url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/manager_of`,
-          headers: { },
-          success: function (data, status, xhr) {
-            console.log('data: ', data);
-            account = data["data"];
-          }
-        });
-
-
-        account.forEach((el) => {
-          $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
-        })
-
-        $("#dropdown-account-smm").append(`<hr class="dropdown-divider"><button type="button" class="dropdown-item logout-button" onclick="logout()">Logout</button>`)
-
-        //se sto gestendo un account lo mostro nella barra
-        let managed = get_cookie_by_name("managed")
-        if(!(managed === undefined)){
-          $("#managed-account-username").text(managed)
-          $("#managed-account-username").removeAttr("hidden")
-        }
+        //vue
 
         var notifiche;
         $.ajax({
@@ -708,24 +730,6 @@
 
         var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
         var commentData = [10, 20, 15, 30, 25];
-
-        const { createApp, ref } = Vue
-
-        const app = createApp({
-          data() {
-            return {
-            }
-          },
-          methods: {
-            test(a){
-              alert(a)
-            }
-          },
-          beforeMount(){
-            this.test("beforemount")
-          }
-        }).mount('body')
-        app.$options.methods.test("html")
     </script>
   </body>
 </html>
