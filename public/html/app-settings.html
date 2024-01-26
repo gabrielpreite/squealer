@@ -362,6 +362,15 @@
     document.addEventListener('DOMContentLoaded', function() {
       M.AutoInit();
 
+      //chips dest
+      var chipOptions = {
+        onChipDelete: function () {
+
+        }
+      };
+      var all_chip = document.querySelectorAll('.chips');
+      chip_arr = M.Chips.init(all_chip, chipOptions);
+
       //SIDE BAR
       var elems = document.querySelectorAll('.sidenav');
       var options = {

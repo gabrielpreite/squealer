@@ -319,6 +319,12 @@ function popolaFollowers(followers) {
         <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
           <i class="fa-solid fa-x"></i>
         </button>
+        
+        <div class="chip">
+          <i class="fas fa-user"></i>
+          ${utente}
+          <i class="close material-icons" onclick="removeFollowing('${utente}', 'utente')">close</i>
+        </div>
       `;
       followListUtenti.appendChild(listItem);
     }
