@@ -580,7 +580,7 @@ function ricerca_notifica(notifica) {
     let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
     aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
   } else if(notifica.tipo === "privato"){
-    inizia_chat(notifica.corpo.split(" ")[0], "apri")
+    inizia_chat(notifica.testo.split(" ")[0], "apri")
   }
 
   //leggi notifica
