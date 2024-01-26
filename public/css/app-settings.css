@@ -246,9 +246,9 @@ element.style {
 
 
 .previsione {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
 }
 
 .previsione p {
@@ -287,4 +287,15 @@ element.style {
 .label_pop {
   font-size: 18px;
     text-align: center;
+}
+
+.grafico_pop {
+  display: flex;
+margin-top: 20px;
+align-items: center;
+justify-content: center;
+}
+
+.previsione p {
+    margin-left: 10px;
 }
