@@ -719,17 +719,11 @@
         createApp({
           data() {
             return {
-              nuovoCanale: '',
-              sezione_scelta: "profilo",
-              array_acquisti: [],
-              array_follower: [],
-              array_follow_utenti: [],
-              array_follow_canali: []
             }
           },
+          methods: {
+          },
           beforeMount(){
-            this.load_acquisti()
-            this.load_follow()
           }
         }).mount('body')
     </script>
