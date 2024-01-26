@@ -367,6 +367,7 @@ function rimpiazza_squeals(posts, filtro) {
   rimuovi_info();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
+  console.log(posts_ordinati)
 
   aggiungi_squeal(posts_ordinati);
 }
