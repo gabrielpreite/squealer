@@ -548,7 +548,7 @@ function ricerca_notifica(notifica) {
     let elem_notifica = document.createElement('div');
     elem_notifica.innerHTML = notifica.ref_id;
     ricerca_squeal(elem_notifica);
-  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita" || notifica.tipo == "privato") {
+  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
     let post_notifica;
     $.ajax({
       type: 'GET',
@@ -579,6 +579,8 @@ function ricerca_notifica(notifica) {
     squeals = [post_notifica];
     let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
     aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
+  } else if(notifica.tipo === "privato"){
+    inizia_chat(notifica.corpo.split(" ")[0], "apri")
   }
 
   //leggi notifica
