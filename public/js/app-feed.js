@@ -394,7 +394,7 @@ function ricerca_notifica(notifica) {
     let elem_notifica = document.createElement('div');
     elem_notifica.innerHTML = notifica.ref_id;
     ricerca_squeal(elem_notifica);
-  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita" || notifica.tipo == "privato") {
+  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
     let post_notifica;
     $.ajax({
       type: 'GET',
@@ -422,6 +422,8 @@ function ricerca_notifica(notifica) {
     }
     rimpiazza_squeals([post_notifica], "filtro");
     squeals = [post_notifica];
+  } else if (notifica.tipo == "privato") {
+    apri_chat(notifica.testo.split(" ")[0]);
   }
 
   //leggi notifica
