@@ -1,5 +1,5 @@
 function switch_settings(param){
-    let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita", "canali"]
+    let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita", "canali", "funz"]
 
     settings.forEach((el) =>{ //nascondo tutte le sezioni
         $("#"+el).attr("hidden", "true")
@@ -9,6 +9,9 @@ function switch_settings(param){
       if (get_cookie_by_name("tipo") == "base") {
         //visualizzo funz non disponibile
         $("#funz").removeAttr("hidden");
+      } else {
+        //visualizzo solo quella richiesta
+        $("#"+param).removeAttr("hidden");
       }
     } else {
       //visualizzo solo quella richiesta
