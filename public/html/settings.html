@@ -1030,10 +1030,12 @@
           document.getElementById("newEmail").value = all_info.meta.info.email;
         }
       },
-      mounted(){
-        this.load_profile()
+      beforeMount(){
         this.load_acquisti()
         this.load_follow()
+      },
+      mounted(){
+        this.load_profile()
       }
     }).mount('body')
 
