@@ -238,3 +238,53 @@ input.btn.green {
   text-transform: capitalize;
   border-radius: 20px;
 }
+
+element.style {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.previsione {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.previsione p {
+  margin: 0;
+}
+
+.riquadro_popolarita {
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.riquadro_quota {
+  background-color: #42a5f5;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.riquadro span {
+  font-weight: bold;
+}
+
+#popolarita .title-sezione {
+  margin-bottom: 16px;
+}
+
+#popolarita .fa-right-long {
+  font-size: 24px;
+  margin-right: 15px;
+}
+
+.label_pop {
+  font-size: 18px;
+    text-align: center;
+}
