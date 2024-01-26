@@ -1,12 +1,22 @@
 function switch_settings(param){
-    let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita", "canali"]
+    let settings = ["profilo", "account", "acquisti", "smm", "follow", "popolarita", "canali", "funz"]
 
     settings.forEach((el) =>{ //nascondo tutte le sezioni
         $("#"+el).attr("hidden", "true")
     })
 
-    //visualizzo solo quella richiesta
-    $("#"+param).removeAttr("hidden")
+    if (param == "smm" || param == "canali") {
+      if (get_cookie_by_name("tipo") == "base") {
+        //visualizzo funz non disponibile
+        $("#funz").removeAttr("hidden");
+      } else {
+        //visualizzo solo quella richiesta
+        $("#"+param).removeAttr("hidden");
+      }
+    } else {
+      //visualizzo solo quella richiesta
+      $("#"+param).removeAttr("hidden");
+    }
 }
 
 function update_smm(){
@@ -26,30 +36,46 @@ function update_smm(){
     .then((response) => {
         if (response.ok) {
         // The initial request was successful
-        window.location.replace("https://site212251.tw.cs.unibo.it/settings");
+        window.location.replace("https://site212251.tw.cs.unibo.it/app-settings");
         } else {
         throw new Error("Network response was not ok.");
         }
     })
 }
 
+function check_info() {
+  if (document.getElementById("newName").value == '') {
+    alert("Inserisci un nome");
+    return false;
+  }
+
+  if (document.getElementById("newSurname").value == '') {
+    alert("Inserisci un cognome");
+    return false;
+  }
+
+  return true;
+}
+
 function check_form() {
-    if (document.getElementById("newEmail").value != '') {
-        //check formato mail corretto (RFC 2822 standard email validation)
-        var mailformat = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-        if (!document.getElementById("newEmail").value.match(mailformat)) {
-            alert("La nuova mail inserita non è valida");
-            return false;
-        }
+  if (document.getElementById("newEmail").value != '') {
+    //check formato mail corretto (RFC 2822 standard email validation)
+    var mailformat = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+    if (!document.getElementById("newEmail").value.match(mailformat)) {
+      alert("La nuova mail inserita non è valida");
+      return false;
     }
+  } else if (document.getElementById("newEmail").value == '') {
+    return false;
+  }
 
-    //check password uguali
-    if (document.getElementById("newPassword").value != document.getElementById("newCPassword").value) {
-        alert("La nuova password e la conferma non corrispondono");
-        return false;
-    }
+  //check password uguali
+  if (document.getElementById("newPassword").value != document.getElementById("newCPassword").value) {
+      alert("La nuova password e la conferma non corrispondono");
+      return false;
+  }
 
-    return true;
+  return true;
 }
 
 function form_info() {
@@ -66,7 +92,7 @@ function form_info() {
         contentType: false,
         success: function (data, status, xhr) {
             console.log('data: ', data);
-            redirectToSettings();
+            redirectToSettings_app();
             alert("Modifiche salvate");
         },
         error: function (xhr, status, error) {
@@ -91,7 +117,7 @@ function form_psw() {
         contentType: false,
         success: function (data, status, xhr) {
             console.log('data: ', data);
-            redirectToSettings();
+            redirectToSettings_app();
         },
         error: function (xhr, status, error) {
             if (xhr.status === 401) {
@@ -111,7 +137,7 @@ function seleziona_canale(tipo, nome){
         headers: { },
         data: {nome: nome, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
         success: function (data, status, xhr) {
-          redirectToSettings();
+          redirectToSettings_app();
         },
         error: function (xhr, status, error) {
             if (xhr.status === 403) {
@@ -179,7 +205,7 @@ function update_channel(){
         contentType: false,
         success: function (data, status, xhr) {
             console.log(data)
-            redirectToSettings();
+            redirectToSettings_app();
         }
     });
 }
@@ -192,7 +218,7 @@ function cancella_canale(nome) {
       url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
       headers: { },
       success: function (data, status, xhr) {
-        redirectToSettings();
+        redirectToSettings_app();
       },
       error: function (xhr, status, error) {
           if (xhr.status === 404) {
@@ -270,9 +296,9 @@ function popolaFollowers(followers) {
       var listItem = document.createElement("li");
       listItem.setAttribute("data-id", utente);
       listItem.innerHTML = `
-        <div>
+        <div class="chip">
           <i class="fas fa-user"></i>
-          <span>${utente}</span>
+          ${utente}
         </div>
       `;
       followerlist.appendChild(listItem);
@@ -289,13 +315,11 @@ function popolaFollowers(followers) {
       var listItem = document.createElement("li");
       listItem.setAttribute("data-id", utente);
       listItem.innerHTML = `
-        <div>
+        <div class="chip">
           <i class="fas fa-user"></i>
-          <span>${utente}</span>
+          ${utente}
+          <i class="close material-icons" onclick="removeFollowing('${utente}', 'utente')">close</i>
         </div>
-        <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
-          <i class="fa-solid fa-x"></i>
-        </button>
       `;
       followListUtenti.appendChild(listItem);
     }
@@ -305,13 +329,11 @@ function popolaFollowers(followers) {
       var listItemCanale = document.createElement("li");
       listItem.setAttribute("data-id", canale);
       listItemCanale.innerHTML = `
-        <div>
+        <div class="chip">
           <i class="fas fa-users"></i>
-          <span>${canale}</span>
+          ${canale}
+          <i class="close material-icons" onclick="removeFollowing('${canale}', 'canale')">close</i>
         </div>
-        <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
-          <i class="fa-solid fa-x"></i>
-        </button>
       `;
       followListCanali.appendChild(listItemCanale);
     }

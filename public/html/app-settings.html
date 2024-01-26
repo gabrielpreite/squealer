@@ -107,7 +107,7 @@
     <!-- CONTENUTO -->
     <div id="content" class="row">
 
-      <div id="profilo" class="col s12">
+      <div id="profilo" class="col s12" hidden>
         <h3 class="title-sezione">Informazioni Personali</h3>
         <form role="form" aria-label="Form impostazioni personali" id="form_info">
           <div class="input-field col s12">
@@ -149,7 +149,7 @@
       <div id="account" class="col s12" hidden>
         <div class="container">
           <h3 class="title-sezione">Email e password</h3>
-          <form role="form" aria-label="Form cambio mail o password" id="form_psw" onsubmit="return check_form()">
+          <form role="form" aria-label="Form cambio mail o password" id="form_psw">
             <div class="input-field col s12">
               <input type="text" name="email" id="newEmail" placeholder="Nuova email" aria-label="Email">
               <label for="newEmail">Email: </label>
@@ -324,6 +324,10 @@
         </div>
       </div>
 
+      <div id="funz" class="col s12" hidden>
+        <h3 class="title-sezione">Funzione non disponibile per account base</h3>
+      </div>
+
     </div>
   </div>
 
@@ -393,17 +397,19 @@
     });
 
     //azione post form info utente
-    //$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
     document.getElementById("form_info").addEventListener('submit', async event => {
       event.preventDefault();
-      form_info();
+      if (check_info()) {
+        form_info();
+      }
     });
 
     //azione post form psw utente
-    //$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
     document.getElementById("form_psw").addEventListener('submit', async event => {
       event.preventDefault();
-      form_psw();
+      if (check_form()) {
+        form_psw();
+      }
     });
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -413,12 +419,11 @@
 
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
-    CURRENT_USER = "fv";
 
     //Aggiungo propric utente
     document.getElementById("propic").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
     document.getElementById("propic_side").src = "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img");
-    document.getElementById("nome_cognome").textContent = CURRENT_USER;//get_cookie_by_name("nome").split("%20").join(" ");
+    document.getElementById("nome_cognome").textContent = get_cookie_by_name("nome").split("%20").join(" ");
     document.getElementById("username_side").textContent = "@" + CURRENT_USER;
 
     //QUOTA

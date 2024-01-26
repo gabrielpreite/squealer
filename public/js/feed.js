@@ -1,6 +1,7 @@
 let arr_trend = []; //array per i trends
 
 function aggiungi_squeal(squeals) {
+  
   let n_squeal = squeals.length;
 
   let contenitore = document.getElementById('squeal_contenitore');
@@ -366,6 +367,7 @@ function rimpiazza_squeals(posts, filtro) {
   rimuovi_info();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
+  console.log(posts_ordinati)
 
   aggiungi_squeal(posts_ordinati);
 }
@@ -389,25 +391,6 @@ function switch_account(username){
   });
   ricarica()
 }
-
-function switch_to_smm(){
-  delete_cookie("managed")
-  $.ajax({
-    type: 'GET',
-    dataType: "json",
-    async: false,
-    url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/quota`,
-    headers: { },
-    success: function (data, status, xhr) {
-      set_cookie("quota_g", data["data"]["quota"]["g"])
-      set_cookie("quota_s", data["data"]["quota"]["s"])
-      set_cookie("quota_m", data["data"]["quota"]["m"])
-    }
-  });
-  ricarica()
-}
-
-
 
 //bottoni
 function premibottone(button, reac, id) {
@@ -546,7 +529,7 @@ function ricerca_notifica(notifica) {
     let elem_notifica = document.createElement('div');
     elem_notifica.innerHTML = notifica.ref_id;
     ricerca_squeal(elem_notifica);
-  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita" || notifica.tipo == "privato") {
+  } else if (notifica.tipo == "menzione" || notifica.tipo == "risposta" || notifica.tipo == "popolarita") {
     let post_notifica;
     $.ajax({
       type: 'GET',
@@ -577,6 +560,8 @@ function ricerca_notifica(notifica) {
     squeals = [post_notifica];
     let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
     aggiungicommento(pulsante[0], 'apri', squeals[0].post_id);
+  } else if(notifica.tipo === "privato"){
+    inizia_chat(notifica.testo.split(" ")[0], "apri")
   }
 
   //leggi notifica
@@ -607,27 +592,6 @@ function ricerca_post(id_post) {
   squeals = post_notifica;
   let pulsante = document.getElementsByClassName("btn btn-reazioni c btn-group0");
   aggiungicommento(pulsante[0], 'apri', squeals.post_id);
-}
-
-function compra_quota(qnt){
-  let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
-
-  fetch("/user/" + CURRENT_USER + "/quota", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then((response) => {
-    //chiudo modal
-    $("#shop-quota").modal("toggle")
-    let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
-    //aggiorno il cookie quota
-    set_cookie("quota_g", new_quota)
-    //aggiorno navbar
-    $("#charCount_giorno").text(new_quota)
-  })
 }
 
 function scrollChatToBottom() {
@@ -708,12 +672,6 @@ function search_trend(keyword){
 
   rimpiazza_squeals(all_info.post, "data");
   squeals = all_info.post;
-}
-
-function short(tipo){
-  $("#tipo").val("channel")
-  $("#query").val(tipo)
-  ricerca_squeal(null)
 }
 
 function refresh_notifiche(){
