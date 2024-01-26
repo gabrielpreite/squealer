@@ -658,16 +658,13 @@
 
         // TRENDS
         function trovaParoleFrequenti(arrayParole) {
-          // Trasforma tutte le parole in minuscolo
           const arrayParoleMinuscolo = arrayParole.map(parola => parola.toLowerCase());
 
-          // Conta le occorrenze di ciascuna parola
           const conteggioParole = {};
           arrayParoleMinuscolo.forEach(parola => {
             conteggioParole[parola] = (conteggioParole[parola] || 0) + 1;
           });
 
-          // Trova le parole più frequenti
           const paroleFrequenti = Object.keys(conteggioParole)
             .sort((a, b) => conteggioParole[b] - conteggioParole[a])
             .slice(0, 8);
@@ -685,13 +682,11 @@
           return pastelColors[randomIndex];
         }
 
-        // Crea le tessere del mosaico dinamicamente
         let trends = []
         function createMosaicTiles() {
           const container = document.querySelector('.mosaic-container');
-          const tileSize = 30; // Dimensione della tessera
+          const tileSize = 30; 
 
-          // Array dei trend
           trends = trovaParoleFrequenti(arr_trend);
           if (trends.length == 0) {
             trends.push("nessun trend presente :(");
@@ -702,7 +697,7 @@
             tile.classList.add('mosaic-tile');
             tile.style.backgroundColor = getRandomPastelColor();
             tile.textContent = trends[i];
-            tile.style.width = trends[i].length * 10 + 'px'; // Imposta la larghezza in base alla lunghezza della parola
+            tile.style.width = trends[i].length * 10 + 'px';
             tile.style.height = tileSize + 'px';
             tile.onclick = () => search_trend(trends[i]) // chiamata per ricerca per keyword
 
