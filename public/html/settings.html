@@ -127,7 +127,7 @@
     <!-- CONTENUTO -->
     <div id="content">
 
-      <div id="profilo" class="sezione" v-if="sezione_scelta==='profilo'">
+      <div id="profilo" class="sezione" v-show="sezione_scelta==='profilo'">
         <div class="container">
           <h3 class="mb-4 title-sezione">Informazioni Personali</h3>
           <form role="form" aria-label="Form impostazioni personali" @submit.prevent="form_info" id="form_info" class="ordine">
@@ -167,7 +167,7 @@
       </div>
 
 
-      <div id="account" class="sezione" v-if="sezione_scelta==='account'">
+      <div id="account" class="sezione" v-show="sezione_scelta==='account'">
         <div class="container">
           <h3 class="mb-4 title-sezione">Email e password</h3>
           <form role="form" aria-label="Form cambio mail o password" id="form_psw" @submit.prevent="form_psw" class="ordine"
@@ -211,7 +211,7 @@
       </div>
 
 
-      <div id="acquisti" class="sezione" v-if="sezione_scelta==='acquisti'">
+      <div id="acquisti" class="sezione" v-show="sezione_scelta==='acquisti'">
         <h2 class="mb-4 title-sezione">Storico Acquisti</h2>
         <div class="container">
           <ul id="acquisti-list">
@@ -222,7 +222,7 @@
       </div>
 
 
-      <div id="smm" class="sezione" v-if="sezione_scelta==='smm'"> <!-- ACCOUNT GESTITI/SMM -->
+      <div id="smm" class="sezione" v-show="sezione_scelta==='smm'"> <!-- ACCOUNT GESTITI/SMM -->
         <div class="container">
           <div class="ordine">
             <div class="col1">
@@ -248,7 +248,7 @@
       </div>
 
 
-      <div id="follow" class="sezione" v-if="sezione_scelta==='follow'">
+      <div id="follow" class="sezione" v-show="sezione_scelta==='follow'">
         <div class="container">
           <h2 class="mb-4 title-sezione">Lista Followers e Seguiti</h2>
 
@@ -287,7 +287,7 @@
         </div>
       </div>
 
-      <div id="popolarita" class="sezione" v-if="sezione_scelta==='popolarita'">
+      <div id="popolarita" class="sezione" v-show="sezione_scelta==='popolarita'">
         <div class="container">
           <h2 class="mb-4 title-sezione">Popolarità</h2>
           <div class="previsione">
@@ -324,7 +324,7 @@
         </div>
       </div>
 
-      <div id="canali" class="sezione" v-if="sezione_scelta==='canali'">
+      <div id="canali" class="sezione" v-show="sezione_scelta==='canali'">
         <div class="container barra-scorrimento">
           <h2 class="mb-4 title-sezione">Canali</h2>
           <div class="ordine-canali">
