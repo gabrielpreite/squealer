@@ -588,57 +588,6 @@
                 }
               });
 
-
-              // TRENDS
-              function trovaParoleFrequenti(arrayParole) {
-                const arrayParoleMinuscolo = arrayParole.map(parola => parola.toLowerCase());
-
-                const conteggioParole = {};
-                arrayParoleMinuscolo.forEach(parola => {
-                  conteggioParole[parola] = (conteggioParole[parola] || 0) + 1;
-                });
-
-                const paroleFrequenti = Object.keys(conteggioParole)
-                  .sort((a, b) => conteggioParole[b] - conteggioParole[a])
-                  .slice(0, 8);
-
-                return paroleFrequenti;
-              }
-
-              const pastelColors = [
-                '#FF8080', '#FFB380', '#FFD480', '#FFFF80', '#BFFF80',
-                '#80FF80', '#80FFBF', '#C0B3FF', '#CFAEFF'
-              ];
-
-              function getRandomPastelColor() {
-                const randomIndex = Math.floor(Math.random() * pastelColors.length);
-                return pastelColors[randomIndex];
-              }
-
-              let trends = []
-              function createMosaicTiles() {
-                const container = document.querySelector('.mosaic-container');
-                const tileSize = 30; 
-
-                trends = trovaParoleFrequenti(arr_trend);
-                if (trends.length == 0) {
-                  trends.push("nessun trend presente :(");
-                }
-
-                for (let i = 0; i < trends.length; i++) {
-                  const tile = document.createElement('button');
-                  tile.classList.add('mosaic-tile');
-                  tile.style.backgroundColor = getRandomPastelColor();
-                  tile.textContent = trends[i];
-                  tile.style.width = trends[i].length * 10 + 'px';
-                  tile.style.height = tileSize + 'px';
-                  tile.onclick = () => search_trend(trends[i]) // chiamata per ricerca per keyword
-
-                  container.appendChild(tile);
-                }
-              }
-              createMosaicTiles();
-
               var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
               var commentData = [10, 20, 15, 30, 25];
             }
@@ -733,6 +682,57 @@
         squeals = ordina_squeals(squeals, "data");
         aggiungi_squeal(squeals);
 
+        //trends
+
+        // TRENDS
+        function trovaParoleFrequenti(arrayParole) {
+          const arrayParoleMinuscolo = arrayParole.map(parola => parola.toLowerCase());
+
+          const conteggioParole = {};
+          arrayParoleMinuscolo.forEach(parola => {
+            conteggioParole[parola] = (conteggioParole[parola] || 0) + 1;
+          });
+
+          const paroleFrequenti = Object.keys(conteggioParole)
+            .sort((a, b) => conteggioParole[b] - conteggioParole[a])
+            .slice(0, 8);
+
+          return paroleFrequenti;
+        }
+
+        const pastelColors = [
+          '#FF8080', '#FFB380', '#FFD480', '#FFFF80', '#BFFF80',
+          '#80FF80', '#80FFBF', '#C0B3FF', '#CFAEFF'
+        ];
+
+        function getRandomPastelColor() {
+          const randomIndex = Math.floor(Math.random() * pastelColors.length);
+          return pastelColors[randomIndex];
+        }
+
+        let trends = []
+        function createMosaicTiles() {
+          const container = document.querySelector('.mosaic-container');
+          const tileSize = 30; 
+
+          trends = trovaParoleFrequenti(arr_trend);
+          if (trends.length == 0) {
+            trends.push("nessun trend presente :(");
+          }
+
+          for (let i = 0; i < trends.length; i++) {
+            const tile = document.createElement('button');
+            tile.classList.add('mosaic-tile');
+            tile.style.backgroundColor = getRandomPastelColor();
+            tile.textContent = trends[i];
+            tile.style.width = trends[i].length * 10 + 'px';
+            tile.style.height = tileSize + 'px';
+            tile.onclick = () => search_trend(trends[i]) // chiamata per ricerca per keyword
+
+            container.appendChild(tile);
+          }
+        }
+        createMosaicTiles();
         
     </script>
   </body>
