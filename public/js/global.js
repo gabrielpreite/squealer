@@ -45,6 +45,10 @@ function redirectToSettings() {
     window.location.href = "/settings";
 }
 
+function redirectToSettings_app() {
+    window.location.href = "/app-settings";
+}
+
 function redirectToHome() {
     window.location.href = "/";
 }
