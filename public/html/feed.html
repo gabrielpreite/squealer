@@ -32,6 +32,9 @@
     <script type="text/javascript" src="../js/global.js"></script>
     <script type="text/javascript" src="../js/feed.js"></script>
 
+    <!-- Vue.js -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="../css/feed.css">
     <link rel="stylesheet" href="../css/navbar.css">
@@ -711,6 +714,24 @@
         var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
         var commentData = [10, 20, 15, 30, 25];
 
-      </script>
+        const { createApp, ref } = Vue
+
+        createApp({
+          data() {
+            return {
+              nuovoCanale: '',
+              sezione_scelta: "profilo",
+              array_acquisti: [],
+              array_follower: [],
+              array_follow_utenti: [],
+              array_follow_canali: []
+            }
+          },
+          beforeMount(){
+            this.load_acquisti()
+            this.load_follow()
+          }
+        }).mount('body')
+    </script>
   </body>
 </html>
