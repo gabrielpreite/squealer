@@ -1,5 +1,5 @@
 let arr_trend = []; //array per i trends
-
+app.$options.methods.test("js")
 function aggiungi_squeal(squeals) {
   let n_squeal = squeals.length;
 
