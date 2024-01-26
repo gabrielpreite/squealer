@@ -293,9 +293,9 @@ function popolaFollowers(followers) {
       var listItem = document.createElement("li");
       listItem.setAttribute("data-id", utente);
       listItem.innerHTML = `
-        <div>
+        <div class="chip">
           <i class="fas fa-user"></i>
-          <span>${utente}</span>
+          ${utente}
         </div>
       `;
       followerlist.appendChild(listItem);
@@ -312,14 +312,6 @@ function popolaFollowers(followers) {
       var listItem = document.createElement("li");
       listItem.setAttribute("data-id", utente);
       listItem.innerHTML = `
-        <div>
-          <i class="fas fa-user"></i>
-          <span>${utente}</span>
-        </div>
-        <button class="remove-btn" onclick="removeFollowing('${utente}', 'utente')">
-          <i class="fa-solid fa-x"></i>
-        </button>
-        
         <div class="chip">
           <i class="fas fa-user"></i>
           ${utente}
@@ -334,13 +326,11 @@ function popolaFollowers(followers) {
       var listItemCanale = document.createElement("li");
       listItem.setAttribute("data-id", canale);
       listItemCanale.innerHTML = `
-        <div>
+        <div class="chip">
           <i class="fas fa-users"></i>
-          <span>${canale}</span>
+          ${canale}
+          <i class="close material-icons" onclick="removeFollowing('${canale}', 'canale')">close</i>
         </div>
-        <button class="remove-btn" onclick="removeFollowing('${canale}', 'canale')">
-          <i class="fa-solid fa-x"></i>
-        </button>
       `;
       followListCanali.appendChild(listItemCanale);
     }
