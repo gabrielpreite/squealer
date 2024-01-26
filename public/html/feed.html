@@ -302,6 +302,25 @@
         crossorigin="anonymous"></script>
 
       <script>
+        const { createApp, ref } = Vue
+
+        app = createApp({
+          data() {
+            return {
+            }
+          },
+          methods: {
+            test(a){
+              alert(a)
+            }
+          },
+          beforeMount(){
+            this.test("beforemount")
+          }
+        }).mount('body')
+        app.$options.methods.test("html")
+
+        
         // INIT
         //document.getElementById("dropdownMenuButton").innerHTML = get_cookie_by_name("username");
         document.getElementById("chat_privata").addEventListener('submit', async event => {
@@ -708,24 +727,6 @@
 
         var postLabels = ["Post 1", "Post 2", "Post 3", "Post 4", "Post 5"];
         var commentData = [10, 20, 15, 30, 25];
-
-        const { createApp, ref } = Vue
-
-        app = createApp({
-          data() {
-            return {
-            }
-          },
-          methods: {
-            test(a){
-              alert(a)
-            }
-          },
-          beforeMount(){
-            this.test("beforemount")
-          }
-        }).mount('body')
-        app.$options.methods.test("html")
     </script>
   </body>
 </html>
