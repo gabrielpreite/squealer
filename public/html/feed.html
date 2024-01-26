@@ -153,8 +153,8 @@
     <aside class="col-md-3 barra-scorrimento" id="col-sx" aria-label="Statistiche squeals" role="complementary">
       <nav class="social-channels" aria-label="Altri canali squeal">
         <a href="" class="channel-button" style="margin-left: 15px" aria-label="Canale feed"><i class="fa-regular fa-envelope-open" aria-hidden="true"></i> Feed</a>
-        <p id="btn-news" onclick="short('NOTIZIE')" class="channel-button" aria-label="Canale news"><i class="far fa-newspaper fa-fw" aria-hidden="true"></i> News</p>
-        <p id="btn-meteo" onclick="short('METEO')" class="channel-button" style="margin-right: 5px;" aria-label="Canale meteo"><i class="far fa-sun" aria-hidden="true"></i> Meteo</p>
+        <p id="btn-news" @click="short('NOTIZIE')" class="channel-button" aria-label="Canale news"><i class="far fa-newspaper fa-fw" aria-hidden="true"></i> News</p>
+        <p id="btn-meteo" @click="short('METEO')" class="channel-button" style="margin-right: 5px;" aria-label="Canale meteo"><i class="far fa-sun" aria-hidden="true"></i> Meteo</p>
       </nav>
 
       <!-- <h3 class="statistiche-title" style="text-align: left">Tendenze</h3>
@@ -326,6 +326,11 @@
               document.getElementById("charCount_mese").textContent = quota_mese;
               document.getElementById("charCount_sett").textContent = quota_settimana;
               document.getElementById("charCount_giorno").textContent = quota_giorno;
+            },
+            short(tipo){
+              $("#tipo").val("channel")
+              $("#query").val(tipo)
+              ricerca_squeal(null)
             },
             switch_to_smm(){
               delete_cookie("managed")

@@ -674,12 +674,6 @@ function search_trend(keyword){
   squeals = all_info.post;
 }
 
-function short(tipo){
-  $("#tipo").val("channel")
-  $("#query").val(tipo)
-  ricerca_squeal(null)
-}
-
 function refresh_notifiche(){
   let notifiche;
   $.ajax({
