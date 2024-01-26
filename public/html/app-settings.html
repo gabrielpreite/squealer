@@ -393,7 +393,6 @@
     });
 
     //azione post form info utente
-    //$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
     document.getElementById("form_info").addEventListener('submit', async event => {
       event.preventDefault();
       if (check_info()) {
@@ -402,7 +401,6 @@
     });
 
     //azione post form psw utente
-    //$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
     document.getElementById("form_psw").addEventListener('submit', async event => {
       event.preventDefault();
       if (check_form()) {
