@@ -250,6 +250,11 @@
       var tabs = document.querySelectorAll('.tabs');
       M.Tabs.init(tabs);
 
+      //nascondi info se ricerca #
+      if (document.getElementById("tipo") == "keyword") {
+        document.getElementById("info_contenitore").hidden = true;
+      }
+
       //SIDE BAR
       var elems = document.querySelectorAll('.sidenav');
       var options = {
