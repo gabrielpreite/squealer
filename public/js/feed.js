@@ -624,7 +624,7 @@ function inizia_chat(username, azione) {
         scrollChatToBottom();
       },
       error: function (xhr, status, error) {
-          if (xhr.status === 404) {
+          if (xhr.status === 404 || xhr.status === 409) {
 
           }
       }
