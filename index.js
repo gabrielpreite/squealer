@@ -764,6 +764,7 @@ app.delete('/user/:user_id', async function(req, res) {
 
         if(response["risultato"] === "successo"){
             res.status(200)
+            req.session.destroy()
             res.send(response)
         } else if(response["risultato"] === "password errata"){
             response["errore"] = "errore"
