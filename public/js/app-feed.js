@@ -460,15 +460,23 @@ function ricerca_notifica(notifica) {
   document.getElementById("title_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
 
+  //materialize
+  M.AutoInit();
+
   //SIDE BAR
   var elems = document.querySelectorAll('.sidenav');
   var options = {
     edge: 'right',
   }
   var instances = M.Sidenav.init(elems, options);
-  
-  //tabs card squeal init
-  M.AutoInit();
+
+  //acquisto quota
+  var elems2 = document.querySelectorAll('.modal');
+  var options2 = {
+    endingTop: '4%',
+    'onOpenEnd': initCarouselModal
+  }
+  var instances2 = M.Modal.init(elems2, options2);
 }
 
 //COMMENTI
