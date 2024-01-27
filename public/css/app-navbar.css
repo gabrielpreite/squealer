@@ -115,3 +115,7 @@ span#quota_text {
   color: #dc3545 !important;
     font-weight: bold !important;
 }
+
+a#logo-container {
+    z-index: 20;
+}
