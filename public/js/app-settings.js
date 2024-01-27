@@ -157,9 +157,6 @@ function seleziona_canale(tipo, nome){
     deleteButton.onclick = function() {
       cancella_canale(nome);
     };
-    var trashIcon = document.createElement("i");
-    trashIcon.className = "fa-solid fa-trash-can";
-    deleteButton.appendChild(trashIcon);
     $.ajax({
         type: 'GET',
         dataType: "json",
