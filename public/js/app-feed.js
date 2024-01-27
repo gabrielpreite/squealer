@@ -225,6 +225,25 @@ function ricerca_squeal(elem) {
   if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
 
   window.scrollTo(0, 0);
+
+  //materialize
+  M.AutoInit();
+
+  //SIDE BAR
+  var elems = document.querySelectorAll('.sidenav');
+  var options = {
+    edge: 'right',
+  }
+  var instances = M.Sidenav.init(elems, options);
+
+  //acquisto quota
+  var elems2 = document.querySelectorAll('.modal');
+  var options2 = {
+    endingTop: '4%',
+    'onOpenEnd': initCarouselModal
+  }
+  var instances2 = M.Modal.init(elems2, options2);
+  
   return all_info;
 }
 
@@ -234,7 +253,7 @@ function aggiungi_info(meta){
   container.hidden = false;
   let htmlInfo = `<div class="card" id="info_utente">
                     <div class="card-content">
-                      <div class="card-info valign-wrapper">
+                      <div class="card-info-info valign-wrapper">
                         <div class="col s2 center-align">
                           <img src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}" alt="Foto profilo" class="profile-image circle" id="info_img">
                         </div>

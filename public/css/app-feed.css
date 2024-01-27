@@ -17,6 +17,10 @@ main#squeal_contenitore {
   margin-bottom: 20px;
 }
 
+.card-info-info {
+  font-size: 17px;
+}
+
 .btn-reazioni {
   font-size: 17px;
   padding: 0.2em 1em;
