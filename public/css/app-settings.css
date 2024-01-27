@@ -349,8 +349,6 @@ span#canale_selezionato_nome {
 button.btn.right.btn-aggiungi-tag {
     background-color: #1da1f2;
     border-radius: 20px;
-    float: right;
-    margin-top: 10px;
     font-weight: bold;
     text-transform: capitalize;
 }
