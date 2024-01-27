@@ -226,6 +226,13 @@
             if (xhr.status === 404) {
               alert('Utente non trovato')
             }
+            else if (xhr.status === 409) {
+              if (azione === 'apri') {
+                var modalElement = document.getElementById("chat");
+                var modalInstance = M.Modal.init(modalElement);
+                modalInstance.open();
+              }
+            }
         }
       });
   }
