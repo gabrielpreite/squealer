@@ -345,3 +345,10 @@ span#canale_selezionato_nome {
     flex-direction: row;
     align-items: baseline;
 }
+
+button.btn.right.btn-aggiungi-tag {
+    background-color: #1da1f2;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
