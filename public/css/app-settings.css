@@ -304,3 +304,13 @@ justify-content: center;
 .previsione p {
     margin-left: 10px;
 }
+
+input#btn-aggiungi {
+  background-color: #1da1f2;
+  border-radius: 20px;
+  float: right;
+  margin-right: 20px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
