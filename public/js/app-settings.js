@@ -130,17 +130,17 @@ function form_psw() {
 function seleziona_canale(tipo, nome){
   if (tipo === 'nuovo') {
     let nome_canale = document.getElementById("nomeCanaleInput").value;
-    if (!nome_canale.nuovoCanale.startsWith("$")) {
-      nome_canale.nuovoCanale = "$" + nome_canale.nuovoCanale
+    if (!nome_canale.startsWith("$")) {
+      nome_canale = "$" + nome_canale;
     }
-    nome_canale.nuovoCanale = nome_canale.nuovoCanale.toLowerCase();
+    nome_canale = nome_canale.toLowerCase();
     $.ajax({
         type: 'POST',
         dataType: "json",
         async: false,
         url: `https://site212251.tw.cs.unibo.it/channel`,
         headers: { },
-        data: {nome: nome_canale.nuovoCanale, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
+        data: {nome: nome_canale, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
         success: function (data, status, xhr) {
           redirectToSettings_app();
         },
