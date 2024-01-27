@@ -299,27 +299,46 @@
                 <form id="form_modifica_canale">
                   <div class="card" id="modifica_canale">
                     <div class="card-content">
-                      <div class="col s12">
-                        <div class="modifica_canale_img">
-                          Cambia immagine:<input type="file" id="new_img" name="img" accept="image/*">
+
+                      <div class="input-field col s12">
+                        <label for="newImg" hidden>Cambia immagine: </label>
+                        <img alt="immagine canale attuale" id="canale_selezionato_img"></img>
+            
+                        <div id="contenuto_immagine" class="file-field input-field col s12">
+                          <div class="btn image-btn">
+                            <span><i class="material-icons">image</i></span>
+                            <input type="file" id="new_img" name="img" accept="image/*">
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Seleziona un'immagine">
+                          </div>
+                          <div id="preview"></div>
                         </div>
-                        <img src="https://site212251.tw.cs.unibo.it/uploads/default_channelpic.png" alt="immagine canale" class="canale_img circle" id="canale_selezionato_img">
                       </div>
+
                       <div class="col s12">
-                        <span id="canale_selezionato_nome">proprietario</span>
+                        <div class="card-title">
+                          <span id="canale_selezionato_nome">proprietario</span>
+                        </div>
                       </div>
-                      <div class="col s12 canale_descrizione">
-                        Descrizione:<input type="textarea" id="new_descrizione" name="descrizione">
+
+                      <div class="input-field col s12">
+                        Descrizione:
+                        <input type="text" name="descrizione" id="new_descrizione" placeholder="Modifica" aria-label="Descrizione">
                       </div>
-                      <div class="col s12 canale_moderatori">
+
+                      <div class="input-field col s12">
                         Mod: <ul id="modlist_ul"></ul>
+
+                        Aggiungi moderatori:
+                        <div class="col s12 modifica_mod">
+                          <input type="text" id="new_mod">
+                          <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
+                        </div>
                       </div>
-                      Aggiungi moderatori:
-                      <div class="col s12 modifica_mod">
-                        <input type="text" id="new_mod">
-                        <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
-                      </div>
-                      <input class="invia-modifiche" type="submit" value="Applica modifiche">
+
+                      <button type="submit" class="btn salva-btn">Applica modifiche</button>
+                      <input type="submit" value="Applica modifiche">
                     </div>
                   </div>
                 </form>
@@ -677,7 +696,7 @@
     canali.forEach((el) => {
       if (el.ruolo === "proprietario") {
         $("#canali_acquistati").append(`
-          <div class="card gestito" id="info_canale">
+          <div class="card" id="info_canale">
             <div class="card-content valign-wrapper">
               <div class="col s3 center-align">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
@@ -695,7 +714,7 @@
           </div>`)
       } else if (el.ruolo === "mod") {
         $("#canali_gestiti").append(`          
-          <div class="card gestito" id="info_canale">
+          <div class="card" id="info_canale">
             <div class="card-content valign-wrapper">
               <div class="col s3 center-align">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
