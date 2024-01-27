@@ -853,10 +853,10 @@ exports.user_delete = async function (user_id, q, credentials) {
 				result.push(r)
 			})
 
-		console.log("pwd: "+pwd)
-		console.log("db pwd: "+result[0].password)
+		console.log(typeof pwd+" pwd   : "+pwd)
+		console.log(typeof result[0].password+" db pwd: "+result[0].password)
 
-		if(result[0].password === pwd){
+		if(String(result[0].password) === String(pwd)){
 			result = await mongo.db(dbname)
 				.collection("utente")
 				.deleteOne({ username: user_id })
