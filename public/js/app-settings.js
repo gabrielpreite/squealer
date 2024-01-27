@@ -567,5 +567,5 @@ function aggiungi_chip_mod() {
     which: 13,
     keyCode: 13,
   });
-  document.getElementById("destinatari").dispatchEvent(event);
+  document.getElementById("mod").dispatchEvent(event);
 }
