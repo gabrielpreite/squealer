@@ -90,6 +90,11 @@ img#currentImg {
     width: 100px;
 }
 
+img#new_img {
+  border-radius: 100%;
+  width: 100px;
+}
+
 .input-field {
     display: flex;
     flex-direction: column;

@@ -153,7 +153,7 @@ function seleziona_canale(tipo, nome){
   } else {
     var deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.className = "btn btn-danger";
+    deleteButton.className = "btn red right";
     deleteButton.onclick = function() {
       cancella_canale(nome);
     };
