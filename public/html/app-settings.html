@@ -679,15 +679,17 @@
         $("#canali_acquistati").append(`
           <div class="card gestito" id="info_canale">
             <div class="card-content">
-              <div class="card-info valign-wrapper">
-                <div class="col s2 center-align">
+              <div class="valign-wrapper">
+                <div class="col s3 center-align">
                   <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
                 </div>
                 <div class="col s6" id="info_info">
-                  <span class="nome_utente" id="info_nome">${el.canale}</span>
+                  <div class="card-title">
+                    <span class="nome_utente" id="info_nome">${el.canale}</span>
+                  </div>
                   <span class="nome_utente" id="info_ruolo">proprietario</span>
                 </div>
-                <div class="col s4 right-align nuovo-canale" id="info_btn">
+                <div class="col s3 right-align nuovo-canale" id="info_btn">
                   <button class="btn" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
                 </div>
               </div>
@@ -696,8 +698,7 @@
       } else if (el.ruolo === "mod") {
         $("#canali_gestiti").append(`          
           <div class="card gestito" id="info_canale">
-            <div class="card-content">
-              <div class="valign-wrapper">
+            <div class="card-content valign-wrapper">
                 <div class="col s3 center-align">
                   <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
                 </div>
@@ -707,7 +708,6 @@
                   </div>
                   <span class="nome_utente" id="info_ruolo">moderatore</span>
                 </div>
-              </div>
             </div>
           </div>`)
       }
