@@ -328,14 +328,16 @@
                       </div>
 
                       <div class="input-field col s12">
-                        
+                        <div class="chips input-field">
+                          <input class="input placeholder-chip" id="destinatari">
+                          <button type="btn" class="btn left btn-aggiungi" onclick="aggiungi_mod()">Aggiungi</button>
+                        </div>
+
                         Mod: <ul id="modlist_ul"></ul>
 
                         Aggiungi moderatori:
-                        <div class="col s12 modifica_mod">
-                          <input type="text" id="new_mod">
-                          <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
-                        </div>
+                        <input type="text" id="new_mod">
+                        <input type="button" value="Aggiungi" onclick="aggiungi_mod()">
 
                       </div>
 
@@ -384,8 +386,24 @@
 
   <script>
     // INIT
+    var chip_arr;
+    var chip_n = 0;
     document.addEventListener('DOMContentLoaded', function() {
       M.AutoInit();
+
+      //chips mod
+      var chipOptions = {
+        placeholder: "Inserisci un mod",
+        secondaryPlaceholder: "+ mod",
+        onChipAdd: function (chip) {
+          aggiungi_mod(chip[0].M_Chips.chipsData[chip_n].tag);
+        },
+        onChipDelete: function () {
+          chip_n = chip_arr[0].chipsData.length;
+        }
+      };
+      var all_chip = document.querySelectorAll('.chips');
+      chip_arr = M.Chips.init(all_chip, chipOptions);      
 
       //SIDE BAR
       var elems = document.querySelectorAll('.sidenav');

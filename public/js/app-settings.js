@@ -569,3 +569,14 @@ function aggiungi_squeal_singolo(squeals, cont, i) {
 
   //FINE SQUEAL
 }
+
+//AGGIUNGI MOD
+function aggiungi_dest() {
+  const event = new KeyboardEvent('keydown', {
+    key: 'Enter',
+    code: 'Enter',
+    which: 13,
+    keyCode: 13,
+  });
+  document.getElementById("destinatari").dispatchEvent(event);
+}
