@@ -305,7 +305,7 @@ justify-content: center;
     margin-left: 10px;
 }
 
-input#btn-aggiungi {
+.btn-aggiungi {
   background-color: #1da1f2;
   border-radius: 20px;
   float: right;
