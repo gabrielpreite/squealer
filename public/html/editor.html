@@ -482,11 +482,6 @@
             $("#managed-account-username").text(managed)
             $("#managed-account-username").removeAttr("hidden")
           }
-          
-          let arr = window.location.href.split('?');
-          if (arr.length > 1 && arr[1] !== '') { // caso risposta
-            interfaccia_risposta(arr[1].split("=")[1])
-          }
         }
       },
       beforeMount(){
@@ -496,6 +491,10 @@
       }
     }).mount('body')
 
+    let arr = window.location.href.split('?');
+    if (arr.length > 1 && arr[1] !== '') { // caso risposta
+      app.$options.methods.interfaccia_risposta(arr[1].split("=")[1])
+    }
 
     array_dest_canali=[]//array destinatari per uso interno
     array_dest_utenti=[]//array destinatari per uso interno
