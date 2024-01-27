@@ -5,7 +5,7 @@
   <title>Post Editor</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!----BOOSTRAP-->
+  <!----VUE-->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
   <!-- CSS only -->
@@ -356,44 +356,74 @@
       CURRENT_USER = get_cookie_by_name("username");
     }
 
-    // aggiorno la quota
-    refresh_quota()
-    let quota_giorno = get_cookie_by_name("quota_g");
-    let quota_settimana = get_cookie_by_name("quota_s");
-    let quota_mese = get_cookie_by_name("quota_m");
+    const { createApp, ref } = Vue
 
-    // Aggiorna il contenuto delle span con i nuovi valori
-    document.getElementById("charCount_mese").textContent = quota_mese;
-    document.getElementById("charCount_sett").textContent = quota_settimana;
-    document.getElementById("charCount_giorno").textContent = quota_giorno;
+    const app = createApp({
+      data() {
+        return {
+        }
+      },
+      methods: {
+        init(){
+          // aggiorno la quota
+          refresh_quota()
+          let quota_giorno = get_cookie_by_name("quota_g");
+          let quota_settimana = get_cookie_by_name("quota_s");
+          let quota_mese = get_cookie_by_name("quota_m");
 
-    // INSERIMENTO ACCOUNT GESTITI DA SMM
-    /*let account = []
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/get_managed`,
-      headers: { },
-      success: function (data, status, xhr) {
-        console.log('data: ', data);
-        account = data;
+          document.getElementById("charCount_mese").textContent = quota_mese;
+          document.getElementById("charCount_sett").textContent = quota_settimana;
+          document.getElementById("charCount_giorno").textContent = quota_giorno;
+
+          // INSERIMENTO PROPIC UTENTE
+          $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+
+          //se sto gestendo un account lo mostro nella barra
+          let managed = get_cookie_by_name("managed")
+          if(!(managed === undefined)){
+            $("#managed-account-username").text(managed)
+            $("#managed-account-username").removeAttr("hidden")
+          }
+        },
+        compra_quota(qnt){
+          let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
+
+          fetch("/user/" + CURRENT_USER + "/quota", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then((response) => {
+            //chiudo modal
+            $("#shop-quota").modal("toggle")
+            let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
+            //aggiorno il cookie quota
+            set_cookie("quota_g", new_quota)
+            //aggiorno navbar
+            $("#charCount_giorno").text(new_quota)
+            //aggiorno vars
+            initialQuota_g = new_quota
+            //aggiorno pulsante/ricalcolo quota
+            let opzione = "Testo"
+            if(!document.getElementById("contenuto_testo").hidden)
+              opzione = "Testo"
+            else if(!document.getElementById("contenuto_immagine").hidden)
+              opzione = "Imaggine"
+            else if(!document.getElementById("contenuto_posizione").hidden)
+              opzione = "Posizione"
+            aggiornaQuota(opzione)
+          })
+        }
+      },
+      beforeMount(){
+      },
+      mounted(){
+        this.init()
       }
-    });
+    }).mount('body')
 
-    *account.forEach((el) => {
-      $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
-    })*/
-
-    // INSERIMENTO PROPIC UTENTE
-    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-
-    //se sto gestendo un account lo mostro nella barra
-    let managed = get_cookie_by_name("managed")
-    if(!(managed === undefined)){
-      $("#managed-account-username").text(managed)
-      $("#managed-account-username").removeAttr("hidden")
-    }
 
     array_dest_canali=[]//array destinatari per uso interno
     array_dest_utenti=[]//array destinatari per uso interno
@@ -408,40 +438,6 @@
       event.preventDefault();
       add_post();
     });
-
-    function compra_quota(qnt){
-      //controllo chi sta comprando
-
-      let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
-
-      fetch("/user/" + CURRENT_USER + "/quota", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then((response) => {
-        //chiudo modal
-        $("#shop-quota").modal("toggle")
-        let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
-        //aggiorno il cookie quota
-        set_cookie("quota_g", new_quota)
-        //aggiorno navbar
-        $("#charCount_giorno").text(new_quota)
-        //aggiorno vars
-        initialQuota_g = new_quota
-        //aggiorno pulsante/ricalcolo quota
-        let opzione = "Testo"
-        if(!document.getElementById("contenuto_testo").hidden)
-          opzione = "Testo"
-        else if(!document.getElementById("contenuto_immagine").hidden)
-          opzione = "Imaggine"
-        else if(!document.getElementById("contenuto_posizione").hidden)
-          opzione = "Posizione"
-        aggiornaQuota(opzione)
-      })
-    }
 
     function interfaccia_risposta(post_id){
       // Nascondi il div "selezione-destinatari"
@@ -1006,32 +1002,6 @@
         }
 
     }
-
-    const { createApp, ref } = Vue
-
-          createApp({
-            data() {
-              return {
-                isDisabled: false,
-                buttonValue: "Conferma",
-              }
-            },
-            methods: {
-              handleButtonClick() {
-              if (this.buttonValue === "Compra quota") {
-                this.warnDisabled();
-              }
-            },
-            warnDisabled() {
-              this.isDisabled = true;
-              setTimeout(() => {
-                this.isDisabled = false;
-              }, 1500);
-            },
-            }
-          }).mount('body')
-
-
   </script>
 </body>
 
