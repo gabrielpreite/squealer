@@ -753,20 +753,21 @@ app.get('/user/:user_id', async function(req, res) {
 
 
 // cancella utente
+// body password: string
 app.delete('/user/:user_id', async function(req, res) {
     let response = {"data": null, "risultato": null, "errore": null}
     console.log("del user")
     try{
         const user_id = req.params.user_id
 
-        response = await mymongo.user_delete(user_id, mongoCredentials)
+        response = await mymongo.user_delete(user_id, req.body, mongoCredentials)
 
-        if(response["risultato"] == "successo"){
+        if(response["risultato"] === "successo"){
             res.status(200)
             res.send(response)
-        } else if(response["risultato"] == "username non trovato"){
+        } else if(response["risultato"] === "password errata"){
             response["errore"] = "errore"
-            res.status(404)
+            res.status(403)
             res.send(response)
         }
     } catch (e){
