@@ -129,13 +129,18 @@ function form_psw() {
 
 function seleziona_canale(tipo, nome){
   if (tipo === 'nuovo') {
+    let nome_canale = document.getElementById("nomeCanaleInput").value;
+    if (!nome_canale.startsWith("$")) {
+      nome_canale = "$" + nome_canale;
+    }
+    nome_canale = nome_canale.toLowerCase();
     $.ajax({
         type: 'POST',
         dataType: "json",
         async: false,
         url: `https://site212251.tw.cs.unibo.it/channel`,
         headers: { },
-        data: {nome: nome, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
+        data: {nome: nome_canale, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
         success: function (data, status, xhr) {
           redirectToSettings_app();
         },
@@ -148,9 +153,9 @@ function seleziona_canale(tipo, nome){
   } else {
     var deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.className = "btn btn-danger";
+    deleteButton.className = "btn red right";
     deleteButton.onclick = function() {
-      cancella_canale(nomeCanale);
+      cancella_canale(nome);
     };
     var trashIcon = document.createElement("i");
     trashIcon.className = "fa-solid fa-trash-can";
@@ -170,6 +175,7 @@ function seleziona_canale(tipo, nome){
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
 
+            $("#modlist_ul").empty()
             data.data.mod.forEach((el) => {
                 $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
             })
@@ -562,4 +568,15 @@ function aggiungi_squeal_singolo(squeals, cont, i) {
   M.AutoInit();
 
   //FINE SQUEAL
+}
+
+//AGGIUNGI MOD
+function aggiungi_chip_mod() {
+  const event = new KeyboardEvent('keydown', {
+    key: 'Enter',
+    code: 'Enter',
+    which: 13,
+    keyCode: 13,
+  });
+  document.getElementById("destinatari").dispatchEvent(event);
 }

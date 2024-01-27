@@ -250,12 +250,10 @@
       var tabs = document.querySelectorAll('.tabs');
       M.Tabs.init(tabs);
 
-      //SIDE BAR
-      var elems = document.querySelectorAll('.sidenav');
-      var options = {
-        edge: 'right',
+      //nascondi info se ricerca #
+      if (document.getElementById("tipo") == "keyword") {
+        document.getElementById("info_contenitore").hidden = true;
       }
-      var instances = M.Sidenav.init(elems, options);
     });
 
     //URLUTENTE
