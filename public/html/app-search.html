@@ -64,6 +64,11 @@
     margin-bottom: 5px;
 }
 
+.info_search{
+  margin-top: 0px!important;
+  margin-bottom: 0px !important;
+}
+
 .inattivo {
   color: #555;
 }
@@ -172,7 +177,7 @@
     </form>
   </div>
 
-  <div class="row" id="info_contenitore">
+  <div class="info_search row" id="info_contenitore">
 
   </div>
 
@@ -245,12 +250,10 @@
       var tabs = document.querySelectorAll('.tabs');
       M.Tabs.init(tabs);
 
-      //SIDE BAR
-      var elems = document.querySelectorAll('.sidenav');
-      var options = {
-        edge: 'right',
+      //nascondi info se ricerca #
+      if (document.getElementById("tipo") == "keyword") {
+        document.getElementById("info_contenitore").hidden = true;
       }
-      var instances = M.Sidenav.init(elems, options);
     });
 
     //URLUTENTE

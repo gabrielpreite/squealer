@@ -70,6 +70,16 @@ function mostraCampo(tipo) {
     }
 }
 
+function aggiungi_dest() {
+  const event = new KeyboardEvent('keydown', {
+    key: 'Enter',
+    code: 'Enter',
+    which: 13,
+    keyCode: 13,
+  });
+  document.getElementById("destinatari").dispatchEvent(event);
+}
+
 async function check_destinatari(a) {
     if (document.getElementById("icona-canali").classList.length == 2) {
         console.log("canali");

@@ -225,6 +225,25 @@ function ricerca_squeal(elem) {
   if(tipo !== "keyword") { aggiungi_info(all_info.meta); }
 
   window.scrollTo(0, 0);
+
+  //materialize
+  M.AutoInit();
+
+  //SIDE BAR
+  var elems = document.querySelectorAll('.sidenav');
+  var options = {
+    edge: 'right',
+  }
+  var instances = M.Sidenav.init(elems, options);
+
+  //acquisto quota
+  var elems2 = document.querySelectorAll('.modal');
+  var options2 = {
+    endingTop: '4%',
+    'onOpenEnd': initCarouselModal
+  }
+  var instances2 = M.Modal.init(elems2, options2);
+
   return all_info;
 }
 
@@ -234,7 +253,7 @@ function aggiungi_info(meta){
   container.hidden = false;
   let htmlInfo = `<div class="card" id="info_utente">
                     <div class="card-content">
-                      <div class="card-info valign-wrapper">
+                      <div class="card-info-info valign-wrapper">
                         <div class="col s2 center-align">
                           <img src="https://site212251.tw.cs.unibo.it/uploads/${meta["info"]["img"]}" alt="Foto profilo" class="profile-image circle" id="info_img">
                         </div>
@@ -257,14 +276,14 @@ function aggiungi_info(meta){
 
     document.getElementById("info_descrizione").innerHTML = meta["info"]["bio"];
 
-    if (meta["info"]["username"] != CURRENT_USER) { 
+    if (meta["info"]["username"] != CURRENT_USER) {
       if (meta["info"]["is_follower"]) {
         document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-outline-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Unfollow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
       } else {
         document.getElementById("info_btn").innerHTML = `<div class="follow_button"><button class="btn btn-primary" id="pulsante-segui" onclick="toggle_follow('${meta["info"]["username"]}', 'utente')">Follow</button><div id="num_follower">${meta["info"]["num_followers"]} follower(s)</div></div>`
       }
 
-      document.getElementById("info_btn").insertAdjacentHTML ('beforeend', `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="apri_chat('${meta["info"]["username"]}')"><i class="fa-regular fa-message"></i> Chat</button></div></div>`);
+      document.getElementById("info_btn").insertAdjacentHTML ('beforeend', `<div class="row" id="riga5"><div class="pulsante_chat"><button class="btn btn-chat" id="pulsante-chat" onclick="apri_chat('${meta["info"]["username"]}')"><i class="fa-regular fa-message"></i></button></div></div>`);
     }
   } else if (meta["tipo"] == "canale") { //caso ricerca canale
     document.getElementById("info_descrizione").innerHTML = meta["info"]["descrizione"];
@@ -441,15 +460,23 @@ function ricerca_notifica(notifica) {
   document.getElementById("title_contenitore").hidden = false;
   document.getElementById("notifiche_contenitore").hidden = true;
 
+  //materialize
+  M.AutoInit();
+
   //SIDE BAR
   var elems = document.querySelectorAll('.sidenav');
   var options = {
     edge: 'right',
   }
   var instances = M.Sidenav.init(elems, options);
-  
-  //tabs card squeal init
-  M.AutoInit();
+
+  //acquisto quota
+  var elems2 = document.querySelectorAll('.modal');
+  var options2 = {
+    endingTop: '4%',
+    'onOpenEnd': initCarouselModal
+  }
+  var instances2 = M.Modal.init(elems2, options2);
 }
 
 //COMMENTI
@@ -469,7 +496,7 @@ function mio_profilo() {
 
 //PULSANTE COMPRA QUOTA
 function btn_acquista_quota() {
-  
+
 }
 
 function compra_quota() {
@@ -481,7 +508,7 @@ function compra_quota() {
   } else if (document.getElementById("img_480").classList[2] == "active") {
     qnt = 480;
   }
-  
+
   let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
 
   fetch("/user/" + CURRENT_USER + "/quota", {
