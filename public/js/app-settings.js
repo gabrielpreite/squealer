@@ -571,7 +571,7 @@ function aggiungi_squeal_singolo(squeals, cont, i) {
 }
 
 //AGGIUNGI MOD
-function aggiungi_dest() {
+function aggiungi_chip_mod() {
   const event = new KeyboardEvent('keydown', {
     key: 'Enter',
     code: 'Enter',
