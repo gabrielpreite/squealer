@@ -871,7 +871,7 @@ exports.user_delete = async function (user_id, q, credentials) {
 		await mongo.close();
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
