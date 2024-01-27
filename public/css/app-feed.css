@@ -202,3 +202,32 @@ div#info_contenitore {
 .attivo {
   color: black;
 }
+
+button#pulsante-segui {
+    background-color: #1da1f2;
+    font-weight: bold;
+    text-transform: capitalize;
+    border-radius: 20px;
+}
+
+div#num_follower {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.pulsante_chat{
+  position: relative;
+    bottom: -30px;
+    margin-right: 10px;
+}
+
+button#pulsante-chat {
+    background-color: #1da1f2;
+    border-radius: 20px;
+    position: relative;
+}
+
+.follow_button {
+    text-align: center;
+}

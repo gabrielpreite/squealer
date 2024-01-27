@@ -969,15 +969,27 @@ exports.get_chat = async function (target, q, credentials) {
 				result.push(r)
 			});
 
-		if (result.length == 1) {
+		if (result.length === 1) {
 			response["risultato"] = "successo"
+			response["data"] = result[0]
 			//console.log("successo")
 		} else {
-			response["risultato"] = "chat non trovata"
 			//console.log("errati")
+			await mongo.db(dbname)
+				.collection("utente")
+				.find(
+					{ username: target }
+				)
+				.forEach((r) => {
+					result.push(r)
+				});
+			if(result.length === 1){
+				response["risultato"] = "chat non trovata"
+			} else {
+				response["risultato"] = "utente inesistente"
+			}
 		}
 
-		response["data"] = result[0]
 		await mongo.close();
 		return response
 	} catch (e) {

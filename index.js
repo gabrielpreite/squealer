@@ -688,13 +688,16 @@ app.get('/user/chat/:user_id', async function(req, res) {
         const user_id = req.params.user_id //target user
         response = await mymongo.get_chat(user_id, req.query, mongoCredentials)
 
-        if(response["risultato"] == "successo"){
+        if(response["risultato"] === "successo"){
             res.status(200)
             res.send(response)
-        } else {
+        } else if(response["risultato"] === "chat non trovata"){
+            res.status(409)
+            res.send(response)
+        } else if(response["risultato"] === "utente inesistente"){
             res.status(404)
             res.send(response)
-        }
+        } 
     } catch (e){
         //response["errore"] = e.toString()
         res.status(500)

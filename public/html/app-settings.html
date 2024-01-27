@@ -309,7 +309,7 @@
                       <div class="input-field col s12">
                         <label for="newImg" hidden>Cambia immagine: </label>
                         <img alt="immagine canale attuale" id="canale_selezionato_img"></img>
-            
+
                         <div id="contenuto_immagine" class="file-field input-field col s12">
                           <div class="btn image-btn">
                             <span><i class="material-icons">image</i></span>
@@ -394,7 +394,7 @@
         }
       };
       var all_chip = document.querySelectorAll('.chips');
-      chip_arr = M.Chips.init(all_chip, chipOptions);      
+      chip_arr = M.Chips.init(all_chip, chipOptions);
 
       //SIDE BAR
       var elems = document.querySelectorAll('.sidenav');
@@ -449,7 +449,9 @@
     document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.dropdown-trigger');
       var instances = M.Dropdown.init(elems);
+      instances.open();
     });
+
 
     //URLUTENTE
     var CURRENT_USER = get_cookie_by_name("username");
@@ -723,7 +725,7 @@
             </div>
           </div>`)
       } else if (el.ruolo === "mod") {
-        $("#canali_gestiti").append(`          
+        $("#canali_gestiti").append(`
           <div class="card" id="info_canale">
             <div class="card-content valign-wrapper">
               <div class="col s3 center-align">
