@@ -175,14 +175,11 @@ function seleziona_canale(tipo, nome){
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
 
-            $("#modlist_ul").empty()
             data.data.mod.forEach((el) => {
-                $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
+              chip_arr[0].addChip({
+                tag: el,
+              });
             })
-            /*mods = mods.slice(0, -1)
-            console.log(mods)
-            console.log(data.data.mod)
-            $("#modlist").val(mods)*/
         }
     });
   }
