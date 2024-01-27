@@ -188,7 +188,7 @@ function update_channel(){
     let x = 0;
     let modstring = "";
     chip_arr[0].chipsData.forEach(function (){
-      modstring = chip_arr[0].chipsData[x].tag + ",";
+      modstring = modstring + chip_arr[0].chipsData[x].tag + ",";
       x = x + 1;
     });
     modstring = modstring.slice(0, -1)
