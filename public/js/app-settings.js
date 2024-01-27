@@ -191,11 +191,12 @@ function seleziona_canale(tipo, nome){
 function update_channel(){
     const formData = new FormData(document.getElementById("form_modifica_canale"))
 
-    let modlist = document.getElementById("modlist_ul").getElementsByTagName("li");
-    let modstring = ""
-    for(let i=0; i<modlist.length; i++){
-        modstring += modlist[i].innerHTML+","
-    }
+    let x = 0;
+    let modstring = "";
+    chip_arr[0].chipsData.forEach(function (){
+      modstring = chip_arr[0].chipsData[x].tag + ",";
+      x = x + 1;
+    });
     modstring = modstring.slice(0, -1)
     formData.set("modlist", modstring)
 
@@ -243,20 +244,15 @@ function aggiungi_mod(){
         url: `https://site212251.tw.cs.unibo.it/user/${nome}`,
         headers: { },
         success: function (data, status, xhr) {
-            $("#new_mod").val("")
-            $("#modlist_ul").append(`<li id="li_${nome}" onclick="rimuovi_mod('${nome}')">${nome}</li>`)
+          chip_n = chip_n + 1;
         },
         error: function (xhr, status, error) {
+          chip_arr[0].deleteChip(chip_n);
             if (xhr.status === 404) {
                 alert("L'utente inserito non esiste");
             }
         }
     });
-}
-
-function rimuovi_mod(nome){
-    let el = "#li_"+nome
-    $(el).remove()
 }
 
 // Funzione per popolare dinamicamente la lista degli acquisti nella pagina HTML
