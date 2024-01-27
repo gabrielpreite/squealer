@@ -14,7 +14,7 @@
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
   integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
   <script>
     function initMap() {
       infoWindow = new google.maps.InfoWindow();
@@ -67,7 +67,7 @@
       });
     }
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
+  
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
 
@@ -364,32 +364,6 @@
         }
       },
       methods: {
-        init(){
-          // aggiorno la quota
-          refresh_quota()
-          let quota_giorno = get_cookie_by_name("quota_g");
-          let quota_settimana = get_cookie_by_name("quota_s");
-          let quota_mese = get_cookie_by_name("quota_m");
-
-          document.getElementById("charCount_mese").textContent = quota_mese;
-          document.getElementById("charCount_sett").textContent = quota_settimana;
-          document.getElementById("charCount_giorno").textContent = quota_giorno;
-
-          // INSERIMENTO PROPIC UTENTE
-          $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-
-          //se sto gestendo un account lo mostro nella barra
-          let managed = get_cookie_by_name("managed")
-          if(!(managed === undefined)){
-            $("#managed-account-username").text(managed)
-            $("#managed-account-username").removeAttr("hidden")
-          }
-          
-          let arr = window.location.href.split('?');
-          if (arr.length > 1 && arr[1] !== '') { // caso risposta
-            interfaccia_risposta(arr[1].split("=")[1])
-          }
-        },
         compra_quota(qnt){
           let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
 
@@ -420,6 +394,37 @@
               opzione = "Posizione"
             aggiornaQuota(opzione)
           })
+        },
+        aggiungicommenti(id) {
+          //aggiungi nuovi commenti
+          var contenitore_commenti = document.getElementById("contenitore-commenti");
+          var lista_commenti;
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
+            headers: { },
+            success: function (data, status, xhr) {
+              lista_commenti = data.data;
+            }
+          });
+          var n_commenti = lista_commenti.length;
+          for (var c = 0; c < n_commenti; c++) {
+            contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+            var c_img_utente = 'c_img_utente' + c;
+            document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
+            var id_tag = 'c_username' + c;
+            document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
+            var id_testo = 'c_text' + c;
+            if(lista_commenti[c].contenuto == "testo"){
+              document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
+            } else if(lista_commenti[c].contenuto == "img"){
+              document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
+            } else if(lista_commenti[c].contenuto == "map"){
+              document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
+            }
+          }
         },
         interfaccia_risposta(post_id){
           document.getElementById("selezione-destinatari").hidden = true;
@@ -457,35 +462,30 @@
           // stampo i commenti
           aggiungicommenti(post_id);
         },
-        aggiungicommenti(id) {
-          //aggiungi nuovi commenti
-          var contenitore_commenti = document.getElementById("contenitore-commenti");
-          var lista_commenti;
-          $.ajax({
-            type: 'GET',
-            dataType: "json",
-            async: false,
-            url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
-            headers: { },
-            success: function (data, status, xhr) {
-              lista_commenti = data.data;
-            }
-          });
-          var n_commenti = lista_commenti.length;
-          for (var c = 0; c < n_commenti; c++) {
-            contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
-            var c_img_utente = 'c_img_utente' + c;
-            document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
-            var id_tag = 'c_username' + c;
-            document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
-            var id_testo = 'c_text' + c;
-            if(lista_commenti[c].contenuto == "testo"){
-              document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
-            } else if(lista_commenti[c].contenuto == "img"){
-              document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
-            } else if(lista_commenti[c].contenuto == "map"){
-              document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
-            }
+        init(){
+          // aggiorno la quota
+          refresh_quota()
+          let quota_giorno = get_cookie_by_name("quota_g");
+          let quota_settimana = get_cookie_by_name("quota_s");
+          let quota_mese = get_cookie_by_name("quota_m");
+
+          document.getElementById("charCount_mese").textContent = quota_mese;
+          document.getElementById("charCount_sett").textContent = quota_settimana;
+          document.getElementById("charCount_giorno").textContent = quota_giorno;
+
+          // INSERIMENTO PROPIC UTENTE
+          $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+
+          //se sto gestendo un account lo mostro nella barra
+          let managed = get_cookie_by_name("managed")
+          if(!(managed === undefined)){
+            $("#managed-account-username").text(managed)
+            $("#managed-account-username").removeAttr("hidden")
+          }
+          
+          let arr = window.location.href.split('?');
+          if (arr.length > 1 && arr[1] !== '') { // caso risposta
+            interfaccia_risposta(arr[1].split("=")[1])
           }
         }
       },
