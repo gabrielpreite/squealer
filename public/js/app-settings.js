@@ -235,8 +235,7 @@ function cancella_canale(nome) {
   });
 }
 
-function aggiungi_mod(){
-    let nome = $("#new_mod").val()
+function aggiungi_mod(nome){
     $.ajax({
         type: 'GET',
         dataType: "json",
@@ -248,9 +247,9 @@ function aggiungi_mod(){
         },
         error: function (xhr, status, error) {
           chip_arr[0].deleteChip(chip_n);
-            if (xhr.status === 404) {
-                alert("L'utente inserito non esiste");
-            }
+          if (xhr.status === 404) {
+            alert("L'utente inserito non esiste");
+          }
         }
     });
 }
