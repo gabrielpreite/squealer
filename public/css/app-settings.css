@@ -95,6 +95,11 @@ img#new_img {
   width: 100px;
 }
 
+img#canale_selezionato_img {
+  border-radius: 100%;
+  width: 100px;
+}
+
 .input-field {
     display: flex;
     flex-direction: column;
