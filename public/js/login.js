@@ -15,7 +15,7 @@ function login(){
                 console.log("login fallito");
                 alert("username/password errati")
             } else if(xhr.status === 403){
-                alert("Il tuo account e' stato disabilitato")
+                alert("Area riservata ad SMM")
             }
         }
     });
