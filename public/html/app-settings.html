@@ -678,20 +678,18 @@
       if (el.ruolo === "proprietario") {
         $("#canali_acquistati").append(`
           <div class="card gestito" id="info_canale">
-            <div class="card-content">
-              <div class="valign-wrapper">
-                <div class="col s3 center-align">
-                  <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
+            <div class="card-content valign-wrapper">
+              <div class="col s3 center-align">
+                <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
+              </div>
+              <div class="col s5" id="info_info">
+                <div class="card-title">
+                  <span id="info_nome">${el.canale}</span>
                 </div>
-                <div class="col s6" id="info_info">
-                  <div class="card-title">
-                    <span class="nome_utente" id="info_nome">${el.canale}</span>
-                  </div>
-                  <span class="nome_utente" id="info_ruolo">proprietario</span>
-                </div>
-                <div class="col s3 right-align nuovo-canale" id="info_btn">
-                  <button class="btn" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
-                </div>
+                <span id="info_ruolo">proprietario</span>
+              </div>
+              <div class="col s4" id="info_btn">
+                <button class="btn" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
               </div>
             </div>
           </div>`)
@@ -699,33 +697,31 @@
         $("#canali_gestiti").append(`          
           <div class="card gestito" id="info_canale">
             <div class="card-content valign-wrapper">
-                <div class="col s3 center-align">
-                  <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
+              <div class="col s3 center-align">
+                <img src="https://site212251.tw.cs.unibo.it/uploads/${el.img}" alt="immagine canale" class="profile-image circle" id="info_img">
+              </div>
+              <div class="col s9" id="info_info">
+                <div class="card-title">
+                  <span id="info_nome">${el.canale}</span>
                 </div>
-                <div class="col s9" id="info_info">
-                  <div class="card-title">
-                    <span class="nome_utente" id="info_nome">${el.canale}</span>
-                  </div>
-                  <span class="nome_utente" id="info_ruolo">moderatore</span>
-                </div>
+                <span id="info_ruolo">moderatore</span>
+              </div>
             </div>
           </div>`)
       }
     })
     $("#canali_acquistati").append(`
         <div class="card" id="info_canale">
-          <div class="card-content">
-            <div class="card-info valign-wrapper">
-              <div class="col s2 center-align">
-                <img src="https://site212251.tw.cs.unibo.it/uploads/default_channelpic.png" alt="immagine canale" class="profile-image circle" id="info_img">
-              </div>
-              <div class="col s6" id="info_info">
-                <input type="text" id="nomeCanaleInput" v-model="nuovoCanale" placeholder="Nuovo canale">
-                <span class="nome_utente" id="info_nome">proprietario</span>
-              </div>
-              <div class="col s4 right-align nuovo-canale" id="info_btn">
-                <button class="btn" onclick="selezionaCanale()">Crea Canale<i class="fas fa-plus"></i></button>
-              </div>
+          <div class="card-content valign-wrapper">
+            <div class="col s3 center-align">
+              <img src="https://site212251.tw.cs.unibo.it/uploads/default_channelpic.png" alt="immagine canale" class="profile-image circle" id="info_img">
+            </div>
+            <div class="col s5" id="info_info">
+              <input type="text" id="nomeCanaleInput" v-model="nuovoCanale" placeholder="Nuovo canale">
+              <span id="info_nome">proprietario</span>
+            </div>
+            <div class="col s4" id="info_btn">
+              <button class="btn" onclick="selezionaCanale()">Crea Canale<i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>`)
