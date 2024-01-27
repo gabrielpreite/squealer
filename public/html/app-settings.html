@@ -280,63 +280,69 @@
 
       <div id="canali" class="col s12" hidden>
         <div class="container barra-scorrimento">
-          <h2 class="title-sezione">Canali</h2>
           <div class="ordine-canali">
             <div class="colonna gestiti">
-              <h3>Canali gestiti</h3>
+              <h3 class="title-sezione">Canali gestiti</h3>
               <div id="canali_gestiti" class="popolari barra-scorrimento">
 
               </div>
             </div>
             <div class="colonna acquistati">
-              <h3>Canali acquistati</h3>
+              <h3 class="title-sezione">Canali acquistati</h3>
               <div id="canali_acquistati" class="impopolari barra-scorrimento">
 
               </div>
             </div>
             <div>
-              <div id="canale_selezionato" hidden>
-                <form id="form_modifica_canale">
-                  <div class="card" id="modifica_canale">
-                    <div class="row card-content">
+              <div id="modifica" class="modal">
+                <div id="canale_selezionato">
+                  <form id="form_modifica_canale">
+                <div class="modal-content">
 
-                      <div class="col s12">
-                        <div class="card-title">
-                          <span id="canale_selezionato_nome">proprietario</span>
+                      <div id="modifica_canale">
+                        <div class="row">
+
+                          <div class="col s12">
+                            <div class="card-title">
+                              <span id="canale_selezionato_nome">proprietario</span>
+                            </div>
+                          </div>
+
+                          <div class="input-field col s12">
+                            <label for="newImg" hidden>Cambia immagine: </label>
+                            <img alt="immagine canale attuale" id="canale_selezionato_img"></img>
+
+                            <div id="contenuto_immagine" class="file-field input-field col s12">
+                              <div class="btn image-btn">
+                                <span><i class="material-icons">image</i></span>
+                                <input type="file" id="new_img" name="img" accept="image/*">
+                              </div>
+                              <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Seleziona un'immagine">
+                              </div>
+                              <div id="preview"></div>
+                            </div>
+                          </div>
+
+                          <div class="input-field col s12">
+                            <input type="text" name="descrizione" id="new_descrizione" placeholder="Modifica" aria-label="Descrizione">
+                            <label for="new_descrizione">Descrizione: </label>
+                          </div>
+
+                          <div class="chips input-field col s12">
+                            <input class="input placeholder-chip" id="mod">
+                            <button type="button" class="btn right btn-aggiungi" onclick="aggiungi_chip_mod()">Aggiungi</button>
+                          </div>
                         </div>
                       </div>
-
-                      <div class="input-field col s12">
-                        <label for="newImg" hidden>Cambia immagine: </label>
-                        <img alt="immagine canale attuale" id="canale_selezionato_img"></img>
-
-                        <div id="contenuto_immagine" class="file-field input-field col s12">
-                          <div class="btn image-btn">
-                            <span><i class="material-icons">image</i></span>
-                            <input type="file" id="new_img" name="img" accept="image/*">
-                          </div>
-                          <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Seleziona un'immagine">
-                          </div>
-                          <div id="preview"></div>
-                        </div>
-                      </div>
-
-                      <div class="input-field col s12">
-                        <input type="text" name="descrizione" id="new_descrizione" placeholder="Modifica" aria-label="Descrizione">
-                        <label for="new_descrizione">Descrizione: </label>
-                      </div>
-
-                      <div class="chips input-field col s12">
-                        <input class="input placeholder-chip" id="mod">
-                        <button type="btn" class="btn right btn-aggiungi" onclick="aggiungi_chip_mod()">Aggiungi</button>
-                      </div>
-
-                      <button type="submit" class="btn salva-btn">Applica modifiche</button>
-                    </div>
-                  </div>
-                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn salva-btn">Applica modifiche</button>
+                </div>
+              </form>
+            </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -449,7 +455,9 @@
     document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.dropdown-trigger');
       var instances = M.Dropdown.init(elems);
-      instances.open();
+
+      var dropdownInstance = M.Dropdown.getInstance(elems[0]);
+      dropdownInstance.open();
     });
 
 
@@ -720,7 +728,7 @@
                 <span id="info_ruolo">proprietario</span>
               </div>
               <div class="col s4" id="info_btn">
-                <button class="btn" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
+                <button class="btn modal-trigger" href="#modifica" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
               </div>
             </div>
           </div>`)
