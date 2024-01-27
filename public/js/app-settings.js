@@ -129,13 +129,17 @@ function form_psw() {
 
 function seleziona_canale(tipo, nome){
   if (tipo === 'nuovo') {
+    if (!this.nuovoCanale.startsWith("$")) {
+      this.nuovoCanale = "$" + this.nuovoCanale
+    }
+    this.nuovoCanale = this.nuovoCanale.toLowerCase();
     $.ajax({
         type: 'POST',
         dataType: "json",
         async: false,
         url: `https://site212251.tw.cs.unibo.it/channel`,
         headers: { },
-        data: {nome: nome, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
+        data: {nome: this.nuovoCanale, userid: CURRENT_USER, descrizione: '', ufficiale: 'false'},
         success: function (data, status, xhr) {
           redirectToSettings_app();
         },
@@ -150,7 +154,7 @@ function seleziona_canale(tipo, nome){
     deleteButton.type = "button";
     deleteButton.className = "btn btn-danger";
     deleteButton.onclick = function() {
-      cancella_canale(nomeCanale);
+      cancella_canale(nome);
     };
     var trashIcon = document.createElement("i");
     trashIcon.className = "fa-solid fa-trash-can";
@@ -170,6 +174,7 @@ function seleziona_canale(tipo, nome){
             $("#canale_selezionato_img").attr("src", `https://site212251.tw.cs.unibo.it/uploads/${data.data.img}`)
             $("#new_descrizione").val(data.data.descrizione)
 
+            $("#modlist_ul").empty()
             data.data.mod.forEach((el) => {
                 $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
             })
