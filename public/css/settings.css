@@ -653,3 +653,18 @@ input#new_img {
   margin-bottom: 10px;
   width: 130px;
 }
+
+.area-canc {
+    justify-content: space-between;
+}
+
+button.btn.elimina_account {
+    align-self: flex-start;
+    background-color: red !important;
+    font-weight: bold;
+}
+
+.elimina_account i.fa-solid.fa-trash {
+    margin-left: 10px;
+    margin-right: 2px;
+}
