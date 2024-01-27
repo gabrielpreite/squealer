@@ -329,3 +329,19 @@ justify-content: center;
 #canali_acquistati i.fas.fa-plus {
     margin-left: 10px;
 }
+
+span#canale_selezionato_nome {
+    font-size: 18px;
+}
+
+#canale_selezionato_nome button.btn.red.right {
+    border-radius: 100%;
+    padding: 5px 17px;
+    height: auto;
+}
+
+.tag.col.s12 {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
