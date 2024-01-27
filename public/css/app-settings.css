@@ -319,3 +319,13 @@ justify-content: center;
   text-transform: capitalize;
 }
 
+#canali_acquistati button.btn {
+    background-color: #1da1f2;
+    border-radius: 20px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+#canali_acquistati i.fas.fa-plus {
+    margin-left: 10px;
+}

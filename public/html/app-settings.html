@@ -280,16 +280,15 @@
 
       <div id="canali" class="col s12" hidden>
         <div class="container barra-scorrimento">
-          <h2 class="title-sezione">Canali</h2>
           <div class="ordine-canali">
             <div class="colonna gestiti">
-              <h3>Canali gestiti</h3>
+              <h3 class="title-sezione">Canali gestiti</h3>
               <div id="canali_gestiti" class="popolari barra-scorrimento">
 
               </div>
             </div>
             <div class="colonna acquistati">
-              <h3>Canali acquistati</h3>
+              <h3 class="title-sezione">Canali acquistati</h3>
               <div id="canali_acquistati" class="impopolari barra-scorrimento">
 
               </div>
@@ -722,7 +721,7 @@
                 <span id="info_ruolo">proprietario</span>
               </div>
               <div class="col s4" id="info_btn">
-                <button class="btn" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
+                <button class="btn modal-trigger" href="#modifica" onclick="seleziona_canale('esistente','${el.canale}')">Modifica</button>
               </div>
             </div>
           </div>`)
