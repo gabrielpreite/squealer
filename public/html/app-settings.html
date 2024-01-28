@@ -778,7 +778,7 @@
             headers: {},
             data: { password: psw },
             success: function (data, status, xhr) {
-              redirectToSettings();
+              window.location.href = '/app';
             },
             error: function (xhr, status, error) {
                 if (xhr.status === 403) {
