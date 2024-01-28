@@ -806,6 +806,7 @@ exports.user_register = async function (q, credentials) {
 				{
 					img: "default_propic.png",
 					nome: q.nome + " " + q.cognome,
+					bio: "",
 					username: q.username,
 					email: q.email,
 					password: "" + psw,
