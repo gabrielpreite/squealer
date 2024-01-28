@@ -82,9 +82,9 @@ function aggiungi_dest() {
 
 async function check_destinatari(a) {
     if (document.getElementById("icona-canali").classList.length == 2) {
-        console.log("canali");
-        console.log(a);
-        //nome destinatario da cercare (per ora gestisco solo canali) = a
+        //console.log("canali");
+        //console.log(a);
+
         if (!a.startsWith('$')) {
             a = "$".concat(a)
         }
@@ -96,7 +96,7 @@ async function check_destinatari(a) {
             },
             success: function (data, status, xhr) {//canale esiste e utente ha i permessi
                 chip_n = chip_n + 1;
-                console.log(true);
+                //console.log(true);
                 return true;
             },
             error: function (xhr, status, e){
@@ -106,9 +106,7 @@ async function check_destinatari(a) {
             }
         });
     } else {
-        console.log("utenti");
-        console.log(a);
-        //nome utente da cercare = a
+        //nome utente da cercare
         if (a.startsWith('@')) {
             a = a.substring(1)
         } else if (a == get_cookie_by_name("username")) {
@@ -124,7 +122,7 @@ async function check_destinatari(a) {
             },
             success: function (data, status, xhr) {//canale esiste e utente ha i permessi
                 chip_n = chip_n + 1;
-                console.log(true);
+                //console.log(true);
                 return true;
             },
             error: function (xhr, status, e){
@@ -137,7 +135,7 @@ async function check_destinatari(a) {
 }
 
 function check_destinatari_canali(a) {
-    //nome destinatario da cercare (per ora gestisco solo canali) = a
+    //nome destinatario da cercare
     if (!a.startsWith('$')) {
       a = "$".concat(a)
     }
@@ -158,7 +156,7 @@ function check_destinatari_canali(a) {
 }
 
 function check_destinatari_utenti(a) {
-    //nome utente da cercare = a
+    //nome utente da cercare
     if (a.startsWith('@')) {
       a = a.substring(1)
     } else if (a == get_cookie_by_name("username")) {
@@ -184,7 +182,6 @@ function check_destinatari_utenti(a) {
 //CREAZIONE NUOVI POST
 function check_post() {
     // Verifica se ci sono destinatari selezionati
-    //let arr = window.location.href.split('?');
     if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
         if (document.getElementById("mostra-squeal").hidden == false) { //caso risposta
             
@@ -268,7 +265,7 @@ function add_post(){
               parole+=", "
             }
             parole+=document.getElementById("parola5").value
-            //console.log(parole)
+
             formData.append("parole", parole)
 
             formData.append("soluzione", document.getElementById("parolaDaIndovinare").value)
@@ -585,7 +582,6 @@ function compra_quota() {
   })
   .then((response) => {
     alert("Acquisto avvenuto con successo")
-    //chiudo elem non fatto
 
     let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
     //aggiorno il cookie quota

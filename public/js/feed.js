@@ -90,12 +90,7 @@ function aggiungi_squeal(squeals) {
     let id_comment = 'squeal_comment' + i;
     document.getElementById(id_comment).innerHTML = squeals[i].numRisposte;
 
-
-    //console.log("fv");
-    //get_cookie_by_name("username")
-
     //aggiungo le reaction gia' inserite
-
     if (squeals[i].reazioni.positive.adoro.includes(CURRENT_USER)) {
       let nreazioni0 = document.getElementById(id_sketch);
       let premuto0 = nreazioni0.parentNode;
@@ -163,7 +158,6 @@ function toggle_follow(target, tipo){
     data: { target: target, tipo: tipo },
     success: function (data, status, xhr) {
       let num_foll = parseInt($("#num_follower").text().split(" ")[0])
-      //console.log(data.risultato)
       if (data.risultato == "added"){
         $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
@@ -177,17 +171,6 @@ function toggle_follow(target, tipo){
       }
     }
   });
-/*
-  var pulsanteSegui = document.getElementById("pulsante-segui");
-  if (pulsanteSegui.value === "Follow") {
-    pulsanteSegui.style.backgroundColor = "#007BFF";
-    pulsanteSegui.style.color = "white";
-    pulsanteSegui.value = "Unfollow";
-  } else if (pulsanteSegui.value === "Unfollow") {
-    pulsanteSegui.style.backgroundColor = "white";
-    pulsanteSegui.style.color = "#007BFF";
-    pulsanteSegui.value = "Follow";
-  }*/
 }
 
 function aggiungi_info(meta){

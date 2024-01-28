@@ -46,14 +46,12 @@ font-variant: small-caps;
 }
 
 @media (max-height: 300px) {
-  /* based on font size below */
   .bottom-bar {
     height: 30px;
   }
 }
 
 @media (min-height: 500px) {
-  /* based on font size below */
   .bottom-bar {
     height: 50px;
   }
