@@ -16,12 +16,12 @@
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav class="navbar lighten-1" role="navigation">
+  <nav class="navbar lighten-1">
     <div class="nav-wrapper container">
       <a id="logo-container" href="/app" class="brand-logo left"><img src="..\media\img\logo_white.png" alt="logo squealer"></a>
 
       <div id="nav_quota_g" class="char-count-item center" aria-label="Caratteri rimanenti oggi">
-        <span class="count" id="charCount_giorno_vis" aria-live="polite">500</span>
+        <span class="count" id="charCount_giorno_vis" aria-live="polite">---</span>
         <span class="label">Quota Giornaliera</span>
       </div>
 
@@ -43,13 +43,13 @@
     <li>
        <div class="quota-container">
          <div class="quota_side">
-           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">500</span>
+           <span id="quota_text">Giorno:</span> <span id="charCount_giorno" class="quota-value">---</span>
          </div>
          <div class="quota_side">
-           <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">500</span>
+           <span id="quota_text">Settimana:</span><span id="charCount_sett" class="quota-value">---</span>
          </div>
          <div class="quota_side">
-           <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">500</span>
+           <span id="quota_text">Mese:</span><span id="charCount_mese" class="quota-value">---</span>
          </div>
        </div>
      </li>    <li><div class="divider"></div></li>
@@ -96,7 +96,7 @@
   </div>
 
   <!-- barra in basso -->
-  <div class="bottom-bar">
+  <div class="bottom-bar" role="navigation">
     <a href="/app">
       <i class="material-icons attivo">home</i>
     </a>
