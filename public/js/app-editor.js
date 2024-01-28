@@ -4,7 +4,6 @@ function cambia_campo(opzione) {
     $("#contenuto_posizione").attr("hidden", "true");
     $("#contenuto_ghigliottina").attr("hidden", "true");
 
-    // Rimuovi la classe 'attiva' da tutte le icone
     let icone = document.querySelectorAll(".post-tipo");
     icone.forEach(function (icona) {
       icona.classList.remove("attiva");
@@ -33,7 +32,7 @@ function cambia_campo(opzione) {
         $("#Textarea-g").attr("disabled", false);
         $("#Textarea").attr("disabled", true);
         icone[3].classList.add("attiva");
-        aggiornaQuota("Ghigliottina");        
+        aggiornaQuota("Ghigliottina");
         toggleCorpoGhigliottina();
     }
 }
@@ -44,13 +43,11 @@ function mostraCampo(tipo) {
     document.getElementById("campo-dest").hidden = true;
     document.getElementById("campo-bacheca").hidden = true;
 
-    // Rimuovi la classe 'attiva' da tutte le icone
     let icone = document.querySelectorAll(".tipo-icona");
     icone.forEach(function (icona) {
       icona.classList.remove("attiva");
     });
 
-    // Mostra il campo corrispondente al tipo selezionato
     if (tipo === "canali") {
         document.getElementById("campo-dest").hidden = false;
         document.getElementById("icona-canali").classList.add("attiva");
@@ -82,8 +79,6 @@ function aggiungi_dest() {
 
 async function check_destinatari(a) {
     if (document.getElementById("icona-canali").classList.length == 2) {
-        //console.log("canali");
-        //console.log(a);
 
         if (!a.startsWith('$')) {
             a = "$".concat(a)
@@ -96,7 +91,6 @@ async function check_destinatari(a) {
             },
             success: function (data, status, xhr) {//canale esiste e utente ha i permessi
                 chip_n = chip_n + 1;
-                //console.log(true);
                 return true;
             },
             error: function (xhr, status, e){
@@ -122,7 +116,6 @@ async function check_destinatari(a) {
             },
             success: function (data, status, xhr) {//canale esiste e utente ha i permessi
                 chip_n = chip_n + 1;
-                //console.log(true);
                 return true;
             },
             error: function (xhr, status, e){
@@ -181,10 +174,9 @@ function check_destinatari_utenti(a) {
 
 //CREAZIONE NUOVI POST
 function check_post() {
-    // Verifica se ci sono destinatari selezionati
     if (document.getElementById("campo-bacheca").hidden) { //caso bacheca
         if (document.getElementById("mostra-squeal").hidden == false) { //caso risposta
-            
+
         } else if (!(chip_arr[0].chipsData.length > 0)) { //caso no destinatari
             alert("Nessun destinatario selezionato");
             return false;
@@ -207,7 +199,6 @@ function check_post() {
       }
       mapeado(map, marker);
     }
-    // Altri controlli se necessari, come il testo, immagini o posizione
     return true;
 }
 
@@ -277,7 +268,6 @@ function add_post(){
         })
         .then((response) => {
             if (response.ok) {
-                // The initial request was successful
                 window.location.replace("https://site212251.tw.cs.unibo.it/app");
             } else {
                 throw new Error("Network response was not ok.");
@@ -376,7 +366,6 @@ function updateIntervalloVal() {
     } else {
       textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina! Le parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     }
-    //textarea_g.trigger('autoresize');
 }
 
 function toggleCorpoGhigliottina() {
@@ -385,7 +374,6 @@ function toggleCorpoGhigliottina() {
 
     textarea_g.value = 'Ho avviato una nuova partita di #ghigliottina!\nLe parole saranno pubblicate ogni ' + intervalloInput.value + ' minuti.';
     textarea_g.readOnly = true;
-    //textarea_g.trigger('autoresize');
 }
 
 //MAPPA
@@ -408,7 +396,6 @@ function initMap() {
       animation: google.maps.Animation.DROP,
     });
 
-    // Aggiungi il listener di eventi per il clic sulla mappa
     map.addListener("click", (event) => {
       placeMarker(event.latLng);
     });
@@ -424,16 +411,15 @@ function initMap() {
 
             map.panTo(pos);
             map.setZoom(13);
-            marker.setPosition(pos); // Imposta la posizione del marker
+            marker.setPosition(pos);
 
-            infoWindow.close(); // Chiudi la finestra informativa se era aperta
+            infoWindow.close();
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
           }
         );
       } else {
-        // Il browser non supporta la geolocalizzazione
         handleLocationError(false, infoWindow, map.getCenter());
       }
       return false;
@@ -451,21 +437,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function placeMarker(location) {
-  // Rimuovi il marker esistente, se presente
   if (marker) {
     marker.setMap(null);
   }
 
-  // Crea un nuovo marker
   marker = new google.maps.Marker({
     position: location,
     map: map,
     animation: google.maps.Animation.DROP,
   });
 
-  // Puoi fare altro con il marker qui se necessario
-  // Ad esempio, salvare le coordinate in una variabile o inviarle al server
-  infoWindow.close(); // Chiudi la finestra informativa se era aperta
+  infoWindow.close(); 
 }
 
 function mapeado(map, marker) {
@@ -570,7 +552,7 @@ function compra_quota() {
   } else if (document.getElementById("img_480").classList[2] == "active") {
     qnt = 480;
   }
-  
+
   let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
 
   fetch("/user/" + CURRENT_USER + "/quota", {

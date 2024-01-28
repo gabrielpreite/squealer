@@ -161,9 +161,9 @@ border: none;
 border-radius: 4px;
 box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 padding: 0.5rem 0;
-max-height: 400px; /* Imposta l'altezza massima desiderata */
-overflow-y: auto; /* Aggiunge una barra di scorrimento verticale se necessario */
-max-width: 400px; /* Imposta la larghezza massima desiderata */
+max-height: 400px;
+overflow-y: auto;
+max-width: 400px; 
 }
 
 #notifiche .dropdown-item {

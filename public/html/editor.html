@@ -20,7 +20,7 @@
       infoWindow = new google.maps.InfoWindow();
       map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 41.9028, lng: 12.4964 }, // Coordinate di Roma
-        zoom: 5, // Livello di zoom 5
+        zoom: 5,
       });
 
       const locationButton = document.createElement("button");
@@ -35,7 +35,7 @@
         animation: google.maps.Animation.DROP,
       });
 
-      // Aggiungi il listener di eventi per il clic sulla mappa
+      // aggiungo il listener di eventi per il clic sulla mappa
       map.addListener("click", (event) => {
         placeMarker(event.latLng);
       });
@@ -51,9 +51,9 @@
 
               map.panTo(pos);
               map.setZoom(13);
-              marker.setPosition(pos); // Imposta la posizione del marker
+              marker.setPosition(pos);
 
-              infoWindow.close(); // Chiudi la finestra informativa se era aperta
+              infoWindow.close();
             },
             () => {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -67,7 +67,7 @@
       });
     }
   </script>
-  
+
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
 
@@ -208,13 +208,13 @@
             <div id="lista_destinatari" hidden="false">
               <div id="destinatari-inseriti-container">
                 <div id="destinatari-inseriti">
-                  <!-- Qui verranno visualizzati i destinatari inseriti -->
+                  <!-- destinatari -->
                 </div>
               </div>
             </div>
 
             <div id="campo-bacheca" hidden="true">
-              <!-- Da riempire se si vuole fare visualizzare qualcosa -->
+
             </div>
           </div>
 
@@ -275,7 +275,7 @@
           </div>
         </div>
 
-          
+
           <div class="col-md-3" id="col-dx">
             <div id="vuoto">
 
@@ -500,30 +500,26 @@
       add_post();
     });
 
-    
+
 
     function mostraCampo(tipo) {
       var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
 
-      // Rimuovi tutte le classi esistenti da col-sx
       var colSx = document.getElementById("col-sx");
       var colDx = document.getElementById("col-dx");
       colSx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
       colDx.classList.remove("col-sx-utenti", "col-sx-canali", "col-sx-bacheca");
 
-      // Nascondi tutti i campi inizialmente
       document.getElementById("campo-canali").hidden = true;
       document.getElementById("campo-utenti").hidden = true;
       document.getElementById("lista_destinatari").hidden = false;
       document.getElementById("campo-bacheca").hidden = true;
 
-      // Rimuovi la classe 'attiva' da tutte le icone
       var icone = document.querySelectorAll(".tipo-icona");
       icone.forEach(function (icona) {
         icona.classList.remove("attiva");
       });
 
-      // Mostra il campo corrispondente al tipo selezionato
       if (tipo === "canali") {
         document.getElementById("campo-canali").hidden = false;
         document.getElementById("lista_destinatari").hidden = true;
@@ -557,7 +553,7 @@
 
 
     function check_destinatari_canali() {
-      var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare (per ora gestisco solo canali)
+      var a = $("#cerca_destinatari_canali").val();//nome destinatario da cercare
       if (!a.startsWith('$')) {
         a = "$".concat(a)
       }
@@ -572,7 +568,6 @@
           //rimuovo $ iniziale per visualizzazione in lista
           a = a.substring(1)
           if (!array_dest_canali.includes(a)) {
-              // Aggiungi il destinatario al riquadro dei destinatari inseriti
               $("#destinatari-inseriti").append(`
                 <div class="inserito-item name-${a}">
                 <div class="left-content">
@@ -611,7 +606,6 @@
         },
         success: function (data, status, xhr) {//canale esiste e utente ha i permessi
           if (!array_dest_utenti.includes(a)) {
-            // Aggiungi il destinatario al riquadro dei destinatari inseriti
             $("#destinatari-inseriti").append(`
               <div class="inserito-item name-${a}">
               <div class="left-content">
@@ -645,18 +639,14 @@
       var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
       var listaDestinatariDiv = document.getElementById("lista_destinatari");
 
-      // Verifica se il div "destinatari-inseriti" è vuoto
       if (destinatariInseritiDiv.innerHTML.trim() == "") {
-        // Imposta "hidden" su true per "lista_destinatari"
         listaDestinatariDiv.hidden = true;
       } else {
-        // Altrimenti, imposta "hidden" su false per "lista_destinatari"
         listaDestinatariDiv.hidden = false;
       }
     }
 
     function check_post() {
-      // Verifica se ci sono destinatari selezionati
       let arr = window.location.href.split('?');
       if (!((arr.length > 1 && arr[1] !== '') || (!document.getElementById("campo-bacheca").hidden))) { //caso risposta o bacheca, no destinatari
         if ($("#destinatari-inseriti").children().length == 0) {
@@ -681,7 +671,6 @@
         }
         mapeado(map, marker);
       }
-      // Altri controlli se necessari, come il testo, immagini o posizione
       return true;
     }
 
@@ -745,7 +734,6 @@
         })
         .then((response) => {
           if (response.ok) {
-            // The initial request was successful
             window.location.replace("https://site212251.tw.cs.unibo.it");
           } else {
             throw new Error("Network response was not ok.");
@@ -758,7 +746,7 @@
       var switchToggle = document.getElementById('switchToggle');
       var textarea = document.getElementById('Textarea');
 
-      // Se lo switch ghigliottina è attivato, impedisci il cambio campo
+      // se lo switch ghigliottina è attivato, impedisco il cambio campo
       if (switchToggle.checked) {
           return;
       }
@@ -906,7 +894,6 @@
     }
 
     function placeMarker(location) {
-      // Rimuovi il marker esistente, se presente
       if (marker) {
         marker.setMap(null);
       }
@@ -918,12 +905,10 @@
         animation: google.maps.Animation.DROP,
       });
 
-      // Puoi fare altro con il marker qui se necessario
-      // Ad esempio, salvare le coordinate in una variabile o inviarle al server
-      infoWindow.close(); // Chiudi la finestra informativa se era aperta
+      infoWindow.close();
     }
 
-    // Chiamata alla funzione per inizializzare la mappa quando la pagina è pronta
+    // inizializzaro la mappa quando la pagina è pronta
     google.maps.event.addDomListener(window, "load", initMap());
 
 
@@ -954,7 +939,7 @@
       return staticMapUrl;
     }
 
-    
+
 
     //GHIGLIOTTINA
     function updateIntervalloVal() {

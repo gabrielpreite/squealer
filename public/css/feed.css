@@ -400,7 +400,6 @@
   text-align: right;
 }
 
-/* Stile per i commenti */
 .icona-chiudi {
   color: #FF5733;
   float: right;
@@ -420,7 +419,6 @@
   border-bottom: 1px solid #ccc;
 }
 
-/* Personalizza la barra di scorrimento */
 .barra-scorrimento::-webkit-scrollbar {
   width: 10px;
 }
@@ -510,7 +508,6 @@
   background-color: #0d88c2;
 }
 
-/*btn link nomi corpo testo*/
 .btn_nomi {
   background:none;
   border:none;
@@ -521,8 +518,8 @@
 
 /* CHAT */
 #chat-container {
-  height: 70vh; /* Altezza della finestra visualizzata */
-  overflow-y: auto; /* Aggiungi una barra di scorrimento se i messaggi sono più alti dello schermo */
+  height: 70vh;
+  overflow-y: auto; 
   background-color: #f2f2f2;
   padding: 20px;
   box-sizing: border-box;

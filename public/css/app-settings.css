@@ -131,10 +131,7 @@ button.btn.salva-btn {
   display: flex;
   align-items: center;
   border: 2px solid #ddd;
-  /* Colore del bordo grigio chiaro */
   border-radius: 30px;
-  /* Border radius di 10px */
-
 }
 
 #acquisti .timestamp i {
@@ -153,16 +150,13 @@ button.btn.salva-btn {
 #acquisti .quantita {
   color: #555;
   font-weight: normal;
-  /* Rimuovo il grassetto */
   font-size: 1.2em;
 }
 
 #acquisti .quantita .numero {
   color: #333;
-  /* Cambiato il colore del numero a un grigio più scuro */
   font-size: 1.2em;
   font-weight: bold;
-  /* Metto in grassetto solo il numero */
 }
 
 #acquisti .caratteri {
@@ -185,21 +179,17 @@ button.btn.salva-btn {
   margin-right: 20px;
   padding: 10px 15px;
   border: 2px solid #ddd;
-  /* Colore del bordo grigio chiaro */
   border-radius: 30px;
-  /* Border radius di 10px */
 }
 
 #acquisti .spesa i {
   font-size: 22px;
   margin-right: 10px;
   color: #3498db;
-  /* Colore per l'icona del carrello */
 }
 
 #acquisti .ammontare {
   color: #3498db;
-  /* Colore per l'importo della spesa */
   font-size: 1.3em;
   font-weight: bold;
 }

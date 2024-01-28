@@ -184,7 +184,6 @@
                   <label for="oldPassword" class="label-form">Password: </label>
                   <input type="password" name="old_password" class="form-control" v-model="psw" id="oldPassword" placeholder="Password"
                     aria-label="Password attuale" required>
-                  <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
                 </div>
 
                 <div class="form-group">
@@ -378,17 +377,6 @@
 
   <script>
 
-    /*// override funzione form update_smm
-    document.getElementById("update_smm").addEventListener('submit', async event => {
-      event.preventDefault();
-      update_smm();
-    });*/
-
-    /*// override funzione form modifica canale
-    document.getElementById("form_modifica_canale").addEventListener('submit', async event => {
-      event.preventDefault();
-      update_channel();
-    });*/
 
     // INSERIMENTO PROPIC UTENTE
     $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/" + get_cookie_by_name("img"))
@@ -399,33 +387,6 @@
       CURRENT_USER = get_cookie_by_name("username");
     }
 
-    //azione post form info utente
-    /*//$("#form_info").attr("action", `/user/${CURRENT_USER}/settings`)
-    document.getElementById("form_info").addEventListener('submit', async event => {
-      event.preventDefault();
-      form_info();
-    });*/
-
-    //azione post form psw utente
-    /*//$("#form_psw").attr("action", `/user/${CURRENT_USER}/settings`)
-    document.getElementById("form_psw").addEventListener('submit', async event => {
-      event.preventDefault();
-      form_psw();
-    });*/
-
-    //password show/hide
-    /*
-    const togglePassword = document.querySelector('#togglePassword');
-    const password = document.querySelector('#oldPassword');
-
-    togglePassword.addEventListener('click', function (e) {
-      // toggle the type attribute
-      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-      password.setAttribute('type', type);
-      // toggle the eye slash icon
-      this.classList.toggle('fa-eye-slash');
-    });
-    */
 
     // aggiorno la quota
     refresh_quota()
@@ -439,18 +400,6 @@
     document.getElementById("charCount_giorno").textContent = quota_giorno;
 
 
-    // ================= SEZIONI
-
-
-    // === PROFILO
-
-    //migrata su vue
-
-    // === ACCOUNT
-
-    //migrata su vue
-
-    // === SMM
 
     //tuoi account gestiti
     let account = []
@@ -497,15 +446,6 @@
     } else {
       $("#current_smm").attr("value", result)
     }
-
-    // STORICO ACQUISTI
-
-    // migrata su vue
-
-
-    // FOLLOWER E FOLLOW
-
-    // migrata su vue
 
 
     // POPOLARITA
@@ -554,9 +494,7 @@
           nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
         }
 
-        // Imposta il contenuto HTML della nuova div
         nuovoElemento.innerHTML = nuovoContenuto;
-        // Aggiungi la nuova div all'elemento container
         container_popolare.appendChild(nuovoElemento);
 
       } else if (all_post[i].categoria == 'impopolare') {
@@ -582,9 +520,7 @@
           nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
         }
 
-        // Imposta il contenuto HTML della nuova div
         nuovoElemento.innerHTML = nuovoContenuto;
-        // Aggiungi la nuova div all'elemento container
         container_impopolare.appendChild(nuovoElemento);
 
       } else if (all_post[i].categoria == 'controverso') {
@@ -610,9 +546,7 @@
           nuovoContenuto = nuovoContenuto.replace("{{contenuto}}", `<img src="https://site212251.tw.cs.unibo.it/uploads/${all_post[i].corpo}" alt="immagine_squeal">`);
         }
 
-        // Imposta il contenuto HTML della nuova div
         nuovoElemento.innerHTML = nuovoContenuto;
-        // Aggiungi la nuova div all'elemento container
         container_controverso.appendChild(nuovoElemento);
 
       }
@@ -622,7 +556,6 @@
     var numero_impopolari = document.querySelector('.colonna.impop h3 span');
     var numero_controversi = document.querySelector('.colonna.controv h3 span');
 
-    // Aggiorna il contenuto con il numero effettivo
     numero_popolari.textContent = 'n.' + num_popolari;
     numero_impopolari.textContent = 'n.' + num_impopolari;
     numero_controversi.textContent = 'n.' + num_controversi;
@@ -631,7 +564,6 @@
     let pop = num_popolari - num_impopolari;
     let bonus = (Math.floor(pop / 10) / 100) * 300 //1% +- per ogni 10 di popolarita
 
-    // Aggiorna il contenuto del riquadro popolarita
     var val_popolarita = document.querySelector('.riquadro_popolarita span');
     var riquadro_popolarita = document.querySelector('.riquadro_popolarita');
 
@@ -644,7 +576,6 @@
       riquadro_popolarita.style.color = 'black';
     }
 
-    // Aggiorna il contenuto del riquadro quota
     var val_quota = document.querySelector('.riquadro_quota span');
     var riquadro_quota = document.querySelector('.riquadro_quota');
 
@@ -717,7 +648,6 @@
       },
       methods: {
         load_acquisti(){
-          //console.log(this.array_acquisti.length)
           let prezzo = {120: "0,99", 240: "1,99", 480: "4,99"}
           lista_acquisti = null
           $.ajax({
@@ -744,7 +674,6 @@
                   </div>`
             )
           })
-          //console.log(this.array_acquisti)
         },
         load_follow(){
           let follow = []
@@ -895,10 +824,6 @@
                     data.data.mod.forEach((el) => {
                         $("#modlist_ul").append(`<li id="li_${el}" onclick="rimuovi_mod('${el}')">${el}  <i class="fa-solid fa-trash-can"></i></li>`)
                     })
-                    /*mods = mods.slice(0, -1)
-                    console.log(mods)
-                    console.log(data.data.mod)
-                    $("#modlist").val(mods)*/
                 }
             });
           }
@@ -913,7 +838,6 @@
           }
           modstring = modstring.slice(0, -1)
           formData.set("modlist", modstring)
-          //console.log(modstring)
 
           let nome = $("#canale_selezionato_nome").text()
           $.ajax({
@@ -939,7 +863,6 @@
           if(formData.get("new_smm") === "")
               formData.set("new_smm", "null")
 
-          //console.log(formData)
 
           fetch(`/user/${CURRENT_USER}/managed_by`, {
               method: "POST",
@@ -947,7 +870,6 @@
           })
           .then((response) => {
               if (response.ok) {
-              // The initial request was successful
               window.location.replace("https://site212251.tw.cs.unibo.it/settings");
               } else {
               throw new Error("Network response was not ok.");

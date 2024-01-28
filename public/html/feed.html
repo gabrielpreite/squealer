@@ -90,13 +90,6 @@
               <h2 class="dropdown-header">Notifiche</h2>
             </div>
           </div>
-          <!-- VERSIONE HOME
-          <div id="home">
-            <button class="btn btn-unstyled" id="homeButton">
-              <i class="fas fa-home"></i>
-            </button>
-          </div>
-            -->
           <div id="impostazioni">
             <button type="button" class="btn btn-unstiled" id="settingsButton" title="Impostazioni" onclick="redirectToSettings()">
               <i class="fas fa-cog" aria-hidden="true"></i>
@@ -153,37 +146,14 @@
     <aside class="col-md-3 barra-scorrimento" id="col-sx" aria-label="Statistiche squeals" role="complementary">
       <nav class="social-channels" aria-label="Altri canali squeal">
         <a href="" class="channel-button" style="margin-left: 15px" aria-label="Canale feed"><i class="fa-regular fa-envelope-open" aria-hidden="true"></i> Feed</a>
-        <p id="btn-controverso" @click="short('CONTROVERSO')" class="channel-button" aria-label="Canale controverso"><i class="fa-solid fa-poo-storm" aria-hidden="true"></i> Controverso</p>
+        <p id="btn-news" @click="short('NOTIZIE')" class="channel-button" aria-label="Canale news"><i class="far fa-newspaper fa-fw" aria-hidden="true"></i> News</p>
         <p id="btn-meteo" @click="short('METEO')" class="channel-button" style="margin-right: 5px;" aria-label="Canale meteo"><i class="far fa-sun" aria-hidden="true"></i> Meteo</p>
       </nav>
 
-      <!-- <h3 class="statistiche-title" style="text-align: left">Tendenze</h3>
-      <ol class="tendenze-list" aria-label="Topic di tendenza">
-        <li class="tendenze-item">
-          <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-          <span class="tendenze-count">100k Squeals</span>
-        </li>
-        <li class="tendenze-item">
-          <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-          <span class="tendenze-count">80k Squeals</span>
-        </li>
-        <li class="tendenze-item">
-          <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-          <span class="tendenze-count">50k Squeals</span>
-        </li>
-        <li class="tendenze-item">
-          <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-          <span class="tendenze-count">40k Squeals</span>
-        </li>
-        <li class="tendenze-item">
-          <span class="tendenze-tag"><a href="#">#hashtag</a></span>
-          <span class="tendenze-count">30k Squeals</span>
-        </li>
-      </ol> -->
 
       <h3 class="statistiche-title">Trend</h3>
       <div class="grafico mosaic-container">
-        <!-- Le tessere del mosaico saranno generate dinamicamente con JavaScript -->
+
       </div>
 
       <h3 class="statistiche-title">Cronologia Squeal</h3>
@@ -426,7 +396,6 @@
                       }
                     }
 
-                    // Combinare parallelamente datiCommenti e corpoSqueals in risultatoParallelo
                     var risultatoParallelo = [];
                       for (let i = 0; i < corpoSqueals.length; i++) {
                           risultatoParallelo.push({ numCommenti: datiCommenti[i], corpoSqueal: corpoSqueals[i], idSqueal: idSqueals[i] });
@@ -445,10 +414,8 @@
               });
 
 
-              // Ottieni il riferimento al canvas del grafico
               const canvasGraficoCommenti = document.getElementById("commentiChart");
 
-              // Crea il grafico utilizzando Chart.js
               const graficoCommenti = new Chart(canvasGraficoCommenti, {
                 type: "bar",
                 data: {
@@ -487,15 +454,11 @@
                     },
                   },
                   onClick: function (event, elements) {
-                    // Controllo se è stato cliccato un elemento del grafico
                     if (elements.length > 0) {
-                      // Recupero l'indice dell'elemento cliccato
                       const index = elements[0].index;
 
-                      // Recupero l'ID del squeal corrispondente all'indice
                       const idSqueal = id[index];
 
-                      // Reindirizzo alla pagina desiderata usando l'ID del squeal
                       ricerca_post(idSqueal);
                     }
                   },
@@ -518,10 +481,8 @@
                 }
               });
 
-              // Ottieni il riferimento al canvas del grafico
               const canvasGraficoPopolarita = document.getElementById("popolaritaChart");
 
-              // Crea il grafico a linea utilizzando Chart.js
               const graficoPopolarita = new Chart(canvasGraficoPopolarita, {
                 type: "line", // Tipo di grafico (linea)
                 data: {
@@ -565,7 +526,6 @@
                   return postFrequenza;
               }
 
-              // Funzione per analizzare la data nel formato "dd/mm"
               function parseDate(dateString) {
                   const [giorno, mese] = dateString.split('/').map(Number);
                   return new Date(2023, mese - 1, giorno);
@@ -579,9 +539,7 @@
               }
               postData = trasformaFormatoData(postData);
               const postFrequenza = countPostsInWeek(postData, settPopolarita);
-              // Ora postFrequenza è un array che contiene il numero di post per ciascuna settimana in settPopolarita
 
-              // Continua con la creazione del grafico come nel tuo codice originale
               var canvas = document.getElementById('squealChart');
               var ctx = canvas.getContext('2d');
 
@@ -591,7 +549,7 @@
                   labels: settPopolarita,
                   datasets: [{
                     label: 'Numero di squeals postati',
-                    data: postFrequenza, // Utilizza il nuovo array postFrequenza
+                    data: postFrequenza, // utilizzo array postFrequenza
                     borderColor: 'rgba(255, 139, 45, 1)',
                     borderWidth: 2,
                     fill: false,
@@ -603,7 +561,6 @@
                   scales: {
                     y: {
                       beginAtZero: true,
-                      // Imposta il formato degli assi y come interi anziché con la virgola
                       ticks: {
                         callback: function(value) {
                           return value.toFixed(0);
@@ -626,7 +583,6 @@
             this.load_stats()
           }
         }).mount('body')
-        //app.$options.methods.test("html")
 
 
         // INIT
@@ -643,8 +599,6 @@
         });
 
 
-        // INSERIMENTO ACCOUNT GESTITI DA SMM
-        //vue
 
         var notifiche;
         $.ajax({
@@ -694,7 +648,6 @@
           url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}/feed`,
           headers: { },
           success: function (data, status, xhr) {
-            //console.log('data: ', data);
             squeals = data["data"];
           }
         });

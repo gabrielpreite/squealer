@@ -59,7 +59,7 @@
   justify-content: center;
   align-items: center;
   gap: 35px;
-  flex-wrap: wrap; /* Per andare a capo se lo spazio è insufficiente */
+  flex-wrap: wrap;
 }
 
 #tipo-icona-container .tipo-icona {
@@ -71,7 +71,7 @@
   font-size: 10px;
   margin: 0 10px;
   text-decoration: none;
-  color: #777; /* Colore di default */
+  color: #777;
 }
 
 #tipo-icona-container .tipo-icona.attiva {
@@ -136,7 +136,6 @@
 }
 
 
-/* Stile generale del campo di ricerca */
 .search-container {
     display: flex;
     align-items: center;
@@ -144,7 +143,6 @@
     margin-bottom: 10px;
 }
 
-/* Stile del campo di ricerca */
 .search-container input[type="text"] {
     padding: 10px;
     border-radius: 20px 0 0 20px;
@@ -153,7 +151,6 @@
     margin: 0;
 }
 
-/* Stile del pulsante di ricerca */
 .search-button {
     background-color: #1da1f2;
     color: white;
@@ -172,25 +169,23 @@
     color: white;
 }
 
-/* Stile dell'icona di ricerca */
 .search-button i {
     font-size: 18px;
 }
 
-/* Ridimensionamento del pulsante per adattarsi all'altezza del campo di ricerca */
 .search-button {
     height: 100%;
 }
 
 #destinatari-inseriti-container {
-  min-height: 40px; /* Altezza minima di una riga */
+  min-height: 40px;
   max-height: 280px;
-  border: 1px solid #ddd; /* Linea di separazione grigia */
+  border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
   padding: 10px;
   margin-bottom: 20px;
-  overflow-y: auto; /* Barra di scorrimento verticale se necessario */
+  overflow-y: auto;
 }
 
 .inserito-item {
@@ -335,11 +330,10 @@
       border-radius: 5px;
     }
 
-    /* Stile personalizzato per il pulsante */
     .custom-map-control-button {
       background-color: #fff;
-      color: #333; /* Colore del testo */
-      border: 2px solid #ccc; /* Colore del bordo */
+      color: #333;
+      border: 2px solid #ccc;
       border-radius: 5px;
       padding: 8px 16px;
       margin-bottom: 20px;
@@ -349,7 +343,7 @@
     }
 
     .custom-map-control-button:hover {
-      background-color: #f0f0f0; /* Colore dello sfondo al passaggio del mouse */
+      background-color: #f0f0f0;
     }
 
 
@@ -389,15 +383,12 @@
   background-position: center center;
 }
 
-/* Stile per i commenti */
 .contenitore-commenti {
   margin-top: 15px;
   height: 81%;
   overflow-y: auto;
-  /*border-bottom: 1px solid #ccc;*/
 }
 
-/* Personalizza la barra di scorrimento */
 .barra-scorrimento::-webkit-scrollbar {
   width: 10px;
 }
@@ -469,7 +460,6 @@
   text-align: center;
 }
 
-/* Stile personalizzato per il pulsante di chiusura */
 .close {
   font-size: 28px;
   color: red;
@@ -602,11 +592,10 @@ input[type="text"]:last-child {
     margin-bottom: 0;
 }
 
-/* Stile per il pulsante "Inizia Partita" (opzionale) */
 .title-ghigliottina {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Aggiunto per separare gli elementi alla massima larghezza possibile */
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
@@ -650,7 +639,7 @@ input#parolaDaIndovinare {
     display: inline-block;
     width: 40px;
     height: 20px;
-    margin-right: 10px; /* Aggiunto un margine a destra per separare lo slider dal testo */
+    margin-right: 10px;
 }
 
 .slider {
@@ -735,7 +724,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 #corpoGhigliottina {
-    display: none; /* Inizialmente nascosto */
+    display: none; 
 }
 
 .shake {

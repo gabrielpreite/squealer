@@ -220,12 +220,8 @@
         }
       });
 
-      //console.log("refresh notifications")
-      //console.log("old last "+last_notifica_id)
-
       if(notifiche[0].timestamp > last_notifica_id){
         document.getElementById('notify').classList.add('bluee');
-        //console.log("FOUND NEW")
         let audio = new Audio('https://site212251.tw.cs.unibo.it/media/sounds/notification.mp3');
         audio.play();
         last_notifica_id = notifiche[0].timestamp

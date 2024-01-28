@@ -120,7 +120,7 @@
 
 
       <div id="campo-bacheca" hidden>
-        <!-- Da riempire se si vuole fare visualizzare qualcosa -->
+
       </div>
     </div>
   </div>
@@ -388,11 +388,11 @@
       var reader = new FileReader();
       reader.onload = function(e) {
         var preview = document.getElementById('preview');
-        preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+        preview.innerHTML = '';
 
         var img = document.createElement('img');
-        img.src = e.target.result; // Imposta l'URL dell'immagine
-        img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+        img.src = e.target.result;
+        img.classList.add('preview-image');
 
         preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
         imageFileURL = e.target.result;
