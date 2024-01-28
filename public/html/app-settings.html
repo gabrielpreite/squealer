@@ -768,6 +768,25 @@
           </div>
         </div>`)
 
+        cancella_account(){
+          var psw = document.getElementById('oldPassword').value
+          $.ajax({
+            type: 'DELETE',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+            headers: {},
+            data: { password: psw },
+            success: function (data, status, xhr) {
+              redirectToSettings();
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 403) {
+                    alert("La password inserita non è corretta");
+                }
+            }
+          });
+        }
   </script>
 
 </body>
