@@ -358,3 +358,14 @@ button.btn.right.btn-aggiungi-tag {
     margin-bottom: 10px;
     padding-right: 20px;
 }
+
+button.btn.elimina_account {
+    align-self: flex-start;
+    background-color: red !important;
+    font-weight: bold;
+}
+
+.elimina_account i.fa-solid.fa-trash {
+    margin-left: 10px;
+    margin-right: 2px;
+}
