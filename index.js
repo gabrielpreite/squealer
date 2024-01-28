@@ -789,6 +789,10 @@ app.post('/user/login', async function(req, res) {
         if(response["risultato"] === "successo"){
             session=req.session; //login riuscito
             session.userid=req.body.username;
+            let level = 1
+            if (response.data.professional_flag) level = 2
+            else if(response.data.redazione_flag) level = 3
+            session.level = level
             console.log(req.session)
             res.cookie('username', session.userid)
             res.cookie('nome', response["data"]["nome"])
