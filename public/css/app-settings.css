@@ -356,3 +356,29 @@ button.btn.right.btn-aggiungi-tag {
     margin-bottom: 10px;
     padding-right: 20px;
 }
+
+button.btn.elimina_account {
+    background-color: red !important;
+    font-weight: bold;
+    text-transform: capitalize;
+    border-radius: 20px;
+    margin-top: 70px;
+}
+
+.elimina_account i.fa-solid.fa-trash {
+    margin-left: 10px;
+    margin-right: 2px;
+}
+
+h4.subtitle-sezione {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+}
+
+.foll-seg {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

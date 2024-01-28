@@ -8,6 +8,7 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
   <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-settings.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../css/app-navbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -172,6 +173,7 @@
 
             <button type="submit" class="btn salva-btn">Salva</button>
           </form>
+          <button type="button" class="btn elimina_account" onclick="cancella_account()">Elimina Account<i class="fa-solid fa-trash"></i></button>
         </div>
       </div>
 
@@ -220,17 +222,17 @@
                 <!-- Lista dei follower -->
               </ul>
             </div>
-
+            <li class="divider foll-seg" tabindex="-1"></li>
             <h3 class="title-sezione">Seguiti</h3>
             <div class="followers">
               <div class="utenti">
-                <h4 class="title-sezione">Utenti</h4>
+                <h4 class="subtitle-sezione">Utenti</h4>
                 <ul class="follow-list-utenti barra-scorrimento">
                   <!-- Lista dei follower -->
                 </ul>
               </div>
               <div class="canali">
-                <h4 class="title-sezione">Canali</h4>
+                <h4 class="subtitle-sezione">Canali</h4>
                 <ul class="follow-list-canali barra-scorrimento">
                   <!-- Lista dei follower -->
                 </ul>
@@ -766,6 +768,25 @@
           </div>
         </div>`)
 
+        cancella_account(){
+          var psw = document.getElementById('oldPassword').value
+          $.ajax({
+            type: 'DELETE',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+            headers: {},
+            data: { password: psw },
+            success: function (data, status, xhr) {
+              redirectToSettings();
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 403) {
+                    alert("La password inserita non è corretta");
+                }
+            }
+          });
+        }
   </script>
 
 </body>
