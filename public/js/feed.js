@@ -590,6 +590,7 @@ function inizia_chat(username, azione) {
     document.getElementById("chat").hidden = false;
     document.getElementById("chat_title").innerHTML = username;
     document.getElementById("messaggioInput").value = ""
+    $("#messaggi_chat").empty()
 
     $.ajax({
       type: 'GET',
