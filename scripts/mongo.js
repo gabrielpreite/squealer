@@ -50,7 +50,7 @@ exports.pop = async function (dry, credentials) {
 
 		/* CALCOLO SQUEAL POP/IMPOP/CONTR */
 
-		//console.log("Inizio calcolo etichette")
+		console.log("Inizio calcolo etichette")
 		result = []
 		await mongo.db(dbname)
 			.collection("messaggio")
@@ -65,24 +65,24 @@ exports.pop = async function (dry, credentials) {
 			let reac_pos = squeal.reazioni.positive.concordo.length + squeal.reazioni.positive.mi_piace.length + squeal.reazioni.positive.adoro.length
 			let reac_neg = squeal.reazioni.negative.sono_contrario.length + squeal.reazioni.negative.mi_disgusta.length + squeal.reazioni.negative.odio.length
 			let mc = 0.25 * visual
-			//console.log("squeal " + squeal.post_id + ", visual " + visual + ", positive " + reac_pos + ", negative " + reac_neg + ", massa critica " + mc)
+			console.log("squeal " + squeal.post_id + ", visual " + visual + ", positive " + reac_pos + ", negative " + reac_neg + ", massa critica " + mc)
 
 			let etichetta = null
 			if (reac_pos > mc && reac_neg > mc) {
-				//console.log("squeal controverso")
+				console.log("squeal controverso")
 				etichetta = "controverso"
 			} else if (reac_pos > mc) {
-				//console.log("squeal popolare")
+				console.log("squeal popolare")
 				etichetta = "popolare"
 			} else if (reac_neg > mc) {
-				//console.log("squeal impopolare")
+				console.log("squeal impopolare")
 				etichetta = "impopolare"
 			}
 
 			if (!dry) {//applico modifiche
 				//console.log("applico modifiche")
 				if (etichetta !== null) {
-					//console.log("setto categoria " + etichetta)
+					console.log("setto categoria " + etichetta)
 					mongo.db(dbname)
 						.collection("messaggio")
 						.updateOne(
@@ -90,18 +90,26 @@ exports.pop = async function (dry, credentials) {
 							{ $set: { categoria: etichetta } }
 						)
 					if (etichetta === "controverso" && squeal.categoria !== "controverso") { //aggiungo il post al canale $CONTROVERSO
-						//console.log("aggiungo post controverso al canale")
+						console.log("aggiungo post controverso al canale")
 						mongo.db(dbname)
 							.collection("messaggio")
 							.updateOne(
 								{ post_id: squeal.post_id },
 								{ $push: { destinatari: "$CONTROVERSO" } }
 							)
+					} else if(etichetta !== "controverso" && squeal.categoria === "controverso"){
+						console.log("rimuovo post controverso dal canale")
+						mongo.db(dbname)
+							.collection("messaggio")
+							.updateOne(
+								{ post_id: squeal.post_id },
+								{ $pull: { destinatari: "$CONTROVERSO" } }
+							)
 					}
 
 					//notifico l'utente del cambiamento di categoria
 					if (etichetta !== squeal.categoria) { // solo se la categoria e' cambiata
-						//console.log("invio notifica ad utente")
+						console.log("invio notifica ad utente")
 						add_notifica(squeal.utente, "popolarita", squeal.post_id, credentials, etichetta, null)
 					}
 				}
