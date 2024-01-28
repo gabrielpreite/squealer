@@ -269,7 +269,10 @@
       lista_notifiche.insertAdjacentHTML('beforeend', notifica);
     }
 
-    var last_notifica_id = notifiche[0].timestamp
+    var last_notifica_id = 0
+    if(n_notifiche>0){
+      last_notifica_id = notifiche[0].timestamp
+    }
     setInterval(refresh_notifiche, 1000 * 30)
 
     //setup
