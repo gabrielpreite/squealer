@@ -700,8 +700,6 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Opzionale: Stile per la barra a scorrimento orizzontale */
-/* Puoi adattare questi stili in base alle tue preferenze */
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
