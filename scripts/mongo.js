@@ -252,7 +252,7 @@ exports.weekly = async function (dry, credentials) {
 		//trovo intervallo settimanale
 		let curr_date = new Date();
 		let first_date = new Date(curr_date)
-		first_date.setDate(curr_date.getDate() - 7)
+		first_date.setDate(curr_date.getDate() - 6)
 		const options = {
 			day: '2-digit',
 			month: '2-digit',
@@ -261,7 +261,7 @@ exports.weekly = async function (dry, credentials) {
 		intervallo += " - "
 
 		let second_date = new Date(curr_date)
-		second_date.setDate(curr_date.getDate() - 1)
+		second_date.setDate(curr_date.getDate())
 		intervallo += second_date.toLocaleDateString("it-IT", options)
 
 		console.log("[W2] intervallo settimanale: " + intervallo)
@@ -813,7 +813,7 @@ exports.user_register = async function (q, credentials) {
 						"g": 300, "s": 2000, "m": 7500
 					},
 					acquisti: [],
-					popolarita: {},
+					popolarita: { "settimane": ["22/01 - 28/01"], "valori": [0]},
 					canali_seguiti: [],
 					utenti_seguiti: [],
 					redazione_flag: false,
