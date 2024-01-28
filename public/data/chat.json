@@ -41,16 +41,6 @@
         "messaggi": [
             {
                 "text": "hey",
-                "user": "NomeBuffo1",
-                "timestamp": 1701704753683
-            },
-            {
-                "text": "hey",
-                "timestamp": 1701704756459,
-                "user": "NomeBuffo1"
-            },
-            {
-                "text": "hey",
                 "timestamp": 1701704757848,
                 "user": "NomeBuffo1"
             },
