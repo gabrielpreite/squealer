@@ -179,7 +179,7 @@ function aggiungi_info(meta){
   container.removeAttr("hidden")
 
   let chat = $("#chat")
-  chat.empty()
+  chat.setAttr("hidden", "true")
 
   let riga0 = `<div class="row" id="riga0"><button class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></button></div>`
   container.append(riga0)
