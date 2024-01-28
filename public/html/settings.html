@@ -26,16 +26,14 @@
       <div id="profile">
         <img src="https://via.placeholder.com/60x60" alt="Foto del tuo profilo" id="propic">
         <div class="dropdown" id="username">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <strong>
-              <script>
-                document.write(get_cookie_by_name("username"))
-              </script>
-            </strong>
+          <button>
+          <strong>
+            <script>
+              document.write(get_cookie_by_name("username"))
+            </script>
+          </strong>
           </button>
-          <div disabled class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-account-smm">
-            <h6 class="dropdown-header">Gestisci altri account</h6>
+          <div id="dropdown-account-smm">
           </div>
         </div>
         <div id="managed-account-username" class="btn btn-primary" hidden="true"></div>
