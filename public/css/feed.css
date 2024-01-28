@@ -622,11 +622,6 @@
   font-weight: bolder;
 }
 
-button#pulsante-segui {
-    background-color: #1da1f2;
-    border: none;
-}
-
 /* NOTIFICHE */
 .not_letta {
   background: rgb(255,255,255);
