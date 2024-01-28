@@ -213,7 +213,7 @@ function ricerca_squeal(elem) {
     headers: { },
     data: { query: query, target: CURRENT_USER },
     success: function (data, status, xhr) {
-      console.log('data: ', data);
+      //console.log('data: ', data);
       all_info = data.data;
     }
   });
@@ -305,7 +305,6 @@ function toggle_follow(target, tipo){
     data: { target: target, tipo: tipo },
     success: function (data, status, xhr) {
       let num_foll = parseInt($("#num_follower").text().split(" ")[0])
-      //console.log(data.risultato)
       if (data.risultato == "added"){
         $("#pulsante-segui").text("Unfollow")
         $("#pulsante-segui").removeClass("btn-primary")
@@ -348,7 +347,6 @@ function ordina_squeals(posts, filtro) {
 
 function rimpiazza_squeals(posts, filtro, LOG = true) {
   svuota_pagina();
-  //rimuovi_info();
 
   let posts_ordinati = ordina_squeals(posts, filtro);
 
@@ -402,7 +400,7 @@ function premibottone(button, reac, id) {
     data: {reac: reac, userid: CURRENT_USER},
     headers: { },
     success: function (data, status, xhr) {
-      console.log('data: ', data);
+      //console.log('data: ', data);
     }
   });
 }
@@ -520,7 +518,6 @@ function compra_quota() {
   })
   .then((response) => {
     alert("Acquisto avvenuto con successo")
-    //chiudo elem non fatto
 
     let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
     //aggiorno il cookie quota

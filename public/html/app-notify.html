@@ -221,7 +221,7 @@
         not_class = not_class + 'active ';
       }
       not_class = not_class + notifiche[n].tipo + '" ';
-      var on_click = 'href="#" onclick="ricerca_notifica(notifiche[' + n + '])" '; //onclick="ricerca_notifica(notifiche[' + n + '])"
+      var on_click = 'href="#" onclick="ricerca_notifica(notifiche[' + n + '])" ';
 
       var notifica = '<a ' + not_tipo + not_id + not_class + on_click + '>' + notifiche[n].testo + '</a>';
       lista_notifiche.insertAdjacentHTML('beforeend', notifica);

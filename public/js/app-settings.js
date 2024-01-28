@@ -27,8 +27,6 @@ function update_smm(){
     if(formData.get("new_smm") === "")
         formData.set("new_smm", "null")
 
-    //console.log(formData)
-
     fetch(`/user/${CURRENT_USER}/managed_by`, {
         method: "POST",
         body: formData,
@@ -91,7 +89,7 @@ function form_info() {
         processData: false,
         contentType: false,
         success: function (data, status, xhr) {
-            console.log('data: ', data);
+            //console.log('data: ', data);
             redirectToSettings_app();
             alert("Modifiche salvate");
         },
@@ -116,7 +114,7 @@ function form_psw() {
         processData: false,
         contentType: false,
         success: function (data, status, xhr) {
-            console.log('data: ', data);
+            //console.log('data: ', data);
             redirectToSettings_app();
         },
         error: function (xhr, status, error) {
@@ -167,7 +165,7 @@ function seleziona_canale(tipo, nome){
         url: `https://site212251.tw.cs.unibo.it/channel/${nome}`,
         headers: { },
         success: function (data, status, xhr) {
-            console.log('data: ', data);
+            //console.log('data: ', data);
             $("#canale_selezionato").removeAttr("hidden")
 
             $("#canale_selezionato_nome").text(nome)
@@ -208,7 +206,7 @@ function update_channel(){
         processData: false,
         contentType: false,
         success: function (data, status, xhr) {
-            console.log(data)
+            //console.log(data)
             redirectToSettings_app();
         }
     });
@@ -338,8 +336,8 @@ function popolaFollowers(followers) {
   }
 
   function removeFollowing(target, tipo) {
-    console.log(target);
-    console.log(tipo);
+    //console.log(target);
+    //console.log(tipo);
 
     $.ajax({
       type: 'POST',
@@ -389,7 +387,6 @@ function compra_quota() {
     })
     .then((response) => {
       alert("Acquisto avvenuto con successo")
-      //chiudo elem non fatto
   
       let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
       //aggiorno il cookie quota
@@ -406,7 +403,6 @@ function mio_profilo() {
 
 //SINGOLO SQUEAL POPOLARITA'
 function aggiungi_squeal_singolo(squeals, cont, i) {
-  //let contenitore = document.getElementById('');
   let contenitore = cont;
 
   //setup

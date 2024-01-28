@@ -840,7 +840,7 @@ exports.user_delete = async function (user_id, q, credentials) {
 	let response = { "data": null, "risultato": null, "errore": null }
 
 	try {
-		let result
+		let result = []
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
@@ -848,15 +848,15 @@ exports.user_delete = async function (user_id, q, credentials) {
 
 		await mongo.db(dbname)
 			.collection("utente")
-			.find({
-				username: user_id
-			})
+			.find({ username: user_id })
 			.forEach((r) => {
 				result.push(r)
 			})
-		console.log("pwd: "+pwd)
-		console.log("db pwd: "+result[0].password)
-		if(result.length == 1 && result[0].password === pwd){
+
+		//console.log(typeof pwd+" pwd   : "+pwd)
+		//console.log(typeof result[0].password+" db pwd: "+result[0].password)
+
+		if(String(result[0].password) === String(pwd)){
 			result = await mongo.db(dbname)
 				.collection("utente")
 				.deleteOne({ username: user_id })
