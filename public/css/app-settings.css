@@ -369,3 +369,16 @@ button.btn.elimina_account {
     margin-left: 10px;
     margin-right: 2px;
 }
+
+h4.subtitle-sezione {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+}
+
+.foll-seg {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
