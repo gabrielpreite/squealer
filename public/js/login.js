@@ -74,7 +74,7 @@ function register(){
         async: false,
         url: "https://site212251.tw.cs.unibo.it/user",
         headers: { },
-        data: { username: $("#username").val(), password: $("#password").val(), email: $("#email").val(), nome: $("#nome").val(), cognome: $("#cognome").val()},
+        data: { pro: true, username: $("#username").val(), password: $("#password").val(), email: $("#email").val(), nome: $("#nome").val(), cognome: $("#cognome").val()},
         success: function (data, status, xhr) {
             console.log("successo registrazione")
             window.location.replace("https://site212251.tw.cs.unibo.it/login");
