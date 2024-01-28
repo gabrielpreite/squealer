@@ -83,8 +83,8 @@
         </div>
         <div class="lateral-buttons" aria-label="Bottoni laterali">
           <div id="notifiche">
-            <button type="button" class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche">
-              <i class="fas fa-bell" aria-hidden="true"></i>
+            <button type="button" class="btn btn-unstyled" id="notificationsButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifiche" onclick="$('#icona_notifiche').classList.add('fas', 'fa-bell'); $('#icona_notifiche').classList.remove('fa-solid', 'fa-exclamation')">
+              <i id="icona_notifiche" class="fas fa-bell" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end" id="notificationsDropdown" aria-labelledby="notificationsButton">
               <h2 class="dropdown-header">Notifiche</h2>
