@@ -678,6 +678,8 @@ function refresh_notifiche(){
 
   if(notifiche[0].timestamp > last_notifica_id){
     //console.log("FOUND NEW")
+    $("#icona_notifiche").removeClass("fas fa-bell")
+    $("#icona_notifiche").addClass("fa-solid fa-exclamation")
     let audio = new Audio('https://site212251.tw.cs.unibo.it/media/sounds/notification.mp3');
     audio.play();
     let lista_notifiche = document.getElementById('notificationsDropdown');
