@@ -23,7 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.23.0/date-fns.min.js"></script>
 
     <!--Fonts-->
-    <link href="http://fonts.cdnfonts.com/css/chirp-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/chirp-2" rel="stylesheet">
 
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-2.16.3.min.js"></script>
@@ -292,7 +292,7 @@
         if (CURRENT_USER == undefined) {
           CURRENT_USER = get_cookie_by_name("username");
         }
-            
+
         const { createApp, ref } = Vue
 
         app = createApp({
@@ -628,7 +628,7 @@
         }).mount('body')
         //app.$options.methods.test("html")
 
-        
+
         // INIT
         document.getElementById("chat_privata").addEventListener('submit', async event => {
           event.preventDefault();
@@ -642,7 +642,7 @@
           var info_ricerca = result.meta;
         });
 
-        
+
         // INSERIMENTO ACCOUNT GESTITI DA SMM
         //vue
 
@@ -736,7 +736,7 @@
         let trends = []
         function createMosaicTiles() {
           const container = document.querySelector('.mosaic-container');
-          const tileSize = 30; 
+          const tileSize = 30;
 
           trends = trovaParoleFrequenti(arr_trend);
           if (trends.length == 0) {
@@ -756,7 +756,7 @@
           }
         }
         createMosaicTiles();
-        
+
     </script>
   </body>
 </html>
