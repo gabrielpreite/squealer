@@ -818,7 +818,7 @@ exports.user_register = async function (q, credentials) {
 					utenti_seguiti: [],
 					redazione_flag: false,
 					verificato_flag: false,
-					professional_flag: false,
+					professional_flag: (q.pro ? true : false),
 					abilitato_flag: true,
 					manager_of: [],
 					managed_by: null
