@@ -787,6 +787,49 @@
             }
           });
         }
+
+        //NOTIFICHE    function refresh_notifiche(){
+              let notifiche;
+              $.ajax({
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                url: `https://site212251.tw.cs.unibo.it/notification/${CURRENT_USER}`,
+                headers: { },
+                success: function (data, status, xhr) {
+                  notifiche = data.data;
+                }
+              });
+
+              //console.log("refresh notifications")
+              //console.log("old last "+last_notifica_id)
+
+              if(notifiche[0].timestamp > last_notifica_id){
+                document.getElementById('notify').classList.add('blue');
+                //console.log("FOUND NEW")
+                let audio = new Audio('https://site212251.tw.cs.unibo.it/media/sounds/notification.mp3');
+                audio.play();
+                last_notifica_id = notifiche[0].timestamp
+              }
+            }
+
+            var notifiche;
+            $.ajax({
+              type: 'GET',
+              dataType: "json",
+              async: false,
+              url: `https://site212251.tw.cs.unibo.it/notification/${CURRENT_USER}`,
+              headers: { },
+              success: function (data, status, xhr) {
+                notifiche = data.data;
+              }
+            });
+            var last_notifica_id = 0
+            if(notifiche.lenght>0){
+              last_notifica_id = notifiche[0].timestamp
+            }
+            setInterval(refresh_notifiche, 1000 * 30)
+
   </script>
 
 </body>
