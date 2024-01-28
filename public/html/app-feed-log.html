@@ -107,7 +107,7 @@
       <i class="material-icons inattivo">add_box</i>
     </a>
     <a href="/app-notify">
-      <i class="material-icons inattivo">notifications</i>
+      <i class="material-icons inattivo" id="notify">notifications</i>
     </a>
     <a href="/app-chat">
       <i class="material-icons inattivo">chat</i>
@@ -206,7 +206,7 @@
         window.scrollTo(0, scrollLastPost);
       }
     });
-    
+
     function refresh_notifiche(){
       let notifiche;
       $.ajax({
@@ -224,6 +224,7 @@
       //console.log("old last "+last_notifica_id)
 
       if(notifiche[0].timestamp > last_notifica_id){
+        document.getElementById('notify').classList.add('blue');
         //console.log("FOUND NEW")
         let audio = new Audio('https://site212251.tw.cs.unibo.it/media/sounds/notification.mp3');
         audio.play();

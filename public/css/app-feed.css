@@ -229,3 +229,7 @@ button#pulsante-chat {
 .follow_button {
     text-align: center;
 }
+
+.blue {
+  color: #1da1f2 !important;
+}
