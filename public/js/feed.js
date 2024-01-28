@@ -178,8 +178,7 @@ function aggiungi_info(meta){
   container.empty()
   container.removeAttr("hidden")
 
-  let chat = $("#chat")
-  chat.empty()
+  document.getElementById("chat").hidden = true;
 
   let riga0 = `<div class="row" id="riga0"><button class="fa-solid fa-times icona-chiudi" onclick="ricarica()"></button></div>`
   container.append(riga0)

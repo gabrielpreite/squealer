@@ -201,7 +201,7 @@ const auto_gatti = schedule.scheduleJob({ hour: 8, minute: 0, tz: 'Europe/Rome' 
 /* ========================== */
 
 app.get('/', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	if(!req.session || !req.session.userid || req.session.level<2) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
 		res.redirect("/login")
@@ -217,7 +217,7 @@ app.get('/app', function (req, res) {
 })
 
 app.get('/editor', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	if(!req.session || !req.session.userid || req.session.level<2) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
 		res.redirect("/login")
@@ -241,7 +241,7 @@ app.get('/app-chat', function (req, res) {
 })
 
 app.get('/settings', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/login")}
+	if(!req.session || !req.session.userid || req.session.level<2) {res.redirect("/login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
 		res.redirect("/login")
@@ -275,7 +275,7 @@ app.get('/app-register', function (req, res) {
 })
 
 app.get('/login', function (req, res) {
-	if(!req.session || !req.session.userid) {
+	if(!req.session || !req.session.userid || req.session.level<2) {
 		res.sendFile(global.rootDir+"/public/html/login.html")
 	} else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
@@ -293,7 +293,7 @@ app.get('/app-login', function (req, res) {
 })
 
 app.get('/mod-login', function (req, res) {
-	if(!req.session || !req.session.userid) {
+	if(!req.session || !req.session.userid || req.session.level<3) {
 		res.sendFile(global.rootDir+"/public/html/mod-login.html")
 	} else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
@@ -302,7 +302,7 @@ app.get('/mod-login', function (req, res) {
 })
 
 app.get('/mod', function (req, res) {
-	if(!req.session || !req.session.userid) {res.redirect("/mod-login")}
+	if(!req.session || !req.session.userid || req.session.level<3) {res.redirect("/mod-login")}
 	else if(!req.cookies || !req.cookies.username || req.cookies.username == "null") {
 		req.session.destroy()
 		res.redirect("/mod-login")
@@ -791,7 +791,7 @@ app.post('/user/login', async function(req, res) {
             session.userid=req.body.username;
             let level = 1
             if (response.data.professional_flag) level = 2
-            else if(response.data.redazione_flag) level = 3
+            if (response.data.redazione_flag) level = 3
             session.level = level
             console.log(req.session)
             res.cookie('username', session.userid)
