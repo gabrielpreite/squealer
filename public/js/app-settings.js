@@ -393,6 +393,7 @@ function compra_quota() {
       set_cookie("quota_g", new_quota)
       //aggiorno navbar
       $("#charCount_giorno_vis").text(new_quota)
+      $("#charCount_giorno").text(new_quota)
     })
   }
 
