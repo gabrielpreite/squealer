@@ -5,7 +5,7 @@
   <title>Post Editor</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!----BOOSTRAP-->
+  <!----VUE-->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
   <!-- CSS only -->
@@ -14,7 +14,7 @@
   <script src="https://kit.fontawesome.com/352b6e21d2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
   integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
   <script>
     function initMap() {
       infoWindow = new google.maps.InfoWindow();
@@ -67,7 +67,7 @@
       });
     }
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog&libraries=places&callback=initMap" async defer></script>  <!-- CSS -->
+  
   <link rel="stylesheet" href="../css/editor.css">
   <link rel="stylesheet" href="../css/navbar.css">
 
@@ -82,7 +82,7 @@
       <div id="profile">
         <img src="https://via.placeholder.com/60x60" alt="Profile picture" id="propic">
         <div class="dropdown" id="username">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button>
           <strong>
             <script>
               document.write(get_cookie_by_name("username"))
@@ -139,19 +139,19 @@
             <div class="col-4">
               <div class="text-center">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_120.png" alt="compra 120 caratteri per 0.99" class="img-fluid">
-                <button onclick="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button>
+                <button @click="compra_quota(120)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_240.png" alt="compra 240 caratteri per 1.99" class="img-fluid">
-                <button onclick="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
+                <button @click="compra_quota(240)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
             <div class="col-4">
               <div class="text-center">
                 <img src="https://site212251.tw.cs.unibo.it/uploads/compra_quota_480.png" alt="compra 480 caratteri per 4.99" class="img-fluid">
-                <button onclick="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
+                <button @click="compra_quota(480)" class="btn btn-primary mt-3">Acquista</button>
               </div>
             </div>
           </div>
@@ -351,131 +351,156 @@
       CURRENT_USER = get_cookie_by_name("username");
     }
 
-    // aggiorno la quota
-    refresh_quota()
-    let quota_giorno = get_cookie_by_name("quota_g");
-    let quota_settimana = get_cookie_by_name("quota_s");
-    let quota_mese = get_cookie_by_name("quota_m");
+    const { createApp, ref } = Vue
 
-    // Aggiorna il contenuto delle span con i nuovi valori
-    document.getElementById("charCount_mese").textContent = quota_mese;
-    document.getElementById("charCount_sett").textContent = quota_settimana;
-    document.getElementById("charCount_giorno").textContent = quota_giorno;
+    const app = createApp({
+      data() {
+        return {
+        }
+      },
+      methods: {
+        compra_quota(qnt){
+          let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
 
-    // INSERIMENTO ACCOUNT GESTITI DA SMM
-    /*let account = []
-    $.ajax({
-      type: 'GET',
-      dataType: "json",
-      async: false,
-      url: `https://site212251.tw.cs.unibo.it/get_managed`,
-      headers: { },
-      success: function (data, status, xhr) {
-        console.log('data: ', data);
-        account = data;
+          fetch("/user/" + CURRENT_USER + "/quota", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then((response) => {
+            //chiudo modal
+            $("#shop-quota").modal("toggle")
+            let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
+            //aggiorno il cookie quota
+            set_cookie("quota_g", new_quota)
+            //aggiorno navbar
+            $("#charCount_giorno").text(new_quota)
+            //aggiorno vars
+            initialQuota_g = new_quota
+            //aggiorno pulsante/ricalcolo quota
+            let opzione = "Testo"
+            if(!document.getElementById("contenuto_testo").hidden)
+              opzione = "Testo"
+            else if(!document.getElementById("contenuto_immagine").hidden)
+              opzione = "Imaggine"
+            else if(!document.getElementById("contenuto_posizione").hidden)
+              opzione = "Posizione"
+            aggiornaQuota(opzione)
+          })
+        },
+        aggiungicommenti(id) {
+          //aggiungi nuovi commenti
+          var contenitore_commenti = document.getElementById("contenitore-commenti");
+          var lista_commenti;
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
+            headers: { },
+            success: function (data, status, xhr) {
+              lista_commenti = data.data;
+            }
+          });
+          var n_commenti = lista_commenti.length;
+          for (var c = 0; c < n_commenti; c++) {
+            contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
+            var c_img_utente = 'c_img_utente' + c;
+            document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
+            var id_tag = 'c_username' + c;
+            document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
+            var id_testo = 'c_text' + c;
+            if(lista_commenti[c].contenuto == "testo"){
+              document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
+            } else if(lista_commenti[c].contenuto == "img"){
+              document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
+            } else if(lista_commenti[c].contenuto == "map"){
+              document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
+            }
+          }
+        },
+        interfaccia_risposta(post_id){
+          document.getElementById("selezione-destinatari").hidden = true;
+          document.getElementById("vuoto").hidden = true;
+
+          document.getElementById("mostra-squeal").hidden = false;
+          document.getElementById("mostra-commenti").hidden = false;
+
+          // prendo il post originale
+          var post_originale
+          $.ajax({
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/squeal/${post_id}`,
+            headers: { },
+            success: function (data, status, xhr) {
+              post_originale = data.data;
+            }
+          });
+
+          // stampo il post
+          document.getElementById("squeal-nome-utente").innerHTML = post_originale.nome;
+          document.getElementById("squeal-username").innerHTML = post_originale.utente;
+          document.getElementById("squeal-data").innerHTML = timeConverter(post_originale.timestamp);
+          document.getElementById("squeal-immagine-profilo").src = `https://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
+          if(post_originale.contenuto === "testo"){
+            document.getElementById("squeal-contenuto").innerHTML = post_originale.corpo;
+          } else if(post_originale.contenuto === "img"){
+            document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine squeal">`
+          } else if(post_originale.contenuto === "map"){
+            document.getElementById("squeal-contenuto").innerHTML = `<img src="${post_originale.corpo}" alt="mappa squeal">`
+          }
+
+          // stampo i commenti
+          this.aggiungicommenti(post_id);
+        },
+        init(){
+          // aggiorno la quota
+          refresh_quota()
+          let quota_giorno = get_cookie_by_name("quota_g");
+          let quota_settimana = get_cookie_by_name("quota_s");
+          let quota_mese = get_cookie_by_name("quota_m");
+
+          document.getElementById("charCount_mese").textContent = quota_mese;
+          document.getElementById("charCount_sett").textContent = quota_settimana;
+          document.getElementById("charCount_giorno").textContent = quota_giorno;
+
+          // INSERIMENTO PROPIC UTENTE
+          $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
+
+          //se sto gestendo un account lo mostro nella barra
+          let managed = get_cookie_by_name("managed")
+          if(!(managed === undefined)){
+            $("#managed-account-username").text(managed)
+            $("#managed-account-username").removeAttr("hidden")
+          }
+        }
+      },
+      beforeMount(){
+      },
+      mounted(){
+        this.init()
       }
-    });
+    }).mount('body')
 
-    *account.forEach((el) => {
-      $("#dropdown-account-smm").append(`<button class="dropdown-item" type="button" onclick="switch_account('${el}')">${el}</button>`)
-    })*/
-
-    // INSERIMENTO PROPIC UTENTE
-    $("#propic").attr("src", "https://site212251.tw.cs.unibo.it/uploads/"+get_cookie_by_name("img"))
-
-    //se sto gestendo un account lo mostro nella barra
-    let managed = get_cookie_by_name("managed")
-    if(!(managed === undefined)){
-      $("#managed-account-username").text(managed)
-      $("#managed-account-username").removeAttr("hidden")
+    let arr = window.location.href.split('?');
+    if (arr.length > 1 && arr[1] !== '') { // caso risposta
+      app.$options.methods.interfaccia_risposta(arr[1].split("=")[1])
     }
 
     array_dest_canali=[]//array destinatari per uso interno
     array_dest_utenti=[]//array destinatari per uso interno
     let imageFileURL = null;
 
-    let arr = window.location.href.split('?');
-    if (arr.length > 1 && arr[1] !== '') { // caso risposta
-      interfaccia_risposta(arr[1].split("=")[1])
-    }
-
     document.getElementById("crea_post").addEventListener('submit', async event => {
       event.preventDefault();
       add_post();
     });
 
-    function compra_quota(qnt){
-      //controllo chi sta comprando
-
-      let data = {"target": CURRENT_USER, "qnt": qnt, "acquisto": true}
-
-      fetch("/user/" + CURRENT_USER + "/quota", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then((response) => {
-        //chiudo modal
-        $("#shop-quota").modal("toggle")
-        let new_quota = parseInt(get_cookie_by_name("quota_g"))+qnt
-        //aggiorno il cookie quota
-        set_cookie("quota_g", new_quota)
-        //aggiorno navbar
-        $("#charCount_giorno").text(new_quota)
-        //aggiorno vars
-        initialQuota_g = new_quota
-        //aggiorno pulsante/ricalcolo quota
-        let opzione = "Testo"
-        if(!document.getElementById("contenuto_testo").hidden)
-          opzione = "Testo"
-        else if(!document.getElementById("contenuto_immagine").hidden)
-          opzione = "Imaggine"
-        else if(!document.getElementById("contenuto_posizione").hidden)
-          opzione = "Posizione"
-        aggiornaQuota(opzione)
-      })
-    }
-
-    function interfaccia_risposta(post_id){
-      // Nascondi il div "selezione-destinatari"
-      document.getElementById("selezione-destinatari").hidden = true;
-      document.getElementById("vuoto").hidden = true;
-
-      // Mostra il div "mostra-squeal"
-      document.getElementById("mostra-squeal").hidden = false;
-      document.getElementById("mostra-commenti").hidden = false;
-
-      // prendo il post originale
-      var post_originale
-      $.ajax({
-        type: 'GET',
-        dataType: "json",
-        async: false,
-        url: `https://site212251.tw.cs.unibo.it/squeal/${post_id}`,
-        headers: { },
-        success: function (data, status, xhr) {
-          post_originale = data.data;
-        }
-      });
-
-      // stampo il post
-      document.getElementById("squeal-nome-utente").innerHTML = post_originale.nome;
-      document.getElementById("squeal-username").innerHTML = post_originale.utente;
-      document.getElementById("squeal-data").innerHTML = timeConverter(post_originale.timestamp);
-      document.getElementById("squeal-immagine-profilo").src = `https://site212251.tw.cs.unibo.it/uploads/${post_originale.img}`
-      if(post_originale.contenuto === "testo"){
-        document.getElementById("squeal-contenuto").innerHTML = post_originale.corpo;
-      } else if(post_originale.contenuto === "img"){
-        document.getElementById("squeal-contenuto").innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${post_originale.corpo}" alt="immagine squeal">`
-      } else if(post_originale.contenuto === "map"){
-        document.getElementById("squeal-contenuto").innerHTML = `<img src="${post_originale.corpo}" alt="mappa squeal">`
-      }
-
-      // stampo i commenti
-      aggiungicommenti(post_id);
-    }
+    
 
     function mostraCampo(tipo) {
       var destinatariInseritiDiv = document.getElementById("destinatari-inseriti");
@@ -929,37 +954,7 @@
       return staticMapUrl;
     }
 
-    function aggiungicommenti(id) {
-      //aggiungi nuovi commenti
-      var contenitore_commenti = document.getElementById("contenitore-commenti");
-      var lista_commenti;
-      $.ajax({
-        type: 'GET',
-        dataType: "json",
-        async: false,
-        url: `https://site212251.tw.cs.unibo.it/squeal/${id}/reply`,
-        headers: { },
-        success: function (data, status, xhr) {
-          lista_commenti = data.data;
-        }
-      });
-      var n_commenti = lista_commenti.length;
-      for (var c = 0; c < n_commenti; c++) {
-        contenitore_commenti.insertAdjacentHTML('beforeend', '<div class="comment"><img src="https://via.placeholder.com/48x48" alt="Profile Image" class="comment-profile-image" id="c_img_utente' + c + '"> <div class="comment-content"> <strong class="comment-username" id="c_username' + c + '">  </strong> <p class="comment-text" id="c_text' + c + '">  </p> </div></div>');
-        var c_img_utente = 'c_img_utente' + c;
-        document.getElementById(c_img_utente).src = `https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].img}`
-        var id_tag = 'c_username' + c;
-        document.getElementById(id_tag).innerHTML = lista_commenti[c].utente;
-        var id_testo = 'c_text' + c;
-        if(lista_commenti[c].contenuto == "testo"){
-          document.getElementById(id_testo).innerHTML = lista_commenti[c].corpo;
-        } else if(lista_commenti[c].contenuto == "img"){
-          document.getElementById(id_testo).innerHTML = `<img src="https://site212251.tw.cs.unibo.it/uploads/${lista_commenti[c].corpo}" alt="immagine_squeal">`
-        } else if(lista_commenti[c].contenuto == "map"){
-          document.getElementById(id_testo).innerHTML = `<img src="${lista_commenti[c].corpo}" alt="mappa_squeal">`;
-        }
-      }
-    }
+    
 
     //GHIGLIOTTINA
     function updateIntervalloVal() {
@@ -983,7 +978,6 @@
         var textarea = document.getElementById('Textarea');
         var intervalloInput = document.getElementById('intervallo');
 
-        // Se lo switch è attivato, mostra il corpo-ghigliottina, altrimenti nascondilo
         if (switchToggle.checked) {
             corpoGhigliottina.style.display = 'block';
         } else {
@@ -999,32 +993,6 @@
         }
 
     }
-
-    const { createApp, ref } = Vue
-
-          createApp({
-            data() {
-              return {
-                isDisabled: false,
-                buttonValue: "Conferma",
-              }
-            },
-            methods: {
-              handleButtonClick() {
-              if (this.buttonValue === "Compra quota") {
-                this.warnDisabled();
-              }
-            },
-            warnDisabled() {
-              this.isDisabled = true;
-              setTimeout(() => {
-                this.isDisabled = false;
-              }, 1500);
-            },
-            }
-          }).mount('body')
-
-
   </script>
 </body>
 

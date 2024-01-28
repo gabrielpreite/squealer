@@ -618,8 +618,13 @@
 
 .modal-title {
   text-align: center !important;
-  font-size: 14x;
+  font-size: 14px;
   font-weight: bolder;
+}
+
+button#pulsante-segui {
+    background-color: #1da1f2;
+    border: none;
 }
 
 /* NOTIFICHE */

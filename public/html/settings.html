@@ -171,18 +171,20 @@
           <h3 class="mb-4 title-sezione">Email e password</h3>
           <form role="form" aria-label="Form cambio mail o password" id="form_psw" @submit.prevent="form_psw" class="ordine"
             onsubmit="return check_form()">
-            <div class="col1">
+            <div class="col1 area-canc">
               <div class="form-group">
                 <label for="newEmail" class="label-form">Email: </label>
                 <input type="text" name="email" class="form-control" id="newEmail" placeholder="Nuova email"
                   aria-label="Email">
               </div>
+
+              <button type="button" class="btn elimina_account" @click="cancella_account()">Elimina Account<i class="fa-solid fa-trash"></i></button>
             </div>
             <div class="col2">
               <div class="form-img">
                 <div class="form-group">
                   <label for="oldPassword" class="label-form">Password: </label>
-                  <input type="password" name="old_password" class="form-control" id="oldPassword" placeholder="Password"
+                  <input type="password" name="old_password" class="form-control" v-model="psw" id="oldPassword" placeholder="Password"
                     aria-label="Password attuale" required>
                   <!-- <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i> -->
                 </div>
@@ -440,14 +442,14 @@
 
 
     // ================= SEZIONI
-    
+
 
     // === PROFILO
-    
+
     //migrata su vue
 
     // === ACCOUNT
-    
+
     //migrata su vue
 
     // === SMM
@@ -711,7 +713,8 @@
           array_acquisti: [],
           array_follower: [],
           array_follow_utenti: [],
-          array_follow_canali: []
+          array_follow_canali: [],
+          psw: ''
         }
       },
       methods: {
@@ -1027,6 +1030,24 @@
           document.getElementById("newDesc").value = all_info.meta.info.bio;
           // account
           document.getElementById("newEmail").value = all_info.meta.info.email;
+        },
+        cancella_account(){
+          $.ajax({
+            type: 'DELETE',
+            dataType: "json",
+            async: false,
+            url: `https://site212251.tw.cs.unibo.it/user/${CURRENT_USER}`,
+            headers: {},
+            data: { password: this.psw },
+            success: function (data, status, xhr) {
+              redirectToSettings();
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 403) {
+                    alert("La password inserita non è corretta");
+                }
+            }
+          });
         }
       },
       beforeMount(){
@@ -1036,6 +1057,7 @@
       mounted(){
         this.load_profile()
       }
+
     }).mount('body')
 
   </script>

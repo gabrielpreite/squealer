@@ -835,29 +835,43 @@ exports.user_register = async function (q, credentials) {
 }
 
 // cancella utente
-exports.user_delete = async function (user_id, credentials) {
+exports.user_delete = async function (user_id, q, credentials) {
 	const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}?writeConcern=majority`;
 	let response = { "data": null, "risultato": null, "errore": null }
 
 	try {
-		let result
+		let result = []
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		result = await mongo.db(dbname)
-			.collection("utente")
-			.deleteOne({ username: user_id })
+		let pwd = CryptoJS.SHA3(q.password)
 
-		if (result.deletedCount == 1) {
-			response["risultato"] = "successo"
+		await mongo.db(dbname)
+			.collection("utente")
+			.find({ username: user_id })
+			.forEach((r) => {
+				result.push(r)
+			})
+
+		//console.log(typeof pwd+" pwd   : "+pwd)
+		//console.log(typeof result[0].password+" db pwd: "+result[0].password)
+
+		if(String(result[0].password) === String(pwd)){
+			result = await mongo.db(dbname)
+				.collection("utente")
+				.deleteOne({ username: user_id })
+
+			if (result.deletedCount == 1) {
+				response["risultato"] = "successo"
+			}
 		} else {
-			response["risultato"] = "username non trovato"
+			response["risultato"] = "password errata"
 		}
 
 		await mongo.close();
 		return response
 	} catch (e) {
-		//response["errore"] = e.toString()
+		console.log(e)
 	}
 }
 
