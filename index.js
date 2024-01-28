@@ -398,7 +398,7 @@ app.get('/db/dry_monthly', async function(req, res) {
 
 // dry meteo run
 app.get('/db/dry_pop', async function(req, res) {
-	res.send(await mymongo.monthly(true, mongoCredentials))
+	res.send(await mymongo.pop(true, mongoCredentials))
 });
 
 // dry meteo run
