@@ -1433,7 +1433,7 @@ exports.user_feed = async function (user_id, credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData"
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -1471,11 +1471,11 @@ exports.user_feed = async function (user_id, credentials) {
 				},
 				{
 					$sort: {
-						timestamp: -1 // Sort by timestamp in descending order
+						timestamp: -1 
 					}
 				},
 				{
-					$limit: 100 // Limit the result to 100 records
+					$limit: 100 
 				}
 			])
 			.forEach((r) => {
@@ -1513,7 +1513,7 @@ exports.user_feed = async function (user_id, credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData" 
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -1551,11 +1551,11 @@ exports.user_feed = async function (user_id, credentials) {
 				},
 				{
 					$sort: {
-						timestamp: -1 // Sort by timestamp in descending order
+						timestamp: -1
 					}
 				},
 				{
-					$limit: 100 // Limit the result to 100 records
+					$limit: 100 
 				}
 			])
 			.forEach((r) => {
@@ -1591,7 +1591,7 @@ exports.user_feed = async function (user_id, credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData" 
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -1629,11 +1629,11 @@ exports.user_feed = async function (user_id, credentials) {
 				},
 				{
 					$sort: {
-						timestamp: -1 // Sort by timestamp in descending order
+						timestamp: -1 
 					}
 				},
 				{
-					$limit: 100 // Limit the result to 100 records
+					$limit: 100
 				}
 			])
 			.forEach((r) => {
@@ -1847,7 +1847,7 @@ exports.get_squeal = async function (squeal_id, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		await mongo.db(dbname) // TODO nome ai post, regole di visibilita', ordine
+		await mongo.db(dbname) 
 			.collection("messaggio")
 			.aggregate([
 				{ $match: { post_id: squeal_id } },
@@ -1859,7 +1859,7 @@ exports.get_squeal = async function (squeal_id, credentials) {
 						as: "utenteData" // rename del record ottenuto (da seconda tabella)
 					}
 				},
-				{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
+				{ $unwind: "$utenteData" },
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
 						"newRoot": {
@@ -2230,7 +2230,7 @@ exports.feed_nolog = async function (credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData" 
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -2268,11 +2268,11 @@ exports.feed_nolog = async function (credentials) {
 				},
 				{
 					$sort: {
-						timestamp: -1 // Sort by timestamp in descending order
+						timestamp: -1
 					}
 				},
 				{
-					$limit: 100 // Limit the result to 100 records
+					$limit: 100
 				}
 			])
 			.forEach((r) => {
@@ -2327,7 +2327,7 @@ exports.get_squeal_replies = async function (squeal_id, credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData" 
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -2346,7 +2346,7 @@ exports.get_squeal_replies = async function (squeal_id, credentials) {
 					}
 				}
 			])
-			.sort({ timestamp: -1 }) // Sort by timestamp in descending order
+			.sort({ timestamp: -1 }) 
 			.limit(100)
 			.forEach((r) => {
 				result.push(r)
@@ -2525,7 +2525,7 @@ exports.search_by_user = async function (q, credentials) {
 						as: "utenteData" // rename del record ottenuto (da seconda tabella)
 					}
 				},
-				{ $unwind: "$utenteData" },// Unwind the joined data (if necessary)
+				{ $unwind: "$utenteData" },
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
 						"newRoot": {
@@ -2549,7 +2549,7 @@ exports.search_by_user = async function (q, credentials) {
 				{ $addFields: { numRisposte: { $size: "$risposte" } } },
 				{ $project: { risposte: 0 } },
 				{ $sort: { timestamp: -1 } },
-				{ $limit: 100 }// Limit the result to 100 records
+				{ $limit: 100 }
 			])
 			.forEach((r) => {
 				post.push(r)
@@ -2615,7 +2615,7 @@ exports.search_by_channel = async function (q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		await mongo.db(dbname) // TODO regole di visibilita'
+		await mongo.db(dbname) 
 			.collection("messaggio")
 			.aggregate([
 				{
@@ -2632,7 +2632,7 @@ exports.search_by_channel = async function (q, credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData" 
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -2670,11 +2670,11 @@ exports.search_by_channel = async function (q, credentials) {
 				},
 				{
 					$sort: {
-						timestamp: -1 // Sort by timestamp in descending order
+						timestamp: -1 
 					}
 				},
 				{
-					$limit: 100 // Limit the result to 100 records
+					$limit: 100 
 				}
 			])
 			.forEach((r) => {
@@ -2746,7 +2746,7 @@ exports.search_by_keyword = async function (q, credentials) {
 		const mongo = new MongoClient(mongouri);
 		await mongo.connect();
 
-		await mongo.db(dbname) // TODO regole di visibilita'
+		await mongo.db(dbname) 
 			.collection("messaggio")
 			.aggregate([
 				{
@@ -2769,7 +2769,7 @@ exports.search_by_keyword = async function (q, credentials) {
 					}
 				},
 				{
-					$unwind: "$utenteData" // Unwind the joined data (if necessary)
+					$unwind: "$utenteData" 
 				},
 				{
 					"$replaceRoot": { //ricrea la "root" della struttura ottenuta
@@ -2807,11 +2807,11 @@ exports.search_by_keyword = async function (q, credentials) {
 				},
 				{
 					$sort: {
-						timestamp: -1 // Sort by timestamp in descending order
+						timestamp: -1 
 					}
 				},
 				{
-					$limit: 100 // Limit the result to 100 records
+					$limit: 100 
 				}
 			])
 			.forEach((r) => {
