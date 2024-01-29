@@ -435,12 +435,12 @@ function aggiungicommento(icon, azione, id) {
   if (azione == "apri") {
       aggiungicommento('', 'chiudi');
       id_commento.id = id;
-      // Cambia il colore dell'icona del commento a nero
+      // icona del commento nera
       icon.style.color = 'black';
-      // Nascondi il div "barra destra"
+      // nascondi div barra dx
       document.getElementById("barra-destra").hidden = true;
       document.getElementById("chat").hidden = true;
-      // Mostra il div "mostra-squeal"
+      // unhide div mostra commenti
       document.getElementById("mostra-commenti").hidden = false;
       //rimpiazza commenti
       rimpiazza_commenti(id);
