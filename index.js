@@ -388,17 +388,17 @@ app.get('/db/dry_daily', async function(req, res) {
 
 // dry weekly run
 app.get('/db/dry_weekly', async function(req, res) {
-	res.send(await mymongo.weekly(true, mongoCredentials))
+	res.send(await mymongo.weekly(false, mongoCredentials))
 });
 
 // dry monthly run
 app.get('/db/dry_monthly', async function(req, res) {
-	res.send(await mymongo.monthly(true, mongoCredentials))
+	res.send(await mymongo.monthly(false, mongoCredentials))
 });
 
 // dry meteo run
 app.get('/db/dry_pop', async function(req, res) {
-	res.send(await mymongo.pop(true, mongoCredentials))
+	res.send(await mymongo.pop(false, mongoCredentials))
 });
 
 // dry meteo run

@@ -619,8 +619,8 @@
               </div>
             `);
             document.getElementById("lista_destinatari").hidden = false;
-            array_dest_utenti.push(a); // Aggiungi all'array
-            $("#cerca_destinatari_utenti").val(""); // Resetta il campo
+            array_dest_utenti.push(a); 
+            $("#cerca_destinatari_utenti").val(""); 
           }
         },
         error: function (xhr, status, e){
@@ -632,7 +632,7 @@
     function rimuovi_destinatario(nome, array_dest) {
       $(`#destinatari-inseriti .name-${nome}`).remove();
 
-      // Rimuovi il destinatario dall'array
+      // rimuovo dest dall'array
       const index = array_dest.indexOf(nome);
       if (index !== -1) {
         array_dest.splice(index, 1);
@@ -860,26 +860,26 @@
 
     document.getElementById('img').addEventListener('change', function(event) {
       aggiornaQuota("Immagine");
-      var file = event.target.files[0]; // Ottieni il file selezionato
+      var file = event.target.files[0]; //prendi file
 
       var reader = new FileReader();
       reader.onload = function(e) {
         var preview = document.getElementById('preview');
-        preview.innerHTML = ''; // Cancella eventuali anteprime precedenti
+        preview.innerHTML = ''; //svuota anteprima
 
         var img = document.createElement('img');
-        img.src = e.target.result; // Imposta l'URL dell'immagine
-        img.classList.add('preview-image'); // Aggiungi una classe CSS per lo stile
+        img.src = e.target.result; //ottiene url
+        img.classList.add('preview-image');
 
-        preview.appendChild(img); // Aggiungi l'immagine all'area di anteprima
+        preview.appendChild(img); //set anteprima
         imageFileURL = e.target.result;
       };
 
-      reader.readAsDataURL(file); // Leggi il file come URL dati
+      reader.readAsDataURL(file);
     });
 
 
-    // Inizializza e aggiungi mappa
+    // init mappa
     let map, infoWindow, marker;
 
     infoWindow = new google.maps.InfoWindow();
@@ -899,7 +899,7 @@
         marker.setMap(null);
       }
 
-      // Crea un nuovo marker
+      
       marker = new google.maps.Marker({
         position: location,
         map: map,
@@ -909,32 +909,32 @@
       infoWindow.close();
     }
 
-    // inizializzaro la mappa quando la pagina è pronta
+    
     google.maps.event.addDomListener(window, "load", initMap());
 
 
     function mapeado(map, marker) {
       var staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap";
 
-      //Set the Google Map Center.
+      // centro
       staticMapUrl += "?center=" + map.getCenter().lat() + "," + map.getCenter().lng();
 
-      //Set the Google Map Size.
+      // dimensione
       staticMapUrl += "&size=640x480&scale=2";
 
-      //Set the Google Map Type. roadmap/satellite/hybrid/terrain
+      // tipo mappa roadmap/satellite/hybrid/terrain
       staticMapUrl += "&maptype=hybrid";
 
-      //Set the Google Map Zoom.
+      // zoom
       staticMapUrl += "&zoom=" + map.zoom;
 
-      //Loop and add Markers.
+      // marker
       staticMapUrl += "&markers=" + marker.position.lat() + "," + marker.position.lng();
 
-      //Key
+      // api key
       staticMapUrl += "&key=" + "AIzaSyCtn7I5voEPaO8mICMoW4BiF8Q7D7uWHog";
 
-      //Display the Image of Google Map.
+      // mostra mappa
       document.getElementById("Textarea").value = staticMapUrl;
 
       return staticMapUrl;
