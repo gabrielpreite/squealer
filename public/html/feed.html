@@ -263,6 +263,7 @@
           CURRENT_USER = get_cookie_by_name("username");
         }
 
+        Vue.config.silent = true
         const { createApp, ref } = Vue
 
         app = createApp({
@@ -583,7 +584,6 @@
             this.load_stats()
           }
         }).mount('body')
-
 
         // INIT
         document.getElementById("chat_privata").addEventListener('submit', async event => {

@@ -383,7 +383,7 @@ app.get('/db/chat', async function(req, res) {
 
 // dry daily run
 app.get('/db/dry_daily', async function(req, res) {
-	res.send(await mymongo.daily(true, mongoCredentials))
+	res.send(await mymongo.daily(false, mongoCredentials))
 });
 
 // dry weekly run
